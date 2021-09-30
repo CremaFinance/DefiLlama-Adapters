@@ -1,16 +1,133 @@
-import { Box, Flex, Heading } from "@chakra-ui/react";
+import {
+  HStack,
+  useColorModeValue,
+  Image,
+  Box,
+  Flex,
+  Heading,
+  VStack, 
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  IconButton, 
+  MenuItemOption,
+  MenuGroup,
+  MenuOptionGroup,
+  MenuIcon,
+  MenuCommand,
+  MenuDivider,
+  Button,
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  useDisclosure,
+} from "@chakra-ui/react";
 import Link from "next/link";
+
+import { useRef } from "react";
+
+import { BiCaretDown } from "react-icons/bi";
+import { IoMdArrowRoundForward, IoIosMenu } from "react-icons/io";
 
 import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
+  let bg = useColorModeValue("#C8ECE1", "#C8ECE1");
   return (
-    <Flex as="header" width="full" align="center">
+    <Flex
+      position="fixed"
+      top={0}
+      width="100vw"
+      as="header"
+      bg={bg}
+      align="center"
+      py={3}
+      zIndex={1000}
+      px={5}
+    >
       <Heading as="h1" size="md">
-        <Link href="/">nextchakra-starter</Link>
+        <Link href="/">
+          <Image
+            cursor="pointer"
+            src={"./marinade-logo.png"}
+            alt="Marinade Logo"
+            width={200}
+          />
+        </Link>
       </Heading>
 
       <Box marginLeft="auto">
+        <Box display={["block", "block", "none"]}>
+          <Sidebar />
+        </Box>
+        <HStack spacing={4} display={["none", "none", "flex"]}>
+          <Box>
+            <Menu>
+              <MenuButton
+                as={Button}
+                size="sm"
+                rounded="md"
+                variant="link"
+                color="gray.900"
+                p={1.5}
+                rightIcon={<BiCaretDown />}
+              >
+                Product
+              </MenuButton>
+              <MenuList>
+                <MenuItem>Download</MenuItem>
+                <MenuItem>Create a Copy</MenuItem>
+                <MenuItem>Mark as Draft</MenuItem>
+                <MenuItem>Delete</MenuItem>
+                <MenuItem>Attend a Workshop</MenuItem>
+              </MenuList>
+            </Menu>
+          </Box>
+
+          <Box>
+            <Menu>
+              <MenuButton
+                as={Button}
+                size="sm"
+                variant="link"
+                color="gray.900"
+                rounded="md"
+                p={1.5}
+                rightIcon={<BiCaretDown />}
+              >
+                Learn
+              </MenuButton>
+              <MenuList>
+                <MenuItem>Download</MenuItem>
+                <MenuItem>Create a Copy</MenuItem>
+                <MenuItem>Mark as Draft</MenuItem>
+                <MenuItem>Delete</MenuItem>
+                <MenuItem>Attend a Workshop</MenuItem>
+              </MenuList>
+            </Menu>
+          </Box>
+
+          <Box>
+            <Button
+              size="sm"
+              rounded="md"
+              bg="#08B898"
+              _hover={{ bg: "#08B898aa" }}
+              color="white"
+              rightIcon={<IoMdArrowRoundForward />}
+            >
+              Go to app
+            </Button>
+          </Box>
+        </HStack>
+      </Box>
+
+      <Box float="right" display="none">
         <ThemeToggle />
       </Box>
     </Flex>
@@ -18,3 +135,120 @@ const Header = () => {
 };
 
 export default Header;
+
+function Sidebar() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = useRef();
+
+  let productLinks = [
+    {
+      title: "Page 1",
+      link: "#",
+    },
+
+    {
+      title: "Page 2",
+      link: "#",
+    },
+
+    {
+      title: "Page 3",
+      link: "#",
+    },
+  ]
+
+  let learnLinks = [
+    {
+      title: "Page 1",
+      link: "#",
+    },
+
+    {
+      title: "Page 2",
+      link: "#",
+    },
+
+    {
+      title: "Page 3",
+      link: "#",
+    },
+  ]
+  return (
+    <>
+      <IconButton ref={btnRef} fontSize="2xl" _hover={{bg: "none"}} _active={{bg: "gray.100"}} rounded="md" size="sm" variant="ghost" onClick={onOpen} icon={ <IoIosMenu /> } />
+        
+      
+
+
+      <Drawer
+        isOpen={isOpen}
+        placement="right"
+        onClose={onClose}
+        finalFocusRef={btnRef}
+      >
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerCloseButton />
+          <DrawerHeader></DrawerHeader>
+
+          <DrawerBody>
+            <Heading size="sm" mb={2}>
+              Product
+            </Heading>
+
+            <Box mb={ 5 }>
+             {
+               productLinks.map( el => {
+                 return  <Box mb={1} key={ "ll" + el.title }>
+                 <Link href={ el.link }>
+                 { el.title }
+                 </Link>
+               </Box>
+               })
+             }
+             </Box>
+              
+
+              <Heading size="sm" my={2}>
+              Learn
+            </Heading>
+
+
+
+            <Box mb={ 5 }>
+            
+             {
+               learnLinks.map( el => {
+                 return  <Box mb={1} key={ "sl" + el.title }>
+                 <Link href={ el.link }>
+                 { el.title }
+                 </Link>
+               </Box>
+               })
+             }
+             </Box>
+
+
+             <Button
+              size="sm"
+              rounded="md"
+              bg="#08B898"
+              _hover={{ bg: "#08B898aa" }}
+              color="white"
+              rightIcon={<IoMdArrowRoundForward />}
+            >
+              Go to app
+            </Button>
+
+
+              
+
+          </DrawerBody>
+
+          <DrawerFooter>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    </>
+  );
+}

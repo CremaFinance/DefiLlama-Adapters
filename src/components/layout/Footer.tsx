@@ -1,12 +1,13 @@
-import { Flex, Link, Text } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
+import Link from "next/link";
 
 const Footer = () => {
   return (
-    <Flex as="footer" width="full" align="center">
+    <Flex as="footer" width="full" align="center" px={ 5 } py= { 3 } color="white" bg="#242731">
       <Text>
         {new Date().getFullYear()} -{" "}
-        <Link href="https://sznm.dev" isExternal>
-          sznm.dev
+        <Link href="/">
+          marinade.finance
         </Link>
       </Text>
     </Flex>
