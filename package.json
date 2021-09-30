@@ -1,8 +1,8 @@
 {
-  "name": "nextchakra-starter",
+  "name": "marinade-web",
   "version": "0.1.0",
   "private": true,
-  "author": "sozonome",
+  "author": "marinade",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -14,7 +14,9 @@
     "up-latest": "yarn upgrade-interactive --latest",
     "release": "standard-version",
     "push-release": "git push --follow-tags origin main",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@chakra-ui/react": "^1.6.7",
@@ -32,8 +34,16 @@
     "react-icons": "^4.2.0"
   },
   "devDependencies": {
-    "@commitlint/config-conventional": "^13.1.0",
+    "@babel/core": "^7.15.5",
+    "@commitlint/cli": "^13.2.0",
+    "@commitlint/config-conventional": "^13.2.0",
+    "@snek-at/storybook-addon-chakra-ui": "^1.0.0-beta.1",
+    "@storybook/addon-actions": "^6.3.8",
+    "@storybook/addon-essentials": "^6.3.8",
+    "@storybook/addon-links": "^6.3.8",
+    "@storybook/react": "^6.3.8",
     "@types/react": "^17.0.24",
+    "babel-loader": "^8.2.2",
     "commitlint": "^13.1.0",
     "eslint": "^7.32.0",
     "eslint-config-next": "^11.1.2",
@@ -53,5 +63,10 @@
     "src/**/*.{json,css,scss,md}": [
       "prettier --write"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "[[ -n $HUSKY_BYPASS ]] || commitlint -E HUSKY_GIT_PARAMS"
+    }
   }
 }
