@@ -1,13 +1,17 @@
 import { Heading, Image, Text, Square } from "@chakra-ui/react";
-import * as React from "react";
+import { ReactElement } from "react";
 
 type IconWithTextBelowProps = {
   title: string;
-  subtitle?: string;
+  subtitle?: ReactElement | string;
   icon: string;
 };
 
-const IconWithTextBelow = (props: IconWithTextBelowProps) => (
+const IconWithTextBelow = ({
+  icon,
+  title,
+  subtitle,
+}: IconWithTextBelowProps) => (
   <Square
     display="flex"
     flexDirection="column"
@@ -19,12 +23,7 @@ const IconWithTextBelow = (props: IconWithTextBelowProps) => (
     maxWidth="320"
     minWidth="320"
   >
-    <Image
-      src={props.icon}
-      maxW="sm"
-      objectFit="contain"
-      alt={`${props.title} Logo`}
-    />
+    <Image src={icon} maxW="sm" objectFit="contain" alt={`${title} Logo`} />
     <Heading
       size="md"
       color="white"
@@ -33,11 +32,15 @@ const IconWithTextBelow = (props: IconWithTextBelowProps) => (
       wordBreak="keep-all"
       textAlign="center"
     >
-      {props.title}
+      {title}
     </Heading>
-    <Text color="white" textAlign="center">
-      {props.subtitle}
-    </Text>
+    {typeof subtitle === "string" ? (
+      <Text color="white" textAlign="center">
+        {subtitle}
+      </Text>
+    ) : (
+      subtitle
+    )}
   </Square>
 );
 
