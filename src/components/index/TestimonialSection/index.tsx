@@ -2,7 +2,16 @@ import { Center, Grid, Image, Box } from "@chakra-ui/react";
 
 const TestimonialSection = () => {
   return (
-    <Box px={5} py={[5, 5, 10]}>
+    <Box
+      paddingTop={["10", 10, 16]}
+      paddingBottom="16"
+      as="section"
+      px={[5, 8]}
+      aria-label="why-section"
+      display="flex"
+      flexDirection="column"
+      alignItems="stretch"
+    >
       <Grid
         templateColumns={[
           "repeat(100%)",

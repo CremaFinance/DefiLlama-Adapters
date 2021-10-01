@@ -52,7 +52,7 @@ const LogoStripSection = () => {
   ];
 
   return (
-    <Box p={8} bg="#242731" as="section">
+    <Box p={8} py={16} bg="#242731" as="section">
       <Heading
         size="md"
         textAlign="center"
@@ -84,7 +84,7 @@ const LogoStripSection = () => {
         </Flex>
 
         <SimpleGrid
-          columns={[2, 3, 4]}
+          columns={[3, 3, 4]}
           spacing={4}
           display={["grid", "grid", "none"]}
         >

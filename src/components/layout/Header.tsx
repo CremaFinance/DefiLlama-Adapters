@@ -33,7 +33,7 @@ const Header = () => {
       align="center"
       py={3}
       zIndex={1000}
-      px={5}
+      px={[5, 5, 10]}
     >
       <Heading as="h1" size="md">
         <Link href="/">
@@ -64,12 +64,26 @@ const Header = () => {
               >
                 Product
               </MenuButton>
-              <MenuList>
-                <MenuItem>Download</MenuItem>
-                <MenuItem>Create a Copy</MenuItem>
-                <MenuItem>Mark as Draft</MenuItem>
-                <MenuItem>Delete</MenuItem>
-                <MenuItem>Attend a Workshop</MenuItem>
+              <MenuList bg="#C8ECE1" border="none" rounded="md" shadow="none">
+                <MenuItem bg="none" _hover={{ bg: "none" }}>
+                  <Link href="/">Stake SOL</Link>
+                </MenuItem>
+
+                <MenuItem _hover={{ bg: "none" }}>
+                  <Link href="/">Validators</Link>
+                </MenuItem>
+
+                <MenuItem _hover={{ bg: "none" }}>
+                  <Link href="/">Receive mSOL</Link>
+                </MenuItem>
+
+                <MenuItem _hover={{ bg: "none" }}>
+                  <Link href="/">Marinade DAO</Link>
+                </MenuItem>
+
+                <MenuItem _hover={{ bg: "none" }}>
+                  <Link href="/">DeFi recipes / integrations</Link>
+                </MenuItem>
               </MenuList>
             </Menu>
           </Box>
@@ -87,12 +101,22 @@ const Header = () => {
               >
                 Learn
               </MenuButton>
-              <MenuList>
-                <MenuItem>Download</MenuItem>
-                <MenuItem>Create a Copy</MenuItem>
-                <MenuItem>Mark as Draft</MenuItem>
-                <MenuItem>Delete</MenuItem>
-                <MenuItem>Attend a Workshop</MenuItem>
+              <MenuList bg="#C8ECE1" border="none" rounded="md" shadow="none" >
+                <MenuItem _hover={{ bg: "none" }}>
+                  <Link href="/">Docs</Link>
+                </MenuItem>
+
+                <MenuItem _hover={{ bg: "none" }}>
+                  <Link href="/">Security</Link>
+                </MenuItem>
+
+                <MenuItem _hover={{ bg: "none" }}>
+                  <Link href="/">About us</Link>
+                </MenuItem>
+
+                <MenuItem _hover={{ bg: "none" }}>
+                  <Link href="/">Roadmap</Link>
+                </MenuItem>
               </MenuList>
             </Menu>
           </Box>

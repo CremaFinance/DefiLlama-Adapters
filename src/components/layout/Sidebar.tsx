@@ -11,6 +11,7 @@ import {
   DrawerContent,
   DrawerCloseButton,
   useDisclosure,
+  Image, 
 } from "@chakra-ui/react";
 
 import { IoIosMenu, IoMdArrowRoundForward } from "react-icons/io";
@@ -33,11 +34,20 @@ function Sidebar() {
         icon={<IoIosMenu />}
       />
 
-      <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
+      <Drawer size="sm" isOpen={isOpen} placement="right" onClose={onClose}>
         <DrawerOverlay />
-        <DrawerContent>
+        <DrawerContent bg="#C8ECE1">
           <DrawerCloseButton />
-          <DrawerHeader />
+          <DrawerHeader>
+            <Link href="/">
+              <Image
+                cursor="pointer"
+                src="./marinade-logo.png"
+                alt="Marinade Logo"
+                width={200}
+              />
+            </Link>
+          </DrawerHeader>
 
           <DrawerBody>
             <Heading size="sm" mb={2}>
@@ -46,15 +56,23 @@ function Sidebar() {
 
             <Box mb={5}>
               <Box mb={1}>
-                <Link href="/">Product 1</Link>
+                <Link href="/">Stake SOL</Link>
               </Box>
 
               <Box mb={1}>
-                <Link href="/">Product 2</Link>
+                <Link href="/">Validators</Link>
               </Box>
 
               <Box mb={1}>
-                <Link href="/">Product 3</Link>
+                <Link href="/">Receive mSOL</Link>
+              </Box>
+
+              <Box mb={1}>
+                <Link href="/">Marinade DAO</Link>
+              </Box>
+
+              <Box mb={1}>
+                <Link href="/">DeFi recipes / integrations</Link>
               </Box>
             </Box>
 
@@ -64,15 +82,19 @@ function Sidebar() {
 
             <Box mb={5}>
               <Box mb={1}>
-                <Link href="/">Learn 1</Link>
+                <Link href="/">Docs</Link>
               </Box>
 
               <Box mb={1}>
-                <Link href="/">Learn 2</Link>
+                <Link href="/">Security</Link>
               </Box>
 
               <Box mb={1}>
-                <Link href="/">Learn 3</Link>
+                <Link href="/">About us</Link>
+              </Box>
+
+              <Box mb={1}>
+                <Link href="/">Roadmap</Link>
               </Box>
             </Box>
 
