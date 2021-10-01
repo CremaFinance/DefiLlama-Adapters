@@ -2,6 +2,7 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import { EmotionCache } from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
+import { appWithTranslation } from "next-i18next";
 import { DefaultSeo } from "next-seo";
 import { AppProps } from "next/app";
 import Head from "next/head";
@@ -46,4 +47,6 @@ MyApp.defaultProps = {
   emotionCache: clientSideEmotionCache,
 };
 
-export default MyApp;
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+export default appWithTranslation(MyApp);
