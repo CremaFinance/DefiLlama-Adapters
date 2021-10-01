@@ -52,3 +52,7 @@ small,
 .text_small {
   font-size: 0.8rem;
 }
+
+.link {
+  color: #308D8A;
+}
