@@ -2,7 +2,7 @@ import { Flex, Link, Text, useColorMode } from "@chakra-ui/react";
 import Image from "next/image";
 
 import HelperImage from "./HelperImage";
-import MotionBox from "./motion/Box";
+import MotionBox from "../motion/Box";
 
 const SomeImage = () => {
   const { colorMode } = useColorMode();

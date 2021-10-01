@@ -8,12 +8,8 @@ import {
   Heading,
 } from "@chakra-ui/react";
 
-type SectionProps = {
-  title: string;
-};
-
-const LogoStripSection = ({ title }: SectionProps) => {
-  let ecosystem = [
+const LogoStripSection = () => {
+  const ecosystem = [
     {
       title: "Solana",
       image: "/logos/asset-77.svg",
@@ -56,7 +52,7 @@ const LogoStripSection = ({ title }: SectionProps) => {
   ];
 
   return (
-    <Box p={8} bg="#242731" as="section" aria-label={title}>
+    <Box p={8} py={16} bg="#242731" as="section">
       <Heading
         size="md"
         textAlign="center"
@@ -71,26 +67,24 @@ const LogoStripSection = ({ title }: SectionProps) => {
         <Flex gap={4} flexWrap="wrap" display={["none", "none", "inline-flex"]}>
           {ecosystem.map((el) => {
             return (
-              
-                <Box flex={1} height="80px" width="90px" >
-                  <Center height="100%" color="white">
-                    <Tooltip label={el.title} placement="bottom">
-                      <Image
-                        src={el.image}
-                        width="50px"
-                        objectFit="contain"
-                        alt={el.title + " Logo"}
-                      />
-                    </Tooltip>
-                  </Center>
-                </Box>
-              
+              <Box flex={1} height="80px" width="90px">
+                <Center height="100%" color="white">
+                  <Tooltip label={el.title} placement="bottom">
+                    <Image
+                      src={el.image}
+                      width="50px"
+                      objectFit="contain"
+                      alt={el.title}
+                    />
+                  </Tooltip>
+                </Center>
+              </Box>
             );
           })}
         </Flex>
 
         <SimpleGrid
-          columns={[2, 3, 4]}
+          columns={[3, 3, 4]}
           spacing={4}
           display={["grid", "grid", "none"]}
         >
@@ -103,7 +97,7 @@ const LogoStripSection = ({ title }: SectionProps) => {
                       src={el.image}
                       width="50px"
                       objectFit="contain"
-                      alt={el.title + " Logo"}
+                      alt={el.title}
                     />
                   </Tooltip>
                 </Center>
@@ -114,10 +108,6 @@ const LogoStripSection = ({ title }: SectionProps) => {
       </Box>
     </Box>
   );
-};
-
-LogoStripSection.defaultProps = {
-  title: "Logo Strip Section",
 };
 
 export default LogoStripSection;

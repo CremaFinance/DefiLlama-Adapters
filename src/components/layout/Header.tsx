@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import {
   HStack,
   useColorModeValue,
@@ -5,39 +7,22 @@ import {
   Box,
   Flex,
   Heading,
-  VStack, 
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
-  IconButton, 
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuIcon,
-  MenuCommand,
-  MenuDivider,
   Button,
-  Drawer,
-  DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
-  useDisclosure,
 } from "@chakra-ui/react";
-import Link from "next/link";
-
-import { useRef } from "react";
 
 import { BiCaretDown } from "react-icons/bi";
-import { IoMdArrowRoundForward, IoIosMenu } from "react-icons/io";
+import { IoMdArrowRoundForward } from "react-icons/io";
 
+import Sidebar from "./Sidebar";
 import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
-  let bg = useColorModeValue("#C8ECE1", "#C8ECE1");
+  const bg = useColorModeValue("#C8ECE1", "#C8ECE1");
+
   return (
     <Flex
       position="fixed"
@@ -48,13 +33,13 @@ const Header = () => {
       align="center"
       py={3}
       zIndex={1000}
-      px={5}
+      px={[5, 5, 10]}
     >
       <Heading as="h1" size="md">
         <Link href="/">
           <Image
             cursor="pointer"
-            src={"./marinade-logo.png"}
+            src="./marinade-logo.png"
             alt="Marinade Logo"
             width={200}
           />
@@ -79,12 +64,26 @@ const Header = () => {
               >
                 Product
               </MenuButton>
-              <MenuList>
-                <MenuItem>Download</MenuItem>
-                <MenuItem>Create a Copy</MenuItem>
-                <MenuItem>Mark as Draft</MenuItem>
-                <MenuItem>Delete</MenuItem>
-                <MenuItem>Attend a Workshop</MenuItem>
+              <MenuList bg="#C8ECE1" border="none" rounded="md" shadow="none">
+                <MenuItem bg="none" _hover={{ bg: "none" }}>
+                  <Link href="/">Stake SOL</Link>
+                </MenuItem>
+
+                <MenuItem _hover={{ bg: "none" }}>
+                  <Link href="/">Validators</Link>
+                </MenuItem>
+
+                <MenuItem _hover={{ bg: "none" }}>
+                  <Link href="/">Receive mSOL</Link>
+                </MenuItem>
+
+                <MenuItem _hover={{ bg: "none" }}>
+                  <Link href="/">Marinade DAO</Link>
+                </MenuItem>
+
+                <MenuItem _hover={{ bg: "none" }}>
+                  <Link href="/">DeFi recipes / integrations</Link>
+                </MenuItem>
               </MenuList>
             </Menu>
           </Box>
@@ -102,12 +101,22 @@ const Header = () => {
               >
                 Learn
               </MenuButton>
-              <MenuList>
-                <MenuItem>Download</MenuItem>
-                <MenuItem>Create a Copy</MenuItem>
-                <MenuItem>Mark as Draft</MenuItem>
-                <MenuItem>Delete</MenuItem>
-                <MenuItem>Attend a Workshop</MenuItem>
+              <MenuList bg="#C8ECE1" border="none" rounded="md" shadow="none" >
+                <MenuItem _hover={{ bg: "none" }}>
+                  <Link href="/">Docs</Link>
+                </MenuItem>
+
+                <MenuItem _hover={{ bg: "none" }}>
+                  <Link href="/">Security</Link>
+                </MenuItem>
+
+                <MenuItem _hover={{ bg: "none" }}>
+                  <Link href="/">About us</Link>
+                </MenuItem>
+
+                <MenuItem _hover={{ bg: "none" }}>
+                  <Link href="/">Roadmap</Link>
+                </MenuItem>
               </MenuList>
             </Menu>
           </Box>
@@ -135,120 +144,3 @@ const Header = () => {
 };
 
 export default Header;
-
-function Sidebar() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = useRef();
-
-  let productLinks = [
-    {
-      title: "Page 1",
-      link: "#",
-    },
-
-    {
-      title: "Page 2",
-      link: "#",
-    },
-
-    {
-      title: "Page 3",
-      link: "#",
-    },
-  ]
-
-  let learnLinks = [
-    {
-      title: "Page 1",
-      link: "#",
-    },
-
-    {
-      title: "Page 2",
-      link: "#",
-    },
-
-    {
-      title: "Page 3",
-      link: "#",
-    },
-  ]
-  return (
-    <>
-      <IconButton ref={btnRef} fontSize="2xl" _hover={{bg: "none"}} _active={{bg: "gray.100"}} rounded="md" size="sm" variant="ghost" onClick={onOpen} icon={ <IoIosMenu /> } />
-        
-      
-
-
-      <Drawer
-        isOpen={isOpen}
-        placement="right"
-        onClose={onClose}
-        finalFocusRef={btnRef}
-      >
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerCloseButton />
-          <DrawerHeader></DrawerHeader>
-
-          <DrawerBody>
-            <Heading size="sm" mb={2}>
-              Product
-            </Heading>
-
-            <Box mb={ 5 }>
-             {
-               productLinks.map( el => {
-                 return  <Box mb={1} key={ "ll" + el.title }>
-                 <Link href={ el.link }>
-                 { el.title }
-                 </Link>
-               </Box>
-               })
-             }
-             </Box>
-              
-
-              <Heading size="sm" my={2}>
-              Learn
-            </Heading>
-
-
-
-            <Box mb={ 5 }>
-            
-             {
-               learnLinks.map( el => {
-                 return  <Box mb={1} key={ "sl" + el.title }>
-                 <Link href={ el.link }>
-                 { el.title }
-                 </Link>
-               </Box>
-               })
-             }
-             </Box>
-
-
-             <Button
-              size="sm"
-              rounded="md"
-              bg="#08B898"
-              _hover={{ bg: "#08B898aa" }}
-              color="white"
-              rightIcon={<IoMdArrowRoundForward />}
-            >
-              Go to app
-            </Button>
-
-
-              
-
-          </DrawerBody>
-
-          <DrawerFooter>
-          </DrawerFooter>
-        </DrawerContent>
-      </Drawer>
-    </>
-  );
-}

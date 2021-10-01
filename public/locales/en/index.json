@@ -14,5 +14,26 @@
       "title": "Unlocked liquidity",
       "subtitle": "Put your staked SOL to work in DeFi and gain an additional yield."
     }
+  ],
+  "security-section-title": "The most trusted liquid staking on Solana",
+  "security-section-subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore aliqua.",
+  "security-section-action": "Read more about security",
+  "security-section-items": [
+    {
+      "title": "Fully non-custodial",
+      "subtitle": "The Marinade program is completely permissionless so that anybody can run the bot and “turn the crank”."
+    },
+    {
+      "title": "Audits and code reviews",
+      "subtitle": "The program code has been reviewed by {{neodymeTeam}}, audited by {{ackeeBlockchain}} and being audited by {{kudelskiSecurity}}."
+    },
+    {
+      "title": "Ecosystem governance",
+      "subtitle": "Until full DAO, the Marinade program is governed by the most reputable parties of Solana ecosystem."
+    },
+    {
+      "title": "Transparent delegation strategy",
+      "subtitle": "Staked SOL is delegated to hundreds of validators effectively mitigating any single point of failure risk."
+    }
   ]
 }

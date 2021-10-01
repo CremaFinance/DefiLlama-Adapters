@@ -1,3 +1,5 @@
 import { Button as ChakraButton, ButtonProps } from "@chakra-ui/react";
 
-export const Button = (props: ButtonProps) => <ChakraButton {...props} />;
+const Button = (props: ButtonProps) => <ChakraButton {...props} />;
+
+export default Button;

@@ -1,15 +1,11 @@
 import { HStack, Button, Image, Box, Heading } from "@chakra-ui/react";
 
-type SectionProps = {
-  title: string;
-};
-
-const HeroSection = ({ title }: SectionProps) => {
+const HeroSection = () => {
   return (
-    <Box py="72px" pb={[8]} bg="#C8ECE1" position="relative" minHeight="100vh">
+    <Box py="72px" pb={8} bg="#C8ECE1" position="relative" minHeight="100vh">
       <Box
         pt={[5, 5, "10vh"]}
-        pl={[0, 0, 5]}
+        pl={[0, 0, 10]}
         position="relative"
         zIndex={10}
         textAlign={["center", "center", "left"]}
@@ -157,10 +153,6 @@ const HeroSection = ({ title }: SectionProps) => {
       </Box>
     </Box>
   );
-};
-
-HeroSection.defaultProps = {
-  title: "Hero Section",
 };
 
 export default HeroSection;
