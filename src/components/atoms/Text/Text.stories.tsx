@@ -1,7 +1,7 @@
 import React from "react";
 
 import { ComponentStory } from "@storybook/react";
-import { Text } from "./";
+import Text from "./index";
 export default { title: "Atoms/Text" };
 
 export const Default: ComponentStory<typeof Text> = (args) => {

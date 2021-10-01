@@ -1,12 +1,8 @@
 import { Center, Grid, Image, Box } from "@chakra-ui/react";
 
-type SectionProps = {
-  title: string;
-};
-
-const TestimonialSection = ({ title }: SectionProps) => {
+const TestimonialSection = () => {
   return (
-    <Box px={5} py={[5, 5, 10]} id={title}>
+    <Box px={5} py={[5, 5, 10]}>
       <Grid
         templateColumns={[
           "repeat(100%)",
@@ -51,10 +47,6 @@ const TestimonialSection = ({ title }: SectionProps) => {
       </Grid>
     </Box>
   );
-};
-
-TestimonialSection.defaultProps = {
-  title: "Testimonial Section",
 };
 
 export default TestimonialSection;

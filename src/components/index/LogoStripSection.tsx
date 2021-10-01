@@ -8,11 +8,7 @@ import {
   Heading,
 } from "@chakra-ui/react";
 
-type SectionProps = {
-  title: string;
-};
-
-const LogoStripSection = ({ title }: SectionProps) => {
+const LogoStripSection = () => {
   const ecosystem = [
     {
       title: "Solana",
@@ -56,7 +52,7 @@ const LogoStripSection = ({ title }: SectionProps) => {
   ];
 
   return (
-    <Box p={8} bg="#242731" as="section" id={title}>
+    <Box p={8} bg="#242731" as="section">
       <Heading
         size="md"
         textAlign="center"
@@ -112,10 +108,6 @@ const LogoStripSection = ({ title }: SectionProps) => {
       </Box>
     </Box>
   );
-};
-
-LogoStripSection.defaultProps = {
-  title: "Logo Strip Section",
 };
 
 export default LogoStripSection;
