@@ -18,13 +18,25 @@ const IconWithTextBelow = ({
       flex="1"
       marginLeft="5"
       marginRight="5"
+      marginBottom="5"
       justifyContent="flex-start"
+      maxWidth="320"
+      minWidth="320"
     >
       <Image src={icon} maxW="sm" objectFit="contain" alt={`${title} Logo`} />
-      <Heading size="md" color="white" marginBottom="5" marginTop="5">
+      <Heading
+        size="md"
+        color="white"
+        marginBottom="5"
+        marginTop="5"
+        wordBreak="keep-all"
+        textAlign="center"
+      >
         {title}
       </Heading>
-      <Text color="white">{subtitle}</Text>
+      <Text color="white" textAlign="center">
+        {subtitle}
+      </Text>
     </Square>
   );
 };
@@ -41,10 +53,10 @@ export default function WhySection() {
       aria-label="why-section"
       display="flex"
       flexDirection="column"
-      alignItems="center"
+      alignItems="stretch"
     >
       <Heading
-        width="xs"
+        // width="xs"
         textAlign="center"
         marginBottom={4}
         color="white"
@@ -54,6 +66,8 @@ export default function WhySection() {
       </Heading>
       <Heading
         size="lg"
+        alignSelf="center"
+        maxWidth="1000"
         textAlign="center"
         marginBottom="20"
         marginTop="10"
@@ -62,7 +76,12 @@ export default function WhySection() {
       >
         {t("why-section-subtitle")}
       </Heading>
-      <Box display="flex" flexDirection="row" maxW="3xl" flexWrap="wrap">
+      <Box
+        display="flex"
+        alignItems="flex-start"
+        flexWrap="wrap"
+        justifyContent="center"
+      >
         {[0, 1, 2].map((index) => (
           <IconWithTextBelow
             icon={`/icons/why-section-icon${index + 1}.svg`}
