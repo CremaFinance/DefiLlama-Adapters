@@ -2,8 +2,7 @@
   "extends": [
     "sznm/react",
     "plugin:react/jsx-runtime",
-    "plugin:@next/next/recommended",
-    "plugin:react/recommended"
+    "plugin:@next/next/recommended"
   ],
   "rules": {
     "import/no-extraneous-dependencies": [
