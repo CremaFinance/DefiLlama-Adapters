@@ -25,7 +25,7 @@
     },
     {
       "title": "Audits and code reviews",
-      "subtitle": "The program code has been reviewed by Neodyme team, audited by Ackee Blockchain and being audited by Kudelski security."
+      "subtitle": "The program code has been reviewed by {{neodymeTeam}}, audited by {{ackeeBlockchain}} and being audited by {{kudelskiSecurity}}."
     },
     {
       "title": "Ecosystem governance",

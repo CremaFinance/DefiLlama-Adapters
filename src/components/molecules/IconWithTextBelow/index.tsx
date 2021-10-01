@@ -1,4 +1,5 @@
 import { Heading, Image, Text, Square } from "@chakra-ui/react";
+import ReactHtmlParser from "html-react-parser";
 import * as React from "react";
 
 type IconWithTextBelowProps = {
@@ -36,7 +37,7 @@ const IconWithTextBelow = (props: IconWithTextBelowProps) => (
       {props.title}
     </Heading>
     <Text color="whiteAlpha.800" textAlign="center">
-      {props.subtitle}
+      {ReactHtmlParser(props.subtitle)}
     </Text>
   </Square>
 );

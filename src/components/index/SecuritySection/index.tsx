@@ -45,14 +45,35 @@ export default function SecuritySection() {
         flexWrap="wrap"
         justifyContent="center"
       >
-        {[0, 1, 2, 3].map((index) => (
-          <IconWithTextBelow
-            key={`security-item-${index}`}
-            icon={`/icons/security-section-icon${index + 1}.svg`}
-            title={t(`security-section-items.${index}.title`)}
-            subtitle={t(`security-section-items.${index}.subtitle`)}
-          />
-        ))}
+        <IconWithTextBelow
+          key="security-item-0"
+          icon="/icons/security-section-icon0.svg"
+          title={t(`security-section-items.0.title`)}
+          subtitle={t(`security-section-items.0.subtitle`)}
+        />
+        <IconWithTextBelow
+          key="security-item-1"
+          icon="/icons/security-section-icon1.svg"
+          title={t(`security-section-items.1.title`)}
+          subtitle={t(`security-section-items.1.subtitle`, {
+            // TODO: Add proper links
+            neodymeTeam: '<a class="link" href="">Neodyme team</a>',
+            ackeeBlockchain: '<a class="link" href="">Ackee Blockchain</a>',
+            kudelskiSecurity: '<a class="link" href="">Kudelski Security</a>',
+          })}
+        />
+        <IconWithTextBelow
+          key="security-item-2"
+          icon="/icons/security-section-icon2.svg"
+          title={t(`security-section-items.2.title`)}
+          subtitle={t(`security-section-items.2.subtitle`)}
+        />
+        <IconWithTextBelow
+          key="security-item-3"
+          icon="/icons/security-section-icon3.svg"
+          title={t(`security-section-items.3.title`)}
+          subtitle={t(`security-section-items.3.subtitle`)}
+        />
       </Box>
       <Box marginTop="10" display="flex" justifyContent="center">
         <Button
