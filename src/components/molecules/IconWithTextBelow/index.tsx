@@ -35,7 +35,7 @@ const IconWithTextBelow = (props: IconWithTextBelowProps) => (
     >
       {props.title}
     </Heading>
-    <Text color="white" textAlign="center">
+    <Text color="whiteAlpha.800" textAlign="center">
       {props.subtitle}
     </Text>
   </Square>
