@@ -1,7 +1,8 @@
+import { ComponentStory } from "@storybook/react";
 import React from "react";
 
-import { ComponentStory } from "@storybook/react";
-import { Text } from "./";
+import { Text } from ".";
+
 export default { title: "Atoms/Text" };
 
 export const Default: ComponentStory<typeof Text> = (args) => {
