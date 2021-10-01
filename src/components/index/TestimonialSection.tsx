@@ -1,4 +1,4 @@
-import { Center, Grid, Image, Box, } from "@chakra-ui/react";
+import { Center, Grid, Image, Box } from "@chakra-ui/react";
 
 type SectionProps = {
   title: string;
@@ -6,7 +6,7 @@ type SectionProps = {
 
 const TestimonialSection = ({ title }: SectionProps) => {
   return (
-    <Box px={5} py={[5, 5, 10]}>
+    <Box px={5} py={[5, 5, 10]} id={title}>
       <Grid
         templateColumns={[
           "repeat(100%)",

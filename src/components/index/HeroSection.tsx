@@ -6,7 +6,7 @@ type SectionProps = {
 
 const HeroSection = ({ title }: SectionProps) => {
   return (
-    <Box py="72px" pb={[8]} bg="#C8ECE1" position="relative" minHeight="100vh">
+    <Box py="72px" pb={[8]} bg="#C8ECE1" position="relative" minHeight="100vh" id={ title }>
       <Box
         pt={[5, 5, "10vh"]}
         pl={[0, 0, 5]}
@@ -160,7 +160,7 @@ const HeroSection = ({ title }: SectionProps) => {
 };
 
 HeroSection.defaultProps = {
-  title: "Hero Section",
+  title: "Hero Section"
 };
 
 export default HeroSection;

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import {
   HStack,
   useColorModeValue,
@@ -5,39 +7,22 @@ import {
   Box,
   Flex,
   Heading,
-  VStack, 
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
-  IconButton, 
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuIcon,
-  MenuCommand,
-  MenuDivider,
   Button,
-  Drawer,
-  DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
-  useDisclosure,
 } from "@chakra-ui/react";
-import Link from "next/link";
-
-import { useRef } from "react";
 
 import { BiCaretDown } from "react-icons/bi";
-import { IoMdArrowRoundForward, IoIosMenu } from "react-icons/io";
+import { IoMdArrowRoundForward } from "react-icons/io";
 
+import Sidebar from "./Sidebar";
 import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
-  let bg = useColorModeValue("#C8ECE1", "#C8ECE1");
+  const bg = useColorModeValue("#C8ECE1", "#C8ECE1");
+
   return (
     <Flex
       position="fixed"
@@ -54,7 +39,7 @@ const Header = () => {
         <Link href="/">
           <Image
             cursor="pointer"
-            src={"./marinade-logo.png"}
+            src="./marinade-logo.png"
             alt="Marinade Logo"
             width={200}
           />
@@ -135,120 +120,3 @@ const Header = () => {
 };
 
 export default Header;
-
-function Sidebar() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = useRef();
-
-  let productLinks = [
-    {
-      title: "Page 1",
-      link: "#",
-    },
-
-    {
-      title: "Page 2",
-      link: "#",
-    },
-
-    {
-      title: "Page 3",
-      link: "#",
-    },
-  ]
-
-  let learnLinks = [
-    {
-      title: "Page 1",
-      link: "#",
-    },
-
-    {
-      title: "Page 2",
-      link: "#",
-    },
-
-    {
-      title: "Page 3",
-      link: "#",
-    },
-  ]
-  return (
-    <>
-      <IconButton ref={btnRef} fontSize="2xl" _hover={{bg: "none"}} _active={{bg: "gray.100"}} rounded="md" size="sm" variant="ghost" onClick={onOpen} icon={ <IoIosMenu /> } />
-        
-      
-
-
-      <Drawer
-        isOpen={isOpen}
-        placement="right"
-        onClose={onClose}
-        finalFocusRef={btnRef}
-      >
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerCloseButton />
-          <DrawerHeader></DrawerHeader>
-
-          <DrawerBody>
-            <Heading size="sm" mb={2}>
-              Product
-            </Heading>
-
-            <Box mb={ 5 }>
-             {
-               productLinks.map( el => {
-                 return  <Box mb={1} key={ "ll" + el.title }>
-                 <Link href={ el.link }>
-                 { el.title }
-                 </Link>
-               </Box>
-               })
-             }
-             </Box>
-              
-
-              <Heading size="sm" my={2}>
-              Learn
-            </Heading>
-
-
-
-            <Box mb={ 5 }>
-            
-             {
-               learnLinks.map( el => {
-                 return  <Box mb={1} key={ "sl" + el.title }>
-                 <Link href={ el.link }>
-                 { el.title }
-                 </Link>
-               </Box>
-               })
-             }
-             </Box>
-
-
-             <Button
-              size="sm"
-              rounded="md"
-              bg="#08B898"
-              _hover={{ bg: "#08B898aa" }}
-              color="white"
-              rightIcon={<IoMdArrowRoundForward />}
-            >
-              Go to app
-            </Button>
-
-
-              
-
-          </DrawerBody>
-
-          <DrawerFooter>
-          </DrawerFooter>
-        </DrawerContent>
-      </Drawer>
-    </>
-  );
-}
