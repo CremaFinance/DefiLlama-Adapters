@@ -3,5 +3,16 @@
     "sznm/react",
     "plugin:react/jsx-runtime",
     "plugin:@next/next/recommended"
-  ]
+  ],
+  "rules": {
+    "import/prefer-default-export": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*.stories.tsx",
+        ],
+      },
+    ],
+  }
 }
