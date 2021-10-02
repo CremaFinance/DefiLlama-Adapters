@@ -11,11 +11,10 @@ import {
   DrawerContent,
   DrawerCloseButton,
   useDisclosure,
-  Image, 
+  Image,
 } from "@chakra-ui/react";
-
-import { IoIosMenu, IoMdArrowRoundForward } from "react-icons/io";
 import Link from "next/link";
+import { IoIosMenu, IoMdArrowRoundForward } from "react-icons/io";
 
 function Sidebar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -38,7 +37,7 @@ function Sidebar() {
         <DrawerContent bg="#C8ECE1">
           <DrawerCloseButton />
           <DrawerHeader>
-            <Link href="/">
+            <Link href="/" passHref>
               <Image
                 cursor="pointer"
                 src="./marinade-logo.png"

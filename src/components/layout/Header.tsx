@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import {
   HStack,
   useColorModeValue,
@@ -13,7 +11,7 @@ import {
   MenuItem,
   Button,
 } from "@chakra-ui/react";
-
+import Link from "next/link";
 import { BiCaretDown } from "react-icons/bi";
 import { IoMdArrowRoundForward } from "react-icons/io";
 import { useState, useEffect } from "react";
@@ -61,7 +59,7 @@ const Header = () => {
       px={[5, 5, 10]}
     >
       <Heading as="h1" size="md">
-        <Link href="/">
+        <Link href="/" passHref>
           <Image
             cursor="pointer"
             src="./marinade-logo.png"
@@ -134,6 +132,7 @@ const Header = () => {
               >
                 Learn
               </MenuButton>
+
               <MenuList border="none" rounded="md" shadow="none">
                 <MenuItem>
                   <Link href="/">Docs</Link>

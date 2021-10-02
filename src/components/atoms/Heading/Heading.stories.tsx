@@ -1,4 +1,5 @@
 import { ComponentStory } from "@storybook/react";
+
 import Heading from "./index";
 
 export const Default: ComponentStory<typeof Heading> = (args) => {
