@@ -35,7 +35,7 @@ const IconWithTextBelow = ({
       {title}
     </Heading>
     {typeof subtitle === "string" ? (
-      <Text color="white" textAlign="center">
+      <Text color="whiteAlpha.800" textAlign="center">
         {subtitle}
       </Text>
     ) : (
