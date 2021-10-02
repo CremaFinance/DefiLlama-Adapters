@@ -68,6 +68,39 @@
       "subtitle": "Put your staked SOL to work in DeFi and gain an additional yield."
     }
   ],
+  
+  "info-section-items": [
+    {
+      "emphasis": "Stake Solana",
+      "heading": "without locking your funds in",
+      "desc": "By going with Marinade you avoid the unstaking period so you're free to use your assets at any time you like.",
+      "link": "#",
+      "quote": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqualabore et dolore magna aliqua. Ut enim ad minim veniam",
+      "name": "Name Nameson",
+      "company": "Company"
+    },
+
+    {
+      "emphasis": "Spread the stake",
+      "heading": "to 300+ top-performing validators",
+      "desc": "Algorithmic strategy delegates to hundreds of validators to make the system more robust, secure and decentralised.",
+      "link": "#",
+      "quote": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqualabore et dolore magna aliqua. Ut enim ad minim veniam",
+      "name": "Name Nameson",
+      "company": "Company"
+    },
+
+    {
+      "emphasis": "Stake Solana",
+      "heading": "without locking your funds in",
+      "desc": "By going with Marinade you avoid the unstaking period so you're free to use your assets at any time you like.",
+      "link": "#",
+      "quote": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqualabore et dolore magna aliqua. Ut enim ad minim veniam",
+      "name": "Name Nameson",
+      "company": "Company"
+    }
+  ],
+
   "security-section-title": "The most trusted liquid staking on Solana",
   "security-section-subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore aliqua.",
   "security-section-action": "Read more about security",
