@@ -1,5 +1,6 @@
 import { Box, Heading, Image, Link, Text } from "@chakra-ui/react";
 import { useTranslation } from "next-i18next";
+import NextLink from "next/link";
 
 const Footer = () => {
   const { t } = useTranslation("index");
@@ -21,14 +22,14 @@ const Footer = () => {
           flex="0.5"
           flexDirection="column"
         >
-          <Link href="/">
+          <NextLink href="/">
             <Image
               cursor="pointer"
               src="./marinade-logo-white.svg"
               alt="Marinade Logo"
               width={200}
             />
-          </Link>
+          </NextLink>
           <Text
             pt="4"
             pb="4"
@@ -81,56 +82,47 @@ const Footer = () => {
           <Heading pb="4" size="md" maxW="600" color="white" fontWeight="800">
             {t("footer-product")}
           </Heading>
-          <Link pb="2" href="/">
-            <Text fontSize="sm" color="white">
-              {t("footer-stake-sol")}
-            </Text>
-          </Link>
-          <Link pb="2" href="/">
-            <Text fontSize="sm" color="white">
-              {t("footer-validators")}
-            </Text>
-          </Link>
-          <Link pb="2" href="/">
-            <Text fontSize="sm" color="white">
-              {t("footer-receive-msol")}
-            </Text>
-          </Link>
-          <Link pb="2" href="/">
-            <Text fontSize="sm" color="white">
-              {t("footer-marinde-dao")}
-            </Text>
-          </Link>
-          <Link pb="2" href="/">
-            <Text fontSize="sm" color="white">
-              {t("footer-defi-recipes-integration")}
-            </Text>
-          </Link>
+
+          <Text fontSize="sm" color="white" mb={2}>
+            <NextLink href="/">{t("footer-stake-sol")}</NextLink>
+          </Text>
+
+          <Text fontSize="sm" color="white" mb={2}>
+            <NextLink href="/">{t("footer-validators")}</NextLink>
+          </Text>
+
+          <Text fontSize="sm" color="white" mb={2}>
+            <NextLink href="/">{t("footer-receive-msol")}</NextLink>
+          </Text>
+
+          <Text fontSize="sm" color="white" mb={2}>
+            <NextLink href="/">{t("footer-marinde-dao")}</NextLink>
+          </Text>
+
+          <Text fontSize="sm" color="white" mb={2}>
+            <NextLink href="/">{t("footer-defi-recipes-integration")}</NextLink>
+          </Text>
         </Box>
         <Box pt="8" pb="8" display="flex" flex="0.25" flexDirection="column">
           <Heading pb="4" size="md" maxW="600" color="white" fontWeight="800">
             {t("footer-learn")}
           </Heading>
-          <Link pb="2" href="/">
-            <Text fontSize="sm" color="white">
-              {t("footer-docs")}
-            </Text>
-          </Link>
-          <Link pb="2" href="/">
-            <Text fontSize="sm" color="white">
-              {t("footer-security")}
-            </Text>
-          </Link>
-          <Link pb="2" href="/">
-            <Text fontSize="sm" color="white">
-              {t("footer-about-us")}
-            </Text>
-          </Link>
-          <Link pb="2" href="/">
-            <Text fontSize="sm" color="white">
-              {t("footer-roadmap")}
-            </Text>
-          </Link>
+
+          <Text fontSize="sm" color="white" mb={2}>
+            <NextLink href="/">{t("footer-docs")}</NextLink>
+          </Text>
+
+          <Text fontSize="sm" color="white" mb={2}>
+            <NextLink href="/">{t("footer-security")}</NextLink>
+          </Text>
+
+          <Text fontSize="sm" color="white" mb={2}>
+            <NextLink href="/">{t("footer-about-us")}</NextLink>
+          </Text>
+
+          <Text fontSize="sm" color="white" mb={2}>
+            <NextLink href="/">{t("footer-roadmap")}</NextLink>
+          </Text>
         </Box>
       </Box>
       <Text pb="8" fontSize="sm" color="whiteAlpha.800">
