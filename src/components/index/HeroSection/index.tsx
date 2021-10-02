@@ -11,7 +11,6 @@ const HeroSection = () => {
       bg="#C8ECE1"
       position="relative"
       height={["auto", "auto", "100vh"]}
-
       minHeight="650px"
     >
       <Box
@@ -26,21 +25,21 @@ const HeroSection = () => {
             {t("hero-section-title")}
           </Heading>
 
-          <Heading fontWeight="bold" maxWidth={300} margin={["0 auto", "0 auto", "0"]}>
+          <Heading
+            fontWeight="bold"
+            maxWidth={300}
+            margin={["0 auto", "0 auto", "0"]}
+          >
             {t("hero-section-subtitle")}
           </Heading>
         </Box>
 
-        <Box maxWidth={300} margin={["0 auto", "0 auto", "0"]} mb={[2, 2, 4]} >
+        <Box maxWidth={300} margin={["0 auto", "0 auto", "0"]} mb={[2, 2, 4]}>
           <Box>{t("hero-section-desc")}</Box>
         </Box>
 
         <Box mb={[2, 2, 4]}>
-          <Button
-            bg="green"
-            colorScheme="green"
-            rounded="md"
-          >
+          <Button bg="green" colorScheme="green" rounded="md">
             {t("hero-section-button")}
           </Button>
         </Box>
@@ -49,8 +48,6 @@ const HeroSection = () => {
           6.21% APY
         </Box>
       </Box>
-
-
 
       {/* CLOUD AND LEAVES IMAGE */}
       <Box display={["none", "none", "block"]}>
@@ -64,8 +61,6 @@ const HeroSection = () => {
           zIndex={3}
         />
       </Box>
-
-
 
       {/* BEACH PARTY IMAGE */}
       <Box
@@ -86,8 +81,7 @@ const HeroSection = () => {
         />
       </Box>
 
-
-    {/* MOBILE LAYOUT */}
+      {/* MOBILE LAYOUT */}
       <Box
         fontSize="lg"
         px={5}
@@ -96,7 +90,7 @@ const HeroSection = () => {
       >
         {[0, 1, 2].map((index) => {
           return (
-            <Box >
+            <Box>
               <Box
                 fontWeight="bold"
                 display="inline-block"
@@ -107,15 +101,17 @@ const HeroSection = () => {
                 {t(`hero-section-stats.${index}.number`)}
               </Box>
 
-              <Box fontSize={["xl", "2xl"]} fontWeight="bold" display="inline-block">
+              <Box
+                fontSize={["xl", "2xl"]}
+                fontWeight="bold"
+                display="inline-block"
+              >
                 {t(`hero-section-stats.${index}.desc`)}
               </Box>
             </Box>
           );
         })}
       </Box>
-
-
 
       {/* DESKTOP LAYOUT */}
       <Box
@@ -127,20 +123,17 @@ const HeroSection = () => {
         <HStack spacing={8}>
           {[0, 1, 2].map((index) => {
             return (
-              
-                <HStack fontSize="lg">
-                  <Heading size="md" fontWeight="bold" color="green">
-                    {t(`hero-section-stats.${index}.number`)}
-                  </Heading>
+              <HStack fontSize="lg">
+                <Heading size="md" fontWeight="bold" color="green">
+                  {t(`hero-section-stats.${index}.number`)}
+                </Heading>
 
-                  <Heading size="md" fontWeight="bold">
-                    {t(`hero-section-stats.${index}.desc`)}
-                  </Heading>
-                </HStack>
+                <Heading size="md" fontWeight="bold">
+                  {t(`hero-section-stats.${index}.desc`)}
+                </Heading>
+              </HStack>
             );
           })}
-
-
         </HStack>
       </Box>
     </Box>
