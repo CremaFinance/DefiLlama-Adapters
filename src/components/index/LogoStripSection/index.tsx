@@ -8,6 +8,7 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import { useTranslation } from "next-i18next";
+
 const LogoStripSection = () => {
   const { t } = useTranslation("index");
 
