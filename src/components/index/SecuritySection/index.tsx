@@ -14,6 +14,7 @@ export default function SecuritySection() {
       as="section"
       aria-label="security-section"
       display="flex"
+      px={5}
       flexDirection="column"
       alignItems="stretch"
     >

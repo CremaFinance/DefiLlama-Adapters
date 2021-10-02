@@ -2,7 +2,14 @@ import { HStack, Button, Image, Box, Heading } from "@chakra-ui/react";
 
 const HeroSection = () => {
   return (
-    <Box py="72px" pb={8} bg="#C8ECE1" position="relative" minHeight="100vh">
+    <Box
+      py="72px"
+      pb={8}
+      bg="#C8ECE1"
+      position="relative"
+      height="100vh"
+      minHeight="650px"
+    >
       <Box
         pt={[5, 5, "10vh"]}
         pl={[0, 0, 10]}
@@ -11,17 +18,13 @@ const HeroSection = () => {
         textAlign={["center", "center", "left"]}
       >
         <Box mb={[2, 2, 4]}>
-          <Heading fontSize={[30, 30, "40"]} color="#08B898" fontWeight="bold">
+          <Heading color="#08B898" fontWeight="bold">
             Steak Solana
           </Heading>
 
-          <Heading fontSize={[30, 30, "40"]} fontWeight="bold">
-            without locking in
-          </Heading>
+          <Heading fontWeight="bold">without locking in</Heading>
 
-          <Heading fontSize={[30, 30, "40"]} fontWeight="bold">
-            your funds
-          </Heading>
+          <Heading fontWeight="bold">your funds</Heading>
         </Box>
 
         <Box mb={[2, 2, 4]}>
@@ -34,7 +37,8 @@ const HeroSection = () => {
           <Button
             bg="#308D8A"
             _hover={{ bg: "#308D8Aaa" }}
-            colorScheme="green"
+            _active={{ bg: "#308D8A77" }}
+            color="white"
             rounded="md"
           >
             Start staking SOL
@@ -46,6 +50,11 @@ const HeroSection = () => {
         </Box>
       </Box>
 
+      {/* friends chilling image */}
+
+      <Box display={["none", "none", "block"]}>
+        <Image src="./cloud-leaves.png" width="420px" position="absolute" top={"0"} right={0} zIndex={10} />
+      </Box>
       <Box
         position={["relative", "relative", "absolute", "absolute"]}
         top={[0, 0, "10vh", "10vh"]}
@@ -75,7 +84,7 @@ const HeroSection = () => {
           <Box
             fontWeight="bold"
             display="inline-block"
-            color="green.500"
+            color="green"
             mr={2}
           >
             20+
@@ -90,7 +99,7 @@ const HeroSection = () => {
           <Box
             fontWeight="bold"
             display="inline-block"
-            color="green.500"
+            color="green"
             mr={2}
           >
             300+
@@ -102,18 +111,19 @@ const HeroSection = () => {
         </Box>
 
         <Box>
-          <Box
+          <Heading
             fontWeight="bold"
+            size="md"
             display="inline-block"
-            color="green.500"
+            color="green"
             mr={2}
           >
             $334M+
-          </Box>
+          </Heading>
 
-          <Box fontWeight="bold" display="inline-block">
+          <Heading fontWeight="bold" display="inline-block">
             TVL
-          </Box>
+          </Heading>
         </Box>
       </Box>
 
@@ -127,27 +137,27 @@ const HeroSection = () => {
       >
         <HStack spacing={8}>
           <HStack fontSize="lg">
-            <Box fontWeight="bold" color="green.500">
+            <Heading size="md" fontWeight="bold" color="green">
               20+
-            </Box>
+            </Heading>
 
-            <Box fontWeight="bold">DeFi Integrations</Box>
+            <Heading size="md" fontWeight="bold">DeFi Integrations</Heading>
           </HStack>
 
           <HStack>
-            <Box fontWeight="bold" color="green.500">
+            <Heading size="md" fontWeight="bold" color="green">
               300+
-            </Box>
+            </Heading>
 
-            <Box fontWeight="bold">Validators</Box>
+            <Heading size="md" fontWeight="bold">Validators</Heading>
           </HStack>
 
           <HStack>
-            <Box fontWeight="bold" color="green.500">
+            <Heading size="md" fontWeight="bold" color="green">
               $334M+
-            </Box>
+            </Heading>
 
-            <Box fontWeight="bold">TVL</Box>
+            <Heading size="md" fontWeight="bold">TVL</Heading>
           </HStack>
         </HStack>
       </Box>

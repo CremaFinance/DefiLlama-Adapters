@@ -23,11 +23,10 @@ function Sidebar() {
   return (
     <>
       <IconButton
-        fontSize="2xl"
+        fontSize="3xl"
         _hover={{ bg: "none" }}
         _active={{ bg: "gray.100" }}
         rounded="md"
-        size="sm"
         variant="ghost"
         onClick={onOpen}
         aria-label="Sidebar"

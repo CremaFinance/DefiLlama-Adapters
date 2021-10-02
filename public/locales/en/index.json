@@ -1,4 +1,31 @@
 {
+  "blog-section-title": "Read stories from the kitchen",
+  "blog-section-subtitle": "We’re sharing everything on our way—from the idea all the way to full democratization of liquid staking on Solana.",
+  "blog-section-blurb": "Forget about unstaking periods, keeping track of validators performance and",
+  "blog-section-blurb-highlight": "let Marinade do the work.",
+  "blog-section-items": [
+    {
+      "date": "23 SEPT 2021",
+      "title": "Liquid lorem ipsum dolor sit ametity consectetur",
+      "subtitle": "Avoid the unstaking period and use your at any time you like.",
+      "link": ""
+    },
+
+    {
+      "date": "23 SEPT 2021",
+      "title": "Liquid lorem ipsum dolor sit ametity consectetur",
+      "subtitle": "Avoid the unstaking period and use your at any time you like.",
+      "link": ""
+    },
+
+    {
+      "date": "23 SEPT 2021",
+      "title": "Liquid lorem ipsum dolor sit ametity consectetur",
+      "subtitle": "Avoid the unstaking period and use your at any time you like.",
+      "link": ""
+    }
+  ],
+
   "why-section-title": "Why Marinade?",
   "why-section-subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore aliqua.",
   "why-section-items": [

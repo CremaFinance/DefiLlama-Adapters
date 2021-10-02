@@ -6,6 +6,7 @@ import LogoStripSection from "components/index/LogoStripSection";
 import SecuritySection from "components/index/SecuritySection";
 import TestemonialSection from "components/index/TestimonialSection";
 import WhySection from "components/index/WhySection";
+import BlogPosts from "components/index/BlogPostsSection";
 
 interface StaticProps {
   locale: string;
@@ -27,6 +28,7 @@ const Home = () => {
       <TestemonialSection />
       <WhySection />
       <SecuritySection />
+      <BlogPosts />
     </Box>
   );
 };
