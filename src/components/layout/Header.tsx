@@ -28,7 +28,7 @@ const Header = () => {
   function checkTop() {
     if (window.scrollY >= 10 && onTop) {
       setOnTop(false);
-    } else if (window.scrollY < 10 && !onTop) {
+    } else if (window.scrollY < 10) {
       setOnTop(true);
     }
   }

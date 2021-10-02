@@ -7,10 +7,11 @@ const HeroSection = () => {
   return (
     <Box
       py="72px"
-      pb={8}
+      pb={[12, 12, 8]}
       bg="#C8ECE1"
       position="relative"
-      height="100vh"
+      height={["auto", "auto", "100vh"]}
+
       minHeight="650px"
     >
       <Box
@@ -25,21 +26,19 @@ const HeroSection = () => {
             {t("hero-section-title")}
           </Heading>
 
-          <Heading fontWeight="bold" maxWidth={300}>
+          <Heading fontWeight="bold" maxWidth={300} margin={["0 auto", "0 auto", "0"]}>
             {t("hero-section-subtitle")}
           </Heading>
         </Box>
 
-        <Box mb={[2, 2, 4]} maxWidth={300}>
+        <Box maxWidth={300} margin={["0 auto", "0 auto", "0"]} mb={[2, 2, 4]} >
           <Box>{t("hero-section-desc")}</Box>
         </Box>
 
         <Box mb={[2, 2, 4]}>
           <Button
-            bg="#308D8A"
-            _hover={{ bg: "#308D8Aaa" }}
-            _active={{ bg: "#308D8A77" }}
-            color="white"
+            bg="green"
+            colorScheme="green"
             rounded="md"
           >
             {t("hero-section-button")}
@@ -51,34 +50,33 @@ const HeroSection = () => {
         </Box>
       </Box>
 
-      {/* friends chilling image */}
 
       <Box display={["none", "none", "block"]}>
         <Image
           src="./cloud-leaves.png"
           width="420px"
+          alt="Clouds and Leaves"
           position="absolute"
           top={"0"}
           right={0}
-          zIndex={10}
+          zIndex={3}
         />
       </Box>
+
       <Box
-        position={["relative", "relative", "absolute", "absolute"]}
+        position={["relative", "relative", "absolute"]}
         top={[0, 0, "10vh", "10vh"]}
         overflow="hidden"
         textAlign="center"
         right={0}
-        my={[4, 4, "none"]}
       >
         <Image
           display="inline-block"
           position="relative"
-          left={["0%", "5%", "0", "0"]}
           mt={[0, 0, 20, 8]}
           src="./beach-party.png"
-          width={["100%", "90%", 600, "800px"]}
-          alt="Hero"
+          alt="Friends on beach"
+          width={["100%", "100%", 600, "800px"]}
         />
       </Box>
 
@@ -90,17 +88,18 @@ const HeroSection = () => {
       >
         {[0, 1, 2].map((index) => {
           return (
-            <Box>
+            <Box >
               <Box
                 fontWeight="bold"
                 display="inline-block"
                 color="green"
+                fontSize="2xl"
                 mr={2}
               >
                 {t(`hero-section-stats.${index}.number`)}
               </Box>
 
-              <Box fontWeight="bold" display="inline-block">
+              <Box fontSize="2xl" fontWeight="bold" display="inline-block">
                 {t(`hero-section-stats.${index}.desc`)}
               </Box>
             </Box>
