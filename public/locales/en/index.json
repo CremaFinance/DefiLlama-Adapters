@@ -25,6 +25,9 @@
   "blog-section-subtitle": "We’re sharing everything on our way—from the idea all the way to full democratization of liquid staking on Solana.",
   "blog-section-blurb": "Forget about unstaking periods, keeping track of validators performance and",
   "blog-section-blurb-highlight": "let Marinade do the work.",
+
+  "blog-section-primary-button": "Start staking SOL",
+  "blog-section-secondary-button": "Learn more",
   "logo-strip-section-title": "Use mSOL across all ecosystem",
   "blog-section-items": [
     {

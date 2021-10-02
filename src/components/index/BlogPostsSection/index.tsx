@@ -1,6 +1,7 @@
-import { Box, Heading, Image } from "@chakra-ui/react";
+import {HStack, Button,  Box, Heading, Image } from "@chakra-ui/react";
 import { useTranslation } from "next-i18next";
 import BlogPostItem from "components/molecules/BlogPostItem";
+import { HiArrowRight } from "react-icons/hi";
 
 export default function BlogPosts() {
   const { t } = useTranslation("index");
@@ -37,7 +38,8 @@ export default function BlogPosts() {
         size="md"
         maxW="600"
         alignSelf="center"
-        maxWidth="1000"
+        maxWidth="800"
+        
         textAlign="center"
         marginBottom="20"
         color="black"
@@ -64,27 +66,39 @@ export default function BlogPosts() {
 
       <Heading
         textAlign="center"
-        marginBottom={4}
         color="black"
-        size="lg"
+        lineHeight="36px"
+        fontSize="28"
         fontWeight="bold"
-        maxWidth={[440, 440, 500]}
+        maxWidth={[440, 520, 580]}
         margin="0 auto"
+        mb={[10, 10, 14]}
       >
         {t("blog-section-blurb")}
-      </Heading>
 
-      <Heading
-        textAlign="center"
-        marginBottom={4}
+        <Heading
         color="green"
-        maxWidth="440px"
-        margin="0 auto"
-        size="lg"
+        fontSize="28"
+        display="inline-block"
         fontWeight="bold"
       >
         {t("blog-section-blurb-highlight")}
       </Heading>
+      </Heading>
+        
+        <Box textAlign="center">
+      <HStack spacing={5} display='inline-flex'>
+      <Button bg="green" colorScheme="green" rounded="md">
+            {t("blog-section-primary-button")}
+          </Button>
+
+          <Button variant="ghost" colorScheme="green" rounded="md" rightIcon={ <HiArrowRight />}>
+            {t("blog-section-secondary-button")}
+          </Button>
+      </HStack>
+      </Box>
+
+    
     </Box>
   );
 }
