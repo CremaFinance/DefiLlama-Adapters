@@ -17,6 +17,10 @@
       "desc": "TVL"
     }
   ],
+  "testimonial-section-image": "/anatoly.png",
+  "testimonial-section-quote": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  "testimonial-section-name": "Anatoly Yakovenko",
+  "testimonial-section-position": "CEO of Solana Labs",
   "blog-section-title": "Read stories from the kitchen",
   "blog-section-subtitle": "We’re sharing everything on our way—from the idea all the way to full democratization of liquid staking on Solana.",
   "blog-section-blurb": "Forget about unstaking periods, keeping track of validators performance and",
