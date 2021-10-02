@@ -1,6 +1,10 @@
 import { Center, Grid, Image, Box } from "@chakra-ui/react";
+import { useTranslation } from "next-i18next";
+
 
 const TestimonialSection = () => {
+  const { t } = useTranslation("index");
+
   return (
     <Box
       paddingTop={["10", 10, 16]}
@@ -24,7 +28,7 @@ const TestimonialSection = () => {
         <Box textAlign="center" minHeight="200px">
           <Center height="100%">
             <Image
-              src="/anatoly.png"
+              src={t("testimonial-section-image")}
               width="150px"
               height="150px"
               rounded="full"
@@ -38,8 +42,7 @@ const TestimonialSection = () => {
           </Box>
 
           <Box fontWeight="bold" fontSize={["xl", "xl", "2xl"]} mb={4}>
-            “Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.”
+            “{t("testimonial-section-quote")}”
           </Box>
 
           <Box>
@@ -48,9 +51,9 @@ const TestimonialSection = () => {
               mr={2}
               display={["block", "block", "inline-block"]}
             >
-              Anatoly Yakovenko
+              {t("testimonial-section-name")}
             </Box>{" "}
-            CEO of Solana Labs
+            {t("testimonial-section-position")}
           </Box>
         </Box>
       </Grid>

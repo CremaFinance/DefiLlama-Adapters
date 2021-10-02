@@ -7,8 +7,10 @@ import {
   Box,
   Heading,
 } from "@chakra-ui/react";
-
+import { useTranslation } from "next-i18next";
 const LogoStripSection = () => {
+  const { t } = useTranslation("index");
+
   const ecosystem = [
     {
       title: "Solana",
@@ -60,11 +62,12 @@ const LogoStripSection = () => {
         color="white"
         fontWeight="300"
       >
-        Use mSOL across all ecosystem
+        {t("logo-strip-section-title")}
       </Heading>
 
+      {/* DESKTOP LAYOUT */}
       <Box textAlign="center">
-        <Flex gap={4} flexWrap="wrap" display={["none", "none", "inline-flex"]}>
+        <Flex gap={4} display={["none", "none", "inline-flex"]}>
           {ecosystem.map((el) => {
             return (
               <Box flex={1} height="80px" width="90px">
@@ -83,8 +86,9 @@ const LogoStripSection = () => {
           })}
         </Flex>
 
+        {/* MOBILE LAYOUT */}
         <SimpleGrid
-          columns={[3, 3, 4]}
+          columns={[2, 3]}
           spacing={4}
           display={["grid", "grid", "none"]}
         >

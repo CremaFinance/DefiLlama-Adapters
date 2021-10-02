@@ -15,6 +15,7 @@ export default function WhySection() {
       aria-label="why-section"
       display="flex"
       flexDirection="column"
+      px={5}
       alignItems="stretch"
     >
       <Heading

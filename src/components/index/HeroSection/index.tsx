@@ -1,8 +1,18 @@
 import { HStack, Button, Image, Box, Heading } from "@chakra-ui/react";
+import { useTranslation } from "next-i18next";
 
 const HeroSection = () => {
+  const { t } = useTranslation("index");
+
   return (
-    <Box py="72px" pb={8} bg="#C8ECE1" position="relative" minHeight="100vh">
+    <Box
+      py="72px"
+      pb={[12, 12, 8]}
+      bg="#C8ECE1"
+      position="relative"
+      height={["auto", "auto", "100vh"]}
+      minHeight="650px"
+    >
       <Box
         pt={[5, 5, "10vh"]}
         pl={[0, 0, 10]}
@@ -11,33 +21,26 @@ const HeroSection = () => {
         textAlign={["center", "center", "left"]}
       >
         <Box mb={[2, 2, 4]}>
-          <Heading fontSize={[30, 30, "40"]} color="#08B898" fontWeight="bold">
-            Steak Solana
+          <Heading color="#08B898" fontWeight="bold">
+            {t("hero-section-title")}
           </Heading>
 
-          <Heading fontSize={[30, 30, "40"]} fontWeight="bold">
-            without locking in
+          <Heading
+            fontWeight="bold"
+            maxWidth={300}
+            margin={["0 auto", "0 auto", "0"]}
+          >
+            {t("hero-section-subtitle")}
           </Heading>
+        </Box>
 
-          <Heading fontSize={[30, 30, "40"]} fontWeight="bold">
-            your funds
-          </Heading>
+        <Box maxWidth={300} margin={["0 auto", "0 auto", "0"]} mb={[2, 2, 4]}>
+          <Box>{t("hero-section-desc")}</Box>
         </Box>
 
         <Box mb={[2, 2, 4]}>
-          <Box>Receive mSOL, the ultimate unit</Box>
-
-          <Box>of the Solana ecosystem.</Box>
-        </Box>
-
-        <Box mb={[1, 1, 3]}>
-          <Button
-            bg="#308D8A"
-            _hover={{ bg: "#308D8Aaa" }}
-            colorScheme="green"
-            rounded="md"
-          >
-            Start staking SOL
+          <Button bg="green" colorScheme="green" rounded="md">
+            {t("hero-section-button")}
           </Button>
         </Box>
 
@@ -46,109 +49,91 @@ const HeroSection = () => {
         </Box>
       </Box>
 
+      {/* CLOUD AND LEAVES IMAGE */}
+      <Box display={["none", "none", "block"]}>
+        <Image
+          src="./cloud-leaves.png"
+          width={[350, 350, 350, "420px"]}
+          alt="Clouds and Leaves"
+          position="absolute"
+          top={"0"}
+          right={0}
+          zIndex={3}
+        />
+      </Box>
+
+      {/* BEACH PARTY IMAGE */}
       <Box
-        position={["relative", "relative", "absolute", "absolute"]}
+        position={["relative", "relative", "absolute"]}
         top={[0, 0, "10vh", "10vh"]}
         overflow="hidden"
         textAlign="center"
         right={0}
-        my={[4, 4, "none"]}
+        my={[4, 2, 0]}
       >
         <Image
           display="inline-block"
           position="relative"
-          left={["0%", "5%", "0", "0"]}
-          mt={[0, 0, 20, 8]}
+          mt={[0, 0, 24, 10]}
           src="./beach-party.png"
-          width={["100%", "90%", 600, "800px"]}
-          alt="Hero"
+          alt="Friends on beach"
+          width={["100%", "100%", 600, "800px"]}
         />
       </Box>
 
+      {/* MOBILE LAYOUT */}
       <Box
         fontSize="lg"
         px={5}
         display={["block", "block", "none"]}
         textAlign="center"
       >
-        <Box>
-          <Box
-            fontWeight="bold"
-            display="inline-block"
-            color="green.500"
-            mr={2}
-          >
-            20+
-          </Box>
+        {[0, 1, 2].map((index) => {
+          return (
+            <Box>
+              <Box
+                fontWeight="bold"
+                display="inline-block"
+                color="green"
+                fontSize={["xl", "2xl"]}
+                mr={2}
+              >
+                {t(`hero-section-stats.${index}.number`)}
+              </Box>
 
-          <Box fontWeight="bold" display="inline-block">
-            DeFi Integrations
-          </Box>
-        </Box>
-
-        <Box>
-          <Box
-            fontWeight="bold"
-            display="inline-block"
-            color="green.500"
-            mr={2}
-          >
-            300+
-          </Box>
-
-          <Box fontWeight="bold" display="inline-block">
-            Validators
-          </Box>
-        </Box>
-
-        <Box>
-          <Box
-            fontWeight="bold"
-            display="inline-block"
-            color="green.500"
-            mr={2}
-          >
-            $334M+
-          </Box>
-
-          <Box fontWeight="bold" display="inline-block">
-            TVL
-          </Box>
-        </Box>
+              <Box
+                fontSize={["xl", "2xl"]}
+                fontWeight="bold"
+                display="inline-block"
+              >
+                {t(`hero-section-stats.${index}.desc`)}
+              </Box>
+            </Box>
+          );
+        })}
       </Box>
 
+      {/* DESKTOP LAYOUT */}
       <Box
-        px={5}
-        pl={[5, 5, 10]}
-        position={["relative", "relative", "absolute"]}
-        width="100vw"
-        bottom={[0, 0, 8]}
+        pl={10}
+        position="absolute"
+        bottom={12}
         display={["none", "none", "block"]}
       >
         <HStack spacing={8}>
-          <HStack fontSize="lg">
-            <Box fontWeight="bold" color="green.500">
-              20+
-            </Box>
+          {[0, 1, 2].map((index) => {
+            return (
+              <HStack fontSize="lg">
+                <Heading size="md" fontWeight="bold" color="green">
+                  {t(`hero-section-stats.${index}.number`)}
+                </Heading>
 
-            <Box fontWeight="bold">DeFi Integrations</Box>
-          </HStack>
-
-          <HStack>
-            <Box fontWeight="bold" color="green.500">
-              300+
-            </Box>
-
-            <Box fontWeight="bold">Validators</Box>
-          </HStack>
-
-          <HStack>
-            <Box fontWeight="bold" color="green.500">
-              $334M+
-            </Box>
-
-            <Box fontWeight="bold">TVL</Box>
-          </HStack>
+                <Heading size="md" fontWeight="bold">
+                  {t(`hero-section-stats.${index}.desc`)}
+                </Heading>
+              </HStack>
+            );
+          })}
         </HStack>
       </Box>
     </Box>

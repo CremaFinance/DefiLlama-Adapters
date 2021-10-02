@@ -23,6 +23,10 @@ const overridenChakraColors: DeepPartial<Theme["colors"]> = {};
 const colors = {
   ...overridenChakraColors,
   ...extendedColors,
+  greenLight: "#C8ECE1",
+  greenVibrant: "#08B898",
+  green: "#308D8A",
+  black: "#171923",
 };
 
 export default colors;
