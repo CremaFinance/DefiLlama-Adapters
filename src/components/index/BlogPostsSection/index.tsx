@@ -19,7 +19,7 @@ export default function BlogPosts() {
     >
       <Image
         src="/bbq-dudes.png"
-        width={["90%", 400]}
+        width={["90%", 350, 380]}
         display="block"
         margin="0 auto"
         mb={8}
@@ -50,13 +50,14 @@ export default function BlogPosts() {
         alignItems="flex-start"
         flexWrap="wrap"
         justifyContent="center"
-        mb={8}
+        mb={5}
       >
         {[0, 1, 2].map((index) => (
           <BlogPostItem
-            icon={`/icons/why-section-icon${index + 1}.svg`}
-            title={t(`why-section-items.${index}.title`)}
-            subtitle={t(`why-section-items.${index}.subtitle`)}
+            date={t(`blog-section-items.${index}.date`)}
+            link={t(`blog-section-items.${index}.link`)}
+            title={t(`blog-section-items.${index}.title`)}
+            subtitle={t(`blog-section-items.${index}.subtitle`)}
           />
         ))}
       </Box>
@@ -67,7 +68,7 @@ export default function BlogPosts() {
         color="black"
         size="lg"
         fontWeight="bold"
-        maxWidth="440px"
+        maxWidth={[440, 440, 500]}
         margin="0 auto"
       >
         {t("blog-section-blurb")}
@@ -80,15 +81,10 @@ export default function BlogPosts() {
         maxWidth="440px"
         margin="0 auto"
         size="lg"
-        
         fontWeight="bold"
-        
       >
         {t("blog-section-blurb-highlight")}
-        
       </Heading>
-
-      
     </Box>
   );
 }

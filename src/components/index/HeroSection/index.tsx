@@ -51,10 +51,12 @@ const HeroSection = () => {
       </Box>
 
 
+
+      {/* CLOUD AND LEAVES IMAGE */}
       <Box display={["none", "none", "block"]}>
         <Image
           src="./cloud-leaves.png"
-          width="420px"
+          width={[350, 350, 350, "420px"]}
           alt="Clouds and Leaves"
           position="absolute"
           top={"0"}
@@ -63,23 +65,29 @@ const HeroSection = () => {
         />
       </Box>
 
+
+
+      {/* BEACH PARTY IMAGE */}
       <Box
         position={["relative", "relative", "absolute"]}
         top={[0, 0, "10vh", "10vh"]}
         overflow="hidden"
         textAlign="center"
         right={0}
+        my={[4, 2, 0]}
       >
         <Image
           display="inline-block"
           position="relative"
-          mt={[0, 0, 20, 8]}
+          mt={[0, 0, 24, 10]}
           src="./beach-party.png"
           alt="Friends on beach"
           width={["100%", "100%", 600, "800px"]}
         />
       </Box>
 
+
+    {/* MOBILE LAYOUT */}
       <Box
         fontSize="lg"
         px={5}
@@ -93,13 +101,13 @@ const HeroSection = () => {
                 fontWeight="bold"
                 display="inline-block"
                 color="green"
-                fontSize="2xl"
+                fontSize={["xl", "2xl"]}
                 mr={2}
               >
                 {t(`hero-section-stats.${index}.number`)}
               </Box>
 
-              <Box fontSize="2xl" fontWeight="bold" display="inline-block">
+              <Box fontSize={["xl", "2xl"]} fontWeight="bold" display="inline-block">
                 {t(`hero-section-stats.${index}.desc`)}
               </Box>
             </Box>
@@ -107,6 +115,9 @@ const HeroSection = () => {
         })}
       </Box>
 
+
+
+      {/* DESKTOP LAYOUT */}
       <Box
         pl={10}
         position="absolute"
