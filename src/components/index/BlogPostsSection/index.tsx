@@ -67,7 +67,7 @@ export default function BlogPosts() {
         color="black"
         size="lg"
         fontWeight="bold"
-        maxWidth="600px"
+        maxWidth="440px"
         margin="0 auto"
       >
         {t("blog-section-blurb")}
@@ -77,7 +77,10 @@ export default function BlogPosts() {
         textAlign="center"
         marginBottom={4}
         color="green"
+        maxWidth="440px"
+        margin="0 auto"
         size="lg"
+        
         fontWeight="bold"
         
       >
