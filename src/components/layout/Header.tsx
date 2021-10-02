@@ -12,7 +12,6 @@ import {
   MenuList,
   MenuItem,
   Button,
-  Link as ChakraLink,
 } from "@chakra-ui/react";
 
 import { BiCaretDown } from "react-icons/bi";
@@ -72,11 +71,14 @@ const Header = () => {
         </Link>
       </Heading>
 
-      <Box marginLeft={["auto", "auto", "auto"]} marginRight={["none", "none", "auto"]}>
+      <Box
+        marginLeft={["auto", "auto", "auto"]}
+        marginRight={["none", "none", "auto"]}
+      >
         <Box display={["block", "block", "none"]}>
           <Sidebar />
         </Box>
-        <HStack spacing={4} display={["none", "none", "flex"]} >
+        <HStack spacing={4} display={["none", "none", "flex"]}>
           <Box>
             <Menu>
               <MenuButton

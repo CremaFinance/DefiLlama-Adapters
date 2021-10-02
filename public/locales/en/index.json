@@ -1,4 +1,22 @@
 {
+  "hero-section-title": "Steak Solana",
+  "hero-section-subtitle": "without locking in your funds",
+  "hero-section-desc": "Receive mSOL, the ultimate unit of the Solana ecosystem.",
+  "hero-section-button": "Start staking SOL",
+  "hero-section-stats": [
+    {
+      "number": "20+",
+      "desc": "DeFi Integrations"
+    },
+    {
+      "number": "300+",
+      "desc": "Validators"
+    },
+    {
+      "number": "$334M+",
+      "desc": "TVL"
+    }
+  ],
   "blog-section-title": "Read stories from the kitchen",
   "blog-section-subtitle": "We’re sharing everything on our way—from the idea all the way to full democratization of liquid staking on Solana.",
   "blog-section-blurb": "Forget about unstaking periods, keeping track of validators performance and",

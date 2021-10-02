@@ -1,6 +1,9 @@
 import { HStack, Button, Image, Box, Heading } from "@chakra-ui/react";
+import { useTranslation } from "next-i18next";
 
 const HeroSection = () => {
+  const { t } = useTranslation("index");
+
   return (
     <Box
       py="72px"
@@ -19,21 +22,19 @@ const HeroSection = () => {
       >
         <Box mb={[2, 2, 4]}>
           <Heading color="#08B898" fontWeight="bold">
-            Steak Solana
+            {t("hero-section-title")}
           </Heading>
 
-          <Heading fontWeight="bold">without locking in</Heading>
+          <Heading fontWeight="bold" maxWidth={300}>
+            {t("hero-section-subtitle")}
+          </Heading>
+        </Box>
 
-          <Heading fontWeight="bold">your funds</Heading>
+        <Box mb={[2, 2, 4]} maxWidth={300}>
+          <Box>{t("hero-section-desc")}</Box>
         </Box>
 
         <Box mb={[2, 2, 4]}>
-          <Box>Receive mSOL, the ultimate unit</Box>
-
-          <Box>of the Solana ecosystem.</Box>
-        </Box>
-
-        <Box mb={[1, 1, 3]}>
           <Button
             bg="#308D8A"
             _hover={{ bg: "#308D8Aaa" }}
@@ -41,7 +42,7 @@ const HeroSection = () => {
             color="white"
             rounded="md"
           >
-            Start staking SOL
+            {t("hero-section-button")}
           </Button>
         </Box>
 
@@ -53,7 +54,14 @@ const HeroSection = () => {
       {/* friends chilling image */}
 
       <Box display={["none", "none", "block"]}>
-        <Image src="./cloud-leaves.png" width="420px" position="absolute" top={"0"} right={0} zIndex={10} />
+        <Image
+          src="./cloud-leaves.png"
+          width="420px"
+          position="absolute"
+          top={"0"}
+          right={0}
+          zIndex={10}
+        />
       </Box>
       <Box
         position={["relative", "relative", "absolute", "absolute"]}
@@ -80,85 +88,49 @@ const HeroSection = () => {
         display={["block", "block", "none"]}
         textAlign="center"
       >
-        <Box>
-          <Box
-            fontWeight="bold"
-            display="inline-block"
-            color="green"
-            mr={2}
-          >
-            20+
-          </Box>
+        {[0, 1, 2].map((index) => {
+          return (
+            <Box>
+              <Box
+                fontWeight="bold"
+                display="inline-block"
+                color="green"
+                mr={2}
+              >
+                {t(`hero-section-stats.${index}.number`)}
+              </Box>
 
-          <Box fontWeight="bold" display="inline-block">
-            DeFi Integrations
-          </Box>
-        </Box>
-
-        <Box>
-          <Box
-            fontWeight="bold"
-            display="inline-block"
-            color="green"
-            mr={2}
-          >
-            300+
-          </Box>
-
-          <Box fontWeight="bold" display="inline-block">
-            Validators
-          </Box>
-        </Box>
-
-        <Box>
-          <Heading
-            fontWeight="bold"
-            size="md"
-            display="inline-block"
-            color="green"
-            mr={2}
-          >
-            $334M+
-          </Heading>
-
-          <Heading fontWeight="bold" display="inline-block">
-            TVL
-          </Heading>
-        </Box>
+              <Box fontWeight="bold" display="inline-block">
+                {t(`hero-section-stats.${index}.desc`)}
+              </Box>
+            </Box>
+          );
+        })}
       </Box>
 
       <Box
-        px={5}
-        pl={[5, 5, 10]}
-        position={["relative", "relative", "absolute"]}
-        width="100vw"
-        bottom={[0, 0, 8]}
+        pl={10}
+        position="absolute"
+        bottom={12}
         display={["none", "none", "block"]}
       >
         <HStack spacing={8}>
-          <HStack fontSize="lg">
-            <Heading size="md" fontWeight="bold" color="green">
-              20+
-            </Heading>
+          {[0, 1, 2].map((index) => {
+            return (
+              
+                <HStack fontSize="lg">
+                  <Heading size="md" fontWeight="bold" color="green">
+                    {t(`hero-section-stats.${index}.number`)}
+                  </Heading>
 
-            <Heading size="md" fontWeight="bold">DeFi Integrations</Heading>
-          </HStack>
+                  <Heading size="md" fontWeight="bold">
+                    {t(`hero-section-stats.${index}.desc`)}
+                  </Heading>
+                </HStack>
+            );
+          })}
 
-          <HStack>
-            <Heading size="md" fontWeight="bold" color="green">
-              300+
-            </Heading>
 
-            <Heading size="md" fontWeight="bold">Validators</Heading>
-          </HStack>
-
-          <HStack>
-            <Heading size="md" fontWeight="bold" color="green">
-              $334M+
-            </Heading>
-
-            <Heading size="md" fontWeight="bold">TVL</Heading>
-          </HStack>
         </HStack>
       </Box>
     </Box>
