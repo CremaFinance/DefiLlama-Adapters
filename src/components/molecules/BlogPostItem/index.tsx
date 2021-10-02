@@ -1,5 +1,4 @@
-import { Button, Box, Heading, Link, Text, Square } from "@chakra-ui/react";
-import ReactHtmlParser from "html-react-parser";
+import { Button, Box, Heading, Text, Square } from "@chakra-ui/react";
 import * as React from "react";
 import { HiOutlineExternalLink } from "react-icons/hi";
 
@@ -10,7 +9,7 @@ type SectionProps = {
   date: string;
 };
 
-const BlogPostItem = (props: SectionProps) => (
+const BlogPostItem = ({ title, subtitle, link, date }: SectionProps) => (
   <Square
     display="flex"
     flexDirection="column"
@@ -24,7 +23,7 @@ const BlogPostItem = (props: SectionProps) => (
     minWidth="320"
   >
     <Box color="gray.500" letterSpacing={2} mb={6}>
-      {props.date}
+      {date}
     </Box>
 
     <Heading
@@ -34,16 +33,22 @@ const BlogPostItem = (props: SectionProps) => (
       wordBreak="keep-all"
       textAlign="center"
     >
-      {props.title}
+      {title}
     </Heading>
 
     <Text color="black" textAlign="center" mb={4}>
-      {ReactHtmlParser(props.subtitle)}
+      {subtitle}
     </Text>
 
-    <Box >
-      <Button variant="link"  color="green" href={props.link} target="_blank" rightIcon={ <HiOutlineExternalLink /> }>
-      Read more 
+    <Box>
+      <Button
+        variant="link"
+        color="green"
+        href={link}
+        target="_blank"
+        rightIcon={<HiOutlineExternalLink />}
+      >
+        Read more
       </Button>
     </Box>
   </Square>

@@ -56,7 +56,7 @@ const HeroSection = () => {
           width={[350, 350, 350, "420px"]}
           alt="Clouds and Leaves"
           position="absolute"
-          top={"0"}
+          top="0"
           right={0}
           zIndex={3}
         />

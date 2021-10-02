@@ -1,6 +1,5 @@
 import {
   HStack,
-  useColorModeValue,
   Image,
   Box,
   Flex,
@@ -12,16 +11,15 @@ import {
   Button,
 } from "@chakra-ui/react";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 import { BiCaretDown } from "react-icons/bi";
 import { IoMdArrowRoundForward } from "react-icons/io";
-import { useState, useEffect } from "react";
+
 import Sidebar from "./Sidebar";
 import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
   const [onTop, setOnTop] = useState(true);
-
-  const bg = useColorModeValue("#C8ECE1", "#C8ECE1");
 
   function checkTop() {
     if (window.scrollY >= 10 && onTop) {
@@ -34,9 +32,9 @@ const Header = () => {
   useEffect(() => {
     window.addEventListener("scroll", checkTop);
     checkTop();
-  }, []);
+  });
 
-  let headerBackground = onTop ? "#C8ECE100" : "#C8ECE1";
+  const headerBackground = onTop ? "#C8ECE100" : "#C8ECE1";
   // let shadow = onTop ? "none" : "md";
 
   return (
@@ -123,7 +121,6 @@ const Header = () => {
                 variant="link"
                 size="sm"
                 fontSize="md"
-                variant="link"
                 color="gray.900"
                 rounded="md"
                 aria-label="Learn more dropdown"

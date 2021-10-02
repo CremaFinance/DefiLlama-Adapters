@@ -79,7 +79,6 @@ class MyDocument extends Document {
           /> */}
           <link rel="shortcut icon" href="/marinade-icon.png" />
           <link rel="manifest" href="/manifest.json" />
-          
         </Head>
         <body>
           <Main />
