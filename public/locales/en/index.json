@@ -1,5 +1,5 @@
 {
-  "hero-section-title": "Steak Solana",
+  "hero-section-title": "Stake Solana",
   "hero-section-subtitle": "without locking in your funds",
   "hero-section-desc": "Receive mSOL, the ultimate unit of the Solana ecosystem.",
   "hero-section-button": "Start staking SOL",
@@ -88,5 +88,17 @@
       "title": "Transparent delegation strategy",
       "subtitle": "Staked SOL is delegated to hundreds of validators effectively mitigating any single point of failure risk."
     }
-  ]
+  ],
+  "footer-product": "Product",
+  "footer-stake-sol": "Stake SOL",
+  "footer-validators": "Validators",
+  "footer-receive-msol": "Receive mSOL",
+  "footer-marinde-dao": "Marinade DAO",
+  "footer-defi-recipes-integration": "DeFi recipes / integrations",
+  "footer-learn": "Learn",
+  "footer-docs": "Docs",
+  "footer-security": "Security",
+  "footer-about-us": "About us",
+  "footer-roadmap": "Roadmap",
+  "footer-copyright": "© Copyright 2021 Marinade.finance. All rights reserved."
 }
