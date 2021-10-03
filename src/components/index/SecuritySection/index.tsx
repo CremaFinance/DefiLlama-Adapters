@@ -1,5 +1,5 @@
 import { Box, Button, Heading } from "@chakra-ui/react";
-import { useTranslation } from "next-i18next";
+import { useTranslation, Trans } from "next-i18next";
 
 import IconWithTextBelow from "components/molecules/IconWithTextBelow";
 
@@ -56,12 +56,27 @@ export default function SecuritySection() {
           key="security-item-1"
           icon="/icons/security-section-icon1.svg"
           title={t(`security-section-items.1.title`)}
-          subtitle={t(`security-section-items.1.subtitle`, {
-            // TODO: Add proper links
-            neodymeTeam: '<a class="link" href="">Neodyme team</a>',
-            ackeeBlockchain: '<a class="link" href="">Ackee Blockchain</a>',
-            kudelskiSecurity: '<a class="link" href="">Kudelski Security</a>',
-          })}
+          // TODO: Add proper links.
+          subtitle={
+            <Trans i18nKey="security-section-items.1.subtitle" t={t}>
+              The program code has been reviewed by
+              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+              <a className="link" href="">
+                Neodyme team
+              </a>
+              , audited by
+              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+              <a className="link" href="">
+                Ackee Blockchain
+              </a>
+              and being audited by
+              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+              <a className="link" href="">
+                Kudelski Security
+              </a>
+              .
+            </Trans>
+          }
         />
         <IconWithTextBelow
           key="security-item-2"
