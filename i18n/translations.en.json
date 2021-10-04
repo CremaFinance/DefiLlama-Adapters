@@ -79,7 +79,7 @@
       },
       {
         "title": "Audits and code reviews",
-        "subtitle": "The program code has been reviewed by <1>Neodyme team</1>, audited by <3>Ackee Blockchain</3> and being audited by <5>Kudelski Security</5>."
+        "subtitle": "The program code has been reviewed by <a class=\"link\" href=\"\">Neodyme team</a>, audited by <a class=\"link\" href=\"\">Ackee Blockchain</a> and being audited by <a class=\"link\" href=\"\">Kudelski Security</a>."
       },
       {
         "title": "Ecosystem governance",
