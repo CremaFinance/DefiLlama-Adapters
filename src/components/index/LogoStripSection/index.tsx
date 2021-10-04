@@ -30,7 +30,7 @@ const LogoStripSection = () => {
 
     {
       title: "Mercurial Finance",
-      image: "/logos/mercurial-finance.svg",
+      image: "/logos/mercurial.svg",
     },
 
     {
@@ -50,7 +50,7 @@ const LogoStripSection = () => {
 
     {
       title: "Parrot Protocol",
-      image: "/logos/parrot-protocol.svg",
+      image: "/logos/parrot.svg",
     },
   ];
 
@@ -81,6 +81,7 @@ const LogoStripSection = () => {
                   <Tooltip label={el.title} placement="bottom">
                     <Image
                       src={el.image}
+                      opacity="0.8"
                       width="50px"
                       objectFit="contain"
                       alt={el.title}
@@ -111,6 +112,7 @@ const LogoStripSection = () => {
                   <Tooltip label={el.title} placement="bottom">
                     <Image
                       src={el.image}
+                      opacity="0.8"
                       width="50px"
                       objectFit="contain"
                       alt={el.title}
