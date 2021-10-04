@@ -11,7 +11,6 @@ import {
   Button,
 } from "@chakra-ui/react";
 import Link from "next/link";
-import { useState, useEffect } from "react";
 import { BiCaretDown } from "react-icons/bi";
 import { IoMdArrowRoundForward } from "react-icons/io";
 
