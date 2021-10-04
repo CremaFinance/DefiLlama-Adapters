@@ -1,8 +1,8 @@
 import { Center, Grid, Image, Box } from "@chakra-ui/react";
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "next-export-i18n";
 
 const TestimonialSection = () => {
-  const { t } = useTranslation("index");
+  const { t } = useTranslation();
 
   return (
     <Box

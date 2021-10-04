@@ -1,9 +1,9 @@
 import { Heading, Image, Text, Square } from "@chakra-ui/react";
-import { ReactElement } from "react";
+import htmlParser from "html-react-parser";
 
 type IconWithTextBelowProps = {
   title: string;
-  subtitle?: ReactElement | string;
+  subtitle?: string;
   icon: string;
 };
 
@@ -34,9 +34,11 @@ const IconWithTextBelow = ({
     >
       {title}
     </Heading>
-    <Text color="whiteAlpha.800" textAlign="center">
-      {subtitle}
-    </Text>
+    {subtitle && (
+      <Text color="whiteAlpha.800" textAlign="center">
+        {htmlParser(subtitle)}
+      </Text>
+    )}
   </Square>
 );
 
