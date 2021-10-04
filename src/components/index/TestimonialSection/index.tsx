@@ -27,7 +27,7 @@ const TestimonialSection = () => {
         <Box textAlign="center" minHeight="200px">
           <Center height="100%">
             <Image
-              src={t("testimonial-section-image")}
+              src={t("indexPage.testimonial-section-image")}
               width="150px"
               height="150px"
               rounded="full"
@@ -41,7 +41,7 @@ const TestimonialSection = () => {
           </Box>
 
           <Box fontWeight="bold" fontSize={["xl", "xl", "2xl"]} mb={4}>
-            “{t("testimonial-section-quote")}”
+            “{t("indexPage.testimonial-section-quote")}”
           </Box>
 
           <Box>
@@ -50,9 +50,9 @@ const TestimonialSection = () => {
               mr={2}
               display={["block", "block", "inline-block"]}
             >
-              {t("testimonial-section-name")}
+              {t("indexPage.testimonial-section-name")}
             </Box>{" "}
-            {t("testimonial-section-position")}
+            {t("indexPage.testimonial-section-position")}
           </Box>
         </Box>
       </Grid>

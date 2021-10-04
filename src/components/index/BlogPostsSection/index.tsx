@@ -32,7 +32,7 @@ export default function BlogPosts() {
         color="black"
         fontWeight="bold"
       >
-        {t("blog-section-title")}
+        {t("indexPage.blog-section-title")}
       </Heading>
       <Heading
         size="md"
@@ -44,7 +44,7 @@ export default function BlogPosts() {
         color="black"
         fontWeight="300"
       >
-        {t("blog-section-subtitle")}
+        {t("indexPage.blog-section-subtitle")}
       </Heading>
       <Box
         display="flex"
@@ -56,10 +56,10 @@ export default function BlogPosts() {
         {[0, 1, 2].map((index) => (
           <BlogPostItem
             key={`blogpost-item-${index}`}
-            date={t(`blog-section-items.${index}.date`)}
-            link={t(`blog-section-items.${index}.link`)}
-            title={t(`blog-section-items.${index}.title`)}
-            subtitle={t(`blog-section-items.${index}.subtitle`)}
+            date={t(`indexPage.blog-section-items.${index}.date`)}
+            link={t(`indexPage.blog-section-items.${index}.link`)}
+            title={t(`indexPage.blog-section-items.${index}.title`)}
+            subtitle={t(`indexPage.blog-section-items.${index}.subtitle`)}
           />
         ))}
       </Box>
@@ -73,20 +73,20 @@ export default function BlogPosts() {
         margin="0 auto"
         mb={[10, 10, 14]}
       >
-        {t("blog-section-blurb")}
+        {t("indexPage.blog-section-blurb")}
         <Heading
           color="green"
           fontSize="28"
           display="inline-block"
           fontWeight="bold"
         >
-          {t("blog-section-blurb-highlight")}
+          {t("indexPage.blog-section-blurb-highlight")}
         </Heading>
       </Heading>
       <Box textAlign="center">
         <HStack spacing={5} display="inline-flex">
           <Button bg="green" colorScheme="green" rounded="md">
-            {t("blog-section-primary-button")}
+            {t("indexPage.blog-section-primary-button")}
           </Button>
 
           <Button
@@ -95,7 +95,7 @@ export default function BlogPosts() {
             rounded="md"
             rightIcon={<HiArrowRight />}
           >
-            {t("blog-section-secondary-button")}
+            {t("indexPage.blog-section-secondary-button")}
           </Button>
         </HStack>
       </Box>

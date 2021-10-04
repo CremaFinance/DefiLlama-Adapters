@@ -25,7 +25,7 @@ export default function WhySection() {
         color="white"
         fontWeight="bold"
       >
-        {t("why-section-title")}
+        {t("indexPage.why-section-title")}
       </Heading>
       <Heading
         size="lg"
@@ -37,7 +37,7 @@ export default function WhySection() {
         color="white"
         fontWeight="300"
       >
-        {t("why-section-subtitle")}
+        {t("indexPage.why-section-subtitle")}
       </Heading>
       <Box
         display="flex"
@@ -49,8 +49,8 @@ export default function WhySection() {
           <IconWithTextBelow
             key={`why-section-item-${index}`}
             icon={`/icons/why-section-icon${index + 1}.svg`}
-            title={t(`why-section-items.${index}.title`)}
-            subtitle={t(`why-section-items.${index}.subtitle`)}
+            title={t(`indexPage.why-section-items.${index}.title`)}
+            subtitle={t(`indexPage.why-section-items.${index}.subtitle`)}
           />
         ))}
       </Box>

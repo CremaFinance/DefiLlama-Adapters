@@ -63,7 +63,7 @@ const LogoStripSection = () => {
         color="white"
         fontWeight="300"
       >
-        {t("logo-strip-section-title")}
+        {t("indexPage.logo-strip-section-title")}
       </Heading>
 
       {/* DESKTOP LAYOUT */}
