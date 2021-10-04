@@ -1,8 +1,8 @@
 import { HStack, Button, Image, Box, Heading } from "@chakra-ui/react";
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "next-export-i18n";
 
 const HeroSection = () => {
-  const { t } = useTranslation("index");
+  const { t } = useTranslation();
 
   return (
     <Box
@@ -22,7 +22,7 @@ const HeroSection = () => {
       >
         <Box mb={[2, 2, 4]}>
           <Heading color="#08B898" fontWeight="bold">
-            {t("hero-section-title")}
+            {t("indexPage.hero-section-title")}
           </Heading>
 
           <Heading
@@ -30,17 +30,17 @@ const HeroSection = () => {
             maxWidth={300}
             margin={["0 auto", "0 auto", "0"]}
           >
-            {t("hero-section-subtitle")}
+            {t("indexPage.hero-section-subtitle")}
           </Heading>
         </Box>
 
         <Box maxWidth={300} margin={["0 auto", "0 auto", "0"]} mb={[2, 2, 4]}>
-          <Box>{t("hero-section-desc")}</Box>
+          <Box>{t("indexPage.hero-section-desc")}</Box>
         </Box>
 
         <Box mb={[2, 2, 4]}>
           <Button bg="green" colorScheme="green" rounded="md">
-            {t("hero-section-button")}
+            {t("indexPage.hero-section-button")}
           </Button>
         </Box>
 
@@ -90,7 +90,7 @@ const HeroSection = () => {
       >
         {[0, 1, 2].map((index) => {
           return (
-            <Box>
+            <Box key={`mobile-layout-${index}`}>
               <Box
                 fontWeight="bold"
                 display="inline-block"
@@ -98,7 +98,7 @@ const HeroSection = () => {
                 fontSize={["xl", "2xl"]}
                 mr={2}
               >
-                {t(`hero-section-stats.${index}.number`)}
+                {t(`indexPage.hero-section-stats.${index}.number`)}
               </Box>
 
               <Box
@@ -106,7 +106,7 @@ const HeroSection = () => {
                 fontWeight="bold"
                 display="inline-block"
               >
-                {t(`hero-section-stats.${index}.desc`)}
+                {t(`indexPage.hero-section-stats.${index}.desc`)}
               </Box>
             </Box>
           );
@@ -123,13 +123,13 @@ const HeroSection = () => {
         <HStack spacing={8}>
           {[0, 1, 2].map((index) => {
             return (
-              <HStack fontSize="lg">
+              <HStack fontSize="lg" key={`desktop-hstack-${index}`}>
                 <Heading size="md" fontWeight="bold" color="green">
-                  {t(`hero-section-stats.${index}.number`)}
+                  {t(`indexPage.hero-section-stats.${index}.number`)}
                 </Heading>
 
                 <Heading size="md" fontWeight="bold">
-                  {t(`hero-section-stats.${index}.desc`)}
+                  {t(`indexPage.hero-section-stats.${index}.desc`)}
                 </Heading>
               </HStack>
             );

@@ -1,9 +1,9 @@
 import { Box, Heading, Image, Link, Text } from "@chakra-ui/react";
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "next-export-i18n";
 import NextLink from "next/link";
 
 const Footer = () => {
-  const { t } = useTranslation("index");
+  const { t } = useTranslation();
 
   return (
     <Box
@@ -80,53 +80,55 @@ const Footer = () => {
           flexDirection="column"
         >
           <Heading pb="4" size="md" maxW="600" color="white" fontWeight="800">
-            {t("footer-product")}
+            {t("indexPage.footer-product")}
           </Heading>
 
           <Text fontSize="sm" color="white" mb={2}>
-            <NextLink href="/">{t("footer-stake-sol")}</NextLink>
+            <NextLink href="/">{t("indexPage.footer-stake-sol")}</NextLink>
           </Text>
 
           <Text fontSize="sm" color="white" mb={2}>
-            <NextLink href="/">{t("footer-validators")}</NextLink>
+            <NextLink href="/">{t("indexPage.footer-validators")}</NextLink>
           </Text>
 
           <Text fontSize="sm" color="white" mb={2}>
-            <NextLink href="/">{t("footer-receive-msol")}</NextLink>
+            <NextLink href="/">{t("indexPage.footer-receive-msol")}</NextLink>
           </Text>
 
           <Text fontSize="sm" color="white" mb={2}>
-            <NextLink href="/">{t("footer-marinde-dao")}</NextLink>
+            <NextLink href="/">{t("indexPage.footer-marinde-dao")}</NextLink>
           </Text>
 
           <Text fontSize="sm" color="white" mb={2}>
-            <NextLink href="/">{t("footer-defi-recipes-integration")}</NextLink>
+            <NextLink href="/">
+              {t("indexPage.footer-defi-recipes-integration")}
+            </NextLink>
           </Text>
         </Box>
         <Box pt="8" pb="8" display="flex" flex="0.25" flexDirection="column">
           <Heading pb="4" size="md" maxW="600" color="white" fontWeight="800">
-            {t("footer-learn")}
+            {t("indexPage.footer-learn")}
           </Heading>
 
           <Text fontSize="sm" color="white" mb={2}>
-            <NextLink href="/">{t("footer-docs")}</NextLink>
+            <NextLink href="/">{t("indexPage.footer-docs")}</NextLink>
           </Text>
 
           <Text fontSize="sm" color="white" mb={2}>
-            <NextLink href="/">{t("footer-security")}</NextLink>
+            <NextLink href="/">{t("indexPage.footer-security")}</NextLink>
           </Text>
 
           <Text fontSize="sm" color="white" mb={2}>
-            <NextLink href="/">{t("footer-about-us")}</NextLink>
+            <NextLink href="/">{t("indexPage.footer-about-us")}</NextLink>
           </Text>
 
           <Text fontSize="sm" color="white" mb={2}>
-            <NextLink href="/">{t("footer-roadmap")}</NextLink>
+            <NextLink href="/">{t("indexPage.footer-roadmap")}</NextLink>
           </Text>
         </Box>
       </Box>
       <Text pb="8" fontSize="sm" color="whiteAlpha.800">
-        {t("footer-copyright")}
+        {t("indexPage.footer-copyright")}
       </Text>
     </Box>
   );
