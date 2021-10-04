@@ -63,7 +63,7 @@ export default function SecuritySection() {
           key="security-item-2"
           icon="/icons/security-section-icon2.svg"
           title={t(`indexPage.security-section-items.2.title`)}
-          subtitle={t(`security-section-items.2.subtitle`)}
+          subtitle={t(`indexPage.security-section-items.2.subtitle`)}
         />
         <IconWithTextBelow
           key="security-item-3"
