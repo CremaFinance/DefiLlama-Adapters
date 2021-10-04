@@ -71,7 +71,12 @@ const LogoStripSection = () => {
         <Flex gap={4} display={["none", "none", "inline-flex"]}>
           {ecosystem.map((el) => {
             return (
-              <Box flex={1} height="80px" width="90px">
+              <Box
+                flex={1}
+                height="80px"
+                width="90px"
+                key={`ecosystem-${el.title}`}
+              >
                 <Center height="100%" color="white">
                   <Tooltip label={el.title} placement="bottom">
                     <Image
@@ -95,7 +100,13 @@ const LogoStripSection = () => {
         >
           {ecosystem.map((el) => {
             return (
-              <Box flex={1} height="80px" width="90px" margin="0 auto">
+              <Box
+                flex={1}
+                height="80px"
+                width="90px"
+                margin="0 auto"
+                key={`ecosystem-${el.title}`}
+              >
                 <Center height="100%" color="white">
                   <Tooltip label={el.title} placement="bottom">
                     <Image

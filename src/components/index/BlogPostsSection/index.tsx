@@ -55,6 +55,7 @@ export default function BlogPosts() {
       >
         {[0, 1, 2].map((index) => (
           <BlogPostItem
+            key={`blogpost-item-${index}`}
             date={t(`blog-section-items.${index}.date`)}
             link={t(`blog-section-items.${index}.link`)}
             title={t(`blog-section-items.${index}.title`)}

@@ -90,7 +90,7 @@ const HeroSection = () => {
       >
         {[0, 1, 2].map((index) => {
           return (
-            <Box>
+            <Box key={`mobile-layout-${index}`}>
               <Box
                 fontWeight="bold"
                 display="inline-block"
@@ -123,7 +123,7 @@ const HeroSection = () => {
         <HStack spacing={8}>
           {[0, 1, 2].map((index) => {
             return (
-              <HStack fontSize="lg">
+              <HStack fontSize="lg" key={`desktop-hstack-${index}`}>
                 <Heading size="md" fontWeight="bold" color="green">
                   {t(`hero-section-stats.${index}.number`)}
                 </Heading>

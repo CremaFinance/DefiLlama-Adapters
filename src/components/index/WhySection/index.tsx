@@ -47,6 +47,7 @@ export default function WhySection() {
       >
         {[0, 1, 2].map((index) => (
           <IconWithTextBelow
+            key={`why-section-item-${index}`}
             icon={`/icons/why-section-icon${index + 1}.svg`}
             title={t(`why-section-items.${index}.title`)}
             subtitle={t(`why-section-items.${index}.subtitle`)}
