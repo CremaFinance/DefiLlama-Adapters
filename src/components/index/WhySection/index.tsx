@@ -1,10 +1,10 @@
 import { Box, Heading } from "@chakra-ui/react";
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "next-export-i18n";
 
 import IconWithTextBelow from "components/molecules/IconWithTextBelow";
 
 export default function WhySection() {
-  const { t } = useTranslation("index");
+  const { t } = useTranslation();
 
   return (
     <Box
@@ -25,7 +25,7 @@ export default function WhySection() {
         color="white"
         fontWeight="bold"
       >
-        {t("why-section-title")}
+        {t("indexPage.why-section-title")}
       </Heading>
       <Heading
         size="lg"
@@ -37,7 +37,7 @@ export default function WhySection() {
         color="white"
         fontWeight="300"
       >
-        {t("why-section-subtitle")}
+        {t("indexPage.why-section-subtitle")}
       </Heading>
       <Box
         display="flex"
@@ -47,9 +47,10 @@ export default function WhySection() {
       >
         {[0, 1, 2].map((index) => (
           <IconWithTextBelow
+            key={`why-section-item-${index}`}
             icon={`/icons/why-section-icon${index + 1}.svg`}
-            title={t(`why-section-items.${index}.title`)}
-            subtitle={t(`why-section-items.${index}.subtitle`)}
+            title={t(`indexPage.why-section-items.${index}.title`)}
+            subtitle={t(`indexPage.why-section-items.${index}.subtitle`)}
           />
         ))}
       </Box>

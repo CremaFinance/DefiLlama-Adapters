@@ -7,50 +7,50 @@ import {
   Box,
   Heading,
 } from "@chakra-ui/react";
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "next-export-i18n";
 
 const LogoStripSection = () => {
-  const { t } = useTranslation("index");
+  const { t } = useTranslation();
 
   const ecosystem = [
     {
-      title: "Solana",
-      image: "/logos/asset-77.svg",
+      title: "Saber",
+      image: "/logos/saber.svg",
     },
 
     {
-      title: "Solana",
-      image: "/logos/asset-70.svg",
+      title: "Raydium",
+      image: "/logos/raydium.svg",
     },
 
     {
-      title: "Solana",
-      image: "/logos/asset-71.svg",
+      title: "Solend",
+      image: "/logos/solend.svg",
     },
 
     {
-      title: "Solana",
-      image: "/logos/asset-72.svg",
+      title: "Mercurial Finance",
+      image: "/logos/mercurial-finance.svg",
     },
 
     {
-      title: "Solana",
-      image: "/logos/asset-73.svg",
+      title: "Serum",
+      image: "/logos/serum.svg",
     },
 
     {
-      title: "Solana",
-      image: "/logos/asset-78.svg",
+      title: "Port",
+      image: "/logos/port.svg",
     },
 
     {
-      title: "Solana",
-      image: "/logos/asset-75.svg",
+      title: "Orca",
+      image: "/logos/orca.svg",
     },
 
     {
-      title: "Solana",
-      image: "/logos/asset-76.svg",
+      title: "Parrot Protocol",
+      image: "/logos/parrot-protocol.svg",
     },
   ];
 
@@ -63,7 +63,7 @@ const LogoStripSection = () => {
         color="white"
         fontWeight="300"
       >
-        {t("logo-strip-section-title")}
+        {t("indexPage.logo-strip-section-title")}
       </Heading>
 
       {/* DESKTOP LAYOUT */}
@@ -71,7 +71,12 @@ const LogoStripSection = () => {
         <Flex gap={4} display={["none", "none", "inline-flex"]}>
           {ecosystem.map((el) => {
             return (
-              <Box flex={1} height="80px" width="90px">
+              <Box
+                flex={1}
+                height="80px"
+                width="90px"
+                key={`ecosystem-${el.title}`}
+              >
                 <Center height="100%" color="white">
                   <Tooltip label={el.title} placement="bottom">
                     <Image
@@ -95,7 +100,13 @@ const LogoStripSection = () => {
         >
           {ecosystem.map((el) => {
             return (
-              <Box flex={1} height="80px" width="90px" margin="0 auto">
+              <Box
+                flex={1}
+                height="80px"
+                width="90px"
+                margin="0 auto"
+                key={`ecosystem-${el.title}`}
+              >
                 <Center height="100%" color="white">
                   <Tooltip label={el.title} placement="bottom">
                     <Image

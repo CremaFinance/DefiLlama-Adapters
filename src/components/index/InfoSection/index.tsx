@@ -6,12 +6,12 @@ import {
   SimpleGrid,
   Center,
 } from "@chakra-ui/react";
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "next-export-i18n";
 import Image from "next/image";
 import { HiArrowRight } from "react-icons/hi";
 
 export default function InfoSection() {
-  const { t } = useTranslation("index");
+  const { t } = useTranslation();
 
   return (
     <Box
@@ -43,12 +43,14 @@ export default function InfoSection() {
             >
               <Heading mb={4} fontWeight="bold">
                 <Box display="inline-block" color="green">
-                  {t(`info-section-items.${index}.emphasis`)}
+                  {t(`indexPage.info-section-items.${index}.emphasis`)}
                 </Box>{" "}
-                {t(`info-section-items.${index}.heading`)}
+                {t(`indexPage.info-section-items.${index}.heading`)}
               </Heading>
 
-              <Box mb={4}>{t(`info-section-items.${index}.desc`)}</Box>
+              <Box mb={4}>
+                {t(`indexPage.info-section-items.${index}.desc`)}
+              </Box>
 
               <Box mb={6}>
                 <Button
@@ -64,7 +66,7 @@ export default function InfoSection() {
               <Box bg="#ffffff66" p={5} rounded="md">
                 <Box mb={2} fontSize="sm">
                   {`&quot;`}
-                  {t(`info-section-items.${index}.quote`)}
+                  {t(`indexPage.info-section-items.${index}.quote`)}
                   {`&quot;`}
                 </Box>
                 <Grid templateColumns="24px calc(100% - 24px)">
@@ -81,10 +83,10 @@ export default function InfoSection() {
 
                   <Box pl={3}>
                     <Box display="inline-block" fontWeight="bold" mr={2}>
-                      {t(`info-section-items.${index}.name`)}
+                      {t(`indexPage.info-section-items.${index}.name`)}
                     </Box>
                     <Box display="inline-block">
-                      {t(`info-section-items.${index}.company`)}
+                      {t(`indexPage.info-section-items.${index}.company`)}
                     </Box>
                   </Box>
                 </Grid>
