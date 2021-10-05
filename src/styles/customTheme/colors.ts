@@ -25,8 +25,12 @@ const colors = {
   ...extendedColors,
   greenLight: "#C8ECE1",
   greenVibrant: "#08B898",
+  greenVibrant800: "#08B898CC",
   green: "#308D8A",
+  green800: "#308D8ACC",
   black: "#171923",
+  blackMate: "#242731",
+  white: "#FFFFFF",
 };
 
 export default colors;

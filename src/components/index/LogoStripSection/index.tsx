@@ -9,6 +9,8 @@ import {
 } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 
+import colors from "styles/customTheme/colors";
+
 const LogoStripSection = () => {
   const { t } = useTranslation();
 
@@ -55,12 +57,12 @@ const LogoStripSection = () => {
   ];
 
   return (
-    <Box p={8} py={16} bg="#242731" as="section">
+    <Box p={8} py={16} bg={colors.blackMate} as="section">
       <Heading
         size="md"
         textAlign="center"
         mb={4}
-        color="white"
+        color={colors.white}
         fontWeight="300"
       >
         {t("indexPage.logo-strip-section-title")}
@@ -77,7 +79,7 @@ const LogoStripSection = () => {
                 width="90px"
                 key={`ecosystem-${el.title}`}
               >
-                <Center height="100%" color="white">
+                <Center height="100%" color={colors.white}>
                   <Tooltip label={el.title} placement="bottom">
                     <Image
                       src={el.image}
@@ -107,7 +109,7 @@ const LogoStripSection = () => {
                 margin="0 auto"
                 key={`ecosystem-${el.title}`}
               >
-                <Center height="100%" color="white">
+                <Center height="100%" color={colors.white}>
                   <Tooltip label={el.title} placement="bottom">
                     <Image
                       src={el.image}

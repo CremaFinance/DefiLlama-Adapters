@@ -15,6 +15,8 @@ import { useState, useEffect } from "react";
 import { BiCaretDown } from "react-icons/bi";
 import { IoMdArrowRoundForward } from "react-icons/io";
 
+import colors from "styles/customTheme/colors";
+
 import Sidebar from "./Sidebar";
 import ThemeToggle from "./ThemeToggle";
 
@@ -34,8 +36,7 @@ const Header = () => {
     checkTop();
   });
 
-  const headerBackground = onTop ? "#C8ECE100" : "#C8ECE1";
-  // let shadow = onTop ? "none" : "md";
+  const headerBackground = onTop ? colors.transparent : colors.greenLight;
 
   return (
     <Flex
@@ -44,7 +45,6 @@ const Header = () => {
       width="100vw"
       as="header"
       bg={headerBackground}
-      // shadow={["none", "none", shadow]}
       display="flex"
       align="center"
       transition={[
@@ -157,8 +157,8 @@ const Header = () => {
         size="sm"
         rounded="md"
         bg="greenVibrant"
-        colorScheme="green"
-        color="white"
+        colorScheme={colors.green}
+        color={colors.white}
         display={["none", "none", "block"]}
         rightIcon={<IoMdArrowRoundForward />}
       >

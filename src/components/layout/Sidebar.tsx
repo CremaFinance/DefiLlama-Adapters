@@ -16,6 +16,8 @@ import {
 import Link from "next/link";
 import { IoIosMenu, IoMdArrowRoundForward } from "react-icons/io";
 
+import colors from "styles/customTheme/colors";
+
 function Sidebar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -34,7 +36,7 @@ function Sidebar() {
 
       <Drawer size="sm" isOpen={isOpen} placement="right" onClose={onClose}>
         <DrawerOverlay />
-        <DrawerContent bg="#C8ECE1">
+        <DrawerContent bg={colors.greenLight}>
           <DrawerCloseButton />
           <DrawerHeader>
             <Link href="/" passHref>
@@ -99,9 +101,9 @@ function Sidebar() {
             <Button
               size="sm"
               rounded="md"
-              bg="#08B898"
-              _hover={{ bg: "#08B898aa" }}
-              color="white"
+              bg={colors.greenVibrant}
+              _hover={{ bg: colors.greenVibrant800 }}
+              color={colors.white}
               rightIcon={<IoMdArrowRoundForward />}
             >
               Go to app
