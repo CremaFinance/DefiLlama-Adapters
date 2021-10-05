@@ -11,35 +11,35 @@ import {
   Button,
 } from "@chakra-ui/react";
 import Link from "next/link";
+import { useState, useEffect, useCallback } from "react";
 import { BiCaretDown } from "react-icons/bi";
 import { IoMdArrowRoundForward } from "react-icons/io";
 
 import Sidebar from "./Sidebar";
 import ThemeToggle from "./ThemeToggle";
-// import { useState, useEffect } from "react";
 
 const Header = () => {
-  // const [onTop, setOnTop] = useState(true);
-  // const [first, setFirst] = useState(true);
+  const [onTop, setOnTop] = useState(true);
+  const [first, setFirst] = useState(true);
 
-  // function checkTop() {
-  //   if (window.scrollY >= 10 && onTop) {
-  //     setOnTop(false);
-  //   } else if (window.scrollY < 10) {
-  //     setOnTop(true);
-  //   }
-  // }
+  const checkTop = useCallback(() => {
+    if (window.scrollY >= 10 && onTop) {
+      setOnTop(false);
+    } else if (window.scrollY < 10) {
+      setOnTop(true);
+    }
+  }, [onTop]);
 
-  // useEffect(() => {
-  //   if (first) {
-  //     window.addEventListener("scroll", checkTop);
-  //     checkTop();
-  //     setFirst(false);
-  //   }
-  // }, [first, checkTop]);
+  useEffect(() => {
+    if (first) {
+      window.addEventListener("scroll", checkTop);
+      checkTop();
+      setFirst(false);
+    }
+  }, [first, checkTop]);
 
-  // const headerBackground = onTop ? "#C8ECE100" : "#C8ECE1";
-  // let shadow = onTop ? "none" : "md";
+  const headerBackground = onTop ? "#C8ECE100" : "#C8ECE1";
+  const shadow = onTop ? "none" : "md";
 
   return (
     <Flex
@@ -47,9 +47,8 @@ const Header = () => {
       top={0}
       width="100vw"
       as="header"
-      // bg={headerBackground}
-      bg="greenLight"
-      // shadow={["none", "none", shadow]}
+      bg={headerBackground}
+      shadow={["none", "none", shadow]}
       display="flex"
       align="center"
       transition="background 0.3s ease"
