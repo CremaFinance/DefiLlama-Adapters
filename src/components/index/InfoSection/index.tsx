@@ -28,6 +28,7 @@ export default function InfoSection() {
       {[0, 1, 2].map((index) => {
         return (
           <SimpleGrid
+            key={`info-item-${index}`}
             maxWidth="1000"
             margin="0 auto"
             columns={[1, 1, 2]}
@@ -65,9 +66,7 @@ export default function InfoSection() {
 
               <Box bg="#ffffff66" p={5} rounded="md">
                 <Box mb={2} fontSize="sm">
-                  {`&quot;`}
-                  {t(`indexPage.info-section-items.${index}.quote`)}
-                  {`&quot;`}
+                  &quot;{t(`indexPage.info-section-items.${index}.quote`)}&quot;
                 </Box>
                 <Grid templateColumns="24px calc(100% - 24px)">
                   <Box>
