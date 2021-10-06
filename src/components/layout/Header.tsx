@@ -51,7 +51,7 @@ const Header = () => {
       shadow={["none", "none", shadow]}
       display="flex"
       align="center"
-      transition="background 0.3s ease"
+      transition="background 0.3s ease, box-shadow 0.3s ease"
       py={3}
       zIndex={1000}
       px={[5, 5, 10]}
