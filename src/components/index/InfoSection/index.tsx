@@ -5,9 +5,9 @@ import {
   Button,
   SimpleGrid,
   Center,
+  Image,
 } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
-import Image from "next/image";
 import { HiArrowRight } from "react-icons/hi";
 
 export default function InfoSection() {
