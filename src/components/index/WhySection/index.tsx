@@ -28,18 +28,6 @@ export default function WhySection() {
       >
         {t("indexPage.why-section-title")}
       </Heading>
-      <Heading
-        size="lg"
-        alignSelf="center"
-        maxWidth="1000"
-        textAlign="center"
-        marginBottom="20"
-        marginTop="7"
-        color={colors.white}
-        fontWeight="300"
-      >
-        {t("indexPage.why-section-subtitle")}
-      </Heading>
       <Box
         display="flex"
         alignItems="flex-start"
