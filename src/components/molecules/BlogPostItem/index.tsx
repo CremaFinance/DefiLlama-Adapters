@@ -1,6 +1,8 @@
 import { Button, Box, Heading, Text, Square } from "@chakra-ui/react";
 import { HiOutlineExternalLink } from "react-icons/hi";
 
+import colors from "styles/customTheme/colors";
+
 type SectionProps = {
   title: string;
   subtitle?: string;
@@ -15,7 +17,7 @@ const BlogPostItem = ({ title, subtitle, link, date }: SectionProps) => (
     flex="1"
     p={[4, 4, 6]}
     mb="10"
-    bg="white"
+    bg={colors.white}
     mx={5}
     justifyContent="flex-start"
     maxWidth="320"
@@ -27,7 +29,7 @@ const BlogPostItem = ({ title, subtitle, link, date }: SectionProps) => (
 
     <Heading
       size="md"
-      color="black"
+      color={colors.black}
       mb={2}
       wordBreak="keep-all"
       textAlign="center"
@@ -35,14 +37,14 @@ const BlogPostItem = ({ title, subtitle, link, date }: SectionProps) => (
       {title}
     </Heading>
 
-    <Text color="black" textAlign="center" mb={4}>
+    <Text color={colors.black} textAlign="center" mb={4}>
       {subtitle}
     </Text>
 
     <Box>
       <Button
         variant="link"
-        color="green"
+        color={colors.green}
         href={link}
         target="_blank"
         rightIcon={<HiOutlineExternalLink />}
