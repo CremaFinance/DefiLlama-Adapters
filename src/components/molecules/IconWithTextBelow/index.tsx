@@ -1,6 +1,8 @@
 import { Heading, Image, Text, Square } from "@chakra-ui/react";
 import htmlParser from "html-react-parser";
 
+import colors from "styles/customTheme/colors";
+
 type IconWithTextBelowProps = {
   title: string;
   subtitle?: string;
@@ -20,22 +22,27 @@ const IconWithTextBelow = ({
     marginRight="5"
     marginBottom="5"
     justifyContent="flex-start"
-    maxWidth="320"
-    minWidth="320"
+    maxWidth="sm"
   >
-    <Image src={icon} maxW="sm" objectFit="contain" alt={`${title} Logo`} />
+    <Image
+      src={icon}
+      maxWidth="135px"
+      width="100%"
+      objectFit="contain"
+      alt={`${title} Logo`}
+    />
     <Heading
-      size="md"
-      color="white"
-      marginBottom="5"
-      marginTop="5"
+      size="xl"
+      color={colors.white}
+      marginBottom="4"
+      marginTop="7"
       wordBreak="keep-all"
       textAlign="center"
     >
       {title}
     </Heading>
     {subtitle && (
-      <Text color="whiteAlpha.800" textAlign="center">
+      <Text color="whiteAlpha.800" textAlign="center" fontSize="xl">
         {htmlParser(subtitle)}
       </Text>
     )}

@@ -3,6 +3,7 @@ import { useTranslation } from "next-export-i18n";
 import { HiArrowRight } from "react-icons/hi";
 
 import BlogPostItem from "components/molecules/BlogPostItem";
+import colors from "styles/customTheme/colors";
 
 export default function BlogPosts() {
   const { t } = useTranslation();
@@ -11,7 +12,7 @@ export default function BlogPosts() {
     <Box
       paddingTop="16"
       paddingBottom="16"
-      bg="greenLight"
+      bg={colors.greenLight}
       px={5}
       as="section"
       aria-label="blog-posts-section"
@@ -29,7 +30,7 @@ export default function BlogPosts() {
       <Heading
         textAlign="center"
         marginBottom={4}
-        color="black"
+        color={colors.black}
         fontWeight="bold"
       >
         {t("indexPage.blog-section-title")}
@@ -41,7 +42,7 @@ export default function BlogPosts() {
         maxWidth="800"
         textAlign="center"
         marginBottom="20"
-        color="black"
+        color={colors.black}
         fontWeight="300"
       >
         {t("indexPage.blog-section-subtitle")}
@@ -65,7 +66,7 @@ export default function BlogPosts() {
       </Box>
       <Heading
         textAlign="center"
-        color="black"
+        color={colors.black}
         lineHeight="36px"
         fontSize="28"
         fontWeight="bold"
@@ -75,7 +76,7 @@ export default function BlogPosts() {
       >
         {t("indexPage.blog-section-blurb")}
         <Heading
-          color="green"
+          color={colors.green}
           fontSize="28"
           display="inline-block"
           fontWeight="bold"
@@ -85,13 +86,13 @@ export default function BlogPosts() {
       </Heading>
       <Box textAlign="center">
         <HStack spacing={5} display="inline-flex">
-          <Button bg="green" colorScheme="green" rounded="md">
+          <Button bg={colors.green} colorScheme={colors.green} rounded="md">
             {t("indexPage.blog-section-primary-button")}
           </Button>
 
           <Button
             variant="ghost"
-            colorScheme="green"
+            colorScheme={colors.green}
             rounded="md"
             rightIcon={<HiArrowRight />}
           >

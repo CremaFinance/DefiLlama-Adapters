@@ -2,15 +2,16 @@ import { Box, Heading } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 
 import IconWithTextBelow from "components/molecules/IconWithTextBelow";
+import colors from "styles/customTheme/colors";
 
 export default function WhySection() {
   const { t } = useTranslation();
 
   return (
     <Box
-      paddingTop="16"
-      paddingBottom="16"
-      bg="#242731"
+      paddingTop="32"
+      paddingBottom="32"
+      bg={colors.blackMate}
       as="section"
       aria-label="why-section"
       display="flex"
@@ -19,10 +20,10 @@ export default function WhySection() {
       alignItems="stretch"
     >
       <Heading
-        // width="xs"
+        fontSize="5xl"
         textAlign="center"
         marginBottom={4}
-        color="white"
+        color={colors.white}
         fontWeight="bold"
       >
         {t("indexPage.why-section-title")}
@@ -33,8 +34,8 @@ export default function WhySection() {
         maxWidth="1000"
         textAlign="center"
         marginBottom="20"
-        marginTop="10"
-        color="white"
+        marginTop="7"
+        color={colors.white}
         fontWeight="300"
       >
         {t("indexPage.why-section-subtitle")}
@@ -44,6 +45,7 @@ export default function WhySection() {
         alignItems="flex-start"
         flexWrap="wrap"
         justifyContent="center"
+        marginBottom=""
       >
         {[0, 1, 2].map((index) => (
           <IconWithTextBelow

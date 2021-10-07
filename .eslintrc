@@ -1,5 +1,7 @@
 {
   "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
     "sznm/react",
     "plugin:react/jsx-runtime",
     "plugin:@next/next/recommended"
@@ -10,9 +12,9 @@
       "error",
       {
         "devDependencies": [
-          "**/*.stories.tsx",
-        ],
-      },
-    ],
+          "**/*.stories.tsx"
+        ]
+      }
+    ]
   }
 }

@@ -2,6 +2,7 @@ import { Box, Button, Heading } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 
 import IconWithTextBelow from "components/molecules/IconWithTextBelow";
+import colors from "styles/customTheme/colors";
 
 export default function SecuritySection() {
   const { t } = useTranslation();
@@ -10,7 +11,7 @@ export default function SecuritySection() {
     <Box
       paddingTop="16"
       paddingBottom="16"
-      bg="#242731"
+      bg={colors.blackMate}
       as="section"
       aria-label="security-section"
       display="flex"
@@ -23,7 +24,7 @@ export default function SecuritySection() {
         textAlign="center"
         marginBottom={4}
         maxWidth="500"
-        color="white"
+        color={colors.white}
         fontWeight="bold"
       >
         {t("indexPage.security-section-title")}
@@ -63,7 +64,7 @@ export default function SecuritySection() {
           key="security-item-2"
           icon="/icons/security-section-icon2.svg"
           title={t(`indexPage.security-section-items.2.title`)}
-          subtitle={t(`security-section-items.2.subtitle`)}
+          subtitle={t(`indexPage.security-section-items.2.subtitle`)}
         />
         <IconWithTextBelow
           key="security-item-3"
@@ -74,9 +75,9 @@ export default function SecuritySection() {
       </Box>
       <Box marginTop="10" display="flex" justifyContent="center">
         <Button
-          bg="#308D8A"
-          _hover={{ bg: "#308D8Aaa" }}
-          colorScheme="green"
+          bg={colors.green}
+          _hover={{ bg: colors.green800 }}
+          colorScheme={colors.green}
           rounded="md"
         >
           {t("indexPage.security-section-action")}

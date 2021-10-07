@@ -2,12 +2,14 @@ import { Box, Heading, Image, Link, Text } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import NextLink from "next/link";
 
+import colors from "styles/customTheme/colors";
+
 const Footer = () => {
   const { t } = useTranslation();
 
   return (
     <Box
-      bg="#242731"
+      bg={colors.blackMate}
       as="footer"
       aria-label="footer-section"
       display="flex"
@@ -79,50 +81,62 @@ const Footer = () => {
           flex="0.25"
           flexDirection="column"
         >
-          <Heading pb="4" size="md" maxW="600" color="white" fontWeight="800">
+          <Heading
+            pb="4"
+            size="md"
+            maxW="600"
+            color={colors.white}
+            fontWeight="800"
+          >
             {t("indexPage.footer-product")}
           </Heading>
 
-          <Text fontSize="sm" color="white" mb={2}>
+          <Text fontSize="sm" color={colors.white} mb={2}>
             <NextLink href="/">{t("indexPage.footer-stake-sol")}</NextLink>
           </Text>
 
-          <Text fontSize="sm" color="white" mb={2}>
+          <Text fontSize="sm" color={colors.white} mb={2}>
             <NextLink href="/">{t("indexPage.footer-validators")}</NextLink>
           </Text>
 
-          <Text fontSize="sm" color="white" mb={2}>
+          <Text fontSize="sm" color={colors.white} mb={2}>
             <NextLink href="/">{t("indexPage.footer-receive-msol")}</NextLink>
           </Text>
 
-          <Text fontSize="sm" color="white" mb={2}>
+          <Text fontSize="sm" color={colors.white} mb={2}>
             <NextLink href="/">{t("indexPage.footer-marinde-dao")}</NextLink>
           </Text>
 
-          <Text fontSize="sm" color="white" mb={2}>
+          <Text fontSize="sm" color={colors.white} mb={2}>
             <NextLink href="/">
               {t("indexPage.footer-defi-recipes-integration")}
             </NextLink>
           </Text>
         </Box>
         <Box pt="8" pb="8" display="flex" flex="0.25" flexDirection="column">
-          <Heading pb="4" size="md" maxW="600" color="white" fontWeight="800">
+          <Heading
+            pb="4"
+            size="md"
+            maxW="600"
+            color={colors.white}
+            fontWeight="800"
+          >
             {t("indexPage.footer-learn")}
           </Heading>
 
-          <Text fontSize="sm" color="white" mb={2}>
+          <Text fontSize="sm" color={colors.white} mb={2}>
             <NextLink href="/">{t("indexPage.footer-docs")}</NextLink>
           </Text>
 
-          <Text fontSize="sm" color="white" mb={2}>
+          <Text fontSize="sm" color={colors.white} mb={2}>
             <NextLink href="/">{t("indexPage.footer-security")}</NextLink>
           </Text>
 
-          <Text fontSize="sm" color="white" mb={2}>
+          <Text fontSize="sm" color={colors.white} mb={2}>
             <NextLink href="/">{t("indexPage.footer-about-us")}</NextLink>
           </Text>
 
-          <Text fontSize="sm" color="white" mb={2}>
+          <Text fontSize="sm" color={colors.white} mb={2}>
             <NextLink href="/">{t("indexPage.footer-roadmap")}</NextLink>
           </Text>
         </Box>

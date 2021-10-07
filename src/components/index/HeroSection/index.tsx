@@ -1,6 +1,8 @@
 import { HStack, Button, Image, Box, Heading } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 
+import colors from "styles/customTheme/colors";
+
 const HeroSection = () => {
   const { t } = useTranslation();
 
@@ -8,7 +10,7 @@ const HeroSection = () => {
     <Box
       py="72px"
       pb={[12, 12, 8]}
-      bg="#C8ECE1"
+      bg={colors.greenLight}
       position="relative"
       height={["auto", "auto", "100vh"]}
       minHeight="650px"
@@ -21,7 +23,7 @@ const HeroSection = () => {
         textAlign={["center", "center", "left"]}
       >
         <Box mb={[2, 2, 4]}>
-          <Heading color="#08B898" fontWeight="bold">
+          <Heading color={colors.greenVibrant} fontWeight="bold">
             {t("indexPage.hero-section-title")}
           </Heading>
 
@@ -39,7 +41,7 @@ const HeroSection = () => {
         </Box>
 
         <Box mb={[2, 2, 4]}>
-          <Button bg="green" colorScheme="green" rounded="md">
+          <Button bg={colors.green} colorScheme={colors.green} rounded="md">
             {t("indexPage.hero-section-button")}
           </Button>
         </Box>
@@ -53,7 +55,7 @@ const HeroSection = () => {
       <Box display={["none", "none", "block"]}>
         <Image
           src="./cloud-leaves.png"
-          width={[350, 350, 350, "420px"]}
+          width={[0, 0, 350, "420px"]}
           alt="Clouds and Leaves"
           position="absolute"
           top="0"
@@ -94,7 +96,7 @@ const HeroSection = () => {
               <Box
                 fontWeight="bold"
                 display="inline-block"
-                color="green"
+                color={colors.green}
                 fontSize={["xl", "2xl"]}
                 mr={2}
               >
@@ -124,7 +126,7 @@ const HeroSection = () => {
           {[0, 1, 2].map((index) => {
             return (
               <HStack fontSize="lg" key={`desktop-hstack-${index}`}>
-                <Heading size="md" fontWeight="bold" color="green">
+                <Heading size="md" fontWeight="bold" color={colors.green}>
                   {t(`indexPage.hero-section-stats.${index}.number`)}
                 </Heading>
 
