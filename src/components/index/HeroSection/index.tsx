@@ -55,7 +55,7 @@ const HeroSection = () => {
       <Box display={["none", "none", "block"]}>
         <Image
           src="./cloud-leaves.png"
-          width={[350, 350, 350, "420px"]}
+          width={[0, 0, 350, "420px"]}
           alt="Clouds and Leaves"
           position="absolute"
           top="0"

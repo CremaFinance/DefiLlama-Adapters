@@ -1,5 +1,4 @@
 import { Button, Box, Heading, Text, Square } from "@chakra-ui/react";
-import * as React from "react";
 import { HiOutlineExternalLink } from "react-icons/hi";
 
 import colors from "styles/customTheme/colors";

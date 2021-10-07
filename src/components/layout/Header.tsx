@@ -11,7 +11,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { BiCaretDown } from "react-icons/bi";
 import { IoMdArrowRoundForward } from "react-icons/io";
 
@@ -22,19 +22,23 @@ import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
   const [onTop, setOnTop] = useState(true);
+  const [first, setFirst] = useState(true);
 
-  function checkTop() {
+  const checkTop = useCallback(() => {
     if (window.scrollY >= 10 && onTop) {
       setOnTop(false);
     } else if (window.scrollY < 10) {
       setOnTop(true);
     }
-  }
+  }, [onTop]);
 
   useEffect(() => {
-    window.addEventListener("scroll", checkTop);
-    checkTop();
-  });
+    if (first) {
+      window.addEventListener("scroll", checkTop);
+      checkTop();
+      setFirst(false);
+    }
+  }, [first, checkTop]);
 
   const headerBackground = onTop ? colors.transparent : colors.greenLight;
 
@@ -47,11 +51,7 @@ const Header = () => {
       bg={headerBackground}
       display="flex"
       align="center"
-      transition={[
-        "box-shadow 0.1s ease",
-        "box-shadow 0.1s ease",
-        "background 0.3s ease, box-shadow 0.3s ease",
-      ]}
+      transition="background 0.3s ease, box-shadow 0.3s ease"
       py={3}
       zIndex={1000}
       px={[5, 5, 10]}

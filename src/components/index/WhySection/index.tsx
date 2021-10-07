@@ -9,8 +9,8 @@ export default function WhySection() {
 
   return (
     <Box
-      paddingTop="16"
-      paddingBottom="16"
+      paddingTop="32"
+      paddingBottom="32"
       bg={colors.blackMate}
       as="section"
       aria-label="why-section"
@@ -20,7 +20,7 @@ export default function WhySection() {
       alignItems="stretch"
     >
       <Heading
-        // width="xs"
+        fontSize="5xl"
         textAlign="center"
         marginBottom={4}
         color={colors.white}
@@ -34,7 +34,7 @@ export default function WhySection() {
         maxWidth="1000"
         textAlign="center"
         marginBottom="20"
-        marginTop="10"
+        marginTop="7"
         color={colors.white}
         fontWeight="300"
       >
@@ -45,6 +45,7 @@ export default function WhySection() {
         alignItems="flex-start"
         flexWrap="wrap"
         justifyContent="center"
+        marginBottom=""
       >
         {[0, 1, 2].map((index) => (
           <IconWithTextBelow
