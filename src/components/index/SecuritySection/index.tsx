@@ -9,7 +9,7 @@ export default function SecuritySection() {
 
   return (
     <Box
-      paddingTop="16"
+      paddingTop="24"
       paddingBottom="16"
       bg={colors.blackMate}
       as="section"
@@ -22,22 +22,21 @@ export default function SecuritySection() {
       <Heading
         alignSelf="center"
         textAlign="center"
-        marginBottom={4}
-        maxWidth="500"
+        maxWidth="480"
         color={colors.white}
         fontWeight="bold"
       >
         {t("indexPage.security-section-title")}
       </Heading>
       <Heading
-        size="lg"
+        size="22.5"
         alignSelf="center"
-        maxWidth="1000"
+        maxWidth="640"
         textAlign="center"
-        marginBottom="20"
-        marginTop="10"
-        color="whiteAlpha.800"
-        fontWeight="400"
+        marginBottom="16"
+        marginTop="8"
+        color={colors.white800}
+        fontWeight="regular"
       >
         {t("indexPage.security-section-subtitle")}
       </Heading>
@@ -55,33 +54,76 @@ export default function SecuritySection() {
         />
         <IconWithTextBelow
           key="security-item-1"
-          icon="/icons/security-section-icon1.svg"
+          icon="/icons/security-section-icon2.svg"
           title={t(`indexPage.security-section-items.1.title`)}
-          // TODO: Add proper links on i18n string using below key
-          subtitle={t("indexPage.security-section-items.1.subtitle")}
+          subtitle={t(`indexPage.security-section-items.1.subtitle`)}
         />
         <IconWithTextBelow
           key="security-item-2"
-          icon="/icons/security-section-icon2.svg"
+          icon="/icons/security-section-icon3.svg"
           title={t(`indexPage.security-section-items.2.title`)}
           subtitle={t(`indexPage.security-section-items.2.subtitle`)}
         />
-        <IconWithTextBelow
-          key="security-item-3"
-          icon="/icons/security-section-icon3.svg"
-          title={t(`indexPage.security-section-items.3.title`)}
-          subtitle={t(`indexPage.security-section-items.3.subtitle`)}
-        />
       </Box>
-      <Box marginTop="10" display="flex" justifyContent="center">
+      <Box marginTop="8" display="flex" justifyContent="center">
         <Button
-          bg={colors.green}
-          _hover={{ bg: colors.green800 }}
-          colorScheme={colors.green}
+          bg={colors.greenVibrant}
+          _hover={{ bg: colors.greenVibrant800 }}
+          colorScheme={colors.greenVibrant}
           rounded="md"
         >
           {t("indexPage.security-section-action")}
         </Button>
+      </Box>
+      <Heading
+        marginTop="32"
+        alignSelf="center"
+        textAlign="center"
+        maxWidth="480"
+        color={colors.white}
+        fontWeight="bold"
+      >
+        {t("indexPage.security-section-audit-title")}
+      </Heading>
+      <Box
+        display="flex"
+        alignItems="flex-start"
+        flexWrap="wrap"
+        justifyContent="center"
+      >
+        <IconWithTextBelow
+          height={70}
+          opacity="0.6"
+          marginTop={16}
+          key="neodyme"
+          icon="/logos/neodyme-white.png"
+          title={t(`indexPage.security-section-audit-neodyme.title`)}
+          subtitle={t(`indexPage.security-section-audit-neodyme.subtitle`)}
+          externalUrl={t(
+            `indexPage.security-section-audit-neodyme.external-url`
+          )}
+        />
+        <IconWithTextBelow
+          height={70}
+          opacity="0.6"
+          marginTop={16}
+          key="ackee"
+          icon="/logos/ackee-blockchain.svg"
+          title={t(`indexPage.security-section-audit-ackee.title`)}
+          subtitle={t(`indexPage.security-section-audit-ackee.subtitle`)}
+          externalUrl={t(`indexPage.security-section-audit-ackee.external-url`)}
+        />
+        <IconWithTextBelow
+          height={70}
+          marginTop={16}
+          key="kudelski"
+          icon="/logos/kudelski-security.png"
+          title={t(`indexPage.security-section-audit-kudelski.title`)}
+          subtitle={t(`indexPage.security-section-audit-kudelski.subtitle`)}
+          externalUrl={t(
+            `indexPage.security-section-audit-kudelski.external-url`
+          )}
+        />
       </Box>
     </Box>
   );

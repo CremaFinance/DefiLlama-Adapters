@@ -31,6 +31,7 @@ const colors = {
   black: "#171923",
   blackMate: "#242731",
   white: "#FFFFFF",
+  white800: "#FFFFFFCC",
 };
 
 export default colors;
