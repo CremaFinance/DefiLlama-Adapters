@@ -9,8 +9,8 @@ export default function WhySection() {
 
   return (
     <Box
-      paddingTop="36"
-      paddingBottom="36"
+      paddingTop="32"
+      paddingBottom="32"
       bg={colors.blackMate}
       as="section"
       aria-label="why-section"
