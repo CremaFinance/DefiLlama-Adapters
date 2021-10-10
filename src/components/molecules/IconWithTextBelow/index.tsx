@@ -33,7 +33,7 @@ const IconWithTextBelow = ({
       flex="1"
       marginBottom="4"
       marginTop={marginTop}
-      maxWidth="17em"
+      maxWidth="16em"
     >
       <Image
         src={icon}
@@ -42,7 +42,7 @@ const IconWithTextBelow = ({
         alt={`${title} Logo`}
       />
       <Heading
-        as="h3"
+        as="h4"
         color={colors.white}
         marginBottom="4"
         marginTop="4"

@@ -1,4 +1,4 @@
-import { Box, Button, Heading } from "@chakra-ui/react";
+import { Box, Button, Heading, Text } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 
 import IconWithTextBelow from "components/molecules/IconWithTextBelow";
@@ -27,22 +27,24 @@ export default function SecuritySection() {
       >
         {t("indexPage.security-section-title")}
       </Heading>
-      <Heading
-        size="22.5"
+      <Text
+        fontSize="22.5"
         alignSelf="center"
         maxWidth="640"
         textAlign="center"
         marginBottom="8"
         marginTop="8"
+        marginRight="4"
+        marginLeft="4"
         color={colors.white800}
-        fontWeight="regular"
       >
         {t("indexPage.security-section-subtitle")}
-      </Heading>
+      </Text>
       <Box
         display="flex"
         alignItems="flex-start"
         flexWrap="wrap"
+        flexDirection={["column", "row"]}
         justifyContent="space-around"
         marginLeft={[8, 48]}
         marginRight={[8, 48]}
