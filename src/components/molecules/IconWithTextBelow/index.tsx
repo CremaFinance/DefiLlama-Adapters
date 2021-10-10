@@ -31,11 +31,9 @@ const IconWithTextBelow = ({
       display="flex"
       flexDirection="column"
       flex="1"
-      marginLeft="4"
-      marginRight="4"
       marginBottom="4"
       marginTop={marginTop}
-      maxWidth="20em"
+      maxWidth="17em"
     >
       <Image
         src={icon}
@@ -54,7 +52,7 @@ const IconWithTextBelow = ({
         {title}
       </Heading>
       {subtitle && (
-        <Text color={colors.white800} textAlign="center" fontSize="xl">
+        <Text color={colors.white800} textAlign="center" fontSize="18">
           {htmlParser(subtitle)}
         </Text>
       )}

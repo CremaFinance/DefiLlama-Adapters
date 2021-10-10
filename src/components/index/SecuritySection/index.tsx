@@ -15,7 +15,6 @@ export default function SecuritySection() {
       as="section"
       aria-label="security-section"
       display="flex"
-      px={5}
       flexDirection="column"
       alignItems="stretch"
     >
@@ -33,7 +32,7 @@ export default function SecuritySection() {
         alignSelf="center"
         maxWidth="640"
         textAlign="center"
-        marginBottom="16"
+        marginBottom="8"
         marginTop="8"
         color={colors.white800}
         fontWeight="regular"
@@ -44,23 +43,28 @@ export default function SecuritySection() {
         display="flex"
         alignItems="flex-start"
         flexWrap="wrap"
-        justifyContent="center"
+        justifyContent="space-around"
+        marginLeft={[8, 48]}
+        marginRight={[8, 48]}
       >
         <IconWithTextBelow
+          marginTop={8}
           key="security-item-0"
-          icon="/icons/security-section-icon0.svg"
+          icon="/icons/crank.svg"
           title={t(`indexPage.security-section-items.0.title`)}
           subtitle={t(`indexPage.security-section-items.0.subtitle`)}
         />
         <IconWithTextBelow
+          marginTop={8}
           key="security-item-1"
-          icon="/icons/security-section-icon2.svg"
+          icon="/icons/trophy.svg"
           title={t(`indexPage.security-section-items.1.title`)}
           subtitle={t(`indexPage.security-section-items.1.subtitle`)}
         />
         <IconWithTextBelow
+          marginTop={8}
           key="security-item-2"
-          icon="/icons/security-section-icon3.svg"
+          icon="/icons/bot.svg"
           title={t(`indexPage.security-section-items.2.title`)}
           subtitle={t(`indexPage.security-section-items.2.subtitle`)}
         />
@@ -77,6 +81,7 @@ export default function SecuritySection() {
       </Box>
       <Heading
         marginTop="32"
+        marginBottom="8"
         alignSelf="center"
         textAlign="center"
         maxWidth="480"
@@ -89,12 +94,15 @@ export default function SecuritySection() {
         display="flex"
         alignItems="flex-start"
         flexWrap="wrap"
-        justifyContent="center"
+        flexDirection={["column", "row"]}
+        justifyContent="space-around"
+        marginLeft={[8, 48]}
+        marginRight={[8, 48]}
       >
         <IconWithTextBelow
           height={70}
           opacity="0.6"
-          marginTop={16}
+          marginTop={8}
           key="neodyme"
           icon="/logos/neodyme-white.png"
           title={t(`indexPage.security-section-audit-neodyme.title`)}
@@ -106,7 +114,7 @@ export default function SecuritySection() {
         <IconWithTextBelow
           height={70}
           opacity="0.6"
-          marginTop={16}
+          marginTop={8}
           key="ackee"
           icon="/logos/ackee-blockchain.svg"
           title={t(`indexPage.security-section-audit-ackee.title`)}
@@ -115,7 +123,7 @@ export default function SecuritySection() {
         />
         <IconWithTextBelow
           height={70}
-          marginTop={16}
+          marginTop={8}
           key="kudelski"
           icon="/logos/kudelski-security.png"
           title={t(`indexPage.security-section-audit-kudelski.title`)}
