@@ -32,7 +32,10 @@ export default function WhySection() {
         display="flex"
         alignItems="flex-start"
         flexWrap="wrap"
-        justifyContent="center"
+        flexDirection={["column", "row"]}
+        justifyContent="space-around"
+        marginLeft={[8, 64]}
+        marginRight={[8, 64]}
       >
         {[0, 1, 2].map((index) => (
           <IconWithTextBelow
