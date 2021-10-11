@@ -28,7 +28,7 @@ export default function SecuritySection() {
         {t("indexPage.security-section-title")}
       </Heading>
       <Text
-        fontSize="22.5"
+        fontSize="22"
         alignSelf="center"
         maxWidth="640"
         textAlign="center"

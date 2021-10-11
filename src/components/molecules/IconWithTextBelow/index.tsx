@@ -57,7 +57,13 @@ const IconWithTextBelow = ({
         </Text>
       )}
       {externalUrl && (
-        <Link mt="4" href={externalUrl} isExternal color={colors.greenVibrant}>
+        <Link
+          mt="4"
+          href={externalUrl}
+          isExternal
+          color={colors.greenVibrant}
+          fontWeight="bold"
+        >
           {t("indexPage.read-more")}
           <ExternalLinkIcon mb="0.5" ml="1" />
         </Link>
