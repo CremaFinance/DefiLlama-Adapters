@@ -30,7 +30,7 @@ export default function SecuritySection() {
       <Text
         fontSize="22"
         alignSelf="center"
-        maxWidth="640"
+        maxWidth="720"
         textAlign="center"
         marginBottom="8"
         marginTop="8"
@@ -46,8 +46,8 @@ export default function SecuritySection() {
         flexWrap="wrap"
         flexDirection={["column", "row"]}
         justifyContent="space-around"
-        marginLeft={[8, 48]}
-        marginRight={[8, 48]}
+        marginLeft={[8, 64]}
+        marginRight={[8, 64]}
       >
         <IconWithTextBelow
           marginTop={8}
@@ -71,7 +71,7 @@ export default function SecuritySection() {
           subtitle={t(`indexPage.security-section-items.2.subtitle`)}
         />
       </Box>
-      <Box marginTop="8" display="flex" justifyContent="center">
+      <Box marginTop="16" display="flex" justifyContent="center">
         <Button
           bg={colors.greenVibrant}
           _hover={{ bg: colors.greenVibrant800 }}

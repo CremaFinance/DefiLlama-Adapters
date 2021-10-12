@@ -45,7 +45,7 @@ const IconWithTextBelow = ({
         as="h4"
         color={colors.white}
         marginBottom="4"
-        marginTop="4"
+        marginTop="8"
         wordBreak="keep-all"
         textAlign="center"
       >
