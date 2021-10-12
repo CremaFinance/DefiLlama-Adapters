@@ -98,8 +98,8 @@ export default function SecuritySection() {
         flexWrap="wrap"
         flexDirection={["column", "row"]}
         justifyContent="space-around"
-        marginLeft={[8, 48]}
-        marginRight={[8, 48]}
+        marginLeft={[8, 64]}
+        marginRight={[8, 64]}
       >
         <IconWithTextBelow
           height={70}
