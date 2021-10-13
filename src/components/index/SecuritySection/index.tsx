@@ -1,4 +1,4 @@
-import { Box, Button, Heading } from "@chakra-ui/react";
+import { Box, Button, Heading, Text } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 
 import IconWithTextBelow from "components/molecules/IconWithTextBelow";
@@ -9,79 +9,131 @@ export default function SecuritySection() {
 
   return (
     <Box
-      paddingTop="16"
+      paddingTop="24"
       paddingBottom="16"
       bg={colors.blackMate}
       as="section"
       aria-label="security-section"
       display="flex"
-      px={5}
       flexDirection="column"
       alignItems="stretch"
     >
       <Heading
         alignSelf="center"
         textAlign="center"
-        marginBottom={4}
-        maxWidth="500"
+        maxWidth="480"
         color={colors.white}
         fontWeight="bold"
       >
         {t("indexPage.security-section-title")}
       </Heading>
-      <Heading
-        size="lg"
+      <Text
+        fontSize="22"
         alignSelf="center"
-        maxWidth="1000"
+        maxWidth="720"
         textAlign="center"
-        marginBottom="20"
-        marginTop="10"
-        color="whiteAlpha.800"
-        fontWeight="400"
+        marginBottom="8"
+        marginTop="8"
+        marginRight="4"
+        marginLeft="4"
+        color={colors.white800}
       >
         {t("indexPage.security-section-subtitle")}
+      </Text>
+      <Box
+        display="flex"
+        alignItems="flex-start"
+        flexWrap="wrap"
+        flexDirection={["column", "row"]}
+        justifyContent="space-around"
+        marginLeft={[8, 64]}
+        marginRight={[8, 64]}
+      >
+        <IconWithTextBelow
+          marginTop={8}
+          key="security-item-0"
+          icon="/icons/crank.svg"
+          title={t(`indexPage.security-section-items.0.title`)}
+          subtitle={t(`indexPage.security-section-items.0.subtitle`)}
+        />
+        <IconWithTextBelow
+          marginTop={8}
+          key="security-item-1"
+          icon="/icons/trophy.svg"
+          title={t(`indexPage.security-section-items.1.title`)}
+          subtitle={t(`indexPage.security-section-items.1.subtitle`)}
+        />
+        <IconWithTextBelow
+          marginTop={8}
+          key="security-item-2"
+          icon="/icons/bot.svg"
+          title={t(`indexPage.security-section-items.2.title`)}
+          subtitle={t(`indexPage.security-section-items.2.subtitle`)}
+        />
+      </Box>
+      <Box marginTop="16" display="flex" justifyContent="center">
+        <Button
+          bg={colors.greenVibrant}
+          _hover={{ bg: colors.greenVibrant800 }}
+          colorScheme={colors.greenVibrant}
+          rounded="md"
+        >
+          {t("indexPage.security-section-action")}
+        </Button>
+      </Box>
+      <Heading
+        marginTop="32"
+        marginBottom="8"
+        alignSelf="center"
+        textAlign="center"
+        maxWidth="480"
+        color={colors.white}
+        fontWeight="bold"
+      >
+        {t("indexPage.security-section-audit-title")}
       </Heading>
       <Box
         display="flex"
         alignItems="flex-start"
         flexWrap="wrap"
-        justifyContent="center"
+        flexDirection={["column", "row"]}
+        justifyContent="space-around"
+        marginLeft={[8, 64]}
+        marginRight={[8, 64]}
       >
         <IconWithTextBelow
-          key="security-item-0"
-          icon="/icons/security-section-icon0.svg"
-          title={t(`indexPage.security-section-items.0.title`)}
-          subtitle={t(`indexPage.security-section-items.0.subtitle`)}
+          height={70}
+          opacity="0.6"
+          marginTop={8}
+          key="neodyme"
+          icon="/logos/neodyme-white.png"
+          title={t(`indexPage.security-section-audit-neodyme.title`)}
+          subtitle={t(`indexPage.security-section-audit-neodyme.subtitle`)}
+          externalUrl={t(
+            `indexPage.security-section-audit-neodyme.external-url`
+          )}
         />
         <IconWithTextBelow
-          key="security-item-1"
-          icon="/icons/security-section-icon1.svg"
-          title={t(`indexPage.security-section-items.1.title`)}
-          // TODO: Add proper links on i18n string using below key
-          subtitle={t("indexPage.security-section-items.1.subtitle")}
+          height={70}
+          opacity="0.6"
+          marginTop={8}
+          key="ackee"
+          icon="/logos/ackee-blockchain.svg"
+          title={t(`indexPage.security-section-audit-ackee.title`)}
+          subtitle={t(`indexPage.security-section-audit-ackee.subtitle`)}
+          externalUrl={t(`indexPage.security-section-audit-ackee.external-url`)}
         />
         <IconWithTextBelow
-          key="security-item-2"
-          icon="/icons/security-section-icon2.svg"
-          title={t(`indexPage.security-section-items.2.title`)}
-          subtitle={t(`indexPage.security-section-items.2.subtitle`)}
+          height={70}
+          marginTop={8}
+          key="kudelski"
+          icon="/logos/kudelski-security.png"
+          title={t(`indexPage.security-section-audit-kudelski.title`)}
+          subtitle={t(`indexPage.security-section-audit-kudelski.subtitle`)}
+          externalUrl={t(
+            `indexPage.security-section-audit-kudelski.external-url`
+          )}
         />
-        <IconWithTextBelow
-          key="security-item-3"
-          icon="/icons/security-section-icon3.svg"
-          title={t(`indexPage.security-section-items.3.title`)}
-          subtitle={t(`indexPage.security-section-items.3.subtitle`)}
-        />
-      </Box>
-      <Box marginTop="10" display="flex" justifyContent="center">
-        <Button
-          bg={colors.green}
-          _hover={{ bg: colors.green800 }}
-          colorScheme={colors.green}
-          rounded="md"
-        >
-          {t("indexPage.security-section-action")}
-        </Button>
       </Box>
     </Box>
   );

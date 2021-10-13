@@ -105,12 +105,8 @@
     "security-section-action": "Read more about security",
     "security-section-items": [
       {
-        "title": "Fully non-custodial",
+        "title": "Absolutely non-custodial",
         "subtitle": "The Marinade program is completely permissionless so that anybody can run the bot and “turn the crank”."
-      },
-      {
-        "title": "Audits and code reviews",
-        "subtitle": "The program code has been reviewed by <a class=\"link\" href=\"\">Neodyme team</a>, audited by <a class=\"link\" href=\"\">Ackee Blockchain</a> and being audited by <a class=\"link\" href=\"\">Kudelski Security</a>."
       },
       {
         "title": "Ecosystem governance",
@@ -121,6 +117,22 @@
         "subtitle": "Staked SOL is delegated to hundreds of validators effectively mitigating any single point of failure risk."
       }
     ],
+    "security-section-audit-title": "Audits and code reviews",
+    "security-section-audit-neodyme": {
+      "title": "Neodyme team",
+      "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "external-url": "https://neodyme.io/"
+    },
+    "security-section-audit-ackee": {
+      "title": "Ackee Blockchain",
+      "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "external-url": "https://www.ackeeblockchain.com/"
+    },
+    "security-section-audit-kudelski": {
+      "title": "Kudelski security",
+      "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "external-url": "https://kudelskisecurity.com/"
+    },
     "footer-product": "Product",
     "footer-stake-sol": "Stake SOL",
     "footer-validators": "Validators",
@@ -132,6 +144,8 @@
     "footer-security": "Security",
     "footer-about-us": "About us",
     "footer-roadmap": "Roadmap",
-    "footer-copyright": "© Copyright 2021 Marinade.finance. All rights reserved."
+    "footer-copyright": "© Copyright 2021 Marinade.finance. All rights reserved.",
+
+    "read-more": "Read more"
   }
 }

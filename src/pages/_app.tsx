@@ -6,6 +6,7 @@ import { DefaultSeo } from "next-seo";
 import { AppProps } from "next/app";
 import Head from "next/head";
 import "@fontsource/maven-pro/400.css";
+import "@fontsource/maven-pro/700.css";
 
 import defaultSEOConfig from "../../next-seo.config";
 import Layout from "components/layout";
