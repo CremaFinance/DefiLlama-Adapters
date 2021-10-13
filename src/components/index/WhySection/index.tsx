@@ -22,7 +22,7 @@ export default function WhySection() {
       <Heading
         fontSize="5xl"
         textAlign="center"
-        marginBottom="12"
+        marginBottom="8"
         color={colors.white}
         fontWeight="bold"
       >
