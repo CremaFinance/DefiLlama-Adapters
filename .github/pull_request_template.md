@@ -7,4 +7,5 @@ A few sentences describing the overall goals of the pull request's commits.
 ### ✔️Todos
 * [ ] - Link related issue
 
-### 🖼️Screenshots from PixelPerfect addon (if appropriate)
+### 🖼️Screenshot(s) from PerfectPixel addon
+Add this screenshot if any stylings/visuals changed (even minor changes)
