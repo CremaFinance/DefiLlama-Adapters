@@ -15,6 +15,8 @@ type IconWithTextBelowProps = {
   titleSize?: "h1" | "h2" | "h3" | "h4" | "h5";
   subtitleSize?: number | string;
   maxWidth?: string;
+  titleColor?: string;
+  subtitleColor?: string;
 };
 
 const IconWithTextBelow = ({
@@ -28,6 +30,8 @@ const IconWithTextBelow = ({
   titleSize = "h4",
   subtitleSize = 18,
   maxWidth = "16rem",
+  titleColor = colors.white,
+  subtitleColor = colors.white800,
 }: IconWithTextBelowProps) => {
   const { t } = useTranslation();
 
@@ -48,7 +52,7 @@ const IconWithTextBelow = ({
       />
       <Heading
         as={titleSize}
-        color={colors.white}
+        color={titleColor}
         marginBottom="8"
         marginTop="8"
         wordBreak="keep-all"
@@ -57,11 +61,7 @@ const IconWithTextBelow = ({
         {title}
       </Heading>
       {subtitle && (
-        <Text
-          color={colors.white800}
-          textAlign="center"
-          fontSize={subtitleSize}
-        >
+        <Text color={subtitleColor} textAlign="center" fontSize={subtitleSize}>
           {htmlParser(subtitle)}
         </Text>
       )}

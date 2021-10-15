@@ -53,6 +53,22 @@
       }
     ],
 
+    "info-section-title": "The easiest way to stake Solana",
+    "info-section-step-items": [
+      {
+        "title": "Stake SOL",
+        "subtitle": "Select amount of SOL to stake using Marinade liquid staking protocol."
+      },
+      {
+        "title": "Receive mSol",
+        "subtitle": "In return, you receive liquid SOL (mSol) increasing value with staking rewards."
+      },
+      {
+        "title": "Participate in DeFi",
+        "subtitle": "Now you're free to use your liquid mSol in DeFi or swap back to SOL any time you like."
+      }
+    ],
+    "info-section-action": "Start staking SOL",
     "info-section-items": [
       {
         "emphasis": "Stake Solana",
