@@ -1,11 +1,10 @@
 import {
-  Grid,
   Box,
   Heading,
   Button,
   SimpleGrid,
-  Center,
   Image,
+  Text,
 } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { HiArrowRight } from "react-icons/hi";
@@ -61,7 +60,7 @@ export default function InfoSection() {
       </Box>
       <Box
         marginTop="4"
-        marginBottom="120"
+        marginBottom="112"
         display="flex"
         justifyContent="center"
       >
@@ -79,10 +78,10 @@ export default function InfoSection() {
         return (
           <SimpleGrid
             key={`info-item-${index}`}
-            maxWidth="1000"
+            maxWidth="1120"
             margin="0 auto"
             columns={[1, 1, 2]}
-            mb={[8, 8, 16]}
+            mb={[8, 8, 32]}
           >
             <Box
               gridColumn={[
@@ -90,73 +89,75 @@ export default function InfoSection() {
                 index % 2 ? 1 : 2,
                 index % 2 ? 2 : 1,
               ]}
-              p={[2, 2, 5]}
+              p="2"
             >
               <Heading mb={4} fontWeight="bold">
-                <Box display="inline-block" color="green">
+                <Box display="inline-block" color={colors.green}>
                   {t(`indexPage.info-section-items.${index}.emphasis`)}
                 </Box>{" "}
                 {t(`indexPage.info-section-items.${index}.heading`)}
               </Heading>
 
-              <Box mb={4}>
+              <Text mb={4} fontSize="22">
                 {t(`indexPage.info-section-items.${index}.desc`)}
-              </Box>
+              </Text>
 
-              <Box mb={6}>
-                <Button
-                  variant="link"
-                  color="black"
-                  bg="none"
-                  rightIcon={<HiArrowRight />}
-                >
-                  Read more
-                </Button>
-              </Box>
+              <Button
+                variant="link"
+                color={colors.black}
+                bg="none"
+                rightIcon={<HiArrowRight />}
+                mb={8}
+              >
+                {t("indexPage.read-more")}
+              </Button>
 
-              <Box bg="#ffffff66" p={5} rounded="md">
-                <Box mb={2} fontSize="sm">
+              <Box
+                bg={colors.marinadeLighterGreen}
+                height="160"
+                maxWidth="480"
+                p={5}
+                rounded="md"
+                display="flex"
+                flexDirection="column"
+                justifyContent="space-around"
+              >
+                <Text mb={2} fontSize="14">
                   &quot;{t(`indexPage.info-section-items.${index}.quote`)}&quot;
-                </Box>
-                <Grid templateColumns="24px calc(100% - 24px)">
-                  <Box>
-                    <Center height="100%">
-                      <Box
-                        bg="black"
-                        rounded="full"
-                        height="24px"
-                        width="24px"
-                      />
-                    </Center>
-                  </Box>
+                </Text>
+                <Box display="flex" alignItems="center">
+                  <Box
+                    bg={colors.black}
+                    rounded="full"
+                    height="32px"
+                    width="32px"
+                    mr="2"
+                  />
 
-                  <Box pl={3}>
-                    <Box display="inline-block" fontWeight="bold" mr={2}>
-                      {t(`indexPage.info-section-items.${index}.name`)}
-                    </Box>
-                    <Box display="inline-block">
-                      {t(`indexPage.info-section-items.${index}.company`)}
-                    </Box>
-                  </Box>
-                </Grid>
+                  <Text
+                    display="inline-block"
+                    fontSize="14"
+                    fontWeight="bold"
+                    mr={2}
+                  >
+                    {t(`indexPage.info-section-items.${index}.name`)},
+                  </Text>
+                  <Text display="inline-block" fontSize="14">
+                    {t(`indexPage.info-section-items.${index}.company`)}
+                  </Text>
+                </Box>
               </Box>
             </Box>
 
             <Box p={[2, 2, 5]} gridRow={1} gridColumn={index % 2 ? 1 : 2}>
-              <Center height="100%">
-                <Box
-                  height={[200, 200, "380"]}
-                  position="relative"
-                  width={["100%", "100%", 380]}
-                  transform={`scaleX(${index % 2 ? -1 : 1})`}
-                >
-                  <Image
-                    src="/octo-chef.png"
-                    layout="fill"
-                    objectFit="contain"
-                  />
-                </Box>
-              </Center>
+              <Image
+                src={`/ilustrations/how-it-works${index + 1}.svg`}
+                layout="fill"
+                objectFit="contain"
+                height={[200, 200, 400]}
+                position="relative"
+                width={["100%", "100%", 640]}
+              />
             </Box>
           </SimpleGrid>
         );
