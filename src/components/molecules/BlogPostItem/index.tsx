@@ -1,58 +1,102 @@
-import { Button, Box, Image, Heading, Text, Square } from "@chakra-ui/react";
+import { Button, Box, Heading, Square } from "@chakra-ui/react";
+import { HiOutlineExternalLink } from "react-icons/hi";
 
 import colors from "styles/customTheme/colors";
 
 type SectionProps = {
   title: string;
-  subtitle?: string;
   link: string;
   date: string;
+  categories: Array<string>;
 };
 
-const BlogPostItem = ({ title, subtitle, link, date }: SectionProps) => (
-  <Square
-    display="flex"
-    flexDirection="column"
-    flex="1"
-    p={[4, 4, 6]}
-    mb="10"
-    bg={colors.white}
-    mx={5}
-    justifyContent="flex-start"
-    maxWidth="320"
-    minWidth="320"
-  >
-    <Box color="gray.500" letterSpacing={2} mb={6}>
-      {date}
-    </Box>
+const BlogPostItem = ({ title, categories, link, date }: SectionProps) => {
+  function parseDate(dateString: string) {
+    const jsDate = new Date(dateString);
+    const months = [
+      "JAN",
+      "FEB",
+      "MAR",
+      "APR",
+      "MAY",
+      "JUN",
+      "JUL",
+      "AUG",
+      "SEPT",
+      "OCT",
+      "NOV",
+      "DEC",
+    ];
+    return `${jsDate.getDay()} ${
+      months[jsDate.getMonth()]
+    } ${jsDate.getFullYear()}`;
+  }
 
-    <Heading
-      size="md"
-      color={colors.black}
-      mb={2}
-      wordBreak="keep-all"
-      textAlign="center"
+  return (
+    <Square
+      display="flex"
+      flexDirection="column"
+      flex="1"
+      p={[4, 4, 6]}
+      mb="10"
+      bg={colors.white}
+      mx={5}
+      justifyContent="flex-start"
+      maxWidth="320"
+      minWidth="320"
     >
-      {title}
-    </Heading>
+      <Box color="gray.500" letterSpacing={2} mb={3}>
+        {parseDate(date)}
+      </Box>
 
-    <Text color={colors.black} textAlign="center" mb={4}>
-      {subtitle}
-    </Text>
-
-    <Box>
-      <Button
-        as="a"
-        variant="link"
-        color={colors.green}
-        href={link}
-        target="_blank"
-        rightIcon={<Image src="/icons/external-link-green.svg" width="1rem" />}
+      <Heading
+        size="md"
+        color={colors.black}
+        mb={3}
+        wordBreak="keep-all"
+        textAlign="center"
       >
-        Read more
-      </Button>
-    </Box>
-  </Square>
-);
+        {title}
+      </Heading>
+
+      <Box textAlign="center" mb={3}>
+        {categories.map((category) => {
+          return (
+            <Box
+              userSelect="none"
+              m={0.5}
+              display="inline-block"
+              color="green"
+              opacity={0.85}
+              bg="greenLight"
+              borderColor="greenVibrant"
+              fontSize="xs"
+              px={2}
+              py={0.5}
+              borderWidth={1}
+              rounded="full"
+              wordBreak="unset"
+            >
+              #{category}
+            </Box>
+          );
+        })}
+      </Box>
+
+      <Box>
+        <Button
+          variant="link"
+          as="a"
+          color={colors.green}
+          href={link}
+          target="_blank"
+          rightIcon={<HiOutlineExternalLink />}
+        >
+          Read more
+        </Button>
+      </Box>
+    </Square>
+  );
+};
 
 export default BlogPostItem;

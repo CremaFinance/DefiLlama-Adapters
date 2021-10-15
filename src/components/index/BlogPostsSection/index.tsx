@@ -1,12 +1,59 @@
-import { Button, Box, Heading, Image } from "@chakra-ui/react";
+import { Skeleton, Button, Box, Heading, Image } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
+import { useEffect, useState } from "react";
 import { HiArrowRight } from "react-icons/hi";
 
 import BlogPostItem from "components/molecules/BlogPostItem";
 import colors from "styles/customTheme/colors";
 
+type PostProps = {
+  guid: string;
+  title: string;
+  link: string;
+  pubDate: string;
+  categories: Array<string>;
+};
+
 export default function BlogPosts() {
   const { t } = useTranslation();
+
+  const [posts, setPosts] = useState([]);
+  const [first, setFirst] = useState(true);
+
+  async function getPosts() {
+    const req = await fetch(
+      "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/marinade-finance"
+    );
+    const postsParsed = await req.json();
+    setPosts(postsParsed.items.slice(0, 3));
+  }
+
+  function blogPosts() {
+    if (posts.length) {
+      return posts.map((post: PostProps) => (
+        <BlogPostItem
+          key={post.guid}
+          date={post.pubDate}
+          link={post.link}
+          title={post.title}
+          categories={post.categories}
+        />
+      ));
+    }
+
+    return [
+      <Skeleton height="150px" />,
+      <Skeleton height="150px" />,
+      <Skeleton height="150px" />,
+    ];
+  }
+
+  useEffect(() => {
+    if (first) {
+      getPosts();
+      setFirst(false);
+    }
+  }, [first, posts]);
 
   return (
     <Box
@@ -54,15 +101,7 @@ export default function BlogPosts() {
         justifyContent="center"
         mb={5}
       >
-        {[0, 1, 2].map((index) => (
-          <BlogPostItem
-            key={`blogpost-item-${index}`}
-            date={t(`indexPage.blog-section-items.${index}.date`)}
-            link={t(`indexPage.blog-section-items.${index}.link`)}
-            title={t(`indexPage.blog-section-items.${index}.title`)}
-            subtitle={t(`indexPage.blog-section-items.${index}.subtitle`)}
-          />
-        ))}
+        {blogPosts()}
       </Box>
       <Heading
         textAlign="center"
