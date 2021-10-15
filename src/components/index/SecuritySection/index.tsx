@@ -32,10 +32,8 @@ export default function SecuritySection() {
         alignSelf="center"
         maxWidth="720"
         textAlign="center"
-        marginBottom="8"
-        marginTop="8"
-        marginRight="4"
-        marginLeft="4"
+        marginY="8"
+        marginX="4"
         color={colors.white800}
       >
         {t("indexPage.security-section-subtitle")}
@@ -46,8 +44,7 @@ export default function SecuritySection() {
         flexWrap="wrap"
         flexDirection={["column", "row"]}
         justifyContent="space-around"
-        marginLeft={[8, 64]}
-        marginRight={[8, 64]}
+        marginX={[8, 64]}
       >
         <IconWithTextBelow
           marginTop={8}
@@ -98,8 +95,7 @@ export default function SecuritySection() {
         flexWrap="wrap"
         flexDirection={["column", "row"]}
         justifyContent="space-around"
-        marginLeft={[8, 64]}
-        marginRight={[8, 64]}
+        marginX={[8, 64]}
       >
         <IconWithTextBelow
           height={70}
