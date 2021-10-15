@@ -37,15 +37,15 @@ const BlogPostItem = ({ title, categories, link, date }: SectionProps) => {
       display="flex"
       flexDirection="column"
       flex="1"
-      p={[4, 4, 6]}
+      px={3}
+      py={8}
       mb="10"
       bg={colors.white}
-      mx={5}
+      mx={2}
       justifyContent="flex-start"
-      maxWidth="320"
-      minWidth="320"
+      rounded="md"
     >
-      <Box color="gray.500" letterSpacing={2} mb={3}>
+      <Box color="gray.500" fontSize="sm" letterSpacing={2} mb={3}>
         {parseDate(date)}
       </Box>
 

@@ -68,8 +68,8 @@ export default function BlogPosts() {
       alignItems="stretch"
     >
       <Image
-        src="/ilustrations/octopus.svg"
-        width={["90%", 350, 380]}
+        src="/octo-chef.svg"
+        width={["90%", 320, 320]}
         display="block"
         margin="0 auto"
         mb={8}
@@ -88,7 +88,7 @@ export default function BlogPosts() {
         alignSelf="center"
         maxWidth="800"
         textAlign="center"
-        marginBottom="20"
+        marginBottom="10"
         color={colors.black}
         fontWeight="300"
       >
@@ -99,7 +99,9 @@ export default function BlogPosts() {
         alignItems="flex-start"
         flexWrap="wrap"
         justifyContent="center"
-        mb={5}
+        margin="0 auto"
+        mb={16}
+        maxWidth="1000px"
       >
         {blogPosts()}
       </Box>
