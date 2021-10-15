@@ -1,4 +1,3 @@
-import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { Heading, Image, Link, Text, Square } from "@chakra-ui/react";
 import htmlParser from "html-react-parser";
 import { useTranslation } from "next-export-i18n";
@@ -63,9 +62,16 @@ const IconWithTextBelow = ({
           isExternal
           color={colors.greenVibrant}
           fontWeight="bold"
+          display="flex"
+          flexDirection="row"
         >
           {t("indexPage.read-more")}
-          <ExternalLinkIcon mb="0.5" ml="1" />
+          {/* <ExternalLinkIcon mb="0.5" ml="1" /> */}
+          <Image
+            src="/icons/external-link-green.svg"
+            width="1rem"
+            marginLeft="10px"
+          />
         </Link>
       )}
     </Square>
