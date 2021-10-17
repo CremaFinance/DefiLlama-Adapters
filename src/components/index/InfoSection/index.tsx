@@ -68,43 +68,45 @@ export default function InfoSection() {
           {t("indexPage.info-section-action")}
         </Button>
       </Box>
+      <Box marginX={[0, 160]}>
+        <InfoPostItem
+          titleEmphasis={t("indexPage.info-section-items.0.emphasis")}
+          title={t("indexPage.info-section-items.0.heading")}
+          description={t("indexPage.info-section-items.0.desc")}
+          quote={t("indexPage.info-section-items.0.quote")}
+          quoteAuthor={t("indexPage.info-section-items.0.name")}
+          authorCompany={t("indexPage.info-section-items.0.company")}
+          image="/ilustrations/how-it-works1.svg"
+          imagePosition="right"
+        />
 
-      <InfoPostItem
-        titleEmphasis={t("indexPage.info-section-items.0.emphasis")}
-        title={t("indexPage.info-section-items.0.heading")}
-        description={t("indexPage.info-section-items.0.desc")}
-        quote={t("indexPage.info-section-items.0.quote")}
-        quoteAuthor={t("indexPage.info-section-items.0.name")}
-        authorCompany={t("indexPage.info-section-items.0.company")}
-        image="/ilustrations/how-it-works1.svg"
-        imagePosition="right"
-      />
+        <InfoPostItem
+          titleEmphasis={t("indexPage.info-section-items.1.emphasis")}
+          title={t("indexPage.info-section-items.1.heading")}
+          description={t("indexPage.info-section-items.1.desc")}
+          quote={t("indexPage.info-section-items.1.quote")}
+          quoteAuthor={t("indexPage.info-section-items.1.name")}
+          authorCompany={t("indexPage.info-section-items.1.company")}
+          image="/ilustrations/how-it-works2.svg"
+          imagePosition="left"
+          imageWidth={["100%", 720]}
+          imageHeight={[280, 440]}
+        />
 
-      <InfoPostItem
-        titleEmphasis={t("indexPage.info-section-items.1.emphasis")}
-        title={t("indexPage.info-section-items.1.heading")}
-        description={t("indexPage.info-section-items.1.desc")}
-        quote={t("indexPage.info-section-items.1.quote")}
-        quoteAuthor={t("indexPage.info-section-items.1.name")}
-        authorCompany={t("indexPage.info-section-items.1.company")}
-        image="/ilustrations/how-it-works2.svg"
-        imagePosition="left"
-        imageWidth={["100%", 720]}
-        imageHeight={[200, 440]}
-      />
-
-      <InfoPostItem
-        titleEmphasis={t("indexPage.info-section-items.2.emphasis")}
-        title={t("indexPage.info-section-items.2.heading")}
-        description={t("indexPage.info-section-items.2.desc")}
-        quote={t("indexPage.info-section-items.2.quote")}
-        quoteAuthor={t("indexPage.info-section-items.2.name")}
-        authorCompany={t("indexPage.info-section-items.2.company")}
-        image="/ilustrations/how-it-works3.svg"
-        imagePosition="right"
-        imageWidth={["100%", 800]}
-        imageHeight={[200, 540]}
-      />
+        <InfoPostItem
+          titleEmphasis={t("indexPage.info-section-items.2.emphasis")}
+          title={t("indexPage.info-section-items.2.heading")}
+          description={t("indexPage.info-section-items.2.desc")}
+          quote={t("indexPage.info-section-items.2.quote")}
+          quoteAuthor={t("indexPage.info-section-items.2.name")}
+          authorCompany={t("indexPage.info-section-items.2.company")}
+          image="/ilustrations/how-it-works3.svg"
+          imagePosition="right"
+          imageWidth={[380, 800]}
+          imageHeight={[280, 540]}
+          marginBottom={[4, 16]}
+        />
+      </Box>
     </Box>
   );
 }

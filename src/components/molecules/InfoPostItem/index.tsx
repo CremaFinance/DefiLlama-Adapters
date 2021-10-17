@@ -21,6 +21,7 @@ type InfoPostItemProps = {
   imagePosition: ImagePosition;
   imageWidth?: ResponsiveValue<Union<number | "px" | string>>;
   imageHeight?: ResponsiveValue<Union<number | "px" | string>>;
+  marginBottom?: ResponsiveValue<Union<number | "px" | string>>;
 };
 
 const InfoPostItem = ({
@@ -34,6 +35,7 @@ const InfoPostItem = ({
   imagePosition = "right",
   imageWidth = ["100%", 640],
   imageHeight = [200, 400],
+  marginBottom = [16, 24],
 }: InfoPostItemProps) => {
   const { t } = useTranslation();
 
@@ -47,8 +49,9 @@ const InfoPostItem = ({
         p={[2, 4]}
         right={[0, 100]}
         height={imageHeight}
-        position="absolute"
+        position={["relative", "absolute"]}
         width={imageWidth}
+        overflow="auto"
       />
     ) : (
       <Image
@@ -58,17 +61,17 @@ const InfoPostItem = ({
         p={[2, 4]}
         left={[0, 100]}
         height={imageHeight}
-        position="absolute"
+        position={["relative", "absolute"]}
         width={imageWidth}
+        overflow="auto"
       />
     );
 
   return (
     <Flex
-      maxWidth="1120"
-      marginX={[0, 160]}
+      width="1120"
       flexDirection={["column-reverse", direction]}
-      mb={[8, 24]}
+      mb={marginBottom}
       mt={[0, 2]}
     >
       <Box maxWidth="504" marginX={4} zIndex={4}>
