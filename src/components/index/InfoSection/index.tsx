@@ -1,15 +1,9 @@
-import {
-  Box,
-  Heading,
-  Button,
-  SimpleGrid,
-  Image,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Image, Text } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { HiArrowRight } from "react-icons/hi";
 
 import IconWithTextBelow from "components/molecules/IconWithTextBelow";
+import InfoPostItem from "components/molecules/InfoPostItem";
 import colors from "styles/customTheme/colors";
 
 export default function InfoSection() {
@@ -40,7 +34,8 @@ export default function InfoSection() {
         flexWrap="wrap"
         flexDirection={["column", "row"]}
         justifyContent="space-around"
-        marginX={[8, 64]}
+        marginX={[8, 40]}
+        marginTop={4}
       >
         {[0, 1, 2].map((index) => {
           return (
@@ -74,94 +69,171 @@ export default function InfoSection() {
           {t("indexPage.info-section-action")}
         </Button>
       </Box>
-      {[0, 1, 2].map((index) => {
-        return (
-          <SimpleGrid
-            key={`info-item-${index}`}
-            maxWidth="1120"
-            margin="0 auto"
-            columns={[1, 1, 2]}
-            mb={[8, 8, 32]}
+
+      <InfoPostItem
+        titleEmphasis={t("indexPage.info-section-items.0.emphasis")}
+        title={t("indexPage.info-section-items.0.heading")}
+        description={t("indexPage.info-section-items.0.desc")}
+        quote={t("indexPage.info-section-items.0.quote")}
+        quoteAuthor={t("indexPage.info-section-items.0.name")}
+        authorCompany={t("indexPage.info-section-items.0.company")}
+        image="/ilustrations/how-it-works1.svg"
+      />
+
+      <Flex
+        maxWidth="1120"
+        marginX="auto"
+        flexDirection={["column-reverse", "row-reverse"]}
+        mb={[8, 32]}
+      >
+        <Box maxWidth="500" marginX={[4, 0]}>
+          <Heading mb={4} fontWeight="bold">
+            <Box display="inline-block" color={colors.green} mr={1}>
+              {t("indexPage.info-section-items.1.emphasis")}
+            </Box>
+            {t("indexPage.info-section-items.1.heading")}
+          </Heading>
+
+          <Text mb={4} fontSize="22">
+            {t("indexPage.info-section-items.1.desc")}
+          </Text>
+
+          <Button
+            variant="link"
+            color={colors.black}
+            bg="none"
+            rightIcon={<HiArrowRight />}
+            mb={8}
           >
-            <Box
-              gridColumn={[
-                index % 2 ? 1 : 2,
-                index % 2 ? 1 : 2,
-                index % 2 ? 2 : 1,
-              ]}
-              p="2"
-            >
-              <Heading mb={4} fontWeight="bold">
-                <Box display="inline-block" color={colors.green}>
-                  {t(`indexPage.info-section-items.${index}.emphasis`)}
-                </Box>{" "}
-                {t(`indexPage.info-section-items.${index}.heading`)}
-              </Heading>
+            {t("indexPage.read-more")}
+          </Button>
 
-              <Text mb={4} fontSize="22">
-                {t(`indexPage.info-section-items.${index}.desc`)}
-              </Text>
-
-              <Button
-                variant="link"
-                color={colors.black}
-                bg="none"
-                rightIcon={<HiArrowRight />}
-                mb={8}
-              >
-                {t("indexPage.read-more")}
-              </Button>
-
+          <Box
+            bg={colors.marinadeLighterGreen}
+            height="160"
+            maxWidth="480"
+            p={5}
+            rounded="md"
+            display="flex"
+            flexDirection="column"
+            justifyContent="space-around"
+          >
+            <Text mb={2} fontSize="14">
+              &quot;{t("indexPage.info-section-items.1.quote")}&quot;
+            </Text>
+            <Box display="flex" alignItems="center">
+              {/* TODO: replace with actual logo/image */}
               <Box
-                bg={colors.marinadeLighterGreen}
-                height="160"
-                maxWidth="480"
-                p={5}
-                rounded="md"
-                display="flex"
-                flexDirection="column"
-                justifyContent="space-around"
-              >
-                <Text mb={2} fontSize="14">
-                  &quot;{t(`indexPage.info-section-items.${index}.quote`)}&quot;
-                </Text>
-                <Box display="flex" alignItems="center">
-                  <Box
-                    bg={colors.black}
-                    rounded="full"
-                    height="32px"
-                    width="32px"
-                    mr="2"
-                  />
-
-                  <Text
-                    display="inline-block"
-                    fontSize="14"
-                    fontWeight="bold"
-                    mr={2}
-                  >
-                    {t(`indexPage.info-section-items.${index}.name`)},
-                  </Text>
-                  <Text display="inline-block" fontSize="14">
-                    {t(`indexPage.info-section-items.${index}.company`)}
-                  </Text>
-                </Box>
-              </Box>
-            </Box>
-
-            <Box p={[2, 2, 5]} gridRow={1} gridColumn={index % 2 ? 1 : 2}>
-              <Image
-                src={`/ilustrations/how-it-works${index + 1}.svg`}
-                layout="fill"
-                objectFit="contain"
-                height={[200, 200, 400]}
-                position="relative"
-                width={["100%", "100%", 640]}
+                bg={colors.black}
+                rounded="full"
+                height="32px"
+                width="32px"
+                mr="2"
               />
+
+              <Text
+                display="inline-block"
+                fontSize="14"
+                fontWeight="bold"
+                mr={2}
+              >
+                {t("indexPage.info-section-items.1.name")},
+              </Text>
+              <Text display="inline-block" fontSize="14">
+                {t("indexPage.info-section-items.1.company")}
+              </Text>
             </Box>
-          </SimpleGrid>
-        );
-      })}
+          </Box>
+        </Box>
+
+        <Image
+          src="/ilustrations/how-it-works2.svg"
+          layout="fill"
+          objectFit="contain"
+          p={[2, 5]}
+          height={[200, 400]}
+          position="relative"
+          width={["100%", 640]}
+        />
+      </Flex>
+
+      <Flex
+        maxWidth="1120"
+        marginX="auto"
+        flexDirection={["column-reverse", "row"]}
+        mb={[8, 32]}
+      >
+        <Box width="500" marginX={[4, 0]}>
+          <Heading mb={4} fontWeight="bold">
+            <Box display="inline-block" color={colors.green}>
+              {t("indexPage.info-section-items.2.emphasis")}
+            </Box>{" "}
+            {t("indexPage.info-section-items.2.heading")}
+          </Heading>
+
+          <Text mb={4} fontSize="22">
+            {t("indexPage.info-section-items.2.desc")}
+          </Text>
+
+          <Button
+            variant="link"
+            color={colors.black}
+            bg="none"
+            rightIcon={<HiArrowRight />}
+            mb={8}
+          >
+            {t("indexPage.read-more")}
+          </Button>
+
+          <Box
+            bg={colors.marinadeLighterGreen}
+            height="160"
+            maxWidth="480"
+            p={5}
+            rounded="md"
+            display="flex"
+            flexDirection="column"
+            justifyContent="space-around"
+          >
+            <Text mb={2} fontSize="14">
+              &quot;{t("indexPage.info-section-items.2.quote")}&quot;
+            </Text>
+            <Box display="flex" alignItems="center">
+              {/* TODO: replace with actual logo/image */}
+              <Box
+                bg={colors.black}
+                rounded="full"
+                height="32px"
+                width="32px"
+                mr="2"
+              />
+
+              <Text
+                display="inline-block"
+                fontSize="14"
+                fontWeight="bold"
+                mr={2}
+              >
+                {t("indexPage.info-section-items.2.name")},
+              </Text>
+              <Text display="inline-block" fontSize="14">
+                {t("indexPage.info-section-items.0.company")}
+              </Text>
+            </Box>
+          </Box>
+        </Box>
+
+        <Image
+          src="/ilustrations/how-it-works3.svg"
+          layout="fill"
+          objectFit="contain"
+          p={[2, 5]}
+          height={[200, 512]}
+          right="0"
+          left={[0, 500]}
+          width={["100%", 730]}
+        />
+      </Flex>
     </Box>
   );
 }
