@@ -61,7 +61,7 @@ const Header = () => {
         />
       </Link>
 
-      <Box>
+      <Box mt={2} mr={4}>
         <Box display={["block", "block", "none"]}>
           <Sidebar />
         </Box>
@@ -142,7 +142,7 @@ const Header = () => {
             bg={colors.greenVibrant}
             colorScheme={colors.green}
             color={colors.white}
-            display={["none", "none", "block"]}
+            display={["none", "block"]}
             rightIcon={
               <Image src="/icons/arrow-right-white.svg" width="0.8rem" />
             }

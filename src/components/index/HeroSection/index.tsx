@@ -9,33 +9,42 @@ const HeroSection = () => {
   return (
     <Box
       py="72px"
-      pb={[12, 12, 8]}
+      pb={[12, 8]}
       bg={colors.greenLight}
       aria-label="hero-section"
       position="relative"
-      height={["auto", "auto", "100vh"]}
-      minHeight="640px"
+      height="100vh"
     >
       <Box
-        pt={[4, 4, "10vh"]}
-        pl={[0, 0, 160]}
+        pt={[4, "8vh"]}
+        mt={[0, "4vh"]}
+        pl={[0, 160]}
         position="relative"
         zIndex={10}
         textAlign={["center", "center", "left"]}
       >
-        <Box mb={4} maxWidth={[320, 400]}>
-          <Heading color={colors.greenVibrant} fontWeight="bold">
-            {t("indexPage.hero-section-title")}
-          </Heading>
+        <Heading
+          mt={[0, "1vh"]}
+          color={colors.greenVibrant}
+          fontWeight="bold"
+          fontSize={["35px", "54px"]}
+        >
+          {t("indexPage.hero-section-title")}
+        </Heading>
 
-          <Heading fontWeight="bold" margin={["0 auto", "0 auto", "0"]}>
-            {t("indexPage.hero-section-subtitle")}
-          </Heading>
-        </Box>
+        <Heading
+          fontSize={["35px", "54px"]}
+          fontWeight="bold"
+          maxWidth={[320, 480]}
+          marginX={["auto", "0"]}
+          mb={4}
+        >
+          {t("indexPage.hero-section-subtitle")}
+        </Heading>
 
         <Text
           maxWidth={300}
-          margin={["0 auto", "0 auto", "0"]}
+          marginX={["auto", "auto", "0"]}
           mb={[2, 2, 4]}
           fontSize="22"
           color={colors.black}
@@ -47,7 +56,8 @@ const HeroSection = () => {
           bg={colors.green}
           colorScheme={colors.green}
           rounded="md"
-          mb={[2, 2, 4]}
+          width="200px"
+          mb={[2, 4]}
         >
           {t("indexPage.hero-section-button")}
         </Button>
@@ -60,7 +70,7 @@ const HeroSection = () => {
       <Flex width="100vw" justifyContent="flex-end">
         <Image
           src="./ilustrations/clouds-and-leaves.svg"
-          width={[0, 0, "32vw"]}
+          width={[0, "40vw"]}
           alt="Clouds and Leaves"
           position="absolute"
           top={-8}
@@ -68,26 +78,27 @@ const HeroSection = () => {
         />
 
         <Image
-          display="inline-block"
-          position={["relative", "relative", "absolute"]}
-          top={[0, 0, "16vh"]}
-          overflow="hidden"
-          my={[4, 2, 0]}
-          mt={[0, 0, 8]}
+          position={["relative", "absolute"]}
+          top={[0, "16vh"]}
+          mt={[0, "8vh"]}
           src="./ilustrations/hero.svg"
           alt="Friends on beach"
-          width={["100%", "72vw"]}
-          zIndex={4}
+          width={["136vw", "64vw"]}
+          height={["40vh", "auto"]}
+          zIndex={[2, 4]}
+          right={0}
+          transform={["scale(1.2)", "scale(1.1)"]}
         />
       </Flex>
 
       {/* ECOSYSTEM STATS */}
       <Box
-        pl={["16px", "16px", 160]}
+        pl={[4, 160]}
         position="absolute"
-        bottom={16}
+        bottom={[4, 16]}
         display="flex"
         flexDirection={["column", "row"]}
+        zIndex={5}
       >
         {[0, 1, 2].map((index) => {
           return (
@@ -97,13 +108,16 @@ const HeroSection = () => {
               mr="16"
               key={`desktop-hstack-${index}`}
             >
-              <Heading size="md" fontWeight="bold" color={colors.green} mr={1}>
+              <Text
+                fontSize={["22px", "28px"]}
+                fontWeight="bold"
+                color={colors.green}
+              >
                 {t(`indexPage.hero-section-stats.${index}.number`)}
-              </Heading>
-
-              <Heading size="md" fontWeight="bold">
+              </Text>{" "}
+              <Text fontSize={["22px", "28px"]} fontWeight="bold">
                 {t(`indexPage.hero-section-stats.${index}.desc`)}
-              </Heading>
+              </Text>
             </Box>
           );
         })}
