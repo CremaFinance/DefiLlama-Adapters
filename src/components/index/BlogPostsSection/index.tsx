@@ -11,7 +11,6 @@ type PostProps = {
   title: string;
   link: string;
   pubDate: string;
-  categories: Array<string>;
 };
 
 export default function BlogPosts() {
@@ -36,7 +35,6 @@ export default function BlogPosts() {
           date={post.pubDate}
           link={post.link}
           title={post.title}
-          categories={post.categories}
         />
       ));
     }

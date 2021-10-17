@@ -7,10 +7,9 @@ type SectionProps = {
   title: string;
   link: string;
   date: string;
-  categories: Array<string>;
 };
 
-const BlogPostItem = ({ title, categories, link, date }: SectionProps) => {
+const BlogPostItem = ({ title, link, date }: SectionProps) => {
   function parseDate(dateString: string) {
     const jsDate = new Date(dateString);
     const months = [
@@ -58,30 +57,6 @@ const BlogPostItem = ({ title, categories, link, date }: SectionProps) => {
       >
         {title}
       </Heading>
-
-      <Box textAlign="center" mb={3}>
-        {categories.map((category) => {
-          return (
-            <Box
-              userSelect="none"
-              m={0.5}
-              display="inline-block"
-              color="green"
-              opacity={0.85}
-              bg="greenLight"
-              borderColor="greenVibrant"
-              fontSize="xs"
-              px={2}
-              py={0.5}
-              borderWidth={1}
-              rounded="full"
-              wordBreak="unset"
-            >
-              #{category}
-            </Box>
-          );
-        })}
-      </Box>
 
       <Box>
         <Button
