@@ -29,19 +29,16 @@ export default function InfoSection() {
       >
         {t("indexPage.info-section-title")}
       </Heading>
-      <Box
-        display="flex"
-        alignItems="flex-start"
-        flexWrap="wrap"
+      <Flex
         flexDirection={["column", "row"]}
-        justifyContent="space-around"
-        marginX={[8, 40]}
+        justifyContent="center"
         marginTop={4}
       >
         {[0, 1, 2].map((index) => {
           return (
             <IconWithTextBelow
               marginTop={8}
+              marginX={8}
               key={`info-item-${index}`}
               icon={`/icons/${index + 1}.svg`}
               titleColor={colors.black}
@@ -53,7 +50,7 @@ export default function InfoSection() {
             />
           );
         })}
-      </Box>
+      </Flex>
       <Box
         marginTop="4"
         marginBottom="96px"
@@ -214,13 +211,13 @@ export default function InfoSection() {
             height={[280, 440]}
             overflow="hidden"
             width={["100vw", 720]}
-            left={-4}
+            left={[0, -4]}
             top={[0, 8]}
           />
         </Flex>
 
         <Flex mb={[16, 16]} pr={[0, 560]} mr={[0, 8]} position="relative">
-          <Box mt={[280, 0]} maxWidth="504" marginX={4} zIndex={4}>
+          <Box mt={[328, 0]} maxWidth="504" marginX={4} zIndex={4}>
             <Heading mb={4} fontWeight="bold">
               <Box display="inline-block" color={colors.green}>
                 {t("indexPage.info-section-items.2.emphasis")}
@@ -281,16 +278,22 @@ export default function InfoSection() {
             </Box>
           </Box>
 
-          <Image
-            src="/ilustrations/how-it-works3.svg"
-            p={[2, 4]}
+          <Box
+            height={[320, 560]}
+            width={[640, 800]}
             position="absolute"
-            height={[280, 560]}
-            overflow="hidden"
-            width={["100vw", 800]}
-            right={[0, -16]}
-            top={[0, -4]}
-          />
+            right={[2, 0]}
+            left={["-80px", 372]}
+            top={[0, -8]}
+            p={[0, 4]}
+          >
+            <Image
+              src="/ilustrations/how-it-works3.svg"
+              position="relative"
+              height={[360, 560]}
+              width={[440, 800]}
+            />
+          </Box>
         </Flex>
       </Flex>
     </Box>

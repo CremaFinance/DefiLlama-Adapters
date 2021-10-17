@@ -17,6 +17,7 @@ type IconWithTextBelowProps = {
   maxWidth?: string;
   titleColor?: string;
   subtitleColor?: string;
+  marginX?: number;
 };
 
 const IconWithTextBelow = ({
@@ -32,6 +33,7 @@ const IconWithTextBelow = ({
   maxWidth = "16rem",
   titleColor = colors.white,
   subtitleColor = colors.white800,
+  marginX = 0,
 }: IconWithTextBelowProps) => {
   const { t } = useTranslation();
 
@@ -43,6 +45,7 @@ const IconWithTextBelow = ({
       marginBottom="4"
       marginTop={marginTop}
       maxWidth={maxWidth}
+      marginX={marginX}
     >
       <Image
         src={icon}
