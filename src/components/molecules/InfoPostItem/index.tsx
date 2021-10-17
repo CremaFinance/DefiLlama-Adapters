@@ -1,8 +1,14 @@
 import { Button, Box, Flex, Heading, Image, Text } from "@chakra-ui/react";
+import {
+  ResponsiveValue,
+  Union,
+} from "@chakra-ui/styled-system/dist/types/utils";
 import { useTranslation } from "next-export-i18n";
 import { HiArrowRight } from "react-icons/hi";
 
 import colors from "styles/customTheme/colors";
+
+type ImagePosition = "left" | "right";
 
 type InfoPostItemProps = {
   titleEmphasis: string;
@@ -12,6 +18,9 @@ type InfoPostItemProps = {
   quoteAuthor: string;
   authorCompany: string;
   image: string;
+  imagePosition: ImagePosition;
+  imageWidth?: ResponsiveValue<Union<number | "px" | string>>;
+  imageHeight?: ResponsiveValue<Union<number | "px" | string>>;
 };
 
 const InfoPostItem = ({
@@ -22,21 +31,51 @@ const InfoPostItem = ({
   quoteAuthor,
   authorCompany,
   image,
+  imagePosition = "right",
+  imageWidth = ["100%", 640],
+  imageHeight = [200, 400],
 }: InfoPostItemProps) => {
   const { t } = useTranslation();
+
+  const direction = imagePosition === "right" ? "row" : "row-reverse";
+  const imageControl =
+    imagePosition === "right" ? (
+      <Image
+        src={image}
+        layout="fill"
+        objectFit="contain"
+        p={[2, 4]}
+        right={[0, 100]}
+        height={imageHeight}
+        position="absolute"
+        width={imageWidth}
+      />
+    ) : (
+      <Image
+        src={image}
+        layout="fill"
+        objectFit="contain"
+        p={[2, 4]}
+        left={[0, 100]}
+        height={imageHeight}
+        position="absolute"
+        width={imageWidth}
+      />
+    );
 
   return (
     <Flex
       maxWidth="1120"
       marginX={[0, 160]}
-      flexDirection={["column-reverse", "row"]}
-      mb={[8, 32]}
+      flexDirection={["column-reverse", direction]}
+      mb={[8, 24]}
+      mt={[0, 2]}
     >
-      <Box maxWidth="504" marginX={4}>
+      <Box maxWidth="504" marginX={4} zIndex={4}>
         <Heading mb={4} fontWeight="bold">
-          <Box display="inline-block" color={colors.green} mr={1}>
+          <Box display="inline-block" color={colors.green}>
             {titleEmphasis}
-          </Box>
+          </Box>{" "}
           {title}
         </Heading>
 
@@ -88,16 +127,7 @@ const InfoPostItem = ({
         </Box>
       </Box>
 
-      <Image
-        src={image}
-        layout="fill"
-        objectFit="contain"
-        p={[2, 4]}
-        right={[0, 100]}
-        height={[200, 400]}
-        position="absolute"
-        width={["100%", 640]}
-      />
+      {imageControl}
     </Flex>
   );
 };

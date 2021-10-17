@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@chakra-ui/react": "^1.6.7",
+    "@chakra-ui/styled-system": "^1.12.3",
     "@emotion/cache": "^11.4.0",
     "@emotion/react": "^11.4.1",
     "@emotion/server": "^11.4.0",
