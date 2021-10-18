@@ -9,7 +9,7 @@ export default function WhySection() {
 
   return (
     <Box
-      paddingTop="32"
+      paddingTop="160px"
       paddingBottom="32"
       bg={colors.blackMate}
       as="section"
@@ -22,7 +22,7 @@ export default function WhySection() {
       <Heading
         fontSize="5xl"
         textAlign="center"
-        marginBottom="8"
+        marginBottom="56px"
         color={colors.white}
         fontWeight="bold"
       >
@@ -34,11 +34,14 @@ export default function WhySection() {
         flexWrap="wrap"
         flexDirection={["column", "row"]}
         justifyContent="space-around"
-        marginLeft={[8, 64]}
-        marginRight={[8, 64]}
+        marginX={[8, 48]}
       >
         {[0, 1, 2].map((index) => (
           <IconWithTextBelow
+            titleSize="h3"
+            subtitleSize="24"
+            maxWidth="24rem"
+            height={136}
             key={`why-section-item-${index}`}
             icon={`/icons/why-section-icon${index + 1}.svg`}
             title={t(`indexPage.why-section-items.${index}.title`)}

@@ -13,6 +13,9 @@ type IconWithTextBelowProps = {
   height?: number;
   opacity?: string;
   marginTop?: number;
+  titleSize?: "h1" | "h2" | "h3" | "h4" | "h5";
+  subtitleSize?: number | string;
+  maxWidth?: string;
 };
 
 const IconWithTextBelow = ({
@@ -23,6 +26,9 @@ const IconWithTextBelow = ({
   height = 100,
   opacity = "1",
   marginTop = 0,
+  titleSize = "h4",
+  subtitleSize = 18,
+  maxWidth = "16rem",
 }: IconWithTextBelowProps) => {
   const { t } = useTranslation();
 
@@ -33,7 +39,7 @@ const IconWithTextBelow = ({
       flex="1"
       marginBottom="4"
       marginTop={marginTop}
-      maxWidth="16em"
+      maxWidth={maxWidth}
     >
       <Image
         src={icon}
@@ -42,9 +48,9 @@ const IconWithTextBelow = ({
         alt={`${title} Logo`}
       />
       <Heading
-        as="h4"
+        as={titleSize}
         color={colors.white}
-        marginBottom="4"
+        marginBottom="8"
         marginTop="8"
         wordBreak="keep-all"
         textAlign="center"
@@ -52,7 +58,11 @@ const IconWithTextBelow = ({
         {title}
       </Heading>
       {subtitle && (
-        <Text color={colors.white800} textAlign="center" fontSize="18">
+        <Text
+          color={colors.white800}
+          textAlign="center"
+          fontSize={subtitleSize}
+        >
           {htmlParser(subtitle)}
         </Text>
       )}
