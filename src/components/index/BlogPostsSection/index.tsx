@@ -30,12 +30,13 @@ export default function BlogPosts() {
   function blogPosts() {
     if (posts.length) {
       return posts.map((post: PostProps) => (
-        <BlogPostItem
-          key={post.guid}
-          date={post.pubDate}
-          link={post.link}
-          title={post.title}
-        />
+        <Box key={post.guid}>
+          <BlogPostItem
+            date={post.pubDate}
+            link={post.link}
+            title={post.title}
+          />
+        </Box>
       ));
     }
 
@@ -70,28 +71,28 @@ export default function BlogPosts() {
         width={["90%", 320, 320]}
         display="block"
         margin="0 auto"
-        mb={8}
+        mb={4}
       />
       <Heading
         textAlign="center"
         marginBottom={4}
+        size="lg"
         color={colors.black}
         fontWeight="bold"
       >
         {t("indexPage.blog-section-title")}
       </Heading>
-      <Heading
-        size="md"
-        maxW="600"
+
+      <Box
         alignSelf="center"
-        maxWidth="800"
+        maxWidth="600"
         textAlign="center"
-        marginBottom="10"
+        marginBottom="8"
         color={colors.black}
         fontWeight="300"
       >
         {t("indexPage.blog-section-subtitle")}
-      </Heading>
+      </Box>
       <Box
         display="flex"
         alignItems="flex-start"
@@ -99,7 +100,7 @@ export default function BlogPosts() {
         justifyContent="center"
         margin="0 auto"
         mb={16}
-        maxWidth="1000px"
+        maxWidth="860px"
       >
         {blogPosts()}
       </Box>

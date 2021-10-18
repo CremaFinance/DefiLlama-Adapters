@@ -40,6 +40,7 @@ const BlogPostItem = ({ title, link, date }: SectionProps) => {
       py={8}
       mb="10"
       bg={colors.white}
+      maxWidth={260}
       mx={2}
       justifyContent="flex-start"
       rounded="md"
