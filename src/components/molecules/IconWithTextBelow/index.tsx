@@ -66,7 +66,6 @@ const IconWithTextBelow = ({
           flexDirection="row"
         >
           {t("indexPage.read-more")}
-          {/* <ExternalLinkIcon mb="0.5" ml="1" /> */}
           <Image
             src="/icons/external-link-green.svg"
             width="1rem"
