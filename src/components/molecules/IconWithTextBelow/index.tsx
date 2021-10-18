@@ -49,7 +49,6 @@ const IconWithTextBelow = ({
       />
       <Heading
         as={titleSize}
-        fontSize="3xl"
         color={colors.white}
         marginBottom="8"
         marginTop="8"
