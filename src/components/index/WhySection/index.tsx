@@ -39,9 +39,9 @@ export default function WhySection() {
         {[0, 1, 2].map((index) => (
           <IconWithTextBelow
             titleSize="h3"
-            subtitleSize="22"
-            maxWidth="18rem"
-            height={135}
+            subtitleSize="24"
+            maxWidth="24rem"
+            height={136}
             key={`why-section-item-${index}`}
             icon={`/icons/why-section-icon${index + 1}.svg`}
             title={t(`indexPage.why-section-items.${index}.title`)}
