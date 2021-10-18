@@ -1,4 +1,4 @@
-import { HStack, Button, Box, Heading, Image } from "@chakra-ui/react";
+import { Button, Box, Heading, Image } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { HiArrowRight } from "react-icons/hi";
 
@@ -86,20 +86,26 @@ export default function BlogPosts() {
       </Heading>
 
       <Box textAlign="center" mb={8}>
-        <HStack spacing={5} display="inline-flex">
-          <Button bg={colors.green} colorScheme={colors.green} rounded="md">
-            {t("indexPage.blog-section-primary-button")}
-          </Button>
+        <Button
+          bg={colors.green}
+          colorScheme={colors.green}
+          rounded="md"
+          mx={4}
+          my={2}
+        >
+          {t("indexPage.blog-section-primary-button")}
+        </Button>
 
-          <Button
-            variant="ghost"
-            colorScheme={colors.green}
-            rounded="md"
-            rightIcon={<HiArrowRight />}
-          >
-            {t("indexPage.blog-section-secondary-button")}
-          </Button>
-        </HStack>
+        <Button
+          mx={4}
+          my={2}
+          variant="ghost"
+          colorScheme={colors.green}
+          rounded="md"
+          rightIcon={<HiArrowRight />}
+        >
+          {t("indexPage.blog-section-secondary-button")}
+        </Button>
       </Box>
     </Box>
   );
