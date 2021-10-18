@@ -91,14 +91,14 @@ export default function BlogPosts() {
           colorScheme={colors.green}
           rounded="md"
           mx={4}
-          my={2}
+          my={[2, 0]}
         >
           {t("indexPage.blog-section-primary-button")}
         </Button>
 
         <Button
           mx={4}
-          my={2}
+          my={[2, 0]}
           variant="ghost"
           colorScheme={colors.green}
           rounded="md"
