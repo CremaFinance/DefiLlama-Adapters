@@ -13,10 +13,10 @@ const Footer = () => {
       as="footer"
       aria-label="footer-section"
       display="flex"
-      px={[5, 5, 10]}
+      py={8}
       flexDirection="column"
     >
-      <Box display="flex" flexWrap="wrap">
+      <Box display="flex" flexWrap="wrap" px={[5, 10, 24]}>
         <Box
           minWidth="300"
           pt="8"
@@ -74,8 +74,11 @@ const Footer = () => {
             </Link>
           </Box>
         </Box>
+
+        <Box display="flex" flex={0.2} />
+
         <Box
-          minWidth="300"
+          minWidth={["100%", "250"]}
           pt="8"
           display="flex"
           flex="0.25"
@@ -141,9 +144,12 @@ const Footer = () => {
           </Text>
         </Box>
       </Box>
-      <Text pb="8" fontSize="sm" color="whiteAlpha.800">
-        {t("indexPage.footer-copyright")}
-      </Text>
+
+      <Box px={[5, 10, 24]} mt={4}>
+        <Text fontSize="sm" color="whiteAlpha.800">
+          {t("indexPage.footer-copyright")}
+        </Text>
+      </Box>
     </Box>
   );
 };
