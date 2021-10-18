@@ -18,10 +18,10 @@ const HeroSection = () => {
       <Box
         pt={[4, "8vh"]}
         mt={[0, "4vh"]}
-        pl={[0, 160]}
+        pl={{ sm: 4, md: "40px", lg: 160 }}
         position="relative"
         zIndex={10}
-        textAlign={["center", "center", "left"]}
+        textAlign={["center", "left"]}
       >
         <Heading
           mt={[0, "1vh"]}
@@ -70,7 +70,7 @@ const HeroSection = () => {
       <Flex width="100vw" justifyContent="flex-end">
         <Image
           src="./ilustrations/clouds-and-leaves.svg"
-          width={[0, "40vw"]}
+          width={{ base: 0, md: "64vw", lg: "40vw", "2xl": "32vw" }}
           alt="Clouds and Leaves"
           position="absolute"
           top={-8}
@@ -79,25 +79,24 @@ const HeroSection = () => {
 
         <Image
           position={["relative", "absolute"]}
-          top={[0, "16vh"]}
-          mt={[0, "8vh"]}
+          bottom={{ md: "16vh", lg: "4vh" }}
           src="./ilustrations/hero.svg"
           alt="Friends on beach"
-          width={["136vw", "64vw"]}
-          height={["40vh", "auto"]}
+          objectFit={["cover", "fill"]}
+          width={{ base: "auto", md: "96vw", lg: "72vw", "2xl": "64vw" }}
+          height={{ base: "280px", lg: "auto" }}
           zIndex={[2, 4]}
-          right={0}
-          transform={["scale(1.2)", "scale(1.1)"]}
         />
       </Flex>
 
       {/* ECOSYSTEM STATS */}
       <Box
-        pl={[4, 160]}
+        pl={{ base: 4, md: "40px", lg: 160 }}
         position="absolute"
         bottom={[4, 16]}
         display="flex"
         flexDirection={["column", "row"]}
+        flexWrap="wrap"
         zIndex={5}
       >
         {[0, 1, 2].map((index) => {
@@ -105,7 +104,7 @@ const HeroSection = () => {
             <Box
               display="flex"
               flexDirection="row"
-              mr="16"
+              mr={{ md: 4, lg: 16 }}
               key={`desktop-hstack-${index}`}
             >
               <Text
