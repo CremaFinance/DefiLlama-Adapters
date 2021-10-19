@@ -1,6 +1,5 @@
 import { Box, Button, Flex, Heading, Image, Text } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
-import { HiArrowRight } from "react-icons/hi";
 
 import IconWithTextBelow from "components/molecules/IconWithTextBelow";
 import colors from "styles/customTheme/colors";
@@ -9,10 +8,11 @@ export default function InfoSection() {
   const { t } = useTranslation();
 
   const readMode = t("indexPage.read-more");
+  const columnReverse = "column-reverse";
 
   return (
     <Box
-      paddingTop="24"
+      paddingTop="16"
       paddingBottom={[8, 8, 0]}
       bg="greenLight"
       as="section"
@@ -22,6 +22,7 @@ export default function InfoSection() {
       alignItems="stretch"
     >
       <Heading
+        mt={8}
         alignSelf="center"
         textAlign="center"
         maxWidth="720"
@@ -52,8 +53,8 @@ export default function InfoSection() {
         })}
       </Flex>
       <Box
-        marginTop="4"
-        marginBottom="96px"
+        marginTop="2"
+        marginBottom="104px"
         display="flex"
         justifyContent="center"
       >
@@ -67,9 +68,18 @@ export default function InfoSection() {
           {t("indexPage.info-section-action")}
         </Button>
       </Box>
-      <Flex flexDirection="column" alignItems="center">
-        <Flex mb={[16, 24]} pr={[0, 640]} ml={[0, 8]} position="relative">
-          <Box mt={[280, 4]} maxWidth="504" marginX={4} zIndex={4}>
+      <Flex mt={4} flexDirection="column" alignItems="center">
+        <Flex
+          mb={[16, 24]}
+          flexDirection={{ base: columnReverse, lg: "row" }}
+          alignItems="center"
+        >
+          <Box
+            width={{ base: "88vw", md: "504px", lg: "524px" }}
+            marginX={{ base: 4, lg: 0 }}
+            zIndex={4}
+            mr={{ base: 4, lg: 560 }}
+          >
             <Heading mb={4} fontWeight="bold">
               <Box display="inline-block" color={colors.green}>
                 {t("indexPage.info-section-items.0.emphasis")}
@@ -85,7 +95,9 @@ export default function InfoSection() {
               variant="link"
               color={colors.black}
               bg="none"
-              rightIcon={<HiArrowRight />}
+              rightIcon={
+                <Image src="/icons/arrow-right-white.svg" width="0.8rem" />
+              }
               mb={8}
             >
               {readMode}
@@ -93,8 +105,8 @@ export default function InfoSection() {
 
             <Box
               bg={colors.marinadeLighterGreen}
-              height="160"
-              width="520"
+              height={{ base: "auto", md: "160px" }}
+              width={{ base: "88vw", md: "504px" }}
               p={4}
               mt={4}
               rounded="md"
@@ -114,16 +126,11 @@ export default function InfoSection() {
                   width="32px"
                   mr="2"
                 />
-
-                <Text
-                  display="inline-block"
-                  fontSize="14"
-                  fontWeight="bold"
-                  mr={2}
-                >
-                  {t("indexPage.info-section-items.0.name")},
+                <Text fontSize="14" fontWeight="bold">
+                  {t("indexPage.info-section-items.0.name")}
                 </Text>
-                <Text display="inline-block" fontSize="14">
+                {", "}
+                <Text fontSize="14">
                   {t("indexPage.info-section-items.0.company")}
                 </Text>
               </Box>
@@ -131,19 +138,28 @@ export default function InfoSection() {
           </Box>
 
           <Image
+            position={{ base: "relative", lg: "absolute" }}
             src="/ilustrations/how-it-works1.svg"
-            p={[2, 4]}
-            position="absolute"
-            height={[280, 440]}
-            overflow="hidden"
-            width={["100vw", 640]}
-            right={0}
-            top={0}
+            width={{ base: "88vw", md: "72vw", lg: 640 }}
+            height="auto"
+            ml={{ base: 0, lg: "524px" }}
+            mt={{ base: 0, lg: -16 }}
+            mb={{ base: 8, lg: 0 }}
           />
         </Flex>
 
-        <Flex mb={[16, 24]} pl={[0, 640]} mr={[0, 8]} position="relative">
-          <Box mt={[280, 4]} maxWidth="504" marginX={4} zIndex={4}>
+        <Flex
+          mt={[0, 4]}
+          mb={[16, 24]}
+          flexDirection={{ base: columnReverse, lg: "row" }}
+          alignItems="center"
+        >
+          <Box
+            width={{ base: "88vw", md: "504px", lg: "528px" }}
+            marginX={{ base: 4, lg: 0 }}
+            zIndex={4}
+            ml={{ base: 4, lg: 640 }}
+          >
             <Heading mb={4} fontWeight="bold">
               <Box display="inline-block" color={colors.green}>
                 {t("indexPage.info-section-items.1.emphasis")}
@@ -159,7 +175,9 @@ export default function InfoSection() {
               variant="link"
               color={colors.black}
               bg="none"
-              rightIcon={<HiArrowRight />}
+              rightIcon={
+                <Image src="/icons/arrow-right-white.svg" width="0.8rem" />
+              }
               mb={8}
             >
               {readMode}
@@ -167,8 +185,8 @@ export default function InfoSection() {
 
             <Box
               bg={colors.marinadeLighterGreen}
-              height="160"
-              width="520"
+              height={{ base: "auto", md: "160px" }}
+              width={{ base: "88vw", md: "504px" }}
               p={4}
               mt={4}
               rounded="md"
@@ -186,18 +204,13 @@ export default function InfoSection() {
                   rounded="full"
                   height="32px"
                   width="32px"
-                  mr="2"
-                />
-
-                <Text
-                  display="inline-block"
-                  fontSize="14"
-                  fontWeight="bold"
                   mr={2}
-                >
-                  {t("indexPage.info-section-items.1.name")},
+                />
+                <Text fontSize="14" fontWeight="bold">
+                  {t("indexPage.info-section-items.1.name")}
                 </Text>
-                <Text display="inline-block" fontSize="14">
+                {", "}
+                <Text fontSize="14">
                   {t("indexPage.info-section-items.1.company")}
                 </Text>
               </Box>
@@ -205,19 +218,28 @@ export default function InfoSection() {
           </Box>
 
           <Image
+            position={{ base: "relative", lg: "absolute" }}
             src="/ilustrations/how-it-works2.svg"
-            p={[2, 4]}
-            position="absolute"
-            height={[280, 440]}
-            overflow="hidden"
-            width={["100vw", 720]}
-            left={[0, -4]}
-            top={[0, 8]}
+            width={{ base: "88vw", md: "72vw", lg: 560 }}
+            height="auto"
+            ml={{ base: 0, lg: 8 }}
+            mt={{ base: 0, lg: -8 }}
+            mb={{ base: 8, lg: 0 }}
           />
         </Flex>
 
-        <Flex mb={[16, 16]} pr={[0, 560]} mr={[0, 8]} position="relative">
-          <Box mt={[328, 0]} maxWidth="504" marginX={4} zIndex={4}>
+        <Flex
+          mt={[0, 1]}
+          mb={[16, 16]}
+          flexDirection={{ base: columnReverse, lg: "row" }}
+          alignItems="center"
+        >
+          <Box
+            width={{ base: "88vw", md: "504px", lg: "528px" }}
+            marginX={{ base: 4, lg: 0 }}
+            zIndex={4}
+            mr={{ base: 4, lg: 560 }}
+          >
             <Heading mb={4} fontWeight="bold">
               <Box display="inline-block" color={colors.green}>
                 {t("indexPage.info-section-items.2.emphasis")}
@@ -233,7 +255,9 @@ export default function InfoSection() {
               variant="link"
               color={colors.black}
               bg="none"
-              rightIcon={<HiArrowRight />}
+              rightIcon={
+                <Image src="/icons/arrow-right-white.svg" width="0.8rem" />
+              }
               mb={8}
             >
               {readMode}
@@ -241,8 +265,8 @@ export default function InfoSection() {
 
             <Box
               bg={colors.marinadeLighterGreen}
-              height="160"
-              width="520"
+              height={{ base: "auto", md: "160px" }}
+              width={{ base: "88vw", md: "504px" }}
               p={4}
               mt={4}
               rounded="md"
@@ -262,38 +286,29 @@ export default function InfoSection() {
                   width="32px"
                   mr="2"
                 />
-
-                <Text
-                  display="inline-block"
-                  fontSize="14"
-                  fontWeight="bold"
-                  mr={2}
-                >
-                  {t("indexPage.info-section-items.2.name")},
+                <Text fontSize="14" fontWeight="bold">
+                  {t("indexPage.info-section-items.2.name")}
                 </Text>
-                <Text display="inline-block" fontSize="14">
+                {", "}
+                <Text fontSize="14">
                   {t("indexPage.info-section-items.2.company")}
                 </Text>
               </Box>
             </Box>
           </Box>
 
-          <Box
-            height={[320, 560]}
-            width={[640, 800]}
-            position="absolute"
-            right={[2, 0]}
-            left={["-80px", 372]}
-            top={[0, -8]}
-            p={[0, 4]}
-          >
-            <Image
-              src="/ilustrations/how-it-works3.svg"
-              position="relative"
-              height={[360, 560]}
-              width={[440, 800]}
-            />
-          </Box>
+          <Image
+            position={{ base: "relative", lg: "absolute" }}
+            src="/ilustrations/how-it-works3.svg"
+            width={{ base: "100vw", md: "72vw", lg: 728 }}
+            height={{ base: 320, md: "auto" }}
+            mr={[2, 0]}
+            ml={{ base: 0, lg: "392px" }}
+            mt={{ base: 0, lg: 8 }}
+            mb={{ base: 8, lg: 0 }}
+            objectPosition="right"
+            objectFit={{ base: "cover", lg: "contain" }}
+          />
         </Flex>
       </Flex>
     </Box>
