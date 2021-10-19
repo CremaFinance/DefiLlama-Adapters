@@ -84,7 +84,8 @@ const HeroSection = () => {
           alt="Friends on beach"
           objectFit={["cover", "fill"]}
           width={{ base: "auto", md: "96vw", lg: "72vw", "2xl": "64vw" }}
-          height={{ base: "280px", md: "auto", lg: "auto" }}
+          height={{ base: "360px", md: "auto", lg: "auto" }}
+          minWidth={{ base: "520px" }}
           zIndex={[2, 4]}
         />
       </Flex>
