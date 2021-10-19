@@ -87,7 +87,7 @@ export default function InfoSection() {
               {t("indexPage.info-section-items.0.heading")}
             </Heading>
 
-            <Text mb={4} fontSize="22">
+            <Text mb={4} fontSize={["16", "22"]}>
               {t("indexPage.info-section-items.0.desc")}
             </Text>
 
@@ -126,11 +126,11 @@ export default function InfoSection() {
                   width="32px"
                   mr="2"
                 />
-                <Text fontSize="14" fontWeight="bold">
-                  {t("indexPage.info-section-items.0.name")}
-                </Text>
-                {", "}
                 <Text fontSize="14">
+                  <Box display="inline-block" fontWeight="bold">
+                    {t("indexPage.info-section-items.0.name")}
+                  </Box>
+                  {", "}
                   {t("indexPage.info-section-items.0.company")}
                 </Text>
               </Box>
@@ -167,7 +167,7 @@ export default function InfoSection() {
               {t("indexPage.info-section-items.1.heading")}
             </Heading>
 
-            <Text mb={4} fontSize="22">
+            <Text mb={4} fontSize={["16", "22"]}>
               {t("indexPage.info-section-items.1.desc")}
             </Text>
 
@@ -206,11 +206,11 @@ export default function InfoSection() {
                   width="32px"
                   mr={2}
                 />
-                <Text fontSize="14" fontWeight="bold">
-                  {t("indexPage.info-section-items.1.name")}
-                </Text>
-                {", "}
                 <Text fontSize="14">
+                  <Box display="inline-block" fontWeight="bold">
+                    {t("indexPage.info-section-items.1.name")}
+                  </Box>
+                  {", "}
                   {t("indexPage.info-section-items.1.company")}
                 </Text>
               </Box>
@@ -247,7 +247,7 @@ export default function InfoSection() {
               {t("indexPage.info-section-items.2.heading")}
             </Heading>
 
-            <Text mb={4} fontSize="22">
+            <Text mb={4} fontSize={["16", "22"]}>
               {t("indexPage.info-section-items.2.desc")}
             </Text>
 
@@ -278,19 +278,18 @@ export default function InfoSection() {
                 &quot;{t("indexPage.info-section-items.2.quote")}&quot;
               </Text>
               <Box display="flex" alignItems="center">
-                {/* TODO: replace with actual logo/image */}
-                <Box
-                  bg={colors.black}
+                <Image
+                  src="/ian-macalinao.jpeg"
                   rounded="full"
                   height="32px"
                   width="32px"
                   mr="2"
                 />
-                <Text fontSize="14" fontWeight="bold">
-                  {t("indexPage.info-section-items.2.name")}
-                </Text>
-                {", "}
                 <Text fontSize="14">
+                  <Box display="inline-block" fontWeight="bold">
+                    {t("indexPage.info-section-items.2.name")}
+                  </Box>
+                  {", "}
                   {t("indexPage.info-section-items.2.company")}
                 </Text>
               </Box>
