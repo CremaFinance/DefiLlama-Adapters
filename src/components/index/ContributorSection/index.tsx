@@ -8,17 +8,23 @@ const ContributorSection = () => {
 
   return (
     <Flex
-      pt={["10", "112px"]}
-      pb={["10", "40px"]}
+      pb={{ base: "24px", md: "40px" }}
+      pt={{ base: 16, md: "112px" }}
       as="section"
       aria-label="contributor-section"
-      flexDirection="row"
+      flexDirection={{ base: "column-reverse", lg: "row" }}
+      alignItems="center"
       justifyContent="center"
     >
-      <Flex flexDirection="column" alignItems="center" width="480px" mr={24}>
+      <Flex
+        flexDirection="column"
+        alignItems="center"
+        width={{ base: "88vw", md: "480px" }}
+        mr={{ base: 0, lg: 24 }}
+      >
         <Heading
           textAlign="center"
-          marginBottom={4}
+          mb={4}
           color={colors.black}
           fontWeight="bold"
         >
@@ -28,7 +34,7 @@ const ContributorSection = () => {
           alignSelf="center"
           textAlign="center"
           color={colors.black}
-          fontSize="22px"
+          fontSize={{ base: "16px", lg: "22px" }}
         >
           {t("indexPage.contributor-section-subtitle")}
         </Text>
@@ -43,7 +49,7 @@ const ContributorSection = () => {
         >
           {t("indexPage.contributor-section-action")}
         </Button>
-        <Flex mt={8} mb={16}>
+        <Flex mt={[0, 8]} mb={16}>
           <Link target="_blank" mr={4} href="https://discord.gg/mGqZA5pjRN">
             <Image
               cursor="pointer"
@@ -67,7 +73,12 @@ const ContributorSection = () => {
         </Flex>
       </Flex>
 
-      <Image src="/ilustrations/chefs.svg" mb={8} width={504} height={480} />
+      <Image
+        src="/ilustrations/chefs.svg"
+        width={{ base: "88vw", lg: "504px" }}
+        height={{ base: "320px", lg: 480 }}
+        mb={8}
+      />
     </Flex>
   );
 };
