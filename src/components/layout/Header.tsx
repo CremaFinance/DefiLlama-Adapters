@@ -139,7 +139,7 @@ const Header = () => {
           <Button
             size="sm"
             rounded="md"
-            bg={colors.greenVibrant}
+            bg={colors.green}
             colorScheme={colors.green}
             color={colors.white}
             display={["none", "block"]}
