@@ -1,5 +1,4 @@
-import { Button, Box, Heading, Text, Square } from "@chakra-ui/react";
-import { HiOutlineExternalLink } from "react-icons/hi";
+import { Button, Box, Image, Heading, Text, Square } from "@chakra-ui/react";
 
 import colors from "styles/customTheme/colors";
 
@@ -47,7 +46,7 @@ const BlogPostItem = ({ title, subtitle, link, date }: SectionProps) => (
         color={colors.green}
         href={link}
         target="_blank"
-        rightIcon={<HiOutlineExternalLink />}
+        rightIcon={<Image src="/icons/external-link-green.svg" width="1rem" />}
       >
         Read more
       </Button>

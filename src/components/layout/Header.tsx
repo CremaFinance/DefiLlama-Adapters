@@ -12,8 +12,6 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
-import { BiCaretDown } from "react-icons/bi";
-import { IoMdArrowRoundForward } from "react-icons/io";
 
 import colors from "styles/customTheme/colors";
 
@@ -74,7 +72,7 @@ const Header = () => {
         <Box display={["block", "block", "none"]}>
           <Sidebar />
         </Box>
-        <HStack spacing={4} display={["none", "none", "flex"]}>
+        <HStack spacing={5} display={["none", "none", "flex"]}>
           <Box>
             <Menu>
               <MenuButton
@@ -86,7 +84,7 @@ const Header = () => {
                 fontSize="md"
                 aria-label="Products dropdown"
                 p={1.5}
-                rightIcon={<BiCaretDown />}
+                rightIcon={<Image src="/icons/arrow-down.svg" width="10px" />}
               >
                 Product
               </MenuButton>
@@ -125,7 +123,7 @@ const Header = () => {
                 rounded="md"
                 aria-label="Learn more dropdown"
                 p={1.5}
-                rightIcon={<BiCaretDown />}
+                rightIcon={<Image src="/icons/arrow-down.svg" width="10px" />}
               >
                 Learn
               </MenuButton>
@@ -160,7 +158,7 @@ const Header = () => {
         colorScheme={colors.green}
         color={colors.white}
         display={["none", "none", "block"]}
-        rightIcon={<IoMdArrowRoundForward />}
+        rightIcon={<Image src="/icons/arrow-right-white.svg" width="0.8rem" />}
       >
         Go to app
       </Button>
