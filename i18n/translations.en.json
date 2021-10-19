@@ -100,6 +100,11 @@
         "subtitle": "Put your staked SOL to work in DeFi and gain an additional yield."
       }
     ],
+
+    "contributor-section-title": "Become a contributor to Marinade",
+    "contributor-section-subtitle": "Marinade is a community-driven project built without any VC money or token sales. Join the Marinade DAO and come build together with us.",
+    "contributor-section-action": "Join the Marinade DAO",
+
     "security-section-title": "The most trusted liquid staking on Solana",
     "security-section-subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore aliqua.",
     "security-section-action": "Read more about security",
