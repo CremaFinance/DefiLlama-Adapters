@@ -1,10 +1,19 @@
-import { Box, Button, Flex, Heading, Image, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Image,
+  Text,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 
 import colors from "styles/customTheme/colors";
 
 const HeroSection = () => {
   const { t } = useTranslation();
+  const [isTallerThan700] = useMediaQuery("(min-height: 700px)");
 
   return (
     <Box
@@ -78,14 +87,13 @@ const HeroSection = () => {
         />
 
         <Image
-          position={["relative", "absolute"]}
-          bottom={{ md: "16vh", lg: "4vh" }}
+          position="absolute"
+          bottom={{ base: isTallerThan700 ? "8vh" : "64px", lg: "4vh" }}
           src="./ilustrations/hero.svg"
           alt="Friends on beach"
           objectFit={["cover", "fill"]}
           width={{ base: "auto", md: "96vw", lg: "72vw", "2xl": "64vw" }}
-          height={{ base: "360px", md: "auto", lg: "auto" }}
-          minWidth={{ base: "520px" }}
+          minWidth={{ base: isTallerThan700 ? "520px" : "160px" }}
           zIndex={[2, 4]}
         />
       </Flex>
