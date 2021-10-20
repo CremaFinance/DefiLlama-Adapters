@@ -1,142 +1,134 @@
-import { HStack, Button, Image, Box, Heading } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Image,
+  Text,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 
 import colors from "styles/customTheme/colors";
 
 const HeroSection = () => {
   const { t } = useTranslation();
+  const [isTallerThan700] = useMediaQuery("(min-height: 700px)");
 
   return (
     <Box
       py="72px"
-      pb={[12, 12, 8]}
+      pb={[12, 8]}
       bg={colors.greenLight}
+      aria-label="hero-section"
       position="relative"
-      height={["auto", "auto", "100vh"]}
-      minHeight="650px"
+      height="100vh"
     >
       <Box
-        pt={[5, 5, "10vh"]}
-        pl={[0, 0, 10]}
+        pt={[4, "8vh"]}
+        mt={[0, "4vh"]}
+        pl={{ sm: 4, md: "40px", lg: 160 }}
         position="relative"
         zIndex={10}
-        textAlign={["center", "center", "left"]}
+        textAlign={["center", "left"]}
       >
-        <Box mb={[2, 2, 4]}>
-          <Heading color={colors.greenVibrant} fontWeight="bold">
-            {t("indexPage.hero-section-title")}
-          </Heading>
+        <Heading
+          mt={[0, "1vh"]}
+          color={colors.greenVibrant}
+          fontWeight="bold"
+          fontSize={["35px", "54px"]}
+        >
+          {t("indexPage.hero-section-title")}
+        </Heading>
 
-          <Heading
-            fontWeight="bold"
-            maxWidth={300}
-            margin={["0 auto", "0 auto", "0"]}
-          >
-            {t("indexPage.hero-section-subtitle")}
-          </Heading>
-        </Box>
+        <Heading
+          fontSize={["35px", "54px"]}
+          fontWeight="bold"
+          maxWidth={[320, 480]}
+          marginX={["auto", "0"]}
+          mb={4}
+        >
+          {t("indexPage.hero-section-subtitle")}
+        </Heading>
 
-        <Box maxWidth={300} margin={["0 auto", "0 auto", "0"]} mb={[2, 2, 4]}>
-          <Box>{t("indexPage.hero-section-desc")}</Box>
-        </Box>
+        <Text
+          maxWidth={300}
+          marginX={["auto", "auto", "0"]}
+          mb={[2, 2, 4]}
+          fontSize="22"
+          color={colors.black}
+        >
+          {t("indexPage.hero-section-desc")}
+        </Text>
 
-        <Box mb={[2, 2, 4]}>
-          <Button bg={colors.green} colorScheme={colors.green} rounded="md">
-            {t("indexPage.hero-section-button")}
-          </Button>
-        </Box>
+        <Button
+          bg={colors.green}
+          colorScheme={colors.green}
+          rounded="md"
+          width="200px"
+          mb={[2, 4]}
+        >
+          {t("indexPage.hero-section-button")}
+        </Button>
 
-        <Box fontSize="sm" color="gray.500">
+        <Text fontSize="14" color="gray.500">
           6.21% APY
-        </Box>
+        </Text>
       </Box>
 
-      {/* CLOUD AND LEAVES IMAGE */}
-      <Box display={["none", "none", "block"]}>
+      <Flex width="100vw" justifyContent="flex-end">
         <Image
-          src="./cloud-leaves.png"
-          width={[0, 0, 350, "420px"]}
+          src="./ilustrations/clouds-and-leaves.svg"
+          width={{ base: 0, md: "64vw", lg: "40vw", "2xl": "32vw" }}
           alt="Clouds and Leaves"
           position="absolute"
-          top="0"
-          right={0}
+          top={-8}
           zIndex={3}
         />
-      </Box>
 
-      {/* BEACH PARTY IMAGE */}
-      <Box
-        position={["relative", "relative", "absolute"]}
-        top={[0, 0, "10vh", "10vh"]}
-        overflow="hidden"
-        textAlign="center"
-        right={0}
-        my={[4, 2, 0]}
-      >
         <Image
-          display="inline-block"
-          position="relative"
-          mt={[0, 0, 24, 10]}
-          src="./beach-party.png"
+          position="absolute"
+          bottom={{ base: isTallerThan700 ? "8vh" : "64px", lg: "4vh" }}
+          src="./ilustrations/hero.svg"
           alt="Friends on beach"
-          width={["100%", "100%", 600, "800px"]}
+          objectFit={["cover", "fill"]}
+          width={{ base: "auto", md: "96vw", lg: "72vw", "2xl": "64vw" }}
+          minWidth={{ base: isTallerThan700 ? "520px" : "160px" }}
+          zIndex={[2, 4]}
         />
-      </Box>
+      </Flex>
 
-      {/* MOBILE LAYOUT */}
+      {/* ECOSYSTEM STATS */}
       <Box
-        fontSize="lg"
-        px={5}
-        display={["block", "block", "none"]}
-        textAlign="center"
+        pl={{ base: 4, md: "40px", lg: 160 }}
+        position="absolute"
+        bottom={[4, 16]}
+        display="flex"
+        flexDirection={["column", "row"]}
+        flexWrap="wrap"
+        zIndex={5}
       >
         {[0, 1, 2].map((index) => {
           return (
-            <Box key={`mobile-layout-${index}`}>
-              <Box
+            <Box
+              display="flex"
+              flexDirection="row"
+              mr={{ md: 4, lg: 16 }}
+              key={`desktop-hstack-${index}`}
+            >
+              <Text
+                fontSize={["22px", "28px"]}
                 fontWeight="bold"
-                display="inline-block"
                 color={colors.green}
-                fontSize={["xl", "2xl"]}
-                mr={2}
               >
                 {t(`indexPage.hero-section-stats.${index}.number`)}
-              </Box>
-
-              <Box
-                fontSize={["xl", "2xl"]}
-                fontWeight="bold"
-                display="inline-block"
-              >
+              </Text>{" "}
+              <Text fontSize={["22px", "28px"]} fontWeight="bold">
                 {t(`indexPage.hero-section-stats.${index}.desc`)}
-              </Box>
+              </Text>
             </Box>
           );
         })}
-      </Box>
-
-      {/* DESKTOP LAYOUT */}
-      <Box
-        pl={10}
-        position="absolute"
-        bottom={12}
-        display={["none", "none", "block"]}
-      >
-        <HStack spacing={8}>
-          {[0, 1, 2].map((index) => {
-            return (
-              <HStack fontSize="lg" key={`desktop-hstack-${index}`}>
-                <Heading size="md" fontWeight="bold" color={colors.green}>
-                  {t(`indexPage.hero-section-stats.${index}.number`)}
-                </Heading>
-
-                <Heading size="md" fontWeight="bold">
-                  {t(`indexPage.hero-section-stats.${index}.desc`)}
-                </Heading>
-              </HStack>
-            );
-          })}
-        </HStack>
       </Box>
     </Box>
   );
