@@ -68,7 +68,7 @@ Reviews:
 
 Definition of done:
 ----------------
-- if styling changed, add [PerfectPixel](https://chrome.google.com/webstore/detail/perfectpixel-by-welldonec/dkaagdgjmgdmbnecmcefdhjekcoceebi) addon screenshot into PR's description
+- if styling changed, add [PerfectPixel](https://chrome.google.com/webstore/detail/perfectpixel-by-welldonec/dkaagdgjmgdmbnecmcefdhjekcoceebi) addon screenshot into PR's description (video of how to use it [here](https://cdn.discordapp.com/attachments/891973813028413460/900854532811145226/Screen_Recording_2021-10-21_at_23.05.37.mov))
 - all PR checks are done before assigning someone to review
 - no console warnings or errors
 - no merge conflicts
