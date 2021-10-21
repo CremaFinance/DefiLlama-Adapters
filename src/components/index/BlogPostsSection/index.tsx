@@ -1,4 +1,4 @@
-import { HStack, Button, Box, Heading, Image } from "@chakra-ui/react";
+import { Button, Box, Heading, Image } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { HiArrowRight } from "react-icons/hi";
 
@@ -67,38 +67,45 @@ export default function BlogPosts() {
       <Heading
         textAlign="center"
         color={colors.black}
-        lineHeight="36px"
-        fontSize="28"
         fontWeight="bold"
-        maxWidth={[440, 520, 580]}
+        maxWidth={[440, 520, 700]}
+        size="lg"
         margin="0 auto"
-        mb={[10, 10, 14]}
       >
         {t("indexPage.blog-section-blurb")}
-        <Heading
-          color={colors.green}
-          fontSize="28"
-          display="inline-block"
-          fontWeight="bold"
-        >
-          {t("indexPage.blog-section-blurb-highlight")}
-        </Heading>
       </Heading>
-      <Box textAlign="center">
-        <HStack spacing={5} display="inline-flex">
-          <Button bg={colors.green} colorScheme={colors.green} rounded="md">
-            {t("indexPage.blog-section-primary-button")}
-          </Button>
 
-          <Button
-            variant="ghost"
-            colorScheme={colors.green}
-            rounded="md"
-            rightIcon={<HiArrowRight />}
-          >
-            {t("indexPage.blog-section-secondary-button")}
-          </Button>
-        </HStack>
+      <Heading
+        textAlign="center"
+        color={colors.green}
+        size="lg"
+        fontWeight="bold"
+        mb={8}
+      >
+        {t("indexPage.blog-section-blurb-highlight")}
+      </Heading>
+
+      <Box textAlign="center" mb={8}>
+        <Button
+          bg={colors.green}
+          colorScheme={colors.green}
+          rounded="md"
+          mx={4}
+          my={[2, 0]}
+        >
+          {t("indexPage.blog-section-primary-button")}
+        </Button>
+
+        <Button
+          mx={4}
+          my={[2, 0]}
+          variant="ghost"
+          colorScheme={colors.green}
+          rounded="md"
+          rightIcon={<HiArrowRight />}
+        >
+          {t("indexPage.blog-section-secondary-button")}
+        </Button>
       </Box>
     </Box>
   );
