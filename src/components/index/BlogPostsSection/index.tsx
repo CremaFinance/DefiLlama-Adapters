@@ -68,7 +68,7 @@ export default function BlogPosts() {
     >
       <Image
         src="/octo-chef.svg"
-        width={["90%", 320, 320]}
+        width={["90%", 390, 390]}
         display="block"
         margin="0 auto"
         mb={4}
