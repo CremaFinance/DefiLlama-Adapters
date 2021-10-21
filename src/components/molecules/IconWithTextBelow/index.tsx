@@ -56,7 +56,7 @@ const IconWithTextBelow = ({
       <Heading
         as={titleSize}
         color={titleColor}
-        marginBottom="8"
+        marginBottom="4"
         marginTop="8"
         wordBreak="keep-all"
         textAlign="center"

@@ -52,12 +52,7 @@ export default function InfoSection() {
           );
         })}
       </Flex>
-      <Box
-        marginTop="2"
-        marginBottom="104px"
-        display="flex"
-        justifyContent="center"
-      >
+      <Box marginBottom="104px" display="flex" justifyContent="center">
         <Button
           bg={colors.green}
           _hover={{ bg: colors.green800 }}
@@ -68,7 +63,7 @@ export default function InfoSection() {
           {t("indexPage.info-section-action")}
         </Button>
       </Box>
-      <Flex mt={4} flexDirection="column" alignItems="center">
+      <Flex mt={4} mb={[0, 24]} flexDirection="column" alignItems="center">
         <Flex
           mb={[16, 24]}
           flexDirection={{ base: columnReverse, lg: "row" }}
@@ -95,9 +90,7 @@ export default function InfoSection() {
               variant="link"
               color={colors.black}
               bg="none"
-              rightIcon={
-                <Image src="/icons/arrow-right-white.svg" width="0.8rem" />
-              }
+              rightIcon={<Image src="/icons/arrow-right.svg" width="0.8rem" />}
               mb={8}
             >
               {readMode}
@@ -175,9 +168,7 @@ export default function InfoSection() {
               variant="link"
               color={colors.black}
               bg="none"
-              rightIcon={
-                <Image src="/icons/arrow-right-white.svg" width="0.8rem" />
-              }
+              rightIcon={<Image src="/icons/arrow-right.svg" width="0.8rem" />}
               mb={8}
             >
               {readMode}
@@ -255,9 +246,7 @@ export default function InfoSection() {
               variant="link"
               color={colors.black}
               bg="none"
-              rightIcon={
-                <Image src="/icons/arrow-right-white.svg" width="0.8rem" />
-              }
+              rightIcon={<Image src="/icons/arrow-right.svg" width="0.8rem" />}
               mb={8}
             >
               {readMode}
