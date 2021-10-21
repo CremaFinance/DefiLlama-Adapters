@@ -16,7 +16,14 @@ const Footer = () => {
       py={8}
       flexDirection="column"
     >
-      <Box display="flex" flexWrap="wrap" px={[5, 10, 24]}>
+      <Box
+        display="flex"
+        flexWrap="wrap"
+        px={{ base: 4, md: "40px", lg: 160 }}
+        maxWidth={1200}
+        width="100%"
+        margin="0 auto"
+      >
         <Box
           minWidth="300"
           pt="8"
@@ -145,7 +152,13 @@ const Footer = () => {
         </Box>
       </Box>
 
-      <Box px={[5, 10, 24]} mt={4}>
+      <Box
+        px={{ base: 4, md: "40px", lg: 160 }}
+        maxWidth={1200}
+        width="100%"
+        margin="0 auto"
+        mt={4}
+      >
         <Text fontSize="sm" color="whiteAlpha.800">
           {t("indexPage.footer-copyright")}
         </Text>
