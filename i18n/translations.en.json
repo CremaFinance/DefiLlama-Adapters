@@ -7,11 +7,11 @@
     "hero-section-stats": [
       {
         "number": "20+",
-        "desc": "DeFi Integrations"
+        "desc": "DeFi integrations"
       },
       {
-        "number": "300+",
-        "desc": "Validators"
+        "number": "400+",
+        "desc": "validators"
       },
       {
         "number": "$334M+",
@@ -29,7 +29,7 @@
 
     "blog-section-primary-button": "Start staking SOL",
     "blog-section-secondary-button": "Learn more",
-    "logo-strip-section-title": "Use mSOL across all ecosystem",
+    "logo-strip-section-title": "Use mSOL across all the ecosystem",
     "blog-section-items": [
       {
         "date": "30 SEPT 2021",
@@ -100,6 +100,11 @@
         "subtitle": "Put your staked SOL to work in DeFi and gain an additional yield."
       }
     ],
+
+    "contributor-section-title": "Become a contributor to Marinade",
+    "contributor-section-subtitle": "Marinade is a community-driven project built without any VC money or token sales. Join the Marinade DAO and come build together with us.",
+    "contributor-section-action": "Join the Marinade DAO",
+
     "security-section-title": "The most trusted liquid staking on Solana",
     "security-section-subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore aliqua.",
     "security-section-action": "Read more about security",
