@@ -87,7 +87,7 @@ export default function InfoSection() {
             mr={{ base: 4, lg: isWiderThan1050 ? 560 : 480 }}
           >
             <Heading mb={4} fontWeight="bold">
-              <Box display="inline-block" color={colors.green}>
+              <Box as="span" display="inline-block" color={colors.green}>
                 {t("indexPage.info-section-items.0.emphasis")}
               </Box>{" "}
               {t("indexPage.info-section-items.0.heading")}
@@ -130,7 +130,7 @@ export default function InfoSection() {
                   mr="2"
                 />
                 <Text fontSize="14">
-                  <Box display="inline-block" fontWeight="bold">
+                  <Box as="span" display="inline-block" fontWeight="bold">
                     {t("indexPage.info-section-items.0.name")}
                   </Box>
                   {", "}
@@ -172,7 +172,7 @@ export default function InfoSection() {
             ml={{ base: 4, lg: isWiderThan1050 ? 640 : 504 }}
           >
             <Heading mb={4} fontWeight="bold">
-              <Box display="inline-block" color={colors.green}>
+              <Box as="span" display="inline-block" color={colors.green}>
                 {t("indexPage.info-section-items.1.emphasis")}
               </Box>{" "}
               {t("indexPage.info-section-items.1.heading")}
@@ -215,7 +215,7 @@ export default function InfoSection() {
                   mr={2}
                 />
                 <Text fontSize="14">
-                  <Box display="inline-block" fontWeight="bold">
+                  <Box as="span" display="inline-block" fontWeight="bold">
                     {t("indexPage.info-section-items.1.name")}
                   </Box>
                   {", "}
@@ -254,7 +254,7 @@ export default function InfoSection() {
             mr={{ base: 4, lg: isWiderThan1050 ? 560 : 480 }}
           >
             <Heading mb={4} fontWeight="bold">
-              <Box display="inline-block" color={colors.green}>
+              <Box as="span" display="inline-block" color={colors.green}>
                 {t("indexPage.info-section-items.2.emphasis")}
               </Box>{" "}
               {t("indexPage.info-section-items.2.heading")}
@@ -297,7 +297,7 @@ export default function InfoSection() {
                   mr="2"
                 />
                 <Text fontSize="14">
-                  <Box display="inline-block" fontWeight="bold">
+                  <Box as="span" display="inline-block" fontWeight="bold">
                     {t("indexPage.info-section-items.2.name")}
                   </Box>
                   {", "}
