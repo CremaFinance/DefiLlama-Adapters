@@ -11,13 +11,12 @@ export default function InfoSection() {
   const columnReverse = "column-reverse";
 
   return (
-    <Box
+    <Flex
       paddingTop="16"
       paddingBottom={[8, 8, 0]}
       bg="greenLight"
       as="section"
       aria-label="info-section"
-      display="flex"
       flexDirection="column"
       alignItems="stretch"
     >
@@ -33,6 +32,7 @@ export default function InfoSection() {
       <Flex
         flexDirection={["column", "row"]}
         justifyContent="center"
+        alignItems="center"
         marginTop={4}
       >
         {[0, 1, 2].map((index) => {
@@ -299,6 +299,6 @@ export default function InfoSection() {
           />
         </Flex>
       </Flex>
-    </Box>
+    </Flex>
   );
 }
