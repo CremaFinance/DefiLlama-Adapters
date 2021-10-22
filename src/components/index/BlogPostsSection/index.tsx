@@ -21,7 +21,7 @@ export default function BlogPosts() {
       alignItems="stretch"
     >
       <Image
-        src="/bbq-dudes.png"
+        src="/ilustrations/octopus.svg"
         width={["90%", 350, 380]}
         display="block"
         margin="0 auto"
