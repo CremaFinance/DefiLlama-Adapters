@@ -22,7 +22,7 @@ export default function WhySection() {
         {t("indexPage.why-section-title")}
       </Heading>
       <Flex
-        flexDirection={["column", "row"]}
+        flexDirection={{ base: "column", md: "row" }}
         justifyContent="center"
         alignItems="center"
         marginY={4}

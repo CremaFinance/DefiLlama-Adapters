@@ -1,4 +1,12 @@
-import { Box, Button, Flex, Heading, Image, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Image,
+  Text,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 
 import IconWithTextBelow from "components/molecules/IconWithTextBelow";
@@ -6,6 +14,8 @@ import colors from "styles/customTheme/colors";
 
 export default function InfoSection() {
   const { t } = useTranslation();
+
+  const [isWiderThan1050] = useMediaQuery("(min-width: 1050px)");
 
   const readMode = t("indexPage.read-more");
   const columnReverse = "column-reverse";
@@ -30,7 +40,7 @@ export default function InfoSection() {
         {t("indexPage.info-section-title")}
       </Heading>
       <Flex
-        flexDirection={["column", "row"]}
+        flexDirection={{ base: "column", md: "row" }}
         justifyContent="center"
         alignItems="center"
         marginTop={4}
@@ -66,14 +76,15 @@ export default function InfoSection() {
       <Flex mt={4} mb={[0, 24]} flexDirection="column" alignItems="center">
         <Flex
           mb={[16, 24]}
-          flexDirection={{ base: columnReverse, lg: "row" }}
+          flexDirection={isWiderThan1050 ? "row" : columnReverse}
           alignItems="center"
+          overflow="hidden"
         >
           <Box
-            width={{ base: "88vw", md: "504px", lg: "524px" }}
+            width={{ base: "88vw", md: "504px", lg: "528px" }}
             marginX={{ base: 4, lg: 0 }}
             zIndex={4}
-            mr={{ base: 4, lg: 560 }}
+            mr={{ base: 4, lg: isWiderThan1050 ? 560 : 480 }}
           >
             <Heading mb={4} fontWeight="bold">
               <Box display="inline-block" color={colors.green}>
@@ -96,21 +107,20 @@ export default function InfoSection() {
               {readMode}
             </Button>
 
-            <Box
+            <Flex
               bg={colors.marinadeLighterGreen}
               height={{ base: "auto", md: "160px" }}
               width={{ base: "88vw", md: "504px" }}
               p={4}
               mt={4}
               rounded="md"
-              display="flex"
               flexDirection="column"
               justifyContent="space-around"
             >
               <Text mb={2} fontSize="14">
                 &quot;{t("indexPage.info-section-items.0.quote")}&quot;
               </Text>
-              <Box display="flex" alignItems="center">
+              <Flex alignItems="center">
                 {/* TODO: replace with actual logo/image */}
                 <Box
                   bg={colors.black}
@@ -126,17 +136,24 @@ export default function InfoSection() {
                   {", "}
                   {t("indexPage.info-section-items.0.company")}
                 </Text>
-              </Box>
-            </Box>
+              </Flex>
+            </Flex>
           </Box>
 
           <Image
-            position={{ base: "relative", lg: "absolute" }}
+            position={{
+              base: "relative",
+              lg: "absolute",
+            }}
             src="/ilustrations/how-it-works1.svg"
-            width={{ base: "88vw", md: "72vw", lg: 640 }}
+            width={{
+              base: "88vw",
+              md: "72vw",
+              lg: isWiderThan1050 ? 640 : 560,
+            }}
             height="auto"
-            ml={{ base: 0, lg: "524px" }}
-            mt={{ base: 0, lg: -16 }}
+            ml={{ base: 0, lg: isWiderThan1050 ? "528px" : "468px" }}
+            mt={{ base: 0, lg: isWiderThan1050 ? -16 : 0 }}
             mb={{ base: 8, lg: 0 }}
           />
         </Flex>
@@ -146,12 +163,13 @@ export default function InfoSection() {
           mb={[16, 24]}
           flexDirection={{ base: columnReverse, lg: "row" }}
           alignItems="center"
+          overflow="hidden"
         >
           <Box
             width={{ base: "88vw", md: "504px", lg: "528px" }}
             marginX={{ base: 4, lg: 0 }}
             zIndex={4}
-            ml={{ base: 4, lg: 640 }}
+            ml={{ base: 4, lg: isWiderThan1050 ? 640 : 504 }}
           >
             <Heading mb={4} fontWeight="bold">
               <Box display="inline-block" color={colors.green}>
@@ -174,14 +192,13 @@ export default function InfoSection() {
               {readMode}
             </Button>
 
-            <Box
+            <Flex
               bg={colors.marinadeLighterGreen}
               height={{ base: "auto", md: "160px" }}
               width={{ base: "88vw", md: "504px" }}
               p={4}
               mt={4}
               rounded="md"
-              display="flex"
               flexDirection="column"
               justifyContent="space-around"
             >
@@ -205,16 +222,20 @@ export default function InfoSection() {
                   {t("indexPage.info-section-items.1.company")}
                 </Text>
               </Box>
-            </Box>
+            </Flex>
           </Box>
 
           <Image
             position={{ base: "relative", lg: "absolute" }}
             src="/ilustrations/how-it-works2.svg"
-            width={{ base: "88vw", md: "72vw", lg: 560 }}
+            width={{
+              base: "88vw",
+              md: "72vw",
+              lg: isWiderThan1050 ? 560 : 480,
+            }}
             height="auto"
             ml={{ base: 0, lg: 8 }}
-            mt={{ base: 0, lg: -8 }}
+            mt={{ base: 0, lg: isWiderThan1050 ? -8 : 0 }}
             mb={{ base: 8, lg: 0 }}
           />
         </Flex>
@@ -224,12 +245,13 @@ export default function InfoSection() {
           mb={[16, 16]}
           flexDirection={{ base: columnReverse, lg: "row" }}
           alignItems="center"
+          overflow="hidden"
         >
           <Box
             width={{ base: "88vw", md: "504px", lg: "528px" }}
             marginX={{ base: 4, lg: 0 }}
             zIndex={4}
-            mr={{ base: 4, lg: 560 }}
+            mr={{ base: 4, lg: isWiderThan1050 ? 560 : 480 }}
           >
             <Heading mb={4} fontWeight="bold">
               <Box display="inline-block" color={colors.green}>
@@ -291,7 +313,7 @@ export default function InfoSection() {
             width={{ base: "100vw", md: "72vw", lg: 728 }}
             height={{ base: 320, md: "auto" }}
             mr={[2, 0]}
-            ml={{ base: 0, lg: "392px" }}
+            ml={{ base: 0, lg: isWiderThan1050 ? "392px" : "280px" }}
             mt={{ base: 0, lg: 8 }}
             mb={{ base: 8, lg: 0 }}
             objectPosition="right"

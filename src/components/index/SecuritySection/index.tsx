@@ -40,7 +40,7 @@ export default function SecuritySection() {
         {t("indexPage.security-section-subtitle")}
       </Text>
       <Flex
-        flexDirection={["column", "row"]}
+        flexDirection={{ base: "column", md: "row" }}
         justifyContent="center"
         alignItems="center"
         marginTop={4}
@@ -93,7 +93,7 @@ export default function SecuritySection() {
         {t("indexPage.security-section-audit-title")}
       </Heading>
       <Flex
-        flexDirection={["column", "row"]}
+        flexDirection={{ base: "column", md: "row" }}
         justifyContent="center"
         alignItems="center"
         marginTop={4}
