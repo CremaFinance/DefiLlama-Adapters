@@ -86,7 +86,7 @@ const LogoStripSection = () => {
       >
         {ecosystem.map((el) => {
           return (
-            <Link href={el.href} isExternal>
+            <Link href={el.href} key={`ecosystem-${el.title}`} isExternal>
               <Image
                 cursor="pointer"
                 src={el.image}
@@ -95,7 +95,6 @@ const LogoStripSection = () => {
                 height={["38px", "56px"]}
                 marginX="20px"
                 mb={{ base: 4, lg: 0 }}
-                key={`ecosystem-${el.title}`}
               />
             </Link>
           );

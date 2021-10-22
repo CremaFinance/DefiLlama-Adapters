@@ -82,7 +82,7 @@ const Footer = () => {
           </Box>
         </Box>
 
-        <Box display="flex" flex={0.2} />
+        <Box display="flex" flex={[0.1, 0.2]} />
 
         <Box
           minWidth={["100%", "250"]}
