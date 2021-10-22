@@ -53,6 +53,22 @@
       }
     ],
 
+    "info-section-title": "The easiest way to stake Solana",
+    "info-section-step-items": [
+      {
+        "title": "Stake SOL",
+        "subtitle": "Select amount of SOL to stake using Marinade liquid staking protocol."
+      },
+      {
+        "title": "Receive mSol",
+        "subtitle": "In return, you receive liquid SOL (mSol) increasing value with staking rewards."
+      },
+      {
+        "title": "Participate in DeFi",
+        "subtitle": "Now you're free to use your liquid mSol in DeFi or swap back to SOL any time you like."
+      }
+    ],
+    "info-section-action": "Start staking SOL",
     "info-section-items": [
       {
         "emphasis": "Stake Solana",
@@ -75,13 +91,13 @@
       },
 
       {
-        "emphasis": "Stake Solana",
-        "heading": "without locking your funds in",
+        "emphasis": "Take part",
+        "heading": "in the DeFi ecosystem",
         "desc": "By going with Marinade you avoid the unstaking period so you're free to use your assets at any time you like.",
         "link": "#",
-        "quote": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqualabore et dolore magna aliqua. Ut enim ad minim veniam",
-        "name": "Name Nameson",
-        "company": "Company"
+        "quote": "Marinade allows our users to strengthen the security of the Solana network while continuing to interact with other apps on Solana via our LP tokens.",
+        "name": "Ian Macalinao",
+        "company": "Co-founder at Saber"
       }
     ],
 
