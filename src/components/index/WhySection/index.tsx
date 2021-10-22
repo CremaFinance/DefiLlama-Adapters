@@ -1,4 +1,4 @@
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Flex, Heading } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 
 import IconWithTextBelow from "components/molecules/IconWithTextBelow";
@@ -9,46 +9,35 @@ export default function WhySection() {
 
   return (
     <Box
-      paddingTop="160px"
-      paddingBottom="32"
+      paddingTop="24"
+      paddingBottom="24"
       bg={colors.blackMate}
       as="section"
       aria-label="why-section"
       display="flex"
       flexDirection="column"
-      px={5}
       alignItems="stretch"
     >
-      <Heading
-        fontSize="5xl"
-        textAlign="center"
-        marginBottom="56px"
-        color={colors.white}
-        fontWeight="bold"
-      >
+      <Heading mt={2} textAlign="center" color={colors.white} fontWeight="bold">
         {t("indexPage.why-section-title")}
       </Heading>
-      <Box
-        display="flex"
-        alignItems="flex-start"
-        flexWrap="wrap"
+      <Flex
         flexDirection={["column", "row"]}
-        justifyContent="space-around"
-        marginX={[8, 48]}
+        justifyContent="center"
+        alignItems="center"
+        marginY={4}
       >
         {[0, 1, 2].map((index) => (
           <IconWithTextBelow
-            titleSize="h3"
-            subtitleSize="24"
-            maxWidth="24rem"
-            height={136}
+            marginTop={4}
+            marginX={8}
             key={`why-section-item-${index}`}
             icon={`/icons/why-section-icon${index + 1}.svg`}
             title={t(`indexPage.why-section-items.${index}.title`)}
             subtitle={t(`indexPage.why-section-items.${index}.subtitle`)}
           />
         ))}
-      </Box>
+      </Flex>
     </Box>
   );
 }

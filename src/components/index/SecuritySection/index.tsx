@@ -1,4 +1,4 @@
-import { Box, Button, Heading, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 
 import IconWithTextBelow from "components/molecules/IconWithTextBelow";
@@ -19,9 +19,10 @@ export default function SecuritySection() {
       alignItems="stretch"
     >
       <Heading
+        mt={2}
         alignSelf="center"
         textAlign="center"
-        maxWidth="480"
+        maxWidth="504"
         color={colors.white}
         fontWeight="bold"
       >
@@ -32,22 +33,21 @@ export default function SecuritySection() {
         alignSelf="center"
         maxWidth="720"
         textAlign="center"
-        marginY="8"
+        marginY={4}
         marginX="4"
         color={colors.white800}
       >
         {t("indexPage.security-section-subtitle")}
       </Text>
-      <Box
-        display="flex"
-        alignItems="flex-start"
-        flexWrap="wrap"
+      <Flex
         flexDirection={["column", "row"]}
-        justifyContent="space-around"
-        marginX={[8, 64]}
+        justifyContent="center"
+        alignItems="center"
+        marginTop={4}
       >
         <IconWithTextBelow
           marginTop={8}
+          marginX={8}
           key="security-item-0"
           icon="/icons/crank.svg"
           title={t(`indexPage.security-section-items.0.title`)}
@@ -55,6 +55,7 @@ export default function SecuritySection() {
         />
         <IconWithTextBelow
           marginTop={8}
+          marginX={8}
           key="security-item-1"
           icon="/icons/trophy.svg"
           title={t(`indexPage.security-section-items.1.title`)}
@@ -62,12 +63,13 @@ export default function SecuritySection() {
         />
         <IconWithTextBelow
           marginTop={8}
+          marginX={8}
           key="security-item-2"
           icon="/icons/bot.svg"
           title={t(`indexPage.security-section-items.2.title`)}
           subtitle={t(`indexPage.security-section-items.2.subtitle`)}
         />
-      </Box>
+      </Flex>
       <Box marginTop="16" display="flex" justifyContent="center">
         <Button
           bg={colors.greenVibrant}
@@ -79,28 +81,28 @@ export default function SecuritySection() {
         </Button>
       </Box>
       <Heading
-        marginTop="32"
+        as="h3"
+        marginTop="24"
         marginBottom="8"
         alignSelf="center"
         textAlign="center"
-        maxWidth="480"
+        maxWidth="504"
         color={colors.white}
         fontWeight="bold"
       >
         {t("indexPage.security-section-audit-title")}
       </Heading>
-      <Box
-        display="flex"
-        alignItems="flex-start"
-        flexWrap="wrap"
+      <Flex
         flexDirection={["column", "row"]}
-        justifyContent="space-around"
-        marginX={[8, 64]}
+        justifyContent="center"
+        alignItems="center"
+        marginTop={4}
       >
         <IconWithTextBelow
           height={70}
           opacity="0.6"
-          marginTop={8}
+          marginTop={4}
+          marginX={8}
           key="neodyme"
           icon="/logos/neodyme-white.png"
           title={t(`indexPage.security-section-audit-neodyme.title`)}
@@ -112,7 +114,8 @@ export default function SecuritySection() {
         <IconWithTextBelow
           height={70}
           opacity="0.6"
-          marginTop={8}
+          marginTop={4}
+          marginX={8}
           key="ackee"
           icon="/logos/ackee-blockchain.svg"
           title={t(`indexPage.security-section-audit-ackee.title`)}
@@ -120,8 +123,10 @@ export default function SecuritySection() {
           externalUrl={t(`indexPage.security-section-audit-ackee.external-url`)}
         />
         <IconWithTextBelow
-          height={70}
+          height={12}
+          width="200px"
           marginTop={8}
+          marginX={8}
           key="kudelski"
           icon="/logos/kudelski-security.png"
           title={t(`indexPage.security-section-audit-kudelski.title`)}
@@ -130,7 +135,7 @@ export default function SecuritySection() {
             `indexPage.security-section-audit-kudelski.external-url`
           )}
         />
-      </Box>
+      </Flex>
     </Box>
   );
 }

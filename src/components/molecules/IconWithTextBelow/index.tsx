@@ -10,6 +10,7 @@ type IconWithTextBelowProps = {
   subtitle?: string;
   externalUrl?: string;
   height?: number;
+  width?: string;
   opacity?: string;
   marginTop?: number;
   titleSize?: "h1" | "h2" | "h3" | "h4" | "h5";
@@ -26,6 +27,7 @@ const IconWithTextBelow = ({
   subtitle,
   externalUrl,
   height = 100,
+  width = "auto",
   opacity = "1",
   marginTop = 0,
   titleSize = "h4",
@@ -51,6 +53,7 @@ const IconWithTextBelow = ({
         src={icon}
         opacity={opacity}
         height={height}
+        width={width}
         alt={`${title} Logo`}
       />
       <Heading
@@ -70,7 +73,7 @@ const IconWithTextBelow = ({
       )}
       {externalUrl && (
         <Link
-          mt="4"
+          mt="6"
           href={externalUrl}
           isExternal
           color={colors.greenVibrant}
