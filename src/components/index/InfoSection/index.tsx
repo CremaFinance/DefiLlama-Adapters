@@ -83,10 +83,10 @@ export default function InfoSection() {
           overflow="hidden"
         >
           <Box
-            width={{ base: "88vw", md: "60vw", lg: "40vw" }}
+            width={{ base: "88vw", md: "60vw", lg: "40vw", "2xl": "24vw" }}
             marginX={{ base: 4, lg: 8 }}
             zIndex={4}
-            mr={{ base: 4, lg: "40vw" }}
+            mr={{ base: 4, lg: "40vw", "2xl": "24vw" }}
           >
             <Heading mb={4} fontWeight="bold">
               <Box as="span" display="inline-block" color={colors.green}>
@@ -112,7 +112,7 @@ export default function InfoSection() {
             <Flex
               bg={colors.marinadeLighterGreen}
               height={{ base: "auto", md: "160px" }}
-              width={{ base: "88vw", md: "60vw", lg: "34vw" }}
+              width={{ base: "88vw", md: "60vw", lg: "34vw", "2xl": "24vw" }}
               p={4}
               mt={4}
               rounded="md"
@@ -152,9 +152,10 @@ export default function InfoSection() {
               base: "88vw",
               md: "72vw",
               lg: "44vw",
+              "2xl": "24vw",
             }}
-            ml={{ base: 0, lg: "40vw" }}
-            mb={{ base: 8, lg: 16 }}
+            ml={{ base: 0, lg: "40vw", "2xl": "26vw" }}
+            mb={{ base: 8, lg: 16, "2xl": 0 }}
           />
         </Flex>
 
@@ -166,10 +167,10 @@ export default function InfoSection() {
           overflow="hidden"
         >
           <Box
-            width={{ base: "88vw", md: "60vw", lg: "32vw" }}
+            width={{ base: "88vw", md: "60vw", lg: "32vw", "2xl": "24vw" }}
             marginX={{ base: 4, lg: 0 }}
             zIndex={4}
-            ml={{ base: 4, lg: "40vw" }}
+            ml={{ base: 4, lg: "40vw", "2xl": "24vw" }}
           >
             <Heading mb={4} fontWeight="bold">
               <Box as="span" display="inline-block" color={colors.green}>
@@ -195,7 +196,7 @@ export default function InfoSection() {
             <Flex
               bg={colors.marinadeLighterGreen}
               height={{ base: "auto", md: "160px" }}
-              width={{ base: "88vw", md: "60vw", lg: "34vw" }}
+              width={{ base: "88vw", md: "60vw", lg: "34vw", "2xl": "24vw" }}
               p={4}
               mt={4}
               rounded="md"
@@ -232,9 +233,10 @@ export default function InfoSection() {
               base: "88vw",
               md: "72vw",
               lg: "40vw",
+              "2xl": "24vw",
             }}
             ml={{ base: 0, lg: -8 }}
-            mt={{ base: 0, lg: -8 }}
+            mt={{ base: 0, lg: -8, "2xl": 0 }}
             mb={{ base: 8, lg: 0 }}
           />
         </Flex>
@@ -247,10 +249,10 @@ export default function InfoSection() {
           overflow="hidden"
         >
           <Box
-            width={{ base: "88vw", md: "60vw", lg: "36vw" }}
+            width={{ base: "88vw", md: "60vw", lg: "36vw", "2xl": "24vw" }}
             marginX={{ base: 4, lg: 0 }}
             zIndex={4}
-            mr={{ base: 4, lg: "40vw" }}
+            mr={{ base: 4, lg: "40vw", "2xl": "24vw" }}
           >
             <Heading mb={4} fontWeight="bold">
               <Box as="span" display="inline-block" color={colors.green}>
@@ -276,7 +278,7 @@ export default function InfoSection() {
             <Box
               bg={colors.marinadeLighterGreen}
               height={{ base: "auto", md: "160px" }}
-              width={{ base: "88vw", md: "60vw", lg: "34vw" }}
+              width={{ base: "88vw", md: "60vw", lg: "34vw", "2xl": "24vw" }}
               p={4}
               mt={4}
               rounded="md"
@@ -309,10 +311,10 @@ export default function InfoSection() {
           <Image
             position={{ base: "relative", lg: "absolute" }}
             src="/ilustrations/how-it-works3.svg"
-            width={{ base: "100vw", md: "72vw", lg: "52vw" }}
+            width={{ base: "100vw", md: "72vw", lg: "52vw", "2xl": "32vw" }}
             height={{ base: 320, md: "auto" }}
             mr={[2, 0]}
-            ml={{ base: 0, lg: "26vw" }}
+            ml={{ base: 0, lg: "26vw", "2xl": "18vw" }}
             mt={{ base: 0, lg: 8 }}
             mb={{ base: 8, lg: 0 }}
             objectPosition="right"
