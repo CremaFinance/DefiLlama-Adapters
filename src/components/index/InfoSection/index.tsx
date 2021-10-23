@@ -23,12 +23,14 @@ export default function InfoSection() {
   return (
     <Flex
       paddingTop="16"
-      paddingBottom={[8, 8, 0]}
+      paddingBottom={[8, 0]}
       bg="greenLight"
       as="section"
       aria-label="info-section"
       flexDirection="column"
       alignItems="stretch"
+      overflow="hidden"
+      position="relative"
     >
       <Heading
         mt={8}
@@ -81,10 +83,10 @@ export default function InfoSection() {
           overflow="hidden"
         >
           <Box
-            width={{ base: "88vw", md: "504px", lg: "528px" }}
-            marginX={{ base: 4, lg: 0 }}
+            width={{ base: "88vw", md: "60vw", lg: "40vw" }}
+            marginX={{ base: 4, lg: 8 }}
             zIndex={4}
-            mr={{ base: 4, lg: isWiderThan1050 ? 560 : 480 }}
+            mr={{ base: 4, lg: "40vw" }}
           >
             <Heading mb={4} fontWeight="bold">
               <Box as="span" display="inline-block" color={colors.green}>
@@ -93,7 +95,7 @@ export default function InfoSection() {
               {t("indexPage.info-section-items.0.heading")}
             </Heading>
 
-            <Text mb={4} fontSize={["16", "22"]}>
+            <Text mb={4} pr={8} fontSize={["16", "22"]}>
               {t("indexPage.info-section-items.0.desc")}
             </Text>
 
@@ -110,7 +112,7 @@ export default function InfoSection() {
             <Flex
               bg={colors.marinadeLighterGreen}
               height={{ base: "auto", md: "160px" }}
-              width={{ base: "88vw", md: "504px" }}
+              width={{ base: "88vw", md: "60vw", lg: "34vw" }}
               p={4}
               mt={4}
               rounded="md"
@@ -149,12 +151,10 @@ export default function InfoSection() {
             width={{
               base: "88vw",
               md: "72vw",
-              lg: isWiderThan1050 ? 640 : 560,
+              lg: "44vw",
             }}
-            height="auto"
-            ml={{ base: 0, lg: isWiderThan1050 ? "528px" : "468px" }}
-            mt={{ base: 0, lg: isWiderThan1050 ? -16 : 0 }}
-            mb={{ base: 8, lg: 0 }}
+            ml={{ base: 0, lg: "40vw" }}
+            mb={{ base: 8, lg: 16 }}
           />
         </Flex>
 
@@ -166,10 +166,10 @@ export default function InfoSection() {
           overflow="hidden"
         >
           <Box
-            width={{ base: "88vw", md: "504px", lg: "528px" }}
+            width={{ base: "88vw", md: "60vw", lg: "32vw" }}
             marginX={{ base: 4, lg: 0 }}
             zIndex={4}
-            ml={{ base: 4, lg: isWiderThan1050 ? 640 : 504 }}
+            ml={{ base: 4, lg: "40vw" }}
           >
             <Heading mb={4} fontWeight="bold">
               <Box as="span" display="inline-block" color={colors.green}>
@@ -195,7 +195,7 @@ export default function InfoSection() {
             <Flex
               bg={colors.marinadeLighterGreen}
               height={{ base: "auto", md: "160px" }}
-              width={{ base: "88vw", md: "504px" }}
+              width={{ base: "88vw", md: "60vw", lg: "34vw" }}
               p={4}
               mt={4}
               rounded="md"
@@ -231,11 +231,10 @@ export default function InfoSection() {
             width={{
               base: "88vw",
               md: "72vw",
-              lg: isWiderThan1050 ? 560 : 480,
+              lg: "40vw",
             }}
-            height="auto"
-            ml={{ base: 0, lg: 8 }}
-            mt={{ base: 0, lg: isWiderThan1050 ? -8 : 0 }}
+            ml={{ base: 0, lg: -8 }}
+            mt={{ base: 0, lg: -8 }}
             mb={{ base: 8, lg: 0 }}
           />
         </Flex>
@@ -248,10 +247,10 @@ export default function InfoSection() {
           overflow="hidden"
         >
           <Box
-            width={{ base: "88vw", md: "504px", lg: "528px" }}
+            width={{ base: "88vw", md: "60vw", lg: "36vw" }}
             marginX={{ base: 4, lg: 0 }}
             zIndex={4}
-            mr={{ base: 4, lg: isWiderThan1050 ? 560 : 480 }}
+            mr={{ base: 4, lg: "40vw" }}
           >
             <Heading mb={4} fontWeight="bold">
               <Box as="span" display="inline-block" color={colors.green}>
@@ -277,7 +276,7 @@ export default function InfoSection() {
             <Box
               bg={colors.marinadeLighterGreen}
               height={{ base: "auto", md: "160px" }}
-              width={{ base: "88vw", md: "504px" }}
+              width={{ base: "88vw", md: "60vw", lg: "34vw" }}
               p={4}
               mt={4}
               rounded="md"
@@ -310,10 +309,10 @@ export default function InfoSection() {
           <Image
             position={{ base: "relative", lg: "absolute" }}
             src="/ilustrations/how-it-works3.svg"
-            width={{ base: "100vw", md: "72vw", lg: 728 }}
+            width={{ base: "100vw", md: "72vw", lg: "52vw" }}
             height={{ base: 320, md: "auto" }}
             mr={[2, 0]}
-            ml={{ base: 0, lg: isWiderThan1050 ? "392px" : "280px" }}
+            ml={{ base: 0, lg: "26vw" }}
             mt={{ base: 0, lg: 8 }}
             mb={{ base: 8, lg: 0 }}
             objectPosition="right"
