@@ -168,5 +168,10 @@
     "footer-copyright": "© Copyright 2021 Marinade.finance. All rights reserved.",
 
     "read-more": "Read more"
+  },
+  "appPage": {
+    "stake-menu-item": "Stake",
+    "use-msol-menu-item": "Use mSOL",
+    "connect-wallet":  "Connect wallet"
   }
 }

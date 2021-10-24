@@ -43,7 +43,6 @@ const Header = () => {
       width="100vw"
       as="header"
       bg={headerBackground}
-      display="flex"
       align="center"
       justifyContent="space-between"
       transition="background 0.3s ease, box-shadow 0.3s ease"
@@ -135,11 +134,12 @@ const Header = () => {
               </MenuItem>
             </MenuList>
           </Menu>
-          <Link href="/app" passHref>
+          <Link href="/app/staking" passHref>
             <Button
               size="sm"
               rounded="md"
               bg={colors.green}
+              _hover={{ bg: colors.green800 }}
               colorScheme={colors.green}
               color={colors.white}
               display={["none", "block"]}

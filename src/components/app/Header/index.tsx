@@ -1,20 +1,14 @@
-import {
-  HStack,
-  Image,
-  Box,
-  Flex,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  Button,
-} from "@chakra-ui/react";
+import { Box, Button, Flex, Image } from "@chakra-ui/react";
+import { useTranslation } from "next-export-i18n";
+import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
 
 import colors from "styles/customTheme/colors";
 
 const Header = () => {
+  const { t } = useTranslation();
+
   const [onTop, setOnTop] = useState(true);
   const [first, setFirst] = useState(true);
 
@@ -36,13 +30,23 @@ const Header = () => {
 
   const headerBackground = onTop ? colors.transparent : colors.greenLight;
 
+  const activeMenu = {
+    display: "inline-block",
+    opacity: 1,
+    borderBottom: `3px solid`,
+    borderColor: colors.green,
+    color: colors.green,
+  };
+
+  const router = useRouter();
+  const isStakingActive = router.pathname.includes("staking");
+
   return (
     <Flex
       position="fixed"
       width="100vw"
       as="header"
       bg={headerBackground}
-      display="flex"
       align="center"
       justifyContent="space-between"
       transition="background 0.3s ease, box-shadow 0.3s ease"
@@ -51,19 +55,19 @@ const Header = () => {
       px={{ base: 4, md: "40px", lg: 160 }}
     >
       <Link href="/" passHref>
-        <Box>
+        <Box pb="8px">
           <Box display={["none", "block"]}>
             <Image
               cursor="pointer"
-              src="./marinade-logo-black.svg"
+              src="../../marinade-logo-black.svg"
               alt="Marinade Logo"
               width={200}
             />
           </Box>
-          <Box display={["relative", "none"]}>
+          <Box display={["block", "none"]}>
             <Image
               cursor="pointer"
-              src="./marinade-icon-black.svg"
+              src="../../marinade-icon-black.svg"
               alt="Marinade Logo"
               width={38}
             />
@@ -71,92 +75,50 @@ const Header = () => {
         </Box>
       </Link>
 
-      <Box mt={2} mr={4}>
-        <HStack spacing={4} display={["none", "none", "flex"]}>
-          <Menu>
-            <MenuButton
-              as={Button}
-              size="sm"
-              rounded="md"
-              variant="link"
-              color="gray.900"
-              fontSize="md"
-              aria-label="Products dropdown"
-              p={1.5}
-              rightIcon={<Image src="/icons/arrow-down.svg" width="10px" />}
-            >
-              Product
-            </MenuButton>
-            <MenuList border="none" rounded="md" shadow="none">
-              <MenuItem>
-                <Link href="/">Stake SOL</Link>
-              </MenuItem>
-
-              <MenuItem>
-                <Link href="/">Validators</Link>
-              </MenuItem>
-
-              <MenuItem>
-                <Link href="/">Receive mSOL</Link>
-              </MenuItem>
-
-              <MenuItem>
-                <Link href="/">Marinade DAO</Link>
-              </MenuItem>
-
-              <MenuItem>
-                <Link href="/">DeFi recipes / integrations</Link>
-              </MenuItem>
-            </MenuList>
-          </Menu>
-
-          <Menu>
-            <MenuButton
-              as={Button}
-              variant="link"
-              size="sm"
-              fontSize="md"
-              color="gray.900"
-              rounded="md"
-              aria-label="Learn more dropdown"
-              p={1.5}
-              rightIcon={<Image src="/icons/arrow-down.svg" width="10px" />}
-            >
-              Learn
-            </MenuButton>
-
-            <MenuList border="none" rounded="md" shadow="none">
-              <MenuItem>
-                <Link href="/">Docs</Link>
-              </MenuItem>
-
-              <MenuItem>
-                <Link href="/">Security</Link>
-              </MenuItem>
-
-              <MenuItem>
-                <Link href="/">About us</Link>
-              </MenuItem>
-
-              <MenuItem>
-                <Link href="/">Roadmap</Link>
-              </MenuItem>
-            </MenuList>
-          </Menu>
+      <Flex flexDirection="row" alignContent="center">
+        <Link href="/app/staking" passHref>
           <Button
-            size="sm"
-            rounded="md"
-            bg={colors.green}
-            colorScheme={colors.green}
-            color={colors.white}
-            display={["none", "block"]}
-            rightIcon={
-              <Image src="/icons/arrow-right-white.svg" width="0.8rem" />
-            }
+            variant="link"
+            color={colors.black}
+            rounded="none"
+            isActive={isStakingActive}
+            mx={4}
+            py={isStakingActive ? "4px" : "7px"}
+            _active={activeMenu}
+            _hover={activeMenu}
           >
-            Go to app
+            {t("appPage.stake-menu-item")}
           </Button>
-        </HStack>
+        </Link>
+
+        <Link href="/app/defi" passHref>
+          <Button
+            variant="link"
+            color={colors.black}
+            rounded="none"
+            isActive={!isStakingActive}
+            mx={4}
+            py={!isStakingActive ? "4px" : "7px"}
+            _active={activeMenu}
+            _hover={activeMenu}
+          >
+            {t("appPage.use-msol-menu-item")}
+          </Button>
+        </Link>
+      </Flex>
+
+      <Box pb="8px">
+        <Button
+          size="sm"
+          rounded="md"
+          bg={colors.green}
+          _hover={{ bg: colors.green800 }}
+          colorScheme={colors.green}
+          color={colors.white}
+          display="block"
+        >
+          {t("appPage.connect-wallet")}
+        </Button>
       </Box>
     </Flex>
   );

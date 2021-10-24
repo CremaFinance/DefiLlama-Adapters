@@ -98,7 +98,7 @@ function Sidebar() {
               </Box>
             </Box>
 
-            <Link href="/app" passHref>
+            <Link href="/app/staking" passHref>
               <Button
                 size="sm"
                 rounded="md"

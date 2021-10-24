@@ -2,7 +2,7 @@ import { Box } from "@chakra-ui/react";
 
 import colors from "styles/customTheme/colors";
 
-const StakingSection = () => {
+const DefiSection = () => {
   return (
     <Box
       py="72px"
@@ -15,4 +15,4 @@ const StakingSection = () => {
   );
 };
 
-export default StakingSection;
+export default DefiSection;
