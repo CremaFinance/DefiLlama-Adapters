@@ -98,16 +98,18 @@ function Sidebar() {
               </Box>
             </Box>
 
-            <Button
-              size="sm"
-              rounded="md"
-              bg={colors.greenVibrant}
-              _hover={{ bg: colors.greenVibrant800 }}
-              color={colors.white}
-              rightIcon={<IoMdArrowRoundForward />}
-            >
-              Go to app
-            </Button>
+            <Link href="/app" passHref>
+              <Button
+                size="sm"
+                rounded="md"
+                bg={colors.greenVibrant}
+                _hover={{ bg: colors.greenVibrant800 }}
+                color={colors.white}
+                rightIcon={<IoMdArrowRoundForward />}
+              >
+                Go to app
+              </Button>
+            </Link>
           </DrawerBody>
 
           <DrawerFooter />

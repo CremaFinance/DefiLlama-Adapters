@@ -2,6 +2,7 @@ import { Box } from "@chakra-ui/react";
 
 import BlogPosts from "components/index/BlogPostsSection";
 import ContributorSection from "components/index/ContributorSection";
+import Header from "components/index/Header";
 import HeroSection from "components/index/HeroSection";
 import InfoSection from "components/index/InfoSection";
 import LogoStripSection from "components/index/LogoStripSection";
@@ -12,6 +13,7 @@ import WhySection from "components/index/WhySection";
 const Home = () => {
   return (
     <Box>
+      <Header />
       <HeroSection />
       <LogoStripSection />
       <TestemonialSection />
