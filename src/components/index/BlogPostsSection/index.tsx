@@ -21,7 +21,7 @@ export default function BlogPosts() {
       alignItems="stretch"
     >
       <Image
-        src="/bbq-dudes.png"
+        src="/ilustrations/octopus.svg"
         width={["90%", 350, 380]}
         display="block"
         margin="0 auto"
@@ -88,6 +88,7 @@ export default function BlogPosts() {
       <Box textAlign="center" mb={8}>
         <Button
           bg={colors.green}
+          _hover={{ bg: colors.green800 }}
           colorScheme={colors.green}
           rounded="md"
           mx={4}
@@ -97,9 +98,9 @@ export default function BlogPosts() {
         </Button>
 
         <Button
+          variant="link"
           mx={4}
           my={[2, 0]}
-          variant="ghost"
           colorScheme={colors.green}
           rounded="md"
           rightIcon={<HiArrowRight />}

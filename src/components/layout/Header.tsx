@@ -140,6 +140,7 @@ const Header = () => {
             size="sm"
             rounded="md"
             bg={colors.green}
+            _hover={{ bg: colors.green800 }}
             colorScheme={colors.green}
             color={colors.white}
             display={["none", "block"]}

@@ -53,7 +53,7 @@ const HeroSection = () => {
 
         <Text
           maxWidth={300}
-          marginX={["auto", "auto", "0"]}
+          marginX={["auto", "0"]}
           mb={[2, 2, 4]}
           fontSize="22"
           color={colors.black}

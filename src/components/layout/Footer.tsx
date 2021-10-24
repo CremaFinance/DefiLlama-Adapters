@@ -82,7 +82,7 @@ const Footer = () => {
           </Box>
         </Box>
 
-        <Box display="flex" flex={0.2} />
+        <Box display="flex" flex={[0.1, 0.2]} />
 
         <Box
           minWidth={["100%", "250"]}
@@ -102,25 +102,25 @@ const Footer = () => {
           </Heading>
 
           <Text fontSize="sm" color={colors.white} mb={2}>
-            <NextLink href="/">{t("indexPage.footer-stake-sol")}</NextLink>
+            <Link href="/">{t("indexPage.footer-stake-sol")}</Link>
           </Text>
 
           <Text fontSize="sm" color={colors.white} mb={2}>
-            <NextLink href="/">{t("indexPage.footer-validators")}</NextLink>
+            <Link href="/">{t("indexPage.footer-validators")}</Link>
           </Text>
 
           <Text fontSize="sm" color={colors.white} mb={2}>
-            <NextLink href="/">{t("indexPage.footer-receive-msol")}</NextLink>
+            <Link href="/">{t("indexPage.footer-receive-msol")}</Link>
           </Text>
 
           <Text fontSize="sm" color={colors.white} mb={2}>
-            <NextLink href="/">{t("indexPage.footer-marinde-dao")}</NextLink>
+            <Link href="/">{t("indexPage.footer-marinde-dao")}</Link>
           </Text>
 
           <Text fontSize="sm" color={colors.white} mb={2}>
-            <NextLink href="/">
+            <Link href="/">
               {t("indexPage.footer-defi-recipes-integration")}
-            </NextLink>
+            </Link>
           </Text>
         </Box>
         <Box pt="8" pb="8" display="flex" flex="0.25" flexDirection="column">
@@ -135,19 +135,19 @@ const Footer = () => {
           </Heading>
 
           <Text fontSize="sm" color={colors.white} mb={2}>
-            <NextLink href="/">{t("indexPage.footer-docs")}</NextLink>
+            <Link href="/">{t("indexPage.footer-docs")}</Link>
           </Text>
 
           <Text fontSize="sm" color={colors.white} mb={2}>
-            <NextLink href="/">{t("indexPage.footer-security")}</NextLink>
+            <Link href="/">{t("indexPage.footer-security")}</Link>
           </Text>
 
           <Text fontSize="sm" color={colors.white} mb={2}>
-            <NextLink href="/">{t("indexPage.footer-about-us")}</NextLink>
+            <Link href="/">{t("indexPage.footer-about-us")}</Link>
           </Text>
 
           <Text fontSize="sm" color={colors.white} mb={2}>
-            <NextLink href="/">{t("indexPage.footer-roadmap")}</NextLink>
+            <Link href="/">{t("indexPage.footer-roadmap")}</Link>
           </Text>
         </Box>
       </Box>
