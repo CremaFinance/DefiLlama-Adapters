@@ -42,9 +42,9 @@ function Sidebar() {
             <Link href="/" passHref>
               <Image
                 cursor="pointer"
-                src="./marinade-logo.png"
+                src="./marinade-logo-black.svg"
                 alt="Marinade Logo"
-                width={200}
+                width={[160, 200]}
               />
             </Link>
           </DrawerHeader>
