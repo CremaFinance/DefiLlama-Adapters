@@ -91,7 +91,8 @@ const LogoStripSection = () => {
                 cursor="pointer"
                 src={el.image}
                 alt={el.title}
-                opacity="0.8"
+                _hover={{ opacity: "1" }}
+                opacity="0.6"
                 height={["38px", "56px"]}
                 marginX="20px"
                 mb={{ base: 4, lg: 0 }}
