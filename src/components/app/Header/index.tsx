@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Image } from "@chakra-ui/react";
+import { Box, Button, Flex, Image, useMediaQuery } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
@@ -36,10 +36,13 @@ const Header = () => {
     borderBottom: `3px solid`,
     borderColor: colors.green,
     color: colors.green,
+    fontWeight: "bold",
+    mb: 0,
   };
 
   const router = useRouter();
   const isStakingActive = router.pathname.includes("staking");
+  const [isLargerThan430] = useMediaQuery("(min-width: 430px)");
 
   return (
     <Flex
@@ -52,7 +55,7 @@ const Header = () => {
       transition="background 0.3s ease, box-shadow 0.3s ease"
       py={[2, 4]}
       zIndex={1000}
-      px={{ base: 4, md: "40px", lg: 160 }}
+      px={{ base: 4, md: "12vw" }}
     >
       <Link href="/" passHref>
         <Box pb="8px">
@@ -82,7 +85,9 @@ const Header = () => {
             color={colors.black}
             rounded="none"
             isActive={isStakingActive}
-            mx={4}
+            width="80px"
+            fontWeight="normal"
+            mb="4px"
             py={isStakingActive ? "4px" : "7px"}
             _active={activeMenu}
             _hover={activeMenu}
@@ -97,7 +102,9 @@ const Header = () => {
             color={colors.black}
             rounded="none"
             isActive={!isStakingActive}
-            mx={4}
+            width="107px"
+            fontWeight="normal"
+            mb="4px"
             py={!isStakingActive ? "4px" : "7px"}
             _active={activeMenu}
             _hover={activeMenu}
@@ -115,9 +122,11 @@ const Header = () => {
           _hover={{ bg: colors.green800 }}
           colorScheme={colors.green}
           color={colors.white}
-          display="block"
+          display="flex"
+          leftIcon={<Image src="/icons/wallet.svg" width="0.8rem" />}
+          rightIcon={<Image src="/icons/expand-more.svg" width="0.5rem" />}
         >
-          {t("appPage.connect-wallet")}
+          {isLargerThan430 ? t("appPage.connect-wallet") : ""}
         </Button>
       </Box>
     </Flex>
