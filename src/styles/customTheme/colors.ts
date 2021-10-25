@@ -25,6 +25,7 @@ const colors = {
   ...extendedColors,
   black: "#171923",
   blackMate: "#242731",
+  blackMate800: "#242731CC",
   greenLight: "#C8ECE1",
   greenVibrant: "#08B898",
   greenVibrant800: "#08B898CC",

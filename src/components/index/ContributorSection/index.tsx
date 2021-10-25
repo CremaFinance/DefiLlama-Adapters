@@ -1,6 +1,7 @@
-import { Button, Flex, Heading, Image, Link, Text } from "@chakra-ui/react";
+import { Button, Flex, Image, Link } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 
+import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
 
 const ContributorSection = () => {
@@ -19,25 +20,20 @@ const ContributorSection = () => {
       <Flex
         flexDirection="column"
         alignItems="center"
-        width={{ base: "88vw", md: "480px" }}
+        width={{ base: "88vw", md: "496px" }}
         mr={{ base: 0, lg: 24 }}
       >
-        <Heading
-          textAlign="center"
-          mb={4}
-          color={colors.black}
-          fontWeight="bold"
-        >
+        <MText textAlign="center" mb={4} color={colors.black} type="heading-md">
           {t("indexPage.contributor-section-title")}
-        </Heading>
-        <Text
+        </MText>
+        <MText
+          type="text-large"
           alignSelf="center"
           textAlign="center"
           color={colors.black}
-          fontSize={{ base: "16px", lg: "22px" }}
         >
           {t("indexPage.contributor-section-subtitle")}
-        </Text>
+        </MText>
         <Button
           rounded="md"
           bg={colors.green}

@@ -1,7 +1,8 @@
-import { Heading, Image, Link, Text, Square } from "@chakra-ui/react";
+import { Image, Link, Square } from "@chakra-ui/react";
 import htmlParser from "html-react-parser";
 import { useTranslation } from "next-export-i18n";
 
+import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
 
 type IconWithTextBelowProps = {
@@ -13,8 +14,6 @@ type IconWithTextBelowProps = {
   width?: string;
   opacity?: string;
   marginTop?: number;
-  titleSize?: "h1" | "h2" | "h3" | "h4" | "h5";
-  subtitleSize?: number | string;
   maxWidth?: string;
   titleColor?: string;
   subtitleColor?: string;
@@ -30,8 +29,6 @@ const IconWithTextBelow = ({
   width = "auto",
   opacity = "1",
   marginTop = 0,
-  titleSize = "h4",
-  subtitleSize = 18,
   maxWidth = "16rem",
   titleColor = colors.white,
   subtitleColor = colors.white800,
@@ -56,20 +53,20 @@ const IconWithTextBelow = ({
         width={width}
         alt={`${title} Logo`}
       />
-      <Heading
-        as={titleSize}
+      <MText
         color={titleColor}
         marginBottom="4"
         marginTop="8"
         wordBreak="keep-all"
+        type="heading-sm"
         textAlign="center"
       >
         {title}
-      </Heading>
+      </MText>
       {subtitle && (
-        <Text color={subtitleColor} textAlign="center" fontSize={subtitleSize}>
+        <MText type="text-lg" color={subtitleColor} textAlign="center">
           {htmlParser(subtitle)}
-        </Text>
+        </MText>
       )}
       {externalUrl && (
         <Link

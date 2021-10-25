@@ -31,20 +31,60 @@ const Text = (props: Props) => {
 
     case "heading-sm":
       return (
-        <Heading
-          {...props}
-          fontSize={["18px", "22px", "28px"]}
-          lineHeight={["110%"]}
-        >
+        <Heading {...props} fontSize={["22px", "28px"]} lineHeight={["110%"]}>
           {props.children}
         </Heading>
       );
 
-    case "text-large":
+    case "text-xl":
       return (
         <ChakraText
           {...props}
-          fontSize={["16.5px", "18.5px", "22.5px"]}
+          fontSize={["20.5px", "22.5px"]}
+          lineHeight={["150%"]}
+        >
+          {props.children}
+        </ChakraText>
+      );
+
+    case "text-lg":
+      return (
+        <ChakraText
+          {...props}
+          fontSize={["16px", "18px"]}
+          lineHeight={["150%"]}
+        >
+          {props.children}
+        </ChakraText>
+      );
+
+    case "text-md":
+      return (
+        <ChakraText
+          {...props}
+          fontSize={["12.4px", "14.4px"]}
+          lineHeight={["150%"]}
+        >
+          {props.children}
+        </ChakraText>
+      );
+
+    case "text-sm":
+      return (
+        <ChakraText
+          {...props}
+          fontSize={["9.52px", "11.52px"]}
+          lineHeight={["150%"]}
+        >
+          {props.children}
+        </ChakraText>
+      );
+
+    case "text-xsm":
+      return (
+        <ChakraText
+          {...props}
+          fontSize={["7.22px", "9.5px"]}
           lineHeight={["150%"]}
         >
           {props.children}

@@ -1,15 +1,8 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Heading,
-  Image,
-  Text,
-  useMediaQuery,
-} from "@chakra-ui/react";
+import { Box, Button, Flex, Image, useMediaQuery } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import Link from "next/link";
 
+import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
 
 const HeroSection = () => {
@@ -33,34 +26,28 @@ const HeroSection = () => {
         zIndex={10}
         textAlign={["center", "left"]}
       >
-        <Heading
-          mt={[0, "1vh"]}
-          color={colors.greenVibrant}
-          fontWeight="bold"
-          fontSize={["35px", "54px"]}
-        >
+        <MText type="heading-lg" mt={[0, "1vh"]} color={colors.greenVibrant}>
           {t("indexPage.hero-section-title")}
-        </Heading>
+        </MText>
 
-        <Heading
-          fontSize={["35px", "54px"]}
-          fontWeight="bold"
-          maxWidth={[320, 480]}
+        <MText
+          type="heading-lg"
+          mb={[4, 6]}
           marginX={["auto", "0"]}
-          mb={4}
+          maxWidth={[320, 480]}
         >
           {t("indexPage.hero-section-subtitle")}
-        </Heading>
+        </MText>
 
-        <Text
-          maxWidth={300}
-          marginX={["auto", "0"]}
-          mb={[2, 2, 4]}
-          fontSize="22"
+        <MText
+          type="text-xl"
+          mb={[2, 4]}
+          maxWidth={380}
           color={colors.black}
+          marginX={["auto", "0"]}
         >
           {t("indexPage.hero-section-desc")}
-        </Text>
+        </MText>
 
         <Link href="/app/staking" passHref>
           <Button
@@ -75,9 +62,9 @@ const HeroSection = () => {
           </Button>
         </Link>
 
-        <Text fontSize="14" color="gray.500">
+        <MText type="text-md" color={colors.blackMate800}>
           6.21% APY
-        </Text>
+        </MText>
       </Box>
 
       <Flex justifyContent="flex-end">
@@ -104,7 +91,7 @@ const HeroSection = () => {
 
       {/* ECOSYSTEM STATS */}
       <Box
-        pl={{ base: 4, md: "40px", lg: 160 }}
+        pl={{ base: 4, md: "40px", lg: 168 }}
         position="absolute"
         bottom={[4, 16]}
         display="flex"
@@ -117,19 +104,15 @@ const HeroSection = () => {
             <Box
               display="flex"
               flexDirection="row"
-              mr={{ md: 4, lg: 16 }}
+              mr={{ md: 4, lg: 8 }}
               key={`desktop-hstack-${index}`}
             >
-              <Text
-                fontSize={["22px", "28px"]}
-                fontWeight="bold"
-                color={colors.green}
-              >
+              <MText type="heading-sm" color={colors.green} mr={1}>
                 {t(`indexPage.hero-section-stats.${index}.number`)}
-              </Text>{" "}
-              <Text fontSize={["22px", "28px"]} fontWeight="bold">
+              </MText>{" "}
+              <MText type="heading-sm" mr={1}>
                 {t(`indexPage.hero-section-stats.${index}.desc`)}
-              </Text>
+              </MText>
             </Box>
           );
         })}
