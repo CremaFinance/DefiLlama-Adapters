@@ -1,5 +1,19 @@
 {
   "indexPage": {
+    "product-menu-item": "Product",
+    "stake-sol-menu-item": "Stake SOL",
+    "validators-menu-item": "Validators",
+    "receive-msol-menu-item": "Receive mSOL",
+    "marinade-dao-menu-item": "Marinade DAO",
+    "defi-recipes-menu-item": "DeFi recipes / integrations",
+    "learn-menu-item": "Learn",
+    "docs-menu-item": "Docs",
+    "security-menu-item": "Security",
+    "about-us-menu-item": "About us",
+    "roadmap-menu-item": "Roadmap",
+    "go-to-app-action": "Go to app",
+
+
     "hero-section-title": "Stake Solana",
     "hero-section-subtitle": "without locking in your funds",
     "hero-section-desc": "Receive mSOL, the ultimate unit of the Solana ecosystem.",
