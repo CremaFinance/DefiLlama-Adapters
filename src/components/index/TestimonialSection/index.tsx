@@ -30,7 +30,7 @@ const TestimonialSection = () => {
           <Image src="/solana-logo.png" width="160px" />
         </Box>
 
-        <MText type="heading-sm" mb={4}>
+        <MText type="heading-xsm" mb={4}>
           “{t("indexPage.testimonial-section-quote")}”
         </MText>
 

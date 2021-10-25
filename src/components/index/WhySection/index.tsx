@@ -18,7 +18,7 @@ export default function WhySection() {
       flexDirection="column"
       alignItems="stretch"
     >
-      <MText textAlign="center" color={colors.white} type="heading-lg" mt={2}>
+      <MText textAlign="center" color={colors.white} type="heading-md" mt={6}>
         {t("indexPage.why-section-title")}
       </MText>
       <Flex

@@ -107,10 +107,10 @@ const HeroSection = () => {
               mr={{ md: 4, lg: 8 }}
               key={`desktop-hstack-${index}`}
             >
-              <MText type="heading-sm" color={colors.green} mr={1}>
+              <MText type="heading-xsm" color={colors.green} mr={1}>
                 {t(`indexPage.hero-section-stats.${index}.number`)}
               </MText>{" "}
-              <MText type="heading-sm" mr={1}>
+              <MText type="heading-xsm" mr={1}>
                 {t(`indexPage.hero-section-stats.${index}.desc`)}
               </MText>
             </Box>

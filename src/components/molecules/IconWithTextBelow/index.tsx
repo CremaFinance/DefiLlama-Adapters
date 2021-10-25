@@ -58,7 +58,7 @@ const IconWithTextBelow = ({
         marginBottom="4"
         marginTop="8"
         wordBreak="keep-all"
-        type="heading-sm"
+        type="heading-xsm"
         textAlign="center"
       >
         {title}

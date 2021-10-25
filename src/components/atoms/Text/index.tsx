@@ -31,6 +31,17 @@ const Text = (props: Props) => {
 
     case "heading-sm":
       return (
+        <Heading
+          {...props}
+          fontSize={["28.13px", "35.16px"]}
+          lineHeight={["110%"]}
+        >
+          {props.children}
+        </Heading>
+      );
+
+    case "heading-xsm":
+      return (
         <Heading {...props} fontSize={["22px", "28px"]} lineHeight={["110%"]}>
           {props.children}
         </Heading>
