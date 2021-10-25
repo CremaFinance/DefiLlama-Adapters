@@ -41,9 +41,9 @@ export default function BlogPosts() {
     }
 
     return [
-      <Skeleton height="150px" />,
-      <Skeleton height="150px" />,
-      <Skeleton height="150px" />,
+      <Skeleton key="firstSkeleton" height="150px" />,
+      <Skeleton key="secondSkeleton" height="150px" />,
+      <Skeleton key="thirdSkeleton" height="150px" />,
     ];
   }
 
@@ -56,7 +56,7 @@ export default function BlogPosts() {
 
   return (
     <Box
-      paddingTop="16"
+      paddingTop={24}
       paddingBottom="16"
       bg={colors.greenLight}
       px={5}
@@ -68,9 +68,10 @@ export default function BlogPosts() {
     >
       <Image
         src="/octo-chef.svg"
-        width={["90%", 390, 390]}
+        width={["90%", 390, 430]}
         display="block"
         margin="0 auto"
+        mt={4}
         mb={4}
       />
       <Heading
