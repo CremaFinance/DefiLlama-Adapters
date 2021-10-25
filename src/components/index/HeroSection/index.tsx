@@ -8,6 +8,7 @@ import {
   useMediaQuery,
 } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
+import Link from "next/link";
 
 import colors from "styles/customTheme/colors";
 
@@ -61,15 +62,18 @@ const HeroSection = () => {
           {t("indexPage.hero-section-desc")}
         </Text>
 
-        <Button
-          bg={colors.green}
-          colorScheme={colors.green}
-          rounded="md"
-          width="200px"
-          mb={[2, 4]}
-        >
-          {t("indexPage.hero-section-button")}
-        </Button>
+        <Link href="/app/staking" passHref>
+          <Button
+            bg={colors.green}
+            _hover={{ bg: colors.green800 }}
+            colorScheme={colors.green}
+            rounded="md"
+            width="200px"
+            mb={[2, 4]}
+          >
+            {t("indexPage.hero-section-button")}
+          </Button>
+        </Link>
 
         <Text fontSize="14" color="gray.500">
           6.21% APY
