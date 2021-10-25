@@ -9,14 +9,16 @@ import {
   MenuItem,
   Button,
 } from "@chakra-ui/react";
+import { useTranslation } from "next-export-i18n";
 import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
 
+import Sidebar from "../../layout/Sidebar";
 import colors from "styles/customTheme/colors";
 
-import Sidebar from "./Sidebar";
-
 const Header = () => {
+  const { t } = useTranslation();
+
   const [onTop, setOnTop] = useState(true);
   const [first, setFirst] = useState(true);
 
@@ -44,7 +46,6 @@ const Header = () => {
       width="100vw"
       as="header"
       bg={headerBackground}
-      display="flex"
       align="center"
       justifyContent="space-between"
       transition="background 0.3s ease, box-shadow 0.3s ease"
@@ -78,27 +79,27 @@ const Header = () => {
               p={1.5}
               rightIcon={<Image src="/icons/arrow-down.svg" width="10px" />}
             >
-              Product
+              {t("indexPage.product-menu-item")}
             </MenuButton>
             <MenuList border="none" rounded="md" shadow="none">
               <MenuItem>
-                <Link href="/">Stake SOL</Link>
+                <Link href="/">{t("indexPage.stake-sol-menu-item")}</Link>
               </MenuItem>
 
               <MenuItem>
-                <Link href="/">Validators</Link>
+                <Link href="/">{t("indexPage.validators-menu-item")}</Link>
               </MenuItem>
 
               <MenuItem>
-                <Link href="/">Receive mSOL</Link>
+                <Link href="/">{t("indexPage.receive-msol-menu-item")}</Link>
               </MenuItem>
 
               <MenuItem>
-                <Link href="/">Marinade DAO</Link>
+                <Link href="/">{t("indexPage.marinade-dao-menu-item")}</Link>
               </MenuItem>
 
               <MenuItem>
-                <Link href="/">DeFi recipes / integrations</Link>
+                <Link href="/">{t("indexPage.defi-recipes-menu-item")}</Link>
               </MenuItem>
             </MenuList>
           </Menu>
@@ -115,41 +116,43 @@ const Header = () => {
               p={1.5}
               rightIcon={<Image src="/icons/arrow-down.svg" width="10px" />}
             >
-              Learn
+              {t("indexPage.learn-menu-item")}
             </MenuButton>
 
             <MenuList border="none" rounded="md" shadow="none">
               <MenuItem>
-                <Link href="/">Docs</Link>
+                <Link href="/">{t("indexPage.docs-menu-item")}</Link>
               </MenuItem>
 
               <MenuItem>
-                <Link href="/">Security</Link>
+                <Link href="/">{t("indexPage.security-menu-item")}</Link>
               </MenuItem>
 
               <MenuItem>
-                <Link href="/">About us</Link>
+                <Link href="/">{t("indexPage.about-us-menu-item")}</Link>
               </MenuItem>
 
               <MenuItem>
-                <Link href="/">Roadmap</Link>
+                <Link href="/">{t("indexPage.roadmap-menu-item")}</Link>
               </MenuItem>
             </MenuList>
           </Menu>
-          <Button
-            size="sm"
-            rounded="md"
-            bg={colors.green}
-            _hover={{ bg: colors.green800 }}
-            colorScheme={colors.green}
-            color={colors.white}
-            display={["none", "block"]}
-            rightIcon={
-              <Image src="/icons/arrow-right-white.svg" width="0.8rem" />
-            }
-          >
-            Go to app
-          </Button>
+          <Link href="/app/staking" passHref>
+            <Button
+              size="sm"
+              rounded="md"
+              bg={colors.green}
+              _hover={{ bg: colors.green800 }}
+              colorScheme={colors.green}
+              color={colors.white}
+              display={["none", "block"]}
+              rightIcon={
+                <Image src="/icons/arrow-right-white.svg" width="0.8rem" />
+              }
+            >
+              {t("indexPage.go-to-app-action")}
+            </Button>
+          </Link>
         </HStack>
       </Box>
     </Flex>

@@ -13,12 +13,14 @@ import {
   useDisclosure,
   Image,
 } from "@chakra-ui/react";
+import { useTranslation } from "next-export-i18n";
 import Link from "next/link";
 import { IoIosMenu, IoMdArrowRoundForward } from "react-icons/io";
 
 import colors from "styles/customTheme/colors";
 
 function Sidebar() {
+  const { t } = useTranslation();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -51,63 +53,65 @@ function Sidebar() {
 
           <DrawerBody>
             <Heading size="sm" mb={2}>
-              Product
+              {t("indexPage.product-menu-item")}
             </Heading>
 
             <Box mb={5}>
               <Box mb={1}>
-                <Link href="/">Stake SOL</Link>
+                <Link href="/">{t("indexPage.stake-sol-menu-item")}</Link>
               </Box>
 
               <Box mb={1}>
-                <Link href="/">Validators</Link>
+                <Link href="/">{t("indexPage.validators-menu-item")}</Link>
               </Box>
 
               <Box mb={1}>
-                <Link href="/">Receive mSOL</Link>
+                <Link href="/">{t("indexPage.receive-msol-menu-item")}</Link>
               </Box>
 
               <Box mb={1}>
-                <Link href="/">Marinade DAO</Link>
+                <Link href="/">{t("indexPage.marinade-dao-menu-item")}</Link>
               </Box>
 
               <Box mb={1}>
-                <Link href="/">DeFi recipes / integrations</Link>
+                <Link href="/">{t("indexPage.defi-recipes-menu-item")}</Link>
               </Box>
             </Box>
 
             <Heading size="sm" my={2}>
-              Learn
+              {t("indexPage.learn-menu-item")}
             </Heading>
 
             <Box mb={5}>
               <Box mb={1}>
-                <Link href="/">Docs</Link>
+                <Link href="/">{t("indexPage.docs-menu-item")}</Link>
               </Box>
 
               <Box mb={1}>
-                <Link href="/">Security</Link>
+                <Link href="/">{t("indexPage.security-menu-item")}</Link>
               </Box>
 
               <Box mb={1}>
-                <Link href="/">About us</Link>
+                <Link href="/">{t("indexPage.about-us-menu-item")}</Link>
               </Box>
 
               <Box mb={1}>
-                <Link href="/">Roadmap</Link>
+                <Link href="/">{t("indexPage.roadmap-menu-item")}</Link>
               </Box>
             </Box>
 
-            <Button
-              size="sm"
-              rounded="md"
-              bg={colors.greenVibrant}
-              _hover={{ bg: colors.greenVibrant800 }}
-              color={colors.white}
-              rightIcon={<IoMdArrowRoundForward />}
-            >
-              Go to app
-            </Button>
+            <Link href="/app/staking" passHref>
+              <Button
+                size="sm"
+                rounded="md"
+                bg={colors.greenVibrant}
+                _hover={{ bg: colors.greenVibrant800 }}
+                color={colors.white}
+                rightIcon={<IoMdArrowRoundForward />}
+              >
+                {t("indexPage.go-to-app-action")}
+              </Button>
+            </Link>
           </DrawerBody>
 
           <DrawerFooter />
