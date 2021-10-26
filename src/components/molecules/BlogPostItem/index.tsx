@@ -42,6 +42,7 @@ const BlogPostItem = ({ title, subtitle, link, date }: SectionProps) => (
 
     <Box>
       <Button
+        as="a"
         variant="link"
         color={colors.green}
         href={link}
