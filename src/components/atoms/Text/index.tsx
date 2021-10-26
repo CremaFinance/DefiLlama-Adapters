@@ -42,7 +42,7 @@ const Text = (props: Props) => {
 
     case "heading-xsm":
       return (
-        <Heading {...props} fontSize={["22px", "28px"]} lineHeight={["110%"]}>
+        <Heading {...props} fontSize={["18px", "28px"]} lineHeight={["110%"]}>
           {props.children}
         </Heading>
       );
@@ -51,7 +51,7 @@ const Text = (props: Props) => {
       return (
         <ChakraText
           {...props}
-          fontSize={["20.5px", "22.5px"]}
+          fontSize={["18px", "22.5px"]}
           lineHeight={["150%"]}
         >
           {props.children}

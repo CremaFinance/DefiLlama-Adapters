@@ -13,6 +13,7 @@ import { useTranslation } from "next-export-i18n";
 import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
 
+import MText from "../../atoms/Text";
 import Sidebar from "../../layout/Sidebar";
 import colors from "styles/customTheme/colors";
 
@@ -74,32 +75,41 @@ const Header = () => {
               rounded="md"
               variant="link"
               color="gray.900"
-              fontSize="md"
               aria-label="Products dropdown"
               p={1.5}
               rightIcon={<Image src="/icons/arrow-down.svg" width="10px" />}
             >
-              {t("indexPage.product-menu-item")}
+              <MText type="text-lg">{t("indexPage.product-menu-item")}</MText>
             </MenuButton>
             <MenuList border="none" rounded="md" shadow="none">
-              <MenuItem>
-                <Link href="/">{t("indexPage.stake-sol-menu-item")}</Link>
+              <MenuItem href="/">
+                <MText type="text-lg">
+                  {t("indexPage.stake-sol-menu-item")}
+                </MText>
               </MenuItem>
 
-              <MenuItem>
-                <Link href="/">{t("indexPage.validators-menu-item")}</Link>
+              <MenuItem href="/">
+                <MText type="text-lg">
+                  {t("indexPage.validators-menu-item")}
+                </MText>
               </MenuItem>
 
-              <MenuItem>
-                <Link href="/">{t("indexPage.receive-msol-menu-item")}</Link>
+              <MenuItem href="/">
+                <MText type="text-lg">
+                  {t("indexPage.receive-msol-menu-item")}
+                </MText>
               </MenuItem>
 
-              <MenuItem>
-                <Link href="/">{t("indexPage.marinade-dao-menu-item")}</Link>
+              <MenuItem href="/">
+                <MText type="text-lg">
+                  {t("indexPage.marinade-dao-menu-item")}
+                </MText>
               </MenuItem>
 
-              <MenuItem>
-                <Link href="/">{t("indexPage.defi-recipes-menu-item")}</Link>
+              <MenuItem href="/">
+                <MText type="text-lg">
+                  {t("indexPage.defi-recipes-menu-item")}
+                </MText>
               </MenuItem>
             </MenuList>
           </Menu>
@@ -109,31 +119,34 @@ const Header = () => {
               as={Button}
               variant="link"
               size="sm"
-              fontSize="md"
               color="gray.900"
               rounded="md"
               aria-label="Learn more dropdown"
               p={1.5}
               rightIcon={<Image src="/icons/arrow-down.svg" width="10px" />}
             >
-              {t("indexPage.learn-menu-item")}
+              <MText type="text-lg">{t("indexPage.learn-menu-item")}</MText>
             </MenuButton>
 
             <MenuList border="none" rounded="md" shadow="none">
-              <MenuItem>
-                <Link href="/">{t("indexPage.docs-menu-item")}</Link>
+              <MenuItem href="/">
+                <MText type="text-lg">{t("indexPage.docs-menu-item")}</MText>
               </MenuItem>
 
-              <MenuItem>
-                <Link href="/">{t("indexPage.security-menu-item")}</Link>
+              <MenuItem href="/">
+                <MText type="text-lg">
+                  {t("indexPage.security-menu-item")}
+                </MText>
               </MenuItem>
 
-              <MenuItem>
-                <Link href="/">{t("indexPage.about-us-menu-item")}</Link>
+              <MenuItem href="/">
+                <MText type="text-lg">
+                  {t("indexPage.about-us-menu-item")}
+                </MText>
               </MenuItem>
 
-              <MenuItem>
-                <Link href="/">{t("indexPage.roadmap-menu-item")}</Link>
+              <MenuItem href="/">
+                <MText type="text-lg">{t("indexPage.roadmap-menu-item")}</MText>
               </MenuItem>
             </MenuList>
           </Menu>
@@ -145,12 +158,13 @@ const Header = () => {
               _hover={{ bg: colors.green800 }}
               colorScheme={colors.green}
               color={colors.white}
-              display={["none", "block"]}
-              rightIcon={
-                <Image src="/icons/arrow-right-white.svg" width="0.8rem" />
-              }
+              display={["none", "flex"]}
+              width="120px"
+              flexDirection="row"
+              justifyContent="space-around"
             >
-              {t("indexPage.go-to-app-action")}
+              <MText type="text-md">{t("indexPage.go-to-app-action")}</MText>
+              <Image src="/icons/arrow-right-white.svg" width="0.8rem" />
             </Button>
           </Link>
         </HStack>
