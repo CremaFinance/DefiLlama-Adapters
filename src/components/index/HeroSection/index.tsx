@@ -80,7 +80,7 @@ const HeroSection = () => {
         </Text>
       </Box>
 
-      <Flex width="100vw" justifyContent="flex-end">
+      <Flex justifyContent="flex-end">
         <Image
           src="./ilustrations/clouds-and-leaves.svg"
           width={{ base: 0, md: "64vw", lg: "40vw", "2xl": "32vw" }}
