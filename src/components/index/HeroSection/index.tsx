@@ -1,7 +1,8 @@
-import { Box, Button, Flex, Image, useMediaQuery } from "@chakra-ui/react";
+import { Box, Flex, Image, useMediaQuery } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import Link from "next/link";
 
+import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
 
@@ -50,16 +51,17 @@ const HeroSection = () => {
         </MText>
 
         <Link href="/app/staking" passHref>
-          <Button
+          <MButton
             bg={colors.green}
             _hover={{ bg: colors.green800 }}
             colorScheme={colors.green}
             rounded="md"
             width="200px"
+            textType="text-xl"
             mb={[2, 4]}
           >
             {t("indexPage.hero-section-button")}
-          </Button>
+          </MButton>
         </Link>
 
         <MText type="text-md" color={colors.blackMate800}>

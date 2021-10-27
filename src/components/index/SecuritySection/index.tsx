@@ -1,6 +1,7 @@
-import { Box, Button, Flex } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 
+import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 import IconWithTextBelow from "components/molecules/IconWithTextBelow";
 import colors from "styles/customTheme/colors";
@@ -72,14 +73,15 @@ export default function SecuritySection() {
         />
       </Flex>
       <Box marginTop="16" mb={6} display="flex" justifyContent="center">
-        <Button
+        <MButton
+          textType="text-xl"
           bg={colors.greenVibrant}
           _hover={{ bg: colors.greenVibrant800 }}
           colorScheme={colors.greenVibrant}
           rounded="md"
         >
           {t("indexPage.security-section-action")}
-        </Button>
+        </MButton>
       </Box>
       <MText
         type="heading-sm"

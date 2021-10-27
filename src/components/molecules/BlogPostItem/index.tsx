@@ -1,7 +1,8 @@
-import { Button, Flex } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { HiOutlineExternalLink } from "react-icons/hi";
 
+import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
 
@@ -56,7 +57,8 @@ const BlogPostItem = ({ title, link, date }: SectionProps) => {
         {title}
       </MText>
 
-      <Button
+      <MButton
+        textType="text-xl"
         variant="link"
         as="a"
         mt={8}
@@ -66,7 +68,7 @@ const BlogPostItem = ({ title, link, date }: SectionProps) => {
         rightIcon={<HiOutlineExternalLink />}
       >
         {t("indexPage.read-more")}
-      </Button>
+      </MButton>
     </Flex>
   );
 };

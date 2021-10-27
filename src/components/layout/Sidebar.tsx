@@ -1,7 +1,6 @@
 import {
   Box,
   IconButton,
-  Button,
   Drawer,
   DrawerBody,
   DrawerFooter,
@@ -16,6 +15,7 @@ import { useTranslation } from "next-export-i18n";
 import Link from "next/link";
 import { IoIosMenu, IoMdArrowRoundForward } from "react-icons/io";
 
+import MButton from "../atoms/Button";
 import MText from "../atoms/Text";
 import colors from "styles/customTheme/colors";
 
@@ -119,7 +119,8 @@ function Sidebar() {
             </Box>
 
             <Link href="/app/staking" passHref>
-              <Button
+              <MButton
+                textType="text-xl"
                 size="sm"
                 rounded="md"
                 bg={colors.greenVibrant}
@@ -128,7 +129,7 @@ function Sidebar() {
                 rightIcon={<IoMdArrowRoundForward />}
               >
                 {t("indexPage.go-to-app-action")}
-              </Button>
+              </MButton>
             </Link>
           </DrawerBody>
 

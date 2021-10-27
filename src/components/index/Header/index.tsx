@@ -13,6 +13,7 @@ import { useTranslation } from "next-export-i18n";
 import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
 
+import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 import Sidebar from "../../layout/Sidebar";
 import colors from "styles/customTheme/colors";
@@ -151,8 +152,9 @@ const Header = () => {
             </MenuList>
           </Menu>
           <Link href="/app/staking" passHref>
-            <Button
+            <MButton
               size="sm"
+              textType="text-lg"
               rounded="md"
               bg={colors.green}
               _hover={{ bg: colors.green800 }}
@@ -163,9 +165,9 @@ const Header = () => {
               flexDirection="row"
               justifyContent="space-around"
             >
-              <MText type="text-md">{t("indexPage.go-to-app-action")}</MText>
+              {t("indexPage.go-to-app-action")}
               <Image src="/icons/arrow-right-white.svg" width="0.8rem" />
-            </Button>
+            </MButton>
           </Link>
         </HStack>
       </Box>

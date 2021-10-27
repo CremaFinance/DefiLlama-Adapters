@@ -1,6 +1,7 @@
-import { Button, Flex, Image, Link } from "@chakra-ui/react";
+import { Flex, Image, Link } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 
+import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
 
@@ -34,7 +35,8 @@ const ContributorSection = () => {
         >
           {t("indexPage.contributor-section-subtitle")}
         </MText>
-        <Button
+        <MButton
+          textType="text-xl"
           rounded="md"
           bg={colors.green}
           _hover={{ bg: colors.green800 }}
@@ -45,7 +47,7 @@ const ContributorSection = () => {
           p="24px"
         >
           {t("indexPage.contributor-section-action")}
-        </Button>
+        </MButton>
         <Flex mt={[0, 8]} mb={16}>
           <Link target="_blank" mr={4} href="https://discord.gg/mGqZA5pjRN">
             <Image
