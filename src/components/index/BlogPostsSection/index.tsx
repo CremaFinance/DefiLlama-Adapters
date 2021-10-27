@@ -1,16 +1,62 @@
-import { Button, Box, Heading, Image } from "@chakra-ui/react";
+import { Skeleton, Button, Box, Heading, Image } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
+import { useEffect, useState } from "react";
 import { HiArrowRight } from "react-icons/hi";
 
 import BlogPostItem from "components/molecules/BlogPostItem";
 import colors from "styles/customTheme/colors";
 
+type PostProps = {
+  guid: string;
+  title: string;
+  link: string;
+  pubDate: string;
+};
+
 export default function BlogPosts() {
   const { t } = useTranslation();
 
+  const [posts, setPosts] = useState([]);
+  const [first, setFirst] = useState(true);
+
+  async function getPosts() {
+    const req = await fetch(
+      "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/marinade-finance"
+    );
+    const postsParsed = await req.json();
+    setPosts(postsParsed.items.slice(0, 3));
+  }
+
+  function blogPosts() {
+    if (posts.length) {
+      return posts.map((post: PostProps) => (
+        <Box key={post.guid}>
+          <BlogPostItem
+            date={post.pubDate}
+            link={post.link}
+            title={post.title}
+          />
+        </Box>
+      ));
+    }
+
+    return [
+      <Skeleton key="firstSkeleton" height="150px" />,
+      <Skeleton key="secondSkeleton" height="150px" />,
+      <Skeleton key="thirdSkeleton" height="150px" />,
+    ];
+  }
+
+  useEffect(() => {
+    if (first) {
+      getPosts();
+      setFirst(false);
+    }
+  }, [first, posts]);
+
   return (
     <Box
-      paddingTop="16"
+      paddingTop={24}
       paddingBottom="16"
       bg={colors.greenLight}
       px={5}
@@ -21,48 +67,43 @@ export default function BlogPosts() {
       alignItems="stretch"
     >
       <Image
-        src="/ilustrations/octopus.svg"
-        width={["90%", 350, 380]}
+        src="/octo-chef.svg"
+        width={["90%", 390, 430]}
         display="block"
         margin="0 auto"
-        mb={8}
+        mt={4}
+        mb={4}
       />
       <Heading
         textAlign="center"
         marginBottom={4}
+        size="lg"
         color={colors.black}
         fontWeight="bold"
       >
         {t("indexPage.blog-section-title")}
       </Heading>
-      <Heading
-        size="md"
-        maxW="600"
+
+      <Box
         alignSelf="center"
-        maxWidth="800"
+        maxWidth="600"
         textAlign="center"
-        marginBottom="20"
+        marginBottom="8"
         color={colors.black}
         fontWeight="300"
       >
         {t("indexPage.blog-section-subtitle")}
-      </Heading>
+      </Box>
       <Box
         display="flex"
         alignItems="flex-start"
         flexWrap="wrap"
         justifyContent="center"
-        mb={5}
+        margin="0 auto"
+        mb={16}
+        maxWidth="860px"
       >
-        {[0, 1, 2].map((index) => (
-          <BlogPostItem
-            key={`blogpost-item-${index}`}
-            date={t(`indexPage.blog-section-items.${index}.date`)}
-            link={t(`indexPage.blog-section-items.${index}.link`)}
-            title={t(`indexPage.blog-section-items.${index}.title`)}
-            subtitle={t(`indexPage.blog-section-items.${index}.subtitle`)}
-          />
-        ))}
+        {blogPosts()}
       </Box>
       <Heading
         textAlign="center"
