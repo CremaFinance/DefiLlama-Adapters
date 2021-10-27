@@ -1,8 +1,9 @@
-import { Skeleton, Button, Box, Heading, Image } from "@chakra-ui/react";
+import { Skeleton, Button, Box, Image } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { useEffect, useState } from "react";
 import { HiArrowRight } from "react-icons/hi";
 
+import MText from "../../atoms/Text";
 import BlogPostItem from "components/molecules/BlogPostItem";
 import colors from "styles/customTheme/colors";
 
@@ -71,29 +72,24 @@ export default function BlogPosts() {
         width={["90%", 390, 430]}
         display="block"
         margin="0 auto"
-        mt={4}
+        mt={6}
         mb={4}
       />
-      <Heading
-        textAlign="center"
-        marginBottom={4}
-        size="lg"
-        color={colors.black}
-        fontWeight="bold"
-      >
+      <MText textAlign="center" mt={4} type="heading-md" color={colors.black}>
         {t("indexPage.blog-section-title")}
-      </Heading>
+      </MText>
 
-      <Box
-        alignSelf="center"
-        maxWidth="600"
+      <MText
         textAlign="center"
-        marginBottom="8"
+        alignSelf="center"
+        mt={6}
+        mb={16}
+        maxW={720}
+        type="text-xl"
         color={colors.black}
-        fontWeight="300"
       >
         {t("indexPage.blog-section-subtitle")}
-      </Box>
+      </MText>
       <Box
         display="flex"
         alignItems="flex-start"
@@ -105,26 +101,27 @@ export default function BlogPosts() {
       >
         {blogPosts()}
       </Box>
-      <Heading
+
+      <MText
         textAlign="center"
-        color={colors.black}
-        fontWeight="bold"
-        maxWidth={[440, 520, 700]}
-        size="lg"
-        margin="0 auto"
+        alignSelf="center"
+        maxW={[440, 520, 700]}
+        type="heading-sm"
       >
         {t("indexPage.blog-section-blurb")}
-      </Heading>
+      </MText>
 
-      <Heading
+      <MText
+        as="span"
         textAlign="center"
+        alignSelf="center"
+        maxW={[440, 520, 700]}
+        type="heading-sm"
         color={colors.green}
-        size="lg"
-        fontWeight="bold"
         mb={8}
       >
         {t("indexPage.blog-section-blurb-highlight")}
-      </Heading>
+      </MText>
 
       <Box textAlign="center" mb={8}>
         <Button

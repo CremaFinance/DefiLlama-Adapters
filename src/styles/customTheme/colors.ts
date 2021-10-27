@@ -24,6 +24,7 @@ const colors = {
   ...overridenChakraColors,
   ...extendedColors,
   black: "#171923",
+  black600: "#17192399",
   blackMate: "#242731",
   blackMate800: "#242731CC",
   greenLight: "#C8ECE1",
