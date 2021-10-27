@@ -71,7 +71,7 @@ const IconWithTextBelow = ({
       )}
       {externalUrl && (
         <MLink
-          textType="text-xl"
+          font="text-xl"
           mt="6"
           href={externalUrl}
           isExternal

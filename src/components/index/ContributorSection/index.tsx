@@ -36,7 +36,7 @@ const ContributorSection = () => {
           {t("indexPage.contributor-section-subtitle")}
         </MText>
         <MButton
-          textType="text-xl"
+          font="text-xl"
           rounded="md"
           bg={colors.green}
           _hover={{ bg: colors.green800 }}

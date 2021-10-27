@@ -1,11 +1,11 @@
 import { Button as ChakraButton, ButtonProps } from "@chakra-ui/react";
 
 type Props = ButtonProps & {
-  textType?: string;
+  font?: string;
 };
 
 const Button = (props: Props) => {
-  switch (props.textType) {
+  switch (props.font) {
     case "text-xl":
       return (
         <ChakraButton {...props} fontWeight="bold" fontSize={["16px", "18px"]}>

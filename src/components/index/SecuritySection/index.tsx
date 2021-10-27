@@ -74,7 +74,7 @@ export default function SecuritySection() {
       </Flex>
       <Box marginTop="16" mb={6} display="flex" justifyContent="center">
         <MButton
-          textType="text-xl"
+          font="text-xl"
           bg={colors.greenVibrant}
           _hover={{ bg: colors.greenVibrant800 }}
           colorScheme={colors.greenVibrant}

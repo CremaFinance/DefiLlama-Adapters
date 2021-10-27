@@ -57,7 +57,7 @@ const HeroSection = () => {
             colorScheme={colors.green}
             rounded="md"
             width="200px"
-            textType="text-xl"
+            font="text-xl"
             mb={[2, 4]}
           >
             {t("indexPage.hero-section-button")}

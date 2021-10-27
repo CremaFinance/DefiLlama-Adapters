@@ -1,8 +1,7 @@
-import { Flex } from "@chakra-ui/react";
+import { Flex, Image } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
-import { HiOutlineExternalLink } from "react-icons/hi";
 
-import MButton from "../../atoms/Button";
+import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
 
@@ -57,18 +56,24 @@ const BlogPostItem = ({ title, link, date }: SectionProps) => {
         {title}
       </MText>
 
-      <MButton
-        textType="text-xl"
+      <MLink
+        font="text-xl"
         variant="link"
         as="a"
         mt={8}
         color={colors.green}
         href={link}
         target="_blank"
-        rightIcon={<HiOutlineExternalLink />}
+        display="flex"
+        alignItems="center"
       >
         {t("indexPage.read-more")}
-      </MButton>
+        <Image
+          src="/icons/external-link-green.svg"
+          width="1rem"
+          marginLeft="10px"
+        />
+      </MLink>
     </Flex>
   );
 };

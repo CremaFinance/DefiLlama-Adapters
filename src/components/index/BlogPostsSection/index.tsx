@@ -126,7 +126,7 @@ export default function BlogPosts() {
 
       <Box textAlign="center" mb={8}>
         <MButton
-          textType="text-xl"
+          font="text-xl"
           bg={colors.green}
           _hover={{ bg: colors.green800 }}
           colorScheme={colors.green}
@@ -138,7 +138,7 @@ export default function BlogPosts() {
         </MButton>
 
         <MButton
-          textType="text-xl"
+          font="text-xl"
           variant="link"
           mx={4}
           my={[2, 0]}

@@ -120,7 +120,7 @@ function Sidebar() {
 
             <Link href="/app/staking" passHref>
               <MButton
-                textType="text-xl"
+                font="text-xl"
                 size="sm"
                 rounded="md"
                 bg={colors.greenVibrant}

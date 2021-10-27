@@ -61,7 +61,7 @@ export default function InfoSection() {
       </Flex>
       <Box marginBottom="104px" mt={4} display="flex" justifyContent="center">
         <MButton
-          textType="text-xl"
+          font="text-xl"
           bg={colors.green}
           _hover={{ bg: colors.green800 }}
           colorScheme={colors.green}
@@ -96,7 +96,7 @@ export default function InfoSection() {
             </MText>
 
             <MButton
-              textType="text-xl"
+              font="text-xl"
               variant="link"
               color={colors.black}
               bg="none"
@@ -181,7 +181,7 @@ export default function InfoSection() {
             </MText>
 
             <MButton
-              textType="text-xl"
+              font="text-xl"
               variant="link"
               color={colors.black}
               bg="none"
@@ -264,7 +264,7 @@ export default function InfoSection() {
             </MText>
 
             <MButton
-              textType="text-xl"
+              font="text-xl"
               variant="link"
               color={colors.black}
               bg="none"

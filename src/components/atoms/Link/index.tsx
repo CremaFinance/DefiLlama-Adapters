@@ -1,11 +1,11 @@
 import { Link as ChakraLink, LinkProps } from "@chakra-ui/react";
 
 type Props = LinkProps & {
-  textType?: string;
+  font?: string;
 };
 
 const Link = (props: Props) => {
-  switch (props.textType) {
+  switch (props.font) {
     case "text-xl":
       return (
         <ChakraLink {...props} fontWeight="bold" fontSize={["16px", "18px"]}>

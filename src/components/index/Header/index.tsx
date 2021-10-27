@@ -154,7 +154,7 @@ const Header = () => {
           <Link href="/app/staking" passHref>
             <MButton
               size="sm"
-              textType="text-lg"
+              font="text-lg"
               rounded="md"
               bg={colors.green}
               _hover={{ bg: colors.green800 }}
