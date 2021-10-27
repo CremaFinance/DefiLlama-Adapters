@@ -1,7 +1,8 @@
-import { Image, Link, Square } from "@chakra-ui/react";
+import { Image, Square } from "@chakra-ui/react";
 import htmlParser from "html-react-parser";
 import { useTranslation } from "next-export-i18n";
 
+import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
 
@@ -69,7 +70,8 @@ const IconWithTextBelow = ({
         </MText>
       )}
       {externalUrl && (
-        <Link
+        <MLink
+          textType="text-xl"
           mt="6"
           href={externalUrl}
           isExternal
@@ -84,7 +86,7 @@ const IconWithTextBelow = ({
             width="1rem"
             marginLeft="10px"
           />
-        </Link>
+        </MLink>
       )}
     </Square>
   );
