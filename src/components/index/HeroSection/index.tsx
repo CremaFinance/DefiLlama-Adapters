@@ -1,12 +1,13 @@
 import { Box, Flex, Image, useMediaQuery } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
-import Link from "next/link";
+import { useRouter } from "next/dist/client/router";
 
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
 
 const HeroSection = () => {
+  const router = useRouter();
   const { t } = useTranslation();
   const [isTallerThan700] = useMediaQuery("(min-height: 700px)");
 
@@ -50,19 +51,18 @@ const HeroSection = () => {
           {t("indexPage.hero-section-desc")}
         </MText>
 
-        <Link href="/app/staking" passHref>
-          <MButton
-            bg={colors.green}
-            _hover={{ bg: colors.green800 }}
-            colorScheme={colors.green}
-            rounded="md"
-            width="200px"
-            font="text-xl"
-            mb={[2, 4]}
-          >
-            {t("indexPage.hero-section-button")}
-          </MButton>
-        </Link>
+        <MButton
+          bg={colors.green}
+          _hover={{ bg: colors.green800 }}
+          colorScheme={colors.green}
+          rounded="md"
+          width="200px"
+          font="text-xl"
+          mb={[2, 4]}
+          onClick={() => router.push("/app/staking")}
+        >
+          {t("indexPage.hero-section-button")}
+        </MButton>
 
         <MText type="text-md" color={colors.blackMate800}>
           6.21% APY

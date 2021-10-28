@@ -10,6 +10,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
+import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
 
@@ -19,6 +20,7 @@ import Sidebar from "../../layout/Sidebar";
 import colors from "styles/customTheme/colors";
 
 const Header = () => {
+  const router = useRouter();
   const { t } = useTranslation();
 
   const [onTop, setOnTop] = useState(true);
@@ -151,24 +153,23 @@ const Header = () => {
               </MenuItem>
             </MenuList>
           </Menu>
-          <Link href="/app/staking" passHref>
-            <MButton
-              size="sm"
-              font="text-lg"
-              rounded="md"
-              bg={colors.green}
-              _hover={{ bg: colors.green800 }}
-              colorScheme={colors.green}
-              color={colors.white}
-              display={["none", "flex"]}
-              width="120px"
-              flexDirection="row"
-              justifyContent="space-around"
-            >
-              {t("indexPage.go-to-app-action")}
-              <Image src="/icons/arrow-right-white.svg" width="0.8rem" />
-            </MButton>
-          </Link>
+          <MButton
+            size="sm"
+            font="text-lg"
+            rounded="md"
+            bg={colors.green}
+            _hover={{ bg: colors.green800 }}
+            colorScheme={colors.green}
+            color={colors.white}
+            display={["none", "flex"]}
+            width="120px"
+            flexDirection="row"
+            justifyContent="space-around"
+            onClick={() => router.push("/app/staking")}
+          >
+            {t("indexPage.go-to-app-action")}
+            <Image src="/icons/arrow-right-white.svg" width="0.8rem" />
+          </MButton>
         </HStack>
       </Box>
     </Flex>
