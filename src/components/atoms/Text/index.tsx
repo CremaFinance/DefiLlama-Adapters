@@ -1,8 +1,14 @@
-import { Heading, Text as ChakraText, TextProps } from "@chakra-ui/react";
+import {
+  ChakraProps,
+  Heading,
+  Text as ChakraText,
+  TextProps,
+} from "@chakra-ui/react";
 
-type Props = TextProps & {
-  type?: string;
-};
+type Props = TextProps &
+  ChakraProps & {
+    type?: string;
+  };
 
 const Text = (props: Props) => {
   switch (props.type) {

@@ -1,5 +1,4 @@
 import {
-  Box,
   IconButton,
   Drawer,
   DrawerBody,
@@ -8,18 +7,22 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
+  Flex,
   useDisclosure,
   Image,
 } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
+import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 import { IoIosMenu, IoMdArrowRoundForward } from "react-icons/io";
 
 import MButton from "../atoms/Button";
+import MLink from "../atoms/Link";
 import MText from "../atoms/Text";
 import colors from "styles/customTheme/colors";
 
 function Sidebar() {
+  const router = useRouter();
   const { t } = useTranslation();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -56,81 +59,62 @@ function Sidebar() {
               {t("indexPage.product-menu-item")}
             </MText>
 
-            <Box mb={5}>
-              <Link href="/" passHref>
-                <MText type="text-xl" mb={2}>
-                  {t("indexPage.stake-sol-menu-item")}
-                </MText>
-              </Link>
+            <Flex flexDirection="column" mb={5}>
+              <MLink href="/" font="text-xl-normal" mb={2}>
+                {t("indexPage.stake-sol-menu-item")}
+              </MLink>
 
-              <Link href="/" passHref>
-                <MText type="text-xl" mb={2}>
-                  {t("indexPage.validators-menu-item")}
-                </MText>
-              </Link>
+              <MLink href="/" font="text-xl-normal" mb={2}>
+                {t("indexPage.validators-menu-item")}
+              </MLink>
 
-              <Link href="/" passHref>
-                <MText type="text-xl" mb={2}>
-                  {t("indexPage.receive-msol-menu-item")}
-                </MText>
-              </Link>
+              <MLink href="/" font="text-xl-normal" mb={2}>
+                {t("indexPage.receive-msol-menu-item")}
+              </MLink>
 
-              <Link href="/" passHref>
-                <MText type="text-xl" mb={2}>
-                  {t("indexPage.marinade-dao-menu-item")}
-                </MText>
-              </Link>
+              <MLink href="/" font="text-xl-normal" mb={2}>
+                {t("indexPage.marinade-dao-menu-item")}
+              </MLink>
 
-              <Link href="/" passHref>
-                <MText type="text-xl" mb={2}>
-                  {t("indexPage.defi-recipes-menu-item")}
-                </MText>
-              </Link>
-            </Box>
+              <MLink href="/" font="text-xl-normal" mb={2}>
+                {t("indexPage.defi-recipes-menu-item")}
+              </MLink>
+            </Flex>
 
             <MText type="heading-xsm" mb={2}>
               {t("indexPage.learn-menu-item")}
             </MText>
 
-            <Box mb={5}>
-              <Link href="/" passHref>
-                <MText type="text-xl" mb={2}>
-                  {t("indexPage.docs-menu-item")}
-                </MText>
-              </Link>
+            <Flex flexDirection="column" mb={5}>
+              <MLink href="/" font="text-xl-normal" mb={2}>
+                {t("indexPage.docs-menu-item")}
+              </MLink>
 
-              <Link href="/" passHref>
-                <MText type="text-xl" mb={2}>
-                  {t("indexPage.security-menu-item")}
-                </MText>
-              </Link>
+              <MLink href="/" font="text-xl-normal" mb={2}>
+                {t("indexPage.security-menu-item")}
+              </MLink>
 
-              <Link href="/" passHref>
-                <MText type="text-xl" mb={2}>
-                  {t("indexPage.about-us-menu-item")}
-                </MText>
-              </Link>
+              <MLink href="/" font="text-xl-normal" mb={2}>
+                {t("indexPage.about-us-menu-item")}
+              </MLink>
 
-              <Link href="/" passHref>
-                <MText type="text-xl" mb={2}>
-                  {t("indexPage.roadmap-menu-item")}
-                </MText>
-              </Link>
-            </Box>
+              <MLink href="/" font="text-xl-normal" mb={2}>
+                {t("indexPage.roadmap-menu-item")}
+              </MLink>
+            </Flex>
 
-            <Link href="/app/staking" passHref>
-              <MButton
-                font="text-xl"
-                size="sm"
-                rounded="md"
-                bg={colors.greenVibrant}
-                _hover={{ bg: colors.greenVibrant800 }}
-                color={colors.white}
-                rightIcon={<IoMdArrowRoundForward />}
-              >
-                {t("indexPage.go-to-app-action")}
-              </MButton>
-            </Link>
+            <MButton
+              font="text-xl"
+              size="sm"
+              rounded="md"
+              bg={colors.greenVibrant}
+              _hover={{ bg: colors.greenVibrant800 }}
+              color={colors.white}
+              rightIcon={<IoMdArrowRoundForward />}
+              onClick={() => router.push("/app/staking")}
+            >
+              {t("indexPage.go-to-app-action")}
+            </MButton>
           </DrawerBody>
 
           <DrawerFooter />

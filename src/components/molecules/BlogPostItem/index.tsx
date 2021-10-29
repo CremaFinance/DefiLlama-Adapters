@@ -57,7 +57,7 @@ const BlogPostItem = ({ title, link, date }: SectionProps) => {
       </MText>
 
       <MLink
-        font="text-xl"
+        font="text-xl-bold"
         variant="link"
         as="a"
         mt={8}
