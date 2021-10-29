@@ -1,7 +1,8 @@
-import { Box, Heading, Image, Link, Text } from "@chakra-ui/react";
+import { Box, Image, Link } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import NextLink from "next/link";
 
+import MText from "../atoms/Text";
 import colors from "styles/customTheme/colors";
 
 const Footer = () => {
@@ -39,16 +40,15 @@ const Footer = () => {
               width={200}
             />
           </NextLink>
-          <Text
+          <MText
             pt="4"
             pb="4"
-            fontSize="md"
+            type="text-lg"
             color="whiteAlpha.800"
             maxWidth="400"
           >
-            Marinade.finance is a liquid staking protocol built on Solana
-            blockchain.
-          </Text>
+            {t("indexPage.footer-description")}
+          </MText>
           <Box display="flex" flexDirection="row">
             <Link target="_blank" href="https://discord.gg/mGqZA5pjRN">
               <Image
@@ -91,64 +91,64 @@ const Footer = () => {
           flex="0.25"
           flexDirection="column"
         >
-          <Heading
+          <MText
             pb="4"
-            size="md"
+            type="text-xl"
             maxW="600"
             color={colors.white}
             fontWeight="800"
           >
             {t("indexPage.footer-product")}
-          </Heading>
+          </MText>
 
-          <Text fontSize="sm" color={colors.white} mb={2}>
+          <MText type="text-lg" color={colors.white} mb={2}>
             <Link href="/">{t("indexPage.footer-stake-sol")}</Link>
-          </Text>
+          </MText>
 
-          <Text fontSize="sm" color={colors.white} mb={2}>
+          <MText type="text-lg" color={colors.white} mb={2}>
             <Link href="/">{t("indexPage.footer-validators")}</Link>
-          </Text>
+          </MText>
 
-          <Text fontSize="sm" color={colors.white} mb={2}>
+          <MText type="text-lg" color={colors.white} mb={2}>
             <Link href="/">{t("indexPage.footer-receive-msol")}</Link>
-          </Text>
+          </MText>
 
-          <Text fontSize="sm" color={colors.white} mb={2}>
+          <MText type="text-lg" color={colors.white} mb={2}>
             <Link href="/">{t("indexPage.footer-marinde-dao")}</Link>
-          </Text>
+          </MText>
 
-          <Text fontSize="sm" color={colors.white} mb={2}>
+          <MText type="text-lg" color={colors.white} mb={2}>
             <Link href="/">
               {t("indexPage.footer-defi-recipes-integration")}
             </Link>
-          </Text>
+          </MText>
         </Box>
         <Box pt="8" pb="8" display="flex" flex="0.25" flexDirection="column">
-          <Heading
+          <MText
             pb="4"
-            size="md"
+            type="text-xl"
             maxW="600"
             color={colors.white}
             fontWeight="800"
           >
             {t("indexPage.footer-learn")}
-          </Heading>
+          </MText>
 
-          <Text fontSize="sm" color={colors.white} mb={2}>
+          <MText type="text-lg" color={colors.white} mb={2}>
             <Link href="/">{t("indexPage.footer-docs")}</Link>
-          </Text>
+          </MText>
 
-          <Text fontSize="sm" color={colors.white} mb={2}>
+          <MText type="text-lg" color={colors.white} mb={2}>
             <Link href="/">{t("indexPage.footer-security")}</Link>
-          </Text>
+          </MText>
 
-          <Text fontSize="sm" color={colors.white} mb={2}>
+          <MText type="text-lg" color={colors.white} mb={2}>
             <Link href="/">{t("indexPage.footer-about-us")}</Link>
-          </Text>
+          </MText>
 
-          <Text fontSize="sm" color={colors.white} mb={2}>
+          <MText type="text-lg" color={colors.white} mb={2}>
             <Link href="/">{t("indexPage.footer-roadmap")}</Link>
-          </Text>
+          </MText>
         </Box>
       </Box>
 
@@ -159,9 +159,9 @@ const Footer = () => {
         margin="0 auto"
         mt={4}
       >
-        <Text fontSize="sm" color="whiteAlpha.800">
+        <MText type="text-md" color="whiteAlpha.800">
           {t("indexPage.footer-copyright")}
-        </Text>
+        </MText>
       </Box>
     </Box>
   );

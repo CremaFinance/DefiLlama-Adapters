@@ -1,62 +1,54 @@
-import { Center, Grid, Image, Box } from "@chakra-ui/react";
+import { Center, Flex, Image, Box } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
+
+import MText from "../../atoms/Text";
 
 const TestimonialSection = () => {
   const { t } = useTranslation();
 
   return (
-    <Box
-      paddingTop={["10", 10, 16]}
-      paddingBottom="16"
+    <Flex
+      paddingTop={24}
+      paddingBottom={24}
       as="section"
-      px={[5, 8]}
-      aria-label="why-section"
-      display="flex"
-      flexDirection="column"
-      alignItems="stretch"
+      aria-label="testimonial-section"
+      flexDirection={{ base: "column", md: "row" }}
+      justifyContent="center"
+      alignItems="center"
     >
-      <Grid
-        templateColumns={[
-          "repeat(100%)",
-          "repeat(100%)",
-          "160px calc(100% - 180px)",
-        ]}
-        maxWidth="880px"
-        margin="0 auto"
-      >
-        <Box textAlign="center" minHeight="200px">
-          <Center height="100%">
-            <Image
-              src={t("indexPage.testimonial-section-image")}
-              width="150px"
-              height="150px"
-              rounded="full"
-            />
-          </Center>
+      <Center height="100%" ml={[0, 8]}>
+        <Image
+          src={t("indexPage.testimonial-section-image")}
+          width="200px"
+          height="200px"
+          rounded="full"
+        />
+      </Center>
+
+      <Box width={{ base: "88vw", md: "50vw" }} ml={[0, 8]} pt={8}>
+        <Box mb={6}>
+          <Image src="/solana-logo.png" width="160px" />
         </Box>
 
-        <Box pl={[0, 0, 8]} gridColumn={[1, 1, 2]}>
-          <Box mb={4}>
-            <Image src="/solana-logo.png" width="120px" />
-          </Box>
+        <MText type="heading-xsm" mb={4}>
+          “{t("indexPage.testimonial-section-quote")}”
+        </MText>
 
-          <Box fontWeight="bold" fontSize={["xl", "xl", "2xl"]} mb={4}>
-            “{t("indexPage.testimonial-section-quote")}”
-          </Box>
-
-          <Box>
-            <Box
-              fontWeight="bold"
-              mr={2}
-              display={["block", "block", "inline-block"]}
-            >
-              {t("indexPage.testimonial-section-name")}
-            </Box>{" "}
+        <MText
+          type="text-lg"
+          fontWeight="bold"
+          mb={[0, 4]}
+          display="flex"
+          flexDirection={{ base: "column", md: "row" }}
+        >
+          {t("indexPage.testimonial-section-name")}
+          {", "}
+          <MText as="span" type="text-lg" fontWeight="normal" mb={4}>
             {t("indexPage.testimonial-section-position")}
-          </Box>
-        </Box>
-      </Grid>
-    </Box>
+          </MText>
+        </MText>
+      </Box>
+    </Flex>
   );
 };
 

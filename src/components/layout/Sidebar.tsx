@@ -1,8 +1,5 @@
 import {
-  Box,
-  Heading,
   IconButton,
-  Button,
   Drawer,
   DrawerBody,
   DrawerFooter,
@@ -10,16 +7,22 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
+  Flex,
   useDisclosure,
   Image,
 } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
+import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 import { IoIosMenu, IoMdArrowRoundForward } from "react-icons/io";
 
+import MButton from "../atoms/Button";
+import MLink from "../atoms/Link";
+import MText from "../atoms/Text";
 import colors from "styles/customTheme/colors";
 
 function Sidebar() {
+  const router = useRouter();
   const { t } = useTranslation();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -52,66 +55,66 @@ function Sidebar() {
           </DrawerHeader>
 
           <DrawerBody>
-            <Heading size="sm" mb={2}>
+            <MText type="heading-xsm" mb={2}>
               {t("indexPage.product-menu-item")}
-            </Heading>
+            </MText>
 
-            <Box mb={5}>
-              <Box mb={1}>
-                <Link href="/">{t("indexPage.stake-sol-menu-item")}</Link>
-              </Box>
+            <Flex flexDirection="column" mb={5}>
+              <MLink href="/" font="text-xl-normal" mb={2}>
+                {t("indexPage.stake-sol-menu-item")}
+              </MLink>
 
-              <Box mb={1}>
-                <Link href="/">{t("indexPage.validators-menu-item")}</Link>
-              </Box>
+              <MLink href="/" font="text-xl-normal" mb={2}>
+                {t("indexPage.validators-menu-item")}
+              </MLink>
 
-              <Box mb={1}>
-                <Link href="/">{t("indexPage.receive-msol-menu-item")}</Link>
-              </Box>
+              <MLink href="/" font="text-xl-normal" mb={2}>
+                {t("indexPage.receive-msol-menu-item")}
+              </MLink>
 
-              <Box mb={1}>
-                <Link href="/">{t("indexPage.marinade-dao-menu-item")}</Link>
-              </Box>
+              <MLink href="/" font="text-xl-normal" mb={2}>
+                {t("indexPage.marinade-dao-menu-item")}
+              </MLink>
 
-              <Box mb={1}>
-                <Link href="/">{t("indexPage.defi-recipes-menu-item")}</Link>
-              </Box>
-            </Box>
+              <MLink href="/" font="text-xl-normal" mb={2}>
+                {t("indexPage.defi-recipes-menu-item")}
+              </MLink>
+            </Flex>
 
-            <Heading size="sm" my={2}>
+            <MText type="heading-xsm" mb={2}>
               {t("indexPage.learn-menu-item")}
-            </Heading>
+            </MText>
 
-            <Box mb={5}>
-              <Box mb={1}>
-                <Link href="/">{t("indexPage.docs-menu-item")}</Link>
-              </Box>
+            <Flex flexDirection="column" mb={5}>
+              <MLink href="/" font="text-xl-normal" mb={2}>
+                {t("indexPage.docs-menu-item")}
+              </MLink>
 
-              <Box mb={1}>
-                <Link href="/">{t("indexPage.security-menu-item")}</Link>
-              </Box>
+              <MLink href="/" font="text-xl-normal" mb={2}>
+                {t("indexPage.security-menu-item")}
+              </MLink>
 
-              <Box mb={1}>
-                <Link href="/">{t("indexPage.about-us-menu-item")}</Link>
-              </Box>
+              <MLink href="/" font="text-xl-normal" mb={2}>
+                {t("indexPage.about-us-menu-item")}
+              </MLink>
 
-              <Box mb={1}>
-                <Link href="/">{t("indexPage.roadmap-menu-item")}</Link>
-              </Box>
-            </Box>
+              <MLink href="/" font="text-xl-normal" mb={2}>
+                {t("indexPage.roadmap-menu-item")}
+              </MLink>
+            </Flex>
 
-            <Link href="/app/staking" passHref>
-              <Button
-                size="sm"
-                rounded="md"
-                bg={colors.greenVibrant}
-                _hover={{ bg: colors.greenVibrant800 }}
-                color={colors.white}
-                rightIcon={<IoMdArrowRoundForward />}
-              >
-                {t("indexPage.go-to-app-action")}
-              </Button>
-            </Link>
+            <MButton
+              font="text-xl"
+              size="sm"
+              rounded="md"
+              bg={colors.greenVibrant}
+              _hover={{ bg: colors.greenVibrant800 }}
+              color={colors.white}
+              rightIcon={<IoMdArrowRoundForward />}
+              onClick={() => router.push("/app/staking")}
+            >
+              {t("indexPage.go-to-app-action")}
+            </MButton>
           </DrawerBody>
 
           <DrawerFooter />

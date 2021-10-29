@@ -1,14 +1,8 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Heading,
-  Image,
-  Text,
-  useMediaQuery,
-} from "@chakra-ui/react";
+import { Box, Flex, Image, useMediaQuery } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 
+import MButton from "../../atoms/Button";
+import MText from "../../atoms/Text";
 import IconWithTextBelow from "components/molecules/IconWithTextBelow";
 import colors from "styles/customTheme/colors";
 
@@ -22,7 +16,7 @@ export default function InfoSection() {
 
   return (
     <Flex
-      paddingTop="16"
+      paddingTop={24}
       paddingBottom={[8, 0]}
       bg="greenLight"
       as="section"
@@ -32,15 +26,16 @@ export default function InfoSection() {
       overflow="hidden"
       position="relative"
     >
-      <Heading
-        mt={8}
+      <MText
+        mt={6}
+        type="heading-md"
         alignSelf="center"
         textAlign="center"
         maxWidth="720"
         fontWeight="bold"
       >
         {t("indexPage.info-section-title")}
-      </Heading>
+      </MText>
       <Flex
         flexDirection={{ base: "column", md: "row" }}
         justifyContent="center"
@@ -64,8 +59,9 @@ export default function InfoSection() {
           );
         })}
       </Flex>
-      <Box marginBottom="104px" display="flex" justifyContent="center">
-        <Button
+      <Box marginBottom="104px" mt={4} display="flex" justifyContent="center">
+        <MButton
+          font="text-xl"
           bg={colors.green}
           _hover={{ bg: colors.green800 }}
           colorScheme={colors.green}
@@ -73,7 +69,7 @@ export default function InfoSection() {
           rounded="md"
         >
           {t("indexPage.info-section-action")}
-        </Button>
+        </MButton>
       </Box>
       <Flex mt={4} mb={[0, 24]} flexDirection="column" alignItems="center">
         <Flex
@@ -88,18 +84,19 @@ export default function InfoSection() {
             zIndex={4}
             mr={{ base: 4, lg: "40vw", "2xl": "24vw" }}
           >
-            <Heading mb={4} fontWeight="bold">
-              <Box as="span" display="inline-block" color={colors.green}>
+            <MText mb={4} fontWeight="bold" type="heading-md">
+              <MText as="span" display="inline-block" color={colors.green}>
                 {t("indexPage.info-section-items.0.emphasis")}
-              </Box>{" "}
+              </MText>{" "}
               {t("indexPage.info-section-items.0.heading")}
-            </Heading>
+            </MText>
 
-            <Text mb={4} pr={8} fontSize={["16", "22"]}>
+            <MText mb={4} pr={8} type="text-xl">
               {t("indexPage.info-section-items.0.desc")}
-            </Text>
+            </MText>
 
-            <Button
+            <MButton
+              font="text-xl"
               variant="link"
               color={colors.black}
               bg="none"
@@ -107,7 +104,7 @@ export default function InfoSection() {
               mb={8}
             >
               {readMode}
-            </Button>
+            </MButton>
 
             <Flex
               bg={colors.marinadeLighterGreen}
@@ -119,9 +116,9 @@ export default function InfoSection() {
               flexDirection="column"
               justifyContent="space-around"
             >
-              <Text mb={2} fontSize="14">
+              <MText mb={2} type="text-md">
                 &quot;{t("indexPage.info-section-items.0.quote")}&quot;
-              </Text>
+              </MText>
               <Flex alignItems="center">
                 {/* TODO: replace with actual logo/image */}
                 <Box
@@ -131,13 +128,13 @@ export default function InfoSection() {
                   width="32px"
                   mr="2"
                 />
-                <Text fontSize="14">
-                  <Box as="span" display="inline-block" fontWeight="bold">
+                <MText type="text-md">
+                  <MText as="span" display="inline-block" fontWeight="bold">
                     {t("indexPage.info-section-items.0.name")}
-                  </Box>
+                  </MText>
                   {", "}
                   {t("indexPage.info-section-items.0.company")}
-                </Text>
+                </MText>
               </Flex>
             </Flex>
           </Box>
@@ -172,18 +169,19 @@ export default function InfoSection() {
             zIndex={4}
             ml={{ base: 4, lg: "40vw", "2xl": "24vw" }}
           >
-            <Heading mb={4} fontWeight="bold">
-              <Box as="span" display="inline-block" color={colors.green}>
+            <MText mb={4} fontWeight="bold" type="heading-md">
+              <MText as="span" display="inline-block" color={colors.green}>
                 {t("indexPage.info-section-items.1.emphasis")}
-              </Box>{" "}
+              </MText>{" "}
               {t("indexPage.info-section-items.1.heading")}
-            </Heading>
+            </MText>
 
-            <Text mb={4} fontSize={["16", "22"]}>
+            <MText mb={4} pr={8} type="text-xl">
               {t("indexPage.info-section-items.1.desc")}
-            </Text>
+            </MText>
 
-            <Button
+            <MButton
+              font="text-xl"
               variant="link"
               color={colors.black}
               bg="none"
@@ -191,7 +189,7 @@ export default function InfoSection() {
               mb={8}
             >
               {readMode}
-            </Button>
+            </MButton>
 
             <Flex
               bg={colors.marinadeLighterGreen}
@@ -203,9 +201,9 @@ export default function InfoSection() {
               flexDirection="column"
               justifyContent="space-around"
             >
-              <Text mb={2} fontSize="14">
+              <MText mb={2} type="text-md">
                 &quot;{t("indexPage.info-section-items.1.quote")}&quot;
-              </Text>
+              </MText>
               <Box display="flex" alignItems="center">
                 {/* TODO: replace with actual logo/image */}
                 <Box
@@ -215,13 +213,13 @@ export default function InfoSection() {
                   width="32px"
                   mr={2}
                 />
-                <Text fontSize="14">
-                  <Box as="span" display="inline-block" fontWeight="bold">
+                <MText type="text-md">
+                  <MText as="span" display="inline-block" fontWeight="bold">
                     {t("indexPage.info-section-items.1.name")}
-                  </Box>
+                  </MText>
                   {", "}
                   {t("indexPage.info-section-items.1.company")}
-                </Text>
+                </MText>
               </Box>
             </Flex>
           </Box>
@@ -254,18 +252,19 @@ export default function InfoSection() {
             zIndex={4}
             mr={{ base: 4, lg: "40vw", "2xl": "24vw" }}
           >
-            <Heading mb={4} fontWeight="bold">
-              <Box as="span" display="inline-block" color={colors.green}>
+            <MText mb={4} fontWeight="bold" type="heading-md">
+              <MText as="span" display="inline-block" color={colors.green}>
                 {t("indexPage.info-section-items.2.emphasis")}
-              </Box>{" "}
+              </MText>{" "}
               {t("indexPage.info-section-items.2.heading")}
-            </Heading>
+            </MText>
 
-            <Text mb={4} fontSize={["16", "22"]}>
+            <MText mb={4} pr={8} type="text-xl">
               {t("indexPage.info-section-items.2.desc")}
-            </Text>
+            </MText>
 
-            <Button
+            <MButton
+              font="text-xl"
               variant="link"
               color={colors.black}
               bg="none"
@@ -273,7 +272,7 @@ export default function InfoSection() {
               mb={8}
             >
               {readMode}
-            </Button>
+            </MButton>
 
             <Box
               bg={colors.marinadeLighterGreen}
@@ -286,9 +285,9 @@ export default function InfoSection() {
               flexDirection="column"
               justifyContent="space-around"
             >
-              <Text mb={2} fontSize="14">
+              <MText mb={2} type="text-md">
                 &quot;{t("indexPage.info-section-items.2.quote")}&quot;
-              </Text>
+              </MText>
               <Box display="flex" alignItems="center">
                 <Image
                   src="/ian-macalinao.jpeg"
@@ -297,13 +296,13 @@ export default function InfoSection() {
                   width="32px"
                   mr="2"
                 />
-                <Text fontSize="14">
-                  <Box as="span" display="inline-block" fontWeight="bold">
+                <MText type="text-md">
+                  <MText as="span" display="inline-block" fontWeight="bold">
                     {t("indexPage.info-section-items.2.name")}
-                  </Box>
+                  </MText>
                   {", "}
                   {t("indexPage.info-section-items.2.company")}
-                </Text>
+                </MText>
               </Box>
             </Box>
           </Box>

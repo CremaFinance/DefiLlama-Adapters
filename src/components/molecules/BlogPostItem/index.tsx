@@ -1,6 +1,8 @@
-import { Button, Box, Heading, Square } from "@chakra-ui/react";
-import { HiOutlineExternalLink } from "react-icons/hi";
+import { Flex, Image } from "@chakra-ui/react";
+import { useTranslation } from "next-export-i18n";
 
+import MLink from "../../atoms/Link";
+import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
 
 type SectionProps = {
@@ -31,9 +33,10 @@ const BlogPostItem = ({ title, link, date }: SectionProps) => {
     } ${jsDate.getFullYear()}`;
   }
 
+  const { t } = useTranslation();
+
   return (
-    <Square
-      display="flex"
+    <Flex
       flexDirection="column"
       flex="1"
       px={3}
@@ -42,36 +45,36 @@ const BlogPostItem = ({ title, link, date }: SectionProps) => {
       bg={colors.white}
       maxWidth={260}
       mx={2}
-      justifyContent="flex-start"
+      alignItems="center"
       rounded="md"
     >
-      <Box color="gray.500" fontSize="sm" letterSpacing={2} mb={3}>
+      <MText mb={4} type="text-lg" color={colors.black600} letterSpacing={2}>
         {parseDate(date)}
-      </Box>
+      </MText>
 
-      <Heading
-        size="md"
-        color={colors.black}
-        mb={3}
-        wordBreak="keep-all"
-        textAlign="center"
-      >
+      <MText textAlign="center" mt={4} type="heading-xsm" color={colors.black}>
         {title}
-      </Heading>
+      </MText>
 
-      <Box>
-        <Button
-          variant="link"
-          as="a"
-          color={colors.green}
-          href={link}
-          target="_blank"
-          rightIcon={<HiOutlineExternalLink />}
-        >
-          Read more
-        </Button>
-      </Box>
-    </Square>
+      <MLink
+        font="text-xl-bold"
+        variant="link"
+        as="a"
+        mt={8}
+        color={colors.green}
+        href={link}
+        target="_blank"
+        display="flex"
+        alignItems="center"
+      >
+        {t("indexPage.read-more")}
+        <Image
+          src="/icons/external-link-green.svg"
+          width="1rem"
+          marginLeft="10px"
+        />
+      </MLink>
+    </Flex>
   );
 };
 
