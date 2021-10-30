@@ -1,4 +1,4 @@
-import { Box, Image, Link } from "@chakra-ui/react";
+import { Box, Flex, Image, Link } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import NextLink from "next/link";
 
@@ -9,25 +9,19 @@ const Footer = () => {
   const { t } = useTranslation();
 
   return (
-    <Box
+    <Flex
       bg={colors.blackMate}
       as="footer"
       aria-label="footer-section"
-      display="flex"
       py={8}
+      px={{ base: 4, md: "40px", lg: 168 }}
       flexDirection="column"
     >
-      <Box
-        display="flex"
-        flexWrap="wrap"
-        px={{ base: 4, md: "40px", lg: 160 }}
-        maxWidth={1200}
-        width="100%"
-        margin="0 auto"
-      >
+      <Box display="flex" flexWrap="wrap">
         <Box
           minWidth="300"
-          pt="8"
+          pt={8}
+          pb={[6, 0]}
           display="flex"
           flex="0.5"
           flexDirection="column"
@@ -40,13 +34,7 @@ const Footer = () => {
               width={200}
             />
           </NextLink>
-          <MText
-            pt="4"
-            pb="4"
-            type="text-lg"
-            color="whiteAlpha.800"
-            maxWidth="400"
-          >
+          <MText py={6} type="text-lg" color={colors.white800} maxWidth="360">
             {t("indexPage.footer-description")}
           </MText>
           <Box display="flex" flexDirection="row">
@@ -86,7 +74,7 @@ const Footer = () => {
 
         <Box
           minWidth={["100%", "250"]}
-          pt="8"
+          pt={8}
           display="flex"
           flex="0.25"
           flexDirection="column"
@@ -123,7 +111,7 @@ const Footer = () => {
             </Link>
           </MText>
         </Box>
-        <Box pt="8" pb="8" display="flex" flex="0.25" flexDirection="column">
+        <Box py={8} display="flex" flex="0.25" flexDirection="column">
           <MText
             pb="4"
             type="text-xl"
@@ -152,18 +140,12 @@ const Footer = () => {
         </Box>
       </Box>
 
-      <Box
-        px={{ base: 4, md: "40px", lg: 160 }}
-        maxWidth={1200}
-        width="100%"
-        margin="0 auto"
-        mt={4}
-      >
-        <MText type="text-md" color="whiteAlpha.800">
+      <Box width="100%" mt={6}>
+        <MText type="text-md" color={colors.white800}>
           {t("indexPage.footer-copyright")}
         </MText>
       </Box>
-    </Box>
+    </Flex>
   );
 };
 

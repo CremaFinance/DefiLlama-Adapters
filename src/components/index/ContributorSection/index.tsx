@@ -10,8 +10,8 @@ const ContributorSection = () => {
 
   return (
     <Flex
-      pb={{ base: "24px", md: "40px" }}
-      pt={{ base: 16, md: "112px" }}
+      pb={{ base: "24px", md: "32px" }}
+      pt={{ base: 16, md: "104px" }}
       as="section"
       aria-label="contributor-section"
       flexDirection={{ base: "column-reverse", lg: "row" }}
@@ -23,15 +23,17 @@ const ContributorSection = () => {
         alignItems="center"
         width={{ base: "88vw", md: "496px" }}
         mr={{ base: 0, lg: 24 }}
+        mb={{ base: 0, md: 8 }}
       >
-        <MText textAlign="center" mb={4} color={colors.black} type="heading-md">
+        <MText textAlign="center" my={4} color={colors.black} type="heading-md">
           {t("indexPage.contributor-section-title")}
         </MText>
         <MText
-          type="text-large"
+          type="text-xl"
           alignSelf="center"
           textAlign="center"
           color={colors.black}
+          mt={4}
         >
           {t("indexPage.contributor-section-subtitle")}
         </MText>

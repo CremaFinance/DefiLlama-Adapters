@@ -1,4 +1,4 @@
-import { Image, Square } from "@chakra-ui/react";
+import { Flex, Image } from "@chakra-ui/react";
 import htmlParser from "html-react-parser";
 import { useTranslation } from "next-export-i18n";
 
@@ -15,7 +15,6 @@ type IconWithTextBelowProps = {
   width?: string;
   opacity?: string;
   marginTop?: number;
-  maxWidth?: string;
   titleColor?: string;
   subtitleColor?: string;
   marginX?: number;
@@ -30,7 +29,6 @@ const IconWithTextBelow = ({
   width = "auto",
   opacity = "1",
   marginTop = 0,
-  maxWidth = "16rem",
   titleColor = colors.white,
   subtitleColor = colors.white800,
   marginX = 0,
@@ -38,14 +36,13 @@ const IconWithTextBelow = ({
   const { t } = useTranslation();
 
   return (
-    <Square
-      display="flex"
+    <Flex
       flexDirection="column"
-      flex="1"
       marginBottom="4"
       marginTop={marginTop}
-      maxWidth={maxWidth}
       marginX={marginX}
+      width="18rem"
+      alignItems="center"
     >
       <Image
         src={icon}
@@ -88,7 +85,7 @@ const IconWithTextBelow = ({
           />
         </MLink>
       )}
-    </Square>
+    </Flex>
   );
 };
 

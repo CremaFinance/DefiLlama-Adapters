@@ -53,6 +53,17 @@ const Text = (props: Props) => {
         </Heading>
       );
 
+    case "text-2xl":
+      return (
+        <ChakraText
+          {...props}
+          fontSize={["22.5px", "28px"]}
+          lineHeight={["140%"]}
+        >
+          {props.children}
+        </ChakraText>
+      );
+
     case "text-xl":
       return (
         <ChakraText
