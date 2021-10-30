@@ -43,8 +43,8 @@ const HeroSection = () => {
 
         <MText
           type="text-xl"
-          mb={[2, 4]}
-          maxWidth={380}
+          mb={4}
+          maxWidth={[264, 380]}
           color={colors.black}
           marginX={["auto", "0"]}
         >

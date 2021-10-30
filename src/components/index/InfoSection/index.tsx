@@ -317,8 +317,8 @@ export default function InfoSection() {
             ml={{ base: 0, lg: "26vw", "2xl": "18vw" }}
             mt={{ base: 0, lg: 8 }}
             mb={{ base: 8, lg: 0 }}
-            objectPosition="right"
-            objectFit={{ base: "cover", lg: "contain" }}
+            objectPosition={{ base: "right", sm: "center", md: "right" }}
+            objectFit={{ base: "cover", sm: "contain" }}
           />
         </Flex>
       </Flex>
