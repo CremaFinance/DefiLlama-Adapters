@@ -127,7 +127,7 @@ export default function InfoSection() {
                   width="32px"
                   mr={2}
                 />
-                <MText type="text-md">
+                <MText type="text-md" wordBreak="break-word">
                   <MText as="span" display="inline-block" fontWeight="bold">
                     {t("indexPage.info-section-items.0.name")}
                   </MText>
@@ -211,7 +211,7 @@ export default function InfoSection() {
                   width="32px"
                   mr={2}
                 />
-                <MText type="text-md">
+                <MText type="text-md" wordBreak="break-word">
                   <MText as="span" display="inline-block" fontWeight="bold">
                     {t("indexPage.info-section-items.1.name")}
                   </MText>
@@ -294,7 +294,7 @@ export default function InfoSection() {
                   width="32px"
                   mr={2}
                 />
-                <MText type="text-md">
+                <MText type="text-md" wordBreak="break-word">
                   <MText as="span" display="inline-block" fontWeight="bold">
                     {t("indexPage.info-section-items.2.name")}
                   </MText>
