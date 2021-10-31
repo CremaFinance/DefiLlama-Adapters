@@ -187,6 +187,14 @@
   "appPage": {
     "stake-menu-item": "Stake",
     "use-msol-menu-item": "Use mSOL",
-    "connect-wallet":  "Connect wallet"
+    "connect-wallet":  "Connect wallet",
+
+    "info-msol-sol-price": "MSOL/SOL price",
+    "info-total-sol-staked": "Total SOL staked",
+    "info-epoch": "Epoch",
+    "info-week-apy": "7d APY",
+    "info-see-performance-action": "See performance",
+    "info-validators": "Validators",
+    "info-validators-action": "Show validators"
   }
 }
