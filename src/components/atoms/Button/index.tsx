@@ -2,34 +2,51 @@ import { Button as ChakraButton, ButtonProps } from "@chakra-ui/react";
 
 type Props = ButtonProps & {
   font?: string;
+  fontWeight?: string;
 };
 
 const Button = (props: Props) => {
   switch (props.font) {
     case "text-xl":
       return (
-        <ChakraButton {...props} fontWeight="bold" fontSize={["16px", "18px"]}>
+        <ChakraButton
+          {...props}
+          fontWeight={props.fontWeight || "bold"}
+          fontSize={["16px", "18px"]}
+        >
           {props.children}
         </ChakraButton>
       );
 
     case "text-lg":
       return (
-        <ChakraButton {...props} fontWeight="bold" fontSize={["14px", "16px"]}>
+        <ChakraButton
+          {...props}
+          fontWeight={props.fontWeight || "bold"}
+          fontSize={["14px", "16px"]}
+        >
           {props.children}
         </ChakraButton>
       );
 
     case "text-md":
       return (
-        <ChakraButton {...props} fontWeight="bold" fontSize={["12px", "14px"]}>
+        <ChakraButton
+          {...props}
+          fontWeight={props.fontWeight || "bold"}
+          fontSize={["12px", "14px"]}
+        >
           {props.children}
         </ChakraButton>
       );
 
     case "text-sm":
       return (
-        <ChakraButton {...props} fontWeight="bold" fontSize={["10px", "12px"]}>
+        <ChakraButton
+          {...props}
+          fontWeight={props.fontWeight || "bold"}
+          fontSize={["10px", "12px"]}
+        >
           {props.children}
         </ChakraButton>
       );
