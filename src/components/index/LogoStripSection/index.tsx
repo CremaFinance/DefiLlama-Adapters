@@ -67,7 +67,13 @@ const LogoStripSection = () => {
       justifyContent="center"
       alignItems="center"
     >
-      <MText type="text-xl" textAlign="center" mb={4} color={colors.white}>
+      <MText
+        type="text-xl"
+        textAlign="center"
+        mt={2}
+        mb={4}
+        color={colors.white}
+      >
         {t("indexPage.logo-strip-section-title")}
       </MText>
 
@@ -76,7 +82,7 @@ const LogoStripSection = () => {
         justifyContent="center"
         alignItems="center"
         flexWrap="wrap"
-        mt={2}
+        my={2}
         maxWidth={{ base: "90vw", md: "60vw", lg: "100vw" }}
       >
         {ecosystem.map((el) => {

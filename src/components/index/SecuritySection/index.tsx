@@ -11,8 +11,8 @@ export default function SecuritySection() {
 
   return (
     <Box
-      paddingTop="24"
-      paddingBottom="16"
+      pt={24}
+      pb={32}
       bg={colors.blackMate}
       as="section"
       aria-label="security-section"
@@ -44,8 +44,8 @@ export default function SecuritySection() {
       <Flex
         flexDirection={{ base: "column", md: "row" }}
         justifyContent="center"
-        alignItems="center"
-        marginTop={2}
+        alignItems={{ base: "center", md: "unset", lg: "center" }}
+        marginTop={6}
       >
         <IconWithTextBelow
           marginTop={8}
@@ -72,17 +72,19 @@ export default function SecuritySection() {
           subtitle={t(`indexPage.security-section-items.2.subtitle`)}
         />
       </Flex>
-      <Box marginTop="16" mb={6} display="flex" justifyContent="center">
+      <Flex mt={16} mb={8} justifyContent="center">
         <MButton
           font="text-xl"
           bg={colors.greenVibrant}
           _hover={{ bg: colors.greenVibrant800 }}
           colorScheme={colors.greenVibrant}
+          width={272}
+          height="48px"
           rounded="md"
         >
           {t("indexPage.security-section-action")}
         </MButton>
-      </Box>
+      </Flex>
       <MText
         type="heading-sm"
         marginTop={24}
@@ -97,7 +99,7 @@ export default function SecuritySection() {
       <Flex
         flexDirection={{ base: "column", md: "row" }}
         justifyContent="center"
-        alignItems="center"
+        alignItems={{ base: "center", md: "unset", lg: "center" }}
         marginTop={4}
       >
         <IconWithTextBelow

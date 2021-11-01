@@ -43,8 +43,8 @@ const HeroSection = () => {
 
         <MText
           type="text-xl"
-          mb={[2, 4]}
-          maxWidth={380}
+          mb={4}
+          maxWidth={[264, 380]}
           color={colors.black}
           marginX={["auto", "0"]}
         >
@@ -57,6 +57,7 @@ const HeroSection = () => {
           colorScheme={colors.green}
           rounded="md"
           width="200px"
+          height="48px"
           font="text-xl"
           mb={[2, 4]}
           onClick={() => router.push("/app/staking")}
@@ -64,7 +65,7 @@ const HeroSection = () => {
           {t("indexPage.hero-section-button")}
         </MButton>
 
-        <MText type="text-md" color={colors.blackMate800}>
+        <MText type="text-lg" fontWeight="bold" color={colors.blackMate800}>
           6.21% APY
         </MText>
       </Box>

@@ -1,5 +1,6 @@
 import { Box, Flex, Image, useMediaQuery } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
+import { useRouter } from "next/dist/client/router";
 
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
@@ -7,6 +8,7 @@ import IconWithTextBelow from "components/molecules/IconWithTextBelow";
 import colors from "styles/customTheme/colors";
 
 export default function InfoSection() {
+  const router = useRouter();
   const { t } = useTranslation();
 
   const [isWiderThan1050] = useMediaQuery("(min-width: 1050px)");
@@ -18,7 +20,7 @@ export default function InfoSection() {
     <Flex
       paddingTop={24}
       paddingBottom={[8, 0]}
-      bg="greenLight"
+      bg={colors.greenLight}
       as="section"
       aria-label="info-section"
       flexDirection="column"
@@ -39,7 +41,7 @@ export default function InfoSection() {
       <Flex
         flexDirection={{ base: "column", md: "row" }}
         justifyContent="center"
-        alignItems="center"
+        alignItems={{ base: "center", md: "unset", lg: "center" }}
         marginTop={4}
       >
         {[0, 1, 2].map((index) => {
@@ -66,7 +68,9 @@ export default function InfoSection() {
           _hover={{ bg: colors.green800 }}
           colorScheme={colors.green}
           width="200px"
+          height="48px"
           rounded="md"
+          onClick={() => router.push("/app/staking")}
         >
           {t("indexPage.info-section-action")}
         </MButton>
@@ -76,7 +80,6 @@ export default function InfoSection() {
           mb={[16, 24]}
           flexDirection={isWiderThan1050 ? "row" : columnReverse}
           alignItems="center"
-          overflow="hidden"
         >
           <Box
             width={{ base: "88vw", md: "60vw", lg: "40vw", "2xl": "24vw" }}
@@ -84,14 +87,14 @@ export default function InfoSection() {
             zIndex={4}
             mr={{ base: 4, lg: "40vw", "2xl": "24vw" }}
           >
-            <MText mb={4} fontWeight="bold" type="heading-md">
+            <MText mb={6} fontWeight="bold" type="heading-md">
               <MText as="span" display="inline-block" color={colors.green}>
                 {t("indexPage.info-section-items.0.emphasis")}
               </MText>{" "}
               {t("indexPage.info-section-items.0.heading")}
             </MText>
 
-            <MText mb={4} pr={8} type="text-xl">
+            <MText mb={6} pr={8} type="text-xl">
               {t("indexPage.info-section-items.0.desc")}
             </MText>
 
@@ -156,11 +159,10 @@ export default function InfoSection() {
         </Flex>
 
         <Flex
-          mt={[0, 4]}
+          mt={[0, 8]}
           mb={[16, 24]}
           flexDirection={{ base: columnReverse, lg: "row" }}
           alignItems="center"
-          overflow="hidden"
         >
           <Box
             width={{ base: "88vw", md: "60vw", lg: "32vw", "2xl": "24vw" }}
@@ -175,7 +177,7 @@ export default function InfoSection() {
               {t("indexPage.info-section-items.1.heading")}
             </MText>
 
-            <MText mb={4} pr={8} type="text-xl">
+            <MText mt={6} mb={4} type="text-xl">
               {t("indexPage.info-section-items.1.desc")}
             </MText>
 
@@ -186,6 +188,7 @@ export default function InfoSection() {
               bg="none"
               rightIcon={<Image src="/icons/arrow-right.svg" width="0.8rem" />}
               mb={8}
+              mt={2}
             >
               {readMode}
             </MButton>
@@ -232,17 +235,15 @@ export default function InfoSection() {
               "2xl": "24vw",
             }}
             ml={{ base: 0, lg: -8 }}
-            mt={{ base: 0, lg: -8, "2xl": 0 }}
-            mb={{ base: 8, lg: 0 }}
+            mb={8}
           />
         </Flex>
 
         <Flex
-          mt={[0, 1]}
-          mb={[16, 16]}
+          mt={[0, 8]}
+          mb={16}
           flexDirection={{ base: columnReverse, lg: "row" }}
           alignItems="center"
-          overflow="hidden"
         >
           <Box
             width={{ base: "88vw", md: "60vw", lg: "36vw", "2xl": "24vw" }}
@@ -257,7 +258,7 @@ export default function InfoSection() {
               {t("indexPage.info-section-items.2.heading")}
             </MText>
 
-            <MText mb={4} pr={8} type="text-xl">
+            <MText my={6} pr={4} type="text-xl">
               {t("indexPage.info-section-items.2.desc")}
             </MText>
 
@@ -314,8 +315,8 @@ export default function InfoSection() {
             ml={{ base: 0, lg: "26vw", "2xl": "18vw" }}
             mt={{ base: 0, lg: 8 }}
             mb={{ base: 8, lg: 0 }}
-            objectPosition="right"
-            objectFit={{ base: "cover", lg: "contain" }}
+            objectPosition={{ base: "right", sm: "center", md: "right" }}
+            objectFit={{ base: "cover", sm: "contain" }}
           />
         </Flex>
       </Flex>

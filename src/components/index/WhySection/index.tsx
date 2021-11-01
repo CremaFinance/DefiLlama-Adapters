@@ -10,8 +10,7 @@ export default function WhySection() {
 
   return (
     <Flex
-      paddingTop="24"
-      paddingBottom="24"
+      py={24}
       bg={colors.blackMate}
       as="section"
       aria-label="why-section"
@@ -24,12 +23,12 @@ export default function WhySection() {
       <Flex
         flexDirection={{ base: "column", md: "row" }}
         justifyContent="center"
-        alignItems="center"
+        alignItems={{ base: "center", md: "unset", lg: "center" }}
         marginY={4}
       >
         {[0, 1, 2].map((index) => (
           <IconWithTextBelow
-            marginTop={4}
+            marginTop={8}
             marginX={8}
             key={`why-section-item-${index}`}
             icon={`/icons/why-section-icon${index + 1}.svg`}

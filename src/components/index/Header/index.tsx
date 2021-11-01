@@ -66,7 +66,7 @@ const Header = () => {
         />
       </Link>
 
-      <Box mt={2} mr={4}>
+      <Box mt={2} mr={2}>
         <Box display={["block", "block", "none"]}>
           <Sidebar />
         </Box>
@@ -162,7 +162,8 @@ const Header = () => {
             colorScheme={colors.green}
             color={colors.white}
             display={["none", "flex"]}
-            width="120px"
+            width="130px"
+            height="40px"
             flexDirection="row"
             justifyContent="space-around"
             onClick={() => router.push("/app/staking")}

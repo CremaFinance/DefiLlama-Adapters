@@ -16,7 +16,7 @@ const TestimonialSection = () => {
       justifyContent="center"
       alignItems="center"
     >
-      <Center height="100%" ml={[0, 8]}>
+      <Center height="100%" ml={[0, 8]} mb={4}>
         <Image
           src={t("indexPage.testimonial-section-image")}
           width="200px"
@@ -25,12 +25,12 @@ const TestimonialSection = () => {
         />
       </Center>
 
-      <Box width={{ base: "88vw", md: "50vw" }} ml={[0, 8]} pt={8}>
+      <Box width={{ base: "88vw", md: "50vw" }} ml={[0, 8]} pl={2} pt={8}>
         <Box mb={6}>
           <Image src="/solana-logo.png" width="160px" />
         </Box>
 
-        <MText type="heading-xsm" mb={4}>
+        <MText type="text-2xl" mb={4} fontWeight="bold">
           “{t("indexPage.testimonial-section-quote")}”
         </MText>
 
