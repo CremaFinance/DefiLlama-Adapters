@@ -116,19 +116,18 @@ export default function InfoSection() {
               flexDirection="column"
               justifyContent="space-around"
             >
-              <MText mb={2} type="text-md">
+              <MText mb={2} type="text-md" wordBreak="normal">
                 &quot;{t("indexPage.info-section-items.0.quote")}&quot;
               </MText>
               <Flex alignItems="center">
-                {/* TODO: replace with actual logo/image */}
-                <Box
-                  bg={colors.black}
+                <Image
+                  src="/alpharay.png"
                   rounded="full"
                   height="32px"
                   width="32px"
-                  mr="2"
+                  mr={2}
                 />
-                <MText type="text-md">
+                <MText type="text-md" wordBreak="normal">
                   <MText as="span" display="inline-block" fontWeight="bold">
                     {t("indexPage.info-section-items.0.name")}
                   </MText>
@@ -201,19 +200,18 @@ export default function InfoSection() {
               flexDirection="column"
               justifyContent="space-around"
             >
-              <MText mb={2} type="text-md">
+              <MText mb={2} type="text-md" wordBreak="normal">
                 &quot;{t("indexPage.info-section-items.1.quote")}&quot;
               </MText>
               <Box display="flex" alignItems="center">
-                {/* TODO: replace with actual logo/image */}
-                <Box
-                  bg={colors.black}
+                <Image
+                  src="/dan-albert.jpeg"
                   rounded="full"
                   height="32px"
                   width="32px"
                   mr={2}
                 />
-                <MText type="text-md">
+                <MText type="text-md" wordBreak="normal">
                   <MText as="span" display="inline-block" fontWeight="bold">
                     {t("indexPage.info-section-items.1.name")}
                   </MText>
@@ -285,7 +283,7 @@ export default function InfoSection() {
               flexDirection="column"
               justifyContent="space-around"
             >
-              <MText mb={2} type="text-md">
+              <MText mb={2} type="text-md" wordBreak="normal">
                 &quot;{t("indexPage.info-section-items.2.quote")}&quot;
               </MText>
               <Box display="flex" alignItems="center">
@@ -294,9 +292,9 @@ export default function InfoSection() {
                   rounded="full"
                   height="32px"
                   width="32px"
-                  mr="2"
+                  mr={2}
                 />
-                <MText type="text-md">
+                <MText type="text-md" wordBreak="normal">
                   <MText as="span" display="inline-block" fontWeight="bold">
                     {t("indexPage.info-section-items.2.name")}
                   </MText>
