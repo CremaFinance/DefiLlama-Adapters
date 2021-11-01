@@ -7608,10 +7608,10 @@ eslint-config-prettier@^8.3.0:
   resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-8.3.0.tgz#f7471b20b6fe8a9a9254cc684454202886a2dd7a"
   integrity sha512-BgZuLUSeKzvlL/VUjx/Yb787VQ26RU3gGjA3iiFvdsp/2bMfVIWUVP7tjxtjS0e+HP409cPlPvNkQloz8C91ew==
 
-eslint-config-sznm@^0.1.7:
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/eslint-config-sznm/-/eslint-config-sznm-0.1.7.tgz#8d26178bf7534b71c55aa45a1a95f94e49030e73"
-  integrity sha512-ibDvfqdCJhx8I/KXGzEFiQ+UVPuLy3+0Cd5y3w5g2Ce+XPYc8cnBzDftmNdUUn5+K4SPKcj28cKE22WQNafF9w==
+eslint-config-sznm@^0.1.10:
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/eslint-config-sznm/-/eslint-config-sznm-0.1.10.tgz#259a49398496b81492baaff39ec2edaee3835b0a"
+  integrity sha512-umcjxEh3XxWnorJBvYmE3A695MvMQP4+CryvgJUB+bNfdDachSfsZlRE4O2dQC4Vxn5Erib7/ogqVee8EH19Lg==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^4.30.0"
     eslint-config-airbnb "^18.2.1"
@@ -7702,26 +7702,7 @@ eslint-plugin-react-hooks@^4.2.0:
   resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-4.2.0.tgz#8c229c268d468956334c943bb45fc860280f5556"
   integrity sha512-623WEiZJqxR7VdxFCKLI6d6LLpwJkGPYKODnkH3D7WpOG5KM8yWueBd8TLsNAetEJNF5iJmolaAKO3F8yzyVBQ==
 
-eslint-plugin-react@^7.23.1, eslint-plugin-react@^7.25.1:
-  version "7.25.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.25.1.tgz#9286b7cd9bf917d40309760f403e53016eda8331"
-  integrity sha512-P4j9K1dHoFXxDNP05AtixcJEvIT6ht8FhYKsrkY0MPCPaUMYijhpWwNiRDZVtA8KFuZOkGSeft6QwH8KuVpJug==
-  dependencies:
-    array-includes "^3.1.3"
-    array.prototype.flatmap "^1.2.4"
-    doctrine "^2.1.0"
-    estraverse "^5.2.0"
-    has "^1.0.3"
-    jsx-ast-utils "^2.4.1 || ^3.0.0"
-    minimatch "^3.0.4"
-    object.entries "^1.1.4"
-    object.fromentries "^2.0.4"
-    object.values "^1.1.4"
-    prop-types "^15.7.2"
-    resolve "^2.0.0-next.3"
-    string.prototype.matchall "^4.0.5"
-
-eslint-plugin-react@^7.26.1:
+eslint-plugin-react@^7.23.1, eslint-plugin-react@^7.25.1, eslint-plugin-react@^7.26.1:
   version "7.26.1"
   resolved "https://registry.npmjs.org/eslint-plugin-react/-/eslint-plugin-react-7.26.1.tgz#41bcfe3e39e6a5ac040971c1af94437c80daa40e"
   integrity sha512-Lug0+NOFXeOE+ORZ5pbsh6mSKjBKXDXItUD2sQoT+5Yl0eoT82DqnXeTMfUare4QVCn9QwXbfzO/dBLjLXwVjQ==
