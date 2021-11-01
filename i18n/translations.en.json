@@ -89,9 +89,9 @@
         "heading": "without locking your funds in",
         "desc": "By going with Marinade you avoid the unstaking period so you're free to use your assets at any time you like.",
         "link": "#",
-        "quote": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqualabore et dolore magna aliqua. Ut enim ad minim veniam",
-        "name": "Name Nameson",
-        "company": "Company"
+        "quote": "Staking on Marinade is the easiest way to earn yields on your SOL and help decentralize the chain.",
+        "name": "AlphaRay",
+        "company": "Founder of Raydium"
       },
 
       {
@@ -99,9 +99,9 @@
         "heading": "to 300+ top-performing validators",
         "desc": "Algorithmic strategy delegates to hundreds of validators to make the system more robust, secure and decentralised.",
         "link": "#",
-        "quote": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqualabore et dolore magna aliqua. Ut enim ad minim veniam",
-        "name": "Name Nameson",
-        "company": "Company"
+        "quote": "Marinade's staking strategy makes it easy for users to help make Solana ever more decentralized and censorship resistant.",
+        "name": "Dan Albert",
+        "company": "Executive Director at Solana Foundation"
       },
 
       {
@@ -168,6 +168,7 @@
       "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "external-url": "https://kudelskisecurity.com/"
     },
+    "footer-description": "Marinade.finance is a liquid staking protocol built on the Solana blockchain.",
     "footer-product": "Product",
     "footer-stake-sol": "Stake SOL",
     "footer-validators": "Validators",

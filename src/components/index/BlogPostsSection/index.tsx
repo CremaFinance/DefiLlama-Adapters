@@ -1,19 +1,24 @@
-import { Skeleton, Button, Box, Heading, Image } from "@chakra-ui/react";
+import { Skeleton, Box, Flex, Image } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
+import { useRouter } from "next/dist/client/router";
 import { useEffect, useState } from "react";
 import { HiArrowRight } from "react-icons/hi";
 
+import MButton from "../../atoms/Button";
+import MText from "../../atoms/Text";
 import BlogPostItem from "components/molecules/BlogPostItem";
 import colors from "styles/customTheme/colors";
 
 type PostProps = {
   guid: string;
+  content: string;
   title: string;
   link: string;
   pubDate: string;
 };
 
 export default function BlogPosts() {
+  const router = useRouter();
   const { t } = useTranslation();
 
   const [posts, setPosts] = useState([]);
@@ -24,19 +29,19 @@ export default function BlogPosts() {
       "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/marinade-finance"
     );
     const postsParsed = await req.json();
-    setPosts(postsParsed.items.slice(0, 3));
+    setPosts(postsParsed.items.slice(0, 3)?.reverse());
   }
 
   function blogPosts() {
     if (posts.length) {
       return posts.map((post: PostProps) => (
-        <Box key={post.guid}>
-          <BlogPostItem
-            date={post.pubDate}
-            link={post.link}
-            title={post.title}
-          />
-        </Box>
+        <BlogPostItem
+          key={post.guid}
+          date={post.pubDate}
+          content={post.content}
+          link={post.link}
+          title={post.title}
+        />
       ));
     }
 
@@ -57,14 +62,14 @@ export default function BlogPosts() {
   return (
     <Box
       paddingTop={24}
-      paddingBottom="16"
+      paddingBottom={24}
       bg={colors.greenLight}
       px={5}
       as="section"
       aria-label="blog-posts-section"
       display="flex"
       flexDirection="column"
-      alignItems="stretch"
+      alignItems="center"
     >
       <Image
         src="/octo-chef.svg"
@@ -74,71 +79,78 @@ export default function BlogPosts() {
         mt={4}
         mb={4}
       />
-      <Heading
-        textAlign="center"
-        marginBottom={4}
-        size="lg"
-        color={colors.black}
-        fontWeight="bold"
-      >
+      <MText textAlign="center" mt={4} type="heading-md" color={colors.black}>
         {t("indexPage.blog-section-title")}
-      </Heading>
+      </MText>
 
-      <Box
-        alignSelf="center"
-        maxWidth="600"
+      <MText
         textAlign="center"
-        marginBottom="8"
+        alignSelf="center"
+        mt={6}
+        mb={8}
+        maxW={720}
+        type="text-xl"
         color={colors.black}
-        fontWeight="300"
       >
         {t("indexPage.blog-section-subtitle")}
-      </Box>
+      </MText>
       <Box
         display="flex"
         alignItems="flex-start"
         flexWrap="wrap"
         justifyContent="center"
-        margin="0 auto"
+        mt={6}
         mb={16}
-        maxWidth="860px"
+        maxWidth="90vw"
       >
         {blogPosts()}
       </Box>
-      <Heading
+
+      <MText
         textAlign="center"
-        color={colors.black}
-        fontWeight="bold"
-        maxWidth={[440, 520, 700]}
-        size="lg"
-        margin="0 auto"
+        alignSelf="center"
+        maxW={[440, 520, 700]}
+        mt={16}
+        type="heading-sm"
       >
         {t("indexPage.blog-section-blurb")}
-      </Heading>
+      </MText>
 
-      <Heading
+      <MText
         textAlign="center"
         color={colors.green}
-        size="lg"
         fontWeight="bold"
+        maxW={[440, 520, 700]}
+        type="heading-sm"
         mb={8}
       >
         {t("indexPage.blog-section-blurb-highlight")}
-      </Heading>
+      </MText>
 
-      <Box textAlign="center" mb={8}>
-        <Button
+      <Flex
+        textAlign="center"
+        mt={2}
+        mb={8}
+        flexDirection={["column", "row"]}
+        alignContent="center"
+      >
+        <MButton
+          font="text-xl"
           bg={colors.green}
           _hover={{ bg: colors.green800 }}
           colorScheme={colors.green}
           rounded="md"
+          width={200}
+          height="48px"
           mx={4}
           my={[2, 0]}
+          onClick={() => router.push("/app/staking")}
         >
           {t("indexPage.blog-section-primary-button")}
-        </Button>
+        </MButton>
 
-        <Button
+        <MButton
+          font="text-xl"
           variant="link"
           mx={4}
           my={[2, 0]}
@@ -147,8 +159,8 @@ export default function BlogPosts() {
           rightIcon={<HiArrowRight />}
         >
           {t("indexPage.blog-section-secondary-button")}
-        </Button>
-      </Box>
+        </MButton>
+      </Flex>
     </Box>
   );
 }

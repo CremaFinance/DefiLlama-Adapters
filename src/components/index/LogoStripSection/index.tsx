@@ -1,6 +1,7 @@
-import { Flex, Image, Link, Text } from "@chakra-ui/react";
+import { Flex, Image, Link } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 
+import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
 
 const LogoStripSection = () => {
@@ -66,22 +67,22 @@ const LogoStripSection = () => {
       justifyContent="center"
       alignItems="center"
     >
-      <Text
-        fontSize={["18px", "22px"]}
+      <MText
+        type="text-xl"
         textAlign="center"
+        mt={2}
         mb={4}
         color={colors.white}
-        fontWeight="300"
       >
         {t("indexPage.logo-strip-section-title")}
-      </Text>
+      </MText>
 
       <Flex
         flexDirection="row"
         justifyContent="center"
         alignItems="center"
         flexWrap="wrap"
-        mt={2}
+        my={2}
         maxWidth={{ base: "90vw", md: "60vw", lg: "100vw" }}
       >
         {ecosystem.map((el) => {

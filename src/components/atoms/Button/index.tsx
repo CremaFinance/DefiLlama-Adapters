@@ -1,46 +1,50 @@
 import { Button as ChakraButton, ButtonProps } from "@chakra-ui/react";
 import { forwardRef, LegacyRef } from "react";
 
+const selectVariant = (variant = "") =>
+  ({
+    solid: {
+      size: "sm",
+      rounded: "md",
+      bg: "green",
+      _hover: { bg: "green800" },
+      colorScheme: "green",
+      color: "white",
+    },
+    outline: {
+      size: "sm",
+      rounded: "md",
+      variant: "outline",
+      bg: "white",
+      color: "green",
+      _hover: { color: "green800" },
+      colorScheme: "green",
+      borderRadius: "8px",
+    },
+  }[variant] ?? {});
+
+const selectFontSize = (size = "") =>
+  ({
+    "text-xl": ["16px", "18px"],
+    "text-lg": ["14px", "16px"],
+    "text-md": ["12px", "14px"],
+    "text-sm": ["10px", "12px"],
+  }[size]);
+
+type Props = ButtonProps & {
+  font?: string;
+};
+
 const Button = forwardRef(
-  (props: ButtonProps, ref: LegacyRef<HTMLButtonElement> | undefined) => {
-    const { variant, children, ...rest } = props;
-    switch (variant) {
-      case "solid":
-        return (
-          <ChakraButton
-            variant="solid"
-            size="sm"
-            rounded="md"
-            bg="green"
-            _hover={{ bg: "green800" }}
-            colorScheme="green"
-            color="white"
-            ref={ref}
-            {...rest}
-          >
-            {children}
-          </ChakraButton>
-        );
-      case "outline":
-        return (
-          <ChakraButton
-            size="sm"
-            rounded="md"
-            variant="outline"
-            bg="white"
-            color="green"
-            _hover={{ color: "green800" }}
-            colorScheme="green"
-            borderRadius="8px"
-            ref={ref}
-            {...rest}
-          >
-            {children}
-          </ChakraButton>
-        );
-      default:
-        return <ChakraButton ref={ref} {...props} />;
-    }
+  (props: Props, ref: LegacyRef<HTMLButtonElement> | undefined) => {
+    return (
+      <ChakraButton
+        ref={ref}
+        fontSize={selectFontSize(props.font)}
+        {...selectVariant(props.variant)}
+        {...props}
+      />
+    );
   }
 );
 

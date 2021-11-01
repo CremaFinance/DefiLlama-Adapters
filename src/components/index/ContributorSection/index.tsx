@@ -1,6 +1,8 @@
-import { Button, Flex, Heading, Image, Link, Text } from "@chakra-ui/react";
+import { Flex, Image, Link } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 
+import MButton from "../../atoms/Button";
+import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
 
 const ContributorSection = () => {
@@ -8,8 +10,8 @@ const ContributorSection = () => {
 
   return (
     <Flex
-      pb={{ base: "24px", md: "40px" }}
-      pt={{ base: 16, md: "112px" }}
+      pb={{ base: "24px", md: "32px" }}
+      pt={{ base: 16, md: "104px" }}
       as="section"
       aria-label="contributor-section"
       flexDirection={{ base: "column-reverse", lg: "row" }}
@@ -19,26 +21,24 @@ const ContributorSection = () => {
       <Flex
         flexDirection="column"
         alignItems="center"
-        width={{ base: "88vw", md: "480px" }}
+        width={{ base: "88vw", md: "496px" }}
         mr={{ base: 0, lg: 24 }}
+        mb={{ base: 0, md: 8 }}
       >
-        <Heading
-          textAlign="center"
-          mb={4}
-          color={colors.black}
-          fontWeight="bold"
-        >
+        <MText textAlign="center" my={4} color={colors.black} type="heading-md">
           {t("indexPage.contributor-section-title")}
-        </Heading>
-        <Text
+        </MText>
+        <MText
+          type="text-xl"
           alignSelf="center"
           textAlign="center"
           color={colors.black}
-          fontSize={{ base: "16px", lg: "22px" }}
+          mt={4}
         >
           {t("indexPage.contributor-section-subtitle")}
-        </Text>
-        <Button
+        </MText>
+        <MButton
+          font="text-xl"
           rounded="md"
           bg={colors.green}
           _hover={{ bg: colors.green800 }}
@@ -49,7 +49,7 @@ const ContributorSection = () => {
           p="24px"
         >
           {t("indexPage.contributor-section-action")}
-        </Button>
+        </MButton>
         <Flex mt={[0, 8]} mb={16}>
           <Link target="_blank" mr={4} href="https://discord.gg/mGqZA5pjRN">
             <Image

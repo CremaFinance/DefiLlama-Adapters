@@ -1,17 +1,20 @@
-import { Button, Box, Heading, Square } from "@chakra-ui/react";
-import { HiOutlineExternalLink } from "react-icons/hi";
+import { Container, Flex, Image } from "@chakra-ui/react";
+import { useTranslation } from "next-export-i18n";
 
+import MLink from "../../atoms/Link";
+import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
 
 type SectionProps = {
   title: string;
+  content: string;
   link: string;
   date: string;
 };
 
-const BlogPostItem = ({ title, link, date }: SectionProps) => {
+const BlogPostItem = ({ title, content, link, date }: SectionProps) => {
   function parseDate(dateString: string) {
-    const jsDate = new Date(dateString);
+    const pubDate = new Date(dateString);
     const months = [
       "JAN",
       "FEB",
@@ -26,52 +29,68 @@ const BlogPostItem = ({ title, link, date }: SectionProps) => {
       "NOV",
       "DEC",
     ];
-    return `${jsDate.getDay()} ${
-      months[jsDate.getMonth()]
-    } ${jsDate.getFullYear()}`;
+    return `${pubDate.getDate()} ${
+      months[pubDate.getMonth()]
+    } ${pubDate.getFullYear()}`;
+  }
+
+  const { t } = useTranslation();
+
+  function parseContent() {
+    let textToShow = content.replace(/<[^>]+>/g, "");
+    textToShow = textToShow?.trimEnd();
+    return `${textToShow.slice(0, 100)}...`;
   }
 
   return (
-    <Square
-      display="flex"
+    <Flex
       flexDirection="column"
-      flex="1"
       px={3}
       py={8}
       mb="10"
       bg={colors.white}
-      maxWidth={260}
-      mx={2}
-      justifyContent="flex-start"
+      width={352}
+      height={400}
+      mx={3}
+      alignItems="center"
       rounded="md"
     >
-      <Box color="gray.500" fontSize="sm" letterSpacing={2} mb={3}>
+      <MText mb={4} type="text-lg" color={colors.black600}>
         {parseDate(date)}
-      </Box>
+      </MText>
 
-      <Heading
-        size="md"
-        color={colors.black}
-        mb={3}
-        wordBreak="keep-all"
-        textAlign="center"
-      >
+      <MText textAlign="center" mt={4} type="heading-xsm" color={colors.black}>
         {title}
-      </Heading>
+      </MText>
 
-      <Box>
-        <Button
-          variant="link"
-          as="a"
-          color={colors.green}
-          href={link}
-          target="_blank"
-          rightIcon={<HiOutlineExternalLink />}
-        >
-          Read more
-        </Button>
-      </Box>
-    </Square>
+      <Container
+        flex={1}
+        textAlign="center"
+        mt={4}
+        type="text-lg"
+        color={colors.black}
+      >
+        {parseContent()}
+      </Container>
+
+      <MLink
+        font="text-xl-bold"
+        variant="link"
+        as="a"
+        color={colors.green}
+        href={link}
+        target="_blank"
+        display="flex"
+        alignItems="center"
+      >
+        {t("indexPage.read-more")}
+        <Image
+          src="/icons/external-link-green.svg"
+          width="1rem"
+          marginLeft="10px"
+        />
+      </MLink>
+    </Flex>
   );
 };
 
