@@ -23,13 +23,22 @@ const selectVariant = (variant = "") =>
     },
   }[variant] ?? {});
 
-const selectFontSize = (size = "") =>
-  ({
-    "text-xl": ["16px", "18px"],
-    "text-lg": ["14px", "16px"],
-    "text-md": ["12px", "14px"],
-    "text-sm": ["10px", "12px"],
-  }[size]);
+const selectFontSize = (size = "") => {
+  const fontSize =
+    {
+      "text-xl": ["16px", "18px"],
+      "text-lg": ["14px", "16px"],
+      "text-md": ["12px", "14px"],
+      "text-sm": ["10px", "12px"],
+    }[size] ?? undefined;
+
+  return fontSize
+    ? {
+        fontSize,
+        fontWeight: "bold",
+      }
+    : {};
+};
 
 type Props = ButtonProps & {
   font?: string;
@@ -40,7 +49,7 @@ const Button = forwardRef(
     return (
       <ChakraButton
         ref={ref}
-        fontSize={selectFontSize(props.font)}
+        {...selectFontSize(props.font)}
         {...selectVariant(props.variant)}
         {...props}
       />
