@@ -96,7 +96,8 @@ const InfoBoxesSection = () => {
               height="8px"
               rounded="md"
               mr={3}
-              color="green"
+              bg={colors.greenLight}
+              colorScheme="teal"
             />
           </Flex>
           <MText type="text-md" pb={2}>
@@ -189,7 +190,8 @@ const InfoBoxesSection = () => {
             width="40vw"
             height="8px"
             rounded="md"
-            color="green"
+            bg={colors.greenLight}
+            colorScheme="teal"
           />
           <Flex>
             <MText type="heading-xsm">{epochProgress}%</MText>
