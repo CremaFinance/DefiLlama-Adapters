@@ -170,13 +170,13 @@ const InfoBoxesSection = () => {
         flexDirection="column"
         justifyContent="space-between"
         rounded="lg"
-        width="95vw"
         height="154px"
         zIndex={5}
         py={5}
         pr={3}
         pl={6}
-        m={2}
+        mt={2}
+        mx={4}
       >
         <Flex justifyContent="space-between" pr={8}>
           <MText type="text-md">{t("appPage.info-msol-sol-price")}</MText>
@@ -209,7 +209,9 @@ const InfoBoxesSection = () => {
           </Flex>
         </Flex>
         <Flex justifyContent="space-between" alignItems="center">
-          <MText type="text-md">{t("appPage.info-week-apy")}</MText>
+          <MLink font="text-lg" color={colors.green}>
+            {t("appPage.info-week-apy")}
+          </MLink>
           <Flex>
             <MText type="heading-xsm">{weekAPY}%</MText>
             <IconButton
@@ -221,7 +223,9 @@ const InfoBoxesSection = () => {
           </Flex>
         </Flex>
         <Flex justifyContent="space-between" alignItems="center">
-          <MText type="text-md">{t("appPage.info-validators")}</MText>
+          <MLink font="text-lg" color={colors.green}>
+            {t("appPage.info-validators")}
+          </MLink>
           <Flex>
             <MText type="heading-xsm">{numberWithCommas(validators)}</MText>
             <IconButton
