@@ -1,4 +1,4 @@
-import { Flex, IconButton } from "@chakra-ui/react";
+import { Flex, IconButton, Progress } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { MdInfoOutline } from "react-icons/md";
 
@@ -24,7 +24,6 @@ const InfoBoxesSection = () => {
     <Flex
       aria-label="info-boxes-section"
       px={{ base: 4, md: "11vw" }}
-      mt={8}
       justifyContent="space-around"
       flexWrap="wrap"
     >
@@ -38,6 +37,7 @@ const InfoBoxesSection = () => {
         zIndex={5}
         py={5}
         px={6}
+        mt={8}
       >
         <MText type="text-md">{t("appPage.info-msol-sol-price")}</MText>
         <MText type="heading-xsm">{mSOLvsSOLParity} SOL</MText>
@@ -53,6 +53,7 @@ const InfoBoxesSection = () => {
         zIndex={5}
         py={5}
         px={6}
+        mt={8}
       >
         <MText type="text-md">{t("appPage.info-total-sol-staked")}</MText>
         <MText type="heading-xsm">{numberWithCommas(totalSOLStaked)}</MText>
@@ -71,6 +72,7 @@ const InfoBoxesSection = () => {
         py={5}
         pr={3}
         pl={6}
+        mt={8}
       >
         <Flex justifyContent="space-between">
           <MText type="text-md">{t("appPage.info-epoch")}</MText>
@@ -81,7 +83,17 @@ const InfoBoxesSection = () => {
             icon={<MdInfoOutline />}
           />
         </Flex>
-        <MText type="heading-xsm">{epochProgress}%</MText>
+        <Flex alignItems="center" justifyContent="space-between">
+          <MText type="heading-xsm">{epochProgress}%</MText>
+          <Progress
+            value={epochProgress}
+            width="94px"
+            height="8px"
+            rounded="md"
+            mr={3}
+            colorScheme="green"
+          />
+        </Flex>
         <MText type="text-md">ETA: {secondsToDhms(epochRemainingInSec)}</MText>
       </Flex>
       <Flex
@@ -95,6 +107,7 @@ const InfoBoxesSection = () => {
         py={5}
         pr={3}
         pl={6}
+        mt={8}
       >
         <Flex justifyContent="space-between">
           <MText type="text-md">{t("appPage.info-week-apy")}</MText>
@@ -106,7 +119,7 @@ const InfoBoxesSection = () => {
           />
         </Flex>
         <MText type="heading-xsm">{weekAPY}%</MText>
-        <MLink font="text-lg" color={colors.green}>
+        <MLink font="text-lg" colorScheme="green">
           {t("appPage.info-see-performance-action")}
         </MLink>
       </Flex>
@@ -121,6 +134,7 @@ const InfoBoxesSection = () => {
         py={5}
         pr={3}
         pl={6}
+        mt={8}
       >
         <Flex justifyContent="space-between">
           <MText type="text-md">{t("appPage.info-validators")}</MText>
