@@ -27,7 +27,7 @@ const InfoBoxesSection = () => {
         display={["none", "flex"]}
         aria-label="info-boxes-section"
         px={{ base: 4, md: "11vw" }}
-        justifyContent="space-around"
+        justifyContent="center"
         flexWrap="wrap"
       >
         <Flex
@@ -41,6 +41,7 @@ const InfoBoxesSection = () => {
           py={5}
           px={6}
           mt={8}
+          mx={2}
         >
           <MText type="text-md">{t("appPage.info-msol-sol-price")}</MText>
           <MText type="heading-xsm">{mSOLvsSOLParity} SOL</MText>
@@ -59,6 +60,7 @@ const InfoBoxesSection = () => {
           py={5}
           px={6}
           mt={8}
+          mx={2}
         >
           <MText type="text-md">{t("appPage.info-total-sol-staked")}</MText>
           <MText type="heading-xsm">{numberWithCommas(totalSOLStaked)}</MText>
@@ -78,6 +80,7 @@ const InfoBoxesSection = () => {
           pr={3}
           pl={6}
           mt={8}
+          mx={2}
         >
           <Flex justifyContent="space-between">
             <MText type="text-md">{t("appPage.info-epoch")}</MText>
@@ -116,6 +119,7 @@ const InfoBoxesSection = () => {
           pr={3}
           pl={6}
           mt={8}
+          mx={2}
         >
           <Flex justifyContent="space-between">
             <MText type="text-md">{t("appPage.info-week-apy")}</MText>
@@ -143,6 +147,7 @@ const InfoBoxesSection = () => {
           pr={3}
           pl={6}
           mt={8}
+          mx={2}
         >
           <Flex justifyContent="space-between">
             <MText type="text-md">{t("appPage.info-validators")}</MText>
