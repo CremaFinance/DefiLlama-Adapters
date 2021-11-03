@@ -60,23 +60,23 @@ function Sidebar() {
             </MText>
 
             <Flex flexDirection="column" mb={5}>
-              <MLink href="/" font="text-xl-normal" mb={2}>
+              <MLink href="/" font="text-xl" fontWeight="normal" mb={2}>
                 {t("indexPage.stake-sol-menu-item")}
               </MLink>
 
-              <MLink href="/" font="text-xl-normal" mb={2}>
+              <MLink href="/" font="text-xl" fontWeight="normal" mb={2}>
                 {t("indexPage.validators-menu-item")}
               </MLink>
 
-              <MLink href="/" font="text-xl-normal" mb={2}>
+              <MLink href="/" font="text-xl" fontWeight="normal" mb={2}>
                 {t("indexPage.receive-msol-menu-item")}
               </MLink>
 
-              <MLink href="/" font="text-xl-normal" mb={2}>
+              <MLink href="/" font="text-xl" fontWeight="normal" mb={2}>
                 {t("indexPage.marinade-dao-menu-item")}
               </MLink>
 
-              <MLink href="/" font="text-xl-normal" mb={2}>
+              <MLink href="/" font="text-xl" fontWeight="normal" mb={2}>
                 {t("indexPage.defi-recipes-menu-item")}
               </MLink>
             </Flex>
@@ -86,19 +86,19 @@ function Sidebar() {
             </MText>
 
             <Flex flexDirection="column" mb={5}>
-              <MLink href="/" font="text-xl-normal" mb={2}>
+              <MLink href="/" font="text-xl" fontWeight="normal" mb={2}>
                 {t("indexPage.docs-menu-item")}
               </MLink>
 
-              <MLink href="/" font="text-xl-normal" mb={2}>
+              <MLink href="/" font="text-xl" fontWeight="normal" mb={2}>
                 {t("indexPage.security-menu-item")}
               </MLink>
 
-              <MLink href="/" font="text-xl-normal" mb={2}>
+              <MLink href="/" font="text-xl" fontWeight="normal" mb={2}>
                 {t("indexPage.about-us-menu-item")}
               </MLink>
 
-              <MLink href="/" font="text-xl-normal" mb={2}>
+              <MLink href="/" font="text-xl" fontWeight="normal" mb={2}>
                 {t("indexPage.roadmap-menu-item")}
               </MLink>
             </Flex>
