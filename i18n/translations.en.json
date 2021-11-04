@@ -191,6 +191,7 @@
 
     "info-msol-sol-price": "MSOL/SOL price",
     "info-total-sol-staked": "Total SOL staked",
+    "info-total-staked": "Total staked",
     "info-epoch": "Epoch",
     "info-week-apy": "7d APY",
     "info-see-performance-action": "See performance",

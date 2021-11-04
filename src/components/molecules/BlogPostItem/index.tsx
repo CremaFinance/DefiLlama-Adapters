@@ -75,7 +75,7 @@ const BlogPostItem = ({ title, content, link, date }: SectionProps) => {
       </Container>
 
       <MLink
-        font="text-xl-bold"
+        font="text-xl"
         variant="link"
         as="a"
         color={colors.green}

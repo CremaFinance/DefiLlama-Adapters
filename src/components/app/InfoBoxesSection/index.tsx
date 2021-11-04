@@ -175,24 +175,25 @@ const InfoBoxesSection = () => {
         rounded="lg"
         height="154px"
         zIndex={5}
-        py={5}
+        pt={5}
+        pb={3}
         pr={3}
-        pl={6}
+        pl={5}
         mt={2}
         mx={4}
       >
         <Flex justifyContent="space-between" pr={8}>
-          <MText type="text-md">{t("appPage.info-msol-sol-price")}</MText>
-          <MHeading type="heading-xsm">{mSOLvsSOLParity} SOL</MHeading>
+          <MText type="text-lg">{t("appPage.info-msol-sol-price")}</MText>
+          <MHeading type="heading-2xsm">{mSOLvsSOLParity} SOL</MHeading>
         </Flex>
         <Flex justifyContent="space-between" pr={8}>
-          <MText type="text-md">{t("appPage.info-total-sol-staked")}</MText>
-          <MHeading type="heading-xsm">
+          <MText type="text-lg">{t("appPage.info-total-staked")}</MText>
+          <MHeading type="heading-2xsm">
             {numberToShortVersion(totalSOLStaked)} SOL
           </MHeading>
         </Flex>
         <Flex justifyContent="space-between" alignItems="center">
-          <MText type="text-md">{t("appPage.info-epoch")}</MText>
+          <MText type="text-lg">{t("appPage.info-epoch")}</MText>
           <Progress
             value={epochProgress}
             width="40vw"
@@ -202,7 +203,7 @@ const InfoBoxesSection = () => {
             colorScheme="teal"
           />
           <Flex>
-            <MHeading type="heading-xsm">{epochProgress}%</MHeading>
+            <MHeading type="heading-2xsm">{epochProgress}%</MHeading>
             <IconButton
               variant="link"
               aria-label="Info epoch"
@@ -216,7 +217,7 @@ const InfoBoxesSection = () => {
             {t("appPage.info-week-apy")}
           </MLink>
           <Flex>
-            <MHeading type="heading-xsm">{weekAPY}%</MHeading>
+            <MHeading type="heading-2xsm">{weekAPY}%</MHeading>
             <IconButton
               variant="link"
               aria-label="Info epoch"
@@ -230,7 +231,7 @@ const InfoBoxesSection = () => {
             {t("appPage.info-validators")}
           </MLink>
           <Flex>
-            <MHeading type="heading-xsm">
+            <MHeading type="heading-2xsm">
               {numberWithCommas(validators)}
             </MHeading>
             <IconButton
