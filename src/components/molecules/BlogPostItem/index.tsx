@@ -1,9 +1,9 @@
 import { Container, Flex, Image } from "@chakra-ui/react";
-import { useTranslation } from "next-export-i18n";
 
+import { useTranslation } from "../../../hooks/useTranslation";
+import colors from "../../../styles/customTheme/colors";
 import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
-import colors from "styles/customTheme/colors";
 
 type SectionProps = {
   title: string;
