@@ -17,8 +17,8 @@ import Link from "next/link";
 import { IoIosMenu, IoMdArrowRoundForward } from "react-icons/io";
 
 import MButton from "../atoms/Button";
+import MHeading from "../atoms/Heading";
 import MLink from "../atoms/Link";
-import MText from "../atoms/Text";
 import colors from "styles/customTheme/colors";
 
 function Sidebar() {
@@ -55,9 +55,9 @@ function Sidebar() {
           </DrawerHeader>
 
           <DrawerBody>
-            <MText type="heading-xsm" mb={2}>
+            <MHeading type="heading-xsm" mb={2}>
               {t("indexPage.product-menu-item")}
-            </MText>
+            </MHeading>
 
             <Flex flexDirection="column" mb={5}>
               <MLink href="/" font="text-xl" fontWeight="normal" mb={2}>
@@ -81,9 +81,9 @@ function Sidebar() {
               </MLink>
             </Flex>
 
-            <MText type="heading-xsm" mb={2}>
+            <MHeading type="heading-xsm" mb={2}>
               {t("indexPage.learn-menu-item")}
-            </MText>
+            </MHeading>
 
             <Flex flexDirection="column" mb={5}>
               <MLink href="/" font="text-xl" fontWeight="normal" mb={2}>

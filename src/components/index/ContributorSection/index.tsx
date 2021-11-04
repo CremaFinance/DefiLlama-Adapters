@@ -2,6 +2,7 @@ import { Flex, Image, Link } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 
 import MButton from "../../atoms/Button";
+import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
 
@@ -25,15 +26,15 @@ const ContributorSection = () => {
         mr={{ base: 0, lg: 24 }}
         mb={{ base: 0, md: 8 }}
       >
-        <MText textAlign="center" my={4} color={colors.black} type="heading-md">
+        <MHeading textAlign="center" my={4} type="heading-md">
           {t("indexPage.contributor-section-title")}
-        </MText>
+        </MHeading>
         <MText
-          type="text-xl"
+          type="text-2xl"
           alignSelf="center"
           textAlign="center"
           color={colors.black}
-          mt={4}
+          mt={2}
         >
           {t("indexPage.contributor-section-subtitle")}
         </MText>

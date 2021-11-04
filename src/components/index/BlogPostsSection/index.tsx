@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { HiArrowRight } from "react-icons/hi";
 
 import MButton from "../../atoms/Button";
+import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
 import BlogPostItem from "components/molecules/BlogPostItem";
 import colors from "styles/customTheme/colors";
@@ -79,17 +80,16 @@ export default function BlogPosts() {
         mt={4}
         mb={4}
       />
-      <MText textAlign="center" mt={4} type="heading-md" color={colors.black}>
+      <MHeading textAlign="center" mt={4} type="heading-md">
         {t("indexPage.blog-section-title")}
-      </MText>
+      </MHeading>
 
       <MText
         textAlign="center"
         alignSelf="center"
-        mt={6}
-        mb={8}
+        my={8}
         maxW={720}
-        type="text-xl"
+        type="text-2xl"
         color={colors.black}
       >
         {t("indexPage.blog-section-subtitle")}
@@ -106,7 +106,7 @@ export default function BlogPosts() {
         {blogPosts()}
       </Box>
 
-      <MText
+      <MHeading
         textAlign="center"
         alignSelf="center"
         maxW={[440, 520, 700]}
@@ -114,20 +114,17 @@ export default function BlogPosts() {
         type="heading-sm"
       >
         {t("indexPage.blog-section-blurb")}
-        <MText
-          as="span"
+        <MHeading
           display={{ base: "inline", md: "block" }}
-          textAlign="center"
           color={colors.green}
-          fontWeight="bold"
           maxW={[440, 520, 700]}
           type="heading-sm"
           mb={8}
         >
           {" "}
           {t("indexPage.blog-section-blurb-highlight")}
-        </MText>
-      </MText>
+        </MHeading>
+      </MHeading>
 
       <Flex
         textAlign="center"

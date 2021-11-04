@@ -2,6 +2,7 @@ import { Flex, IconButton, Progress } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { MdInfoOutline } from "react-icons/md";
 
+import MHeading from "../../atoms/Heading";
 import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
@@ -44,7 +45,7 @@ const InfoBoxesSection = () => {
           mx={2}
         >
           <MText type="text-md">{t("appPage.info-msol-sol-price")}</MText>
-          <MText type="heading-xsm">{mSOLvsSOLParity} SOL</MText>
+          <MHeading type="heading-xsm">{mSOLvsSOLParity} SOL</MHeading>
           <MText type="text-md" pb={2}>
             ≈ ${solPrice * mSOLvsSOLParity}
           </MText>
@@ -63,7 +64,9 @@ const InfoBoxesSection = () => {
           mx={2}
         >
           <MText type="text-md">{t("appPage.info-total-sol-staked")}</MText>
-          <MText type="heading-xsm">{numberWithCommas(totalSOLStaked)}</MText>
+          <MHeading type="heading-xsm">
+            {numberWithCommas(totalSOLStaked)}
+          </MHeading>
           <MText type="text-md" pb={2}>
             ≈ ${numberWithCommas(solPrice * totalSOLStaked)}
           </MText>
@@ -92,7 +95,7 @@ const InfoBoxesSection = () => {
             />
           </Flex>
           <Flex alignItems="center" justifyContent="space-between">
-            <MText type="heading-xsm">{epochProgress}%</MText>
+            <MHeading type="heading-xsm">{epochProgress}%</MHeading>
             <Progress
               value={epochProgress}
               width="94px"
@@ -130,7 +133,7 @@ const InfoBoxesSection = () => {
               icon={<MdInfoOutline />}
             />
           </Flex>
-          <MText type="heading-xsm">{weekAPY}%</MText>
+          <MHeading type="heading-xsm">{weekAPY}%</MHeading>
           <MLink font="text-lg" color={colors.green} pb={2}>
             {t("appPage.info-see-performance-action")}
           </MLink>
@@ -158,7 +161,7 @@ const InfoBoxesSection = () => {
               icon={<MdInfoOutline />}
             />
           </Flex>
-          <MText type="heading-xsm">{numberWithCommas(validators)}</MText>
+          <MHeading type="heading-xsm">{numberWithCommas(validators)}</MHeading>
           <MLink font="text-lg" color={colors.green} pb={2}>
             {t("appPage.info-validators-action")}
           </MLink>
@@ -180,13 +183,13 @@ const InfoBoxesSection = () => {
       >
         <Flex justifyContent="space-between" pr={8}>
           <MText type="text-md">{t("appPage.info-msol-sol-price")}</MText>
-          <MText type="heading-xsm">{mSOLvsSOLParity} SOL</MText>
+          <MHeading type="heading-xsm">{mSOLvsSOLParity} SOL</MHeading>
         </Flex>
         <Flex justifyContent="space-between" pr={8}>
           <MText type="text-md">{t("appPage.info-total-sol-staked")}</MText>
-          <MText type="heading-xsm">
+          <MHeading type="heading-xsm">
             {numberToShortVersion(totalSOLStaked)} SOL
-          </MText>
+          </MHeading>
         </Flex>
         <Flex justifyContent="space-between" alignItems="center">
           <MText type="text-md">{t("appPage.info-epoch")}</MText>
@@ -199,7 +202,7 @@ const InfoBoxesSection = () => {
             colorScheme="teal"
           />
           <Flex>
-            <MText type="heading-xsm">{epochProgress}%</MText>
+            <MHeading type="heading-xsm">{epochProgress}%</MHeading>
             <IconButton
               variant="link"
               aria-label="Info epoch"
@@ -213,7 +216,7 @@ const InfoBoxesSection = () => {
             {t("appPage.info-week-apy")}
           </MLink>
           <Flex>
-            <MText type="heading-xsm">{weekAPY}%</MText>
+            <MHeading type="heading-xsm">{weekAPY}%</MHeading>
             <IconButton
               variant="link"
               aria-label="Info epoch"
@@ -227,7 +230,9 @@ const InfoBoxesSection = () => {
             {t("appPage.info-validators")}
           </MLink>
           <Flex>
-            <MText type="heading-xsm">{numberWithCommas(validators)}</MText>
+            <MHeading type="heading-xsm">
+              {numberWithCommas(validators)}
+            </MHeading>
             <IconButton
               variant="link"
               aria-label="Info epoch"
