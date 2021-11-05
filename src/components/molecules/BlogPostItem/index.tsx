@@ -1,4 +1,4 @@
-import { Container, Flex, Image } from "@chakra-ui/react";
+import { Container, Flex, Image, useMediaQuery } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 
 import MHeading from "../../atoms/Heading";
@@ -14,6 +14,8 @@ type SectionProps = {
 };
 
 const BlogPostItem = ({ title, content, link, date }: SectionProps) => {
+  const [isTallerThan700] = useMediaQuery("(min-height: 700px)");
+
   function parseDate(dateString: string) {
     const pubDate = new Date(dateString.replace(/-/g, "/"));
     const months = [
@@ -40,7 +42,8 @@ const BlogPostItem = ({ title, content, link, date }: SectionProps) => {
   function parseContent() {
     let textToShow = content.replace(/<[^>]+>/g, "");
     textToShow = textToShow?.trimEnd();
-    return `${textToShow.slice(0, 100)}...`;
+    const maxChars = isTallerThan700 ? 100 : 60;
+    return `${textToShow.slice(0, maxChars)}...`;
   }
 
   return (
@@ -50,9 +53,9 @@ const BlogPostItem = ({ title, content, link, date }: SectionProps) => {
       py={8}
       mb="10"
       bg={colors.white}
-      width={352}
+      width={["auto", 352]}
       height={[340, 360]}
-      mx={3}
+      mx={[0, 3]}
       alignItems="center"
       rounded="md"
     >
@@ -60,7 +63,12 @@ const BlogPostItem = ({ title, content, link, date }: SectionProps) => {
         {parseDate(date)}
       </MText>
 
-      <MHeading textAlign="center" mt={4} type="heading-xsm">
+      <MHeading
+        textAlign="center"
+        mt={[1, 4]}
+        lineHeight="120%"
+        type="heading-xsm"
+      >
         {title}
       </MHeading>
 
