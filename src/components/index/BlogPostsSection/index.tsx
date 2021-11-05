@@ -114,17 +114,19 @@ export default function BlogPosts() {
         type="heading-sm"
       >
         {t("indexPage.blog-section-blurb")}
-      </MText>
-
-      <MText
-        textAlign="center"
-        color={colors.green}
-        fontWeight="bold"
-        maxW={[440, 520, 700]}
-        type="heading-sm"
-        mb={8}
-      >
-        {t("indexPage.blog-section-blurb-highlight")}
+        <MText
+          as="span"
+          display={{ base: "inline", md: "block" }}
+          textAlign="center"
+          color={colors.green}
+          fontWeight="bold"
+          maxW={[440, 520, 700]}
+          type="heading-sm"
+          mb={8}
+        >
+          {" "}
+          {t("indexPage.blog-section-blurb-highlight")}
+        </MText>
       </MText>
 
       <Flex
