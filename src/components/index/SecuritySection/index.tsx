@@ -12,7 +12,7 @@ export default function SecuritySection() {
   return (
     <Box
       pt={24}
-      pb={32}
+      pb={24}
       bg={colors.blackMate}
       as="section"
       aria-label="security-section"
@@ -105,6 +105,7 @@ export default function SecuritySection() {
         <IconWithTextBelow
           height={70}
           opacity="0.6"
+          marginBottom={8}
           marginTop={4}
           marginX={8}
           key="neodyme"
@@ -118,6 +119,7 @@ export default function SecuritySection() {
         <IconWithTextBelow
           height={70}
           opacity="0.6"
+          marginBottom={8}
           marginTop={4}
           marginX={8}
           key="ackee"
@@ -127,8 +129,9 @@ export default function SecuritySection() {
           externalUrl={t(`indexPage.security-section-audit-ackee.external-url`)}
         />
         <IconWithTextBelow
-          height={12}
+          height={14}
           width="200px"
+          marginBottom={8}
           marginTop={8}
           marginX={8}
           key="kudelski"

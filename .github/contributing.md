@@ -35,7 +35,7 @@ Always use labels:
 Commit Messages:
 ----------------
 - use the present tense ("Add feature" not "Added feature")
-- use [GiMoji](https://gitmoji.dev/)
+- use [GiMoji](https://gitmoji.dev/) (optional)
 - using Husky to obligate running at least a eslint pass to commit and jest to push to remote
 - implement and use git hooks to enforce commit message structure
 
@@ -53,18 +53,16 @@ Branches:
 Pull Requests:
 ----------------
 - use the PR template
-- the last person that resolves the conversation and/or finnishes the review (into dev) will merge the PR
-- run lint fixers to keep code formatting standardized across branches
-- notify @JJ-Marinade in #development channel about merging PR with a link to it
+- PR without review assigned is considered a WIP PR
+- the last person that resolves the conversation and/or finishes the review (into dev) will merge the PR
+- use WIP label to signify PR to not get merged even after an approved review
 
 Reviews:
 ----------------
 * Assign reviews to (for now by order):
- * @uwecerron
  * @phola
- * @despin
  * @AlexStefan
- * @samullman
+ * @despin
 
 Definition of done:
 ----------------
@@ -72,3 +70,4 @@ Definition of done:
 - all PR checks are done before assigning someone to review
 - no console warnings or errors
 - no merge conflicts
+- all reviews needed are approved

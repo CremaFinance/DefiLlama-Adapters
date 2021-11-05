@@ -14,6 +14,7 @@ type IconWithTextBelowProps = {
   height?: number;
   width?: string;
   opacity?: string;
+  marginBottom?: number;
   marginTop?: number;
   titleColor?: string;
   subtitleColor?: string;
@@ -28,6 +29,7 @@ const IconWithTextBelow = ({
   height = 100,
   width = "auto",
   opacity = "1",
+  marginBottom = 4,
   marginTop = 0,
   titleColor = colors.white,
   subtitleColor = colors.white800,
@@ -38,7 +40,7 @@ const IconWithTextBelow = ({
   return (
     <Flex
       flexDirection="column"
-      marginBottom="4"
+      marginBottom={marginBottom}
       marginTop={marginTop}
       marginX={marginX}
       width="18rem"

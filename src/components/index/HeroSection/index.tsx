@@ -108,6 +108,7 @@ const HeroSection = () => {
               display="flex"
               flexDirection="row"
               mr={{ md: 4, lg: 8 }}
+              mt={{ base: 2, md: 0 }}
               key={`desktop-hstack-${index}`}
             >
               <MText type="heading-xsm" color={colors.green} mr={1}>
