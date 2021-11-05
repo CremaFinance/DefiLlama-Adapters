@@ -6,6 +6,7 @@ import {
   PopoverBody,
   Icon,
 } from "@chakra-ui/react";
+import { useTranslation } from "next-export-i18n";
 import { PropsWithChildren, FunctionComponent } from "react";
 import { HiCheckCircle } from "react-icons/hi";
 
@@ -29,40 +30,57 @@ const ApyAndRewardTooltip: FunctionComponent<ApyAndRewardTooltipProps> = ({
   rewardPerDay: { marinade, provider, providerShortName },
   children,
 }) => {
-  const marinadeRPD = `≈ ${marinade.toFixed(2)} MNDE/day reward`;
+  const { t } = useTranslation();
+
+  const marinadeRPD = t("appPage.pool-row.apyPopover.mndeReward").replace(
+    "{{reward}}",
+    marinade.toFixed(2)
+  );
   const providerRPD = provider
-    ? `≈ ${provider.toFixed(2)} ${providerShortName}/day reward`
+    ? t("appPage.pool-row.apyPopover.provReward")
+        .replace("{{reward}}", provider.toFixed(2))
+        .replace("{{provider}}", providerShortName)
     : null;
 
   return (
-    <Popover placement="bottom" trigger="hover">
+    <Popover
+      placement="bottom"
+      trigger="hover"
+      arrowSize={11}
+      arrowPadding={100}
+      arrowShadowColor="transparent"
+    >
       <PopoverTrigger>{children}</PopoverTrigger>
-      <PopoverContent>
+      <PopoverContent width="220px" borderWidth="0">
         <PopoverArrow
           backgroundColor="marinadeEvenLighterGreen"
           borderWidth="0"
         />
-        <PopoverBody padding="8px" backgroundColor="marinadeEvenLighterGreen">
-          <Text>
-            Trading APR:{" "}
+        <PopoverBody
+          padding="8px"
+          backgroundColor="marinadeEvenLighterGreen"
+          borderRadius="4px"
+        >
+          <Text fontSize="11.52px" marginBottom="4px">
+            {t("appPage.pool-row.apyPopover.tradding")}:
             <Text as="span" fontWeight="bold">
               {trading}%
             </Text>
           </Text>
-          <Text>
-            Emissions APR:
+          <Text fontSize="11.52px" marginBottom="4px">
+            {t("appPage.pool-row.apyPopover.emission")}:
             <Text as="span" fontWeight="bold">
               {emission}%
             </Text>
           </Text>
-          <Text marginBottom="8px">
-            Double Dip APR:
+          <Text fontSize="11.52px" marginBottom="16px">
+            {t("appPage.pool-row.apyPopover.doubleDip")}:
             <Text as="span" fontWeight="bold">
               {doubleDip}%
             </Text>
           </Text>
           {providerRPD && (
-            <Text verticalAlign="center">
+            <Text verticalAlign="center" fontSize="11.52px">
               <Icon
                 as={HiCheckCircle}
                 color="green800"
@@ -74,7 +92,7 @@ const ApyAndRewardTooltip: FunctionComponent<ApyAndRewardTooltipProps> = ({
               {providerRPD}
             </Text>
           )}
-          <Text>
+          <Text fontSize="11.52px">
             <Icon
               as={HiCheckCircle}
               color="green800"
