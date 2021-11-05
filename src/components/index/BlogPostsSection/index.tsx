@@ -115,6 +115,7 @@ export default function BlogPosts() {
       >
         {t("indexPage.blog-section-blurb")}
         <MHeading
+          as="span"
           display={{ base: "inline", md: "block" }}
           color={colors.green}
           maxW={[440, 520, 700]}
