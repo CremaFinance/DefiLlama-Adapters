@@ -15,7 +15,7 @@ type SectionProps = {
 
 const BlogPostItem = ({ title, content, link, date }: SectionProps) => {
   function parseDate(dateString: string) {
-    const pubDate = new Date(dateString);
+    const pubDate = new Date(dateString.replace(/-/g, "/"));
     const months = [
       "JAN",
       "FEB",
@@ -51,7 +51,7 @@ const BlogPostItem = ({ title, content, link, date }: SectionProps) => {
       mb="10"
       bg={colors.white}
       width={352}
-      height={400}
+      height={[340, 360]}
       mx={3}
       alignItems="center"
       rounded="md"
@@ -67,9 +67,9 @@ const BlogPostItem = ({ title, content, link, date }: SectionProps) => {
       <Container
         flex={1}
         textAlign="center"
+        fontSize="18px"
         mt={4}
         type="text-lg"
-        color={colors.black}
       >
         {parseContent()}
       </Container>
