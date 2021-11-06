@@ -3,6 +3,8 @@ import { Box, Flex, Image } from "@chakra-ui/react";
 import DefiSection from "components/app/DefiSection";
 import Footer from "components/app/Footer";
 import Header from "components/app/Header";
+import LogoStripSection from "components/index/LogoStripSection";
+import TestimonialSection from "components/index/TestimonialSection";
 import colors from "styles/customTheme/colors";
 
 const Defi = () => {
@@ -31,6 +33,8 @@ const Defi = () => {
       </Flex>
       <Header />
       <DefiSection />
+      <LogoStripSection />
+      <TestimonialSection />
       <Footer />
     </Box>
   );
