@@ -7,7 +7,6 @@ import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
 import { numberToShortVersion } from "utils/number-to-short-version";
-import { numberWithCommas } from "utils/number-with-commas";
 import { secondsToDhms } from "utils/seconds-to-dmhs";
 
 const InfoBoxesSection = () => {
@@ -65,10 +64,10 @@ const InfoBoxesSection = () => {
         >
           <MText type="text-md">{t("appPage.info-total-sol-staked")}</MText>
           <MHeading type="heading-xsm">
-            {numberWithCommas(totalSOLStaked)}
+            {totalSOLStaked.toLocaleString()}
           </MHeading>
           <MText type="text-md" pb={2}>
-            ≈ ${numberWithCommas(solPrice * totalSOLStaked)}
+            ≈ ${(solPrice * totalSOLStaked).toLocaleString()}
           </MText>
         </Flex>
         <Flex
@@ -161,7 +160,7 @@ const InfoBoxesSection = () => {
               icon={<MdInfoOutline />}
             />
           </Flex>
-          <MHeading type="heading-xsm">{numberWithCommas(validators)}</MHeading>
+          <MHeading type="heading-xsm">{validators.toLocaleString()}</MHeading>
           <MLink font="text-lg" color={colors.green} pb={2}>
             {t("appPage.info-validators-action")}
           </MLink>
@@ -232,7 +231,7 @@ const InfoBoxesSection = () => {
           </MLink>
           <Flex>
             <MHeading type="heading-2xsm">
-              {numberWithCommas(validators)}
+              {validators.toLocaleString()}
             </MHeading>
             <IconButton
               variant="link"
