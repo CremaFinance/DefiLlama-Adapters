@@ -1,6 +1,8 @@
 import { ChakraProps, Text as ChakraText, TextProps } from "@chakra-ui/react";
 import { forwardRef, LegacyRef } from "react";
 
+import colors from "styles/customTheme/colors";
+
 type Props = TextProps &
   ChakraProps & {
     type?: string;
@@ -20,6 +22,7 @@ const selectFontSize = (type = "") => {
     ? {
         fontSize,
         lineHeight: "150%",
+        color: colors.black,
       }
     : {};
 };
