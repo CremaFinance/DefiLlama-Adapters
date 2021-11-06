@@ -3,6 +3,7 @@ import { useTranslation } from "next-export-i18n";
 
 import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
+import colors from "styles/customTheme/colors";
 
 const TestimonialSection = () => {
   const { t } = useTranslation();
@@ -16,6 +17,7 @@ const TestimonialSection = () => {
       flexDirection={{ base: "column", md: "row" }}
       justifyContent="center"
       alignItems="center"
+      bg={colors.white}
     >
       <Center height="100%" ml={[0, 8]} mb={4}>
         <Image
