@@ -1,5 +1,6 @@
-import { Box, Flex, IconButton, Input, Image } from "@chakra-ui/react";
+import { Flex, IconButton, Input, Image } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
+import { useState } from "react";
 import { MdInfoOutline } from "react-icons/md";
 
 import MButton from "../../atoms/Button";
@@ -7,17 +8,24 @@ import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
 
+// eslint-disable-next-line complexity
 const StakeInputsSection = () => {
   const { t } = useTranslation();
   const balanceLabel = t("appPage.balance");
+
+  const [isStakeActive, setStakeActive] = useState(true);
+  const [isUnstakeNowActive, setUnstakeNowActive] = useState(true);
 
   // TODO: Use actual values from services
   const mSOLvsSOLParity = 1.01002;
   const minUnstakeFee = 0.3;
   const maxUnstakeFee = 3;
   const sourceToken = "mSOL";
+  const sourceTokenIcon = "/icons/mSOL.svg";
   const sourceTokenBalance = 123456;
   const targetToken = "SOL";
+  // TODO: Replace with dark SOL logo
+  const targetTokenIcon = "/icons/mSOL.svg";
   const targetTokenBalance = 0;
 
   return (
@@ -37,10 +45,43 @@ const StakeInputsSection = () => {
           {t("appPage.stake-inputs-title")}
         </MHeading>
         <MText type="text-xl">{t("appPage.stake-inputs-subtitle")}</MText>
-        {/* Here should be the switch */}
-        <Box height="36px" mt={8} mb={6}>
-          switch
-        </Box>
+        <Flex
+          my={6}
+          height="40px"
+          width={218}
+          rounded="3xl"
+          bg="gray.100"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <MButton
+            font="text-xl"
+            bg={isStakeActive ? colors.green : "gray.100"}
+            color={isStakeActive ? colors.white : colors.black}
+            fontWeight={isStakeActive ? "bold" : "normal"}
+            rounded="3xl"
+            width={103}
+            height="36px"
+            _hover={{}}
+            mr={2}
+            onClick={() => setStakeActive(true)}
+          >
+            {t("appPage.stake-action")}
+          </MButton>
+          <MButton
+            font="text-xl"
+            bg={isStakeActive ? "gray.100" : colors.green}
+            color={isStakeActive ? colors.black : colors.white}
+            fontWeight={isStakeActive ? "normal" : "bold"}
+            rounded="3xl"
+            width={103}
+            height="36px"
+            _hover={{}}
+            onClick={() => setStakeActive(false)}
+          >
+            {t("appPage.unstake-action")}
+          </MButton>
+        </Flex>
         <Flex
           width={["288px", "480px"]}
           height={["483px", "510px"]}
@@ -50,10 +91,44 @@ const StakeInputsSection = () => {
           flexDirection="column"
           boxShadow="md"
         >
-          {/* Here should be the switch */}
-          <Box height="36px" mt={12} mb={8}>
-            switch
-          </Box>
+          <Flex
+            my={10}
+            height="40px"
+            width={322}
+            rounded="3xl"
+            bg="gray.100"
+            justifyContent="center"
+            alignItems="center"
+            display={isStakeActive ? "none" : "flex"}
+          >
+            <MButton
+              font="text-xl"
+              bg={isUnstakeNowActive ? colors.green : "gray.100"}
+              color={isUnstakeNowActive ? colors.white : colors.black}
+              fontWeight={isUnstakeNowActive ? "bold" : "normal"}
+              rounded="3xl"
+              width={155}
+              height="36px"
+              _hover={{}}
+              mr={2}
+              onClick={() => setUnstakeNowActive(true)}
+            >
+              {t("appPage.unstake-now-action")}
+            </MButton>
+            <MButton
+              font="text-xl"
+              bg={isUnstakeNowActive ? "gray.100" : colors.green}
+              color={isUnstakeNowActive ? colors.black : colors.white}
+              fontWeight={isUnstakeNowActive ? "normal" : "bold"}
+              rounded="3xl"
+              width={155}
+              height="36px"
+              _hover={{}}
+              onClick={() => setUnstakeNowActive(false)}
+            >
+              {t("appPage.delayed-unstake-action")}
+            </MButton>
+          </Flex>
           <Flex
             height="104px"
             width="400px"
@@ -77,7 +152,7 @@ const StakeInputsSection = () => {
                 height="44px"
               >
                 <Image
-                  src="/icons/mSOL.svg"
+                  src={sourceTokenIcon}
                   alt="Source Token Logo"
                   width="30px"
                 />
@@ -118,9 +193,8 @@ const StakeInputsSection = () => {
                 width="87px"
                 height="44px"
               >
-                {/* TODO: Replace with dark SOL logo */}
                 <Image
-                  src="/icons/mSOL.svg"
+                  src={targetTokenIcon}
                   alt="Target Token Logo"
                   width="30px"
                 />
