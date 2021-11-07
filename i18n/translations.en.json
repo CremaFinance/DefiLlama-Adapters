@@ -216,6 +216,17 @@
     "footer-join-us": "Join us",
     "footer-learn-more": "Learn more",
     
+    "stake-inputs-title": "Stake Solana",
+    "stake-inputs-subtitle": "Stake SOL and receive mSOL while staking",
+    "stake-inputs-balance": "Balance",
+    "stake-inputs-exchange-rate": "Exchange rate",
+    "stake-inputs-unstake-fee": "Unstake fee",
+    "stake-action": "Stake",
+    "unstake-action": "Unstake",
+    "unstake-now-action": "Unstake now",
+    "delayed-unstake-action": "Delayed unstake",
+    "balance": "Balance",
+
     "faq-title": "FAQ",
     "faq-items": [
       {

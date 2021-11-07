@@ -3,6 +3,7 @@ import { Box, Flex, Image } from "@chakra-ui/react";
 import FAQSection from "components/app/FAQSection";
 import Footer from "components/app/Footer";
 import Header from "components/app/Header";
+import StakeInputsSection from "components/app/StakeInputsSection";
 import StakingSection from "components/app/StakingSection";
 import LogoStripSection from "components/index/LogoStripSection";
 import TestimonialSection from "components/index/TestimonialSection";
@@ -10,11 +11,7 @@ import colors from "styles/customTheme/colors";
 
 const Staking = () => {
   return (
-    <Box
-      position="relative"
-      overflow="hidden"
-      backgroundColor={colors.greenLight}
-    >
+    <Box position="relative" overflow="hidden" bg={colors.greenLight}>
       <Flex width="100vw" justifyContent="flex-end">
         <Image
           src="../../ilustrations/left-leaf.svg"
@@ -38,6 +35,7 @@ const Staking = () => {
       </Flex>
       <Header />
       <StakingSection />
+      <StakeInputsSection />
       <FAQSection />
       <LogoStripSection />
       <TestimonialSection />
