@@ -68,7 +68,7 @@ const LogoStripSection = () => {
       alignItems="center"
     >
       <MText
-        type="text-xl"
+        type="text-2xl"
         textAlign="center"
         mt={2}
         mb={4}

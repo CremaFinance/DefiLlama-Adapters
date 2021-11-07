@@ -3,6 +3,7 @@ import { useTranslation } from "next-export-i18n";
 import { useRouter } from "next/dist/client/router";
 
 import MButton from "../../atoms/Button";
+import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
 
@@ -28,21 +29,21 @@ const HeroSection = () => {
         zIndex={10}
         textAlign={["center", "left"]}
       >
-        <MText type="heading-lg" mt={[0, "1vh"]} color={colors.greenVibrant}>
+        <MHeading type="heading-lg" mt={[0, "1vh"]} color={colors.greenVibrant}>
           {t("indexPage.hero-section-title")}
-        </MText>
+        </MHeading>
 
-        <MText
+        <MHeading
           type="heading-lg"
           mb={[4, 6]}
           marginX={["auto", "0"]}
           maxWidth={[320, 480]}
         >
           {t("indexPage.hero-section-subtitle")}
-        </MText>
+        </MHeading>
 
         <MText
-          type="text-xl"
+          type="text-2xl"
           mb={4}
           maxWidth={[264, 380]}
           color={colors.black}
@@ -65,7 +66,7 @@ const HeroSection = () => {
           {t("indexPage.hero-section-button")}
         </MButton>
 
-        <MText type="text-lg" fontWeight="bold" color={colors.blackMate800}>
+        <MText type="text-xl" fontWeight="bold" color={colors.blackMate800}>
           6.21% APY
         </MText>
       </Box>
@@ -111,12 +112,12 @@ const HeroSection = () => {
               mt={{ base: 2, md: 0 }}
               key={`desktop-hstack-${index}`}
             >
-              <MText type="heading-xsm" color={colors.green} mr={1}>
+              <MHeading type="heading-xsm" color={colors.green} mr={1}>
                 {t(`indexPage.hero-section-stats.${index}.number`)}
-              </MText>{" "}
-              <MText type="heading-xsm" mr={1}>
+              </MHeading>{" "}
+              <MHeading type="heading-xsm" mr={1}>
                 {t(`indexPage.hero-section-stats.${index}.desc`)}
-              </MText>
+              </MHeading>
             </Box>
           );
         })}
