@@ -52,6 +52,7 @@ const Button = forwardRef(
         {...selectFontSize(props.font)}
         {...selectVariant(props.variant)}
         {...props}
+        _focus={{ boxShadow: "none" }}
       />
     );
   }

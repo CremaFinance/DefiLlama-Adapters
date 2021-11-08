@@ -1,14 +1,15 @@
+/* eslint-disable complexity */
 import { Flex, IconButton, Input, Image } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { useState } from "react";
-import { MdInfoOutline } from "react-icons/md";
+import { MdArrowDownward, MdArrowUpward, MdInfoOutline } from "react-icons/md";
 
 import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
 
-// eslint-disable-next-line complexity
+// eslint-disable-next-line sonarjs/cognitive-complexity
 const StakeInputsSection = () => {
   const { t } = useTranslation();
   const balanceLabel = t("appPage.balance");
@@ -84,12 +85,14 @@ const StakeInputsSection = () => {
         </Flex>
         <Flex
           width={["288px", "480px"]}
-          height={["483px", "510px"]}
+          height={isStakeActive ? ["483px", "450px"] : ["483px", "510px"]}
           bg={colors.white}
           rounded="md"
           alignItems="center"
           flexDirection="column"
           boxShadow="md"
+          pt={isStakeActive ? 8 : 0}
+          position="relative"
         >
           <Flex
             my={10}
@@ -242,6 +245,24 @@ const StakeInputsSection = () => {
             </Flex>
             <MText type="text-md">{`${minUnstakeFee}-${maxUnstakeFee}%`}</MText>
           </Flex>
+          <MButton
+            top={isStakeActive ? ["483px", "118px"] : ["483px", "206px"]}
+            variant="ghost"
+            position="absolute"
+            aria-label="Swap direction"
+            bg="gray.50"
+            border="2px"
+            borderColor={colors.white}
+            p={0}
+            zIndex={10}
+            onClick={() => setStakeActive(!isStakeActive)}
+          >
+            {isStakeActive ? (
+              <MdArrowUpward color={colors.green} fontSize="24px" />
+            ) : (
+              <MdArrowDownward color={colors.green} fontSize="24px" />
+            )}
+          </MButton>
           <MButton
             font="text-xl"
             bg={colors.green}
