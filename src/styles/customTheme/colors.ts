@@ -33,6 +33,7 @@ const colors = {
   green: "#308D8A",
   green800: "#308D8ACC",
   marinadeLighterGreen: "#DFF4ED",
+  marinadeEvenLighterGreen: "#ECFAF5",
   white: "#FFFFFF",
   white800: "#FFFFFFCC",
 };

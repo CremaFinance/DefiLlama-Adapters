@@ -1,7 +1,7 @@
-import { Container, Flex, Image } from "@chakra-ui/react";
+import { Container, Flex, Image, useMediaQuery } from "@chakra-ui/react";
 
 import { useTranslation } from "../../../hooks/useTranslation";
-import colors from "../../../styles/customTheme/colors";
+import MHeading from "../../atoms/Heading";
 import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
 
@@ -13,8 +13,10 @@ type SectionProps = {
 };
 
 const BlogPostItem = ({ title, content, link, date }: SectionProps) => {
+  const [isTallerThan700] = useMediaQuery("(min-height: 700px)");
+
   function parseDate(dateString: string) {
-    const pubDate = new Date(dateString);
+    const pubDate = new Date(dateString.replace(/-/g, "/"));
     const months = [
       "JAN",
       "FEB",
@@ -39,7 +41,8 @@ const BlogPostItem = ({ title, content, link, date }: SectionProps) => {
   function parseContent() {
     let textToShow = content.replace(/<[^>]+>/g, "");
     textToShow = textToShow?.trimEnd();
-    return `${textToShow.slice(0, 100)}...`;
+    const maxChars = isTallerThan700 ? 100 : 60;
+    return `${textToShow.slice(0, maxChars)}...`;
   }
 
   return (
@@ -49,32 +52,37 @@ const BlogPostItem = ({ title, content, link, date }: SectionProps) => {
       py={8}
       mb="10"
       bg={colors.white}
-      width={352}
-      height={400}
-      mx={3}
+      width={["auto", 352]}
+      height={[340, 360]}
+      mx={[0, 3]}
       alignItems="center"
       rounded="md"
     >
-      <MText mb={4} type="text-lg" color={colors.black600}>
+      <MText mb={4} type="text-xl" color={colors.black600}>
         {parseDate(date)}
       </MText>
 
-      <MText textAlign="center" mt={4} type="heading-xsm" color={colors.black}>
+      <MHeading
+        textAlign="center"
+        mt={[1, 4]}
+        lineHeight="120%"
+        type="heading-xsm"
+      >
         {title}
-      </MText>
+      </MHeading>
 
       <Container
         flex={1}
         textAlign="center"
+        fontSize="18px"
         mt={4}
         type="text-lg"
-        color={colors.black}
       >
         {parseContent()}
       </Container>
 
       <MLink
-        font="text-xl-bold"
+        font="text-xl"
         variant="link"
         as="a"
         color={colors.green}

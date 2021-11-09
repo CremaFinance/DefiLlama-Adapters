@@ -2,6 +2,7 @@ import { Flex, Image } from "@chakra-ui/react";
 import htmlParser from "html-react-parser";
 import { useTranslation } from "next-export-i18n";
 
+import MHeading from "../../atoms/Heading";
 import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
@@ -14,6 +15,7 @@ type IconWithTextBelowProps = {
   height?: number;
   width?: string;
   opacity?: string;
+  marginBottom?: number;
   marginTop?: number;
   titleColor?: string;
   subtitleColor?: string;
@@ -28,6 +30,7 @@ const IconWithTextBelow = ({
   height = 100,
   width = "auto",
   opacity = "1",
+  marginBottom = 4,
   marginTop = 0,
   titleColor = colors.white,
   subtitleColor = colors.white800,
@@ -38,7 +41,7 @@ const IconWithTextBelow = ({
   return (
     <Flex
       flexDirection="column"
-      marginBottom="4"
+      marginBottom={marginBottom}
       marginTop={marginTop}
       marginX={marginX}
       width="18rem"
@@ -51,7 +54,7 @@ const IconWithTextBelow = ({
         width={width}
         alt={`${title} Logo`}
       />
-      <MText
+      <MHeading
         color={titleColor}
         marginBottom="4"
         marginTop="8"
@@ -60,9 +63,9 @@ const IconWithTextBelow = ({
         textAlign="center"
       >
         {title}
-      </MText>
+      </MHeading>
       {subtitle && (
-        <MText type="text-lg" color={subtitleColor} textAlign="center">
+        <MText type="text-xl" color={subtitleColor} textAlign="center">
           {htmlParser(subtitle)}
         </MText>
       )}

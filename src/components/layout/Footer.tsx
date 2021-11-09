@@ -34,7 +34,7 @@ const Footer = () => {
               width={200}
             />
           </NextLink>
-          <MText py={6} type="text-lg" color={colors.white800} maxWidth="360">
+          <MText py={6} type="text-xl" color={colors.white800} maxWidth="360">
             {t("indexPage.footer-description")}
           </MText>
           <Box display="flex" flexDirection="row">
@@ -80,8 +80,8 @@ const Footer = () => {
           flexDirection="column"
         >
           <MText
-            pb="4"
-            type="text-xl"
+            pb={2}
+            type="text-2xl"
             maxW="600"
             color={colors.white}
             fontWeight="800"
@@ -89,23 +89,23 @@ const Footer = () => {
             {t("indexPage.footer-product")}
           </MText>
 
-          <MText type="text-lg" color={colors.white} mb={2}>
+          <MText type="text-xl" color={colors.white} mb={2}>
             <Link href="/">{t("indexPage.footer-stake-sol")}</Link>
           </MText>
 
-          <MText type="text-lg" color={colors.white} mb={2}>
+          <MText type="text-xl" color={colors.white} mb={2}>
             <Link href="/">{t("indexPage.footer-validators")}</Link>
           </MText>
 
-          <MText type="text-lg" color={colors.white} mb={2}>
+          <MText type="text-xl" color={colors.white} mb={2}>
             <Link href="/">{t("indexPage.footer-receive-msol")}</Link>
           </MText>
 
-          <MText type="text-lg" color={colors.white} mb={2}>
+          <MText type="text-xl" color={colors.white} mb={2}>
             <Link href="/">{t("indexPage.footer-marinde-dao")}</Link>
           </MText>
 
-          <MText type="text-lg" color={colors.white} mb={2}>
+          <MText type="text-xl" color={colors.white} mb={2}>
             <Link href="/">
               {t("indexPage.footer-defi-recipes-integration")}
             </Link>
@@ -113,8 +113,8 @@ const Footer = () => {
         </Box>
         <Box py={8} display="flex" flex="0.25" flexDirection="column">
           <MText
-            pb="4"
-            type="text-xl"
+            pb={2}
+            type="text-2xl"
             maxW="600"
             color={colors.white}
             fontWeight="800"
@@ -122,19 +122,19 @@ const Footer = () => {
             {t("indexPage.footer-learn")}
           </MText>
 
-          <MText type="text-lg" color={colors.white} mb={2}>
+          <MText type="text-xl" color={colors.white} mb={2}>
             <Link href="/">{t("indexPage.footer-docs")}</Link>
           </MText>
 
-          <MText type="text-lg" color={colors.white} mb={2}>
+          <MText type="text-xl" color={colors.white} mb={2}>
             <Link href="/">{t("indexPage.footer-security")}</Link>
           </MText>
 
-          <MText type="text-lg" color={colors.white} mb={2}>
+          <MText type="text-xl" color={colors.white} mb={2}>
             <Link href="/">{t("indexPage.footer-about-us")}</Link>
           </MText>
 
-          <MText type="text-lg" color={colors.white} mb={2}>
+          <MText type="text-xl" color={colors.white} mb={2}>
             <Link href="/">{t("indexPage.footer-roadmap")}</Link>
           </MText>
         </Box>

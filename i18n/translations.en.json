@@ -181,12 +181,36 @@
     "footer-about-us": "About us",
     "footer-roadmap": "Roadmap",
     "footer-copyright": "© Copyright 2021 Marinade.finance. All rights reserved.",
-
     "read-more": "Read more"
   },
   "appPage": {
     "stake-menu-item": "Stake",
     "use-msol-menu-item": "Use mSOL",
-    "connect-wallet":  "Connect wallet"
+    "connect-wallet":  "Connect wallet",
+    "pool-row": {
+      "total-apy": "{{totalApy}} % APY",
+      "buttons": {
+        "addLiquidy": "Add liquidity",
+        "supply": "Supply",
+        "swap": "Swap",
+        "borrow": "Borrow"
+      },
+      "tvl": "$ {{tvl}} TVL",
+      "apyPopover": {
+        "trading": "Trading APR",
+        "emission": "Emission APR",
+        "doubleDip": "Double Dip APR",
+        "mndeReward": "≈ {{reward}} MNDE/day reward",
+        "provReward": "≈ {{reward}} {{provider}} reward"
+      }
+    },
+    "info-msol-sol-price": "MSOL/SOL price",
+    "info-total-sol-staked": "Total SOL staked",
+    "info-total-staked": "Total staked",
+    "info-epoch": "Epoch",
+    "info-week-apy": "7d APY",
+    "info-see-performance-action": "See performance",
+    "info-validators": "Validators",
+    "info-validators-action": "Show validators"
   }
 }

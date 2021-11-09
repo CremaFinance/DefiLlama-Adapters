@@ -1,7 +1,7 @@
 import { Flex } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 
-import MText from "../../atoms/Text";
+import MHeading from "../../atoms/Heading";
 import IconWithTextBelow from "components/molecules/IconWithTextBelow";
 import colors from "styles/customTheme/colors";
 
@@ -17,9 +17,14 @@ export default function WhySection() {
       flexDirection="column"
       alignItems="stretch"
     >
-      <MText textAlign="center" color={colors.white} type="heading-md" mt={6}>
+      <MHeading
+        textAlign="center"
+        color={colors.white}
+        type="heading-md"
+        mt={6}
+      >
         {t("indexPage.why-section-title")}
-      </MText>
+      </MHeading>
       <Flex
         flexDirection={{ base: "column", md: "row" }}
         justifyContent="center"

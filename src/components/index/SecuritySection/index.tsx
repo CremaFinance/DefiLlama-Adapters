@@ -2,6 +2,7 @@ import { Box, Flex } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 
 import MButton from "../../atoms/Button";
+import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
 import IconWithTextBelow from "components/molecules/IconWithTextBelow";
 import colors from "styles/customTheme/colors";
@@ -12,7 +13,7 @@ export default function SecuritySection() {
   return (
     <Box
       pt={24}
-      pb={32}
+      pb={24}
       bg={colors.blackMate}
       as="section"
       aria-label="security-section"
@@ -20,7 +21,7 @@ export default function SecuritySection() {
       flexDirection="column"
       alignItems="stretch"
     >
-      <MText
+      <MHeading
         mt={6}
         alignSelf="center"
         textAlign="center"
@@ -29,9 +30,9 @@ export default function SecuritySection() {
         type="heading-md"
       >
         {t("indexPage.security-section-title")}
-      </MText>
+      </MHeading>
       <MText
-        type="text-xl"
+        type="text-2xl"
         alignSelf="center"
         maxWidth="720"
         textAlign="center"
@@ -85,7 +86,7 @@ export default function SecuritySection() {
           {t("indexPage.security-section-action")}
         </MButton>
       </Flex>
-      <MText
+      <MHeading
         type="heading-sm"
         marginTop={24}
         marginBottom="8"
@@ -95,7 +96,7 @@ export default function SecuritySection() {
         color={colors.white}
       >
         {t("indexPage.security-section-audit-title")}
-      </MText>
+      </MHeading>
       <Flex
         flexDirection={{ base: "column", md: "row" }}
         justifyContent="center"
@@ -105,6 +106,7 @@ export default function SecuritySection() {
         <IconWithTextBelow
           height={70}
           opacity="0.6"
+          marginBottom={8}
           marginTop={4}
           marginX={8}
           key="neodyme"
@@ -118,6 +120,7 @@ export default function SecuritySection() {
         <IconWithTextBelow
           height={70}
           opacity="0.6"
+          marginBottom={8}
           marginTop={4}
           marginX={8}
           key="ackee"
@@ -127,8 +130,9 @@ export default function SecuritySection() {
           externalUrl={t(`indexPage.security-section-audit-ackee.external-url`)}
         />
         <IconWithTextBelow
-          height={12}
+          height={14}
           width="200px"
+          marginBottom={8}
           marginTop={8}
           marginX={8}
           key="kudelski"
