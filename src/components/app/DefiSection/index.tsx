@@ -1,5 +1,6 @@
 import { Flex } from "@chakra-ui/react";
 
+import InfoBoxesSection from "../InfoBoxesSection";
 import PoolRow from "components/molecules/PoolRow";
 import colors from "styles/customTheme/colors";
 
@@ -10,7 +11,7 @@ const DefiSection = () => {
     <Flex
       py="72px"
       pb={[12, 8]}
-      aria-label="hero-section"
+      aria-label="defi-section"
       position="relative"
       height="100vh"
       zIndex={4}
@@ -18,6 +19,7 @@ const DefiSection = () => {
       backgroundColor={colors.greenLight}
       alignItems="stretch"
     >
+      <InfoBoxesSection />
       <Flex flexDir="column" marginX={{ base: "10px", xl: "170px" }}>
         {exampleData.map((props) => (
           <Flex

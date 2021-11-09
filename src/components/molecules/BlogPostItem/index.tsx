@@ -1,6 +1,7 @@
 import { Container, Flex, Image } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 
+import MHeading from "../../atoms/Heading";
 import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
@@ -55,13 +56,13 @@ const BlogPostItem = ({ title, content, link, date }: SectionProps) => {
       alignItems="center"
       rounded="md"
     >
-      <MText mb={4} type="text-lg" color={colors.black600}>
+      <MText mb={4} type="text-xl" color={colors.black600}>
         {parseDate(date)}
       </MText>
 
-      <MText textAlign="center" mt={4} type="heading-xsm" color={colors.black}>
+      <MHeading textAlign="center" mt={4} type="heading-xsm">
         {title}
-      </MText>
+      </MHeading>
 
       <Container
         flex={1}
@@ -74,7 +75,7 @@ const BlogPostItem = ({ title, content, link, date }: SectionProps) => {
       </Container>
 
       <MLink
-        font="text-xl-bold"
+        font="text-xl"
         variant="link"
         as="a"
         color={colors.green}

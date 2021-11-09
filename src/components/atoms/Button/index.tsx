@@ -23,7 +23,7 @@ const selectVariant = (variant = "") =>
     },
   }[variant] ?? {});
 
-const selectFontSize = (size = "") => {
+const selectFontSize = (fontWeight = "bold", size = "") => {
   const fontSize =
     {
       "text-xl": ["16px", "18px"],
@@ -35,7 +35,7 @@ const selectFontSize = (size = "") => {
   return fontSize
     ? {
         fontSize,
-        fontWeight: "bold",
+        fontWeight,
       }
     : {};
 };

@@ -10,7 +10,7 @@ const Defi = () => {
       <Flex width="100vw" justifyContent="flex-end">
         <Image
           src="../../ilustrations/left-leaf.svg"
-          width={{ base: 0, md: "21vw", "2xl": "32vw" }}
+          width={{ base: 0, md: "21vw", "2xl": "16vw" }}
           alt="Leaf"
           position="absolute"
           right={-10}
@@ -20,7 +20,7 @@ const Defi = () => {
 
         <Image
           src="../../ilustrations/right-leaf.svg"
-          width={{ base: 0, md: "16vw", "2xl": "32vw" }}
+          width={{ base: 0, md: "16vw", "2xl": "16vw" }}
           alt="Leaf"
           position="absolute"
           right={-14}

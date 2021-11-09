@@ -1,6 +1,7 @@
 import { Center, Flex, Image, Box } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 
+import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
 
 const TestimonialSection = () => {
@@ -30,9 +31,9 @@ const TestimonialSection = () => {
           <Image src="/solana-logo.png" width="160px" />
         </Box>
 
-        <MText type="text-2xl" mb={4} fontWeight="bold">
+        <MHeading type="heading-xsm" lineHeight="140%" mb={4} fontWeight="bold">
           “{t("indexPage.testimonial-section-quote")}”
-        </MText>
+        </MHeading>
 
         <MText
           type="text-lg"

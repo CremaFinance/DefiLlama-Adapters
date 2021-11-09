@@ -3,6 +3,7 @@ import { useTranslation } from "next-export-i18n";
 import { useRouter } from "next/dist/client/router";
 
 import MButton from "../../atoms/Button";
+import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
 import IconWithTextBelow from "components/molecules/IconWithTextBelow";
 import colors from "styles/customTheme/colors";
@@ -28,7 +29,7 @@ export default function InfoSection() {
       overflow="hidden"
       position="relative"
     >
-      <MText
+      <MHeading
         mt={6}
         type="heading-md"
         alignSelf="center"
@@ -37,7 +38,7 @@ export default function InfoSection() {
         fontWeight="bold"
       >
         {t("indexPage.info-section-title")}
-      </MText>
+      </MHeading>
       <Flex
         flexDirection={{ base: "column", md: "row" }}
         justifyContent="center"
@@ -87,14 +88,19 @@ export default function InfoSection() {
             zIndex={4}
             mr={{ base: 4, lg: "40vw", "2xl": "24vw" }}
           >
-            <MText mb={6} fontWeight="bold" type="heading-md">
-              <MText as="span" display="inline-block" color={colors.green}>
+            <MHeading mb={6} fontWeight="bold" type="heading-md">
+              <MHeading
+                as="span"
+                display="inline-block"
+                type="heading-md"
+                color={colors.green}
+              >
                 {t("indexPage.info-section-items.0.emphasis")}
-              </MText>{" "}
+              </MHeading>{" "}
               {t("indexPage.info-section-items.0.heading")}
-            </MText>
+            </MHeading>
 
-            <MText mb={6} pr={8} type="text-xl">
+            <MText mb={6} pr={8} type="text-2xl">
               {t("indexPage.info-section-items.0.desc")}
             </MText>
 
@@ -111,7 +117,7 @@ export default function InfoSection() {
 
             <Flex
               bg={colors.marinadeLighterGreen}
-              height={{ base: "auto", md: "160px" }}
+              height={{ base: "auto", md: "138px" }}
               width={{ base: "88vw", md: "60vw", lg: "34vw", "2xl": "24vw" }}
               p={4}
               mt={4}
@@ -170,14 +176,19 @@ export default function InfoSection() {
             zIndex={4}
             ml={{ base: 4, lg: "40vw", "2xl": "24vw" }}
           >
-            <MText mb={4} fontWeight="bold" type="heading-md">
-              <MText as="span" display="inline-block" color={colors.green}>
+            <MHeading mb={4} fontWeight="bold" type="heading-md">
+              <MHeading
+                as="span"
+                display="inline-block"
+                type="heading-md"
+                color={colors.green}
+              >
                 {t("indexPage.info-section-items.1.emphasis")}
-              </MText>{" "}
+              </MHeading>{" "}
               {t("indexPage.info-section-items.1.heading")}
-            </MText>
+            </MHeading>
 
-            <MText mt={6} mb={4} type="text-xl">
+            <MText mt={6} mb={4} type="text-2xl">
               {t("indexPage.info-section-items.1.desc")}
             </MText>
 
@@ -195,7 +206,7 @@ export default function InfoSection() {
 
             <Flex
               bg={colors.marinadeLighterGreen}
-              height={{ base: "auto", md: "160px" }}
+              height={{ base: "auto", md: "138px" }}
               width={{ base: "88vw", md: "60vw", lg: "34vw", "2xl": "24vw" }}
               p={4}
               mt={4}
@@ -251,14 +262,19 @@ export default function InfoSection() {
             zIndex={4}
             mr={{ base: 4, lg: "40vw", "2xl": "24vw" }}
           >
-            <MText mb={4} fontWeight="bold" type="heading-md">
-              <MText as="span" display="inline-block" color={colors.green}>
+            <MHeading mb={4} fontWeight="bold" type="heading-md">
+              <MHeading
+                as="span"
+                display="inline-block"
+                type="heading-md"
+                color={colors.green}
+              >
                 {t("indexPage.info-section-items.2.emphasis")}
-              </MText>{" "}
+              </MHeading>{" "}
               {t("indexPage.info-section-items.2.heading")}
-            </MText>
+            </MHeading>
 
-            <MText my={6} pr={4} type="text-xl">
+            <MText my={6} pr={4} type="text-2xl">
               {t("indexPage.info-section-items.2.desc")}
             </MText>
 
