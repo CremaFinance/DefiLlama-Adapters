@@ -1,5 +1,4 @@
-/* eslint-disable complexity */
-import { Flex, IconButton, Input, Image } from "@chakra-ui/react";
+import { Flex, IconButton } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { useState } from "react";
 import { MdArrowDownward, MdArrowUpward, MdInfoOutline } from "react-icons/md";
@@ -7,15 +6,19 @@ import { MdArrowDownward, MdArrowUpward, MdInfoOutline } from "react-icons/md";
 import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
+import StakeInput from "components/molecules/StakeInput";
+import SwitchButtons from "components/molecules/SwitchButtons";
 import colors from "styles/customTheme/colors";
 
-// eslint-disable-next-line sonarjs/cognitive-complexity
 const StakeInputsSection = () => {
   const { t } = useTranslation();
-  const balanceLabel = t("appPage.balance");
 
   const [isStakeActive, setStakeActive] = useState(true);
   const [isUnstakeNowActive, setUnstakeNowActive] = useState(true);
+
+  const unstakeText = isUnstakeNowActive
+    ? t("appPage.unstake-now-action")
+    : t("appPage.delayed-unstake-action");
 
   // TODO: Use actual values from services
   const mSOLvsSOLParity = 1.01002;
@@ -28,6 +31,14 @@ const StakeInputsSection = () => {
   // TODO: Replace with dark SOL logo
   const targetTokenIcon = "/icons/mSOL.svg";
   const targetTokenBalance = 0;
+
+  const handleStakeActive = (v: boolean) => {
+    setStakeActive(v);
+  };
+
+  const handleUnstakeNowActive = (v: boolean) => {
+    setUnstakeNowActive(v);
+  };
 
   return (
     <Flex
@@ -46,43 +57,15 @@ const StakeInputsSection = () => {
           {t("appPage.stake-inputs-title")}
         </MHeading>
         <MText type="text-xl">{t("appPage.stake-inputs-subtitle")}</MText>
-        <Flex
+        <SwitchButtons
+          leftText={t("appPage.stake-action")}
+          rightText={t("appPage.unstake-action")}
           my={6}
-          height="40px"
+          height={40}
           width={218}
-          rounded="3xl"
-          bg="gray.100"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <MButton
-            font="text-xl"
-            bg={isStakeActive ? colors.green : "gray.100"}
-            color={isStakeActive ? colors.white : colors.black}
-            fontWeight={isStakeActive ? "bold" : "normal"}
-            rounded="3xl"
-            width={103}
-            height="36px"
-            _hover={{}}
-            mr={2}
-            onClick={() => setStakeActive(true)}
-          >
-            {t("appPage.stake-action")}
-          </MButton>
-          <MButton
-            font="text-xl"
-            bg={isStakeActive ? "gray.100" : colors.green}
-            color={isStakeActive ? colors.black : colors.white}
-            fontWeight={isStakeActive ? "normal" : "bold"}
-            rounded="3xl"
-            width={103}
-            height="36px"
-            _hover={{}}
-            onClick={() => setStakeActive(false)}
-          >
-            {t("appPage.unstake-action")}
-          </MButton>
-        </Flex>
+          active={isStakeActive}
+          handleSwitch={handleStakeActive}
+        />
         <Flex
           width={["288px", "480px"]}
           height={isStakeActive ? ["483px", "450px"] : ["483px", "510px"]}
@@ -94,129 +77,27 @@ const StakeInputsSection = () => {
           pt={isStakeActive ? 8 : 0}
           position="relative"
         >
-          <Flex
+          <SwitchButtons
+            leftText={t("appPage.unstake-now-action")}
+            rightText={t("appPage.delayed-unstake-action")}
             my={10}
-            height="40px"
+            height={40}
             width={322}
-            rounded="3xl"
-            bg="gray.100"
-            justifyContent="center"
-            alignItems="center"
+            active={isUnstakeNowActive}
             display={isStakeActive ? "none" : "flex"}
-          >
-            <MButton
-              font="text-xl"
-              bg={isUnstakeNowActive ? colors.green : "gray.100"}
-              color={isUnstakeNowActive ? colors.white : colors.black}
-              fontWeight={isUnstakeNowActive ? "bold" : "normal"}
-              rounded="3xl"
-              width={155}
-              height="36px"
-              _hover={{}}
-              mr={2}
-              onClick={() => setUnstakeNowActive(true)}
-            >
-              {t("appPage.unstake-now-action")}
-            </MButton>
-            <MButton
-              font="text-xl"
-              bg={isUnstakeNowActive ? "gray.100" : colors.green}
-              color={isUnstakeNowActive ? colors.black : colors.white}
-              fontWeight={isUnstakeNowActive ? "normal" : "bold"}
-              rounded="3xl"
-              width={155}
-              height="36px"
-              _hover={{}}
-              onClick={() => setUnstakeNowActive(false)}
-            >
-              {t("appPage.delayed-unstake-action")}
-            </MButton>
-          </Flex>
-          <Flex
-            height="104px"
-            width="400px"
-            bg="gray.50"
+            handleSwitch={handleUnstakeNowActive}
+          />
+          <StakeInput
+            tokenName={sourceToken}
+            tokenIcon={sourceTokenIcon}
+            tokenBalance={sourceTokenBalance}
             mb={2}
-            border="1px"
-            borderColor="gray.100"
-            rounded="md"
-            px={4}
-            py={2}
-            flexDirection="column"
-            justifyContent="space-between"
-          >
-            <Flex justifyContent="space-between">
-              <Flex
-                boxShadow="md"
-                rounded="md"
-                justifyContent="space-around"
-                alignItems="center"
-                width="103px"
-                height="44px"
-              >
-                <Image
-                  src={sourceTokenIcon}
-                  alt="Source Token Logo"
-                  width="30px"
-                />
-                <MText type="text-xl">{sourceToken}</MText>
-              </Flex>
-              <Input
-                variant="unstyled"
-                placeholder="0"
-                flex={0.5}
-                textAlign="right"
-                fontSize="28.13px"
-                fontWeight="bold"
-              />
-            </Flex>
-            <MText
-              type="text-sm"
-              mb={2}
-            >{`${balanceLabel}: ${sourceTokenBalance.toLocaleString()} ${sourceToken}`}</MText>
-          </Flex>
-          <Flex
-            height="104px"
-            width="400px"
-            bg="gray.50"
-            border="1px"
-            borderColor="gray.100"
-            rounded="md"
-            px={4}
-            py={2}
-            flexDirection="column"
-            justifyContent="space-between"
-          >
-            <Flex justifyContent="space-between">
-              <Flex
-                boxShadow="md"
-                rounded="md"
-                justifyContent="space-around"
-                alignItems="center"
-                width="87px"
-                height="44px"
-              >
-                <Image
-                  src={targetTokenIcon}
-                  alt="Target Token Logo"
-                  width="30px"
-                />
-                <MText type="text-xl">{targetToken}</MText>
-              </Flex>
-              <Input
-                variant="unstyled"
-                placeholder="0"
-                flex={0.5}
-                textAlign="right"
-                fontSize="28.13px"
-                fontWeight="bold"
-              />
-            </Flex>
-            <MText
-              type="text-sm"
-              mb={2}
-            >{`${balanceLabel}: ${targetTokenBalance.toLocaleString()} ${targetToken}`}</MText>
-          </Flex>
+          />
+          <StakeInput
+            tokenName={targetToken}
+            tokenIcon={targetTokenIcon}
+            tokenBalance={targetTokenBalance}
+          />
           <Flex width="400px" mt={3} justifyContent="space-between">
             <Flex>
               <MText type="text-md">
@@ -274,7 +155,7 @@ const StakeInputsSection = () => {
             mx={4}
             mt={6}
           >
-            {t("appPage.unstake-now-action")}
+            {isStakeActive ? t("appPage.stake-action") : unstakeText}
           </MButton>
         </Flex>
       </Flex>
