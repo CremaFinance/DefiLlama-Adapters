@@ -20,7 +20,11 @@ const DefiSection = () => {
       alignItems="stretch"
     >
       <InfoBoxesSection />
-      <Flex flexDir="column" marginX={{ base: "10px", xl: "170px" }}>
+      <Flex
+        flexDir="column"
+        marginX={{ base: "10px", xl: "170px" }}
+        marginTop="40px"
+      >
         {exampleData.map((props) => (
           <Flex
             flexDirection="column"
