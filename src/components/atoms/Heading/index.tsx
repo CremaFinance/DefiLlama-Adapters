@@ -16,7 +16,7 @@ const selectFontSize = (type = "") => {
       "heading-lg": ["32px", "40px", "55px"],
       "heading-md": ["26px", "32px", "44px"],
       "heading-sm": ["28.13px", "35.16px"],
-      "heading-xsm": ["18px", "28px"],
+      "heading-xsm": ["22.5px", "28px"],
       "heading-2xsm": ["14px", "24px"],
     }[type] ?? undefined;
 
