@@ -1,4 +1,5 @@
-import { ChakraProps, Flex } from "@chakra-ui/react";
+import { ChakraProps, Flex, ResponsiveValue } from "@chakra-ui/react";
+import { Union } from "@chakra-ui/styled-system/dist/types/utils";
 
 import MButton from "../../atoms/Button";
 import colors from "styles/customTheme/colors";
@@ -7,9 +8,11 @@ type SwitchButtonsProps = ChakraProps & {
   leftText: string;
   rightText: string;
   height: number;
-  width: number;
-  my: number;
+  width: ResponsiveValue<Union<string>>;
+  buttonWidth: ResponsiveValue<Union<string>>;
+  my: ResponsiveValue<Union<number>>;
   active: boolean;
+  font?: string;
   display?: string;
   handleSwitch: (v: boolean) => void;
 };
@@ -19,18 +22,19 @@ const SwitchButtons = ({
   rightText,
   height,
   width,
+  buttonWidth,
   my,
   active,
+  font = "text-xl",
   display = "flex",
   handleSwitch,
 }: SwitchButtonsProps) => {
   const buttonHeight = `${height - 4}px`;
-  const buttonWidth = `${width / 2 - 6}px`;
 
   return (
     <Flex
       height={`${height}px`}
-      width={`${width}px`}
+      width={width}
       my={my}
       rounded="3xl"
       bg="gray.100"
@@ -39,7 +43,7 @@ const SwitchButtons = ({
       display={display}
     >
       <MButton
-        font="text-xl"
+        font={font}
         bg={active ? colors.green : "gray.100"}
         color={active ? colors.white : colors.black}
         fontWeight={active ? "bold" : "normal"}
@@ -53,7 +57,7 @@ const SwitchButtons = ({
         {leftText}
       </MButton>
       <MButton
-        font="text-xl"
+        font={font}
         bg={active ? "gray.100" : colors.green}
         color={active ? colors.black : colors.white}
         fontWeight={active ? "normal" : "bold"}

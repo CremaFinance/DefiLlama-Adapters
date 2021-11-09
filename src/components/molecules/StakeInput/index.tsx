@@ -1,4 +1,11 @@
-import { ChakraProps, Flex, Image, Input } from "@chakra-ui/react";
+import {
+  ChakraProps,
+  Flex,
+  Image,
+  Input,
+  ResponsiveValue,
+} from "@chakra-ui/react";
+import { Union } from "@chakra-ui/styled-system/dist/types/utils/types";
 import { useTranslation } from "next-export-i18n";
 
 import MText from "../../atoms/Text";
@@ -7,6 +14,7 @@ type StakeInputProps = ChakraProps & {
   tokenIcon: string;
   tokenName: string;
   tokenBalance: number;
+  width: ResponsiveValue<Union<string>>;
   mb?: number;
 };
 
@@ -14,6 +22,7 @@ const StakeInput = ({
   tokenIcon,
   tokenName,
   tokenBalance,
+  width,
   mb = 0,
 }: StakeInputProps) => {
   const { t } = useTranslation();
@@ -22,7 +31,7 @@ const StakeInput = ({
   return (
     <Flex
       height="104px"
-      width="400px"
+      width={width}
       bg="gray.50"
       border="1px"
       borderColor="gray.100"
