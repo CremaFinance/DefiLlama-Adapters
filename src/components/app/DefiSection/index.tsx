@@ -24,13 +24,15 @@ const DefiSection = () => {
         flexDir="column"
         marginX={{ base: "10px", xl: "170px" }}
         marginTop="40px"
+        alignItems="stretch"
       >
         {exampleData.map((props) => (
           <Flex
-            flexDirection="column"
+            flexDirection="row"
             // eslint-disable-next-line react/prop-types
             key={`${props.currencies.left}-${props.currencies?.right}`}
             marginBottom="14px"
+            justifyContent="center"
           >
             <PoolRow {...props} />
           </Flex>

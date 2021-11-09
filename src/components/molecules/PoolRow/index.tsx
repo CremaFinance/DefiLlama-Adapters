@@ -83,6 +83,8 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
       borderColor="gray.200"
       alignItems="center"
       boxSizing="border-box"
+      maxWidth="1100px"
+      flex={1}
     >
       <Flex flex={1} maxWidth="208px">
         <Image src={left.logo} width="24px" height="24px" />
