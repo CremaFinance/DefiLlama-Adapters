@@ -7005,10 +7005,10 @@ eslint-config-prettier@^8.3.0:
   resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-8.3.0.tgz#f7471b20b6fe8a9a9254cc684454202886a2dd7a"
   integrity sha512-BgZuLUSeKzvlL/VUjx/Yb787VQ26RU3gGjA3iiFvdsp/2bMfVIWUVP7tjxtjS0e+HP409cPlPvNkQloz8C91ew==
 
-eslint-config-sznm@^0.1.10:
-  version "0.1.10"
-  resolved "https://registry.yarnpkg.com/eslint-config-sznm/-/eslint-config-sznm-0.1.10.tgz#259a49398496b81492baaff39ec2edaee3835b0a"
-  integrity sha512-umcjxEh3XxWnorJBvYmE3A695MvMQP4+CryvgJUB+bNfdDachSfsZlRE4O2dQC4Vxn5Erib7/ogqVee8EH19Lg==
+eslint-config-sznm@^0.1.11:
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/eslint-config-sznm/-/eslint-config-sznm-0.1.11.tgz#bf850d32af5c643643a7c5c6eaaadb7eecc01093"
+  integrity sha512-y19AzcRm3BmSa6VSh3Yt+Oi/VBx7OWSUHblg7PxkNtpdxbcybSvQd1oezMMqUfdd4rjZHfxahuOOMTC0BsJcIg==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^4.30.0"
     eslint-config-airbnb "^18.2.1"
