@@ -82,8 +82,9 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
       borderWidth="1px"
       borderColor="gray.200"
       alignItems="center"
+      boxSizing="border-box"
     >
-      <Flex minWidth="208px">
+      <Flex flex={1} maxWidth="208px">
         <Image src={left.logo} width="24px" height="24px" />
         {right && (
           <Image
@@ -97,7 +98,11 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
           {pairStrign}
         </Text>
       </Flex>
-      <Flex alignItems="center" flex={1} maxWidth="230">
+      <Flex
+        alignItems="center"
+        flex={{ base: undefined, lg: 1 }}
+        maxWidth="230px"
+      >
         <Text fontWeight="bold" lineHeight="140%" fontSize="18px">
           {totalApyString}
         </Text>
@@ -121,18 +126,25 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
           </Button>
         </ApyAndRewardTooltip>
       </Flex>
-      <Flex flex={1} fontSize="14.4px" lineHeight="21.6px" minWidth="274px">
+      <Flex
+        flex={1}
+        fontSize="14.4px"
+        lineHeight="21.6px"
+        maxWidth="274px"
+        paddingLeft={{ base: "1rem", lg: "0" }}
+      >
         {tvlString}
       </Flex>
-      <Flex>
+      <Flex flex={{ base: undefined, lg: 1 }} maxWidth="193px">
         <Image
           src={provider.logo}
-          marginRight="1rem"
+          marginLeft={{ base: "1rem", lg: "0" }}
+          marginRight={{ base: "8px", xl: "1rem" }}
           width="4rem"
           height="4rem"
         />
       </Flex>
-      <Flex flex={1} justifyContent="flex-end">
+      <Flex justifyContent="flex-end">
         <Flex flexDir="column" width="145px">
           <Button
             variant="solid"

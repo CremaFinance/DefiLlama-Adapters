@@ -18,7 +18,7 @@ const DefiSection = () => {
       backgroundColor={colors.greenLight}
       alignItems="stretch"
     >
-      <Flex flexDir="column" marginX={{ base: "10px", lg: "170px" }}>
+      <Flex flexDir="column" marginX={{ base: "10px", xl: "170px" }}>
         {exampleData.map((props) => (
           <Flex
             flexDirection="column"
