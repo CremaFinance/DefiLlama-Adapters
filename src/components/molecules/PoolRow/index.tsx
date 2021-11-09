@@ -62,7 +62,7 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
   const pairStrign = right
     ? `${left.shortName}-${right.shortName}`
     : left.shortName;
-  const tvlString = t("appPage.pool-row.total-apy").replace(
+  const tvlString = t("appPage.pool-row.tvl").replace(
     "{{tvl}}",
     numberWithCommas(totalLockedValue)
   );

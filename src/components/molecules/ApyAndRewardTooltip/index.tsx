@@ -62,7 +62,7 @@ const ApyAndRewardTooltip: FunctionComponent<ApyAndRewardTooltipProps> = ({
           borderRadius="4px"
         >
           <Text fontSize="11.52px" marginBottom="4px">
-            {t("appPage.pool-row.apyPopover.tradding")}:
+            {t("appPage.pool-row.apyPopover.trading")}:
             <Text as="span" fontWeight="bold">
               {trading}%
             </Text>
