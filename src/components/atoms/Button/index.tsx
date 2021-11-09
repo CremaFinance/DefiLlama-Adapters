@@ -1,59 +1,60 @@
 import { Button as ChakraButton, ButtonProps } from "@chakra-ui/react";
+import { forwardRef, LegacyRef } from "react";
+
+const selectVariant = (variant = "") =>
+  ({
+    solid: {
+      size: "sm",
+      rounded: "md",
+      bg: "green",
+      _hover: { bg: "green800" },
+      colorScheme: "green",
+      color: "white",
+    },
+    outline: {
+      size: "sm",
+      rounded: "md",
+      variant: "outline",
+      bg: "white",
+      color: "green",
+      _hover: { color: "green800" },
+      colorScheme: "green",
+      borderRadius: "8px",
+    },
+  }[variant] ?? {});
+
+const selectFontSize = (fontWeight = "bold", size = "") => {
+  const fontSize =
+    {
+      "text-xl": ["16px", "18px"],
+      "text-lg": ["14px", "16px"],
+      "text-md": ["12px", "14px"],
+      "text-sm": ["10px", "12px"],
+    }[size] ?? undefined;
+
+  return fontSize
+    ? {
+        fontSize,
+        fontWeight,
+      }
+    : {};
+};
 
 type Props = ButtonProps & {
   font?: string;
-  fontWeight?: string;
 };
 
-const Button = (props: Props) => {
-  switch (props.font) {
-    case "text-xl":
-      return (
-        <ChakraButton
-          {...props}
-          fontWeight={props.fontWeight || "bold"}
-          fontSize={["16px", "18px"]}
-        >
-          {props.children}
-        </ChakraButton>
-      );
-
-    case "text-lg":
-      return (
-        <ChakraButton
-          {...props}
-          fontWeight={props.fontWeight || "bold"}
-          fontSize={["14px", "16px"]}
-        >
-          {props.children}
-        </ChakraButton>
-      );
-
-    case "text-md":
-      return (
-        <ChakraButton
-          {...props}
-          fontWeight={props.fontWeight || "bold"}
-          fontSize={["12px", "14px"]}
-        >
-          {props.children}
-        </ChakraButton>
-      );
-
-    case "text-sm":
-      return (
-        <ChakraButton
-          {...props}
-          fontWeight={props.fontWeight || "bold"}
-          fontSize={["10px", "12px"]}
-        >
-          {props.children}
-        </ChakraButton>
-      );
-
-    default:
-      return <ChakraButton {...props} />;
+const Button = forwardRef(
+  (props: Props, ref: LegacyRef<HTMLButtonElement> | undefined) => {
+    return (
+      <ChakraButton
+        ref={ref}
+        {...selectFontSize(props.font)}
+        {...selectVariant(props.variant)}
+        {...props}
+      />
+    );
   }
-};
+);
 
 export default Button;
