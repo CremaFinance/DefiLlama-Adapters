@@ -200,8 +200,7 @@
         "trading": "Trading APR",
         "emission": "Emission APR",
         "doubleDip": "Double Dip APR",
-        "mndeReward": "≈ {{reward}} MNDE/day reward",
-        "provReward": "≈ {{reward}} {{provider}} reward"
+        "reward": "≈ {{reward}} {{provider}}/day reward"
       }
     },
     "info-msol-sol-price": "MSOL/SOL price",
