@@ -7,14 +7,18 @@ import {
 } from "@chakra-ui/react";
 import { Union } from "@chakra-ui/styled-system/dist/types/utils/types";
 import { useTranslation } from "next-export-i18n";
+import { useState } from "react";
 
+import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
+import colors from "styles/customTheme/colors";
 
 type StakeInputProps = ChakraProps & {
   tokenIcon: string;
   tokenName: string;
   tokenBalance: number;
   width: ResponsiveValue<Union<string>>;
+  tokenCardWidth?: ResponsiveValue<Union<string>>;
   mb?: number;
 };
 
@@ -23,10 +27,12 @@ const StakeInput = ({
   tokenName,
   tokenBalance,
   width,
+  tokenCardWidth = "103px",
   mb = 0,
 }: StakeInputProps) => {
   const { t } = useTranslation();
   const balanceLabel = t("appPage.balance");
+  const [amount, setAmount] = useState(0);
 
   return (
     <Flex
@@ -48,7 +54,7 @@ const StakeInput = ({
           rounded="md"
           justifyContent="space-around"
           alignItems="center"
-          width="103px"
+          width={tokenCardWidth}
           height="44px"
         >
           <Image src={tokenIcon} alt="Source Token Logo" width="30px" />
@@ -57,16 +63,29 @@ const StakeInput = ({
         <Input
           variant="unstyled"
           placeholder="0"
-          flex={0.5}
+          flex={1}
           textAlign="right"
           fontSize="28.13px"
           fontWeight="bold"
+          value={amount}
         />
       </Flex>
-      <MText
-        type="text-sm"
-        mb={2}
-      >{`${balanceLabel}: ${tokenBalance.toLocaleString()} ${tokenName}`}</MText>
+      <Flex alignItems="center" justifyContent="flex-start" mb={2}>
+        <MText type="text-sm">{`${balanceLabel}: ${tokenBalance.toLocaleString()} ${tokenName}`}</MText>
+        {tokenBalance ? (
+          <MButton
+            variant="link"
+            font="text-sm"
+            color={colors.green}
+            fontWeight="bold"
+            onClick={() => setAmount(tokenBalance)}
+            pb="1px"
+            _hover={{}}
+          >
+            ({t("appPage.max")})
+          </MButton>
+        ) : undefined}
+      </Flex>
     </Flex>
   );
 };

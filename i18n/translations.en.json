@@ -221,11 +221,13 @@
     "stake-inputs-balance": "Balance",
     "stake-inputs-exchange-rate": "Exchange rate",
     "stake-inputs-unstake-fee": "Unstake fee",
+    "stake-inputs-stake-fee": "Stake fee",
     "stake-action": "Stake",
     "unstake-action": "Unstake",
     "unstake-now-action": "Unstake now",
     "delayed-unstake-action": "Delayed unstake",
     "balance": "Balance",
+    "max": "Max",
 
     "faq-title": "FAQ",
     "faq-items": [

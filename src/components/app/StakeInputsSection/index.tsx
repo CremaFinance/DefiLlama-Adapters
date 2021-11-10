@@ -72,7 +72,7 @@ const StakeInputsSection = () => {
         />
         <Flex
           width={["288px", "480px"]}
-          height={isStakeActive ? ["483px", "450px"] : ["483px", "510px"]}
+          height={isStakeActive ? ["403px", "450px"] : ["463px", "510px"]}
           bg={colors.white}
           rounded="md"
           alignItems="center"
@@ -104,6 +104,7 @@ const StakeInputsSection = () => {
             tokenName={targetToken}
             tokenIcon={targetTokenIcon}
             tokenBalance={targetTokenBalance}
+            tokenCardWidth="87px"
             width={["256px", "400px"]}
           />
           <Flex
@@ -124,27 +125,49 @@ const StakeInputsSection = () => {
             </Flex>
             <MText type="text-md">{`1 mSOL ≈ ${mSOLvsSOLParity} SOL`}</MText>
           </Flex>
-          <Flex
-            width={["256px", "400px"]}
-            mt={1}
-            mb={1}
-            justifyContent="space-between"
-          >
-            <Flex>
-              <MText type="text-md">
-                {t("appPage.stake-inputs-unstake-fee")}
-              </MText>
-              <IconButton
-                variant="link"
-                aria-label="Info unstake fee"
-                size="sm"
-                icon={<MdInfoOutline />}
-              />
+          {isStakeActive ? (
+            <Flex
+              width={["256px", "400px"]}
+              mt={1}
+              mb={1}
+              justifyContent="space-between"
+            >
+              <Flex>
+                <MText type="text-md">
+                  {t("appPage.stake-inputs-stake-fee")}
+                </MText>
+                <IconButton
+                  variant="link"
+                  aria-label="Info stake fee"
+                  size="sm"
+                  icon={<MdInfoOutline />}
+                />
+              </Flex>
+              <MText type="text-md">0%</MText>
             </Flex>
-            <MText type="text-md">{`${minUnstakeFee}-${maxUnstakeFee}%`}</MText>
-          </Flex>
+          ) : (
+            <Flex
+              width={["256px", "400px"]}
+              mt={1}
+              mb={1}
+              justifyContent="space-between"
+            >
+              <Flex>
+                <MText type="text-md">
+                  {t("appPage.stake-inputs-unstake-fee")}
+                </MText>
+                <IconButton
+                  variant="link"
+                  aria-label="Info unstake fee"
+                  size="sm"
+                  icon={<MdInfoOutline />}
+                />
+              </Flex>
+              <MText type="text-md">{`${minUnstakeFee}-${maxUnstakeFee}%`}</MText>
+            </Flex>
+          )}
           <MButton
-            top={isStakeActive ? ["110px", "118px"] : ["180px", "206px"]}
+            top={isStakeActive ? "124px" : ["182px", "212px"]}
             variant="ghost"
             position="absolute"
             aria-label="Swap direction"
@@ -152,6 +175,9 @@ const StakeInputsSection = () => {
             border="2px"
             borderColor={colors.white}
             p={0}
+            height="30px"
+            minWidth="30px"
+            rounded="3xl"
             zIndex={10}
             onClick={() => setStakeActive(!isStakeActive)}
           >
