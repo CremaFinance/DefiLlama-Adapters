@@ -9444,6 +9444,11 @@ multipipe@^1.0.2:
     duplexer2 "^0.1.2"
     object-assign "^4.1.0"
 
+mustache@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/mustache/-/mustache-4.2.0.tgz#e5892324d60a12ec9c2a73359edca52972bf6f64"
+  integrity sha512-71ippSywq5Yb7/tVYyGbkBggbU8H3u5Rz56fH60jGFgr8uHwxs+aSKeqmluIVzM0m0kB7xQjKS6qPfd0b2ZoqQ==
+
 nan@^2.12.1:
   version "2.15.0"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.15.0.tgz#3f34a473ff18e15c1b5626b62903b5ad6e665fee"
@@ -9498,7 +9503,7 @@ nested-error-stacks@^2.0.0, nested-error-stacks@^2.1.0:
   resolved "https://registry.yarnpkg.com/nested-error-stacks/-/nested-error-stacks-2.1.0.tgz#0fbdcf3e13fe4994781280524f8b96b0cdff9c61"
   integrity sha512-AO81vsIO1k1sM4Zrd6Hu7regmJN1NSiAja10gc4bX3F0wd+9rQmcuHQaHVQCYIEC8iFXnE+mavh23GOt7wBgug==
 
-next-export-i18n@^1.0.3:
+next-export-i18n@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/next-export-i18n/-/next-export-i18n-1.1.0.tgz#100e287298b69827b5341828f02d871bf9a9ebd1"
   integrity sha512-9vIfwgYOpbGAsiRCXkhAPXrucQF2hzDzxrATR8juv+pBqoTitUqn/gGRWrEc7O85VNY7mGzkPN3pDPLkrv1GcA==
