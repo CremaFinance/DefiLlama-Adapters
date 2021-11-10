@@ -43,7 +43,7 @@ const FAQSection = () => {
               rounded="xl"
               mb={4}
             >
-              <AccordionButton pl={[4, 8]} py={[3, 6]} pr={[4, 6]}>
+              <AccordionButton pl={[4, 8]} py={[3, 6]} pr={[4, 6]} _focus={{}}>
                 <MText
                   flex="1"
                   type="text-xl"
