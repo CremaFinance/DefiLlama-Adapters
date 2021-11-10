@@ -1,7 +1,10 @@
 import { Box, Flex, Image } from "@chakra-ui/react";
 
+import Footer from "components/app/Footer";
 import Header from "components/app/Header";
 import StakingSection from "components/app/StakingSection";
+import LogoStripSection from "components/index/LogoStripSection";
+import TestimonialSection from "components/index/TestimonialSection";
 
 const Staking = () => {
   return (
@@ -29,6 +32,9 @@ const Staking = () => {
       </Flex>
       <Header />
       <StakingSection />
+      <LogoStripSection />
+      <TestimonialSection />
+      <Footer />
     </Box>
   );
 };
