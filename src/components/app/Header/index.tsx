@@ -80,41 +80,39 @@ const Header = () => {
       </Link>
 
       <Flex flexDirection="row" alignContent="center">
-        <Link href="/app/staking" passHref>
-          <MButton
-            variant="link"
-            color={colors.black}
-            rounded="none"
-            isActive={isStakingActive}
-            width="80px"
-            fontWeight="normal"
-            font="text-xl"
-            mb="4px"
-            py={isStakingActive ? "4px" : "7px"}
-            _active={activeMenu}
-            _hover={activeMenu}
-          >
-            {t("appPage.stake-menu-item")}
-          </MButton>
-        </Link>
+        <MButton
+          variant="link"
+          color={colors.black}
+          rounded="none"
+          isActive={isStakingActive}
+          width="80px"
+          fontWeight="normal"
+          font="text-xl"
+          mb="4px"
+          py={isStakingActive ? "4px" : "7px"}
+          _active={activeMenu}
+          _hover={activeMenu}
+          onClick={() => router.push("/app/staking")}
+        >
+          {t("appPage.stake-menu-item")}
+        </MButton>
 
-        <Link href="/app/defi" passHref>
-          <MButton
-            variant="link"
-            color={colors.black}
-            rounded="none"
-            isActive={!isStakingActive}
-            width="107px"
-            fontWeight="normal"
-            font="text-xl"
-            mb="4px"
-            py={!isStakingActive ? "4px" : "7px"}
-            _active={activeMenu}
-            _hover={activeMenu}
-          >
-            {t("appPage.use-msol-menu-item")}
-          </MButton>
-        </Link>
+        <MButton
+          variant="link"
+          color={colors.black}
+          rounded="none"
+          isActive={!isStakingActive}
+          width="107px"
+          fontWeight="normal"
+          font="text-xl"
+          mb="4px"
+          py={!isStakingActive ? "4px" : "7px"}
+          _active={activeMenu}
+          _hover={activeMenu}
+          onClick={() => router.push("/app/defi")}
+        >
+          {t("appPage.use-msol-menu-item")}
+        </MButton>
       </Flex>
 
       <Box pb="8px">
