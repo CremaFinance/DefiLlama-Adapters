@@ -1,6 +1,7 @@
 import { Flex } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 
+import Heading from "components/atoms/Heading";
 import PoolRow from "components/molecules/PoolRow";
 
 import { exampleData } from "./constants";
@@ -14,14 +15,8 @@ const AllPoolsSection = () => {
       marginTop="40px"
       alignItems="stretch"
     >
-      <Flex
-        fontSize="28.13px"
-        lineHeight="140%"
-        fontWeight="bold"
-        marginBottom="22px"
-        justifyContent="center"
-      >
-        All pools
+      <Flex marginBottom="22px" justifyContent="center">
+        <Heading type="heading-xsm">All pools</Heading>
       </Flex>
       <Flex
         flexDirection="row"
