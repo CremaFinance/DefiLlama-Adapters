@@ -8,7 +8,8 @@ module.exports = {
     "@storybook/addon-essentials"
   ],
    webpackFinal: async (config) => {
-    return {
+
+    let finalConfig = {
       ...config,
       resolve: {
         ...config.resolve,
@@ -19,5 +20,13 @@ module.exports = {
         },
       },
     }
-  },
+    finalConfig.module.rules.push(
+      {
+          type: 'javascript/auto',
+          test: /\.mjs$/,
+          include: /node_modules/,
+      },
+  )
+    return finalConfig;
+}
 }
