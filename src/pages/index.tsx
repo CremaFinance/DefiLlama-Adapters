@@ -9,6 +9,7 @@ import LogoStripSection from "components/index/LogoStripSection";
 import SecuritySection from "components/index/SecuritySection";
 import TestemonialSection from "components/index/TestimonialSection";
 import WhySection from "components/index/WhySection";
+import Footer from "components/layout/Footer";
 
 const Home = () => {
   return (
@@ -22,6 +23,7 @@ const Home = () => {
       <ContributorSection />
       <SecuritySection />
       <BlogPosts />
+      <Footer />
     </Box>
   );
 };

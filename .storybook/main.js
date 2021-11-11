@@ -5,7 +5,28 @@ module.exports = {
   ],
   "addons": [
     "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    '@snek-at/storybook-addon-chakra-ui'
-  ]
+    "@storybook/addon-essentials"
+  ],
+   webpackFinal: async (config) => {
+
+    let finalConfig = {
+      ...config,
+      resolve: {
+        ...config.resolve,
+        alias: {
+          ...config.resolve.alias,
+          '@emotion/core': '@emotion/react',
+          'emotion-theming': '@emotion/react',
+        },
+      },
+    }
+    finalConfig.module.rules.push(
+      {
+          type: 'javascript/auto',
+          test: /\.mjs$/,
+          include: /node_modules/,
+      },
+  )
+    return finalConfig;
+}
 }
