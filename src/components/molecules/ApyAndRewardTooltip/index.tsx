@@ -6,11 +6,11 @@ import {
   PopoverBody,
   Icon,
 } from "@chakra-ui/react";
-import { useTranslation } from "next-export-i18n";
 import { PropsWithChildren, FunctionComponent } from "react";
 import { HiCheckCircle } from "react-icons/hi";
 
 import Text from "../../atoms/Text";
+import { useTranslation } from "hooks/useTranslation";
 
 type ApyAndRewardTooltipProps = PropsWithChildren<{
   anualPercentageYield: {
