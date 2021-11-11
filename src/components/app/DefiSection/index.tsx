@@ -11,7 +11,6 @@ const DefiSection = () => {
       pb={[12, 8]}
       aria-label="defi-section"
       position="relative"
-      height="100vh"
       zIndex={4}
       flexDirection="column"
       backgroundColor={colors.greenLight}

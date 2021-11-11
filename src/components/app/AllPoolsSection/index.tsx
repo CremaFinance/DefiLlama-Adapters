@@ -15,8 +15,17 @@ const AllPoolsSection = () => {
       alignItems="stretch"
     >
       <Flex
+        fontSize="28.13px"
+        lineHeight="140%"
+        fontWeight="bold"
+        marginBottom="22px"
+        justifyContent="center"
+      >
+        All pools
+      </Flex>
+      <Flex
         flexDirection="row"
-        marginBottom="14px"
+        marginBottom="8px"
         justifyContent="center"
         fontWeight="bold"
         fontSize="14.4px"
