@@ -92,7 +92,7 @@ const StakeInputsSection = () => {
             display={isStakeActive ? "none" : "flex"}
             handleSwitch={handleUnstakeNowActive}
           />
-          <Flex flexDirection={isStakeActive ? "column" : "column-reverse"}>
+          <Flex flexDirection={!isStakeActive ? "column" : "column-reverse"}>
             <StakeInput
               tokenName={sourceToken}
               tokenIcon={sourceTokenIcon}
