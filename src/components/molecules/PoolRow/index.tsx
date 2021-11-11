@@ -2,11 +2,11 @@ import { Flex, Image, Icon } from "@chakra-ui/react";
 import { FunctionComponent } from "react";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 
-import Button from "components/atoms/Button";
-import Text from "components/atoms/Text";
-import ApyAndRewardTooltip from "components/molecules/ApyAndRewardTooltip";
-import { useTranslation } from "hooks/useTranslation";
-import { numberWithCommas } from "utils";
+import { useTranslation } from "../../../hooks/useTranslation";
+import { numberWithCommas } from "../../../utils";
+import Button from "../../atoms/Button";
+import Text from "../../atoms/Text";
+import ApyAndRewardTooltip from "../ApyAndRewardTooltip";
 
 type PoolRowProps = {
   anualPercentageYield: {
