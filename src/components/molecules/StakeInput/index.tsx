@@ -1,8 +1,8 @@
 import { Flex, Image, Input, ResponsiveValue } from "@chakra-ui/react";
 import { Union } from "@chakra-ui/styled-system/dist/types/utils/types";
-import { useTranslation } from "next-export-i18n";
 import { useState } from "react";
 
+import { useTranslation } from "../../../hooks/useTranslation";
 import colors from "../../../styles/customTheme/colors";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
