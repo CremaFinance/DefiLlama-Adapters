@@ -5,7 +5,7 @@
   "author": "marinade",
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export",
+    "build": "next build && next export && build-storybook -o ./out/sb",
     "postbuild": "next-sitemap --config next-sitemap.config.js",
     "start": "next start",
     "lint": "next lint",
@@ -29,19 +29,19 @@
     "framer-motion": "^5.2.1",
     "html-react-parser": "^1.4.0",
     "next": "^12.0.3",
-    "next-export-i18n": "^1.0.3",
+    "next-export-i18n": "^1.1.0",
     "next-pwa": "^5.4.0",
     "next-seo": "^4.28.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-html-parser": "^2.0.2",
-    "react-icons": "^4.3.1"
+    "react-icons": "^4.3.1",
+    "mustache": "^4.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@commitlint/cli": "^14.1.0",
     "@commitlint/config-conventional": "^14.1.0",
-    "@snek-at/storybook-addon-chakra-ui": "^1.0.0-beta.1",
     "@storybook/addon-actions": "^6.3.12",
     "@storybook/addon-essentials": "^6.3.12",
     "@storybook/addon-links": "^6.3.12",
