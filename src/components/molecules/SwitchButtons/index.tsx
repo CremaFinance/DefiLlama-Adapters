@@ -1,10 +1,10 @@
-import { ChakraProps, Flex, ResponsiveValue } from "@chakra-ui/react";
+import { Flex, ResponsiveValue } from "@chakra-ui/react";
 import { Union } from "@chakra-ui/styled-system/dist/types/utils";
 
+import colors from "../../../styles/customTheme/colors";
 import MButton from "../../atoms/Button";
-import colors from "styles/customTheme/colors";
 
-type SwitchButtonsProps = ChakraProps & {
+type SwitchButtonsProps = {
   leftText: string;
   rightText: string;
   height: number;

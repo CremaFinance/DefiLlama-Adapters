@@ -1,7 +1,7 @@
 import { Flex, IconButton } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { useState } from "react";
-import { MdArrowDownward, MdArrowUpward, MdInfoOutline } from "react-icons/md";
+import { MdArrowDownward, MdInfoOutline } from "react-icons/md";
 
 import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
@@ -28,8 +28,7 @@ const StakeInputsSection = () => {
   const sourceTokenIcon = "/icons/mSOL.svg";
   const sourceTokenBalance = 123456;
   const targetToken = "SOL";
-  // TODO: Replace with dark SOL logo
-  const targetTokenIcon = "/icons/mSOL.svg";
+  const targetTokenIcon = "/icons/solana-dark.png";
   const targetTokenBalance = 0;
 
   const handleStakeActive = (v: boolean) => {
@@ -93,23 +92,27 @@ const StakeInputsSection = () => {
             display={isStakeActive ? "none" : "flex"}
             handleSwitch={handleUnstakeNowActive}
           />
-          <StakeInput
-            tokenName={sourceToken}
-            tokenIcon={sourceTokenIcon}
-            tokenBalance={sourceTokenBalance}
-            width={["256px", "400px"]}
-            mb={2}
-          />
-          <StakeInput
-            tokenName={targetToken}
-            tokenIcon={targetTokenIcon}
-            tokenBalance={targetTokenBalance}
-            tokenCardWidth="87px"
-            width={["256px", "400px"]}
-          />
+          <Flex flexDirection={isStakeActive ? "column" : "column-reverse"}>
+            <StakeInput
+              tokenName={sourceToken}
+              tokenIcon={sourceTokenIcon}
+              tokenBalance={sourceTokenBalance}
+              width={["256px", "400px"]}
+              mb={2}
+            />
+            <StakeInput
+              tokenName={targetToken}
+              tokenIcon={targetTokenIcon}
+              tokenBalance={targetTokenBalance}
+              tokenCardWidth="87px"
+              width={["256px", "400px"]}
+              mb={2}
+            />
+          </Flex>
           <Flex
             width={["256px", "400px"]}
-            mt={4}
+            mt={1}
+            mb={1}
             justifyContent="space-between"
           >
             <Flex>
@@ -181,11 +184,7 @@ const StakeInputsSection = () => {
             zIndex={10}
             onClick={() => setStakeActive(!isStakeActive)}
           >
-            {isStakeActive ? (
-              <MdArrowUpward color={colors.green} fontSize="24px" />
-            ) : (
-              <MdArrowDownward color={colors.green} fontSize="24px" />
-            )}
+            <MdArrowDownward color={colors.green} fontSize="24px" />
           </MButton>
           <MButton
             font="text-xl"
@@ -196,7 +195,7 @@ const StakeInputsSection = () => {
             width={190}
             height="48px"
             mx={4}
-            mt={6}
+            mt={5}
           >
             {isStakeActive ? t("appPage.stake-action") : unstakeText}
           </MButton>

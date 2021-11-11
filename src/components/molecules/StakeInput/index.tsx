@@ -1,19 +1,13 @@
-import {
-  ChakraProps,
-  Flex,
-  Image,
-  Input,
-  ResponsiveValue,
-} from "@chakra-ui/react";
+import { Flex, Image, Input, ResponsiveValue } from "@chakra-ui/react";
 import { Union } from "@chakra-ui/styled-system/dist/types/utils/types";
 import { useTranslation } from "next-export-i18n";
 import { useState } from "react";
 
+import colors from "../../../styles/customTheme/colors";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
-import colors from "styles/customTheme/colors";
 
-type StakeInputProps = ChakraProps & {
+type StakeInputProps = {
   tokenIcon: string;
   tokenName: string;
   tokenBalance: number;
@@ -33,6 +27,9 @@ const StakeInput = ({
   const { t } = useTranslation();
   const balanceLabel = t("appPage.balance");
   const [amount, setAmount] = useState(0);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAmount(Number(event.target.value));
+  };
 
   return (
     <Flex
@@ -68,6 +65,8 @@ const StakeInput = ({
           fontSize="28.13px"
           fontWeight="bold"
           value={amount}
+          type="number"
+          onChange={handleChange}
         />
       </Flex>
       <Flex alignItems="center" justifyContent="flex-start" mb={2}>
