@@ -23,19 +23,19 @@ const selectVariant = (variant = "") =>
     },
   }[variant] ?? {});
 
-const selectFontSize = (fontWeight = "bold", size = "") => {
+const selectFontSize = (font = "") => {
   const fontSize =
     {
       "text-xl": ["16px", "18px"],
       "text-lg": ["14px", "16px"],
       "text-md": ["12px", "14px"],
       "text-sm": ["10px", "12px"],
-    }[size] ?? undefined;
+    }[font] ?? undefined;
 
   return fontSize
     ? {
         fontSize,
-        fontWeight,
+        fontWeight: "bold",
       }
     : {};
 };
