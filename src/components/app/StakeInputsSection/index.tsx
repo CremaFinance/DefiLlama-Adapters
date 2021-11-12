@@ -43,7 +43,7 @@ const StakeInputsSection = () => {
   return (
     <Flex
       aria-label="stake-inputs-section"
-      pb={16}
+      pb={20}
       justifyContent="center"
       flexDirection="column"
       alignItems="center"
@@ -62,10 +62,10 @@ const StakeInputsSection = () => {
         <SwitchButtons
           leftText={t("appPage.stake-action")}
           rightText={t("appPage.unstake-action")}
-          my={6}
+          my={[6]}
           height={40}
-          width="218px"
-          buttonWidth="103px"
+          width={["218px"]}
+          buttonWidth={["103px"]}
           active={isStakeActive}
           handleSwitch={handleStakeActive}
         />
@@ -104,15 +104,14 @@ const StakeInputsSection = () => {
               tokenName={targetToken}
               tokenIcon={targetTokenIcon}
               tokenBalance={targetTokenBalance}
-              tokenCardWidth="87px"
+              tokenCardWidth={["87px"]}
               width={["256px", "400px"]}
               mb={2}
             />
           </Flex>
           <Flex
             width={["256px", "400px"]}
-            mt={1}
-            mb={1}
+            my={1}
             justifyContent="space-between"
           >
             <Flex>

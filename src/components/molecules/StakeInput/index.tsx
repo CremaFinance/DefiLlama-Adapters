@@ -1,5 +1,4 @@
-import { Flex, Image, Input, ResponsiveValue } from "@chakra-ui/react";
-import { Union } from "@chakra-ui/styled-system/dist/types/utils/types";
+import { Flex, Image, Input } from "@chakra-ui/react";
 import { useState } from "react";
 
 import { useTranslation } from "../../../hooks/useTranslation";
@@ -11,8 +10,8 @@ type StakeInputProps = {
   tokenIcon: string;
   tokenName: string;
   tokenBalance: number;
-  width: ResponsiveValue<Union<string>>;
-  tokenCardWidth?: ResponsiveValue<Union<string>>;
+  width: string[];
+  tokenCardWidth?: string[];
   mb?: number;
 };
 
@@ -21,7 +20,7 @@ const StakeInput = ({
   tokenName,
   tokenBalance,
   width,
-  tokenCardWidth = "103px",
+  tokenCardWidth = ["103px"],
   mb = 0,
 }: StakeInputProps) => {
   const { t } = useTranslation();
