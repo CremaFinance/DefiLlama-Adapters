@@ -16,7 +16,9 @@ const AllPoolsSection = () => {
       alignItems="stretch"
     >
       <Flex marginBottom="22px" justifyContent="center">
-        <Heading type="heading-xsm">All pools</Heading>
+        <Heading type="heading-xsm">
+          {t("appPage.all-pools-section.title")}
+        </Heading>
       </Flex>
       <Flex
         flexDirection="row"

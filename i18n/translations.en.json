@@ -206,7 +206,8 @@
       "pair": "Pair",
       "apy": "APY",
       "tvl": "TVL",
-      "provider": "Provider"
+      "provider": "Provider",
+      "title": "All pools"
     },
     "info-msol-sol-price": "MSOL/SOL price",
     "info-total-sol-staked": "Total SOL staked",
