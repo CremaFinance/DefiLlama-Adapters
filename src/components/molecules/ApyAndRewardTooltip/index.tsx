@@ -9,8 +9,8 @@ import {
 import { PropsWithChildren, FunctionComponent } from "react";
 import { HiCheckCircle } from "react-icons/hi";
 
+import { useTranslation } from "../../../hooks/useTranslation";
 import Text from "../../atoms/Text";
-import { useTranslation } from "hooks/useTranslation";
 
 type ApyAndRewardTooltipProps = PropsWithChildren<{
   anualPercentageYield: {
