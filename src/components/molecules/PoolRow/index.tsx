@@ -3,7 +3,6 @@ import { FunctionComponent } from "react";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 
 import { useTranslation } from "../../../hooks/useTranslation";
-import { numberWithCommas } from "../../../utils";
 import Button from "../../atoms/Button";
 import Text from "../../atoms/Text";
 import ApyAndRewardTooltip from "../ApyAndRewardTooltip";
@@ -64,7 +63,7 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
     : left.shortName;
   const tvlString = t("appPage.pool-row.tvl").replace(
     "{{tvl}}",
-    numberWithCommas(totalLockedValue)
+    totalLockedValue.toLocaleString()
   );
   const mainButtonLabel = t(
     `appPage.pool-row.buttons.${right ? "addLiquidy" : "supply"}`

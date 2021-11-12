@@ -1,7 +1,7 @@
 import { useTranslation as useNextTranslation } from "next-export-i18n";
 
 import i18n from "../../i18n";
-import { searchDeep } from "../utils";
+import { searchDeep } from "../utils/search-deep";
 
 export const useTranslation = () => {
   try {
