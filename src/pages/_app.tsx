@@ -11,7 +11,6 @@ import "@fontsource/maven-pro/700.css";
 import { ReactNode } from "react";
 
 import defaultSEOConfig from "../../next-seo.config";
-// import { WalletConnectionProvider } from "../contexts/WalletConnectionProvider";
 import Layout from "components/layout";
 import createEmotionCache from "styles/createEmotionCache";
 import customTheme from "styles/customTheme";
