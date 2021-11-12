@@ -12,7 +12,7 @@ Default.args = {
   tokenName: "mSOL",
   tokenIcon: "",
   tokenBalance: 40,
-  tokenCardWidth: "87px",
+  tokenCardWidth: ["87px"],
   width: ["256px", "400px"],
   mb: 2,
 };
