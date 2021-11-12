@@ -11,8 +11,8 @@ const defaultSEOConfig = {
     description: "marinade.finance",
     images: [
       {
-        url: "https://og-image.sznm.dev/**nextchakra-starter**.sznm.dev.png?theme=dark&md=1&fontSize=125px&images=https%3A%2F%2Fsznm.dev%2Favataaars.svg&widths=250",
-        alt: "nextchakra-starter.sznm.dev og-image",
+        url: "https://marinade-web.pages.dev/marinade.png",
+        alt: "marinade.finance og-image",
       },
     ],
     site_name: "marinade-finance",
