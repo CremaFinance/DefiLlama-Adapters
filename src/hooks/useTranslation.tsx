@@ -1,6 +1,7 @@
 import { useTranslation as useNextTranslation } from "next-export-i18n";
 
 import i18n from "../../i18n";
+import { searchDeep } from "../utils";
 
 export const useTranslation = () => {
   try {
@@ -8,8 +9,8 @@ export const useTranslation = () => {
   } catch {
     return {
       t: (input: string) => {
-        const txt = i18n.translations.en as unknown;
-        return (txt as Record<string, unknown>)[input];
+        const txt = i18n.translations.en as Record<string, unknown>;
+        return txt[input] ?? String(searchDeep(txt, input));
       },
     };
   }
