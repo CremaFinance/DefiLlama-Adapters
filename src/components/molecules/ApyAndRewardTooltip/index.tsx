@@ -6,10 +6,10 @@ import {
   PopoverBody,
   Icon,
 } from "@chakra-ui/react";
-import { useTranslation } from "next-export-i18n";
 import { PropsWithChildren, FunctionComponent } from "react";
 import { HiCheckCircle } from "react-icons/hi";
 
+import { useTranslation } from "../../../hooks/useTranslation";
 import Text from "../../atoms/Text";
 
 type ApyAndRewardTooltipProps = PropsWithChildren<{
@@ -32,12 +32,11 @@ const ApyAndRewardTooltip: FunctionComponent<ApyAndRewardTooltipProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  const marinadeRPD = t("appPage.pool-row.apyPopover.mndeReward").replace(
-    "{{reward}}",
-    marinade.toFixed(2)
-  );
+  const marinadeRPD = t("appPage.pool-row.apyPopover.reward")
+    .replace("{{reward}}", marinade.toFixed(2))
+    .replace("{{provider}}", "MNDE");
   const providerRPD = provider
-    ? t("appPage.pool-row.apyPopover.provReward")
+    ? t("appPage.pool-row.apyPopover.reward")
         .replace("{{reward}}", provider.toFixed(2))
         .replace("{{provider}}", providerShortName)
     : null;
