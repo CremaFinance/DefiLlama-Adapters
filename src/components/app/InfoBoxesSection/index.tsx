@@ -1,10 +1,13 @@
 import { Flex, IconButton, Progress } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
+import { useEffect, useState } from "react";
 import { MdInfoOutline } from "react-icons/md";
 
 import MHeading from "../../atoms/Heading";
 import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
+import { coinSymbols } from "services/domain/coinSymbols";
+import { fetchCoinGeckoPrice } from "services/markets/price";
 import colors from "styles/customTheme/colors";
 import { numberToShortVersion } from "utils/number-to-short-version";
 import { secondsToDhms } from "utils/seconds-to-dmhs";
@@ -12,8 +15,14 @@ import { secondsToDhms } from "utils/seconds-to-dmhs";
 const InfoBoxesSection = () => {
   const { t } = useTranslation();
 
+  const [solPrice, setPrice] = useState(0);
+  useEffect(() => {
+    fetchCoinGeckoPrice(coinSymbols.SOL).then((v) =>
+      setPrice(v?.sol?.usd ?? 0)
+    );
+  }, []);
+
   // TODO: Use actual values from services
-  const solPrice = 193;
   const mSOLvsSOLParity = 1.24;
   const totalSOLStaked = 2345678;
   const epochProgress = 45;
