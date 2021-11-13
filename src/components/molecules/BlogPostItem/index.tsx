@@ -1,4 +1,5 @@
-import { Container, Flex, Image, useMediaQuery } from "@chakra-ui/react";
+import { Flex, Image, useMediaQuery } from "@chakra-ui/react";
+import { useState } from "react";
 
 import { useTranslation } from "../../../hooks/useTranslation";
 import colors from "../../../styles/customTheme/colors";
@@ -14,7 +15,15 @@ type SectionProps = {
 };
 
 const BlogPostItem = ({ title, content, link, date }: SectionProps) => {
+  const { t } = useTranslation();
   const [isTallerThan700] = useMediaQuery("(min-height: 700px)");
+
+  const [contentPreview] = useState(() => {
+    let textToShow = content.replace(/<[^>]+>/g, "");
+    textToShow = textToShow?.trimEnd();
+    const maxChars = isTallerThan700 ? 100 : 80;
+    return `${textToShow.slice(0, maxChars)}...`;
+  });
 
   function parseDate(dateString: string) {
     const pubDate = new Date(dateString.replace(/-/g, "/"));
@@ -37,15 +46,6 @@ const BlogPostItem = ({ title, content, link, date }: SectionProps) => {
     } ${pubDate.getFullYear()}`;
   }
 
-  const { t } = useTranslation();
-
-  function parseContent() {
-    let textToShow = content.replace(/<[^>]+>/g, "");
-    textToShow = textToShow?.trimEnd();
-    const maxChars = isTallerThan700 ? 100 : 60;
-    return `${textToShow.slice(0, maxChars)}...`;
-  }
-
   return (
     <Flex
       flexDirection="column"
@@ -66,21 +66,16 @@ const BlogPostItem = ({ title, content, link, date }: SectionProps) => {
       <MHeading
         textAlign="center"
         mt={[1, 4]}
-        lineHeight="120%"
+        lineHeight="100%"
         type="heading-xsm"
+        noOfLines={3}
       >
         {title}
       </MHeading>
 
-      <Container
-        flex={1}
-        textAlign="center"
-        fontSize="18px"
-        mt={4}
-        type="text-lg"
-      >
-        {parseContent()}
-      </Container>
+      <MText flex={1} textAlign="center" fontSize="18px" mt={4} type="text-lg">
+        {contentPreview}
+      </MText>
 
       <MLink
         font="text-xl"
