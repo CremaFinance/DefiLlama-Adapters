@@ -1,16 +1,15 @@
 import { CoinSymbols, Prices } from "../domain/coinSymbols";
 import { coinTokens } from "../domain/coinTokens";
 import { Currency } from "../domain/currency";
+import { Token } from "../domain/token";
 
 // todo - coingecko allows arrays so think about refactoring for that e.g.
 // https://api.coingecko.com/api/v3/simple/price?ids=marinade,solana&vs_currencies=usd
 
-export async function fetchCoinGeckoPrice(
-  source: CoinSymbols,
+export async function fetchCoinGeckoPriceByToken(
+  token: Token,
   target?: Currency
 ): Promise<Prices> {
-  const token = coinTokens[source];
-
   if (!token.extensions?.coingeckoId) {
     throw new Error(
       `must configure source.extensions.coingeckoId for ${token.name}`
@@ -28,5 +27,17 @@ export async function fetchCoinGeckoPrice(
   }
 
   const result = await response.json();
-  return { [source]: result[token.extensions?.coingeckoId] };
+  return { [token.symbol]: result[token.extensions?.coingeckoId] };
+}
+
+export async function fetchCoinGeckoPriceBySymbol(
+  source: CoinSymbols,
+  target?: Currency
+): Promise<Prices> {
+  const token = coinTokens[source];
+  if (!token) {
+    throw new Error(`no config for ${source}`);
+  }
+
+  return fetchCoinGeckoPriceByToken(token, target);
 }

@@ -17,7 +17,7 @@ const InfoBoxesSection = () => {
 
   const [solPrice, setPrice] = useState(0);
   useEffect(() => {
-    fetchCoinPrice(coinSymbols.SOL).then((v) => setPrice(v?.sol?.usd ?? 0));
+    fetchCoinPrice(coinSymbols.SOL).then((v) => setPrice(v?.SOL?.usd ?? 0));
   }, []);
 
   // TODO: Use actual values from services
