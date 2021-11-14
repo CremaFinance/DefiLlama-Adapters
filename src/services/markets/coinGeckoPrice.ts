@@ -1,6 +1,6 @@
 import { CoinSymbols } from "../domain/coinSymbols";
+import { coinTokens } from "../domain/coinTokens";
 import { Currency } from "../domain/currency";
-import { coinTokens } from "services/domain/coinTokens";
 
 export type Price = {
   [key in Currency]?: number;
@@ -33,10 +33,14 @@ export async function fetchCoinGeckoPrice(
       token.extensions?.coingeckoId
     }&vs_currencies=${target ?? Currency.usd}`
   );
-  if (!response.ok) {
-    throw new Error(response.statusText);
-  }
+  // eslint-disable-next-line no-console
+  console.log(response.body);
+  // if (!response.ok) {
+  //   throw new Error(response.statusText);
+  // }
   const result = await response.json();
+  // eslint-disable-next-line no-console
+  console.log(result);
 
   return { [source]: result[token.extensions?.coingeckoId] };
 }

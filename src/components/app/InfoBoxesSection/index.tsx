@@ -7,7 +7,7 @@ import MHeading from "../../atoms/Heading";
 import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
 import { coinSymbols } from "services/domain/coinSymbols";
-import { fetchCoinGeckoPrice } from "services/markets/price";
+import { fetchCoinGeckoPrice } from "services/markets/coinGeckoPrice";
 import colors from "styles/customTheme/colors";
 import { numberToShortVersion } from "utils/number-to-short-version";
 import { secondsToDhms } from "utils/seconds-to-dmhs";
