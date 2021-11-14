@@ -7,7 +7,7 @@ import MHeading from "../../atoms/Heading";
 import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
 import { coinSymbols } from "services/domain/coinSymbols";
-import { fetchCoinGeckoPrice } from "services/markets/coinGeckoPrice";
+import { fetchBinancePrice } from "services/markets/binancePrice";
 import colors from "styles/customTheme/colors";
 import { numberToShortVersion } from "utils/number-to-short-version";
 import { secondsToDhms } from "utils/seconds-to-dmhs";
@@ -17,9 +17,7 @@ const InfoBoxesSection = () => {
 
   const [solPrice, setPrice] = useState(0);
   useEffect(() => {
-    fetchCoinGeckoPrice(coinSymbols.SOL).then((v) =>
-      setPrice(v?.sol?.usd ?? 0)
-    );
+    fetchBinancePrice(coinSymbols.SOL).then((v) => setPrice(v?.sol?.usd ?? 0));
   }, []);
 
   // TODO: Use actual values from services
@@ -55,7 +53,7 @@ const InfoBoxesSection = () => {
           <MText type="text-md">{t("appPage.info-msol-sol-price")}</MText>
           <MHeading type="heading-xsm">{mSOLvsSOLParity} SOL</MHeading>
           <MText type="text-md" pb={2}>
-            ≈ ${solPrice * mSOLvsSOLParity}
+            ≈ ${(solPrice * mSOLvsSOLParity).toFixed(2)}
           </MText>
         </Flex>
         <Flex
