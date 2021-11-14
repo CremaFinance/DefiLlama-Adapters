@@ -28,8 +28,6 @@
     "@emotion/styled": "^11.6.0",
     "@fontsource/lexend": "^4.5.1",
     "@fontsource/maven-pro": "^4.5.1",
-    "@testing-library/react": "^12.1.2",
-    "@types/testing-library__jest-dom": "^5.14.1",
     "framer-motion": "^5.2.1",
     "html-react-parser": "^1.4.0",
     "jest": "^27.3.1",

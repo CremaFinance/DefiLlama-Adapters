@@ -23,24 +23,23 @@ export async function fetchCoinGeckoPrice(
   if (!token) {
     throw new Error(`no config for ${source}`);
   }
+
   if (!token.extensions?.coingeckoId) {
     throw new Error(
       `must configure source.extensions.coingeckoId for ${token.name}`
     );
   }
+
   const response = await fetch(
     `https://api.coingecko.com/api/v3/simple/price?ids=${
       token.extensions?.coingeckoId
     }&vs_currencies=${target ?? Currency.usd}`
   );
-  // eslint-disable-next-line no-console
-  console.log(response.body);
-  // if (!response.ok) {
-  //   throw new Error(response.statusText);
-  // }
-  const result = await response.json();
-  // eslint-disable-next-line no-console
-  console.log(result);
 
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+
+  const result = await response.json();
   return { [source]: result[token.extensions?.coingeckoId] };
 }
