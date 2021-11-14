@@ -1,16 +1,6 @@
-import { CoinSymbols } from "../domain/coinSymbols";
+import { CoinSymbols, Prices } from "../domain/coinSymbols";
 import { coinTokens } from "../domain/coinTokens";
 import { Currency } from "../domain/currency";
-
-export type Price = {
-  [key in Currency]?: number;
-};
-export type Prices = {
-  [key in CoinSymbols]?: Price;
-};
-
-// todo fallback mechanism for binance etc
-// mapper etc
 
 // todo - coingecko allows arrays so think about refactoring for that e.g.
 // https://api.coingecko.com/api/v3/simple/price?ids=marinade,solana&vs_currencies=usd
@@ -20,9 +10,6 @@ export async function fetchCoinGeckoPrice(
   target?: Currency
 ): Promise<Prices> {
   const token = coinTokens[source];
-  if (!token) {
-    throw new Error(`no config for ${source}`);
-  }
 
   if (!token.extensions?.coingeckoId) {
     throw new Error(

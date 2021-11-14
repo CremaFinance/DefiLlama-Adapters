@@ -1,3 +1,5 @@
+import { Price } from "./currency";
+
 export const coinSymbols: { [key: string]: string } = {
   mSOL: "msol",
   MNDE: "mnde",
@@ -11,3 +13,6 @@ export const coinSymbols: { [key: string]: string } = {
 };
 
 export type CoinSymbols = typeof coinSymbols[keyof typeof coinSymbols];
+export type Prices = {
+  [key in CoinSymbols]?: Price;
+};

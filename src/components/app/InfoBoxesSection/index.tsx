@@ -7,7 +7,7 @@ import MHeading from "../../atoms/Heading";
 import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
 import { coinSymbols } from "services/domain/coinSymbols";
-import { fetchBinancePrice } from "services/markets/binancePrice";
+import { fetchCoinPrice } from "services/markets/coinPrice";
 import colors from "styles/customTheme/colors";
 import { numberToShortVersion } from "utils/number-to-short-version";
 import { secondsToDhms } from "utils/seconds-to-dmhs";
@@ -17,7 +17,7 @@ const InfoBoxesSection = () => {
 
   const [solPrice, setPrice] = useState(0);
   useEffect(() => {
-    fetchBinancePrice(coinSymbols.SOL).then((v) => setPrice(v?.sol?.usd ?? 0));
+    fetchCoinPrice(coinSymbols.SOL).then((v) => setPrice(v?.sol?.usd ?? 0));
   }, []);
 
   // TODO: Use actual values from services
