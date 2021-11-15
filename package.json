@@ -21,7 +21,7 @@
   "dependencies": {
     "@chakra-ui/react": "^1.6.12",
     "@emotion/cache": "^11.6.0",
-    "@emotion/react": "^11.5.0",
+    "@emotion/react": "^11.6.0",
     "@emotion/server": "^11.4.0",
     "@emotion/styled": "^11.6.0",
     "@fontsource/lexend": "^4.5.1",
