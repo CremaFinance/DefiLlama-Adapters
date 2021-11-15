@@ -11,7 +11,6 @@ const StakingSection = () => {
       bg={colors.greenLight}
       aria-label="staking-section"
       position="relative"
-      height="100vh"
     >
       <InfoBoxesSection />
     </Box>
