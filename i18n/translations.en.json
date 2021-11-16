@@ -13,7 +13,6 @@
     "roadmap-menu-item": "Roadmap",
     "go-to-app-action": "Go to app",
 
-
     "hero-section-title": "Stake Solana",
     "hero-section-subtitle": "without locking in your funds",
     "hero-section-desc": "Receive mSOL, the ultimate unit of the Solana ecosystem.",
@@ -186,7 +185,7 @@
   "appPage": {
     "stake-menu-item": "Stake",
     "use-msol-menu-item": "Use mSOL",
-    "connect-wallet":  "Connect wallet",
+    "connect-wallet": "Connect wallet",
     "pool-row": {
       "total-apy": "{{totalApy}} % APY",
       "buttons": {
@@ -200,9 +199,15 @@
         "trading": "Trading APR",
         "emission": "Emission APR",
         "doubleDip": "Double Dip APR",
-        "mndeReward": "≈ {{reward}} MNDE/day reward",
-        "provReward": "≈ {{reward}} {{provider}} reward"
+        "reward": "≈ {{reward}} {{provider}}/day reward"
       }
+    },
+    "all-pools-section": {
+      "pair": "Pair",
+      "apy": "APY",
+      "tvl": "TVL",
+      "provider": "Provider",
+      "title": "All pools"
     },
     "info-msol-sol-price": "MSOL/SOL price",
     "info-total-sol-staked": "Total SOL staked",
@@ -216,6 +221,19 @@
     "footer-join-us": "Join us",
     "footer-learn-more": "Learn more",
     
+    "stake-inputs-title": "Stake Solana",
+    "stake-inputs-subtitle": "Stake SOL and receive mSOL while staking",
+    "stake-inputs-balance": "Balance",
+    "stake-inputs-exchange-rate": "Exchange rate",
+    "stake-inputs-unstake-fee": "Unstake fee",
+    "stake-inputs-stake-fee": "Stake fee",
+    "stake-action": "Stake",
+    "unstake-action": "Unstake",
+    "unstake-now-action": "Unstake now",
+    "delayed-unstake-action": "Delayed unstake",
+    "balance": "Balance",
+    "max": "Max",
+
     "faq-title": "FAQ",
     "faq-items": [
       {

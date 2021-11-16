@@ -1,4 +1,5 @@
-import { Container, Flex, Image, useMediaQuery } from "@chakra-ui/react";
+import { Flex, Image, useMediaQuery } from "@chakra-ui/react";
+import { useState } from "react";
 
 import { useTranslation } from "../../../hooks/useTranslation";
 import colors from "../../../styles/customTheme/colors";
@@ -14,7 +15,20 @@ type SectionProps = {
 };
 
 const BlogPostItem = ({ title, content, link, date }: SectionProps) => {
+  const { t } = useTranslation();
   const [isTallerThan700] = useMediaQuery("(min-height: 700px)");
+  const isLenghtyTitle = title.length > 70;
+
+  const [contentPreview] = useState(() => {
+    let textToShow = content.replace(/<[^>]+>/g, "");
+    textToShow = textToShow?.trimEnd();
+    let maxChars = isTallerThan700 ? 100 : 80;
+    if (isLenghtyTitle) {
+      maxChars -= 40;
+    }
+
+    return `${textToShow.slice(0, maxChars)}...`;
+  });
 
   function parseDate(dateString: string) {
     const pubDate = new Date(dateString.replace(/-/g, "/"));
@@ -37,15 +51,6 @@ const BlogPostItem = ({ title, content, link, date }: SectionProps) => {
     } ${pubDate.getFullYear()}`;
   }
 
-  const { t } = useTranslation();
-
-  function parseContent() {
-    let textToShow = content.replace(/<[^>]+>/g, "");
-    textToShow = textToShow?.trimEnd();
-    const maxChars = isTallerThan700 ? 100 : 60;
-    return `${textToShow.slice(0, maxChars)}...`;
-  }
-
   return (
     <Flex
       flexDirection="column"
@@ -63,24 +68,20 @@ const BlogPostItem = ({ title, content, link, date }: SectionProps) => {
         {parseDate(date)}
       </MText>
 
-      <MHeading
-        textAlign="center"
-        mt={[1, 4]}
-        lineHeight="120%"
-        type="heading-xsm"
-      >
-        {title}
-      </MHeading>
+      <Flex flexDirection="column" justifyContent="flex-start" flex={1}>
+        <MHeading
+          textAlign="center"
+          type="heading-xsm"
+          lineHeight="130%"
+          pb={4}
+        >
+          {title}
+        </MHeading>
 
-      <Container
-        flex={1}
-        textAlign="center"
-        fontSize="18px"
-        mt={4}
-        type="text-lg"
-      >
-        {parseContent()}
-      </Container>
+        <MText textAlign="center" fontSize="18px" type="text-lg">
+          {contentPreview}
+        </MText>
+      </Flex>
 
       <MLink
         font="text-xl"
