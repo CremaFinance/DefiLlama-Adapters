@@ -1,3 +1,4 @@
+import { promiseRace } from "../../utils/promise-race";
 import { CoinSymbols, Prices } from "../domain/coinSymbols";
 import { coinTokens } from "../domain/coinTokens";
 import { Currency } from "../domain/currency";
@@ -14,15 +15,10 @@ export async function fetchCoinPrice(
     throw new Error(`no config for ${source}`);
   }
 
-  return fetchBinancePriceByToken(token).then(
-    (price) => price,
-    () =>
-      fetchCoinGeckoPriceByToken(token, target).then(
-        (price) => price,
-        (e) => {
-          // eslint-disable-next-line no-console
-          console.error(e);
-        }
-      )
-  );
+  const pricePromises = [
+    fetchBinancePriceByToken(token),
+    fetchCoinGeckoPriceByToken(token, target),
+  ];
+
+  return promiseRace(pricePromises);
 }

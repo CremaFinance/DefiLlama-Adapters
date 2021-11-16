@@ -8,15 +8,23 @@ beforeEach(() => {
 });
 
 test("coinPrice returns binance response", async () => {
-  fetch.mockResponseOnce(JSON.stringify({ mins: 5, price: 235.83524298 }));
+  const delay = new Promise((res) => setTimeout(res, 500));
+  fetch
+    .mockResponseOnce(JSON.stringify({ mins: 5, price: 235.83524298 }))
+    .mockImplementationOnce(() =>
+      delay.then(() => Promise.reject(new Error("404")))
+    );
 
   const data = await fetchCoinPrice(coinSymbols.SOL);
   expect(data?.SOL?.usd).toEqual(235.83524298);
 });
 
 test("coinPrice returns coingecko response", async () => {
+  const delay = new Promise((res) => setTimeout(res, 500));
   fetch
-    .mockResponseOnce(JSON.stringify({}), { status: 404 })
+    .mockImplementationOnce(() =>
+      delay.then(() => Promise.reject(new Error("404")))
+    )
     .mockResponseOnce(JSON.stringify({ solana: { usd: 239.21 } }));
 
   const data = await fetchCoinPrice(coinSymbols.SOL);
