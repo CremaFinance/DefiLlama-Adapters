@@ -1,6 +1,6 @@
 import { CoinSymbols, Prices } from "../domain/coinSymbols";
 import { coinTokens } from "../domain/coinTokens";
-import { Currency } from "../domain/currency";
+import { currency, Currency } from "../domain/currency";
 import { Token } from "../domain/token";
 
 // todo - coingecko allows arrays so think about refactoring for that e.g.
@@ -19,7 +19,7 @@ export async function fetchCoinGeckoPriceByToken(
   const response = await fetch(
     `https://api.coingecko.com/api/v3/simple/price?ids=${
       token.extensions?.coingeckoId
-    }&vs_currencies=${target ?? Currency.usd}`
+    }&vs_currencies=${target ?? currency.usd}`
   );
 
   if (!response.ok) {

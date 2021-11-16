@@ -1,6 +1,6 @@
 import { CoinSymbols, Prices } from "../domain/coinSymbols";
 import { coinTokens } from "../domain/coinTokens";
-import { Currency } from "../domain/currency";
+import { currency } from "../domain/currency";
 import { Token } from "../domain/token";
 
 export async function fetchBinancePriceByToken(token: Token): Promise<Prices> {
@@ -13,7 +13,7 @@ export async function fetchBinancePriceByToken(token: Token): Promise<Prices> {
   }
 
   const result = await response.json();
-  return { [token.symbol]: { [Currency.usd]: result.price } };
+  return { [token.symbol]: { [currency.usd]: result.price } };
 }
 
 export async function fetchBinancePriceBySymbol(
