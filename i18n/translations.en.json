@@ -186,6 +186,7 @@
     "stake-menu-item": "Stake",
     "use-msol-menu-item": "Use mSOL",
     "connect-wallet": "Connect wallet",
+    "disconnect-wallet": "Disconnect",
     "pool-row": {
       "total-apy": "{{totalApy}} % APY",
       "buttons": {
@@ -220,7 +221,7 @@
 
     "footer-join-us": "Join us",
     "footer-learn-more": "Learn more",
-    
+
     "stake-inputs-title": "Stake Solana",
     "stake-inputs-subtitle": "Stake SOL and receive mSOL while staking",
     "stake-inputs-balance": "Balance",

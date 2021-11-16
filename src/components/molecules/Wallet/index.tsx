@@ -10,7 +10,6 @@ import { useWallet } from "@solana/wallet-adapter-react";
 import React from "react";
 
 import { useTranslation } from "../../../hooks/useTranslation";
-import colors from "../../../styles/customTheme/colors";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 
@@ -20,8 +19,13 @@ export const Wallet = () => {
   const [isLargerThan430] = useMediaQuery("(min-width: 430px)");
   if (connected) {
     return (
-      <MButton variant="solid" onClick={() => disconnect()}>
-        Disconnect
+      <MButton
+        variant="solid"
+        font="text-lg"
+        height="40px"
+        onClick={() => disconnect()}
+      >
+        {t("appPage.disconnect-wallet")}
       </MButton>
     );
   }
@@ -31,14 +35,7 @@ export const Wallet = () => {
       <MenuButton
         as={MButton}
         variant="solid"
-        size="sm"
-        rounded="md"
-        bg={colors.green}
-        _hover={{ bg: colors.green800 }}
-        colorScheme={colors.green}
-        color={colors.white}
         font="text-lg"
-        display="flex"
         height="40px"
         leftIcon={<Image src="/icons/wallet.svg" width="0.8rem" />}
         rightIcon={<Image src="/icons/expand-more.svg" width="0.5rem" />}

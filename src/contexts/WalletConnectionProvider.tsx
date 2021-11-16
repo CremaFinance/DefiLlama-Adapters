@@ -9,6 +9,8 @@ import {
   getSolletExtensionWallet,
   getSolflareWallet,
   getSolflareWebWallet,
+  getCoin98Wallet,
+  getSlopeWallet,
 } from "@solana/wallet-adapter-wallets";
 import { clusterApiUrl } from "@solana/web3.js";
 import { FC, ReactNode, useMemo } from "react";
@@ -16,18 +18,20 @@ import { FC, ReactNode, useMemo } from "react";
 export const WalletConnectionProvider: FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const network = WalletAdapterNetwork.Mainnet;
+  const network = WalletAdapterNetwork.Mainnet; // to-do get from env var on build?
 
   // You can also provide a custom RPC endpoint
   const endpoint = useMemo(() => clusterApiUrl(network), [network]);
 
   const wallets = useMemo(
     () => [
-      getSolletWallet({ network }), //
+      getSolletWallet({ network }),
       getSolletExtensionWallet({ network }),
       getPhantomWallet(),
       getSolflareWallet(),
       getSolflareWebWallet(),
+      getCoin98Wallet(),
+      getSlopeWallet(),
     ],
     [network]
   );
