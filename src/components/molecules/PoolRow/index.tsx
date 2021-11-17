@@ -17,7 +17,7 @@ type PoolRowProps = {
     marinade: number;
     provider?: number;
   };
-  totalLockedValue: number;
+  totalLockedValue?: number;
   currencies: {
     // If just left is supplied, then show "Supply" and "Borrow", else show "Add liquidity" and "Swap"
     left: {
@@ -63,7 +63,7 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
     : left.shortName;
   const tvlString = t("appPage.pool-row.tvl").replace(
     "{{tvl}}",
-    totalLockedValue.toLocaleString()
+    totalLockedValue?.toLocaleString()
   );
   const mainButtonLabel = t(
     `appPage.pool-row.buttons.${right ? "addLiquidy" : "supply"}`
