@@ -176,15 +176,12 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
         marginTop={{ base: "16px", lg: "0" }}
       >
         <Flex
-          flexDir={{ base: "row", lg: "column" }}
+          flexDir={{ base: "row-reverse", lg: "column" }}
           justifyContent={{ base: "stretch", lg: undefined }}
           width={{ base: undefined, lg: "145px" }}
           flex={1}
         >
-          <Flex
-            flex={{ base: 1.4, lg: 0 }}
-            marginRight={{ base: "8px", lg: 0 }}
-          >
+          <Flex flex={{ base: 1.4, lg: 0 }}>
             <Button
               variant="solid"
               marginBottom={{ base: 0, lg: "8px" }}
@@ -197,7 +194,7 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
               {mainButtonLabel}
             </Button>
           </Flex>
-          <Flex flex={{ base: 1, lg: 0 }}>
+          <Flex flex={{ base: 1, lg: 0 }} marginRight={{ base: "8px", lg: 0 }}>
             <Button
               variant="outline"
               onClick={onSecondaryClick}
