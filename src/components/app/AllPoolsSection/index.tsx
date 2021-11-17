@@ -11,7 +11,7 @@ const AllPoolsSection = () => {
   return (
     <Flex
       flexDir="column"
-      marginX={{ base: "10px", xl: "170px" }}
+      marginX={{ base: "16px", lg: "65px", xl: "170px" }}
       marginTop="40px"
       alignItems="stretch"
     >
@@ -21,6 +21,7 @@ const AllPoolsSection = () => {
         </Heading>
       </Flex>
       <Flex
+        display={{ base: "none", lg: "flex" }}
         flexDirection="row"
         marginBottom="8px"
         justifyContent="center"
@@ -61,17 +62,17 @@ const AllPoolsSection = () => {
           </Flex>
         </Flex>
       </Flex>
-      {exampleData.map((props) => (
-        <Flex
-          flexDirection="row"
-          // eslint-disable-next-line react/prop-types
-          key={`${props.currencies.left}-${props.currencies?.right}`}
-          marginBottom="14px"
-          justifyContent="center"
-        >
-          <PoolRow {...props} />
-        </Flex>
-      ))}
+      <Flex
+        flexDir={{ base: "row", lg: "column" }}
+        justifyContent="center"
+        flexWrap={{ base: "wrap", lg: "nowrap" }}
+      >
+        {exampleData.map((props) => (
+          <Flex justifyContent="center">
+            <PoolRow {...props} />
+          </Flex>
+        ))}
+      </Flex>
     </Flex>
   );
 };
