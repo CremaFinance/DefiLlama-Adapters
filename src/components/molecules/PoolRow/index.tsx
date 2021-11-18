@@ -105,10 +105,10 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
         justifyContent={{ base: "space-between", lg: "flex-start" }}
       >
         <Flex>
-          <Image src={left.logo} width="24px" height="24px" />
+          <Image src={`/pools/${left.logo}.png`} width="24px" height="24px" />
           {right && (
             <Image
-              src={right?.logo}
+              src={right?.logo ? `/pools/${right.logo}.png` : ""}
               width="24px"
               height="24px"
               marginLeft="4px"

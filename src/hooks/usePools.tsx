@@ -2,6 +2,7 @@ import { useQueries, QueryOptions } from "react-query";
 
 import { CoinSymbols, Prices } from "../services/domain/coinSymbols";
 import { MarketPools } from "../services/domain/market";
+import { Pool } from "../services/domain/pool";
 import { fetchCoinPrice } from "../services/markets/coinPrice";
 import { orca } from "../services/pools/orca";
 
@@ -16,7 +17,7 @@ export const providers = {
   [providerKeys.ORCA]: orca,
 };
 
-const refetchInterval = 10 * 1000;
+const refetchInterval = 100 * 1000;
 
 // this param will become an optional provider filter in future
 export const usePools = () => {
@@ -43,20 +44,21 @@ export const usePools = () => {
   const providerQueries: QueryOptions<MarketPools>[] = Object.entries(
     providers
   ).map(([key, provider]) => {
-    const pricesAvailable = provider.tokenList.reduce((acc, token) => {
-      if (prices[token] && acc) {
-        return true;
-      }
-      return false;
-    }, true);
     return {
       queryKey: ["provider", key],
       queryFn: () => provider.fetchPools(prices),
-      enabled: pricesAvailable,
+      enabled: provider.tokenList.find((t) => prices[t]) !== undefined,
       placeholderData: provider.pools,
       refetchInterval,
     };
   });
 
-  return useQueries(providerQueries);
+  const results = useQueries(providerQueries);
+  return results.reduce(
+    (acc, result) =>
+      result.data
+        ? acc.concat(Object.values(result.data).map((market) => market))
+        : acc,
+    [] as Pool[]
+  );
 };

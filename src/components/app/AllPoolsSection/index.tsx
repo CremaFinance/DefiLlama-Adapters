@@ -4,17 +4,11 @@ import { useTranslation } from "next-export-i18n";
 import Heading from "components/atoms/Heading";
 import PoolRow from "components/molecules/PoolRow";
 import { usePools } from "hooks/usePools";
-import { Pool } from "services/domain/pool";
 
 const AllPoolsSection = () => {
   const { t } = useTranslation();
 
-  const results = usePools();
-  const pools = results.reduce((acc, result) => {
-    return result.data
-      ? acc.concat(Object.values(result.data).map((market) => market))
-      : acc;
-  }, [] as Pool[]);
+  const pools = usePools();
 
   return (
     <Flex
@@ -75,18 +69,24 @@ const AllPoolsSection = () => {
         justifyContent="center"
         flexWrap={{ base: "wrap", lg: "nowrap" }}
       >
-        {pools.map((props) => (
+        {pools?.map((pool) => (
           <Flex
             flexDirection="row"
-            // eslint-disable-next-line react/prop-types
-            key={`${props.totalLockedValue}`}
+            key={`${pool.address}`}
             marginBottom="14px"
             justifyContent="center"
           >
             <PoolRow
-              {...props}
+              {...pool}
+              provider={{ logo: pool.logoURI ?? "", shortName: pool.provider }}
               rewardPerDay={{ marinade: 0, provider: 0 }}
-              currencies={{ left: { logo: "", shortName: "" } }}
+              currencies={{
+                left: { logo: pool.tokenA, shortName: pool.tokenA },
+                right: {
+                  logo: pool?.tokenB ?? "",
+                  shortName: pool?.tokenB ?? "",
+                },
+              }}
               anualPercentageYield={{ trading: 0, emission: 0, doubleDip: 0 }}
               onMainClick={() => {}}
               onSecondaryClick={() => {}}
