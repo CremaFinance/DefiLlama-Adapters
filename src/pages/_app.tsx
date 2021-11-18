@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { ChakraProvider } from "@chakra-ui/react";
 import { EmotionCache } from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
@@ -7,6 +6,7 @@ import { AppProps } from "next/app";
 import Head from "next/head";
 import "@fontsource/maven-pro/400.css";
 import "@fontsource/maven-pro/700.css";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 import defaultSEOConfig from "../../next-seo.config";
 import Layout from "components/layout";
@@ -25,6 +25,8 @@ const MyApp = ({
   pageProps,
   emotionCache = clientSideEmotionCache,
 }: MyAppProps) => {
+  const queryClient = new QueryClient();
+
   return (
     <CacheProvider value={emotionCache}>
       <ChakraProvider theme={customTheme}>
@@ -35,9 +37,11 @@ const MyApp = ({
           />
         </Head>
         <DefaultSeo {...defaultSEOConfig} />
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <QueryClientProvider client={queryClient}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </QueryClientProvider>
       </ChakraProvider>
     </CacheProvider>
   );
@@ -47,6 +51,4 @@ MyApp.defaultProps = {
   emotionCache: clientSideEmotionCache,
 };
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 export default MyApp;

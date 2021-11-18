@@ -5,6 +5,8 @@ import { MdInfoOutline } from "react-icons/md";
 import MHeading from "../../atoms/Heading";
 import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
+import { usePrice } from "hooks/usePrice";
+import { coinSymbols } from "services/domain/coinSymbols";
 import colors from "styles/customTheme/colors";
 import { numberToShortVersion } from "utils/number-to-short-version";
 import { secondsToDhms } from "utils/seconds-to-dmhs";
@@ -12,8 +14,9 @@ import { secondsToDhms } from "utils/seconds-to-dmhs";
 const InfoBoxesSection = () => {
   const { t } = useTranslation();
 
+  const { data } = usePrice(coinSymbols.SOL);
+
   // TODO: Use actual values from services
-  const solPrice = 193;
   const mSOLvsSOLParity = 1.24;
   const totalSOLStaked = 2345678;
   const epochProgress = 45;
@@ -46,7 +49,7 @@ const InfoBoxesSection = () => {
           <MText type="text-md">{t("appPage.info-msol-sol-price")}</MText>
           <MHeading type="heading-xsm">{mSOLvsSOLParity} SOL</MHeading>
           <MText type="text-md" pb={2}>
-            ≈ ${solPrice * mSOLvsSOLParity}
+            ≈ ${((data?.SOL?.usd ?? 0) * mSOLvsSOLParity).toFixed(2)}
           </MText>
         </Flex>
         <Flex
@@ -67,7 +70,7 @@ const InfoBoxesSection = () => {
             {totalSOLStaked.toLocaleString()}
           </MHeading>
           <MText type="text-md" pb={2}>
-            ≈ ${(solPrice * totalSOLStaked).toLocaleString()}
+            ≈ ${((data?.SOL?.usd ?? 0) * totalSOLStaked).toLocaleString()}
           </MText>
         </Flex>
         <Flex
