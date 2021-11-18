@@ -1,10 +1,11 @@
-import { Box, Flex, Image, useMediaQuery } from "@chakra-ui/react";
+import { Box, Flex, Image } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
 
 import MButton from "../../atoms/Button";
+import { Wallet } from "../../molecules/Wallet";
 import colors from "styles/customTheme/colors";
 
 const Header = () => {
@@ -43,7 +44,6 @@ const Header = () => {
 
   const router = useRouter();
   const isStakingActive = router.pathname.includes("staking");
-  const [isLargerThan430] = useMediaQuery("(min-width: 430px)");
 
   return (
     <Flex
@@ -116,21 +116,7 @@ const Header = () => {
       </Flex>
 
       <Box pb="8px">
-        <MButton
-          size="sm"
-          rounded="md"
-          bg={colors.green}
-          _hover={{ bg: colors.green800 }}
-          colorScheme={colors.green}
-          color={colors.white}
-          font="text-lg"
-          display="flex"
-          height="40px"
-          leftIcon={<Image src="/icons/wallet.svg" width="0.8rem" />}
-          rightIcon={<Image src="/icons/expand-more.svg" width="0.5rem" />}
-        >
-          {isLargerThan430 ? t("appPage.connect-wallet") : ""}
-        </MButton>
+        <Wallet />
       </Box>
     </Flex>
   );

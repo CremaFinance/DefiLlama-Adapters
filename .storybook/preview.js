@@ -3,6 +3,7 @@ import "../src/styles/globals.css";
 import customTheme from '../src/styles/customTheme';
 import { ChakraProvider } from "@chakra-ui/react";
 import { CacheProvider } from "@emotion/react";
+import { WalletConnectionProvider } from "../src/contexts/WalletConnectionProvider";
 
 import createEmotionCache from "../src/styles/createEmotionCache";
 
@@ -24,7 +25,9 @@ export const decorators = [
   (Story) => (
     <CacheProvider value={clientSideEmotionCache}>
     <ChakraProvider theme={customTheme}> 
+    <WalletConnectionProvider>
       <Story />
+    </WalletConnectionProvider>
    </ChakraProvider>
    </CacheProvider>
 ),

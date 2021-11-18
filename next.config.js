@@ -2,7 +2,25 @@
 const withPWA = require("next-pwa");
 
 /** @type {import('next').NextConfig} */
-module.exports = withPWA({
+
+
+const withTM = require('next-transpile-modules')([
+  '@blocto/sdk',
+  '@project-serum/sol-wallet-adapter',
+  '@solana/wallet-adapter-base',
+  '@solana/wallet-adapter-react',
+  '@solana/wallet-adapter-wallets',
+  '@solana/wallet-adapter-clover',
+  '@solana/wallet-adapter-coin98',
+  '@solana/wallet-adapter-ledger',
+  '@solana/wallet-adapter-phantom',
+  '@solana/wallet-adapter-slope',
+  '@solana/wallet-adapter-solflare',
+  '@solana/wallet-adapter-sollet',
+]);
+
+
+module.exports = withTM(withPWA({
   pwa: {
     disable:
       process.env.NODE_ENV === "development" ||
@@ -15,4 +33,4 @@ module.exports = withPWA({
     register: true,
   },
   reactStrictMode: true,
-});
+}));
