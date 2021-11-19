@@ -1,13 +1,13 @@
 import {
   Image,
-  useMediaQuery,
   Menu,
-  MenuList,
-  MenuItem,
   MenuButton,
+  MenuItem,
+  MenuList,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import { useWallet } from "@solana/wallet-adapter-react";
-import React from "react";
+import { Wallet as WalletType } from "@solana/wallet-adapter-wallets";
 
 import { useTranslation } from "../../../hooks/useTranslation";
 import MButton from "../../atoms/Button";
@@ -43,7 +43,7 @@ export const Wallet = () => {
         {isLargerThan430 ? t("appPage.connect-wallet") : ""}
       </MenuButton>
       <MenuList border="none" rounded="md" shadow="none">
-        {wallets.map((walletItem) => (
+        {wallets.map((walletItem: WalletType) => (
           <MenuItem
             key={walletItem.name}
             icon={<Image src={walletItem.icon} width="0.8rem" />}
