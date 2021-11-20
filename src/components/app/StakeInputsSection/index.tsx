@@ -6,6 +6,7 @@ import { MdArrowDownward, MdInfoOutline } from "react-icons/md";
 import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
+import DelayedStakingSection from "../DelayedStakeSection";
 import StakeInput from "components/molecules/StakeInput";
 import SwitchButtons from "components/molecules/SwitchButtons";
 import colors from "styles/customTheme/colors";
@@ -18,7 +19,7 @@ const StakeInputsSection = () => {
 
   const unstakeText = isUnstakeNowActive
     ? t("appPage.unstake-now-action")
-    : t("appPage.delayed-unstake-action");
+    : t("appPage.start-delayed-unstake-action");
 
   // TODO: Use actual values from services
   const mSOLvsSOLParity = 1.01002;
@@ -30,6 +31,7 @@ const StakeInputsSection = () => {
   const targetToken = "SOL";
   const targetTokenIcon = "/icons/solana-dark.png";
   const targetTokenBalance = 0;
+  const timeToUnstake = "~7 days";
 
   const handleStakeActive = (v: boolean) => {
     setStakeActive(v);
@@ -70,8 +72,6 @@ const StakeInputsSection = () => {
           handleSwitch={handleStakeActive}
         />
         <Flex
-          width={["288px", "480px"]}
-          height={isStakeActive ? ["403px", "450px"] : ["463px", "510px"]}
           bg={colors.white}
           rounded="md"
           alignItems="center"
@@ -79,11 +79,12 @@ const StakeInputsSection = () => {
           boxShadow="md"
           pt={isStakeActive ? 8 : 0}
           position="relative"
+          p="10"
         >
           <SwitchButtons
             leftText={t("appPage.unstake-now-action")}
             rightText={t("appPage.delayed-unstake-action")}
-            my={[6, 10]}
+            mb={8}
             height={40}
             width={["254px", "322px"]}
             buttonWidth={["121px", "155px"]}
@@ -168,6 +169,26 @@ const StakeInputsSection = () => {
               <MText type="text-md">{`${minUnstakeFee}-${maxUnstakeFee}%`}</MText>
             </Flex>
           )}
+          {!isUnstakeNowActive ? (
+            <Flex
+              width={["256px", "400px"]}
+              my={1}
+              justifyContent="space-between"
+            >
+              <Flex>
+                <MText type="text-md">
+                  {t("appPage.stake-inputs-time-to-unstake")}
+                </MText>
+                <IconButton
+                  variant="link"
+                  aria-label="Info epoch"
+                  size="sm"
+                  icon={<MdInfoOutline />}
+                />
+              </Flex>
+              <MText type="text-md">{timeToUnstake}</MText>
+            </Flex>
+          ) : null}
           <MButton
             top={isStakeActive ? "124px" : ["182px", "212px"]}
             variant="ghost"
@@ -191,13 +212,14 @@ const StakeInputsSection = () => {
             _hover={{ bg: colors.green800 }}
             colorScheme={colors.green}
             rounded="md"
-            width={190}
+            px={[4, 4]}
             height="48px"
             mx={4}
             mt={5}
           >
             {isStakeActive ? t("appPage.stake-action") : unstakeText}
           </MButton>
+          {!isUnstakeNowActive ? <DelayedStakingSection /> : null}
         </Flex>
       </Flex>
     </Flex>

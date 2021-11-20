@@ -232,8 +232,13 @@
     "unstake-action": "Unstake",
     "unstake-now-action": "Unstake now",
     "delayed-unstake-action": "Delayed unstake",
+    "start-delayed-unstake-action": "Start delayed unstake",
     "balance": "Balance",
     "max": "Max",
+    "stake-inputs-time-to-unstake": "Time to unstake",
+    "tickets-accounts": "Ticket accounts",
+    "sol": "SOL",
+    "claim-action": "Claim",
 
     "faq-title": "FAQ",
     "faq-items": [
