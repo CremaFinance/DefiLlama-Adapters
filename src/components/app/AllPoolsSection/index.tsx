@@ -100,8 +100,7 @@ const AllPoolsSection = () => {
                 emission: pool.apy ?? 0,
                 doubleDip: 0,
               }}
-              onMainClick={() => {}}
-              onSecondaryClick={() => {}}
+              actions={pool.actions}
             />
           </Flex>
         ))}
