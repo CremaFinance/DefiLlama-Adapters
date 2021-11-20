@@ -61,7 +61,7 @@ const UnstakeTicketsSection = () => {
   };
 
   return (
-    <Flex pt={12}>
+    <Flex width="100%" pt={12}>
       <Table variant="simple">
         <Thead>
           <Tr>
