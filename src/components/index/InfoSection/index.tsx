@@ -117,7 +117,6 @@ export default function InfoSection() {
 
             <Flex
               bg={colors.marinadeLighterGreen}
-              height={{ base: "auto", md: "138px" }}
               width={{ base: "88vw", md: "60vw", lg: "34vw", "2xl": "24vw" }}
               p={6}
               mt={4}
@@ -205,7 +204,6 @@ export default function InfoSection() {
 
             <Flex
               bg={colors.marinadeLighterGreen}
-              height={{ base: "auto", md: "138px" }}
               width={{ base: "88vw", md: "60vw", lg: "34vw", "2xl": "24vw" }}
               p={6}
               mt={4}
@@ -289,7 +287,6 @@ export default function InfoSection() {
 
             <Box
               bg={colors.marinadeLighterGreen}
-              height={{ base: "auto", md: "160px" }}
               width={{ base: "88vw", md: "60vw", lg: "34vw", "2xl": "24vw" }}
               p={6}
               mt={4}
