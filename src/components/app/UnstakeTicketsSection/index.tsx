@@ -48,7 +48,7 @@ const DelayedStakingSection = () => {
     },
   ];
 
-  const action = (v: string) => {
+  const copyAddressToClipboard = (v: string) => {
     navigator.clipboard.writeText(v);
   };
 
@@ -83,7 +83,7 @@ const DelayedStakingSection = () => {
                     aria-label="Copy address"
                     size="sm"
                     icon={<MdContentCopy />}
-                    onClick={() => action(ticket.address)}
+                    onClick={() => copyAddressToClipboard(ticket.address)}
                   />
                 </Flex>
               </Td>
