@@ -21,7 +21,6 @@ type PoolRowProps = {
   };
   totalLockedValue?: number;
   currencies: {
-    // If just left is supplied, then show "Supply" and "Borrow", else show "Add liquidity" and "Swap"
     left: {
       logo: string;
       shortName: string;
