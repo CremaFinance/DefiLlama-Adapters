@@ -17,7 +17,7 @@ import colors from "styles/customTheme/colors";
 import { toastNotification } from "utils/notification";
 import { shortenAddress } from "utils/shorten-address";
 
-const DelayedStakingSection = () => {
+const UnstakeTicketsSection = () => {
   const { t } = useTranslation();
   const [isWiderThan768] = useMediaQuery("(min-width: 768px)");
 
@@ -125,4 +125,4 @@ const DelayedStakingSection = () => {
   );
 };
 
-export default DelayedStakingSection;
+export default UnstakeTicketsSection;
