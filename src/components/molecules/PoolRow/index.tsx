@@ -1,9 +1,10 @@
-import { Flex, Image, Icon } from "@chakra-ui/react";
+import { Flex, Image, Icon, Spinner } from "@chakra-ui/react";
 import { FunctionComponent } from "react";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 
 import { useTranslation } from "../../../hooks/useTranslation";
 import Button from "../../atoms/Button";
+import Heading from "../../atoms/Heading";
 import Text from "../../atoms/Text";
 import ApyAndRewardTooltip from "../ApyAndRewardTooltip";
 
@@ -131,9 +132,13 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
         flex={{ base: undefined, lg: 1 }}
         maxWidth="230px"
       >
-        <Text fontWeight="bold" lineHeight="140%" fontSize="18px">
-          {totalApyString}
-        </Text>
+        {totalApy ? (
+          <Heading lineHeight="140%" fontSize="18px">
+            {totalApyString}
+          </Heading>
+        ) : (
+          <Spinner size="xs" />
+        )}
         <ApyAndRewardTooltip
           anualPercentageYield={anualPercentageYield}
           rewardPerDay={{ ...rpd, providerShortName: provider.shortName }}
@@ -162,7 +167,7 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
         paddingTop={{ base: "8px", lg: "0" }}
         // paddingLeft={{ base: "0", md: "1rem", lg: "0" }}
       >
-        {tvlString}
+        {totalLockedValue ? <Text>{tvlString}</Text> : <Spinner size="xs" />}
       </Flex>
       <Flex
         flex={{ base: undefined, lg: 1 }}

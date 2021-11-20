@@ -5,7 +5,7 @@ import { MarketPools } from "../services/domain/market";
 import { providers } from "../services/domain/providers";
 import { fetchCoinPrice } from "../services/markets/coinPrice";
 
-const refetchInterval = 100 * 1000;
+const refetchInterval = 10 * 1000;
 
 export const usePools = () => {
   const priceTokens = Object.values(providers).reduce((acc, provider) => {
