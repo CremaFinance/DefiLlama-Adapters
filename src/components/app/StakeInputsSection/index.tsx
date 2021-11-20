@@ -6,7 +6,7 @@ import { MdArrowDownward, MdInfoOutline } from "react-icons/md";
 import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
-import DelayedStakingSection from "../DelayedStakeSection";
+import UnstakeTicketsSection from "../UnstakeTicketsSection";
 import StakeInput from "components/molecules/StakeInput";
 import SwitchButtons from "components/molecules/SwitchButtons";
 import colors from "styles/customTheme/colors";
@@ -72,15 +72,14 @@ const StakeInputsSection = () => {
           handleSwitch={handleStakeActive}
         />
         <Flex
+          width={["288px", "480px"]}
           bg={colors.white}
           rounded="md"
           alignItems="center"
           flexDirection="column"
           boxShadow="md"
-          pt={isStakeActive ? 8 : 0}
           position="relative"
           p={[4, 10]}
-          width={["288px", "480px"]}
         >
           <SwitchButtons
             leftText={t("appPage.unstake-now-action")}
@@ -213,14 +212,14 @@ const StakeInputsSection = () => {
             _hover={{ bg: colors.green800 }}
             colorScheme={colors.green}
             rounded="md"
-            px={[4, 4]}
+            px={4}
             height="48px"
             mx={4}
             mt={5}
           >
             {isStakeActive ? t("appPage.stake-action") : unstakeText}
           </MButton>
-          {!isUnstakeNowActive ? <DelayedStakingSection /> : null}
+          {!isUnstakeNowActive ? <UnstakeTicketsSection /> : null}
         </Flex>
       </Flex>
     </Flex>

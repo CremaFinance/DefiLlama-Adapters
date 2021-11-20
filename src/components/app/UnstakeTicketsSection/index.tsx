@@ -19,6 +19,8 @@ import { shortenAddress } from "utils/shorten-address";
 const DelayedStakingSection = () => {
   const { t } = useTranslation();
   const [isWiderThan768] = useMediaQuery("(min-width: 768px)");
+
+  // TODO replace with actual values
   const ticketAccounts = [
     {
       key: 1,
@@ -51,7 +53,7 @@ const DelayedStakingSection = () => {
   };
 
   return (
-    <Flex width="100%" pt={12}>
+    <Flex pt={12}>
       <Table variant="simple">
         <Thead>
           <Tr>
