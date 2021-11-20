@@ -4,11 +4,19 @@ import { useTranslation } from "next-export-i18n";
 import Heading from "components/atoms/Heading";
 import PoolRow from "components/molecules/PoolRow";
 import { usePools } from "hooks/usePools";
+import { Pool } from "services/domain/pool";
 
 const AllPoolsSection = () => {
   const { t } = useTranslation();
 
-  const pools = usePools();
+  const results = usePools();
+  const pools = results.reduce(
+    (acc, result) =>
+      result.data
+        ? acc.concat(Object.values(result.data).map((market) => market))
+        : acc,
+    [] as Pool[]
+  );
 
   return (
     <Flex
@@ -77,7 +85,7 @@ const AllPoolsSection = () => {
             justifyContent="center"
           >
             <PoolRow
-              {...pool}
+              totalLockedValue={pool.totalLockedValue ?? 0}
               provider={{ logo: pool.logoURI ?? "", shortName: pool.provider }}
               rewardPerDay={{ marinade: 0, provider: 0 }}
               currencies={{
@@ -87,7 +95,11 @@ const AllPoolsSection = () => {
                   shortName: pool?.tokenB ?? "",
                 },
               }}
-              anualPercentageYield={{ trading: 0, emission: 0, doubleDip: 0 }}
+              anualPercentageYield={{
+                trading: 0,
+                emission: pool.apy ?? 0,
+                doubleDip: 0,
+              }}
               onMainClick={() => {}}
               onSecondaryClick={() => {}}
             />

@@ -16,8 +16,8 @@ export async function fetchCoinPrice(
   }
 
   const pricePromises = [
-    fetchBinancePriceByToken(token),
-    fetchCoinGeckoPriceByToken(token, target),
+    fetchBinancePriceByToken(token, source ?? ""),
+    fetchCoinGeckoPriceByToken(token, source ?? "", target),
   ];
 
   return promiseRace(pricePromises);

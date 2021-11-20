@@ -11,10 +11,7 @@ export async function fetchOrcaPools(): Promise<OrcaPoolsResponse> {
   if (!response.ok) {
     throw new Error(response.statusText);
   }
-  const result = await response.json();
-  // eslint-disable-next-line no-console
-  console.log(result);
-  return result;
+  return response.json();
 }
 
 export const mapOrcaPoolsResponse = (
