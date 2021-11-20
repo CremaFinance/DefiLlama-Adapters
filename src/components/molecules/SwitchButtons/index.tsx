@@ -43,7 +43,7 @@ const SwitchButtons = ({
     >
       <MButton
         font={font}
-        bg={active ? colors.green : "gray.100"}
+        bg={active ? colors.marinadeGreen : "gray.100"}
         color={active ? colors.white : colors.black}
         fontWeight={active ? "bold" : "normal"}
         rounded="3xl"
@@ -57,7 +57,7 @@ const SwitchButtons = ({
       </MButton>
       <MButton
         font={font}
-        bg={active ? "gray.100" : colors.green}
+        bg={active ? "gray.100" : colors.marinadeGreen}
         color={active ? colors.black : colors.white}
         fontWeight={active ? "normal" : "bold"}
         rounded="3xl"

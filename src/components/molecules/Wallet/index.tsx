@@ -1,12 +1,11 @@
 import {
   Image,
-  useMediaQuery,
   Menu,
-  MenuList,
-  MenuItem,
   MenuButton,
+  MenuItem,
+  MenuList,
+  useMediaQuery,
 } from "@chakra-ui/react";
-import React from "react";
 
 import { useTranslation } from "../../../hooks/useTranslation";
 import { useWallet } from "../../../hooks/useWallet";

@@ -53,9 +53,9 @@ const HeroSection = () => {
         </MText>
 
         <MButton
-          bg={colors.green}
+          bg={colors.marinadeGreen}
           _hover={{ bg: colors.green800 }}
-          colorScheme={colors.green}
+          colorScheme={colors.marinadeGreen}
           rounded="md"
           width="200px"
           height="48px"
@@ -112,7 +112,7 @@ const HeroSection = () => {
               mt={{ base: 2, md: 0 }}
               key={`desktop-hstack-${index}`}
             >
-              <MHeading type="heading-xsm" color={colors.green} mr={1}>
+              <MHeading type="heading-xsm" color={colors.marinadeGreen} mr={1}>
                 {t(`indexPage.hero-section-stats.${index}.number`)}
               </MHeading>{" "}
               <MHeading type="heading-xsm" mr={1}>

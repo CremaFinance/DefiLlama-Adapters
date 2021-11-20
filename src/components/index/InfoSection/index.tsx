@@ -65,9 +65,9 @@ export default function InfoSection() {
       <Box marginBottom="104px" mt={4} display="flex" justifyContent="center">
         <MButton
           font="text-xl"
-          bg={colors.green}
+          bg={colors.marinadeGreen}
           _hover={{ bg: colors.green800 }}
-          colorScheme={colors.green}
+          colorScheme={colors.marinadeGreen}
           width="200px"
           height="48px"
           rounded="md"
@@ -93,7 +93,7 @@ export default function InfoSection() {
                 as="span"
                 display="inline-block"
                 type="heading-md"
-                color={colors.green}
+                color={colors.marinadeGreen}
               >
                 {t("indexPage.info-section-items.0.emphasis")}
               </MHeading>{" "}
@@ -181,7 +181,7 @@ export default function InfoSection() {
                 as="span"
                 display="inline-block"
                 type="heading-md"
-                color={colors.green}
+                color={colors.marinadeGreen}
               >
                 {t("indexPage.info-section-items.1.emphasis")}
               </MHeading>{" "}
@@ -267,7 +267,7 @@ export default function InfoSection() {
                 as="span"
                 display="inline-block"
                 type="heading-md"
-                color={colors.green}
+                color={colors.marinadeGreen}
               >
                 {t("indexPage.info-section-items.2.emphasis")}
               </MHeading>{" "}

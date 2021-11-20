@@ -186,6 +186,7 @@
     "stake-menu-item": "Stake",
     "use-msol-menu-item": "Use mSOL",
     "connect-wallet": "Connect wallet",
+    "wallet-missing": "Please click here visit the official website of {{wallet}} and install",
     "disconnect-wallet": "Disconnect",
     "pool-row": {
       "total-apy": "{{totalApy}} % APY",

@@ -41,9 +41,9 @@ const ContributorSection = () => {
         <MButton
           font="text-xl"
           rounded="md"
-          bg={colors.green}
+          bg={colors.marinadeGreen}
           _hover={{ bg: colors.green800 }}
-          colorScheme={colors.green}
+          colorScheme={colors.marinadeGreen}
           color={colors.white}
           mt={8}
           mb={8}
