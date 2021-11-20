@@ -14,6 +14,7 @@ import { MdContentCopy } from "react-icons/md";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
+import { toastNotification } from "utils/notification";
 import { shortenAddress } from "utils/shorten-address";
 
 const DelayedStakingSection = () => {
@@ -50,6 +51,12 @@ const DelayedStakingSection = () => {
 
   const copyAddressToClipboard = (v: string) => {
     navigator.clipboard.writeText(v);
+
+    toastNotification({
+      title: t("appPage.copy-success-title"),
+      description: t("appPage.copy-success-message"),
+      status: "success",
+    });
   };
 
   return (

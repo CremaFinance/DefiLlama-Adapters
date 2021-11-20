@@ -239,6 +239,8 @@
     "tickets-accounts": "Ticket accounts",
     "sol": "SOL",
     "claim-action": "Claim",
+    "copy-success-title": "Address copied",
+    "copy-success-message": "Address copied success",
 
     "faq-title": "FAQ",
     "faq-items": [
