@@ -79,7 +79,7 @@ export const ENDPOINTS = [
 ];
 
 /// 0=devnet, 1=mainnet, 2=testnet
-export const DEFAULT_ENDPOINT = ENDPOINTS[1]; // TODO change to 1=mainnet for production
+export const DEFAULT_ENDPOINT = ENDPOINTS[0]; // TODO change to 1=mainnet for production
 
 interface ConnectionConfig {
   connection: Connection;
