@@ -6,7 +6,7 @@ import { MdArrowDownward, MdInfoOutline } from "react-icons/md";
 import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
-import DelayedStakingSection from "../UnstakeTicketsSection";
+import UnstakeTicketsSection from "../UnstakeTicketsSection";
 import StakeInput from "components/molecules/StakeInput";
 import SwitchButtons from "components/molecules/SwitchButtons";
 import colors from "styles/customTheme/colors";
@@ -172,7 +172,7 @@ const StakeInputsSection = () => {
               <MText type="text-md">{`${minUnstakeFee}-${maxUnstakeFee}%`}</MText>
             </Flex>
           )}
-          {!isUnstakeNowActive ? (
+          {!isUnstakeNowActive && !isStakeActive ? (
             <Flex
               width={["256px", "400px"]}
               my={1}
@@ -194,7 +194,7 @@ const StakeInputsSection = () => {
             </Flex>
           ) : null}
           <MButton
-            top={isStakeActive ? "124px" : ["182px", "212px"]}
+            top={isStakeActive ? ["109", "133px"] : ["182px", "205px"]}
             variant="ghost"
             position="absolute"
             aria-label="Swap direction"
@@ -221,9 +221,9 @@ const StakeInputsSection = () => {
             mx={4}
             mt={5}
           >
-            {isStakeActive ? t("appPage.stake-action") : unstakeText}
+            {isStakeActive ? t("appPage.stake-sol-action") : unstakeText}
           </MButton>
-          {!isUnstakeNowActive ? <DelayedStakingSection /> : null}
+          {!isUnstakeNowActive ? <UnstakeTicketsSection /> : null}
         </Flex>
       </Flex>
     </Flex>
