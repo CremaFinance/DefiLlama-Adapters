@@ -90,6 +90,7 @@ const DelayedStakingSection = () => {
                     aria-label="Copy address"
                     size="sm"
                     icon={<MdContentCopy />}
+                    _focus={{ boxShadow: "none" }}
                     onClick={() => copyAddressToClipboard(ticket.address)}
                   />
                 </Flex>
