@@ -27,8 +27,6 @@ const colors = {
   black600: "#17192399",
   blackMate: "#242731",
   blackMate800: "#242731CC",
-  gray100: "#EDF2F7",
-  gray500: "#718096",
   greenLight: "#C8ECE1",
   greenVibrant: "#08B898",
   greenVibrant800: "#08B898CC",

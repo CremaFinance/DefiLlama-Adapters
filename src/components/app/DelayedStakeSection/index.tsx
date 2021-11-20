@@ -6,6 +6,7 @@ import {
   Tbody,
   Tr,
   Td,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { MdContentCopy } from "react-icons/md";
@@ -13,32 +14,34 @@ import { MdContentCopy } from "react-icons/md";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
+import { shortenAddress } from "utils/shorten-address";
 
 const DelayedStakingSection = () => {
   const { t } = useTranslation();
+  const [isWiderThan768] = useMediaQuery("(min-width: 768px)");
   const ticketAccounts = [
     {
       key: 1,
       address: "vfvvbfovbfobvfobvbvdfbvdfbvdfbvfdvbfvbfbvfvfvh",
-      amount: "12.2323",
+      amount: 12.2323333333,
       claimed: false,
     },
     {
       key: 2,
       address: "aaaavfvvbfovbfobvfobvbvdfbvdfbvdfbvfdvbfvbfbvfvfvh",
-      amount: "12.2323",
+      amount: 12.2323,
       claimed: false,
     },
     {
       key: 3,
       address: "bbbbvfvvbfovbfobvfobvbvdfbvdfbvdfbvfdvbfvbfbvfvfvh",
-      amount: "12.2323",
+      amount: 12.2323,
       claimed: true,
     },
     {
       key: 4,
       address: "vfvvbfovbfobvfobvbvdfbvdfbvdfbvfdvbfvbfbvfvfvh",
-      amount: "12.2323",
+      amount: 12.2323,
       claimed: false,
     },
   ];
@@ -47,21 +50,17 @@ const DelayedStakingSection = () => {
     navigator.clipboard.writeText(v);
   };
 
-  function shortenAddress(address: string, chars = 4): string {
-    return `${address.slice(0, chars)}...${address.slice(-chars)}`;
-  }
-
   return (
     <Flex width="100%" pt={12}>
       <Table variant="simple">
         <Thead>
           <Tr>
-            <Td pl={0} py={[1]}>
+            <Td pl={0} pr={[2, 6]}>
               <MText type="text-md" fontWeight="bold">
                 {t("appPage.tickets-accounts")}
               </MText>
             </Td>
-            <Td py={[4]}>
+            <Td isNumeric px={[2, 6]}>
               <MText type="text-md" fontWeight="bold">
                 {t("appPage.sol")}
               </MText>
@@ -71,8 +70,8 @@ const DelayedStakingSection = () => {
         </Thead>
         <Tbody>
           {ticketAccounts.map((ticket) => (
-            <Tr key={ticket.key}>
-              <Td pl={0} py={[4]}>
+            <Tr key={ticket.key} height="60px">
+              <Td pl={0} py={0} pr={[2, 6]}>
                 <Flex>
                   <MText type="text-md">
                     {shortenAddress(`${ticket.address}`)}
@@ -86,18 +85,24 @@ const DelayedStakingSection = () => {
                   />
                 </Flex>
               </Td>
-              <Td py={[4]}>{ticket.amount}</Td>
-              <Td py={[4]} pr={0} verticalAlign="top" textAlign="end">
+              <Td isNumeric py={0} px={[2, 6]}>
+                <MText type="text-md">
+                  {isWiderThan768 ? ticket.amount : ticket.amount.toFixed(3)}
+                </MText>
+              </Td>
+              <Td height="60px" pr={0} py={0} pl={[2, 6]} textAlign="end">
                 <MButton
                   isDisabled={ticket.claimed}
                   font="text-md"
-                  _hover={{ bg: colors.gray100 }}
+                  colorScheme="gray"
+                  _hover={{ bg: "gray.100" }}
                   border="1px"
-                  borderColor={colors.gray500}
+                  borderColor="gray.500"
                   textColor={colors.black}
                   rounded="md"
                   px={[4, 4]}
                   height="32px"
+                  bg={colors.white}
                 >
                   {t("appPage.claim-action")}
                 </MButton>

@@ -79,7 +79,8 @@ const StakeInputsSection = () => {
           boxShadow="md"
           pt={isStakeActive ? 8 : 0}
           position="relative"
-          p="10"
+          p={[4, 10]}
+          width={["288px", "480px"]}
         >
           <SwitchButtons
             leftText={t("appPage.unstake-now-action")}
