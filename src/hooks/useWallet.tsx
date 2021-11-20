@@ -14,7 +14,14 @@ export const useWallet = () => {
         await adapter.connect();
       } catch (e) {
         const error = e as WalletError;
-        toast({ title: error.name });
+        toast({
+          title: error.name,
+          status: "warning",
+          duration: 100000,
+          description: "blblbl",
+          variant: "subtle",
+          isClosable: true,
+        });
       }
     }
   }, [adapter, toast]);
