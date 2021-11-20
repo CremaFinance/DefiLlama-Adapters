@@ -6,7 +6,7 @@ import { MdArrowDownward, MdInfoOutline } from "react-icons/md";
 import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
-import UnstakeTicketsSection from "../UnstakeTicketsSection";
+import DelayedStakingSection from "../UnstakeTicketsSection";
 import StakeInput from "components/molecules/StakeInput";
 import SwitchButtons from "components/molecules/SwitchButtons";
 import colors from "styles/customTheme/colors";
@@ -123,6 +123,7 @@ const StakeInputsSection = () => {
                 variant="link"
                 aria-label="Info epoch"
                 size="sm"
+                _focus={{ boxShadow: "none" }}
                 icon={<MdInfoOutline />}
               />
             </Flex>
@@ -143,6 +144,7 @@ const StakeInputsSection = () => {
                   variant="link"
                   aria-label="Info stake fee"
                   size="sm"
+                  _focus={{ boxShadow: "none" }}
                   icon={<MdInfoOutline />}
                 />
               </Flex>
@@ -163,6 +165,7 @@ const StakeInputsSection = () => {
                   variant="link"
                   aria-label="Info unstake fee"
                   size="sm"
+                  _focus={{ boxShadow: "none" }}
                   icon={<MdInfoOutline />}
                 />
               </Flex>
@@ -183,6 +186,7 @@ const StakeInputsSection = () => {
                   variant="link"
                   aria-label="Info epoch"
                   size="sm"
+                  _focus={{ boxShadow: "none" }}
                   icon={<MdInfoOutline />}
                 />
               </Flex>
@@ -219,7 +223,7 @@ const StakeInputsSection = () => {
           >
             {isStakeActive ? t("appPage.stake-action") : unstakeText}
           </MButton>
-          {!isUnstakeNowActive ? <UnstakeTicketsSection /> : null}
+          {!isUnstakeNowActive ? <DelayedStakingSection /> : null}
         </Flex>
       </Flex>
     </Flex>
