@@ -3,7 +3,7 @@ import { CoinSymbols, Prices } from "../domain/coinSymbols";
 import { coinTokens } from "../domain/coinTokens";
 import { Currency } from "../domain/currency";
 
-import { fetchBinancePriceByToken } from "./binancePrice";
+// import { fetchBinancePriceByToken } from "./binancePrice";
 import { fetchCoinGeckoPriceByToken } from "./coinGeckoPrice";
 
 export async function fetchCoinPrice(
@@ -16,7 +16,8 @@ export async function fetchCoinPrice(
   }
 
   const pricePromises = [
-    fetchBinancePriceByToken(token, source ?? ""),
+    // CORS Issue
+    // fetchBinancePriceByToken(token, source ?? ""),
     fetchCoinGeckoPriceByToken(token, source ?? "", target),
   ];
 
