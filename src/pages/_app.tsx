@@ -12,7 +12,6 @@ import { QueryClient, QueryClientProvider } from "react-query";
 
 import defaultSEOConfig from "../../next-seo.config";
 import Layout from "components/layout";
-import { ConnectionProvider } from "contexts/connection";
 import createEmotionCache from "styles/createEmotionCache";
 import customTheme from "styles/customTheme";
 
@@ -42,26 +41,24 @@ const MyApp = ({
   const queryClient = new QueryClient();
 
   return (
-    <ConnectionProvider>
-      <CacheProvider value={emotionCache}>
-        <ChakraProvider theme={customTheme}>
-          <BrowserWalletConnectionProvider>
-            <Head>
-              <meta
-                name="viewport"
-                content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover"
-              />
-            </Head>
-            <DefaultSeo {...defaultSEOConfig} />
-            <QueryClientProvider client={queryClient}>
-              <Layout>
-                <Component {...pageProps} />
-              </Layout>
-            </QueryClientProvider>
-          </BrowserWalletConnectionProvider>
-        </ChakraProvider>
-      </CacheProvider>
-    </ConnectionProvider>
+    <CacheProvider value={emotionCache}>
+      <ChakraProvider theme={customTheme}>
+        <BrowserWalletConnectionProvider>
+          <Head>
+            <meta
+              name="viewport"
+              content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover"
+            />
+          </Head>
+          <DefaultSeo {...defaultSEOConfig} />
+          <QueryClientProvider client={queryClient}>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </QueryClientProvider>
+        </BrowserWalletConnectionProvider>
+      </ChakraProvider>
+    </CacheProvider>
   );
 };
 

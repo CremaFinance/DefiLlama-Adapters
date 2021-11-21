@@ -12,7 +12,7 @@ import {
 } from "@solana/wallet-adapter-wallets";
 import { FC, ReactNode, useCallback, useMemo } from "react";
 
-import { ConnectionProvider } from "./connection";
+import { ConnectionProvider } from "./ConnectionProvider";
 
 export const WalletConnectionProvider: FC<{ children: ReactNode }> = ({
   children,
