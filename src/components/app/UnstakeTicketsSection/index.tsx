@@ -15,6 +15,7 @@ import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
 import { toastNotification } from "utils/notification";
+import { format5Dec, format2Dec } from "utils/number-to-short-version";
 import { shortenAddress } from "utils/shorten-address";
 
 const UnstakeTicketsSection = () => {
@@ -44,7 +45,7 @@ const UnstakeTicketsSection = () => {
     {
       key: 4,
       address: "vfvvbfovbfobvfobvbvdfbvdfbvdfbvfdvbfvbfbvfvfvh",
-      amount: 12.2323,
+      amount: 12.2,
       claimed: false,
     },
   ];
@@ -60,7 +61,7 @@ const UnstakeTicketsSection = () => {
   };
 
   return (
-    <Flex pt={12}>
+    <Flex width="100%" pt={12}>
       <Table variant="simple">
         <Thead>
           <Tr>
@@ -97,7 +98,9 @@ const UnstakeTicketsSection = () => {
               </Td>
               <Td isNumeric py={0} px={[2, 6]}>
                 <MText type="text-md">
-                  {isWiderThan768 ? ticket.amount : ticket.amount.toFixed(3)}
+                  {isWiderThan768
+                    ? format5Dec(ticket.amount)
+                    : format2Dec(ticket.amount)}
                 </MText>
               </Td>
               <Td height="60px" pr={0} py={0} pl={[2, 6]} textAlign="end">
