@@ -12,12 +12,14 @@ import {
 } from "@solana/wallet-adapter-wallets";
 import { FC, ReactNode, useCallback, useMemo } from "react";
 
+import { DEFAULT_ENDPOINT } from "utils/web3/endpoints";
+
 import { ConnectionProvider } from "./ConnectionProvider";
 
 export const WalletConnectionProvider: FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const network = WalletAdapterNetwork.Mainnet; // to-do get from env var on build?
+  const network = DEFAULT_ENDPOINT.name as WalletAdapterNetwork;
 
   const wallets = useMemo(
     () => [
