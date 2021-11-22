@@ -36,8 +36,8 @@ const Header = () => {
     display: "inline-block",
     opacity: 1,
     borderBottom: `3px solid`,
-    borderColor: colors.green,
-    color: colors.green,
+    borderColor: colors.marinadeGreen,
+    color: colors.marinadeGreen,
     fontWeight: "bold",
     mb: 0,
   };

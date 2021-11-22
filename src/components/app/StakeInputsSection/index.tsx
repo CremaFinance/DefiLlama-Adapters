@@ -208,13 +208,13 @@ const StakeInputsSection = () => {
             zIndex={10}
             onClick={() => setStakeActive(!isStakeActive)}
           >
-            <MdArrowDownward color={colors.green} fontSize="24px" />
+            <MdArrowDownward color={colors.marinadeGreen} fontSize="24px" />
           </MButton>
           <MButton
             font="text-xl"
-            bg={colors.green}
+            bg={colors.marinadeGreen}
             _hover={{ bg: colors.green800 }}
-            colorScheme={colors.green}
+            colorScheme={colors.marinadeGreen}
             rounded="md"
             px={4}
             height="48px"

@@ -1,4 +1,5 @@
-import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
+import { useToast } from "@chakra-ui/react";
+import { WalletAdapterNetwork, WalletError } from "@solana/wallet-adapter-base";
 import {
   ConnectionProvider,
   WalletProvider,
@@ -13,7 +14,7 @@ import {
   getSlopeWallet,
 } from "@solana/wallet-adapter-wallets";
 import { clusterApiUrl } from "@solana/web3.js";
-import { FC, ReactNode, useMemo } from "react";
+import { FC, ReactNode, useMemo, useCallback } from "react";
 
 export const WalletConnectionProvider: FC<{ children: ReactNode }> = ({
   children,
@@ -36,9 +37,26 @@ export const WalletConnectionProvider: FC<{ children: ReactNode }> = ({
     [network]
   );
 
+  const toast = useToast();
+
+  const onError = useCallback(
+    (error: WalletError) => {
+      if (error.name !== "WalletNotFoundError") {
+        toast({
+          title: error.name,
+          status: "error",
+          description: error.message,
+          variant: "subtle",
+          isClosable: true,
+        });
+      }
+    },
+    [toast]
+  );
+
   return (
     <ConnectionProvider endpoint={endpoint}>
-      <WalletProvider wallets={wallets} autoConnect>
+      <WalletProvider wallets={wallets} autoConnect onError={onError}>
         {children}
       </WalletProvider>
     </ConnectionProvider>

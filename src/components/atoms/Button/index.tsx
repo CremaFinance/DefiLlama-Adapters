@@ -7,20 +7,20 @@ const defaults = {
   size: "sm",
   rounded: "md",
   _hover: { bg: colors.green800 },
-  colorScheme: colors.green,
+  colorScheme: colors.marinadeGreen,
   font: "text-lg",
 };
 
 const selectVariant = (variant = "") =>
   ({
     solid: {
-      bg: colors.green,
+      bg: colors.marinadeGreen,
       color: colors.white,
     },
     outline: {
       variant: "outline",
       bg: colors.white,
-      color: colors.green,
+      color: colors.marinadeGreen,
       borderRadius: "8px",
     },
   }[variant] ?? {});

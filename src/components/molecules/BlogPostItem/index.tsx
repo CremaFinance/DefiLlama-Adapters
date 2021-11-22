@@ -87,9 +87,10 @@ const BlogPostItem = ({ title, content, link, date }: SectionProps) => {
         font="text-xl"
         variant="link"
         as="a"
-        color={colors.green}
+        color={colors.marinadeGreen}
         href={link}
         target="_blank"
+        rel="noreferrer noopener"
         display="flex"
         alignItems="center"
       >
