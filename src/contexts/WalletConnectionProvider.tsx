@@ -12,7 +12,7 @@ import {
 } from "@solana/wallet-adapter-wallets";
 import { FC, ReactNode, useCallback, useMemo } from "react";
 
-import { DEFAULT_ENDPOINT } from "utils/web3/endpoints";
+import { DEFAULT_ENDPOINT } from "../utils/web3/endpoints";
 
 import { ConnectionProvider } from "./ConnectionProvider";
 
