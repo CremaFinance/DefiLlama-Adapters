@@ -49,7 +49,7 @@ const InfoBoxesSection = () => {
           <MText type="text-md">{t("appPage.info-msol-sol-price")}</MText>
           <MHeading type="heading-xsm">{mSOLvsSOLParity} SOL</MHeading>
           <MText type="text-md" pb={2}>
-            ≈ ${((data?.SOL?.usd ?? 0) * mSOLvsSOLParity).toFixed(2)}
+            ≈ ${((data?.sol?.usd ?? 0) * mSOLvsSOLParity).toFixed(2)}
           </MText>
         </Flex>
         <Flex
@@ -70,7 +70,7 @@ const InfoBoxesSection = () => {
             {totalSOLStaked.toLocaleString()}
           </MHeading>
           <MText type="text-md" pb={2}>
-            ≈ ${((data?.SOL?.usd ?? 0) * totalSOLStaked).toLocaleString()}
+            ≈ ${((data?.sol?.usd ?? 0) * totalSOLStaked).toLocaleString()}
           </MText>
         </Flex>
         <Flex
