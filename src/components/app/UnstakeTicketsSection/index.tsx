@@ -7,6 +7,7 @@ import {
   Tr,
   Td,
   useMediaQuery,
+  useToast,
 } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { MdContentCopy } from "react-icons/md";
@@ -14,12 +15,12 @@ import { MdContentCopy } from "react-icons/md";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
-import { toastNotification } from "utils/notification";
 import { format5Dec, format2Dec } from "utils/number-to-short-version";
 import { shortenAddress } from "utils/shorten-address";
 
 const UnstakeTicketsSection = () => {
   const { t } = useTranslation();
+  const toast = useToast();
   const [isWiderThan768] = useMediaQuery("(min-width: 768px)");
 
   // TODO replace with actual values
@@ -53,10 +54,12 @@ const UnstakeTicketsSection = () => {
   const copyAddressToClipboard = (v: string) => {
     navigator.clipboard.writeText(v);
 
-    toastNotification({
+    toast({
       title: t("appPage.copy-success-title"),
       description: t("appPage.copy-success-message"),
       status: "success",
+      variant: "subtle",
+      isClosable: true,
     });
   };
 
