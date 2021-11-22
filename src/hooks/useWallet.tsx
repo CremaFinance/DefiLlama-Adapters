@@ -23,7 +23,11 @@ export const useWallet = () => {
             title: "Wallet extension not detected",
             status: "error",
             description: (
-              <Link target="_blank" href={wallet?.url}>
+              <Link
+                target="_blank"
+                rel="noreferrer noopener"
+                href={wallet?.url}
+              >
                 {msg}
               </Link>
             ),

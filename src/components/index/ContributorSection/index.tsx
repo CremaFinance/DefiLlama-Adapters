@@ -52,7 +52,12 @@ const ContributorSection = () => {
           {t("indexPage.contributor-section-action")}
         </MButton>
         <Flex mt={[0, 8]} mb={16}>
-          <Link target="_blank" mr={4} href="https://discord.gg/mGqZA5pjRN">
+          <Link
+            target="_blank"
+            rel="noreferrer noopener"
+            mr={4}
+            href="https://discord.gg/mGqZA5pjRN"
+          >
             <Image
               cursor="pointer"
               src="/icons/discord-drawn.svg"
@@ -62,6 +67,7 @@ const ContributorSection = () => {
           </Link>
           <Link
             target="_blank"
+            rel="noreferrer noopener"
             ml={2}
             href="https://twitter.com/MarinadeFinance"
           >
