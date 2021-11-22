@@ -1,12 +1,11 @@
 /* eslint-disable sonarjs/cognitive-complexity */
 import { Prices } from "services/domain/coinSymbols";
 import { coinTokens } from "services/domain/coinTokens";
-import { LendingPoolIds } from "services/domain/lendingPoolIds";
 import { MarketPools } from "services/domain/market";
 import { getTokensList } from "utils/tokens-list";
 
-import { PortPoolsResponse, portPools } from "./config";
-import { PortReserveResponse } from "./portPool";
+import { portPools } from "./config";
+import { PortReserveResponse, PortPoolsResponse } from "./portPool";
 
 const fetchPortPools = async (): Promise<PortPoolsResponse> => {
   const response = await fetch(
@@ -36,7 +35,9 @@ export const mapPortResponse = (
   const poolsArray = Object.entries(portPools).map(([poolkey, incoming]) => {
     const pool = incoming;
     if (pool.providerId) {
-      const result = portResults[pool.providerId as LendingPoolIds];
+      const result = portResults.find(
+        (portResult) => portResult.poolId === pool.providerId
+      );
 
       // todo refactor this if more pools from port are added (should call reserve fetch here)
       if (result) {
@@ -45,6 +46,7 @@ export const mapPortResponse = (
         const tokenA =
           Number(poolSize) / (1 * 10) ** coinTokens[pool.tokenA].decimals;
         const tokenAprice = prices[pool.tokenA]?.usd;
+
         if (tokenAprice) {
           pool.liq = tokenA * tokenAprice;
           pool.totalLockedValue = tokenA * tokenAprice;
