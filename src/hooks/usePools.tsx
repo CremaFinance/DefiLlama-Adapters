@@ -32,7 +32,7 @@ export const usePools = () => {
     return {
       queryKey: ["provider", key],
       queryFn: () => provider.fetchPools(prices),
-      enabled: provider.tokenList.find((t) => prices[t]) !== undefined,
+      enabled: provider.tokenList.every((t) => prices[t]),
       placeholderData: provider.pools,
       refetchInterval,
     };
