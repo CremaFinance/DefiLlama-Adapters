@@ -58,7 +58,7 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
     "{{totalApy}}",
     totalApy
   );
-  const pairStrign = right
+  const pairString = right
     ? `${left.shortName}-${right.shortName}`
     : left.shortName;
   const tvlString = t("appPage.pool-row.tvl").replace(
@@ -115,7 +115,7 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
             />
           )}
           <Text marginLeft="8px" lineHeight="21.6px" fontSize="14.4px">
-            {pairStrign}
+            {pairString}
           </Text>
         </Flex>
         <Flex
@@ -160,7 +160,7 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
         lineHeight="21.6px"
         maxWidth="274px"
         paddingTop={{ base: "8px", lg: "0" }}
-        paddingLeft={{ base: "0", md: "1rem", lg: "0" }}
+        // paddingLeft={{ base: "0", md: "1rem", lg: "0" }}
       >
         {tvlString}
       </Flex>
