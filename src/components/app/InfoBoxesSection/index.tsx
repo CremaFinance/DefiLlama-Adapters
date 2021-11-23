@@ -136,7 +136,7 @@ const InfoBoxesSection = () => {
             />
           </Flex>
           <MHeading type="heading-xsm">{weekAPY}%</MHeading>
-          <MLink font="text-lg" color={colors.green} pb={2}>
+          <MLink font="text-lg" color={colors.marinadeGreen} pb={2}>
             {t("appPage.info-see-performance-action")}
           </MLink>
         </Flex>
@@ -164,7 +164,7 @@ const InfoBoxesSection = () => {
             />
           </Flex>
           <MHeading type="heading-xsm">{validators.toLocaleString()}</MHeading>
-          <MLink font="text-lg" color={colors.green} pb={2}>
+          <MLink font="text-lg" color={colors.marinadeGreen} pb={2}>
             {t("appPage.info-validators-action")}
           </MLink>
         </Flex>
@@ -215,7 +215,7 @@ const InfoBoxesSection = () => {
           </Flex>
         </Flex>
         <Flex justifyContent="space-between" alignItems="center">
-          <MLink font="text-lg" color={colors.green}>
+          <MLink font="text-lg" color={colors.marinadeGreen}>
             {t("appPage.info-week-apy")}
           </MLink>
           <Flex>
@@ -229,7 +229,7 @@ const InfoBoxesSection = () => {
           </Flex>
         </Flex>
         <Flex justifyContent="space-between" alignItems="center">
-          <MLink font="text-lg" color={colors.green}>
+          <MLink font="text-lg" color={colors.marinadeGreen}>
             {t("appPage.info-validators")}
           </MLink>
           <Flex>

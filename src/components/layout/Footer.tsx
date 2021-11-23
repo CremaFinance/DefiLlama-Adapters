@@ -38,7 +38,11 @@ const Footer = () => {
             {t("indexPage.footer-description")}
           </MText>
           <Box display="flex" flexDirection="row">
-            <Link target="_blank" href="https://discord.gg/mGqZA5pjRN">
+            <Link
+              target="_blank"
+              rel="noreferrer noopener"
+              href="https://discord.gg/mGqZA5pjRN"
+            >
               <Image
                 cursor="pointer"
                 src="./discord.svg"
@@ -48,6 +52,7 @@ const Footer = () => {
             </Link>
             <Link
               target="_blank"
+              rel="noreferrer noopener"
               marginLeft="4"
               marginRight="4"
               href="https://medium.com/marinade-finance"
@@ -59,7 +64,11 @@ const Footer = () => {
                 width={30}
               />
             </Link>
-            <Link target="_blank" href="https://twitter.com/MarinadeFinance">
+            <Link
+              target="_blank"
+              rel="noreferrer noopener"
+              href="https://twitter.com/MarinadeFinance"
+            >
               <Image
                 cursor="pointer"
                 src="./twitter.svg"

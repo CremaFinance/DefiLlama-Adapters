@@ -157,9 +157,9 @@ const Header = () => {
             size="sm"
             font="text-lg"
             rounded="md"
-            bg={colors.green}
+            bg={colors.marinadeGreen}
             _hover={{ bg: colors.green800 }}
-            colorScheme={colors.green}
+            colorScheme={colors.marinadeGreen}
             color={colors.white}
             display={["none", "flex"]}
             width="130px"

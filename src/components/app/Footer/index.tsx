@@ -54,7 +54,11 @@ const Footer = () => {
           </MText>
 
           <Flex flexDirection="row" pt={2}>
-            <Link target="_blank" href="https://discord.gg/mGqZA5pjRN">
+            <Link
+              target="_blank"
+              rel="noreferrer noopener"
+              href="https://discord.gg/mGqZA5pjRN"
+            >
               <Image
                 cursor="pointer"
                 src="../../discord.svg"
@@ -64,6 +68,7 @@ const Footer = () => {
             </Link>
             <Link
               target="_blank"
+              rel="noreferrer noopener"
               marginLeft={[16, 4]}
               marginRight={[16, 4]}
               href="https://medium.com/marinade-finance"
@@ -75,7 +80,11 @@ const Footer = () => {
                 width={[50, 30]}
               />
             </Link>
-            <Link target="_blank" href="https://twitter.com/MarinadeFinance">
+            <Link
+              target="_blank"
+              rel="noreferrer noopener"
+              href="https://twitter.com/MarinadeFinance"
+            >
               <Image
                 cursor="pointer"
                 src="../../twitter.svg"

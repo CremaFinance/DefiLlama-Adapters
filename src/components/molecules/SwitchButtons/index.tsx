@@ -9,7 +9,8 @@ type SwitchButtonsProps = {
   height: number;
   width: string[];
   buttonWidth: string[];
-  my: number[];
+  my?: number[];
+  mb?: number;
   active: boolean;
   font?: string;
   display?: string;
@@ -23,6 +24,7 @@ const SwitchButtons = ({
   width,
   buttonWidth,
   my,
+  mb,
   active,
   font = "text-xl",
   display = "flex",
@@ -35,6 +37,7 @@ const SwitchButtons = ({
       height={`${height}px`}
       width={width}
       my={my}
+      mb={mb}
       rounded="3xl"
       bg="gray.100"
       justifyContent="center"
@@ -43,7 +46,7 @@ const SwitchButtons = ({
     >
       <MButton
         font={font}
-        bg={active ? colors.green : "gray.100"}
+        bg={active ? colors.marinadeGreen : "gray.100"}
         color={active ? colors.white : colors.black}
         fontWeight={active ? "bold" : "normal"}
         rounded="3xl"
@@ -57,7 +60,7 @@ const SwitchButtons = ({
       </MButton>
       <MButton
         font={font}
-        bg={active ? "gray.100" : colors.green}
+        bg={active ? "gray.100" : colors.marinadeGreen}
         color={active ? colors.black : colors.white}
         fontWeight={active ? "normal" : "bold"}
         rounded="3xl"
