@@ -131,8 +131,7 @@ const ValidatorTable = () => {
     }
   }, [pageNumber, data]);
 
-  if (isLoading && data === undefined)
-    return <Container height="710px">a</Container>;
+  if (isLoading && data === undefined) return <Container height="710px" />;
 
   if (error) return <h1>{error.message}</h1>;
 
