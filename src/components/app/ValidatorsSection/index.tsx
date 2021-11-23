@@ -1,6 +1,8 @@
-import { useState } from "react";
 import { Box, Flex } from "@chakra-ui/react";
+import { useState } from "react";
+
 import MText from "../../atoms/Text";
+import ValidatorTable from "./ValidatorTable";
 
 const TRANSACTIONS = "Transactions";
 const STAKES = "Stakes";
@@ -43,7 +45,7 @@ const ValidatorsSection = () => {
                   transition="ease-in"
                   transitionDuration="0.1s"
                 >
-                  <MText type="text-lg" fontWeight="bold" color="#308d8a">
+                  <MText fontSize="18px" fontWeight="bold" color="#308d8a">
                     {menu}
                   </MText>
                 </Box>
@@ -53,7 +55,7 @@ const ValidatorsSection = () => {
                   px="16px"
                   onClick={() => setSelectedMenu(menu)}
                 >
-                  <MText type="text-lg" px="0px">
+                  <MText fontSize="18px" px="0px">
                     {menu}
                   </MText>
                 </Box>
@@ -76,6 +78,8 @@ const ValidatorsSection = () => {
           </Flex>
         </Flex>
       </Flex>
+
+      <ValidatorTable />
     </Box>
   );
 };
