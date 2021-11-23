@@ -143,7 +143,6 @@ const ValidatorTable = () => {
         flexDirection="column-reverse"
         justifyContent="space-between"
       >
-        {/* <Box fontSize="30px">Hello there</Box> */}
         <Flex
           flexDirection="row"
           justifyContent="flex-end"
@@ -198,15 +197,19 @@ const ValidatorTable = () => {
               <Td {...cell}>{lamportsToSol(tuple.lamports)}</Td>
               <Td {...highlightedCell}>
                 <Flex alignItems="center">
-                  <Image
-                    src={
-                      tuple.data.stake.delegation.validatorInfo.image ||
-                      DEFAULT_IMAGE
-                    }
-                    alt="?"
-                    width={12}
-                    height={12}
-                  />
+                  {tuple.data.stake.delegation.validatorInfo.image !==
+                    undefined && (
+                    <Image
+                      src={
+                        tuple.data.stake.delegation.validatorInfo.image ||
+                        DEFAULT_IMAGE
+                      }
+                      alt="?"
+                      width={12}
+                      height={12}
+                    />
+                  )}
+
                   <Text pl="4px">
                     {formatValidatorName(
                       tuple.data.stake.delegation.validatorInfo.name ||
