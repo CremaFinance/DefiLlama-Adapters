@@ -16,6 +16,7 @@ import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 
 import lamportsToSol from "utils/lamportsToSol";
+import CopyIcon from "./CopyIcon";
 
 // this should be changed to a ? image
 const DEFAULT_IMAGE =
@@ -157,7 +158,11 @@ const ValidatorTable = () => {
         <Tbody>
           {data.data.map((tuple) => (
             <Tr key={tuple.pubkey.address}>
-              <Td {...highlightedCell}>{tuple.pubkey.address}</Td>
+              <Td {...highlightedCell}>
+                <Flex>
+                  {tuple.pubkey.address} <CopyIcon marginLeft="5px" />
+                </Flex>
+              </Td>
               <Td {...cell}>{lamportsToSol(tuple.lamports)}</Td>
               <Td {...highlightedCell}>
                 <Flex alignItems="center">
