@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import { Flex, IconButton } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { useState } from "react";
@@ -7,7 +8,9 @@ import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
 import UnstakeTicketsSection from "../UnstakeTicketsSection";
-import StakeInput from "components/molecules/StakeInput";
+import StakeInput, {
+  StakeInputTypeEnum,
+} from "components/molecules/StakeInput";
 import SwitchButtons from "components/molecules/SwitchButtons";
 import colors from "styles/customTheme/colors";
 
@@ -25,12 +28,12 @@ const StakeInputsSection = () => {
   const mSOLvsSOLParity = 1.01002;
   const minUnstakeFee = 0.3;
   const maxUnstakeFee = 3;
-  const sourceToken = "mSOL";
-  const sourceTokenIcon = "/icons/mSOL.svg";
+  const sourceToken = "SOL";
+  const sourceTokenIcon = "/icons/solana-dark.png";
   const sourceTokenBalance = 123456;
-  const targetToken = "SOL";
-  const targetTokenIcon = "/icons/solana-dark.png";
-  const targetTokenBalance = 0;
+  const targetToken = "mSOL";
+  const targetTokenIcon = "/icons/mSOL.svg";
+  const targetTokenBalance = 12.3;
   const timeToUnstake = "~7 days";
 
   const handleStakeActive = (v: boolean) => {
@@ -93,8 +96,13 @@ const StakeInputsSection = () => {
             display={isStakeActive ? "none" : "flex"}
             handleSwitch={handleUnstakeNowActive}
           />
-          <Flex flexDirection={!isStakeActive ? "column" : "column-reverse"}>
+          <Flex flexDirection={isStakeActive ? "column" : "column-reverse"}>
             <StakeInput
+              stakeInputType={
+                isStakeActive
+                  ? StakeInputTypeEnum.Source
+                  : StakeInputTypeEnum.Target
+              }
               tokenName={sourceToken}
               tokenIcon={sourceTokenIcon}
               tokenBalance={sourceTokenBalance}
@@ -102,6 +110,11 @@ const StakeInputsSection = () => {
               mb={2}
             />
             <StakeInput
+              stakeInputType={
+                isStakeActive
+                  ? StakeInputTypeEnum.Target
+                  : StakeInputTypeEnum.Source
+              }
               tokenName={targetToken}
               tokenIcon={targetTokenIcon}
               tokenBalance={targetTokenBalance}
