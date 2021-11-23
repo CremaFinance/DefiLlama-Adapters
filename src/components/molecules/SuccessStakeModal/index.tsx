@@ -51,17 +51,18 @@ const SuccessStakeModal = ({
       {children({ openModal: onOpen })}
       <Modal isOpen={isOpen} onClose={onClose} size="lg">
         <ModalOverlay />
-        <ModalContent size>
+        <ModalContent>
           <ModalCloseButton />
-          <ModalBody>
+          <ModalBody paddingX="0" margin="0">
             <Flex
               flexDir="column"
               width="480px"
               height="100%"
               alignItems="center"
+              margin="0"
             >
               <Image
-                marginTop="35px"
+                marginTop="38px"
                 width="219.03px"
                 height="166.64px"
                 src="/public/success-stake.png"
@@ -92,13 +93,13 @@ const SuccessStakeModal = ({
                 </Text>
                 {bodyAfterLine2}
               </Text>
-              <Flex marginTop="24px" marginBottom="38px">
+              <Flex marginTop="24px" marginBottom="31px">
                 <Button
                   variant="big-solid"
                   fontSize="18px"
                   lineHeight="25.2px"
                   fontWeight="bold"
-                  paddingX="41px"
+                  paddingX="44px"
                 >
                   {buttonText}
                 </Button>
