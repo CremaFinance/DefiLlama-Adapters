@@ -1,13 +1,18 @@
 import {
   Modal,
-  Button,
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
   ModalOverlay,
   useDisclosure,
+  Flex,
+  Image,
 } from "@chakra-ui/react";
+
+import { useTranslation } from "../../../hooks/useTranslation";
+import colors from "../../../styles/customTheme/colors";
+import Button from "../../atoms/Button";
+import Text from "../../atoms/Text";
 
 type ChildrenRenderProps = {
   openModal: () => void;
@@ -19,38 +24,87 @@ type ChildrenRenderFn = (props: ChildrenRenderProps) => React.ReactElement;
 interface SuccessStakeModalProps {
   children: ChildrenRenderFn;
   onClose: () => Promise<void> | void;
+  stakedAmount: number;
+  stakedCurrency: string;
 }
 
 const SuccessStakeModal = ({
   onClose: onCloseProp,
   children,
+  stakedAmount,
+  stakedCurrency,
 }: SuccessStakeModalProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure({ onClose: onCloseProp });
+  const { t } = useTranslation();
+
+  const bodyLine1 = t("appPage.success-stake.body-line1");
+  const bodyBeforeLine2 = t("appPage.success-stake.body-line2-before");
+  const bodyAfterLine2 = t("appPage.success-stake.body-line2-after");
+
+  const buttonText = t("appPage.success-stake.button")?.replace(
+    "{{stakedCurrency}}",
+    stakedCurrency
+  );
+
   return (
     <>
       {children({ openModal: onOpen })}
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} size="lg">
         <ModalOverlay />
-        <ModalContent width="480px" height="465px">
+        <ModalContent size>
           <ModalCloseButton />
           <ModalBody>
-            Sit nulla est ex deserunt exercitation anim occaecat. Nostrud
-            ullamco deserunt aute id consequat veniam incididunt duis in sint
-            irure nisi. Mollit officia cillum Lorem ullamco minim nostrud elit
-            officia tempor esse quis. Sunt ad dolore quis aute consequat. Magna
-            exercitation reprehenderit magna aute tempor cupidatat consequat
-            elit dolor adipisicing. Mollit dolor eiusmod sunt ex incididunt
-            cillum quis. Velit duis sit officia eiusmod Lorem aliqua enim
-            laboris do dolor eiusmod. Et mollit incididunt nisi consectetur esse
-            laborum eiusmod pariatur proident Lorem eiusmod et. Culpa deserunt
-            nostrud ad veniam.
+            <Flex
+              flexDir="column"
+              width="480px"
+              height="100%"
+              alignItems="center"
+            >
+              <Image
+                marginTop="35px"
+                width="219.03px"
+                height="166.64px"
+                src="/public/success-stake.png"
+              />
+              <Text
+                marginTop="18px"
+                fontSize="22.5px"
+                fontWeight="bold"
+                lineHeight="33.75px"
+              >
+                {t("appPage.success-stake.title")}
+              </Text>
+              <Text
+                marginTop="9px"
+                fontSize="18px"
+                lineHeight="25.2px"
+                textAlign="center"
+              >
+                {bodyLine1}
+              </Text>
+              <Text fontSize="18px" lineHeight="150%" textAlign="center">
+                {bodyBeforeLine2}
+                <Text as="span" color={colors.black} fontWeight="bold">
+                  {stakedAmount}
+                </Text>{" "}
+                <Text as="span" color={colors.green} fontWeight="bold">
+                  {stakedCurrency}
+                </Text>
+                {bodyAfterLine2}
+              </Text>
+              <Flex marginTop="24px" marginBottom="20px">
+                <Button
+                  variant="big-solid"
+                  fontSize="18px"
+                  lineHeight="25.2px"
+                  fontWeight="bold"
+                  paddingX="41px"
+                >
+                  {buttonText}
+                </Button>
+              </Flex>
+            </Flex>
           </ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
-            </Button>
-          </ModalFooter>
         </ModalContent>
       </Modal>
     </>
