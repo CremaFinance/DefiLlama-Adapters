@@ -17,7 +17,8 @@ const ValidatorsSection = () => {
 
   return (
     <Box
-      h="842px"
+      display="flex"
+      flexDirection="column"
       w="1100px"
       bg="white"
       marginLeft="auto"

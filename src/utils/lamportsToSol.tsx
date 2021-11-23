@@ -1,4 +1,4 @@
-const lamportsToSol = (amountNum: number) => {
+const lamportsToSol = (amountNum: number): string => {
   const amount = amountNum.toString();
   const n: number = amount.length;
   const formatted: string[] = [];
