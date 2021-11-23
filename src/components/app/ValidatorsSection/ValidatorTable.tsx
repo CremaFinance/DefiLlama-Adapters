@@ -168,20 +168,20 @@ const ValidatorTable = () => {
   if (error) return <h1>{error.message}</h1>;
 
   return (
-    <Flex mt="40px" direction="column">
+    <Flex mt="40px" ml="30px" direction="column">
       <Table variant="unstyled">
         <Thead>
           <Tr>
-            <Th {...cell} textAlign="left">
+            <Th {...cell} textAlign="left" position="relative" right="15px">
               Account
             </Th>
             <Th {...cell} textAlign="left">
               Balance
             </Th>
-            <Th {...cell} textAlign="left">
+            <Th {...cell} textAlign="left" position="relative" right="14px">
               Validator
             </Th>
-            <Th {...cell} textAlign="right" position="relative" right="60px">
+            <Th {...cell} textAlign="right" position="relative" right="50px">
               State
             </Th>
           </Tr>

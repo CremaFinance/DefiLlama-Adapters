@@ -58,7 +58,7 @@ const ValidatorsSection = () => {
                   px="16px"
                   onClick={() => setSelectedMenu(menu)}
                 >
-                  <MText fontSize="18px" px="0px">
+                  <MText fontSize="18px" color="#4A5568">
                     {menu}
                   </MText>
                 </Box>
