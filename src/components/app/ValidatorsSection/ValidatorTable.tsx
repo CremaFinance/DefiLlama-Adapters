@@ -8,6 +8,7 @@ import {
   Th,
   Td,
   Box,
+  Container,
 } from "@chakra-ui/react";
 import axios from "axios";
 import Image from "next/image";
@@ -80,13 +81,14 @@ const ValidatorTable = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [pages, setPages] = useState([]);
 
-  const handlePagination = (key: any) => {
+  const handlePagination = (key: string | number) => {
     if (key === "<") {
       setPageNumber((p) => p - 1);
     } else if (key === ">") {
       setPageNumber((p) => p + 1);
     } else {
-      setPageNumber(key);
+      const newPageNumber = Number(key);
+      setPageNumber(newPageNumber);
     }
   };
 
@@ -129,7 +131,8 @@ const ValidatorTable = () => {
     }
   }, [pageNumber, data]);
 
-  if (isLoading && data === undefined) return <h1>Loading</h1>;
+  if (isLoading && data === undefined)
+    return <Container height="710px">a</Container>;
 
   if (error) return <h1>{error.message}</h1>;
 
