@@ -58,7 +58,7 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
     "{{totalApy}}",
     totalApy
   );
-  const pairStrign = right
+  const pairString = right
     ? `${left.shortName}-${right.shortName}`
     : left.shortName;
   const tvlString = t("appPage.pool-row.tvl").replace(
@@ -71,33 +71,60 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
   const secondaryButtonLabel = t(
     `appPage.pool-row.buttons.${right ? "swap" : "borrow"}`
   );
+
+  const ProviderImage = () => (
+    <Image
+      src={provider.logo}
+      marginRight={{ base: "0", xl: "1rem" }}
+      width={{ base: "2.5rem", lg: "4rem" }}
+      height={{ base: "2.5rem", lg: "4rem" }}
+    />
+  );
+
   return (
     <Flex
       bg="white"
-      paddingX="1.5rem"
-      paddingY="16px"
+      paddingX={{ base: "24px", lg: "1.5rem" }}
+      paddingY={{ base: "24px", lg: "16px" }}
       borderRadius="8px"
       borderStyle="solid"
       borderWidth="1px"
       borderColor="gray.200"
-      alignItems="center"
+      alignItems={{ base: "stretch", lg: "center" }}
       boxSizing="border-box"
-      maxWidth="1100px"
+      minWidth={{ base: "288px", lg: "900px" }}
+      maxWidth={{ base: "320px", lg: "1100px" }}
+      marginBottom={{ base: "15px", lg: "14px" }}
       flex={1}
+      flexDirection={{ base: "column", lg: "row" }}
+      marginX={{ base: "0", sm: "16px", lg: "0" }}
     >
-      <Flex flex={1} maxWidth="208px">
-        <Image src={left.logo} width="24px" height="24px" />
-        {right && (
-          <Image
-            src={right?.logo}
-            width="24px"
-            height="24px"
-            marginLeft="4px"
-          />
-        )}
-        <Text marginLeft="8px" lineHeight="21.6px" fontSize="14.4px">
-          {pairStrign}
-        </Text>
+      <Flex
+        flex={1}
+        maxWidth={{ base: undefined, lg: "208px" }}
+        justifyContent={{ base: "space-between", lg: "flex-start" }}
+      >
+        <Flex>
+          <Image src={left.logo} width="24px" height="24px" />
+          {right && (
+            <Image
+              src={right?.logo}
+              width="24px"
+              height="24px"
+              marginLeft="4px"
+            />
+          )}
+          <Text marginLeft="8px" lineHeight="21.6px" fontSize="14.4px">
+            {pairString}
+          </Text>
+        </Flex>
+        <Flex
+          flex={{ base: undefined, lg: 1 }}
+          maxWidth="193px"
+          display={{ base: "flex", lg: "none" }}
+        >
+          <ProviderImage />
+        </Flex>
       </Flex>
       <Flex
         alignItems="center"
@@ -132,40 +159,53 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
         fontSize="14.4px"
         lineHeight="21.6px"
         maxWidth="274px"
-        paddingLeft={{ base: "1rem", lg: "0" }}
+        paddingTop={{ base: "8px", lg: "0" }}
+        // paddingLeft={{ base: "0", md: "1rem", lg: "0" }}
       >
         {tvlString}
       </Flex>
-      <Flex flex={{ base: undefined, lg: 1 }} maxWidth="193px">
-        <Image
-          src={provider.logo}
-          marginLeft={{ base: "1rem", lg: "0" }}
-          marginRight={{ base: "8px", xl: "1rem" }}
-          width="4rem"
-          height="4rem"
-        />
+      <Flex
+        flex={{ base: undefined, lg: 1 }}
+        maxWidth="193px"
+        display={{ base: "none", lg: "flex" }}
+      >
+        <ProviderImage />
       </Flex>
-      <Flex justifyContent="flex-end">
-        <Flex flexDir="column" width="145px">
-          <Button
-            variant="solid"
-            marginBottom="8px"
-            rightIcon={
-              <Image src="/icons/external-link-white.svg" width="0.8rem" />
-            }
-            onClick={onMainClick}
-          >
-            {mainButtonLabel}
-          </Button>
-          <Button
-            variant="outline"
-            onClick={onSecondaryClick}
-            rightIcon={
-              <Image src="/icons/external-link-green.svg" width="0.8rem" />
-            }
-          >
-            {secondaryButtonLabel}
-          </Button>
+      <Flex
+        justifyContent={{ base: "stretch", lg: "flex-end" }}
+        marginTop={{ base: "16px", lg: "0" }}
+      >
+        <Flex
+          flexDir={{ base: "row-reverse", lg: "column" }}
+          justifyContent={{ base: "stretch", lg: undefined }}
+          width={{ base: undefined, lg: "145px" }}
+          flex={1}
+        >
+          <Flex flex={{ base: 1.4, lg: 0 }}>
+            <Button
+              variant="solid"
+              marginBottom={{ base: 0, lg: "8px" }}
+              flex={1}
+              rightIcon={
+                <Image src="/icons/external-link-white.svg" width="0.8rem" />
+              }
+              onClick={onMainClick}
+            >
+              {mainButtonLabel}
+            </Button>
+          </Flex>
+          <Flex flex={{ base: 1, lg: 0 }} marginRight={{ base: "8px", lg: 0 }}>
+            <Button
+              variant="outline"
+              onClick={onSecondaryClick}
+              flex={1}
+              rightIcon={
+                <Image src="/icons/external-link-green.svg" width="0.8rem" />
+              }
+            >
+              {secondaryButtonLabel}
+            </Button>
+          </Flex>
         </Flex>
       </Flex>
     </Flex>
