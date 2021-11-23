@@ -74,7 +74,7 @@ const StakeInput = ({
           <MButton
             variant="link"
             font="text-sm"
-            color={colors.green}
+            color={colors.marinadeGreen}
             fontWeight="bold"
             onClick={() => setAmount(tokenBalance)}
             pb="1px"

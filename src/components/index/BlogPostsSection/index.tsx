@@ -117,7 +117,7 @@ export default function BlogPosts() {
         <MHeading
           as="span"
           display={{ base: "inline", md: "block" }}
-          color={colors.green}
+          color={colors.marinadeGreen}
           maxW={[440, 520, 700]}
           type="heading-sm"
           mb={8}
@@ -136,9 +136,9 @@ export default function BlogPosts() {
       >
         <MButton
           font="text-xl"
-          bg={colors.green}
+          bg={colors.marinadeGreen}
           _hover={{ bg: colors.green800 }}
-          colorScheme={colors.green}
+          colorScheme={colors.marinadeGreen}
           rounded="md"
           width={200}
           height="48px"
@@ -154,7 +154,7 @@ export default function BlogPosts() {
           variant="link"
           mx={4}
           my={[2, 0]}
-          colorScheme={colors.green}
+          colorScheme={colors.marinadeGreen}
           rounded="md"
           rightIcon={<HiArrowRight />}
         >

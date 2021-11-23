@@ -7,3 +7,11 @@ export function numberToShortVersion(value: number): string {
   }
   return `${value}`;
 }
+
+export function format5Dec(balance: number): string {
+  return balance === null ? "--" : (Math.round(balance * 1e5) / 1e5).toString();
+}
+
+export function format2Dec(balance: number): string {
+  return balance == null ? "0" : (Math.round(balance * 1e2) / 1e2).toString();
+}

@@ -65,9 +65,9 @@ export default function InfoSection() {
       <Box marginBottom="104px" mt={4} display="flex" justifyContent="center">
         <MButton
           font="text-xl"
-          bg={colors.green}
+          bg={colors.marinadeGreen}
           _hover={{ bg: colors.green800 }}
-          colorScheme={colors.green}
+          colorScheme={colors.marinadeGreen}
           width="200px"
           height="48px"
           rounded="md"
@@ -93,7 +93,7 @@ export default function InfoSection() {
                 as="span"
                 display="inline-block"
                 type="heading-md"
-                color={colors.green}
+                color={colors.marinadeGreen}
               >
                 {t("indexPage.info-section-items.0.emphasis")}
               </MHeading>{" "}
@@ -117,21 +117,19 @@ export default function InfoSection() {
 
             <Flex
               bg={colors.marinadeLighterGreen}
-              height={{ base: "auto", md: "138px" }}
               width={{ base: "88vw", md: "60vw", lg: "34vw", "2xl": "24vw" }}
-              p={4}
+              p={6}
               mt={4}
               rounded="md"
               flexDirection="column"
               justifyContent="space-around"
             >
-              <MText mb={2} type="text-md" wordBreak="normal">
+              <MText mb={2} type="text-xl" wordBreak="normal">
                 &quot;{t("indexPage.info-section-items.0.quote")}&quot;
               </MText>
               <Flex alignItems="center">
                 <Image
-                  src="/alpharay.png"
-                  rounded="full"
+                  src="icons/raydium-color.svg"
                   height="32px"
                   width="32px"
                   mr={2}
@@ -181,7 +179,7 @@ export default function InfoSection() {
                 as="span"
                 display="inline-block"
                 type="heading-md"
-                color={colors.green}
+                color={colors.marinadeGreen}
               >
                 {t("indexPage.info-section-items.1.emphasis")}
               </MHeading>{" "}
@@ -206,21 +204,19 @@ export default function InfoSection() {
 
             <Flex
               bg={colors.marinadeLighterGreen}
-              height={{ base: "auto", md: "138px" }}
               width={{ base: "88vw", md: "60vw", lg: "34vw", "2xl": "24vw" }}
-              p={4}
+              p={6}
               mt={4}
               rounded="md"
               flexDirection="column"
               justifyContent="space-around"
             >
-              <MText mb={2} type="text-md" wordBreak="normal">
+              <MText mb={2} type="text-xl" wordBreak="normal">
                 &quot;{t("indexPage.info-section-items.1.quote")}&quot;
               </MText>
               <Box display="flex" alignItems="center">
                 <Image
-                  src="/dan-albert.jpeg"
-                  rounded="full"
+                  src="/icons/solana-foundation.svg"
                   height="32px"
                   width="32px"
                   mr={2}
@@ -267,7 +263,7 @@ export default function InfoSection() {
                 as="span"
                 display="inline-block"
                 type="heading-md"
-                color={colors.green}
+                color={colors.marinadeGreen}
               >
                 {t("indexPage.info-section-items.2.emphasis")}
               </MHeading>{" "}
@@ -291,22 +287,20 @@ export default function InfoSection() {
 
             <Box
               bg={colors.marinadeLighterGreen}
-              height={{ base: "auto", md: "160px" }}
               width={{ base: "88vw", md: "60vw", lg: "34vw", "2xl": "24vw" }}
-              p={4}
+              p={6}
               mt={4}
               rounded="md"
               display="flex"
               flexDirection="column"
               justifyContent="space-around"
             >
-              <MText mb={2} type="text-md" wordBreak="normal">
+              <MText mb={2} type="text-xl" wordBreak="normal">
                 &quot;{t("indexPage.info-section-items.2.quote")}&quot;
               </MText>
               <Box display="flex" alignItems="center">
                 <Image
-                  src="/ian-macalinao.jpeg"
-                  rounded="full"
+                  src="/icons/saber.svg"
                   height="32px"
                   width="32px"
                   mr={2}
