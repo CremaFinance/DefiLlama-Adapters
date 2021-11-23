@@ -21,6 +21,14 @@ const selectVariant = (variant = "") =>
       colorScheme: "green",
       borderRadius: "8px",
     },
+    "big-solid": {
+      size: "lg",
+      rounded: "md",
+      bg: "green",
+      _hover: { bg: "green800" },
+      colorScheme: "green",
+      color: "white",
+    },
   }[variant] ?? {});
 
 const selectFontSize = (font = "") => {
