@@ -92,7 +92,7 @@ const SuccessStakeModal = ({
                 </Text>
                 {bodyAfterLine2}
               </Text>
-              <Flex marginTop="24px" marginBottom="20px">
+              <Flex marginTop="24px" marginBottom="38px">
                 <Button
                   variant="big-solid"
                   fontSize="18px"
