@@ -1,8 +1,10 @@
 import { Box, Flex } from "@chakra-ui/react";
 import { useState } from "react";
+
 import MText from "../../atoms/Text";
-import ValidatorTable from "./ValidatorTable";
+
 import DownArrow from "./DownArrow";
+import ValidatorTable from "./ValidatorTable";
 
 const TRANSACTIONS = "Transactions";
 const STAKES = "Stakes";

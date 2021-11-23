@@ -8,7 +8,6 @@ import {
   Th,
   Td,
   Box,
-  Container,
 } from "@chakra-ui/react";
 import axios from "axios";
 import Image from "next/image";
@@ -16,6 +15,7 @@ import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 
 import lamportsToSol from "utils/lamportsToSol";
+
 import CopyIcon from "./CopyIcon";
 
 // this should be changed to a ? image
@@ -129,11 +129,43 @@ const ValidatorTable = () => {
       available.push(totalPages);
 
       setPages(available);
+    } else if (pages === []) {
+      setPages([1, 2, 3, 4, 5]);
     }
-  }, [pageNumber, data]);
+  }, [pageNumber, data, pages]);
 
-  if (isLoading && data === undefined) return <Container height="710px" />;
-
+  if (isLoading && data === undefined) {
+    return (
+      <Box
+        height="710px"
+        width="100%"
+        display="flex"
+        flexDirection="column-reverse"
+        justifyContent="space-between"
+      >
+        {/* <Box fontSize="30px">Hello there</Box> */}
+        <Flex
+          flexDirection="row"
+          justifyContent="flex-end"
+          marginRight="20px"
+          height="100px"
+          alignItems="center"
+        >
+          {pages.map((page) => (
+            <Box>
+              {page === pageNumber ? (
+                <Box {...currentPageStyle}>{page}</Box>
+              ) : (
+                <Box onClick={() => handlePagination(page)} {...pageStyle}>
+                  {page}
+                </Box>
+              )}
+            </Box>
+          ))}
+        </Flex>
+      </Box>
+    );
+  }
   if (error) return <h1>{error.message}</h1>;
 
   return (
