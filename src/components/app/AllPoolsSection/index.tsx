@@ -67,9 +67,12 @@ const AllPoolsSection = () => {
         justifyContent="center"
         flexWrap={{ base: "wrap", lg: "nowrap" }}
       >
-        {exampleData.map((props) => (
-          <Flex justifyContent="center">
-            <PoolRow {...props} />
+        {exampleData.map((row) => (
+          <Flex
+            justifyContent="center"
+            key={`${row.currencies.left.shortName}-${row.currencies.right?.shortName}-${row.anualPercentageYield}`}
+          >
+            <PoolRow {...row} />
           </Flex>
         ))}
       </Flex>
