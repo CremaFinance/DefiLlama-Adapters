@@ -65,6 +65,15 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
     totalLockedValue?.toLocaleString()
   );
 
+  const ProviderImage = () => (
+    <Image
+      src={provider.logo}
+      marginRight={{ base: "0", xl: "1rem" }}
+      width={{ base: "2.5rem", lg: "4rem" }}
+      height={{ base: "2.5rem", lg: "4rem" }}
+    />
+  );
+
   return (
     <Flex
       bg="white"
@@ -90,7 +99,7 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
       >
         <Flex>
           <Image src={`/pools/${left.logo}.png`} width="24px" height="24px" />
-          {right && (
+          {right?.shortName && (
             <Image
               src={right?.logo ? `/pools/${right.logo}.png` : ""}
               width="24px"
@@ -148,7 +157,6 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
         lineHeight="21.6px"
         maxWidth="274px"
         paddingTop={{ base: "8px", lg: "0" }}
-        // paddingLeft={{ base: "0", md: "1rem", lg: "0" }}
       >
         {totalLockedValue ? <Text>{tvlString}</Text> : <Spinner size="xs" />}
       </Flex>
@@ -169,25 +177,31 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
           width={{ base: undefined, lg: "145px" }}
           flex={1}
         >
-          <Button
-            variant="solid"
-            marginBottom="8px"
-            rightIcon={
-              <Image src="/icons/external-link-white.svg" width="0.8rem" />
-            }
-            onClick={() => window.open(actions[0].url, "_blank")}
-          >
-            {actions[0].text}
-          </Button>
-          <Button
-            variant="outline"
-            onClick={() => window.open(actions[1].url, "_blank")}
-            rightIcon={
-              <Image src="/icons/external-link-green.svg" width="0.8rem" />
-            }
-          >
-            {actions[1].text}
-          </Button>
+          <Flex flex={{ base: 1.4, lg: 0 }}>
+            <Button
+              variant="solid"
+              marginBottom={{ base: 0, lg: "8px" }}
+              flex={1}
+              rightIcon={
+                <Image src="/icons/external-link-white.svg" width="0.8rem" />
+              }
+              onClick={() => window.open(actions[0].url, "_blank")}
+            >
+              {actions[0].text}
+            </Button>
+          </Flex>
+          <Flex flex={{ base: 1, lg: 0 }} marginRight={{ base: "8px", lg: 0 }}>
+            <Button
+              variant="outline"
+              onClick={() => window.open(actions[1].url, "_blank")}
+              flex={1}
+              rightIcon={
+                <Image src="/icons/external-link-green.svg" width="0.8rem" />
+              }
+            >
+              {actions[1].text}
+            </Button>
+          </Flex>
         </Flex>
       </Flex>
     </Flex>
