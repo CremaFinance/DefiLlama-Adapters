@@ -188,7 +188,12 @@ const ValidatorTable = () => {
         <Tbody>
           {data.data.map((tuple) => (
             <Tr key={tuple.pubkey.address}>
-              <Td {...highlightedCell} position="relative" right="10px">
+              <Td
+                {...highlightedCell}
+                position="relative"
+                right="10px"
+                width="460px"
+              >
                 <Flex alignItems="center">
                   {tuple.pubkey.address}{" "}
                   <Box ml="7px">
@@ -196,8 +201,10 @@ const ValidatorTable = () => {
                   </Box>
                 </Flex>
               </Td>
-              <Td {...cell}>{lamportsToSol(tuple.lamports)} SOL</Td>
-              <Td {...highlightedCell}>
+              <Td {...cell} width="225px">
+                {lamportsToSol(tuple.lamports)} SOL
+              </Td>
+              <Td {...highlightedCell} width="225px">
                 <Flex alignItems="center">
                   {tuple.data.stake.delegation.validatorInfo.image !==
                     undefined && (
@@ -220,7 +227,7 @@ const ValidatorTable = () => {
                   </Text>
                 </Flex>
               </Td>
-              <Td position="relative" left="30px" {...cell}>
+              <Td {...cell} position="relative" left="25px" width="128px">
                 DELEGATED
               </Td>
             </Tr>
