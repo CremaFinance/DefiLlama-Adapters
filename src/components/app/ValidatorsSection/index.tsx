@@ -68,7 +68,7 @@ const ValidatorsSection = () => {
         </Flex>
 
         <Flex
-          mr="25px"
+          mr="15px"
           mt="10px"
           border="1px solid #727f96"
           borderRadius="5px"

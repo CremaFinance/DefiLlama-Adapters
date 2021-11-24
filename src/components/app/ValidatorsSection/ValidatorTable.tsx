@@ -171,7 +171,7 @@ const ValidatorTable = () => {
       <Table variant="unstyled">
         <Thead>
           <Tr>
-            <Th {...cell} textAlign="left" position="relative" right="15px">
+            <Th {...cell} textAlign="left" position="relative" right="23px">
               Account
             </Th>
             <Th {...cell} textAlign="left">
@@ -180,7 +180,7 @@ const ValidatorTable = () => {
             <Th {...cell} textAlign="left" position="relative" right="14px">
               Validator
             </Th>
-            <Th {...cell} textAlign="right" position="relative" right="20px">
+            <Th {...cell} textAlign="right" position="relative" right="10px">
               State
             </Th>
           </Tr>
@@ -188,10 +188,10 @@ const ValidatorTable = () => {
         <Tbody>
           {data.data.map((tuple) => (
             <Tr key={tuple.pubkey.address}>
-              <Td {...highlightedCell}>
+              <Td {...highlightedCell} position="relative" right="10px">
                 <Flex alignItems="center">
                   {tuple.pubkey.address}{" "}
-                  <Box ml="5px">
+                  <Box ml="7px">
                     <MdOutlineContentCopy fontSize="14px" color="#171923" />
                   </Box>
                 </Flex>
@@ -220,7 +220,7 @@ const ValidatorTable = () => {
                   </Text>
                 </Flex>
               </Td>
-              <Td position="relative" left="20px" {...cell}>
+              <Td position="relative" left="30px" {...cell}>
                 DELEGATED
               </Td>
             </Tr>
