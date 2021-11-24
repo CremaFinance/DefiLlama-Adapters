@@ -6,7 +6,13 @@ import colors from "../../../styles/customTheme/colors";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 
+export enum StakeInputTypeEnum {
+  Source = "source",
+  Target = "target",
+}
+
 type StakeInputProps = {
+  stakeInputType: StakeInputTypeEnum;
   tokenIcon: string;
   tokenName: string;
   tokenBalance: number;
@@ -16,6 +22,7 @@ type StakeInputProps = {
 };
 
 const StakeInput = ({
+  stakeInputType,
   tokenIcon,
   tokenName,
   tokenBalance,
@@ -66,11 +73,17 @@ const StakeInput = ({
           value={amount}
           type="number"
           onChange={handleChange}
+          isDisabled={stakeInputType === StakeInputTypeEnum.Target}
+          cursor={
+            stakeInputType === StakeInputTypeEnum.Target
+              ? "not-allowed"
+              : "auto"
+          }
         />
       </Flex>
       <Flex alignItems="center" justifyContent="flex-start" mb={2}>
         <MText type="text-sm">{`${balanceLabel}: ${tokenBalance.toLocaleString()} ${tokenName}`}</MText>
-        {tokenBalance ? (
+        {tokenBalance && stakeInputType === StakeInputTypeEnum.Source ? (
           <MButton
             variant="link"
             font="text-sm"

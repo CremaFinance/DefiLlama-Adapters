@@ -3,15 +3,25 @@ import { useTranslation } from "next-export-i18n";
 
 import Heading from "components/atoms/Heading";
 import PoolRow from "components/molecules/PoolRow";
-
-import { exampleData } from "./constants";
+import { usePools } from "hooks/usePools";
+import { Pool } from "services/domain/pool";
 
 const AllPoolsSection = () => {
   const { t } = useTranslation();
+
+  const results = usePools();
+  const pools = results.reduce(
+    (acc, result) =>
+      result.data
+        ? acc.concat(Object.values(result.data).map((market) => market))
+        : acc,
+    [] as Pool[]
+  );
+
   return (
     <Flex
       flexDir="column"
-      marginX={{ base: "10px", xl: "170px" }}
+      marginX={{ base: "16px", lg: "65px", xl: "170px" }}
       marginTop="40px"
       alignItems="stretch"
     >
@@ -21,6 +31,7 @@ const AllPoolsSection = () => {
         </Heading>
       </Flex>
       <Flex
+        display={{ base: "none", lg: "flex" }}
         flexDirection="row"
         marginBottom="8px"
         justifyContent="center"
@@ -61,17 +72,39 @@ const AllPoolsSection = () => {
           </Flex>
         </Flex>
       </Flex>
-      {exampleData.map((props) => (
-        <Flex
-          flexDirection="row"
-          // eslint-disable-next-line react/prop-types
-          key={`${props.currencies.left}-${props.currencies?.right}`}
-          marginBottom="14px"
-          justifyContent="center"
-        >
-          <PoolRow {...props} />
-        </Flex>
-      ))}
+      <Flex
+        flexDir={{ base: "row", lg: "column" }}
+        justifyContent="center"
+        flexWrap={{ base: "wrap", lg: "nowrap" }}
+      >
+        {pools?.map((pool) => (
+          <Flex
+            flexDirection="row"
+            key={`${pool.address}`}
+            marginBottom="14px"
+            justifyContent="center"
+          >
+            <PoolRow
+              totalLockedValue={pool.totalLockedValue ?? 0}
+              provider={{ logo: pool.logoURI ?? "", shortName: pool.provider }}
+              rewardPerDay={{ marinade: 0, provider: 0 }}
+              currencies={{
+                left: { logo: pool.tokenA, shortName: pool.tokenA },
+                right: {
+                  logo: pool?.tokenB ?? "",
+                  shortName: pool?.tokenB ?? "",
+                },
+              }}
+              anualPercentageYield={{
+                trading: 0,
+                emission: pool.apy ?? 0,
+                doubleDip: 0,
+              }}
+              actions={pool.actions}
+            />
+          </Flex>
+        ))}
+      </Flex>
     </Flex>
   );
 };

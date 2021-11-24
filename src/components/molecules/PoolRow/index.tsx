@@ -1,9 +1,11 @@
-import { Flex, Image, Icon } from "@chakra-ui/react";
+import { Flex, Image, Icon, Spinner } from "@chakra-ui/react";
 import { FunctionComponent } from "react";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 
 import { useTranslation } from "../../../hooks/useTranslation";
+import { Action } from "../../../services/domain/pool";
 import Button from "../../atoms/Button";
+import Heading from "../../atoms/Heading";
 import Text from "../../atoms/Text";
 import ApyAndRewardTooltip from "../ApyAndRewardTooltip";
 
@@ -17,9 +19,8 @@ type PoolRowProps = {
     marinade: number;
     provider?: number;
   };
-  totalLockedValue: number;
+  totalLockedValue?: number;
   currencies: {
-    // If just left is supplied, then show "Supply" and "Borrow", else show "Add liquidity" and "Swap"
     left: {
       logo: string;
       shortName: string;
@@ -33,8 +34,7 @@ type PoolRowProps = {
     logo: string;
     shortName: string;
   };
-  onMainClick: () => Promise<void> | void;
-  onSecondaryClick: () => Promise<void> | void;
+  actions: Action[];
 };
 
 const PoolRow: FunctionComponent<PoolRowProps> = ({
@@ -43,8 +43,7 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
   totalLockedValue,
   rewardPerDay: rpd,
   provider,
-  onMainClick,
-  onSecondaryClick,
+  actions,
 }) => {
   const { t } = useTranslation();
   const totalApy = Number(
@@ -58,55 +57,80 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
     "{{totalApy}}",
     totalApy
   );
-  const pairStrign = right
+  const pairString = right?.shortName
     ? `${left.shortName}-${right.shortName}`
     : left.shortName;
   const tvlString = t("appPage.pool-row.tvl").replace(
     "{{tvl}}",
-    totalLockedValue.toLocaleString()
+    totalLockedValue?.toLocaleString()
   );
-  const mainButtonLabel = t(
-    `appPage.pool-row.buttons.${right ? "addLiquidy" : "supply"}`
+
+  const ProviderImage = () => (
+    <Image
+      src={provider.logo}
+      marginRight={{ base: "0", xl: "1rem" }}
+      width={{ base: "2.5rem", lg: "4rem" }}
+      height={{ base: "2.5rem", lg: "4rem" }}
+    />
   );
-  const secondaryButtonLabel = t(
-    `appPage.pool-row.buttons.${right ? "swap" : "borrow"}`
-  );
+
   return (
     <Flex
       bg="white"
-      paddingX="1.5rem"
-      paddingY="16px"
+      paddingX={{ base: "24px", lg: "1.5rem" }}
+      paddingY={{ base: "24px", lg: "16px" }}
       borderRadius="8px"
       borderStyle="solid"
       borderWidth="1px"
       borderColor="gray.200"
-      alignItems="center"
+      alignItems={{ base: "stretch", lg: "center" }}
       boxSizing="border-box"
-      maxWidth="1100px"
+      minWidth={{ base: "288px", lg: "900px" }}
+      maxWidth={{ base: "320px", lg: "1100px" }}
+      marginBottom={{ base: "15px", lg: "14px" }}
       flex={1}
+      flexDirection={{ base: "column", lg: "row" }}
+      marginX={{ base: "0", sm: "16px", lg: "0" }}
     >
-      <Flex flex={1} maxWidth="208px">
-        <Image src={left.logo} width="24px" height="24px" />
-        {right && (
-          <Image
-            src={right?.logo}
-            width="24px"
-            height="24px"
-            marginLeft="4px"
-          />
-        )}
-        <Text marginLeft="8px" lineHeight="21.6px" fontSize="14.4px">
-          {pairStrign}
-        </Text>
+      <Flex
+        flex={1}
+        maxWidth={{ base: undefined, lg: "208px" }}
+        justifyContent={{ base: "space-between", lg: "flex-start" }}
+      >
+        <Flex>
+          <Image src={`/pools/${left.logo}.png`} width="24px" height="24px" />
+          {right?.shortName && (
+            <Image
+              src={right?.logo ? `/pools/${right.logo}.png` : ""}
+              width="24px"
+              height="24px"
+              marginLeft="4px"
+            />
+          )}
+          <Text marginLeft="8px" lineHeight="21.6px" fontSize="14.4px">
+            {pairString}
+          </Text>
+        </Flex>
+        <Flex
+          flex={{ base: undefined, lg: 1 }}
+          maxWidth="193px"
+          display={{ base: "flex", lg: "none" }}
+        >
+          <ProviderImage />
+        </Flex>
       </Flex>
       <Flex
         alignItems="center"
         flex={{ base: undefined, lg: 1 }}
         maxWidth="230px"
       >
-        <Text fontWeight="bold" lineHeight="140%" fontSize="18px">
-          {totalApyString}
-        </Text>
+        {totalApy ? (
+          <Heading lineHeight="140%" fontSize="18px">
+            {totalApyString}
+          </Heading>
+        ) : (
+          <Spinner size="xs" />
+        )}
         <ApyAndRewardTooltip
           anualPercentageYield={anualPercentageYield}
           rewardPerDay={{ ...rpd, providerShortName: provider.shortName }}
@@ -132,40 +156,52 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
         fontSize="14.4px"
         lineHeight="21.6px"
         maxWidth="274px"
-        paddingLeft={{ base: "1rem", lg: "0" }}
+        paddingTop={{ base: "8px", lg: "0" }}
       >
-        {tvlString}
+        {totalLockedValue ? <Text>{tvlString}</Text> : <Spinner size="xs" />}
       </Flex>
-      <Flex flex={{ base: undefined, lg: 1 }} maxWidth="193px">
-        <Image
-          src={provider.logo}
-          marginLeft={{ base: "1rem", lg: "0" }}
-          marginRight={{ base: "8px", xl: "1rem" }}
-          width="4rem"
-          height="4rem"
-        />
+      <Flex
+        flex={{ base: undefined, lg: 1 }}
+        maxWidth="193px"
+        display={{ base: "none", lg: "flex" }}
+      >
+        <ProviderImage />
       </Flex>
-      <Flex justifyContent="flex-end">
-        <Flex flexDir="column" width="145px">
-          <Button
-            variant="solid"
-            marginBottom="8px"
-            rightIcon={
-              <Image src="/icons/external-link-white.svg" width="0.8rem" />
-            }
-            onClick={onMainClick}
-          >
-            {mainButtonLabel}
-          </Button>
-          <Button
-            variant="outline"
-            onClick={onSecondaryClick}
-            rightIcon={
-              <Image src="/icons/external-link-green.svg" width="0.8rem" />
-            }
-          >
-            {secondaryButtonLabel}
-          </Button>
+      <Flex
+        justifyContent={{ base: "stretch", lg: "flex-end" }}
+        marginTop={{ base: "16px", lg: "0" }}
+      >
+        <Flex
+          flexDir={{ base: "row-reverse", lg: "column" }}
+          justifyContent={{ base: "stretch", lg: undefined }}
+          width={{ base: undefined, lg: "145px" }}
+          flex={1}
+        >
+          <Flex flex={{ base: 1.4, lg: 0 }}>
+            <Button
+              variant="solid"
+              marginBottom={{ base: 0, lg: "8px" }}
+              flex={1}
+              rightIcon={
+                <Image src="/icons/external-link-white.svg" width="0.8rem" />
+              }
+              onClick={() => window.open(actions[0].url, "_blank")}
+            >
+              {actions[0].text}
+            </Button>
+          </Flex>
+          <Flex flex={{ base: 1, lg: 0 }} marginRight={{ base: "8px", lg: 0 }}>
+            <Button
+              variant="outline"
+              onClick={() => window.open(actions[1].url, "_blank")}
+              flex={1}
+              rightIcon={
+                <Image src="/icons/external-link-green.svg" width="0.8rem" />
+              }
+            >
+              {actions[1].text}
+            </Button>
+          </Flex>
         </Flex>
       </Flex>
     </Flex>
