@@ -194,7 +194,7 @@ const ValidatorTable = () => {
                   {tuple.pubkey.address} <CopyIcon marginLeft="5px" />
                 </Flex>
               </Td>
-              <Td {...cell}>{lamportsToSol(tuple.lamports)}</Td>
+              <Td {...cell}>{lamportsToSol(tuple.lamports)} SOL</Td>
               <Td {...highlightedCell}>
                 <Flex alignItems="center">
                   {tuple.data.stake.delegation.validatorInfo.image !==
