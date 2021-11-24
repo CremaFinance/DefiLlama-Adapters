@@ -1,5 +1,4 @@
 import { WalletNotConnectedError } from "@solana/wallet-adapter-base";
-import { Wallet } from "@solana/wallet-adapter-wallets";
 import {
   Account,
   Commitment,
@@ -175,7 +174,6 @@ const getErrorForTransaction = async (connection: Connection, txid: string) => {
 
 export const sendTransaction = async (
   connection: Connection,
-  wallet: Wallet,
   instructions: TransactionInstruction[],
   signers: Account[],
   awaitConfirmation = true
