@@ -9,7 +9,6 @@ import {
   Td,
   Box,
 } from "@chakra-ui/react";
-import axios from "axios";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
@@ -74,9 +73,12 @@ const formatValidatorName = (name: string): string => {
   return nameChars.join("");
 };
 
+const DEFAULT_IMAGE =
+  "https://s3.amazonaws.com/keybase_processed_uploads/9fcd0386b266f3e4ed3a1dcbb509d305_360_360.jpg";
+
 const ValidatorTable = () => {
   const [pageNumber, setPageNumber] = useState(1);
-  const [pages, setPages] = useState([]);
+  const [pages, setPages] = useState([1, 2, 3, 4, 5]);
 
   const handlePagination = (key: string | number) => {
     if (key === "<") {
@@ -90,13 +92,17 @@ const ValidatorTable = () => {
   };
 
   const fetchData = async () => {
-    const res = await axios.get(
+    const res = await fetch(
       `https://prod-api.solana.surf/v1/account/4bZ6o3eUUNXhKuqjdCnCoPAoLgWiuLYixKaxoa8PpiKk/stakes?limit=10&offset=${
         10 * (pageNumber - 1)
-      }`
+      }`,
+      {
+        method: "GET",
+        mode: "cors",
+      }
     );
 
-    return res.data;
+    return res.json();
   };
 
   const { isLoading, error, data } = useQuery(`${pageNumber}`, fetchData);
@@ -125,10 +131,8 @@ const ValidatorTable = () => {
       available.push(totalPages);
 
       setPages(available);
-    } else if (pages === []) {
-      setPages([1, 2, 3, 4, 5]);
     }
-  }, [pageNumber, data, pages]);
+  }, [pageNumber, data]);
 
   if (isLoading && data === undefined) {
     return (
@@ -142,12 +146,12 @@ const ValidatorTable = () => {
         <Flex
           flexDirection="row"
           justifyContent="flex-end"
-          marginRight="20px"
+          marginRight="50px"
           height="100px"
           alignItems="center"
         >
           {pages.map((page) => (
-            <Box>
+            <Box key={page}>
               {page === pageNumber ? (
                 <Box {...currentPageStyle}>{page}</Box>
               ) : (
@@ -164,7 +168,7 @@ const ValidatorTable = () => {
   if (error) return <h1>{error.message}</h1>;
 
   return (
-    <Flex mt="40px" ml="30px" direction="column">
+    <Flex mt="40px" ml="30px" mr="30px" direction="column">
       <Table variant="unstyled">
         <Thead>
           <Tr>
@@ -177,7 +181,7 @@ const ValidatorTable = () => {
             <Th {...cell} textAlign="left" position="relative" right="14px">
               Validator
             </Th>
-            <Th {...cell} textAlign="right" position="relative" right="50px">
+            <Th {...cell} textAlign="right" position="relative" right="20px">
               State
             </Th>
           </Tr>
@@ -214,7 +218,9 @@ const ValidatorTable = () => {
                   </Text>
                 </Flex>
               </Td>
-              <Td {...cell}>DELEGATED</Td>
+              <Td position="relative" left="20px" {...cell}>
+                DELEGATED
+              </Td>
             </Tr>
           ))}
         </Tbody>
@@ -227,7 +233,7 @@ const ValidatorTable = () => {
         alignItems="center"
       >
         {pages.map((page) => (
-          <Box>
+          <Box key={page}>
             {page === pageNumber ? (
               <Box {...currentPageStyle}>{page}</Box>
             ) : (
