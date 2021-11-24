@@ -11,11 +11,10 @@ import {
 } from "@chakra-ui/react";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { MdOutlineContentCopy } from "react-icons/md";
 import { useQuery } from "react-query";
 
 import lamportsToSol from "utils/lamportsToSol";
-
-import CopyIcon from "./CopyIcon";
 
 const cell = {
   height: "40px",
@@ -190,8 +189,11 @@ const ValidatorTable = () => {
           {data.data.map((tuple) => (
             <Tr key={tuple.pubkey.address}>
               <Td {...highlightedCell}>
-                <Flex>
-                  {tuple.pubkey.address} <CopyIcon marginLeft="5px" />
+                <Flex alignItems="center">
+                  {tuple.pubkey.address}{" "}
+                  <Box ml="5px">
+                    <MdOutlineContentCopy fontSize="14px" color="#171923" />
+                  </Box>
                 </Flex>
               </Td>
               <Td {...cell}>{lamportsToSol(tuple.lamports)} SOL</Td>

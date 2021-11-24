@@ -1,9 +1,9 @@
 import { Box, Flex } from "@chakra-ui/react";
 import { useState } from "react";
+import { IoIosArrowForward } from "react-icons/io";
 
 import MText from "../../atoms/Text";
 
-import DownArrow from "./DownArrow";
 import ValidatorTable from "./ValidatorTable";
 
 const TRANSACTIONS = "Transactions";
@@ -76,11 +76,13 @@ const ValidatorsSection = () => {
           width="90px"
           alignItems="center"
         >
-          <Flex alignItems="center" justifyContent="space-between">
+          <Flex alignItems="center" justifyContent="space-between" width="100%">
             <MText fontWeight="700" fontSize="14.4px" ml="10px">
-              BASIC
+              Basic
             </MText>
-            <DownArrow />
+            <Box transform="rotate(90deg)" mr="13px">
+              <IoIosArrowForward fontSize="16px" />
+            </Box>
           </Flex>
         </Flex>
       </Flex>
