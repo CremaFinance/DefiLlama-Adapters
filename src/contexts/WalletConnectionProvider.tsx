@@ -52,10 +52,8 @@ export const WalletConnectionProvider: FC<{ children: ReactNode }> = ({
   );
 
   return (
-    <ConnectionProvider>
-      <WalletProvider wallets={wallets} autoConnect onError={onError}>
-        {children}
-      </WalletProvider>
-    </ConnectionProvider>
+    <WalletProvider wallets={wallets} autoConnect onError={onError}>
+      <ConnectionProvider>{children}</ConnectionProvider>
+    </WalletProvider>
   );
 };

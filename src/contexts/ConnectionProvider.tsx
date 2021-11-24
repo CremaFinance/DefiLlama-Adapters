@@ -1,3 +1,5 @@
+import { WalletNotConnectedError } from "@solana/wallet-adapter-base";
+import { Wallet } from "@solana/wallet-adapter-wallets";
 import {
   Account,
   Commitment,
@@ -9,10 +11,9 @@ import React, { FC, ReactNode, useContext, useEffect, useMemo } from "react";
 
 import TransactionLink from "../components/molecules/TransactionLink";
 import { useLocalStorageState } from "../hooks/useLocalStorageState";
+import { useWallet } from "../hooks/useWallet";
 import { toastNotification } from "../utils/notification";
 import { DEFAULT_ENDPOINT, ENDPOINTS, ENV } from "../utils/web3/endpoints";
-
-import { WalletAdapter } from "./WalletAdapter";
 
 interface ConnectionConfig {
   connection: Connection;
@@ -174,36 +175,37 @@ const getErrorForTransaction = async (connection: Connection, txid: string) => {
 
 export const sendTransaction = async (
   connection: Connection,
-  wallet: WalletAdapter,
+  wallet: Wallet,
   instructions: TransactionInstruction[],
   signers: Account[],
   awaitConfirmation = true
 ) => {
-  if (!wallet?.publicKey) {
-    toastNotification({
-      title: "Connect the wallet.",
-      description: `Wallet is not connected`,
-      status: "error",
-    });
-    throw new Error("Wallet is not connected");
-  }
-
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const chain = useChain();
+
   let transaction = new Transaction();
   instructions.forEach((instruction) => transaction.add(instruction));
   transaction.recentBlockhash = (
     await connection.getRecentBlockhash("max")
   ).blockhash;
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { publicKey, signTransaction } = useWallet();
+
+  if (!publicKey) throw new WalletNotConnectedError();
+  if (!signTransaction)
+    throw new Error("Wallet does not support transaction signing!");
+
   transaction.setSigners(
     // fee payed by the wallet owner
-    wallet.publicKey,
+    publicKey,
     ...signers.map((s) => s.publicKey)
   );
   if (signers.length > 0) {
     transaction.partialSign(...signers);
   }
-  transaction = await wallet.signTransaction(transaction);
+  transaction = await signTransaction(transaction);
+
   const rawTransaction = transaction.serialize();
   const options = {
     skipPreflight: true,
