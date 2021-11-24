@@ -18,10 +18,6 @@ import lamportsToSol from "utils/lamportsToSol";
 
 import CopyIcon from "./CopyIcon";
 
-// this should be changed to a ? image
-const DEFAULT_IMAGE =
-  "https://s3.amazonaws.com/keybase_processed_uploads/9fcd0386b266f3e4ed3a1dcbb509d305_360_360.jpg";
-
 const cell = {
   height: "40px",
   fontSize: "14.4px",
