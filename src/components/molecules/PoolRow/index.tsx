@@ -1,9 +1,11 @@
-import { Flex, Image, Icon } from "@chakra-ui/react";
+import { Flex, Image, Icon, Spinner } from "@chakra-ui/react";
 import { FunctionComponent } from "react";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 
 import { useTranslation } from "../../../hooks/useTranslation";
+import { Action } from "../../../services/domain/pool";
 import Button from "../../atoms/Button";
+import Heading from "../../atoms/Heading";
 import Text from "../../atoms/Text";
 import ApyAndRewardTooltip from "../ApyAndRewardTooltip";
 
@@ -17,9 +19,8 @@ type PoolRowProps = {
     marinade: number;
     provider?: number;
   };
-  totalLockedValue: number;
+  totalLockedValue?: number;
   currencies: {
-    // If just left is supplied, then show "Supply" and "Borrow", else show "Add liquidity" and "Swap"
     left: {
       logo: string;
       shortName: string;
@@ -33,8 +34,7 @@ type PoolRowProps = {
     logo: string;
     shortName: string;
   };
-  onMainClick: () => Promise<void> | void;
-  onSecondaryClick: () => Promise<void> | void;
+  actions: Action[];
 };
 
 const PoolRow: FunctionComponent<PoolRowProps> = ({
@@ -43,8 +43,7 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
   totalLockedValue,
   rewardPerDay: rpd,
   provider,
-  onMainClick,
-  onSecondaryClick,
+  actions,
 }) => {
   const { t } = useTranslation();
   const totalApy = Number(
@@ -58,18 +57,12 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
     "{{totalApy}}",
     totalApy
   );
-  const pairString = right
+  const pairString = right?.shortName
     ? `${left.shortName}-${right.shortName}`
     : left.shortName;
   const tvlString = t("appPage.pool-row.tvl").replace(
     "{{tvl}}",
-    totalLockedValue.toLocaleString()
-  );
-  const mainButtonLabel = t(
-    `appPage.pool-row.buttons.${right ? "addLiquidy" : "supply"}`
-  );
-  const secondaryButtonLabel = t(
-    `appPage.pool-row.buttons.${right ? "swap" : "borrow"}`
+    totalLockedValue?.toLocaleString()
   );
 
   const ProviderImage = () => (
@@ -105,10 +98,10 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
         justifyContent={{ base: "space-between", lg: "flex-start" }}
       >
         <Flex>
-          <Image src={left.logo} width="24px" height="24px" />
-          {right && (
+          <Image src={`/pools/${left.logo}.png`} width="24px" height="24px" />
+          {right?.shortName && (
             <Image
-              src={right?.logo}
+              src={right?.logo ? `/pools/${right.logo}.png` : ""}
               width="24px"
               height="24px"
               marginLeft="4px"
@@ -131,9 +124,13 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
         flex={{ base: undefined, lg: 1 }}
         maxWidth="230px"
       >
-        <Text fontWeight="bold" lineHeight="140%" fontSize="18px">
-          {totalApyString}
-        </Text>
+        {totalApy ? (
+          <Heading lineHeight="140%" fontSize="18px">
+            {totalApyString}
+          </Heading>
+        ) : (
+          <Spinner size="xs" />
+        )}
         <ApyAndRewardTooltip
           anualPercentageYield={anualPercentageYield}
           rewardPerDay={{ ...rpd, providerShortName: provider.shortName }}
@@ -160,9 +157,8 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
         lineHeight="21.6px"
         maxWidth="274px"
         paddingTop={{ base: "8px", lg: "0" }}
-        // paddingLeft={{ base: "0", md: "1rem", lg: "0" }}
       >
-        {tvlString}
+        {totalLockedValue ? <Text>{tvlString}</Text> : <Spinner size="xs" />}
       </Flex>
       <Flex
         flex={{ base: undefined, lg: 1 }}
@@ -189,21 +185,21 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
               rightIcon={
                 <Image src="/icons/external-link-white.svg" width="0.8rem" />
               }
-              onClick={onMainClick}
+              onClick={() => window.open(actions[0].url, "_blank")}
             >
-              {mainButtonLabel}
+              {actions[0].text}
             </Button>
           </Flex>
           <Flex flex={{ base: 1, lg: 0 }} marginRight={{ base: "8px", lg: 0 }}>
             <Button
               variant="outline"
-              onClick={onSecondaryClick}
+              onClick={() => window.open(actions[1].url, "_blank")}
               flex={1}
               rightIcon={
                 <Image src="/icons/external-link-green.svg" width="0.8rem" />
               }
             >
-              {secondaryButtonLabel}
+              {actions[1].text}
             </Button>
           </Flex>
         </Flex>

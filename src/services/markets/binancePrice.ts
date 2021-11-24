@@ -3,7 +3,10 @@ import { coinTokens } from "../domain/coinTokens";
 import { currency } from "../domain/currency";
 import { Token } from "../domain/token";
 
-export async function fetchBinancePriceByToken(token: Token): Promise<Prices> {
+export async function fetchBinancePriceByToken(
+  token: Token,
+  source: CoinSymbols
+): Promise<Prices> {
   const response = await fetch(
     `https://api.binance.com/api/v3/avgPrice?symbol=${token.symbol.toUpperCase()}BUSD`
   );
@@ -13,7 +16,7 @@ export async function fetchBinancePriceByToken(token: Token): Promise<Prices> {
   }
 
   const result = await response.json();
-  return { [token.symbol]: { [currency.usd]: result.price } };
+  return { [source]: { [currency.usd]: result.price } };
 }
 
 export async function fetchBinancePriceBySymbol(
@@ -24,5 +27,5 @@ export async function fetchBinancePriceBySymbol(
     throw new Error(`no config for ${source}`);
   }
 
-  return fetchBinancePriceByToken(token);
+  return fetchBinancePriceByToken(token, source);
 }
