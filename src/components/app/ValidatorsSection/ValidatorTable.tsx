@@ -104,7 +104,9 @@ const ValidatorTable = () => {
     return res.json();
   };
 
-  const { isLoading, error, data } = useQuery(`${pageNumber}`, fetchData);
+  const { isLoading, error, data } = useQuery(`${pageNumber}`, fetchData, {
+    keepPreviousData: true,
+  });
 
   useEffect(() => {
     if (data !== undefined) {
