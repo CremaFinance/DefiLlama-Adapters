@@ -88,7 +88,7 @@ const SuccessStakeModal = ({
                 <Text as="span" color={colors.black} fontWeight="bold">
                   {stakedAmount}
                 </Text>{" "}
-                <Text as="span" color={colors.green} fontWeight="bold">
+                <Text as="span" color={colors.marinadeGreen} fontWeight="bold">
                   {stakedCurrency}
                 </Text>
                 {bodyAfterLine2}
