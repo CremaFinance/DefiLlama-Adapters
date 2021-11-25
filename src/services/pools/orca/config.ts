@@ -22,7 +22,6 @@ const actions = [
 export type OrcaPoolsResponse = Record<LiquidityPoolIds, OrcaPool>;
 
 export const orcaPools: Record<LiquidityPoolAddress, Pool> = {
-  // only  this first one is fully configured right now
   [liquidityPoolAddress.ORCA_mSOL_SOL]: {
     ...liquidityPoolTokens[liquidityPoolAddress.ORCA_mSOL_SOL],
     ...{
@@ -32,8 +31,11 @@ export const orcaPools: Record<LiquidityPoolAddress, Pool> = {
       tokenA: coinSymbols.mSOL,
       tokenB: coinSymbols.SOL,
       rewards: {
-        [coinSymbols.ORCA]: { dailyRate: ((0.125 / 20) * 450000 * 52) / 365 },
-        [coinSymbols.MNDE]: { dailyRate: 6144 },
+        [coinSymbols.ORCA]: {
+          aprDescription: "Emission",
+          dailyRate: ((0.125 / 20) * 450000 * 52) / 365,
+        },
+        [coinSymbols.MNDE]: { aprDescription: "Double Dip", dailyRate: 6144 },
       },
       actions,
     },
@@ -48,7 +50,7 @@ export const orcaPools: Record<LiquidityPoolAddress, Pool> = {
       tokenB: coinSymbols.mSOL,
       rewards: {
         [coinSymbols.ORCA]: undefined, // { dailyRate: (0 * 450000 * 52) / 365 },
-        [coinSymbols.MNDE]: { dailyRate: 9831 },
+        [coinSymbols.MNDE]: { aprDescription: "Emission", dailyRate: 9831 },
       },
       actions,
     },
@@ -63,7 +65,7 @@ export const orcaPools: Record<LiquidityPoolAddress, Pool> = {
       tokenB: coinSymbols.mSOL,
       rewards: {
         [coinSymbols.ORCA]: undefined, // { dailyRate: (0 * 450000 * 52) / 365 },
-        [coinSymbols.MNDE]: { dailyRate: 2457 },
+        [coinSymbols.MNDE]: { aprDescription: "Emission", dailyRate: 2457 },
       },
       actions,
     },
@@ -78,7 +80,7 @@ export const orcaPools: Record<LiquidityPoolAddress, Pool> = {
       tokenB: coinSymbols.mSOL,
       rewards: {
         [coinSymbols.ORCA]: undefined, // { dailyRate: (0 * 450000 * 52) / 365 },
-        [coinSymbols.MNDE]: { dailyRate: 29494 },
+        [coinSymbols.MNDE]: { aprDescription: "Emission", dailyRate: 29494 },
       },
       actions,
     },
@@ -93,7 +95,7 @@ export const orcaPools: Record<LiquidityPoolAddress, Pool> = {
       tokenB: coinSymbols.mSOL,
       rewards: {
         [coinSymbols.ORCA]: undefined, // { dailyRate: (0 * 450000 * 52) / 365 },
-        [coinSymbols.MNDE]: { dailyRate: 29494 },
+        [coinSymbols.MNDE]: { aprDescription: "Emission", dailyRate: 29494 },
       },
       actions,
     },

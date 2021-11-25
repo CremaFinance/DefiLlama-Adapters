@@ -10,36 +10,32 @@ import { PropsWithChildren, FunctionComponent } from "react";
 import { HiCheckCircle } from "react-icons/hi";
 
 import { useTranslation } from "../../../hooks/useTranslation";
+import { Rewards } from "../../../services/domain/rewards";
 import Text from "../../atoms/Text";
 
 type ApyAndRewardTooltipProps = PropsWithChildren<{
-  anualPercentageYield: {
-    trading: number;
-    emission: number;
-    doubleDip: number;
-  };
-  rewardPerDay: {
-    marinade: number;
-    provider?: number;
-    providerShortName?: string;
-  };
+  tradingApy?: number;
+  rewards?: Rewards;
 }>;
 
 const ApyAndRewardTooltip: FunctionComponent<ApyAndRewardTooltipProps> = ({
-  anualPercentageYield: { trading, emission, doubleDip },
-  rewardPerDay: { marinade, provider, providerShortName },
+  tradingApy,
+  rewards,
   children,
 }) => {
   const { t } = useTranslation();
 
-  const marinadeRPD = t("appPage.pool-row.apyPopover.reward")
-    .replace("{{reward}}", marinade.toFixed(2))
-    .replace("{{provider}}", "MNDE");
-  const providerRPD = provider
-    ? t("appPage.pool-row.apyPopover.reward")
-        .replace("{{reward}}", provider.toFixed(2))
-        .replace("{{provider}}", providerShortName)
-    : null;
+  const rewardText = (name: string, amount: number) => {
+    return t("appPage.pool-row.apyPopover.reward")
+      .replace("{{reward}}", Math.floor(amount))
+      .replace("{{provider}}", name);
+  };
+
+  const rewardsList = rewards
+    ? Object.entries(rewards).map(([name, reward]) => {
+        return { ...reward, ...{ name } };
+      })
+    : [];
 
   return (
     <Popover
@@ -63,45 +59,30 @@ const ApyAndRewardTooltip: FunctionComponent<ApyAndRewardTooltipProps> = ({
           <Text fontSize="11.52px" marginBottom="4px">
             {t("appPage.pool-row.apyPopover.trading")}:
             <Text as="span" fontWeight="bold">
-              {trading}%
+              {tradingApy && tradingApy.toFixed(2)}%
             </Text>
           </Text>
-          <Text fontSize="11.52px" marginBottom="4px">
-            {t("appPage.pool-row.apyPopover.emission")}:
-            <Text as="span" fontWeight="bold">
-              {emission}%
+          {rewardsList.map((reward) => (
+            <Text fontSize="11.52px" marginBottom="4px">
+              {reward?.aprDescription}:
+              <Text as="span" fontWeight="bold">
+                {reward?.apy && reward?.apy.toFixed(2)}%
+              </Text>
             </Text>
-          </Text>
-          <Text fontSize="11.52px" marginBottom="16px">
-            {t("appPage.pool-row.apyPopover.doubleDip")}:
-            <Text as="span" fontWeight="bold">
-              {doubleDip}%
-            </Text>
-          </Text>
-          {providerRPD && (
-            <Text verticalAlign="center" fontSize="11.52px">
+          ))}
+          {rewardsList.map((reward) => (
+            <Text fontSize="11.52px">
               <Icon
                 as={HiCheckCircle}
                 color="green800"
                 w="1rem"
                 h="1rem"
-                marginBottom="0.2rem"
-                marginRight="0.5rem"
+                marginBottom="-0.3rem"
+                marginRight="0.3rem"
               />
-              {providerRPD}
+              {reward.dailyRate && rewardText(reward.name, reward.dailyRate)}
             </Text>
-          )}
-          <Text fontSize="11.52px">
-            <Icon
-              as={HiCheckCircle}
-              color="green800"
-              w="1rem"
-              h="1rem"
-              marginBottom="0.2rem"
-              marginRight="0.5rem"
-            />
-            {marinadeRPD}
-          </Text>
+          ))}
         </PopoverBody>
       </PopoverContent>
     </Popover>

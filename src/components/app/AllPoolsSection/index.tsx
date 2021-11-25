@@ -85,22 +85,23 @@ const AllPoolsSection = () => {
             justifyContent="center"
           >
             <PoolRow
-              totalLockedValue={pool.totalLockedValue ?? 0}
-              provider={{ logo: pool.logoURI ?? "", shortName: pool.provider }}
-              rewardPerDay={{ marinade: 0, provider: 0 }}
-              currencies={{
-                left: { logo: pool.tokenA, shortName: pool.tokenA },
-                right: {
-                  logo: pool?.tokenB ?? "",
-                  shortName: pool?.tokenB ?? "",
-                },
-              }}
-              anualPercentageYield={{
-                trading: 0,
-                emission: pool.apy ?? 0,
-                doubleDip: 0,
-              }}
-              actions={pool.actions}
+              pool={pool}
+              // totalLockedValue={pool.totalLockedValue ?? 0}
+              // provider={{ logo: pool.logoURI ?? "", shortName: pool.provider }}
+              // rewardPerDay={{ marinade: 0, provider: 0 }}
+              // currencies={{
+              //   left: { logo: pool.tokenA, shortName: pool.tokenA },
+              //   right: {
+              //     logo: pool?.tokenB ?? "",
+              //     shortName: pool?.tokenB ?? "",
+              //   },
+              // }}
+              // anualPercentageYield={{
+              //   trading: 0,
+              //   emission: pool.apy ?? 0,
+              //   doubleDip: 0,
+              // }}
+              // actions={pool.actions}
             />
           </Flex>
         ))}

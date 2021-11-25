@@ -24,7 +24,8 @@ export const updatePool = (
     const liq = tokenA * tokenAPrice + tokenB * tokenBPrice;
     pool.liq = Number.isNaN(liq) ? undefined : liq;
     pool.totalLockedValue = Number.isNaN(liq) ? undefined : liq;
-    pool.apy = Number(apy) * 100;
+    pool.tradingApy = Number(apy) * 100;
+    pool.apy = pool.tradingApy;
 
     if (pool.rewards) {
       Object.entries(pool.rewards).forEach((entry) => {
