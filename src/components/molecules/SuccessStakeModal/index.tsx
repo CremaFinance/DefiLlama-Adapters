@@ -53,19 +53,8 @@ const SuccessStakeModal = ({
         <ModalOverlay />
         <ModalContent maxW="480px">
           <ModalCloseButton />
-          <ModalBody
-            paddingX="0"
-            margin="0"
-            display="flex"
-            justifyContent="center"
-          >
-            <Flex
-              flexDir="column"
-              width="480px"
-              height="100%"
-              alignItems="center"
-              margin="0"
-            >
+          <ModalBody display="flex" justifyContent="center">
+            <Flex flexDir="column" height="100%" alignItems="center" margin="0">
               <Image
                 marginTop="38px"
                 width="219.03px"
