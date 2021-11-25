@@ -10,7 +10,10 @@ export const useWallet = () => {
   const walletContext = useSolanaWalllet();
   const { connected, adapter, wallet, connecting } = walletContext;
   const toast = useToast();
-  const msg = t("appPage.wallet-missing").replace("{{wallet}}", wallet?.name);
+  const msg = t("appPage.wallet-missing")?.replace(
+    "{{wallet}}",
+    String(wallet?.name)
+  );
   const tryConnect = useCallback(async () => {
     if (adapter) {
       try {

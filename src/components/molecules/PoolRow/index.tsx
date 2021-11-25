@@ -53,17 +53,19 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
         anualPercentageYield.doubleDip
     ).toFixed(2)
   );
-  const totalApyString = t("appPage.pool-row.total-apy").replace(
+  const totalApyString = t("appPage.pool-row.total-apy")?.replace(
     "{{totalApy}}",
-    totalApy
+    totalApy.toLocaleString()
   );
   const pairString = right?.shortName
     ? `${left.shortName}-${right.shortName}`
     : left.shortName;
-  const tvlString = t("appPage.pool-row.tvl").replace(
-    "{{tvl}}",
-    totalLockedValue?.toLocaleString()
-  );
+  const tvlString =
+    totalLockedValue &&
+    t("appPage.pool-row.tvl")?.replace(
+      "{{tvl}}",
+      totalLockedValue?.toLocaleString()
+    );
 
   const ProviderImage = () => (
     <Image

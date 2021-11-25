@@ -237,6 +237,13 @@
     "start-delayed-unstake-action": "Start delayed unstake",
     "balance": "Balance",
     "max": "Max",
+    "success-stake": {
+      "title": "Well done!",
+      "body-line1": "You’re now staking with Marinade!",
+      "body-line2-before": "Click the button to explore what you can do with the ",
+      "body-line2-after": " you just received.",
+      "button": "Use your {{stakedCurrency}}"
+    },
     "stake-inputs-time-to-unstake": "Time to unstake",
     "tickets-accounts": "Ticket accounts",
     "sol": "SOL",
