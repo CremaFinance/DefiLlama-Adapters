@@ -10,6 +10,7 @@ import {
   Box,
   Spinner,
 } from "@chakra-ui/react";
+import { useTranslation } from "next-export-i18n";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { MdOutlineContentCopy } from "react-icons/md";
@@ -77,6 +78,7 @@ const DEFAULT_IMAGE =
   "https://s3.amazonaws.com/keybase_processed_uploads/9fcd0386b266f3e4ed3a1dcbb509d305_360_360.jpg";
 
 const ValidatorTable = () => {
+  const { t } = useTranslation();
   const [pageNumber, setPageNumber] = useState(1);
   const [pages, setPages] = useState([1, 2, 3, 4, 5]);
 
@@ -163,16 +165,16 @@ const ValidatorTable = () => {
         <Thead>
           <Tr>
             <Th {...cell} textAlign="left" position="relative" right="23px">
-              Account
+              {t("Account")}
             </Th>
             <Th {...cell} textAlign="left">
-              Balance
+              {t("Balance")}
             </Th>
             <Th {...cell} textAlign="left" position="relative" right="14px">
-              Validator
+              {t("Validator")}
             </Th>
             <Th {...cell} textAlign="right" position="relative" right="10px">
-              State
+              {t("State")}
             </Th>
           </Tr>
         </Thead>
@@ -219,7 +221,7 @@ const ValidatorTable = () => {
                 </Flex>
               </Td>
               <Td {...cell} position="relative" left="25px" width="128px">
-                DELEGATED
+                {t("DELEGATED")}
               </Td>
             </Tr>
           ))}
