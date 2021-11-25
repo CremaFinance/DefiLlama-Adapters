@@ -8,6 +8,7 @@ import { Token } from "../domain/token";
 
 export async function fetchCoinGeckoPriceByToken(
   token: Token,
+  source: CoinSymbols,
   target?: Currency
 ): Promise<Prices> {
   if (!token.extensions?.coingeckoId) {
@@ -27,7 +28,7 @@ export async function fetchCoinGeckoPriceByToken(
   }
 
   const result = await response.json();
-  return { [token.symbol]: result[token.extensions?.coingeckoId] };
+  return { [source]: result[token.extensions?.coingeckoId] };
 }
 
 export async function fetchCoinGeckoPriceBySymbol(
@@ -39,5 +40,5 @@ export async function fetchCoinGeckoPriceBySymbol(
     throw new Error(`no config for ${source}`);
   }
 
-  return fetchCoinGeckoPriceByToken(token, target);
+  return fetchCoinGeckoPriceByToken(token, source, target);
 }
