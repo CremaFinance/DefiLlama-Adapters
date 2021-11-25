@@ -1,7 +1,6 @@
 import { Flex } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 
-import Heading from "components/atoms/Heading";
 import PoolRow from "components/molecules/PoolRow";
 import { usePools } from "hooks/usePools";
 import { Pool } from "services/domain/pool";
@@ -25,11 +24,6 @@ const AllPoolsSection = () => {
       marginTop="40px"
       alignItems="stretch"
     >
-      <Flex marginBottom="22px" justifyContent="center">
-        <Heading type="heading-xsm">
-          {t("appPage.all-pools-section.title")}
-        </Heading>
-      </Flex>
       <Flex
         display={{ base: "none", lg: "flex" }}
         flexDirection="row"
