@@ -25,11 +25,8 @@ const selectVariant = (variant = "") =>
     },
     "big-solid": {
       size: "lg",
-      rounded: "md",
-      bg: "green",
-      _hover: { bg: "green800" },
-      colorScheme: "green",
-      color: "white",
+      bg: colors.marinadeGreen,
+      color: colors.white,
     },
   }[variant] ?? {});
 
