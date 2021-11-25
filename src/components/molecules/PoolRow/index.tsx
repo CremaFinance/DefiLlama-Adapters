@@ -60,10 +60,12 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
   const pairString = right?.shortName
     ? `${left.shortName}-${right.shortName}`
     : left.shortName;
-  const tvlString = t("appPage.pool-row.tvl")?.replace(
-    "{{tvl}}",
-    totalLockedValue?.toLocaleString()
-  );
+  const tvlString =
+    totalLockedValue &&
+    t("appPage.pool-row.tvl")?.replace(
+      "{{tvl}}",
+      totalLockedValue?.toLocaleString()
+    );
 
   const ProviderImage = () => (
     <Image
