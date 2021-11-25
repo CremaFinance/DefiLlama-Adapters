@@ -1,3 +1,4 @@
+import { useToast } from "@chakra-ui/react";
 import { WalletNotConnectedError } from "@solana/wallet-adapter-base";
 import {
   Account,
@@ -11,7 +12,6 @@ import React, { FC, ReactNode, useContext, useEffect, useMemo } from "react";
 import TransactionLink from "../components/molecules/TransactionLink";
 import { useLocalStorageState } from "../hooks/useLocalStorageState";
 import { useWallet } from "../hooks/useWallet";
-import { toastNotification } from "../utils/notification";
 import { DEFAULT_ENDPOINT, ENDPOINTS, ENV } from "../utils/web3/endpoints";
 
 interface ConnectionConfig {
@@ -220,9 +220,11 @@ export const sendTransaction = async (
       )
     ).value;
 
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const toast = useToast();
     if (status?.err) {
       const errors = await getErrorForTransaction(connection, txid);
-      toastNotification({
+      toast({
         title: "Transaction failed",
         status: "error",
         duration: 10000,
