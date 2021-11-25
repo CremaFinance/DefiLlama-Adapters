@@ -9,11 +9,11 @@ import ValidatorTable from "./ValidatorTable";
 
 const ValidatorsSection = () => {
   const { t } = useTranslation();
-  const TRANSACTIONS = t("Transactions");
-  const STAKES = t("Stakes");
-  const PORTFOLIO = t("Portfolio");
-  const SPL_TOKEN_TXS = t("SPL Token TXs");
-  const DEX_ORDERS = t("DEXOrders");
+  const TRANSACTIONS = t("appPage.validators-menu-transactions");
+  const STAKES = t("appPage.validators-menu-stakes");
+  const PORTFOLIO = t("appPage.validators-menu-portfolio");
+  const SPL_TOKEN_TXS = t("appPage.validators-menu-spl-token-txs");
+  const DEX_ORDERS = t("appPage.validators-menu-dex-orders");
   const MENUS = [TRANSACTIONS, STAKES, PORTFOLIO, SPL_TOKEN_TXS, DEX_ORDERS];
   const [selectedMenu, setSelectedMenu] = useState(STAKES);
 
@@ -78,7 +78,7 @@ const ValidatorsSection = () => {
         >
           <Flex alignItems="center" justifyContent="space-between" width="100%">
             <MText fontWeight="700" fontSize="14.4px" ml="10px">
-              {t("Basic")}
+              {t("appPage.validators-button-basic")}
             </MText>
             <Box transform="rotate(90deg)" mr="13px">
               <IoIosArrowForward fontSize="16px" />

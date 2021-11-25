@@ -258,6 +258,18 @@
         "question": "Question 3 goes here",
         "response": "Third response"
       }
-    ]
+    ],
+
+    "validators-menu-transactions": "Transactions",
+    "validators-menu-stakes": "Stakes",
+    "validators-menu-portfolio": "Portfolio",
+    "validators-menu-spl-token-txs": "SPL Token Token TXs",
+    "validators-menu-dex-orders": "DEXOrders",
+    "validators-button-basic": "Basic",
+    "validators-table-account": "Account",
+    "validators-table-balance": "Balance",
+    "validators-table-validator": "Validator",
+    "validators-table-state": "State",
+    "validators-table-delegated": "Delegated"
   }
 }

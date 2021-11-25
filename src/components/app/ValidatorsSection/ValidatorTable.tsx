@@ -165,16 +165,16 @@ const ValidatorTable = () => {
         <Thead>
           <Tr>
             <Th {...cell} textAlign="left" position="relative" right="23px">
-              {t("Account")}
+              {t("appPage.validators-table-account")}
             </Th>
             <Th {...cell} textAlign="left">
-              {t("Balance")}
+              {t("appPage.validators-table-balance")}
             </Th>
             <Th {...cell} textAlign="left" position="relative" right="14px">
-              {t("Validator")}
+              {t("appPage.validators-table-validator")}
             </Th>
             <Th {...cell} textAlign="right" position="relative" right="10px">
-              {t("State")}
+              {t("appPage.validators-table-state")}
             </Th>
           </Tr>
         </Thead>
@@ -221,7 +221,7 @@ const ValidatorTable = () => {
                 </Flex>
               </Td>
               <Td {...cell} position="relative" left="25px" width="128px">
-                {t("DELEGATED")}
+                {t("appPage.validators-table-delegated")}
               </Td>
             </Tr>
           ))}
