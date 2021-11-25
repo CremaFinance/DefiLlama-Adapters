@@ -1,4 +1,5 @@
 import { Box, Flex } from "@chakra-ui/react";
+import { useTranslation } from "next-export-i18n";
 import { useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 
@@ -6,15 +7,14 @@ import MText from "../../atoms/Text";
 
 import ValidatorTable from "./ValidatorTable";
 
-const TRANSACTIONS = "Transactions";
-const STAKES = "Stakes";
-const PORTFOLIO = "Portfolio";
-const SPL_TOKEN_TXS = "SPL Token TXs";
-const DEX_ORDERS = "DEXOrders";
-
-const MENUS = [TRANSACTIONS, STAKES, PORTFOLIO, SPL_TOKEN_TXS, DEX_ORDERS];
-
 const ValidatorsSection = () => {
+  const { t } = useTranslation();
+  const TRANSACTIONS = t("Transactions");
+  const STAKES = t("Stakes");
+  const PORTFOLIO = t("Portfolio");
+  const SPL_TOKEN_TXS = t("SPL Token TXs");
+  const DEX_ORDERS = t("DEXOrders");
+  const MENUS = [TRANSACTIONS, STAKES, PORTFOLIO, SPL_TOKEN_TXS, DEX_ORDERS];
   const [selectedMenu, setSelectedMenu] = useState(STAKES);
 
   return (
@@ -78,7 +78,7 @@ const ValidatorsSection = () => {
         >
           <Flex alignItems="center" justifyContent="space-between" width="100%">
             <MText fontWeight="700" fontSize="14.4px" ml="10px">
-              Basic
+              {t("Basic")}
             </MText>
             <Box transform="rotate(90deg)" mr="13px">
               <IoIosArrowForward fontSize="16px" />
