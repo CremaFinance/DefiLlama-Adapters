@@ -8,6 +8,7 @@ import {
   Th,
   Td,
   Box,
+  Spinner,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import { useState, useEffect } from "react";
@@ -104,9 +105,13 @@ const ValidatorTable = () => {
     return res.json();
   };
 
-  const { isLoading, error, data } = useQuery(`${pageNumber}`, fetchData, {
-    keepPreviousData: true,
-  });
+  const { isLoading, isPreviousData, error, data } = useQuery(
+    `${pageNumber}`,
+    fetchData,
+    {
+      keepPreviousData: true,
+    }
+  );
 
   useEffect(() => {
     if (data !== undefined) {
@@ -142,27 +147,11 @@ const ValidatorTable = () => {
         width="100%"
         display="flex"
         flexDirection="column-reverse"
-        justifyContent="space-between"
+        justifyContent="flex-start"
+        mb="40px"
+        ml="40px"
       >
-        <Flex
-          flexDirection="row"
-          justifyContent="flex-end"
-          marginRight="50px"
-          height="100px"
-          alignItems="center"
-        >
-          {pages.map((page) => (
-            <Box key={page}>
-              {page === pageNumber ? (
-                <Box {...currentPageStyle}>{page}</Box>
-              ) : (
-                <Box onClick={() => handlePagination(page)} {...pageStyle}>
-                  {page}
-                </Box>
-              )}
-            </Box>
-          ))}
-        </Flex>
+        <Spinner />
       </Box>
     );
   }
@@ -237,23 +226,26 @@ const ValidatorTable = () => {
         </Tbody>
       </Table>
 
-      <Flex
-        justifyContent="flex-end"
-        marginRight="20px"
-        height="100px"
-        alignItems="center"
-      >
-        {pages.map((page) => (
-          <Box key={page}>
-            {page === pageNumber ? (
-              <Box {...currentPageStyle}>{page}</Box>
-            ) : (
-              <Box onClick={() => handlePagination(page)} {...pageStyle}>
-                {page}
-              </Box>
-            )}
-          </Box>
-        ))}
+      <Flex justifyContent="space-between" alignItems="center">
+        {isPreviousData ? <Spinner /> : <h1> </h1>}
+        <Flex
+          justifyContent="flex-end"
+          marginRight="20px"
+          height="100px"
+          alignItems="center"
+        >
+          {pages.map((page) => (
+            <Box key={page}>
+              {page === pageNumber ? (
+                <Box {...currentPageStyle}>{page}</Box>
+              ) : (
+                <Box onClick={() => handlePagination(page)} {...pageStyle}>
+                  {page}
+                </Box>
+              )}
+            </Box>
+          ))}
+        </Flex>
       </Flex>
     </Flex>
   );
