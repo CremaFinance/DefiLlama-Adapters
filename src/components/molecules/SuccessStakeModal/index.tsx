@@ -53,7 +53,12 @@ const SuccessStakeModal = ({
         <ModalOverlay />
         <ModalContent>
           <ModalCloseButton />
-          <ModalBody paddingX="0" margin="0">
+          <ModalBody
+            paddingX="0"
+            margin="0"
+            display="flex"
+            justifyContent="center"
+          >
             <Flex
               flexDir="column"
               width="480px"
