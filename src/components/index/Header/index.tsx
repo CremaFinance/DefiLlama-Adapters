@@ -1,4 +1,4 @@
-import { Box, Flex, HStack, Image } from "@chakra-ui/react";
+import { Box, Flex, Image } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
@@ -59,26 +59,24 @@ const Header = () => {
         <Box display={["block", "block", "none"]}>
           <Sidebar />
         </Box>
-        <HStack spacing={4} display={["none", "none", "flex"]}>
-          <MButton
-            size="sm"
-            font="text-lg"
-            rounded="md"
-            bg={colors.marinadeGreen}
-            _hover={{ bg: colors.green800 }}
-            colorScheme={colors.marinadeGreen}
-            color={colors.white}
-            display={["none", "flex"]}
-            width="130px"
-            height="40px"
-            flexDirection="row"
-            justifyContent="space-around"
-            onClick={() => router.push("/app/staking")}
-          >
-            {t("indexPage.go-to-app-action")}
-            <Image src="/icons/arrow-right-white.svg" width="0.8rem" />
-          </MButton>
-        </HStack>
+        <MButton
+          display={["none", "none", "flex"]}
+          size="sm"
+          font="text-lg"
+          rounded="md"
+          bg={colors.marinadeGreen}
+          _hover={{ bg: colors.green800 }}
+          colorScheme={colors.marinadeGreen}
+          color={colors.white}
+          width="130px"
+          height="40px"
+          flexDirection="row"
+          justifyContent="space-around"
+          onClick={() => router.push("/app/staking")}
+        >
+          {t("indexPage.go-to-app-action")}
+          <Image src="/icons/arrow-right-white.svg" width="0.8rem" />
+        </MButton>
       </Box>
     </Flex>
   );
