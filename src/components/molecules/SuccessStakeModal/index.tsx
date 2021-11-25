@@ -51,7 +51,7 @@ const SuccessStakeModal = ({
       {children({ openModal: onOpen })}
       <Modal isOpen={isOpen} onClose={onClose} size="lg">
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent maxW="480px">
           <ModalCloseButton />
           <ModalBody
             paddingX="0"
