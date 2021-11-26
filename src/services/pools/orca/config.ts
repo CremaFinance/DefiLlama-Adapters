@@ -14,8 +14,8 @@ import { Pool } from "../../domain/pool";
 import { OrcaPool } from "./orcaPool";
 
 const provider = "Orca";
-const orcaReward = "Double Dip";
-const mndeReward = "Emission";
+const orcaReward = "Emission";
+const mndeReward = "Double Dip";
 const actions = [
   { text: "Add Liquidity", url: "https://www.orca.so/pools" },
   { text: "Swap", url: "https://www.orca.so/pools" },
@@ -84,8 +84,8 @@ export const orcaPools: Record<LiquidityPoolAddress, Pool> = {
       provider,
       marketType: marketTypes.LP,
       providerId: liquidityPoolIds.ORCA_mSOL_USDT,
-      tokenA: coinSymbols.USDT,
-      tokenB: coinSymbols.mSOL,
+      tokenA: coinSymbols.mSOL,
+      tokenB: coinSymbols.USDT,
       rewards: {
         [coinSymbols.ORCA]: {
           aprDescription: orcaReward,
@@ -102,8 +102,8 @@ export const orcaPools: Record<LiquidityPoolAddress, Pool> = {
       provider,
       marketType: marketTypes.LP,
       providerId: liquidityPoolIds.ORCA_mSOL_USDC,
-      tokenA: coinSymbols.USDC,
-      tokenB: coinSymbols.mSOL,
+      tokenA: coinSymbols.mSOL,
+      tokenB: coinSymbols.USDC,
       rewards: {
         [coinSymbols.ORCA]: {
           aprDescription: orcaReward,
