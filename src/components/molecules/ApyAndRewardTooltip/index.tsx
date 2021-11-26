@@ -27,7 +27,7 @@ const ApyAndRewardTooltip: FunctionComponent<ApyAndRewardTooltipProps> = ({
 
   const rewardText = (name: string, amount: number) => {
     return t("appPage.pool-row.apyPopover.reward")
-      .replace("{{reward}}", Math.floor(amount))
+      ?.replace("{{reward}}", Math.floor(amount).toLocaleString())
       .replace("{{provider}}", name);
   };
 

@@ -27,15 +27,16 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
   const { t } = useTranslation();
   const totalApy = apy?.toFixed(2);
 
-  const totalApyString = t("appPage.pool-row.total-apy").replace(
-    "{{totalApy}}",
-    totalApy
-  );
+  const totalApyString = totalApy
+    ? t("appPage.pool-row.total-apy").replace("{{totalApy}}", totalApy)
+    : "";
   const pairString = tokenB ? `${tokenA}-${tokenB}` : tokenA;
-  const tvlString = t("appPage.pool-row.tvl").replace(
-    "{{tvl}}",
-    totalLockedValue?.toLocaleString()
-  );
+  const tvlString = totalLockedValue
+    ? t("appPage.pool-row.tvl").replace(
+        "{{tvl}}",
+        totalLockedValue.toLocaleString()
+      )
+    : "";
 
   const ProviderImage = () => (
     <Image

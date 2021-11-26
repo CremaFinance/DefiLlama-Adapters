@@ -155,17 +155,17 @@
     "security-section-audit-neodyme": {
       "title": "Neodyme team",
       "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "external-url": "https://neodyme.io/"
+      "external-url": "https://marinade.finance/Neodyme.pdf"
     },
     "security-section-audit-ackee": {
       "title": "Ackee Blockchain",
       "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "external-url": "https://www.ackeeblockchain.com/"
+      "external-url": "https://marinade.finance/AckeeBlockchain.pdf"
     },
     "security-section-audit-kudelski": {
       "title": "Kudelski security",
       "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "external-url": "https://kudelskisecurity.com/"
+      "external-url": "https://marinade.finance/KudelskiSecurity.pdf"
     },
     "footer-description": "Marinade.finance is a liquid staking protocol built on the Solana blockchain.",
     "footer-product": "Product",
@@ -237,6 +237,13 @@
     "start-delayed-unstake-action": "Start delayed unstake",
     "balance": "Balance",
     "max": "Max",
+    "success-stake": {
+      "title": "Well done!",
+      "body-line1": "You’re now staking with Marinade!",
+      "body-line2-before": "Click the button to explore what you can do with the ",
+      "body-line2-after": " you just received.",
+      "button": "Use your {{stakedCurrency}}"
+    },
     "stake-inputs-time-to-unstake": "Time to unstake",
     "tickets-accounts": "Ticket accounts",
     "sol": "SOL",
