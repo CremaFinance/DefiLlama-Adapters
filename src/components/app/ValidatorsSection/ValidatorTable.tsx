@@ -9,9 +9,10 @@ import {
   Td,
   Box,
   Spinner,
+  Image,
 } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
-import Image from "next/image";
+// import Image from "next/image";
 import { useState, useEffect } from "react";
 import { MdOutlineContentCopy } from "react-icons/md";
 import { useQuery, UseQueryResult } from "react-query";
@@ -98,9 +99,6 @@ const formatValidatorName = (name: string): string => {
 
   return nameChars.join("");
 };
-
-const DEFAULT_IMAGE =
-  "https://s3.amazonaws.com/keybase_processed_uploads/9fcd0386b266f3e4ed3a1dcbb509d305_360_360.jpg";
 
 const ValidatorTable = () => {
   const { t } = useTranslation();
@@ -244,16 +242,11 @@ const ValidatorTable = () => {
                 </Td>
                 <Td {...highlightedCell} width="225px">
                   <Flex alignItems="center">
-                    {tuple.data.stake.delegation.validatorInfo.image !==
-                      undefined && (
+                    {tuple.data.stake.delegation.validatorInfo.image && (
                       <Image
-                        src={
-                          tuple.data.stake.delegation.validatorInfo.image ||
-                          DEFAULT_IMAGE
-                        }
+                        src={tuple.data.stake.delegation.validatorInfo.image}
                         alt="?"
-                        width={12}
-                        height={12}
+                        boxSize="12px"
                       />
                     )}
 
