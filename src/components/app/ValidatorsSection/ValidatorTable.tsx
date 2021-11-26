@@ -17,27 +17,7 @@ import { MdOutlineContentCopy } from "react-icons/md";
 import { useQuery, UseQueryResult } from "react-query";
 
 import lamportsToSol from "utils/lamportsToSol";
-// tuple.data.stake.delegation.validatorInfo.image
-// tuple.data.stake.delegation.voter_pubkey.address
-// interface Query {
-//   pubkey: {
-//     address: string;
-//   };
-//   lamports: number;
-//   totalPages: number;
-//   data: {
-//     stake: {
-//       delegation: {
-//         validatorInfo: {
-//           image: string;
-//         };
-//         voter_pubkey: {
-//           address: string;
-//         };
-//       };
-//     };
-//   };
-// }
+
 interface Query {
   totalPages: number;
   data: Validator[];
