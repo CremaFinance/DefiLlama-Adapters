@@ -28,11 +28,11 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
   const totalApy = apy?.toFixed(2);
 
   const totalApyString = totalApy
-    ? t("appPage.pool-row.total-apy").replace("{{totalApy}}", totalApy)
+    ? t("appPage.pool-row.total-apy")?.replace("{{totalApy}}", totalApy)
     : "";
   const pairString = tokenB ? `${tokenA}-${tokenB}` : tokenA;
   const tvlString = totalLockedValue
-    ? t("appPage.pool-row.tvl").replace(
+    ? t("appPage.pool-row.tvl")?.replace(
         "{{tvl}}",
         totalLockedValue.toLocaleString()
       )
