@@ -21,6 +21,7 @@
     "watch": "yarn run jest --watch"
   },
   "dependencies": {
+    "@chakra-ui/layout": "^1.5.1",
     "@chakra-ui/react": "^1.7.2",
     "@emotion/cache": "^11.6.0",
     "@emotion/react": "^11.6.0",
