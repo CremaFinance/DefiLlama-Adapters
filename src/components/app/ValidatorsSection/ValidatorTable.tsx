@@ -84,9 +84,9 @@ const ValidatorTable = () => {
 
   const handlePagination = (key: string | number) => {
     if (key === "<") {
-      setPageNumber((p) => p - 1);
+      setPageNumber((p: number) => p - 1);
     } else if (key === ">") {
-      setPageNumber((p) => p + 1);
+      setPageNumber((p: number) => p + 1);
     } else {
       const newPageNumber = Number(key);
       setPageNumber(newPageNumber);
@@ -157,7 +157,17 @@ const ValidatorTable = () => {
       </Box>
     );
   }
-  if (error) return <h1>{error.message}</h1>;
+
+  function isError(err: unknown): err is Error {
+    return err instanceof Error;
+  }
+
+  if (error) {
+    if (isError(error)) {
+      return <Box>{error.message}</Box>;
+    }
+    return <Box>Unknown error</Box>;
+  }
 
   return (
     <Flex mt="40px" ml="30px" mr="30px" direction="column">
