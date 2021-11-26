@@ -14,9 +14,54 @@ import { useTranslation } from "next-export-i18n";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { MdOutlineContentCopy } from "react-icons/md";
-import { useQuery } from "react-query";
+import { useQuery, UseQueryResult } from "react-query";
 
 import lamportsToSol from "utils/lamportsToSol";
+// tuple.data.stake.delegation.validatorInfo.image
+// tuple.data.stake.delegation.voter_pubkey.address
+// interface Query {
+//   pubkey: {
+//     address: string;
+//   };
+//   lamports: number;
+//   totalPages: number;
+//   data: {
+//     stake: {
+//       delegation: {
+//         validatorInfo: {
+//           image: string;
+//         };
+//         voter_pubkey: {
+//           address: string;
+//         };
+//       };
+//     };
+//   };
+// }
+interface Query {
+  totalPages: number;
+  data: Validator[];
+}
+
+interface Validator {
+  pubkey: {
+    address: string;
+  };
+  lamports: number;
+  data: {
+    stake: {
+      delegation: {
+        validatorInfo: {
+          name: string;
+          image: string;
+        };
+        voter_pubkey: {
+          address: string;
+        };
+      };
+    };
+  };
+}
 
 const cell = {
   height: "40px",
@@ -80,7 +125,7 @@ const DEFAULT_IMAGE =
 const ValidatorTable = () => {
   const { t } = useTranslation();
   const [pageNumber, setPageNumber] = useState(1);
-  const [pages, setPages] = useState([1, 2, 3, 4, 5]);
+  const [pages, setPages] = useState<(string | number)[]>([1, 2, 3, 4, 5]);
 
   const handlePagination = (key: string | number) => {
     if (key === "<") {
@@ -93,7 +138,7 @@ const ValidatorTable = () => {
     }
   };
 
-  const fetchData = async () => {
+  const fetchData = async (): Promise<Query> => {
     const res = await fetch(
       `https://prod-api.solana.surf/v1/account/4bZ6o3eUUNXhKuqjdCnCoPAoLgWiuLYixKaxoa8PpiKk/stakes?limit=10&offset=${
         10 * (pageNumber - 1)
@@ -111,7 +156,12 @@ const ValidatorTable = () => {
     return res.json();
   };
 
-  const { isLoading, isPreviousData, error, data } = useQuery(
+  const {
+    isLoading,
+    isPreviousData,
+    error,
+    data,
+  }: UseQueryResult<Query, Error> = useQuery<Query, Error>(
     `${pageNumber}`,
     fetchData,
     {
@@ -193,52 +243,53 @@ const ValidatorTable = () => {
           </Tr>
         </Thead>
         <Tbody>
-          {data.data.map((tuple) => (
-            <Tr key={tuple.pubkey.address}>
-              <Td
-                {...highlightedCell}
-                position="relative"
-                right="10px"
-                width="460px"
-              >
-                <Flex alignItems="center">
-                  {tuple.pubkey.address}{" "}
-                  <Box ml="7px">
-                    <MdOutlineContentCopy fontSize="14px" color="#171923" />
-                  </Box>
-                </Flex>
-              </Td>
-              <Td {...cell} width="225px">
-                {lamportsToSol(tuple.lamports)} SOL
-              </Td>
-              <Td {...highlightedCell} width="225px">
-                <Flex alignItems="center">
-                  {tuple.data.stake.delegation.validatorInfo.image !==
-                    undefined && (
-                    <Image
-                      src={
-                        tuple.data.stake.delegation.validatorInfo.image ||
-                        DEFAULT_IMAGE
-                      }
-                      alt="?"
-                      width={12}
-                      height={12}
-                    />
-                  )}
-
-                  <Text pl="4px">
-                    {formatValidatorName(
-                      tuple.data.stake.delegation.validatorInfo.name ||
-                        tuple.data.stake.delegation.voter_pubkey.address
+          {data !== undefined &&
+            data.data.map((tuple) => (
+              <Tr key={tuple.pubkey.address}>
+                <Td
+                  {...highlightedCell}
+                  position="relative"
+                  right="10px"
+                  width="460px"
+                >
+                  <Flex alignItems="center">
+                    {tuple.pubkey.address}{" "}
+                    <Box ml="7px">
+                      <MdOutlineContentCopy fontSize="14px" color="#171923" />
+                    </Box>
+                  </Flex>
+                </Td>
+                <Td {...cell} width="225px">
+                  {lamportsToSol(tuple.lamports)} SOL
+                </Td>
+                <Td {...highlightedCell} width="225px">
+                  <Flex alignItems="center">
+                    {tuple.data.stake.delegation.validatorInfo.image !==
+                      undefined && (
+                      <Image
+                        src={
+                          tuple.data.stake.delegation.validatorInfo.image ||
+                          DEFAULT_IMAGE
+                        }
+                        alt="?"
+                        width={12}
+                        height={12}
+                      />
                     )}
-                  </Text>
-                </Flex>
-              </Td>
-              <Td {...cell} position="relative" left="25px" width="128px">
-                {t("appPage.validators-table-delegated")}
-              </Td>
-            </Tr>
-          ))}
+
+                    <Text pl="4px">
+                      {formatValidatorName(
+                        tuple.data.stake.delegation.validatorInfo.name ||
+                          tuple.data.stake.delegation.voter_pubkey.address
+                      )}
+                    </Text>
+                  </Flex>
+                </Td>
+                <Td {...cell} position="relative" left="25px" width="128px">
+                  {t("appPage.validators-table-delegated")}
+                </Td>
+              </Tr>
+            ))}
         </Tbody>
       </Table>
 
