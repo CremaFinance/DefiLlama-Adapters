@@ -1,5 +1,6 @@
 import { Flex, IconButton, Progress, Tooltip } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
+import { useState } from "react";
 import { MdInfoOutline } from "react-icons/md";
 
 import MHeading from "../../atoms/Heading";
@@ -15,6 +16,9 @@ const InfoBoxesSection = () => {
   const { t } = useTranslation();
 
   const { data } = usePrice(coinSymbols.SOL);
+  const [isEpochTooltiplOpen, setIsEpochTooltipOpen] = useState(false);
+  const [isWeekAPYTooltilOpen, setIsWeekAPYTooltipOpen] = useState(false);
+  const [isValidatorsTooltipOpen, setIsValidatorsTooltipOpen] = useState(false);
 
   // TODO: Use actual values from services
   const mSOLvsSOLParity = 1.24;
@@ -96,6 +100,7 @@ const InfoBoxesSection = () => {
               color="black"
             >
               <IconButton
+                target="_blank"
                 variant="link"
                 aria-label="Info epoch"
                 size="sm"
@@ -142,6 +147,7 @@ const InfoBoxesSection = () => {
               color="black"
             >
               <IconButton
+                target="_blank"
                 variant="link"
                 aria-label="Info APY"
                 size="sm"
@@ -177,6 +183,7 @@ const InfoBoxesSection = () => {
               color="black"
             >
               <IconButton
+                target="_blank"
                 variant="link"
                 aria-label="Info Validators"
                 size="sm"
@@ -227,12 +234,24 @@ const InfoBoxesSection = () => {
           />
           <Flex>
             <MHeading type="heading-2xsm">{epochProgress}%</MHeading>
-            <IconButton
-              variant="link"
-              aria-label="Info epoch"
-              size="sm"
-              icon={<MdInfoOutline />}
-            />
+            <Tooltip
+              hasArrow
+              isOpen={isEpochTooltiplOpen}
+              label={t("appPage.info-epoch-tooltip")}
+              bg={colors.marinadeEvenLighterGreen}
+              color="black"
+            >
+              <IconButton
+                target="_blank"
+                onClick={() => setIsEpochTooltipOpen(true)}
+                onMouseEnter={() => setIsEpochTooltipOpen(true)}
+                onMouseLeave={() => setIsEpochTooltipOpen(false)}
+                variant="link"
+                aria-label="Info epoch"
+                size="sm"
+                icon={<MdInfoOutline />}
+              />
+            </Tooltip>
           </Flex>
         </Flex>
         <Flex justifyContent="space-between" alignItems="center">
@@ -241,12 +260,24 @@ const InfoBoxesSection = () => {
           </MLink>
           <Flex>
             <MHeading type="heading-2xsm">{weekAPY}%</MHeading>
-            <IconButton
-              variant="link"
-              aria-label="Info epoch"
-              size="sm"
-              icon={<MdInfoOutline />}
-            />
+            <Tooltip
+              hasArrow
+              isOpen={isWeekAPYTooltilOpen}
+              label={t("appPage.info-week-apy-tooltip")}
+              bg={colors.marinadeEvenLighterGreen}
+              color="black"
+            >
+              <IconButton
+                target="_blank"
+                onClick={() => setIsWeekAPYTooltipOpen(true)}
+                onMouseEnter={() => setIsWeekAPYTooltipOpen(true)}
+                onMouseLeave={() => setIsWeekAPYTooltipOpen(false)}
+                variant="link"
+                aria-label="Info epoch"
+                size="sm"
+                icon={<MdInfoOutline />}
+              />
+            </Tooltip>
           </Flex>
         </Flex>
         <Flex justifyContent="space-between" alignItems="center">
@@ -257,12 +288,24 @@ const InfoBoxesSection = () => {
             <MHeading type="heading-2xsm">
               {validators.toLocaleString()}
             </MHeading>
-            <IconButton
-              variant="link"
-              aria-label="Info epoch"
-              size="sm"
-              icon={<MdInfoOutline />}
-            />
+            <Tooltip
+              hasArrow
+              isOpen={isValidatorsTooltipOpen}
+              label={t("appPage.info-validators-tooltip")}
+              bg={colors.marinadeEvenLighterGreen}
+              color="black"
+            >
+              <IconButton
+                target="_blank"
+                onClick={() => setIsValidatorsTooltipOpen(true)}
+                onMouseEnter={() => setIsValidatorsTooltipOpen(true)}
+                onMouseLeave={() => setIsValidatorsTooltipOpen(false)}
+                variant="link"
+                aria-label="Info epoch"
+                size="sm"
+                icon={<MdInfoOutline />}
+              />
+            </Tooltip>
           </Flex>
         </Flex>
       </Flex>
