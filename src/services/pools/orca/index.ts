@@ -1,7 +1,7 @@
 import { getTokensList } from "../../../utils/tokens-list";
 import { updatePool } from "../../../utils/update-pool";
 import { Prices } from "../../domain/coinSymbols";
-import { LiquidityPoolIds } from "../../domain/liquidityPoolIds";
+import { LiquidityPoolOrcaIds } from "../../domain/liquidityPoolIds";
 import { MarketPools } from "../../domain/market";
 
 import { orcaPools, OrcaPoolsResponse } from "./config";
@@ -21,7 +21,7 @@ export const mapOrcaPoolsResponse = (
   const poolsArray = Object.entries(orcaPools).map(([key, incoming]) => {
     let pool = incoming;
     if (pool.providerId) {
-      const result = orcaResults[pool.providerId as LiquidityPoolIds]; // map
+      const result = orcaResults[pool.providerId as LiquidityPoolOrcaIds]; // map
       if (result) {
         const { tokenAAmount, tokenBAmount, apy } = result;
         pool = updatePool(pool, prices, tokenAAmount, tokenBAmount, apy.day);

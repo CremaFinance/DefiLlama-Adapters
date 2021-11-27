@@ -1,4 +1,4 @@
-export const liquidityPoolIds = {
+export const liquidityPoolOrcaIds = {
   ORCA_mSOL_SOL: "mSOL/SOL[stable][aquafarm]",
   ORCA_BTC_mSOL: "BTC/mSOL[aquafarm]",
   ORCA_MNDE_mSOL: "MNDE/mSOL[aquafarm]",
@@ -6,5 +6,18 @@ export const liquidityPoolIds = {
   ORCA_mSOL_USDC: "mSOL/USDC[aquafarm]",
 } as const;
 
-export type LiquidityPoolIds =
-  typeof liquidityPoolIds[keyof typeof liquidityPoolIds];
+export type LiquidityPoolOrcaIds =
+  typeof liquidityPoolOrcaIds[keyof typeof liquidityPoolOrcaIds];
+
+export const liquidityPoolRaydiumIds = {
+  RAYDIUM_mSOL_SOL: "mSOL-SOL",
+  RAYDIUM_mSOL_USDC: "mSOL-USDC",
+  RAYDIUM_mSOL_USDT: "mSOL-USDT",
+  RAYDIUM_ETH_mSOL: "ETH-mSOL",
+  RAYDIUM_BTC_mSOL: "BTC-mSOL",
+  RAYDIUM_mSOL_RAY: "mSOL-RAY",
+  RAYDIUM_MNDE_mSOL: "MNDE-mSOL",
+} as const;
+
+export type LiquidityPoolRaydiumIds =
+  typeof liquidityPoolOrcaIds[keyof typeof liquidityPoolOrcaIds];
