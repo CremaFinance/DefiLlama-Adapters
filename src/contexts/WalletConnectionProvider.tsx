@@ -16,6 +16,7 @@ import { DEFAULT_ENDPOINT } from "../utils/web3/endpoints";
 
 import { AnchorProvider } from "./AnchorContext";
 import { ConnectionProvider } from "./ConnectionProvider";
+import { MaridropProvider } from "./MaridropContext";
 
 export const WalletConnectionProvider: FC<{ children: ReactNode }> = ({
   children,
@@ -55,7 +56,9 @@ export const WalletConnectionProvider: FC<{ children: ReactNode }> = ({
   return (
     <WalletProvider wallets={wallets} autoConnect onError={onError}>
       <ConnectionProvider>
-        <AnchorProvider>{children}</AnchorProvider>
+        <AnchorProvider>
+          <MaridropProvider>{children}</MaridropProvider>
+        </AnchorProvider>
       </ConnectionProvider>
     </WalletProvider>
   );
