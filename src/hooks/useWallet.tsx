@@ -1,13 +1,20 @@
 import { useToast, Link } from "@chakra-ui/react";
 import { WalletError } from "@solana/wallet-adapter-base";
-import { useWallet as useSolanaWalllet } from "@solana/wallet-adapter-react";
+import {
+  useAnchorWallet,
+  useWallet as useSolanaWallet,
+} from "@solana/wallet-adapter-react";
 import { useCallback, useEffect } from "react";
 
 import { useTranslation } from "./useTranslation";
 
 export const useWallet = () => {
   const { t } = useTranslation();
-  const walletContext = useSolanaWalllet();
+
+  const anchorWalletContext = useAnchorWallet();
+  if (!anchorWalletContext) throw new Error("Wallet not connected!");
+
+  const walletContext = useSolanaWallet();
   const { connected, adapter, wallet, connecting } = walletContext;
   const toast = useToast();
   const msg = t("appPage.wallet-missing")?.replace(
@@ -48,5 +55,5 @@ export const useWallet = () => {
     }
   }, [tryConnect, adapter, wallet, connected, connecting]);
 
-  return walletContext;
+  return { ...walletContext, ...anchorWalletContext };
 };

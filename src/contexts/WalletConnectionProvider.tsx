@@ -14,6 +14,7 @@ import { FC, ReactNode, useCallback, useMemo } from "react";
 
 import { DEFAULT_ENDPOINT } from "../utils/web3/endpoints";
 
+import { AnchorProvider } from "./AnchorContext";
 import { ConnectionProvider } from "./ConnectionProvider";
 
 export const WalletConnectionProvider: FC<{ children: ReactNode }> = ({
@@ -53,7 +54,9 @@ export const WalletConnectionProvider: FC<{ children: ReactNode }> = ({
 
   return (
     <WalletProvider wallets={wallets} autoConnect onError={onError}>
-      <ConnectionProvider>{children}</ConnectionProvider>
+      <ConnectionProvider>
+        <AnchorProvider>{children}</AnchorProvider>
+      </ConnectionProvider>
     </WalletProvider>
   );
 };

@@ -35,5 +35,11 @@ module.exports = withTM(
     images: {
       domains: ["s3.amazonaws.com"],
     },
+    webpack: (config, { isServer }) => {
+      if (!isServer) {
+        config.resolve.fallback.fs = false;
+      }
+      return config;
+    },
   })
 );
