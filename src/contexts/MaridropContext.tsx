@@ -15,6 +15,7 @@ import {
 
 import { useWallet } from "../hooks/useWallet";
 import * as maridropIDL from "../solana/maridrop.json";
+import { DEFAULT_PUBLIC_KEY } from "../utils/web3/ids";
 
 import { useAnchorProvider } from "./AnchorContext";
 import { useConnection } from "./ConnectionProvider";
@@ -60,8 +61,6 @@ export const MaridropProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const anchorProvider = useAnchorProvider();
   const { publicKey, connected } = useWallet();
 
-  if (!publicKey) throw new Error("Wallet not connected");
-
   const program = useMemo(
     () =>
       new anchor.Program(
@@ -89,7 +88,7 @@ export const MaridropProvider: FC<{ children: ReactNode }> = ({ children }) => {
           [
             new TextEncoder().encode("promise"),
             MARIDROP_TREASURY.toBytes(),
-            publicKey.toBytes(),
+            (publicKey ?? DEFAULT_PUBLIC_KEY).toBytes(),
           ],
           program.programId
         );
@@ -120,7 +119,7 @@ export const MaridropProvider: FC<{ children: ReactNode }> = ({ children }) => {
       [
         new TextEncoder().encode("promise"),
         MARIDROP_TREASURY.toBytes(),
-        publicKey.toBytes(),
+        (publicKey ?? DEFAULT_PUBLIC_KEY).toBytes(),
       ],
       program.programId
     );
@@ -135,7 +134,7 @@ export const MaridropProvider: FC<{ children: ReactNode }> = ({ children }) => {
       token.ASSOCIATED_TOKEN_PROGRAM_ID,
       token.TOKEN_PROGRAM_ID,
       MNDE_MINT,
-      publicKey
+      publicKey ?? DEFAULT_PUBLIC_KEY
     );
     if (!(await connection.getAccountInfo(userMndeAccount))) {
       transaction.add(
@@ -144,8 +143,8 @@ export const MaridropProvider: FC<{ children: ReactNode }> = ({ children }) => {
           token.TOKEN_PROGRAM_ID,
           MNDE_MINT,
           userMndeAccount,
-          publicKey,
-          publicKey
+          publicKey ?? DEFAULT_PUBLIC_KEY,
+          publicKey ?? DEFAULT_PUBLIC_KEY
         )
       );
     }
@@ -154,7 +153,7 @@ export const MaridropProvider: FC<{ children: ReactNode }> = ({ children }) => {
         accounts: {
           promiseAccount: promiseAddress,
           treasuryAccount: MARIDROP_TREASURY,
-          targetAuthority: publicKey,
+          targetAuthority: publicKey ?? DEFAULT_PUBLIC_KEY,
           tokenAuthority: tokenStoreAuthority,
           tokenStore: treasury.tokenStore,
           transferTokenTo: userMndeAccount,
