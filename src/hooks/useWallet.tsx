@@ -12,7 +12,8 @@ export const useWallet = () => {
   const { t } = useTranslation();
 
   const anchorWalletContext = useAnchorWallet();
-  if (!anchorWalletContext) throw new Error("Wallet not connected!");
+  // eslint-disable-next-line no-console
+  if (!anchorWalletContext) console.error("Wallet not connected!");
 
   const walletContext = useSolanaWallet();
   const { connected, adapter, wallet, connecting } = walletContext;

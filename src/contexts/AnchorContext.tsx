@@ -26,21 +26,29 @@ export const AnchorProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const connection = useConnection();
   const { signTransaction, signAllTransactions, publicKey } = useWallet();
 
-  const anchorProvider = useMemo(
-    () =>
-      new Provider(
-        connection,
-        { signTransaction, signAllTransactions, publicKey },
-        Provider.defaultOptions()
-      ),
-    [connection, publicKey, signAllTransactions, signTransaction]
-  );
+  if (signTransaction && signAllTransactions && publicKey) {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const anchorProvider = useMemo(
+      () =>
+        new Provider(
+          connection,
+          { signTransaction, signAllTransactions, publicKey },
+          Provider.defaultOptions()
+        ),
+      [connection, publicKey, signAllTransactions, signTransaction]
+    );
+    return (
+      <AnchorContext.Provider
+        value={{
+          anchorProvider,
+        }}
+      >
+        {children}
+      </AnchorContext.Provider>
+    );
+  }
   return (
-    <AnchorContext.Provider
-      value={{
-        anchorProvider,
-      }}
-    >
+    <AnchorContext.Provider value={{ anchorProvider: defaultAnchorProvider() }}>
       {children}
     </AnchorContext.Provider>
   );
