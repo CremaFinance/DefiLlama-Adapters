@@ -1,4 +1,4 @@
-import { Flex, IconButton, Progress } from "@chakra-ui/react";
+import { Flex, IconButton, Progress, Tooltip } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { MdInfoOutline } from "react-icons/md";
 
@@ -89,12 +89,19 @@ const InfoBoxesSection = () => {
         >
           <Flex justifyContent="space-between">
             <MText type="text-md">{t("appPage.info-epoch")}</MText>
-            <IconButton
-              variant="link"
-              aria-label="Info epoch"
-              size="sm"
-              icon={<MdInfoOutline />}
-            />
+            <Tooltip
+              hasArrow
+              label={t("appPage.info-epoch-tooltip")}
+              bg={colors.marinadeEvenLighterGreen}
+              color="black"
+            >
+              <IconButton
+                variant="link"
+                aria-label="Info epoch"
+                size="sm"
+                icon={<MdInfoOutline />}
+              />
+            </Tooltip>
           </Flex>
           <Flex alignItems="center" justifyContent="space-between">
             <MHeading type="heading-xsm">{epochProgress}%</MHeading>
@@ -128,12 +135,19 @@ const InfoBoxesSection = () => {
         >
           <Flex justifyContent="space-between">
             <MText type="text-md">{t("appPage.info-week-apy")}</MText>
-            <IconButton
-              variant="link"
-              aria-label="Info APY"
-              size="sm"
-              icon={<MdInfoOutline />}
-            />
+            <Tooltip
+              hasArrow
+              label={t("appPage.info-week-apy-tooltip")}
+              bg={colors.marinadeEvenLighterGreen}
+              color="black"
+            >
+              <IconButton
+                variant="link"
+                aria-label="Info APY"
+                size="sm"
+                icon={<MdInfoOutline />}
+              />
+            </Tooltip>
           </Flex>
           <MHeading type="heading-xsm">{weekAPY}%</MHeading>
           <MLink font="text-lg" color={colors.marinadeGreen} pb={2}>
@@ -156,12 +170,19 @@ const InfoBoxesSection = () => {
         >
           <Flex justifyContent="space-between">
             <MText type="text-md">{t("appPage.info-validators")}</MText>
-            <IconButton
-              variant="link"
-              aria-label="Info Validators"
-              size="sm"
-              icon={<MdInfoOutline />}
-            />
+            <Tooltip
+              hasArrow
+              label={t("appPage.info-validators-tooltip")}
+              bg={colors.marinadeEvenLighterGreen}
+              color="black"
+            >
+              <IconButton
+                variant="link"
+                aria-label="Info Validators"
+                size="sm"
+                icon={<MdInfoOutline />}
+              />
+            </Tooltip>
           </Flex>
           <MHeading type="heading-xsm">{validators.toLocaleString()}</MHeading>
           <MLink font="text-lg" color={colors.marinadeGreen} pb={2}>
