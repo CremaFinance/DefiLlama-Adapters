@@ -100,13 +100,14 @@ const InfoBoxesSection = () => {
             <>
               <Flex alignItems="center" justifyContent="space-between">
                 <MHeading type="heading-xsm">
-                  {epochData.epochProgress.toFixed(1)}%
+                  {epochData.epochProgress.toFixed(1).replace(/[.,]0$/, "")}%
                 </MHeading>
                 <Progress
                   value={epochData.epochProgress}
-                  width="94px"
+                  flex={1}
                   height="8px"
                   rounded="md"
+                  ml={3}
                   mr={3}
                   bg={colors.greenLight}
                   colorScheme="teal"
@@ -218,7 +219,7 @@ const InfoBoxesSection = () => {
               />
               <Flex>
                 <MHeading type="heading-2xsm">
-                  {epochData.epochProgress.toFixed(1)}%
+                  {epochData.epochProgress.toFixed(1).replace(/[.,]0$/, "")}%
                 </MHeading>
                 <IconButton
                   variant="link"
