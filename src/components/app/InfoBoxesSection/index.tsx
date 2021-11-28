@@ -1,4 +1,4 @@
-import { Flex, IconButton, Progress } from "@chakra-ui/react";
+import { Flex, IconButton, Progress, Spinner } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { MdInfoOutline } from "react-icons/md";
 
@@ -96,23 +96,31 @@ const InfoBoxesSection = () => {
               icon={<MdInfoOutline />}
             />
           </Flex>
-          <Flex alignItems="center" justifyContent="space-between">
-            <MHeading type="heading-xsm">
-              {epochData?.epochProgress.toFixed(1)}%
-            </MHeading>
-            <Progress
-              value={epochData?.epochProgress}
-              width="94px"
-              height="8px"
-              rounded="md"
-              mr={3}
-              bg={colors.greenLight}
-              colorScheme="teal"
-            />
-          </Flex>
-          <MText type="text-md" pb={2}>
-            ETA: {millisecondsToDhms(epochData?.msUntilEpochEnd ?? 0)}
-          </MText>
+          {epochData ? (
+            <>
+              <Flex alignItems="center" justifyContent="space-between">
+                <MHeading type="heading-xsm">
+                  {epochData.epochProgress.toFixed(1)}%
+                </MHeading>
+                <Progress
+                  value={epochData.epochProgress}
+                  width="94px"
+                  height="8px"
+                  rounded="md"
+                  mr={3}
+                  bg={colors.greenLight}
+                  colorScheme="teal"
+                />
+              </Flex>
+              <MText type="text-md" pb={2}>
+                ETA: {millisecondsToDhms(epochData.msUntilEpochEnd ?? 0)}
+              </MText>
+            </>
+          ) : (
+            <Flex flex={1} alignItems="center" justifyContent="center">
+              <Spinner size="md" mr={3} />
+            </Flex>
+          )}
         </Flex>
         <Flex
           bg={colors.white}
@@ -198,25 +206,31 @@ const InfoBoxesSection = () => {
         </Flex>
         <Flex justifyContent="space-between" alignItems="center">
           <MText type="text-lg">{t("appPage.info-epoch")}</MText>
-          <Progress
-            value={epochData?.epochProgress}
-            width="40vw"
-            height="8px"
-            rounded="md"
-            bg={colors.greenLight}
-            colorScheme="teal"
-          />
-          <Flex>
-            <MHeading type="heading-2xsm">
-              {epochData?.epochProgress.toFixed(1)}%
-            </MHeading>
-            <IconButton
-              variant="link"
-              aria-label="Info epoch"
-              size="sm"
-              icon={<MdInfoOutline />}
-            />
-          </Flex>
+          {epochData ? (
+            <>
+              <Progress
+                value={epochData.epochProgress}
+                width="40vw"
+                height="8px"
+                rounded="md"
+                bg={colors.greenLight}
+                colorScheme="teal"
+              />
+              <Flex>
+                <MHeading type="heading-2xsm">
+                  {epochData.epochProgress.toFixed(1)}%
+                </MHeading>
+                <IconButton
+                  variant="link"
+                  aria-label="Info epoch"
+                  size="sm"
+                  icon={<MdInfoOutline />}
+                />
+              </Flex>
+            </>
+          ) : (
+            <Spinner size="sm" mr={8} />
+          )}
         </Flex>
         <Flex justifyContent="space-between" alignItems="center">
           <MLink font="text-lg" color={colors.marinadeGreen}>
