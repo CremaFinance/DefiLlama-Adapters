@@ -99,16 +99,16 @@ export const liquidityPoolTokensRaydium: Record<
       "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/Afvh7TWfcT1E9eEEWJk17fPjnqk36hreTJJK5g3s4fm8/logo.svg",
     tags: ["lp-token"],
   },
-  [liquidityPoolAddressRaydium.RAYDIUM_ETH_mSOL]: {
-    chainId: 101,
-    address: "HYv3grQfi8QbV7nG7EFgNK1aJSrsJ7HynXJKJVPLL2Uh",
-    symbol: "ETHL-mSOL",
-    name: "Raydium ETH/mSOL",
-    decimals: 9,
-    logoURI:
-      "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/58nifjPjF3CutGz2xMxvAMk7R9YgbVEc8Cstj4rCcs8j/logo.svg",
-    tags: ["lp-token"],
-  },
+  // [liquidityPoolAddressRaydium.RAYDIUM_ETH_mSOL]: {
+  //   chainId: 101,
+  //   address: "HYv3grQfi8QbV7nG7EFgNK1aJSrsJ7HynXJKJVPLL2Uh",
+  //   symbol: "ETHL-mSOL",
+  //   name: "Raydium ETH/mSOL",
+  //   decimals: 9,
+  //   logoURI:
+  //     "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/58nifjPjF3CutGz2xMxvAMk7R9YgbVEc8Cstj4rCcs8j/logo.svg",
+  //   tags: ["lp-token"],
+  // },
   [liquidityPoolAddressRaydium.RAYDIUM_BTC_mSOL]: {
     chainId: 101,
     address: "92bcERNtUmuaJ6mwLSxYHZYSph37jdKxRdoYNxpcYNPp",
