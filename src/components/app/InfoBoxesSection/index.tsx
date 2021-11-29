@@ -1,16 +1,19 @@
-import { Flex, IconButton, Progress, Tooltip } from "@chakra-ui/react";
+
+import { Flex, IconButton, Progress, Spinner, Tooltip } from "@chakra-ui/react";
+
 import { useTranslation } from "next-export-i18n";
 import { useState } from "react";
 import { MdInfoOutline } from "react-icons/md";
 
+import { useEpochInfo } from "../../../hooks/useEpochInfo";
+import { usePrice } from "../../../hooks/usePrice";
 import MHeading from "../../atoms/Heading";
 import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
-import { usePrice } from "hooks/usePrice";
 import { coinSymbols } from "services/domain/coinSymbols";
 import colors from "styles/customTheme/colors";
+import { millisecondsToDhms } from "utils/ms-to-dmhs";
 import { numberToShortVersion } from "utils/number-to-short-version";
-import { secondsToDhms } from "utils/seconds-to-dmhs";
 
 const InfoBoxesSection = () => {
   const { t } = useTranslation();
@@ -19,12 +22,12 @@ const InfoBoxesSection = () => {
   const [isEpochTooltiplOpen, setIsEpochTooltipOpen] = useState(false);
   const [isWeekAPYTooltilOpen, setIsWeekAPYTooltipOpen] = useState(false);
   const [isValidatorsTooltipOpen, setIsValidatorsTooltipOpen] = useState(false);
+  const epochData = useEpochInfo()?.data;
+
 
   // TODO: Use actual values from services
   const mSOLvsSOLParity = 1.24;
   const totalSOLStaked = 2345678;
-  const epochProgress = 45;
-  const epochRemainingInSec = 221756;
   const weekAPY = 7.16;
   const validators = 411;
 
@@ -108,21 +111,32 @@ const InfoBoxesSection = () => {
               />
             </Tooltip>
           </Flex>
-          <Flex alignItems="center" justifyContent="space-between">
-            <MHeading type="heading-xsm">{epochProgress}%</MHeading>
-            <Progress
-              value={epochProgress}
-              width="94px"
-              height="8px"
-              rounded="md"
-              mr={3}
-              bg={colors.greenLight}
-              colorScheme="teal"
-            />
-          </Flex>
-          <MText type="text-md" pb={2}>
-            ETA: {secondsToDhms(epochRemainingInSec)}
-          </MText>
+          {epochData ? (
+            <>
+              <Flex alignItems="center" justifyContent="space-between">
+                <MHeading type="heading-xsm">
+                  {epochData.epochProgress.toFixed(1).replace(/[.,]0$/, "")}%
+                </MHeading>
+                <Progress
+                  value={epochData.epochProgress}
+                  flex={1}
+                  height="8px"
+                  rounded="md"
+                  ml={3}
+                  mr={3}
+                  bg={colors.greenLight}
+                  colorScheme="teal"
+                />
+              </Flex>
+              <MText type="text-md" pb={2}>
+                ETA: {millisecondsToDhms(epochData.msUntilEpochEnd ?? 0)}
+              </MText>
+            </>
+          ) : (
+            <Flex flex={1} alignItems="center" justifyContent="center">
+              <Spinner size="md" mr={3} />
+            </Flex>
+          )}
         </Flex>
         <Flex
           bg={colors.white}
@@ -224,35 +238,35 @@ const InfoBoxesSection = () => {
         </Flex>
         <Flex justifyContent="space-between" alignItems="center">
           <MText type="text-lg">{t("appPage.info-epoch")}</MText>
-          <Progress
-            value={epochProgress}
-            width="40vw"
-            height="8px"
-            rounded="md"
-            bg={colors.greenLight}
-            colorScheme="teal"
-          />
-          <Flex>
-            <MHeading type="heading-2xsm">{epochProgress}%</MHeading>
-            <Tooltip
-              hasArrow
-              isOpen={isEpochTooltiplOpen}
-              label={t("appPage.info-epoch-tooltip")}
-              bg={colors.marinadeEvenLighterGreen}
-              color="black"
-            >
-              <IconButton
-                _focus={{ boxShadow: "none" }}
-                onClick={() => setIsEpochTooltipOpen(true)}
-                onMouseEnter={() => setIsEpochTooltipOpen(true)}
-                onMouseLeave={() => setIsEpochTooltipOpen(false)}
-                variant="link"
-                aria-label="Info epoch"
-                size="sm"
-                icon={<MdInfoOutline />}
+          {epochData ? (
+            <>
+              <Progress
+                value={epochData.epochProgress}
+                width="40vw"
+                height="8px"
+                rounded="md"
+                bg={colors.greenLight}
+                colorScheme="teal"
               />
-            </Tooltip>
-          </Flex>
+              <Flex>
+                <MHeading type="heading-2xsm">
+                  {epochData.epochProgress.toFixed(1).replace(/[.,]0$/, "")}%
+                </MHeading>
+                <IconButton
+                  _focus={{ boxShadow: "none" }}
+                  onClick={() => setIsEpochTooltipOpen(true)}
+                  onMouseEnter={() => setIsEpochTooltipOpen(true)}
+                  onMouseLeave={() => setIsEpochTooltipOpen(false)}
+                  variant="link"
+                  aria-label="Info epoch"
+                  size="sm"
+                  icon={<MdInfoOutline />}
+                />
+              </Flex>
+            </>
+          ) : (
+            <Spinner size="sm" mr={8} />
+          )}
         </Flex>
         <Flex justifyContent="space-between" alignItems="center">
           <MLink font="text-lg" color={colors.marinadeGreen}>

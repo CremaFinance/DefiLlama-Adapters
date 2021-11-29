@@ -24,7 +24,7 @@ export const mapOrcaPoolsResponse = (
       const result = orcaResults[pool.providerId as LiquidityPoolIds]; // map
       if (result) {
         const { tokenAAmount, tokenBAmount, apy } = result;
-        pool = updatePool(pool, prices, tokenAAmount, tokenBAmount, apy.day);
+        pool = updatePool(pool, prices, tokenAAmount, tokenBAmount, apy.week);
       }
     }
     return { [key]: pool };
