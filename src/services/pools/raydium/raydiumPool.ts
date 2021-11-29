@@ -24,3 +24,5 @@ export interface RaydiumPool {
   token_amount_lp: number;
   apy: number;
 }
+
+export type RaydiumPoolsResponse = RaydiumPool[];

@@ -1,10 +1,10 @@
 import { getTokensList } from "../../../utils/tokens-list";
 import { updatePool } from "../../../utils/update-pool";
 import { Prices } from "../../domain/coinSymbols";
-import { LiquidityPoolRaydiumIds } from "../../domain/liquidityPoolIds";
 import { MarketPools } from "../../domain/market";
 
-import { raydiumPools, RaydiumPoolsResponse } from "./config";
+import { raydiumPools } from "./config";
+import { RaydiumPoolsResponse } from "./raydiumPool";
 
 export async function fetchRaydiumPools(): Promise<RaydiumPoolsResponse> {
   const response = await fetch(`https://api.raydium.io/pairs`);
@@ -18,10 +18,14 @@ export const mapRaydiumPoolsResponse = (
   raydiumResults: RaydiumPoolsResponse,
   prices: Prices
 ) => {
-  const poolsArray = Object.entries(raydiumPools).map(([key, incoming]) => {
+  const poolsArray = Object.entries(raydiumPools).map(([poolkey, incoming]) => {
     let pool = incoming;
+
     if (pool.providerId) {
-      const result = raydiumResults[pool.providerId as LiquidityPoolRaydiumIds]; // map
+      const result = raydiumResults.find(
+        (raydiumResult) => raydiumResult.name === pool.providerId
+      );
+
       if (result) {
         // eslint-disable-next-line @typescript-eslint/naming-convention
         const { token_amount_pc, token_amount_lp, apy } = result;
@@ -34,7 +38,7 @@ export const mapRaydiumPoolsResponse = (
         );
       }
     }
-    return { [key]: pool };
+    return { [poolkey]: pool };
   });
 
   // convert to map

@@ -77,21 +77,21 @@ export const raydiumPools: Record<LiquidityPoolAddressRaydium, Pool> = {
       actions,
     },
   },
-  [liquidityPoolAddressRaydium.RAYDIUM_ETH_mSOL]: {
-    ...liquidityPoolTokensRaydium[liquidityPoolAddressRaydium.RAYDIUM_ETH_mSOL],
-    ...{
-      provider,
-      marketType: marketTypes.LP,
-      providerId: liquidityPoolRaydiumIds.RAYDIUM_ETH_mSOL,
-      tokenA: coinSymbols.ETH,
-      tokenB: coinSymbols.mSOL,
-      rewards: {
-        [coinSymbols.RAYDIUM]: undefined,
-        [coinSymbols.MNDE]: undefined,
-      },
-      actions,
-    },
-  },
+  // [liquidityPoolAddressRaydium.RAYDIUM_ETH_mSOL]: {
+  //   ...liquidityPoolTokensRaydium[liquidityPoolAddressRaydium.RAYDIUM_ETH_mSOL],
+  //   ...{
+  //     provider,
+  //     marketType: marketTypes.LP,
+  //     providerId: liquidityPoolRaydiumIds.RAYDIUM_ETH_mSOL,
+  //     tokenA: coinSymbols.ETH,
+  //     tokenB: coinSymbols.mSOL,
+  //     rewards: {
+  //       [coinSymbols.RAYDIUM]: undefined,
+  //       [coinSymbols.MNDE]: undefined,
+  //     },
+  //     actions,
+  //   },
+  // },
   [liquidityPoolAddressRaydium.RAYDIUM_BTC_mSOL]: {
     ...liquidityPoolTokensRaydium[liquidityPoolAddressRaydium.RAYDIUM_BTC_mSOL],
     ...{
