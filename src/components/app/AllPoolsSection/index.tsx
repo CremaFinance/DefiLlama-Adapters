@@ -21,7 +21,6 @@ const AllPoolsSection = () => {
     <Flex
       flexDir="column"
       marginX={{ base: "16px", lg: "65px", xl: "170px" }}
-      marginTop="40px"
       alignItems="stretch"
     >
       <Flex
