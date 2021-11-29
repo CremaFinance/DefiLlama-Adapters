@@ -19,6 +19,7 @@ module.exports = {
           'emotion-theming': '@emotion/react',
         },
       },
+      node: {fs:'empty'}
     }
     finalConfig.module.rules.push(
       {
