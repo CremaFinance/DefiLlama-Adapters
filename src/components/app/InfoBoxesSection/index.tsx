@@ -100,7 +100,7 @@ const InfoBoxesSection = () => {
               color="black"
             >
               <IconButton
-                target="_blank"
+                _focus={{ boxShadow: "none" }}
                 variant="link"
                 aria-label="Info epoch"
                 size="sm"
@@ -147,7 +147,7 @@ const InfoBoxesSection = () => {
               color="black"
             >
               <IconButton
-                target="_blank"
+                _focus={{ boxShadow: "none" }}
                 variant="link"
                 aria-label="Info APY"
                 size="sm"
@@ -183,7 +183,7 @@ const InfoBoxesSection = () => {
               color="black"
             >
               <IconButton
-                target="_blank"
+                _focus={{ boxShadow: "none" }}
                 variant="link"
                 aria-label="Info Validators"
                 size="sm"
@@ -242,7 +242,7 @@ const InfoBoxesSection = () => {
               color="black"
             >
               <IconButton
-                target="_blank"
+                _focus={{ boxShadow: "none" }}
                 onClick={() => setIsEpochTooltipOpen(true)}
                 onMouseEnter={() => setIsEpochTooltipOpen(true)}
                 onMouseLeave={() => setIsEpochTooltipOpen(false)}
@@ -268,7 +268,7 @@ const InfoBoxesSection = () => {
               color="black"
             >
               <IconButton
-                target="_blank"
+                _focus={{ boxShadow: "none" }}
                 onClick={() => setIsWeekAPYTooltipOpen(true)}
                 onMouseEnter={() => setIsWeekAPYTooltipOpen(true)}
                 onMouseLeave={() => setIsWeekAPYTooltipOpen(false)}
@@ -296,7 +296,7 @@ const InfoBoxesSection = () => {
               color="black"
             >
               <IconButton
-                target="_blank"
+                _focus={{ boxShadow: "none" }}
                 onClick={() => setIsValidatorsTooltipOpen(true)}
                 onMouseEnter={() => setIsValidatorsTooltipOpen(true)}
                 onMouseLeave={() => setIsValidatorsTooltipOpen(false)}
