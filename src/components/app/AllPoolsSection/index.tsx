@@ -75,7 +75,6 @@ const AllPoolsSection = () => {
           <Flex
             flexDirection="row"
             key={`${pool.address}`}
-            marginBottom="14px"
             justifyContent="center"
           >
             <PoolRow pool={pool} />
