@@ -1,16 +1,16 @@
 import { coinSymbols } from "../../domain/coinSymbols";
-import {
-  LiquidityPoolAddressRaydium,
-  liquidityPoolAddressRaydium,
-} from "../../domain/liquidityPoolAddress";
-import {
-  LiquidityPoolRaydiumIds,
-  liquidityPoolRaydiumIds,
-} from "../../domain/liquidityPoolIds";
-import { liquidityPoolTokensRaydium } from "../../domain/liquidityPoolTokens";
 import { marketTypes } from "../../domain/marketTypes";
 import { Pool } from "../../domain/pool";
 
+import {
+  LiquidityRaydiumPoolAddress,
+  liquidityRaydiumPoolAddress,
+} from "./liquidityRaydiumPoolAddress";
+import {
+  LiquidityPoolRaydiumIds,
+  liquidityPoolRaydiumIds,
+} from "./liquidityRaydiumPoolIds";
+import { liquidityPoolTokensRaydium } from "./liquidityRaydiumPoolTokens";
 import { RaydiumPool } from "./raydiumPool";
 
 const provider = "Raydium";
@@ -27,9 +27,9 @@ const actions = [
 
 export type RaydiumPoolsResponse = Record<LiquidityPoolRaydiumIds, RaydiumPool>;
 
-export const raydiumPools: Record<LiquidityPoolAddressRaydium, Pool> = {
-  [liquidityPoolAddressRaydium.RAYDIUM_mSOL_SOL]: {
-    ...liquidityPoolTokensRaydium[liquidityPoolAddressRaydium.RAYDIUM_mSOL_SOL],
+export const raydiumPools: Record<LiquidityRaydiumPoolAddress, Pool> = {
+  [liquidityRaydiumPoolAddress.RAYDIUM_mSOL_SOL]: {
+    ...liquidityPoolTokensRaydium[liquidityRaydiumPoolAddress.RAYDIUM_mSOL_SOL],
     ...{
       provider,
       marketType: marketTypes.LP,
@@ -43,9 +43,9 @@ export const raydiumPools: Record<LiquidityPoolAddressRaydium, Pool> = {
       actions,
     },
   },
-  [liquidityPoolAddressRaydium.RAYDIUM_mSOL_USDC]: {
+  [liquidityRaydiumPoolAddress.RAYDIUM_mSOL_USDC]: {
     ...liquidityPoolTokensRaydium[
-      liquidityPoolAddressRaydium.RAYDIUM_mSOL_USDC
+      liquidityRaydiumPoolAddress.RAYDIUM_mSOL_USDC
     ],
     ...{
       provider,
@@ -60,9 +60,9 @@ export const raydiumPools: Record<LiquidityPoolAddressRaydium, Pool> = {
       actions,
     },
   },
-  [liquidityPoolAddressRaydium.RAYDIUM_mSOL_USDT]: {
+  [liquidityRaydiumPoolAddress.RAYDIUM_mSOL_USDT]: {
     ...liquidityPoolTokensRaydium[
-      liquidityPoolAddressRaydium.RAYDIUM_mSOL_USDT
+      liquidityRaydiumPoolAddress.RAYDIUM_mSOL_USDT
     ],
     ...{
       provider,
@@ -77,8 +77,8 @@ export const raydiumPools: Record<LiquidityPoolAddressRaydium, Pool> = {
       actions,
     },
   },
-  [liquidityPoolAddressRaydium.RAYDIUM_ETH_mSOL]: {
-    ...liquidityPoolTokensRaydium[liquidityPoolAddressRaydium.RAYDIUM_ETH_mSOL],
+  [liquidityRaydiumPoolAddress.RAYDIUM_ETH_mSOL]: {
+    ...liquidityPoolTokensRaydium[liquidityRaydiumPoolAddress.RAYDIUM_ETH_mSOL],
     ...{
       provider,
       marketType: marketTypes.LP,
@@ -92,8 +92,8 @@ export const raydiumPools: Record<LiquidityPoolAddressRaydium, Pool> = {
       actions,
     },
   },
-  [liquidityPoolAddressRaydium.RAYDIUM_BTC_mSOL]: {
-    ...liquidityPoolTokensRaydium[liquidityPoolAddressRaydium.RAYDIUM_BTC_mSOL],
+  [liquidityRaydiumPoolAddress.RAYDIUM_BTC_mSOL]: {
+    ...liquidityPoolTokensRaydium[liquidityRaydiumPoolAddress.RAYDIUM_BTC_mSOL],
     ...{
       provider,
       marketType: marketTypes.LP,
@@ -107,8 +107,8 @@ export const raydiumPools: Record<LiquidityPoolAddressRaydium, Pool> = {
       actions,
     },
   },
-  [liquidityPoolAddressRaydium.RAYDIUM_mSOL_RAY]: {
-    ...liquidityPoolTokensRaydium[liquidityPoolAddressRaydium.RAYDIUM_mSOL_RAY],
+  [liquidityRaydiumPoolAddress.RAYDIUM_mSOL_RAY]: {
+    ...liquidityPoolTokensRaydium[liquidityRaydiumPoolAddress.RAYDIUM_mSOL_RAY],
     ...{
       provider,
       marketType: marketTypes.LP,
@@ -122,9 +122,9 @@ export const raydiumPools: Record<LiquidityPoolAddressRaydium, Pool> = {
       actions,
     },
   },
-  [liquidityPoolAddressRaydium.RAYDIUM_MNDE_mSOL]: {
+  [liquidityRaydiumPoolAddress.RAYDIUM_MNDE_mSOL]: {
     ...liquidityPoolTokensRaydium[
-      liquidityPoolAddressRaydium.RAYDIUM_MNDE_mSOL
+      liquidityRaydiumPoolAddress.RAYDIUM_MNDE_mSOL
     ],
     ...{
       provider,

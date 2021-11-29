@@ -1,16 +1,16 @@
 import { coinSymbols } from "../../domain/coinSymbols";
-import {
-  LiquidityPoolAddressOrca,
-  liquidityPoolAddressOrca,
-} from "../../domain/liquidityPoolAddress";
-import {
-  LiquidityPoolOrcaIds,
-  liquidityPoolOrcaIds,
-} from "../../domain/liquidityPoolIds";
-import { liquidityPoolTokens } from "../../domain/liquidityPoolTokens";
 import { marketTypes } from "../../domain/marketTypes";
 import { Pool } from "../../domain/pool";
 
+import {
+  LiquidityOrcaPoolAddress,
+  liquidityOrcaPoolAddress,
+} from "./liquidityOrcaPoolAddress";
+import {
+  LiquidityOrcaPoolIds,
+  liquidityOrcaPoolIds,
+} from "./liquidityOrcaPoolIds";
+import { liquidityPoolTokens } from "./liquidityOrcaPoolTokens";
 import { OrcaPool } from "./orcaPool";
 
 const provider = "Orca";
@@ -19,16 +19,16 @@ const actions = [
   { text: "Swap", url: "https://www.orca.so/pools" },
 ];
 
-export type OrcaPoolsResponse = Record<LiquidityPoolOrcaIds, OrcaPool>;
+export type OrcaPoolsResponse = Record<LiquidityOrcaPoolIds, OrcaPool>;
 
-export const orcaPools: Record<LiquidityPoolAddressOrca, Pool> = {
+export const orcaPools: Record<LiquidityOrcaPoolAddress, Pool> = {
   // only  this first one is fully configured right now
-  [liquidityPoolAddressOrca.ORCA_mSOL_SOL]: {
-    ...liquidityPoolTokens[liquidityPoolAddressOrca.ORCA_mSOL_SOL],
+  [liquidityOrcaPoolAddress.ORCA_mSOL_SOL]: {
+    ...liquidityPoolTokens[liquidityOrcaPoolAddress.ORCA_mSOL_SOL],
     ...{
       provider,
       marketType: marketTypes.LP,
-      providerId: liquidityPoolOrcaIds.ORCA_mSOL_SOL,
+      providerId: liquidityOrcaPoolIds.ORCA_mSOL_SOL,
       tokenA: coinSymbols.mSOL,
       tokenB: coinSymbols.SOL,
       rewards: {
@@ -38,12 +38,12 @@ export const orcaPools: Record<LiquidityPoolAddressOrca, Pool> = {
       actions,
     },
   },
-  [liquidityPoolAddressOrca.ORCA_BTC_mSOL]: {
-    ...liquidityPoolTokens[liquidityPoolAddressOrca.ORCA_BTC_mSOL],
+  [liquidityOrcaPoolAddress.ORCA_BTC_mSOL]: {
+    ...liquidityPoolTokens[liquidityOrcaPoolAddress.ORCA_BTC_mSOL],
     ...{
       marketType: marketTypes.LP,
       provider,
-      providerId: liquidityPoolOrcaIds.ORCA_BTC_mSOL,
+      providerId: liquidityOrcaPoolIds.ORCA_BTC_mSOL,
       tokenA: coinSymbols.BTC,
       tokenB: coinSymbols.mSOL,
       rewards: {
@@ -53,12 +53,12 @@ export const orcaPools: Record<LiquidityPoolAddressOrca, Pool> = {
       actions,
     },
   },
-  [liquidityPoolAddressOrca.ORCA_MNDE_mSOL]: {
-    ...liquidityPoolTokens[liquidityPoolAddressOrca.ORCA_MNDE_mSOL],
+  [liquidityOrcaPoolAddress.ORCA_MNDE_mSOL]: {
+    ...liquidityPoolTokens[liquidityOrcaPoolAddress.ORCA_MNDE_mSOL],
     ...{
       provider,
       marketType: marketTypes.LP,
-      providerId: liquidityPoolOrcaIds.ORCA_MNDE_mSOL,
+      providerId: liquidityOrcaPoolIds.ORCA_MNDE_mSOL,
       tokenA: coinSymbols.MNDE,
       tokenB: coinSymbols.mSOL,
       rewards: {
@@ -68,12 +68,12 @@ export const orcaPools: Record<LiquidityPoolAddressOrca, Pool> = {
       actions,
     },
   },
-  [liquidityPoolAddressOrca.ORCA_mSOL_USDT]: {
-    ...liquidityPoolTokens[liquidityPoolAddressOrca.ORCA_mSOL_USDT],
+  [liquidityOrcaPoolAddress.ORCA_mSOL_USDT]: {
+    ...liquidityPoolTokens[liquidityOrcaPoolAddress.ORCA_mSOL_USDT],
     ...{
       provider,
       marketType: marketTypes.LP,
-      providerId: liquidityPoolOrcaIds.ORCA_mSOL_USDT,
+      providerId: liquidityOrcaPoolIds.ORCA_mSOL_USDT,
       tokenA: coinSymbols.USDT,
       tokenB: coinSymbols.mSOL,
       rewards: {
@@ -83,12 +83,12 @@ export const orcaPools: Record<LiquidityPoolAddressOrca, Pool> = {
       actions,
     },
   },
-  [liquidityPoolAddressOrca.ORCA_mSOL_USDC]: {
-    ...liquidityPoolTokens[liquidityPoolAddressOrca.ORCA_mSOL_USDC],
+  [liquidityOrcaPoolAddress.ORCA_mSOL_USDC]: {
+    ...liquidityPoolTokens[liquidityOrcaPoolAddress.ORCA_mSOL_USDC],
     ...{
       provider,
       marketType: marketTypes.LP,
-      providerId: liquidityPoolOrcaIds.ORCA_mSOL_USDC,
+      providerId: liquidityOrcaPoolIds.ORCA_mSOL_USDC,
       tokenA: coinSymbols.USDC,
       tokenB: coinSymbols.mSOL,
       rewards: {

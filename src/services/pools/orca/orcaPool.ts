@@ -1,8 +1,9 @@
 import { DWM } from "../../domain/dwm";
-import { LiquidityPoolOrcaIds } from "../../domain/liquidityPoolIds";
+
+import { LiquidityOrcaPoolIds } from "./liquidityOrcaPoolIds";
 
 export interface OrcaPool {
-  poolId: LiquidityPoolOrcaIds;
+  poolId: LiquidityOrcaPoolIds;
   poolAccount: string;
   tokenAAmount: string;
   tokenBAmount: string;

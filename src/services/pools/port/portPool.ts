@@ -1,7 +1,7 @@
-import { LendingPoolIds } from "../../domain/lendingPoolIds";
+import { LendingPortPoolIds } from "./lendingPortPoolIds";
 
 export interface PortPool {
-  poolId: LendingPoolIds;
+  poolId: LendingPortPoolIds;
   ratePerSlot: string;
   poolSize: string;
   ratePerDay: string;

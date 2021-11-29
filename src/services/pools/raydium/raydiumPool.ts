@@ -1,6 +1,3 @@
-// ToDo: add ids in LiquidityPoolIds
-// import { LiquidityPoolIds } from "../../domain/liquidityPoolIds";
-
 export interface RaydiumPool {
   name: string;
   pair_id: string;
