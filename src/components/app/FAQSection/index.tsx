@@ -6,11 +6,11 @@ import {
   AccordionPanel,
   Flex,
   Image,
-  Link,
 } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 
 import MHeading from "../../atoms/Heading";
+import Link from "../../atoms/Link";
 import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
 
