@@ -12,6 +12,7 @@ export interface Pool extends Token {
   // for UI
   actions: Action[];
   rewards?: Rewards;
+  tradingApy?: number;
   apy?: number;
   totalLockedValue?: number;
   liq?: number;

@@ -16,15 +16,18 @@ const Template: ComponentStory<typeof ApyAndRewardTooltip> = (args) => (
 
 export const Default = Template.bind({});
 Default.args = {
-  anualPercentageYield: {
-    trading: 2.47,
-    emission: 2.51,
-    doubleDip: 3.25,
-  },
-  rewardPerDay: {
-    marinade: 66363.57,
-    provider: 801.37,
-    providerShortName: "ORCA",
+  tradingApy: 9.34,
+  rewards: {
+    orca: {
+      aprDescription: "Emission",
+      dailyRate: 400.6849315068493,
+      apy: 3.2887873290521905,
+    },
+    mnde: {
+      aprDescription: "Double Dip",
+      dailyRate: 6144,
+      apy: 2.876070143892445,
+    },
   },
   children: (
     <Flex alignItems="center" justifyContent="center">

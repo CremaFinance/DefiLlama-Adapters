@@ -17,7 +17,7 @@ import { useState, useEffect } from "react";
 import { MdOutlineContentCopy } from "react-icons/md";
 import { useQuery, UseQueryResult } from "react-query";
 
-import lamportsToSol from "utils/lamportsToSol";
+import lamportsToSol from "utils/lamports-to-sol";
 
 interface Query {
   totalPages: number;
