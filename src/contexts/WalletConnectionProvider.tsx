@@ -1,9 +1,6 @@
 import { useToast } from "@chakra-ui/react";
 import { WalletAdapterNetwork, WalletError } from "@solana/wallet-adapter-base";
-import {
-  ConnectionProvider,
-  WalletProvider,
-} from "@solana/wallet-adapter-react";
+import { WalletProvider } from "@solana/wallet-adapter-react";
 import {
   getPhantomWallet,
   getSolletWallet,
@@ -13,16 +10,17 @@ import {
   getCoin98Wallet,
   getSlopeWallet,
 } from "@solana/wallet-adapter-wallets";
-import { clusterApiUrl } from "@solana/web3.js";
-import { FC, ReactNode, useMemo, useCallback } from "react";
+import { FC, ReactNode, useCallback, useMemo } from "react";
+
+import { DEFAULT_ENDPOINT } from "../utils/web3/endpoints";
+
+import { AccountsContextProvider } from "./AccountsContext";
+import { ConnectionProvider } from "./ConnectionProvider";
 
 export const WalletConnectionProvider: FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const network = WalletAdapterNetwork.Mainnet; // to-do get from env var on build?
-
-  // You can also provide a custom RPC endpoint
-  const endpoint = useMemo(() => clusterApiUrl(network), [network]);
+  const network = DEFAULT_ENDPOINT.name as WalletAdapterNetwork;
 
   const wallets = useMemo(
     () => [
@@ -55,10 +53,10 @@ export const WalletConnectionProvider: FC<{ children: ReactNode }> = ({
   );
 
   return (
-    <ConnectionProvider endpoint={endpoint}>
+    <AccountsContextProvider>
       <WalletProvider wallets={wallets} autoConnect onError={onError}>
-        {children}
+        <ConnectionProvider>{children}</ConnectionProvider>
       </WalletProvider>
-    </ConnectionProvider>
+    </AccountsContextProvider>
   );
 };

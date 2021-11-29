@@ -23,6 +23,11 @@ const selectVariant = (variant = "") =>
       color: colors.marinadeGreen,
       borderRadius: "8px",
     },
+    "big-solid": {
+      size: "lg",
+      bg: colors.marinadeGreen,
+      color: colors.white,
+    },
   }[variant] ?? {});
 
 const selectFontSize = (font = "") => {

@@ -3,71 +3,44 @@ import { FunctionComponent } from "react";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 
 import { useTranslation } from "../../../hooks/useTranslation";
-import { Action } from "../../../services/domain/pool";
+import { Pool } from "../../../services/domain/pool";
 import Button from "../../atoms/Button";
 import Heading from "../../atoms/Heading";
 import Text from "../../atoms/Text";
 import ApyAndRewardTooltip from "../ApyAndRewardTooltip";
 
 type PoolRowProps = {
-  anualPercentageYield: {
-    trading: number;
-    emission: number;
-    doubleDip: number;
-  };
-  rewardPerDay: {
-    marinade: number;
-    provider?: number;
-  };
-  totalLockedValue?: number;
-  currencies: {
-    left: {
-      logo: string;
-      shortName: string;
-    };
-    right?: {
-      logo: string;
-      shortName: string;
-    };
-  };
-  provider: {
-    logo: string;
-    shortName: string;
-  };
-  actions: Action[];
+  pool: Pool;
 };
 
-const PoolRow: FunctionComponent<PoolRowProps> = ({
-  anualPercentageYield,
-  currencies: { left, right },
-  totalLockedValue,
-  rewardPerDay: rpd,
-  provider,
-  actions,
-}) => {
+const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
+  const {
+    apy,
+    tradingApy,
+    tokenA,
+    tokenB,
+    totalLockedValue,
+    logoURI,
+    rewards,
+    actions,
+  } = pool;
   const { t } = useTranslation();
-  const totalApy = Number(
-    Number(
-      anualPercentageYield.trading +
-        anualPercentageYield.emission +
-        anualPercentageYield.doubleDip
-    ).toFixed(2)
-  );
-  const totalApyString = t("appPage.pool-row.total-apy").replace(
-    "{{totalApy}}",
-    totalApy
-  );
-  const pairString = right?.shortName
-    ? `${left.shortName}-${right.shortName}`
-    : left.shortName;
-  const tvlString = t("appPage.pool-row.tvl").replace(
-    "{{tvl}}",
-    totalLockedValue?.toLocaleString()
-  );
+  const totalApy = apy?.toFixed(2);
+
+  const totalApyString = totalApy
+    ? t("appPage.pool-row.total-apy")?.replace("{{totalApy}}", totalApy)
+    : "";
+  const pairString = tokenB ? `${tokenA}-${tokenB}` : tokenA;
+  const tvlString = totalLockedValue
+    ? t("appPage.pool-row.tvl")?.replace(
+        "{{tvl}}",
+        totalLockedValue.toLocaleString()
+      )
+    : "";
 
   const ProviderImage = () => (
     <Image
-      src={provider.logo}
+      src={logoURI}
       marginRight={{ base: "0", xl: "1rem" }}
       width={{ base: "2.5rem", lg: "4rem" }}
       height={{ base: "2.5rem", lg: "4rem" }}
@@ -98,10 +71,10 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
         justifyContent={{ base: "space-between", lg: "flex-start" }}
       >
         <Flex>
-          <Image src={`/pools/${left.logo}.png`} width="24px" height="24px" />
-          {right?.shortName && (
+          <Image src={`/pools/${tokenA}.png`} width="24px" height="24px" />
+          {tokenB && (
             <Image
-              src={right?.logo ? `/pools/${right.logo}.png` : ""}
+              src={tokenB ? `/pools/${tokenB}.png` : ""}
               width="24px"
               height="24px"
               marginLeft="4px"
@@ -131,10 +104,7 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({
         ) : (
           <Spinner size="xs" />
         )}
-        <ApyAndRewardTooltip
-          anualPercentageYield={anualPercentageYield}
-          rewardPerDay={{ ...rpd, providerShortName: provider.shortName }}
-        >
+        <ApyAndRewardTooltip rewards={rewards} tradingApy={tradingApy}>
           <Button
             variant="link"
             _hover={{}}

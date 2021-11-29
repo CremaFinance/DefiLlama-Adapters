@@ -75,6 +75,7 @@ const IconWithTextBelow = ({
           mt="6"
           href={externalUrl}
           isExternal
+          rel="noreferrer noopener"
           color={colors.greenVibrant}
           fontWeight="bold"
           display="flex"
