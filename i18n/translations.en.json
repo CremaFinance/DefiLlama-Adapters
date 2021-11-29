@@ -244,6 +244,11 @@
       "body-line2-after": " you just received.",
       "button": "Use your {{stakedCurrency}}"
     },
+    "defi-subtitle": {
+      "header": "Participate in DeFi",
+      "body-desktop": "Now it’s your time to cook! mSOL has been integrated in many DeFi protocols where you’ll be able to explore additional yield while still earning your staking rewards. Please keep in mind that selling all your mSOL will also mean selling your rewards accumulated until this point.",
+      "body-mobile": " Selling all your mSOL will also mean selling your rewards accumulated until this point."
+    },
     "stake-inputs-time-to-unstake": "Time to unstake",
     "tickets-accounts": "Ticket accounts",
     "sol": "SOL",
