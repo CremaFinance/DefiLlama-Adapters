@@ -2,7 +2,7 @@ import { CoinSymbols } from "services/domain/coinSymbols";
 import { Pool } from "services/domain/pool";
 
 // Don't like this file here
-export const getTokensList = (pools: Pool[]) => {
+export const getTokensList = (pools: Pool[]): CoinSymbols[] => {
   const tokens: CoinSymbols[] = [];
 
   pools.forEach((pair) => {

@@ -50,7 +50,8 @@ export const mapPortResponse = (
         if (tokenAprice) {
           pool.liq = tokenA * tokenAprice;
           pool.totalLockedValue = tokenA * tokenAprice;
-          pool.apy = Number(depositApy.slice(0, -1));
+          pool.tradingApy = Number(depositApy.slice(0, -1));
+          pool.apy = pool.tradingApy;
 
           if (pool.rewards) {
             Object.entries(pool.rewards).forEach((entry) => {
