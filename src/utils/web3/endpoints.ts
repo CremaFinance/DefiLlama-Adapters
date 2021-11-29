@@ -17,6 +17,7 @@ export const ENDPOINTS = [
         "8szGkuLTAux9XMgZ2vtY39jVSowEcpBfFfD8hXSEqdGC"
       ),
     },
+    slotTimeAvg1h: 378,
   },
   {
     name: "mainnet-beta" as ENV,
@@ -32,6 +33,7 @@ export const ENDPOINTS = [
         "8szGkuLTAux9XMgZ2vtY39jVSowEcpBfFfD8hXSEqdGC"
       ),
     },
+    slotTimeAvg1h: 521,
   },
   {
     name: "testnet" as ENV,
@@ -47,6 +49,7 @@ export const ENDPOINTS = [
         "8szGkuLTAux9XMgZ2vtY39jVSowEcpBfFfD8hXSEqdGC"
       ),
     },
+    slotTimeAvg1h: 536,
   },
   {
     name: "localnet" as ENV,
@@ -61,6 +64,7 @@ export const ENDPOINTS = [
         "8szGkuLTAux9XMgZ2vtY39jVSowEcpBfFfD8hXSEqdGC"
       ),
     },
+    slotTimeAvg1h: 378,
   },
 ];
 
