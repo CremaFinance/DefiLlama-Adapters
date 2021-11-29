@@ -65,6 +65,9 @@ export const liquidityPoolTokens: Record<LiquidityPoolAddressOrca, Token> = {
   },
 };
 
+const raydiumUri =
+  "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R/logo.png";
+
 export const liquidityPoolTokensRaydium: Record<
   LiquidityPoolAddressRaydium,
   Token
@@ -75,8 +78,7 @@ export const liquidityPoolTokensRaydium: Record<
     symbol: "mSOL-SOL",
     name: "Raydium mSOL/SOL",
     decimals: 9,
-    logoURI:
-      "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/3RTGL7gPF4V1ns1AeGFApT7cBEGVDfmJ77DqQi9AC6uG/logo.svg",
+    logoURI: raydiumUri,
     tags: ["lp-token"],
   },
   [liquidityPoolAddressRaydium.RAYDIUM_mSOL_USDC]: {
@@ -85,8 +87,7 @@ export const liquidityPoolTokensRaydium: Record<
     symbol: "mSOL-USDC",
     name: "Raydium mSOL/USDC",
     decimals: 9,
-    logoURI:
-      "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/5r3vDsNTGXXb9cGQfqyNuYD2bjhRPymGJBfDmKosR9Ev/logo.svg",
+    logoURI: raydiumUri,
     tags: ["lp-token"],
   },
   [liquidityPoolAddressRaydium.RAYDIUM_mSOL_USDT]: {
@@ -95,8 +96,7 @@ export const liquidityPoolTokensRaydium: Record<
     symbol: "mSOL-USDT",
     name: "Raydium mSOL/USDT",
     decimals: 9,
-    logoURI:
-      "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/Afvh7TWfcT1E9eEEWJk17fPjnqk36hreTJJK5g3s4fm8/logo.svg",
+    logoURI: raydiumUri,
     tags: ["lp-token"],
   },
   [liquidityPoolAddressRaydium.RAYDIUM_ETH_mSOL]: {
@@ -105,8 +105,7 @@ export const liquidityPoolTokensRaydium: Record<
     symbol: "ETH-mSOL",
     name: "Raydium ETH/mSOL",
     decimals: 9,
-    logoURI:
-      "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/58nifjPjF3CutGz2xMxvAMk7R9YgbVEc8Cstj4rCcs8j/logo.svg",
+    logoURI: raydiumUri,
     tags: ["lp-token"],
   },
   [liquidityPoolAddressRaydium.RAYDIUM_BTC_mSOL]: {
@@ -115,8 +114,7 @@ export const liquidityPoolTokensRaydium: Record<
     symbol: "BTC-mSOL",
     name: "RaydiumBTC/mSOL",
     decimals: 9,
-    logoURI:
-      "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/DzpLz78wuwyFsQToin8iDv6YK6aBEymRqQq82swiFh7r/logo.svg",
+    logoURI: raydiumUri,
     tags: ["lp-token"],
   },
   [liquidityPoolAddressRaydium.RAYDIUM_mSOL_RAY]: {
@@ -125,7 +123,7 @@ export const liquidityPoolTokensRaydium: Record<
     symbol: "mSOL-RAY",
     name: "Raydium mSOL/RAY",
     decimals: 9,
-    logoURI: "",
+    logoURI: raydiumUri,
     tags: ["lp-token"],
   },
   [liquidityPoolAddressRaydium.RAYDIUM_MNDE_mSOL]: {
@@ -134,8 +132,7 @@ export const liquidityPoolTokensRaydium: Record<
     symbol: "MNDE-mSOL",
     name: "Raydium MNDE/mSOL",
     decimals: 9,
-    logoURI:
-      "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/2wPsMuzhEsC6GhV3qtFpmJF6atEgLGbnmQ8U43Y6fPxZ/logo.svg",
+    logoURI: raydiumUri,
     tags: ["lp-token"],
   },
 };
