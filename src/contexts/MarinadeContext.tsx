@@ -37,10 +37,10 @@ import {
 } from "react";
 
 import { useWallet } from "../hooks/useWallet";
+import { StakeAccount } from "../solana/domain/stake-account";
 import { findAssociatedTokenAddress } from "../solana/marinade-anchor/common";
 import * as marinade from "../solana/marinade-anchor/marinade-finance-schema";
 import * as MarinadeProgramJSON from "../solana/marinade-anchor/marinade_finance.json";
-import { StakeAccount } from "../solana/util";
 
 import { useAnchorProvider } from "./AnchorContext";
 import { useConnection, useKeys } from "./ConnectionProvider";
