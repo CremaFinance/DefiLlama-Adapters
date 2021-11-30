@@ -1,12 +1,12 @@
-import { Flex, IconButton, Progress, Spinner } from "@chakra-ui/react";
+import { Flex, Progress, Spinner } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
-import { MdInfoOutline } from "react-icons/md";
 
 import { useEpochInfo } from "../../../hooks/useEpochInfo";
 import { usePrice } from "../../../hooks/usePrice";
 import MHeading from "../../atoms/Heading";
 import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
+import InfoIconWithTooltip from "components/molecules/InfoIconWithTooltip";
 import { coinSymbols } from "services/domain/coinSymbols";
 import colors from "styles/customTheme/colors";
 import { millisecondsToDhms } from "utils/ms-to-dmhs";
@@ -89,11 +89,8 @@ const InfoBoxesSection = () => {
         >
           <Flex justifyContent="space-between">
             <MText type="text-md">{t("appPage.info-epoch")}</MText>
-            <IconButton
-              variant="link"
-              aria-label="Info epoch"
-              size="sm"
-              icon={<MdInfoOutline />}
+            <InfoIconWithTooltip
+              tooltipText={t("appPage.info-epoch-tooltip")}
             />
           </Flex>
           {epochData ? (
@@ -139,11 +136,8 @@ const InfoBoxesSection = () => {
         >
           <Flex justifyContent="space-between">
             <MText type="text-md">{t("appPage.info-week-apy")}</MText>
-            <IconButton
-              variant="link"
-              aria-label="Info APY"
-              size="sm"
-              icon={<MdInfoOutline />}
+            <InfoIconWithTooltip
+              tooltipText={t("appPage.info-week-apy-tooltip")}
             />
           </Flex>
           <MHeading type="heading-xsm">{weekAPY}%</MHeading>
@@ -167,11 +161,8 @@ const InfoBoxesSection = () => {
         >
           <Flex justifyContent="space-between">
             <MText type="text-md">{t("appPage.info-validators")}</MText>
-            <IconButton
-              variant="link"
-              aria-label="Info Validators"
-              size="sm"
-              icon={<MdInfoOutline />}
+            <InfoIconWithTooltip
+              tooltipText={t("appPage.info-validators-tooltip")}
             />
           </Flex>
           <MHeading type="heading-xsm">{validators.toLocaleString()}</MHeading>
@@ -221,11 +212,8 @@ const InfoBoxesSection = () => {
                 <MHeading type="heading-2xsm">
                   {epochData.epochProgress.toFixed(1).replace(/[.,]0$/, "")}%
                 </MHeading>
-                <IconButton
-                  variant="link"
-                  aria-label="Info epoch"
-                  size="sm"
-                  icon={<MdInfoOutline />}
+                <InfoIconWithTooltip
+                  tooltipText={t("appPage.info-epoch-tooltip")}
                 />
               </Flex>
             </>
@@ -239,11 +227,8 @@ const InfoBoxesSection = () => {
           </MLink>
           <Flex>
             <MHeading type="heading-2xsm">{weekAPY}%</MHeading>
-            <IconButton
-              variant="link"
-              aria-label="Info epoch"
-              size="sm"
-              icon={<MdInfoOutline />}
+            <InfoIconWithTooltip
+              tooltipText={t("appPage.info-week-apy-tooltip")}
             />
           </Flex>
         </Flex>
@@ -255,11 +240,8 @@ const InfoBoxesSection = () => {
             <MHeading type="heading-2xsm">
               {validators.toLocaleString()}
             </MHeading>
-            <IconButton
-              variant="link"
-              aria-label="Info epoch"
-              size="sm"
-              icon={<MdInfoOutline />}
+            <InfoIconWithTooltip
+              tooltipText={t("appPage.info-validators-tooltip")}
             />
           </Flex>
         </Flex>
