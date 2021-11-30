@@ -1,6 +1,7 @@
 import { Flex } from "@chakra-ui/react";
 
 import AllPoolsSection from "../AllPoolsSection";
+import DefiSubtitleSection from "../DefiSubtitleSection";
 import InfoBoxesSection from "../InfoBoxesSection";
 import colors from "styles/customTheme/colors";
 
@@ -17,6 +18,7 @@ const DefiSection = () => {
       alignItems="stretch"
     >
       <InfoBoxesSection />
+      <DefiSubtitleSection />
       <AllPoolsSection />
     </Flex>
   );
