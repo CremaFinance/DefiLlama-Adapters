@@ -1,7 +1,8 @@
-/* eslint-disable sonarjs/cognitive-complexity */
 import { Prices } from "services/domain/coinSymbols";
 import { coinTokens } from "services/domain/coinTokens";
 import { Pool } from "services/domain/pool";
+
+import { updatePoolRewards } from "./update-pool-rewards";
 
 export const updatePool = (
   poolToUpdate: Pool,
@@ -26,17 +27,6 @@ export const updatePool = (
     pool.totalLockedValue = Number.isNaN(liq) ? undefined : liq;
     pool.tradingApy = Number(apy) * 100;
     pool.apy = pool.tradingApy;
-
-    if (pool.rewards) {
-      Object.entries(pool.rewards).forEach((entry) => {
-        const [key, reward] = entry;
-        const price = prices[key]?.usd;
-        if (price && reward && pool.liq) {
-          reward.apy = ((reward.dailyRate * price * 365) / pool.liq) * 100;
-          pool.apy = pool.apy ? (pool.apy += reward.apy) : undefined;
-        }
-      });
-    }
   }
-  return pool;
+  return updatePoolRewards(pool, prices);
 };

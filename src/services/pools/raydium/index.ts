@@ -1,5 +1,5 @@
 import { getTokensList } from "../../../utils/tokens-list";
-import { updatePool } from "../../../utils/update-pool";
+import { updatePoolRewards } from "../../../utils/update-pool-rewards";
 import { Prices } from "../../domain/coinSymbols";
 import { MarketPools } from "../../domain/market";
 
@@ -27,15 +27,12 @@ export const mapRaydiumPoolsResponse = (
       );
 
       if (result) {
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        const { token_amount_pc, token_amount_lp, apy } = result;
-        pool = updatePool(
-          pool,
-          prices,
-          token_amount_pc.toString(),
-          token_amount_lp.toString(),
-          apy.toString()
-        );
+        const { liquidity, apy } = result;
+        pool.liq = Number.isNaN(liquidity) ? undefined : liquidity;
+        pool.totalLockedValue = Number.isNaN(liquidity) ? undefined : liquidity;
+        pool.tradingApy = Number(apy);
+        pool.apy = pool.tradingApy;
+        pool = updatePoolRewards(pool, prices);
       }
     }
     return { [poolkey]: pool };
