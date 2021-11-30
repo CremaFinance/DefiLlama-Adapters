@@ -15,7 +15,9 @@ import { FC, ReactNode, useCallback, useMemo } from "react";
 import { DEFAULT_ENDPOINT } from "../utils/web3/endpoints";
 
 import { AccountsContextProvider } from "./AccountsContext";
+import { AnchorProvider } from "./AnchorContext";
 import { ConnectionProvider } from "./ConnectionProvider";
+import { MaridropProvider } from "./MaridropContext";
 
 export const WalletConnectionProvider: FC<{ children: ReactNode }> = ({
   children,
@@ -55,7 +57,11 @@ export const WalletConnectionProvider: FC<{ children: ReactNode }> = ({
   return (
     <AccountsContextProvider>
       <WalletProvider wallets={wallets} autoConnect onError={onError}>
-        <ConnectionProvider>{children}</ConnectionProvider>
+        <ConnectionProvider>
+          <AnchorProvider>
+            <MaridropProvider>{children}</MaridropProvider>
+          </AnchorProvider>
+        </ConnectionProvider>
       </WalletProvider>
     </AccountsContextProvider>
   );
