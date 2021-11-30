@@ -1,16 +1,16 @@
 import { coinSymbols } from "../../domain/coinSymbols";
-import {
-  LiquidityPoolAddress,
-  liquidityPoolAddress,
-} from "../../domain/liquidityPoolAddress";
-import {
-  LiquidityPoolIds,
-  liquidityPoolIds,
-} from "../../domain/liquidityPoolIds";
-import { liquidityPoolTokens } from "../../domain/liquidityPoolTokens";
 import { marketTypes } from "../../domain/marketTypes";
 import { Pool } from "../../domain/pool";
 
+import {
+  LiquidityOrcaPoolAddress,
+  liquidityOrcaPoolAddress,
+} from "./liquidityOrcaPoolAddress";
+import {
+  LiquidityOrcaPoolIds,
+  liquidityOrcaPoolIds,
+} from "./liquidityOrcaPoolIds";
+import { liquidityPoolTokens } from "./liquidityOrcaPoolTokens";
 import { OrcaPool } from "./orcaPool";
 
 const provider = "Orca";
@@ -21,15 +21,16 @@ const actions = [
   { text: "Swap", url: "https://www.orca.so/pools" },
 ];
 
-export type OrcaPoolsResponse = Record<LiquidityPoolIds, OrcaPool>;
+export type OrcaPoolsResponse = Record<LiquidityOrcaPoolIds, OrcaPool>;
 
-export const orcaPools: Record<LiquidityPoolAddress, Pool> = {
-  [liquidityPoolAddress.ORCA_mSOL_SOL]: {
-    ...liquidityPoolTokens[liquidityPoolAddress.ORCA_mSOL_SOL],
+export const orcaPools: Record<LiquidityOrcaPoolAddress, Pool> = {
+  [liquidityOrcaPoolAddress.ORCA_mSOL_SOL]: {
+    ...liquidityPoolTokens[liquidityOrcaPoolAddress.ORCA_mSOL_SOL],
+
     ...{
       provider,
       marketType: marketTypes.LP,
-      providerId: liquidityPoolIds.ORCA_mSOL_SOL,
+      providerId: liquidityOrcaPoolIds.ORCA_mSOL_SOL,
       tokenA: coinSymbols.mSOL,
       tokenB: coinSymbols.SOL,
       rewards: {
@@ -42,12 +43,12 @@ export const orcaPools: Record<LiquidityPoolAddress, Pool> = {
       actions,
     },
   },
-  [liquidityPoolAddress.ORCA_BTC_mSOL]: {
-    ...liquidityPoolTokens[liquidityPoolAddress.ORCA_BTC_mSOL],
+  [liquidityOrcaPoolAddress.ORCA_BTC_mSOL]: {
+    ...liquidityPoolTokens[liquidityOrcaPoolAddress.ORCA_BTC_mSOL],
     ...{
       marketType: marketTypes.LP,
       provider,
-      providerId: liquidityPoolIds.ORCA_BTC_mSOL,
+      providerId: liquidityOrcaPoolIds.ORCA_BTC_mSOL,
       tokenA: coinSymbols.BTC,
       tokenB: coinSymbols.mSOL,
       rewards: {
@@ -60,12 +61,12 @@ export const orcaPools: Record<LiquidityPoolAddress, Pool> = {
       actions,
     },
   },
-  [liquidityPoolAddress.ORCA_MNDE_mSOL]: {
-    ...liquidityPoolTokens[liquidityPoolAddress.ORCA_MNDE_mSOL],
+  [liquidityOrcaPoolAddress.ORCA_MNDE_mSOL]: {
+    ...liquidityPoolTokens[liquidityOrcaPoolAddress.ORCA_MNDE_mSOL],
     ...{
       provider,
       marketType: marketTypes.LP,
-      providerId: liquidityPoolIds.ORCA_MNDE_mSOL,
+      providerId: liquidityOrcaPoolIds.ORCA_MNDE_mSOL,
       tokenA: coinSymbols.MNDE,
       tokenB: coinSymbols.mSOL,
       rewards: {
@@ -78,14 +79,15 @@ export const orcaPools: Record<LiquidityPoolAddress, Pool> = {
       actions,
     },
   },
-  [liquidityPoolAddress.ORCA_mSOL_USDT]: {
-    ...liquidityPoolTokens[liquidityPoolAddress.ORCA_mSOL_USDT],
+  [liquidityOrcaPoolAddress.ORCA_mSOL_USDT]: {
+    ...liquidityPoolTokens[liquidityOrcaPoolAddress.ORCA_mSOL_USDT],
     ...{
       provider,
       marketType: marketTypes.LP,
-      providerId: liquidityPoolIds.ORCA_mSOL_USDT,
+      providerId: liquidityOrcaPoolIds.ORCA_mSOL_USDT,
       tokenA: coinSymbols.mSOL,
       tokenB: coinSymbols.USDT,
+
       rewards: {
         [coinSymbols.ORCA]: {
           aprDescription: orcaReward,
@@ -96,12 +98,12 @@ export const orcaPools: Record<LiquidityPoolAddress, Pool> = {
       actions,
     },
   },
-  [liquidityPoolAddress.ORCA_mSOL_USDC]: {
-    ...liquidityPoolTokens[liquidityPoolAddress.ORCA_mSOL_USDC],
+  [liquidityOrcaPoolAddress.ORCA_mSOL_USDC]: {
+    ...liquidityPoolTokens[liquidityOrcaPoolAddress.ORCA_mSOL_USDC],
     ...{
       provider,
       marketType: marketTypes.LP,
-      providerId: liquidityPoolIds.ORCA_mSOL_USDC,
+      providerId: liquidityOrcaPoolIds.ORCA_mSOL_USDC,
       tokenA: coinSymbols.mSOL,
       tokenB: coinSymbols.USDC,
       rewards: {

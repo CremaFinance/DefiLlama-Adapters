@@ -1,4 +1,4 @@
-export const liquidityPoolIds = {
+export const liquidityOrcaPoolIds = {
   ORCA_mSOL_SOL: "mSOL/SOL[stable][aquafarm]",
   ORCA_BTC_mSOL: "BTC/mSOL[aquafarm]",
   ORCA_MNDE_mSOL: "MNDE/mSOL[aquafarm]",
@@ -6,5 +6,5 @@ export const liquidityPoolIds = {
   ORCA_mSOL_USDC: "mSOL/USDC[aquafarm]",
 } as const;
 
-export type LiquidityPoolIds =
-  typeof liquidityPoolIds[keyof typeof liquidityPoolIds];
+export type LiquidityOrcaPoolIds =
+  typeof liquidityOrcaPoolIds[keyof typeof liquidityOrcaPoolIds];

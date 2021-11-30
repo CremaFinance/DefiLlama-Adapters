@@ -1,11 +1,13 @@
-import {
-  liquidityPoolAddress,
-  LiquidityPoolAddress,
-} from "./liquidityPoolAddress";
-import { Token } from "./token";
+/* eslint-disable sonarjs/no-duplicate-string */
+import { Token } from "../../domain/token";
 
-export const liquidityPoolTokens: Record<LiquidityPoolAddress, Token> = {
-  [liquidityPoolAddress.ORCA_mSOL_SOL]: {
+import {
+  liquidityOrcaPoolAddress,
+  LiquidityOrcaPoolAddress,
+} from "./liquidityOrcaPoolAddress";
+
+export const liquidityPoolTokens: Record<LiquidityOrcaPoolAddress, Token> = {
+  [liquidityOrcaPoolAddress.ORCA_mSOL_SOL]: {
     chainId: 101,
     address: "9EQMEzJdE2LDAY1hw1RytpufdwAXzatYfQ3M2UuT9b88",
     symbol: "mSOL/SOL",
@@ -16,7 +18,7 @@ export const liquidityPoolTokens: Record<LiquidityPoolAddress, Token> = {
     tags: ["lp-token"],
     extensions: {},
   },
-  [liquidityPoolAddress.ORCA_BTC_mSOL]: {
+  [liquidityOrcaPoolAddress.ORCA_BTC_mSOL]: {
     chainId: 101,
     address: "8DRw5wQE1pyg6RB1UwypGNFgb2Pzp2hpyDDNwo76Lcc8",
     symbol: "BTC/mSOL",
@@ -30,7 +32,7 @@ export const liquidityPoolTokens: Record<LiquidityPoolAddress, Token> = {
       twitter: "https://twitter.com/orca_so",
     },
   },
-  [liquidityPoolAddress.ORCA_MNDE_mSOL]: {
+  [liquidityOrcaPoolAddress.ORCA_MNDE_mSOL]: {
     chainId: 101,
     address: "vjHagYsgZwG9icyFLHu2xWHWdtiS5gfeNzRhDcPt5xq",
     symbol: "MNDE/mSOL",
@@ -40,7 +42,7 @@ export const liquidityPoolTokens: Record<LiquidityPoolAddress, Token> = {
       "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/2FMpVEhvxiFxhfideFUMNxCoUZK3TfhezzajoHGTQKP2/logo.svg",
     tags: ["lp-token"],
   },
-  [liquidityPoolAddress.ORCA_mSOL_USDT]: {
+  [liquidityOrcaPoolAddress.ORCA_mSOL_USDT]: {
     chainId: 101,
     address: "Afofkb7JTc32rdpqiyc3RDmGF5s9N6W1ujcdYVfGZ5Je",
     symbol: "mSOL/USDT",
@@ -50,7 +52,7 @@ export const liquidityPoolTokens: Record<LiquidityPoolAddress, Token> = {
       "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/7iKG16aukdXXw43MowbfrGqXhAoYe51iVR9u2Nf2dCEY/logo.svg",
     tags: ["lp-token"],
   },
-  [liquidityPoolAddress.ORCA_mSOL_USDC]: {
+  [liquidityOrcaPoolAddress.ORCA_mSOL_USDC]: {
     chainId: 101,
     address: "Hme4Jnqhdz2jAPUMnS7jGE5zv6Y1ynqrUEhmUAWkXmzn",
     symbol: "mSOL/USDC[aquafarm]",

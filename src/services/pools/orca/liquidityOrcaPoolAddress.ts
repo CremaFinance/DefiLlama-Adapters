@@ -1,4 +1,4 @@
-export const liquidityPoolAddress = {
+export const liquidityOrcaPoolAddress = {
   ORCA_mSOL_SOL: "9EQMEzJdE2LDAY1hw1RytpufdwAXzatYfQ3M2UuT9b88",
   ORCA_BTC_mSOL: "8DRw5wQE1pyg6RB1UwypGNFgb2Pzp2hpyDDNwo76Lcc8",
   ORCA_MNDE_mSOL: "vjHagYsgZwG9icyFLHu2xWHWdtiS5gfeNzRhDcPt5xq",
@@ -6,5 +6,5 @@ export const liquidityPoolAddress = {
   ORCA_mSOL_USDC: "Hme4Jnqhdz2jAPUMnS7jGE5zv6Y1ynqrUEhmUAWkXmzn",
 } as const;
 
-export type LiquidityPoolAddress =
-  typeof liquidityPoolAddress[keyof typeof liquidityPoolAddress];
+export type LiquidityOrcaPoolAddress =
+  typeof liquidityOrcaPoolAddress[keyof typeof liquidityOrcaPoolAddress];
