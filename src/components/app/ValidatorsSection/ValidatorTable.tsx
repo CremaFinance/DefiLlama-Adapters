@@ -12,12 +12,12 @@ import {
   Image,
 } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
-// import Image from "next/image";
 import { useState, useEffect } from "react";
 import { MdOutlineContentCopy } from "react-icons/md";
 import { useQuery, UseQueryResult } from "react-query";
 
 import lamportsToSol from "utils/lamportsToSol";
+import { shortenAddress } from "utils/shorten-address";
 
 interface Query {
   totalPages: number;
@@ -45,13 +45,13 @@ interface Validator {
 }
 
 const cell = {
-  height: "40px",
+  height: { base: "20px", xl: "40px" },
   fontSize: "14.4px",
   borderBottom: "1px solid #edf2f7",
 };
 
 const highlightedCell = {
-  height: "40px",
+  height: { base: "20px", xl: "40px" },
   fontSize: "14.4px",
   color: "#308d8a",
   fontWeight: "700",
@@ -212,7 +212,13 @@ const ValidatorTable = () => {
       <Table variant="unstyled" overflow="scroll">
         <Thead>
           <Tr>
-            <Th {...cell} textAlign="left" position="relative" right="23px">
+            <Th
+              {...cell}
+              width={{ base: "100px", xl: "460px" }}
+              textAlign="left"
+              position="relative"
+              right="23px"
+            >
               {t("appPage.validators-table-account")}
             </Th>
             <Th {...cell} textAlign="left">
@@ -230,14 +236,21 @@ const ValidatorTable = () => {
           {data !== undefined &&
             data.data.map((tuple) => (
               <Tr key={tuple.pubkey.address}>
-                <Td
-                  {...highlightedCell}
-                  position="relative"
-                  right="10px"
-                  width="460px"
-                >
-                  <Flex alignItems="center">
+                <Td {...highlightedCell} width={{ base: "100px", xl: "460px" }}>
+                  <Flex
+                    alignItems="center"
+                    display={{ base: "none", xl: "flex" }}
+                  >
                     {tuple.pubkey.address}{" "}
+                    <Box ml="7px">
+                      <MdOutlineContentCopy fontSize="14px" color="#171923" />
+                    </Box>
+                  </Flex>
+                  <Flex
+                    alignItems="center"
+                    display={{ base: "flex", xl: "none" }}
+                  >
+                    {shortenAddress(tuple.pubkey.address)}
                     <Box ml="7px">
                       <MdOutlineContentCopy fontSize="14px" color="#171923" />
                     </Box>
@@ -264,7 +277,13 @@ const ValidatorTable = () => {
                     </Text>
                   </Flex>
                 </Td>
-                <Td {...cell} position="relative" left="25px" width="128px">
+                <Td
+                  {...cell}
+                  textAlign="right"
+                  position="relative"
+                  left="10px"
+                  width="128px"
+                >
                   {t("appPage.validators-table-delegated")}
                 </Td>
               </Tr>
