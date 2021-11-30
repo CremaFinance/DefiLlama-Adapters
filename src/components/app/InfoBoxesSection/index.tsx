@@ -1,6 +1,4 @@
-
 import { Flex, IconButton, Progress, Spinner, Tooltip } from "@chakra-ui/react";
-
 import { useTranslation } from "next-export-i18n";
 import { useState } from "react";
 import { MdInfoOutline } from "react-icons/md";
@@ -23,7 +21,6 @@ const InfoBoxesSection = () => {
   const [isWeekAPYTooltilOpen, setIsWeekAPYTooltipOpen] = useState(false);
   const [isValidatorsTooltipOpen, setIsValidatorsTooltipOpen] = useState(false);
   const epochData = useEpochInfo()?.data;
-
 
   // TODO: Use actual values from services
   const mSOLvsSOLParity = 1.24;
@@ -252,16 +249,24 @@ const InfoBoxesSection = () => {
                 <MHeading type="heading-2xsm">
                   {epochData.epochProgress.toFixed(1).replace(/[.,]0$/, "")}%
                 </MHeading>
-                <IconButton
-                  _focus={{ boxShadow: "none" }}
-                  onClick={() => setIsEpochTooltipOpen(true)}
-                  onMouseEnter={() => setIsEpochTooltipOpen(true)}
-                  onMouseLeave={() => setIsEpochTooltipOpen(false)}
-                  variant="link"
-                  aria-label="Info epoch"
-                  size="sm"
-                  icon={<MdInfoOutline />}
-                />
+                <Tooltip
+                  hasArrow
+                  isOpen={isEpochTooltiplOpen}
+                  label={t("appPage.info-epoch-tooltip")}
+                  bg={colors.marinadeEvenLighterGreen}
+                  color="black"
+                >
+                  <IconButton
+                    _focus={{ boxShadow: "none" }}
+                    onClick={() => setIsEpochTooltipOpen(true)}
+                    onMouseEnter={() => setIsEpochTooltipOpen(true)}
+                    onMouseLeave={() => setIsEpochTooltipOpen(false)}
+                    variant="link"
+                    aria-label="Info epoch"
+                    size="sm"
+                    icon={<MdInfoOutline />}
+                  />
+                </Tooltip>
               </Flex>
             </>
           ) : (
