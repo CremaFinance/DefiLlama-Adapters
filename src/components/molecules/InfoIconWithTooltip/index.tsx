@@ -2,7 +2,7 @@ import { IconButton, Tooltip } from "@chakra-ui/react";
 import { useState } from "react";
 import { MdInfoOutline } from "react-icons/md";
 
-import colors from "styles/customTheme/colors";
+import colors from "../../../styles/customTheme/colors";
 
 type InfoIconWithTooltipProps = {
   tooltipText: string;
