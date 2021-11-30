@@ -6,11 +6,12 @@ import { IoIosArrowForward } from "react-icons/io";
 import MText from "../../atoms/Text";
 
 import Menu from "./Menu";
+import MobileMenu from "./MobileMenu";
 import ValidatorTable from "./ValidatorTable";
 
 const ValidatorsSection = () => {
   const { t } = useTranslation();
-  // Most of this needs to be re-enabled
+
   const TRANSACTIONS = t("appPage.validators-menu-transactions");
   const STAKES = t("appPage.validators-menu-stakes");
   const PORTFOLIO = t("appPage.validators-menu-portfolio");
@@ -50,6 +51,11 @@ const ValidatorsSection = () => {
         {/* Menu Items Section */}
         <Flex direction="row" alignItems="center">
           <Menu
+            MENUS={MENU_ITEMS}
+            selectedMenu={selectedMenu}
+            setSelectedMenu={setSelectedMenu}
+          />
+          <MobileMenu
             MENUS={MENU_ITEMS}
             selectedMenu={selectedMenu}
             setSelectedMenu={setSelectedMenu}
