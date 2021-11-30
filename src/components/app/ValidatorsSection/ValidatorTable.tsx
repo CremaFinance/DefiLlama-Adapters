@@ -202,8 +202,14 @@ const ValidatorTable = () => {
   }
 
   return (
-    <Flex mt="40px" ml="30px" mr="30px" direction="column">
-      <Table variant="unstyled">
+    <Flex
+      mt="40px"
+      ml="30px"
+      mr="30px"
+      direction="column"
+      height={{ base: "90vh", xl: "800px" }}
+    >
+      <Table variant="unstyled" overflow="scroll">
         <Thead>
           <Tr>
             <Th {...cell} textAlign="left" position="relative" right="23px">

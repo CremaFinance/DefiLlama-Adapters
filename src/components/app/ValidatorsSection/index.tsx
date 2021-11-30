@@ -5,30 +5,40 @@ import { IoIosArrowForward } from "react-icons/io";
 
 import MText from "../../atoms/Text";
 
+import Menu from "./Menu";
 import ValidatorTable from "./ValidatorTable";
 
 const ValidatorsSection = () => {
   const { t } = useTranslation();
+  // Most of this needs to be re-enabled
   const TRANSACTIONS = t("appPage.validators-menu-transactions");
   const STAKES = t("appPage.validators-menu-stakes");
   const PORTFOLIO = t("appPage.validators-menu-portfolio");
   const SPL_TOKEN_TXS = t("appPage.validators-menu-spl-token-txs");
   const DEX_ORDERS = t("appPage.validators-menu-dex-orders");
-  const MENUS = [TRANSACTIONS, STAKES, PORTFOLIO, SPL_TOKEN_TXS, DEX_ORDERS];
+  const MENU_ITEMS = [
+    TRANSACTIONS,
+    STAKES,
+    PORTFOLIO,
+    SPL_TOKEN_TXS,
+    DEX_ORDERS,
+  ];
   const [selectedMenu, setSelectedMenu] = useState(STAKES);
 
   return (
     <Box
+      position="relative"
+      top="50px"
       display="flex"
       flexDirection="column"
-      w="1100px"
+      width={{ base: "85vw", xl: "1100px" }}
+      height="770px"
       bg="white"
       marginLeft="auto"
       marginRight="auto"
-      mt="100px"
-      mb="100px"
       border="1px solid #e2e8f0"
       borderRadius="8px"
+      overflow="scroll"
     >
       <Flex
         direction="row"
@@ -37,34 +47,13 @@ const ValidatorsSection = () => {
         justifyContent="space-between"
         alignItems="center"
       >
+        {/* Menu Items Section */}
         <Flex direction="row" alignItems="center">
-          {MENUS.map((menu) => (
-            <Box height="10px">
-              {menu === selectedMenu ? (
-                <Box
-                  cursor="pointer"
-                  px="16px"
-                  borderBottom="3px solid #308d8a"
-                  transition="ease-in"
-                  transitionDuration="0.1s"
-                >
-                  <MText fontSize="18px" fontWeight="bold" color="#308d8a">
-                    {menu}
-                  </MText>
-                </Box>
-              ) : (
-                <Box
-                  cursor="pointer"
-                  px="16px"
-                  onClick={() => setSelectedMenu(menu)}
-                >
-                  <MText fontSize="18px" color="#4A5568">
-                    {menu}
-                  </MText>
-                </Box>
-              )}
-            </Box>
-          ))}
+          <Menu
+            MENUS={MENU_ITEMS}
+            selectedMenu={selectedMenu}
+            setSelectedMenu={setSelectedMenu}
+          />
         </Flex>
 
         <Flex
