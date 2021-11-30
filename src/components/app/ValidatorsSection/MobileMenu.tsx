@@ -16,7 +16,7 @@ interface Props {
 
 const MobileMenu = ({ selectedMenu, setSelectedMenu, MENUS }: Props) => {
   return (
-    <Box display={{ base: "flex", xl: "None" }}>
+    <Box display={{ base: "flex", lg: "None" }}>
       <Menu>
         <MenuButton
           variant="unstyled"

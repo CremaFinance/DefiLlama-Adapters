@@ -13,7 +13,7 @@ const Menu = ({ selectedMenu, setSelectedMenu, MENUS }: Props) => {
   //   const { t } = useTranslation();
 
   return (
-    <Box display={{ base: "None", xl: "flex" }}>
+    <Box display={{ base: "None", lg: "flex" }}>
       {MENUS.map((menu) => (
         <Box height="10px">
           {menu === selectedMenu ? (
