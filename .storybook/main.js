@@ -16,8 +16,8 @@ module.exports = {
         alias: {
           ...config.resolve.alias,
           '@emotion/core': '@emotion/react',
-          'emotion-theming': '@emotion/react',
-        },
+          'emotion-theming': '@emotion/react'
+        }
       },
       node: {fs:'empty'}
     }
