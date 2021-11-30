@@ -207,9 +207,13 @@ const ValidatorTable = () => {
       ml="30px"
       mr="30px"
       direction="column"
-      height={{ base: "90vh", xl: "800px" }}
+      height={{ base: "90vh", xl: "500px" }}
     >
-      <Table variant="unstyled" overflow="scroll">
+      <Table
+        variant="unstyled"
+        overflow="scroll"
+        height={{ base: "80vh", xl: "800px" }}
+      >
         <Thead>
           <Tr>
             <Th
@@ -236,7 +240,13 @@ const ValidatorTable = () => {
           {data !== undefined &&
             data.data.map((tuple) => (
               <Tr key={tuple.pubkey.address}>
-                <Td {...highlightedCell} width={{ base: "100px", xl: "460px" }}>
+                <Td
+                  {...highlightedCell}
+                  width={{ base: "100px", xl: "460px" }}
+                  textAlign="left"
+                  position="relative"
+                  right="10px"
+                >
                   <Flex
                     alignItems="center"
                     display={{ base: "none", xl: "flex" }}
@@ -257,10 +267,15 @@ const ValidatorTable = () => {
                   </Flex>
                 </Td>
                 <Td {...cell} width="225px">
-                  {lamportsToSol(tuple.lamports)} SOL
+                  <Box display={{ base: "None", lg: "flex" }}>
+                    {lamportsToSol(tuple.lamports)} SOL
+                  </Box>
+                  <Box display={{ base: "flex", lg: "none" }}>
+                    {lamportsToSol(tuple.lamports, 2)} SOL
+                  </Box>
                 </Td>
                 <Td {...highlightedCell} width="225px">
-                  <Flex alignItems="center">
+                  <Flex alignItems="center" flexWrap="nowrap">
                     {tuple.data.stake.delegation.validatorInfo.image && (
                       <Image
                         src={tuple.data.stake.delegation.validatorInfo.image}
@@ -296,7 +311,7 @@ const ValidatorTable = () => {
         <Flex
           justifyContent="flex-end"
           marginRight="20px"
-          height="100px"
+          height="80px"
           alignItems="center"
         >
           {pages.map((page) => (

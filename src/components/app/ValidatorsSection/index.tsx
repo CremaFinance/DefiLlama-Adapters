@@ -33,7 +33,7 @@ const ValidatorsSection = () => {
       display="flex"
       flexDirection="column"
       width={{ base: "85vw", xl: "1100px" }}
-      height="770px"
+      height={{ base: "90vh", xl: "770px" }}
       bg="white"
       marginLeft="auto"
       marginRight="auto"
