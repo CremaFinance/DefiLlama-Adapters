@@ -30,8 +30,9 @@ const ValidatorsSection = () => {
     <Box
       display="flex"
       flexDirection="column"
-      width={{ base: "85vw", xl: "1100px" }}
+      width={{ base: "90vw", xl: "1100px" }}
       height={{ base: "90vh", xl: "770px" }}
+      maxHeight="770px"
       bg="white"
       marginLeft="auto"
       marginRight="auto"
@@ -90,14 +91,13 @@ const ValidatorsSection = () => {
             alignItems="center"
             justifyContent="space-between"
             width="100%"
-            marginLeft="10px"
-            marginBottom="10px"
+            marginLeft={{ base: "25px", sm: "10px" }}
           >
             <FormControl display="flex" alignItems="center">
-              <FormLabel htmlFor="basic-advanged-toggle" mb="0">
+              <FormLabel htmlFor="basic-advanged-toggle" fontSize="14px">
                 Basic
               </FormLabel>
-              <Switch id="basic-advanged-toggle" />
+              <Switch id="basic-advanged-toggle" mb="5px" />
             </FormControl>
           </Flex>
         </Flex>
