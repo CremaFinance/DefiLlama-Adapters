@@ -28,6 +28,7 @@ const MobileMenu = ({ selectedMenu, setSelectedMenu, MENUS }: Props) => {
           rightIcon={<BsChevronDown />}
           fontSize="16px"
           fontWeight="normal"
+          fontFamily="Maven Pro"
         >
           {selectedMenu}
         </MenuButton>
