@@ -319,11 +319,11 @@ const ValidatorTable = () => {
             <Box key={page}>
               {page === pageNumber ? (
                 <Box {...currentPageStyle}>
-                  <MText fontSize={{ base: "14px", lg: "16px" }}> {page}</MText>
+                  <MText> {page}</MText>
                 </Box>
               ) : (
                 <Box onClick={() => handlePagination(page)} {...pageStyle}>
-                  <MText fontSize={{ base: "14px", lg: "16px" }}>{page}</MText>
+                  <MText>{page}</MText>
                 </Box>
               )}
             </Box>

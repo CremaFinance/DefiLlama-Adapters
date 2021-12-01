@@ -1,4 +1,4 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, Switch, FormControl, FormLabel } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
@@ -63,19 +63,41 @@ const ValidatorsSection = () => {
         <Flex
           mr="15px"
           mt="10px"
-          border="1px solid #727f96"
+          border={{ base: "none", lg: "1px solid #727f96" }}
           borderRadius="5px"
           height="35px"
           width="90px"
           alignItems="center"
         >
-          <Flex alignItems="center" justifyContent="space-between" width="100%">
+          {/* Desktop button */}
+          <Flex
+            display={{ base: "none", lg: "flex" }}
+            alignItems="center"
+            justifyContent="space-between"
+            width="100%"
+          >
             <MText fontWeight="700" fontSize="14.4px" ml="10px">
               {t("appPage.validators-button-basic")}
             </MText>
             <Box transform="rotate(90deg)" mr="13px">
               <IoIosArrowForward fontSize="16px" />
             </Box>
+          </Flex>
+
+          {/* Mobile Button */}
+          <Flex
+            display={{ base: "flex", lg: "none" }}
+            alignItems="center"
+            justifyContent="space-between"
+            width="100%"
+            marginLeft="10px"
+          >
+            <FormControl display="flex" alignItems="center">
+              <FormLabel htmlFor="email-alerts" mb="0">
+                Basic
+              </FormLabel>
+              <Switch id="email-alerts" />
+            </FormControl>
           </Flex>
         </Flex>
       </Flex>
