@@ -207,12 +207,13 @@ const ValidatorTable = () => {
       ml="30px"
       mr="30px"
       direction="column"
-      height={{ base: "90vh", xl: "500px" }}
+      height={{ base: "80vh", xl: "500px" }}
     >
       <Table
         variant="unstyled"
         overflow="scroll"
-        height={{ base: "80vh", xl: "800px" }}
+        height={{ base: "65vh", xl: "800px" }}
+        minWidth="660px"
       >
         <Thead>
           <Tr>

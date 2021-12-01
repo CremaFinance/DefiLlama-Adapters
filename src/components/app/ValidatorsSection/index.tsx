@@ -28,8 +28,6 @@ const ValidatorsSection = () => {
 
   return (
     <Box
-      position="relative"
-      top="50px"
       display="flex"
       flexDirection="column"
       width={{ base: "85vw", xl: "1100px" }}
@@ -39,7 +37,7 @@ const ValidatorsSection = () => {
       marginRight="auto"
       border="1px solid #e2e8f0"
       borderRadius="8px"
-      overflow="scroll"
+      overflow="auto"
     >
       <Flex
         direction="row"
