@@ -91,6 +91,7 @@ const ValidatorsSection = () => {
             justifyContent="space-between"
             width="100%"
             marginLeft="10px"
+            marginBottom="10px"
           >
             <FormControl display="flex" alignItems="center">
               <FormLabel htmlFor="email-alerts" mb="0">
