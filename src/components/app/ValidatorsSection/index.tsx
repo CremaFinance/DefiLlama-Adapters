@@ -94,10 +94,10 @@ const ValidatorsSection = () => {
             marginBottom="10px"
           >
             <FormControl display="flex" alignItems="center">
-              <FormLabel htmlFor="email-alerts" mb="0">
+              <FormLabel htmlFor="basic-advanged-toggle" mb="0">
                 Basic
               </FormLabel>
-              <Switch id="email-alerts" />
+              <Switch id="basic-advanged-toggle" />
             </FormControl>
           </Flex>
         </Flex>
