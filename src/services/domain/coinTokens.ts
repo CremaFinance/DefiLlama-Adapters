@@ -169,4 +169,17 @@ export const coinTokens: Record<CoinSymbols, Token> = {
       coingeckoId: "ethereum",
     },
   },
+  [coinSymbols.LARIX]: {
+    chainId: 101,
+    address: "Lrxqnh6ZHKbGy3dcrCED43nsoLkM1LTzU2jRfWe8qUC",
+    symbol: "LARIX",
+    name: "Larix",
+    decimals: 9,
+    logoURI:
+      "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/Lrxqnh6ZHKbGy3dcrCED43nsoLkM1LTzU2jRfWe8qUC/logo.jpg",
+    tags: [],
+    extensions: {
+      coingeckoId: "larix",
+    },
+  },
 };

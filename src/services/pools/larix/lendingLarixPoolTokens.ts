@@ -1,0 +1,19 @@
+import { Token } from "../../domain/token";
+
+import {
+  lendingLarixPoolAddress,
+  LendingLarixPoolAddress,
+} from "./lendingLarixPoolAddress";
+
+export const lendingLarixPoolTokens: Record<LendingLarixPoolAddress, Token> = {
+  [lendingLarixPoolAddress.LARIX_mSOL]: {
+    chainId: 101,
+    address: "GoNeG1rhoZMuLqy6aUNfzyHjkCe9dwFuWTFwENPfU3q8",
+    symbol: "mSOL",
+    name: "Larix mSol",
+    decimals: 6,
+    logoURI:
+      "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/Lrxqnh6ZHKbGy3dcrCED43nsoLkM1LTzU2jRfWe8qUC/logo.jpg",
+    extensions: {},
+  },
+};
