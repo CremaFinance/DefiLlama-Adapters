@@ -8,6 +8,8 @@ import {
 } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
 
+import MText from "../../atoms/Text/index";
+
 interface Props {
   selectedMenu: string;
   setSelectedMenu: (menu: string) => void;
@@ -25,12 +27,17 @@ const MobileMenu = ({ selectedMenu, setSelectedMenu, MENUS }: Props) => {
           borderRadius="6px"
           width="200px"
           height="40px"
-          rightIcon={<BsChevronDown />}
+          rightIcon={
+            <Box position="relative" right="10px">
+              <BsChevronDown />
+            </Box>
+          }
           fontSize="16px"
           fontWeight="normal"
           fontFamily="Maven Pro"
+          display="flex"
         >
-          {selectedMenu}
+          <MText>{selectedMenu}</MText>
         </MenuButton>
         <MenuList>
           {MENUS.filter((menu) => menu !== selectedMenu).map((menu) => (
