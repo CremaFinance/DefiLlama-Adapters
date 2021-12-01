@@ -1,7 +1,8 @@
 import * as anchor from "@project-serum/anchor";
-import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import { Connection, LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
 import JSBI from "jsbi";
+
+import { findAssociatedTokenAddress } from "../../utils/web3/find-associated-token-address";
 
 // import JSON IDL (ts can import JSON files)
 // import { toastNotification } from "../../utils/notifications";
@@ -24,33 +25,6 @@ export function buildProgram(provider: anchor.Provider) {
     programId,
     provider
   );
-}
-
-/**
- * find the associated token address (canonical)
- * given the main user's address (wallet) and the Token Mint
- * @param walletAddress
- * @param tokenMintAddress
- * @returns AssocTokenAccount PublicKey
- */
-export async function findAssociatedTokenAddress(
-  walletAddress: PublicKey,
-  tokenMintAddress: PublicKey
-): Promise<PublicKey> {
-  const SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID = new PublicKey(
-    "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
-  );
-
-  const [address] = await PublicKey.findProgramAddress(
-    [
-      walletAddress.toBuffer(),
-      TOKEN_PROGRAM_ID.toBuffer(),
-      tokenMintAddress.toBuffer(),
-    ],
-    SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID
-  );
-
-  return address;
 }
 
 //---------------------
