@@ -1,6 +1,5 @@
 import {
   Flex,
-  Text,
   Table,
   Thead,
   Tbody,
@@ -16,6 +15,7 @@ import { useState, useEffect } from "react";
 import { MdOutlineContentCopy } from "react-icons/md";
 import { useQuery, UseQueryResult } from "react-query";
 
+import MText from "../../atoms/Text";
 import lamportsToSol from "utils/lamportsToSol";
 import { shortenAddress } from "utils/shorten-address";
 
@@ -252,7 +252,7 @@ const ValidatorTable = () => {
                     alignItems="center"
                     display={{ base: "none", xl: "flex" }}
                   >
-                    {tuple.pubkey.address}{" "}
+                    <MText>{tuple.pubkey.address} </MText>
                     <Box ml="7px">
                       <MdOutlineContentCopy fontSize="14px" color="#171923" />
                     </Box>
@@ -285,12 +285,12 @@ const ValidatorTable = () => {
                       />
                     )}
 
-                    <Text pl="4px">
+                    <MText pl="4px">
                       {formatValidatorName(
                         tuple.data.stake.delegation.validatorInfo.name ||
                           tuple.data.stake.delegation.voter_pubkey.address
                       )}
-                    </Text>
+                    </MText>
                   </Flex>
                 </Td>
                 <Td
@@ -318,10 +318,12 @@ const ValidatorTable = () => {
           {pages.map((page) => (
             <Box key={page}>
               {page === pageNumber ? (
-                <Box {...currentPageStyle}>{page}</Box>
+                <Box {...currentPageStyle}>
+                  <MText fontSize={{ base: "14px", lg: "16px" }}> {page}</MText>
+                </Box>
               ) : (
                 <Box onClick={() => handlePagination(page)} {...pageStyle}>
-                  {page}
+                  <MText fontSize={{ base: "14px", lg: "16px" }}>{page}</MText>
                 </Box>
               )}
             </Box>
