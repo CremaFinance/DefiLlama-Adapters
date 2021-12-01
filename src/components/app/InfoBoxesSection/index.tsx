@@ -58,7 +58,7 @@ const InfoBoxesSection = () => {
           mx={2}
         >
           <MText type="text-md">{t("appPage.info-msol-sol-price")}</MText>
-          <MHeading type="heading-xsm">{mSOLvsSOLParity} SOL</MHeading>
+          <MHeading type="heading-2xsm">{mSOLvsSOLParity} SOL</MHeading>
           <MText type="text-md" pb={2}>
             ≈ ${((data?.sol?.usd ?? 0) * mSOLvsSOLParity).toFixed(2)}
           </MText>
@@ -78,7 +78,7 @@ const InfoBoxesSection = () => {
             mx={2}
           >
             <MText type="text-md">{t("appPage.info-total-sol-staked")}</MText>
-            <MHeading type="heading-xsm">
+            <MHeading type="heading-2xsm">
               {totalSOLStaked.toLocaleString()}
             </MHeading>
             <MText type="text-md" pb={2}>
@@ -113,7 +113,7 @@ const InfoBoxesSection = () => {
           {epochData ? (
             <>
               <Flex alignItems="center" justifyContent="space-between">
-                <MHeading type="heading-xsm">
+                <MHeading type="heading-2xsm">
                   {epochData.epochProgress.toFixed(1).replace(/[.,]0$/, "")}%
                 </MHeading>
                 <Progress
@@ -157,7 +157,7 @@ const InfoBoxesSection = () => {
               tooltipText={t("appPage.info-week-apy-tooltip")}
             />
           </Flex>
-          <MHeading type="heading-xsm">{weekAPY}%</MHeading>
+          <MHeading type="heading-2xsm">{weekAPY}%</MHeading>
           <MLink font="text-lg" color={colors.marinadeGreen} pb={2}>
             {t("appPage.info-see-performance-action")}
           </MLink>
@@ -182,7 +182,7 @@ const InfoBoxesSection = () => {
               tooltipText={t("appPage.info-validators-tooltip")}
             />
           </Flex>
-          <MHeading type="heading-xsm">{validators.toLocaleString()}</MHeading>
+          <MHeading type="heading-2xsm">{validators.toLocaleString()}</MHeading>
           <MLink font="text-lg" color={colors.marinadeGreen} pb={2}>
             {t("appPage.info-validators-action")}
           </MLink>

@@ -68,7 +68,7 @@ const MyApp = ({
                     </StatsProvider>
                   </MarinadeProvider>
                 </AnchorProvider>
-              </ConnectionProvider>{" "}
+              </ConnectionProvider>
             </BrowserWalletConnectionProvider>
           </AccountsContextProvider>
         </QueryClientProvider>
