@@ -2673,10 +2673,10 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.10.2.tgz#0798c03351f0dea1a5a4cabddf26a55a7cbee590"
   integrity sha512-IXf3XA7+XyN7CP9gGh/XB0UxVMlvARGEgGXLubFICsUMGz6Q+DU+i4gGlpOxTjKvXjkJDJC8YdqdKkDj9qZHEQ==
 
-"@project-serum/anchor@^0.9.0":
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/@project-serum/anchor/-/anchor-0.9.0.tgz#c3ec42566a8adb6d279a4909d3342a5d23ee9cbe"
-  integrity sha512-pnjkwJ51Id7XPRkVM/JfzXuN4B/OX6kbt5jY1nmHDhxAur+S3TIjCvWa+IPVSUIgMyVck/ccMLwCdj0wXPAviQ==
+"@project-serum/anchor@^0.17.0":
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/@project-serum/anchor/-/anchor-0.17.0.tgz#99a2cc59cae2939c1db1197950b7b606319ea7a8"
+  integrity sha512-vctZHZD5rUP1WXUUaJFdKl+1u0dE+O2+jejmYcb0InAZiwXdGAW8mX47U902voT94PdCr0aNHuyOQ8I75nfinw==
   dependencies:
     "@project-serum/borsh" "^0.2.2"
     "@solana/web3.js" "^1.17.0"
@@ -2842,6 +2842,13 @@
   integrity sha512-MVdgAKKL39tEs0l8je0hKaXLQFb7Rdfb0Xg2LjFZd8Lfdazkg6xiS98uAZrEKvaoF3i4M95ei9RydkGIDMeo3w==
   dependencies:
     buffer "~6.0.3"
+
+"@solana/spl-token-registry@^0.2.566":
+  version "0.2.566"
+  resolved "https://registry.yarnpkg.com/@solana/spl-token-registry/-/spl-token-registry-0.2.566.tgz#2d355b4d45f12a42d09031370cd0e5e98d7ecbba"
+  integrity sha512-2rJJaA1A0pCP177UViliNhBq3y9MvO+SguMV4z4161ytEmIVu5kp9F+38bHixdU3PAHi78WZATxijwn4MtjLLw==
+  dependencies:
+    cross-fetch "3.0.6"
 
 "@solana/spl-token@^0.1.8":
   version "0.1.8"
@@ -6654,6 +6661,13 @@ create-require@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/create-require/-/create-require-1.1.1.tgz#c1d7e8f1e5f6cfc9ff65f9cd352d37348756c333"
   integrity sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==
+
+cross-fetch@3.0.6:
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.0.6.tgz#3a4040bc8941e653e0e9cf17f29ebcd177d3365c"
+  integrity sha512-KBPUbqgFjzWlVcURG+Svp9TlhA5uliYtiNx/0r8nv0pdypeQCRJ9IaSIc3q/x3q8t3F75cHuwxVql1HFGHCNJQ==
+  dependencies:
+    node-fetch "2.6.1"
 
 cross-fetch@^3.0.4, cross-fetch@^3.1.4:
   version "3.1.4"
