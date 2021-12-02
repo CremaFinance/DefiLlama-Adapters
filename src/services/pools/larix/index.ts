@@ -1,7 +1,7 @@
 /* eslint-disable sonarjs/cognitive-complexity */
 /* eslint-disable @typescript-eslint/naming-convention */
+import { updatePoolRewards } from "../../../utils/update-pool-rewards";
 import { Prices } from "services/domain/coinSymbols";
-import { coinTokens } from "services/domain/coinTokens";
 import { MarketPools } from "services/domain/market";
 import { getTokensList } from "utils/tokens-list";
 
@@ -21,39 +21,21 @@ export const mapLarixResponse = (
   prices: Prices
 ) => {
   const poolsArray = Object.entries(larixPools).map(([poolkey, incoming]) => {
-    const pool = incoming;
+    let pool = incoming;
     if (pool.providerId) {
       const result = larixResults.detail.find(
         (larixResult) => larixResult.mint_id === pool.providerId
       );
 
-      // todo refactor this if more pools from larix are added (should call reserve fetch here)
       if (result) {
-        const { available_value } = result;
-        const { borrow_apy } = result;
-        const tokenA =
-          Number(available_value) /
-          (1 * 10) ** coinTokens[pool.tokenA].decimals;
-        const tokenAprice = prices[pool.tokenA]?.usd;
+        const { available_value, supply_apy, supply_distribution_apy } = result;
 
-        if (tokenAprice) {
-          pool.liq = tokenA * tokenAprice;
-          pool.totalLockedValue = tokenA * tokenAprice;
-          pool.tradingApy = Number(borrow_apy);
-          pool.apy = Number(pool.tradingApy);
-
-          if (pool.rewards) {
-            Object.entries(pool.rewards).forEach((entry) => {
-              const [key, reward] = entry;
-              const price = prices[key]?.usd;
-              if (price && reward && pool.liq) {
-                reward.apy =
-                  ((reward.dailyRate * price * 365) / pool.liq) * 100;
-                pool.apy = pool.apy ? (pool.apy += reward.apy) : undefined;
-              }
-            });
-          }
-        }
+        pool.liq = Number(available_value);
+        pool.totalLockedValue = Number(available_value);
+        pool.tradingApy =
+          Number(supply_apy) * 100 + Number(supply_distribution_apy) * 100;
+        pool.apy = pool.tradingApy;
+        pool = updatePoolRewards(pool, prices);
       }
     }
     return { [poolkey]: pool };
