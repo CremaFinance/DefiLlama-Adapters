@@ -1,7 +1,7 @@
 import { Box, Flex, Switch, FormControl, FormLabel } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { useState } from "react";
-import { IoIosArrowForward } from "react-icons/io";
+import { BsChevronDown } from "react-icons/bs";
 
 import MText from "../../atoms/Text";
 
@@ -77,12 +77,14 @@ const ValidatorsSection = () => {
             justifyContent="space-between"
             width="100%"
           >
-            <MText fontWeight="700" fontSize="14.4px" ml="10px">
-              {t("appPage.validators-button-basic")}
-            </MText>
-            <Box transform="rotate(90deg)" mr="13px">
-              <IoIosArrowForward fontSize="16px" />
-            </Box>
+            <FormControl display="flex" alignItems="center">
+              <FormLabel htmlFor="basic-advanged-toggle" fontSize="14px">
+                <MText fontWeight="700" fontSize="14.4px" ml="10px" mt="8px">
+                  {t("appPage.validators-button-basic")}
+                </MText>
+              </FormLabel>
+              <BsChevronDown />
+            </FormControl>
           </Flex>
 
           {/* Mobile Button */}
@@ -95,7 +97,7 @@ const ValidatorsSection = () => {
           >
             <FormControl display="flex" alignItems="center">
               <FormLabel htmlFor="basic-advanged-toggle" fontSize="14px">
-                Basic
+                {t("appPage.validators-button-basic")}
               </FormLabel>
               <Switch id="basic-advanged-toggle" mb="5px" />
             </FormControl>
