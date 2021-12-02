@@ -10,6 +10,8 @@ export const coinSymbols: { [key: string]: string } = {
   BTC: "btc",
   USDC: "usdc",
   PORT: "port",
+  RAYDIUM: "ray",
+  ETH: "eth",
 } as const;
 
 export type CoinSymbols = typeof coinSymbols[keyof typeof coinSymbols];

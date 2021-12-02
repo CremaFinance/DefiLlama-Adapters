@@ -1,13 +1,13 @@
 import { coinSymbols } from "../../domain/coinSymbols";
-import {
-  lendingPoolAddress,
-  LendingPoolAddress,
-} from "../../domain/lendingPoolAddress";
-import { lendingPoolIds, LendingPoolIds } from "../../domain/lendingPoolIds";
-import { lendingPoolTokens } from "../../domain/lendingPoolTokens";
 import { marketTypes } from "../../domain/marketTypes";
 import { Pool } from "../../domain/pool";
 
+import {
+  lendingPortPoolAddress,
+  LendingPortPoolAddress,
+} from "./lendingPortPoolAddress";
+import { lendingPortPoolIds, LendingPortPoolIds } from "./lendingPortPoolIds";
+import { lendingPortPoolTokens } from "./lendingPortPoolTokens";
 import { PortPool } from "./portPool";
 
 const provider = "Port";
@@ -16,19 +16,19 @@ const actions = [
   { text: "Borrow", url: "https://mainnet.port.finance/#/borrow" },
 ];
 
-export type PortPoolsResponse = Record<LendingPoolIds, PortPool>;
+export type PortPoolsResponse = Record<LendingPortPoolIds, PortPool>;
 
-export const portPools: Record<LendingPoolAddress, Pool> = {
-  [lendingPoolAddress.PORT_mSOL]: {
-    ...lendingPoolTokens[lendingPoolAddress.PORT_mSOL],
+export const portPools: Record<LendingPortPoolAddress, Pool> = {
+  [lendingPortPoolAddress.PORT_mSOL]: {
+    ...lendingPortPoolTokens[lendingPortPoolAddress.PORT_mSOL],
     ...{
       provider,
       marketType: marketTypes.Lending,
-      providerId: lendingPoolIds.PORT_mSOL,
+      providerId: lendingPortPoolIds.PORT_mSOL,
       tokenA: coinSymbols.mSOL,
       rewards: {
-        [coinSymbols.MNDE]: { dailyRate: 13736 },
-        [coinSymbols.PORT]: { dailyRate: 1000 },
+        [coinSymbols.MNDE]: { aprDescription: "Emission", dailyRate: 13736 },
+        [coinSymbols.PORT]: { aprDescription: "Double Dip", dailyRate: 1000 },
       },
       actions,
     },

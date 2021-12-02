@@ -16,7 +16,7 @@ import { MdOutlineContentCopy } from "react-icons/md";
 import { useQuery, UseQueryResult } from "react-query";
 
 import MText from "../../atoms/Text";
-import lamportsToSol from "utils/lamportsToSol";
+import lamportsToSol from "utils/lamports-to-sol";
 import { shortenAddress } from "utils/shorten-address";
 
 interface Query {

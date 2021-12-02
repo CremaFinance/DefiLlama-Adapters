@@ -17,6 +17,7 @@ export const ENDPOINTS = [
         "8szGkuLTAux9XMgZ2vtY39jVSowEcpBfFfD8hXSEqdGC"
       ),
     },
+    slotTimeAvg1h: 378,
   },
   {
     name: "mainnet-beta" as ENV,
@@ -32,6 +33,7 @@ export const ENDPOINTS = [
         "8szGkuLTAux9XMgZ2vtY39jVSowEcpBfFfD8hXSEqdGC"
       ),
     },
+    slotTimeAvg1h: 521,
   },
   {
     name: "testnet" as ENV,
@@ -47,6 +49,7 @@ export const ENDPOINTS = [
         "8szGkuLTAux9XMgZ2vtY39jVSowEcpBfFfD8hXSEqdGC"
       ),
     },
+    slotTimeAvg1h: 536,
   },
   {
     name: "localnet" as ENV,
@@ -61,10 +64,11 @@ export const ENDPOINTS = [
         "8szGkuLTAux9XMgZ2vtY39jVSowEcpBfFfD8hXSEqdGC"
       ),
     },
+    slotTimeAvg1h: 378,
   },
 ];
 
 // TODO get from env var on build?
 // TODO change to 1=mainnet for production
 /// 0=devnet, 1=mainnet, 2=testnet
-export const DEFAULT_ENDPOINT = ENDPOINTS[0];
+export const DEFAULT_ENDPOINT = ENDPOINTS[1];

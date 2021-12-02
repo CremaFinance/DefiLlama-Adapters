@@ -1,8 +1,12 @@
-import { lendingPoolAddress, LendingPoolAddress } from "./lendingPoolAddress";
-import { Token } from "./token";
+import { Token } from "../../domain/token";
 
-export const lendingPoolTokens: Record<LendingPoolAddress, Token> = {
-  [lendingPoolAddress.PORT_mSOL]: {
+import {
+  lendingPortPoolAddress,
+  LendingPortPoolAddress,
+} from "./lendingPortPoolAddress";
+
+export const lendingPortPoolTokens: Record<LendingPortPoolAddress, Token> = {
+  [lendingPortPoolAddress.PORT_mSOL]: {
     chainId: 101,
     address: "GoNeG1rhoZMuLqy6aUNfzyHjkCe9dwFuWTFwENPfU3q8",
     symbol: "mSOL",

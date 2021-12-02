@@ -143,4 +143,30 @@ export const coinTokens: Record<CoinSymbols, Token> = {
       coingeckoId: "port-finance",
     },
   },
+  [coinSymbols.RAYDIUM]: {
+    chainId: 101,
+    address: "4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R",
+    symbol: "RAY",
+    name: "Raydium",
+    decimals: 9,
+    logoURI:
+      "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R/logo.png",
+    tags: [],
+    extensions: {
+      coingeckoId: "raydium",
+    },
+  },
+  [coinSymbols.ETH]: {
+    chainId: 101,
+    address: "2FPyTwcZLUg1MDrwsyoP4D6s1tM7hAkHYRjkNb5w6Pxk",
+    symbol: "ETH",
+    name: "Wrapped Ethereum",
+    decimals: 9,
+    logoURI:
+      "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/2FPyTwcZLUg1MDrwsyoP4D6s1tM7hAkHYRjkNb5w6Pxk/logo.png",
+    tags: [],
+    extensions: {
+      coingeckoId: "ethereum",
+    },
+  },
 };
