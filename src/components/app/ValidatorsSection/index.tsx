@@ -50,6 +50,28 @@ const ValidatorsSection = () => {
       border="1px solid #e2e8f0"
       borderRadius="8px"
       overflow="auto"
+      css={{
+        "&::-webkit-scrollbar": {
+          width: "4px",
+        },
+        "&::-webkit-scrollbar-track": {
+          width: "6px",
+        },
+        "&::-webkit-scrollbar-thumb": {
+          background: "#CCCCCC",
+          borderRadius: "24px",
+        },
+        "&::-webkit-scrollbar:horizontal": {
+          height: "4px",
+        },
+        "&::-webkit-scrollbar-track::horizontal": {
+          height: "6px",
+        },
+        "&::-webkit-scrollbar-thumb::horizontal": {
+          background: "#CCCCCC",
+          borderRadius: "24px",
+        },
+      }}
     >
       <Flex
         direction="row"
