@@ -1,11 +1,22 @@
-import { Box, Flex, Switch, FormControl, FormLabel } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Switch,
+  FormControl,
+  FormLabel,
+  Menu,
+  MenuList,
+  MenuButton,
+  MenuItem,
+  Button,
+} from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
 
 import MText from "../../atoms/Text";
 
-import Menu from "./Menu";
+import DesktopMenu from "./Menu";
 import MobileMenu from "./MobileMenu";
 import ValidatorTable from "./ValidatorTable";
 
@@ -49,7 +60,7 @@ const ValidatorsSection = () => {
       >
         {/* Menu Items Section */}
         <Flex direction="row" alignItems="center">
-          <Menu
+          <DesktopMenu
             MENUS={MENU_ITEMS}
             selectedMenu={selectedMenu}
             setSelectedMenu={setSelectedMenu}
@@ -64,8 +75,6 @@ const ValidatorsSection = () => {
         <Flex
           mr="15px"
           mt="10px"
-          border={{ base: "none", lg: "1px solid #727f96" }}
-          borderRadius="5px"
           height="35px"
           width="90px"
           alignItems="center"
@@ -77,14 +86,31 @@ const ValidatorsSection = () => {
             justifyContent="space-between"
             width="100%"
           >
-            <FormControl display="flex" alignItems="center">
-              <FormLabel htmlFor="basic-advanged-toggle" fontSize="14px">
-                <MText fontWeight="700" fontSize="14.4px" ml="10px" mt="8px">
-                  {t("appPage.validators-button-basic")}
-                </MText>
-              </FormLabel>
-              <BsChevronDown />
-            </FormControl>
+            <Menu>
+              <MenuButton
+                variant="unstyled"
+                as={Button}
+                width="200px"
+                height="40px"
+                border="1px solid #727f96"
+                borderRadius="5px"
+                rightIcon={
+                  <Box position="relative" right="10px">
+                    <BsChevronDown />
+                  </Box>
+                }
+                fontSize="16px"
+                fontWeight="normal"
+                fontFamily="Maven Pro"
+                display="flex"
+              >
+                <MText> {t("appPage.validators-button-basic")}</MText>
+              </MenuButton>
+              <MenuList>
+                <MenuItem>{t("Basic")}</MenuItem>
+                <MenuItem>{t("Advanced")}</MenuItem>
+              </MenuList>
+            </Menu>
           </Flex>
 
           {/* Mobile Button */}
