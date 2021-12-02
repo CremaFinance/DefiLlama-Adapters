@@ -91,7 +91,6 @@ export default function InfoSection() {
             <MHeading mb={6} fontWeight="bold" type="heading-md">
               <MHeading
                 as="span"
-                display="inline-block"
                 type="heading-md"
                 color={colors.marinadeGreen}
               >
@@ -174,10 +173,9 @@ export default function InfoSection() {
             zIndex={4}
             ml={{ base: 4, lg: "40vw", "2xl": "24vw" }}
           >
-            <MHeading mb={4} fontWeight="bold" type="heading-md">
+            <MHeading mb={6} fontWeight="bold" type="heading-md">
               <MHeading
                 as="span"
-                display="inline-block"
                 type="heading-md"
                 color={colors.marinadeGreen}
               >

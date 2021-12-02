@@ -34,7 +34,7 @@ const Footer = () => {
               width={200}
             />
           </NextLink>
-          <MText py={6} type="text-xl" color={colors.white800} maxWidth="360">
+          <MText py={6} type="text-xl" color={colors.white800}>
             {t("indexPage.footer-description")}
           </MText>
           <Box display="flex" flexDirection="row">
