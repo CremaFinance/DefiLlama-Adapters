@@ -1,3 +1,4 @@
+import { LendingLarixPoolAddress } from "../pools/larix/lendingLarixPoolAddress";
 import { LiquidityOrcaPoolAddress } from "../pools/orca/liquidityOrcaPoolAddress";
 import { LendingPortPoolAddress } from "../pools/port/lendingPortPoolAddress";
 import { LiquidityRaydiumPoolAddress } from "../pools/raydium/liquidityRaydiumPoolAddress";
@@ -5,7 +6,7 @@ import { LiquidityRaydiumPoolAddress } from "../pools/raydium/liquidityRaydiumPo
 import { Pool } from "./pool";
 
 type LPTokens = LiquidityOrcaPoolAddress | LiquidityRaydiumPoolAddress; // | RadiomTokens etc
-type LendingTokens = LendingPortPoolAddress;
+type LendingTokens = LendingPortPoolAddress | LendingLarixPoolAddress;
 
 export type MarketTokens = LPTokens | LendingTokens;
 
