@@ -1,5 +1,4 @@
 import { Box } from "@chakra-ui/react";
-// import { useTranslation } from "next-export-i18n";
 
 import MText from "../../atoms/Text";
 
@@ -10,8 +9,6 @@ interface Props {
 }
 
 const Menu = ({ selectedMenu, setSelectedMenu, MENUS }: Props) => {
-  //   const { t } = useTranslation();
-
   return (
     <Box display={{ base: "None", lg: "flex" }}>
       {MENUS.map((menu) => (
