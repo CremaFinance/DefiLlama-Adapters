@@ -220,13 +220,13 @@
     "info-validators": "Validators",
     "info-validators-action": "Show validators",
     "info-epoch-tooltip": "Epochs have variable length on the Solana blockchain. They are tied to the number of slots produced by the blockchain. You can find the related technical documentation here. Staking rewards are distributed at the end of each epoch.",
-    "info-week-apy-tooltip":"This APY is based on the average APY of the last 7 days. See our stats for more details.",
+    "info-week-apy-tooltip": "This APY is based on the average APY of the last 7 days. See our stats for more details.",
     "info-validators-tooltip": "Stake is only delegated to validators that are not part of the security group to secure the network and help with its decentralization. Our algorithm evaluates all validators and selects the top-performers. Learn more on our delegation strategy page.",
     "footer-join-us": "Join us",
     "footer-learn-more": "Learn more",
 
     "stake-inputs-title": "Stake Solana",
-    "stake-inputs-subtitle": "Stake SOL and receive mSOL while staking",
+    "stake-inputs-subtitle": "Stake SOL and use mSOL while staked",
     "stake-inputs-balance": "Balance",
     "stake-inputs-exchange-rate": "Exchange rate",
     "stake-inputs-unstake-fee": "Unstake fee",
@@ -249,7 +249,7 @@
     "defi-subtitle": {
       "header": "Participate in DeFi",
       "body-desktop": "Now it’s your time to cook! mSOL has been integrated in many DeFi protocols where you’ll be able to explore additional yield while still earning your staking rewards. Please keep in mind that selling all your mSOL will also mean selling your rewards accumulated until this point.",
-      "body-mobile": " Selling all your mSOL will also mean selling your rewards accumulated until this point."
+      "body-mobile": "Use mSOL and explore additional yield while still earning your staking rewards"
     },
     "stake-inputs-time-to-unstake": "Time to unstake",
     "tickets-accounts": "Ticket accounts",
