@@ -11,6 +11,11 @@ import { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 
 import defaultSEOConfig from "../../next-seo.config";
+import { AccountsContextProvider } from "../contexts/AccountsContext";
+import { AnchorProvider } from "../contexts/AnchorContext";
+import { ConnectionProvider } from "../contexts/ConnectionProvider";
+import { MarinadeProvider } from "../contexts/MarinadeContext";
+import { StatsProvider } from "../contexts/StatsContext";
 import Layout from "components/layout";
 import createEmotionCache from "styles/createEmotionCache";
 import customTheme from "styles/customTheme";
@@ -43,20 +48,30 @@ const MyApp = ({
   return (
     <CacheProvider value={emotionCache}>
       <ChakraProvider theme={customTheme}>
-        <BrowserWalletConnectionProvider>
-          <Head>
-            <meta
-              name="viewport"
-              content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover"
-            />
-          </Head>
-          <DefaultSeo {...defaultSEOConfig} />
-          <QueryClientProvider client={queryClient}>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </QueryClientProvider>
-        </BrowserWalletConnectionProvider>
+        <Head>
+          <meta
+            name="viewport"
+            content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover"
+          />
+        </Head>
+        <DefaultSeo {...defaultSEOConfig} />
+        <QueryClientProvider client={queryClient}>
+          <AccountsContextProvider>
+            <BrowserWalletConnectionProvider>
+              <ConnectionProvider>
+                <AnchorProvider>
+                  <MarinadeProvider>
+                    <StatsProvider>
+                      <Layout>
+                        <Component {...pageProps} />
+                      </Layout>
+                    </StatsProvider>
+                  </MarinadeProvider>
+                </AnchorProvider>
+              </ConnectionProvider>
+            </BrowserWalletConnectionProvider>
+          </AccountsContextProvider>
+        </QueryClientProvider>
       </ChakraProvider>
     </CacheProvider>
   );
