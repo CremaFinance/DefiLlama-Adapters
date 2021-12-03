@@ -182,4 +182,17 @@ export const coinTokens: Record<CoinSymbols, Token> = {
       coingeckoId: "larix",
     },
   },
+  [coinSymbols.ATRIX]: {
+    chainId: 101,
+    address: "9JK1KNvGdWvZUX783nULvDZaZMVhdzohL2dKUUkjW2jZ",
+    symbol: "ATRIX",
+    name: "Atrix",
+    decimals: 9,
+    logoURI:
+      "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/FgX1WD9WzMU3yLwXaFSarPfkgzjLb2DZCqmkx9ExpuvJ/logo.png",
+    tags: [],
+    extensions: {
+      coingeckoId: "atrix",
+    },
+  },
 };
