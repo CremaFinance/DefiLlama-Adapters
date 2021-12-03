@@ -252,6 +252,11 @@
       "body-mobile": "Use mSOL and explore additional yield while still earning your staking rewards"
     },
     "stake-inputs-time-to-unstake": "Time to unstake",
+    "tooltip-time-to-unstake-text": "Unstaking will take 1 to 2 epochs. This time is an estimation; please refer to the docs to learn more.",
+    "tooltip-time-to-unstake-read-more": "See docs",    
+    "tooltip-time-to-unstake-docs-link": "https://docs.marinade.finance/marinade-protocol/system-overview#delayed-unstaked",
+
+
     "tickets-accounts": "Ticket accounts",
     "sol": "SOL",
     "claim-action": "Claim",
