@@ -45,18 +45,20 @@ interface Validator {
 }
 
 const cell = {
-  height: { base: "20px", xl: "40px" },
   fontSize: "14.4px",
   borderBottom: "1px solid #edf2f7",
+  py: { base: "1px", xl: "15px" },
+  height: { base: "40px", xl: "50px" },
 };
 
 const highlightedCell = {
-  height: { base: "20px", xl: "40px" },
+  height: { base: "40px", xl: "50px" },
   fontSize: "14.4px",
   color: "#308d8a",
   fontWeight: "700",
   borderBottom: "1px solid #edf2f7",
   px: "10px",
+  py: { base: "1px", xl: "15px" },
   _hover: {
     textDecoration: "underline",
     cursor: "pointer",
@@ -203,7 +205,7 @@ const ValidatorTable = () => {
 
   return (
     <Flex
-      mt="40px"
+      mt="20px"
       ml="30px"
       mr="30px"
       direction="column"
@@ -213,6 +215,7 @@ const ValidatorTable = () => {
         variant="unstyled"
         overflow="scroll"
         height={{ base: "65vh", xl: "800px" }}
+        maxHeight="570px"
         minWidth="660px"
       >
         <Thead>

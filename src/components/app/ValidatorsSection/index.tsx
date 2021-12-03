@@ -44,6 +44,7 @@ const ValidatorsSection = () => {
       width={{ base: "90vw", xl: "1100px" }}
       height={{ base: "90vh", xl: "770px" }}
       maxHeight="770px"
+      minWidth="360px"
       bg="white"
       marginLeft="auto"
       marginRight="auto"
@@ -76,6 +77,7 @@ const ValidatorsSection = () => {
       <Flex
         direction="row"
         mt="25px"
+        mb={{ base: "10px", xl: "none" }}
         mx="16px"
         justifyContent="space-between"
         alignItems="center"
@@ -153,7 +155,15 @@ const ValidatorsSection = () => {
         </Flex>
       </Flex>
 
-      <ValidatorTable />
+      <Box
+        display="flex"
+        flexDirection="column"
+        flex="1"
+        overflow="auto"
+        pt={{ base: "0px", xl: "none" }}
+      >
+        <ValidatorTable />
+      </Box>
     </Box>
   );
 };
