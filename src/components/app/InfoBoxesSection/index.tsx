@@ -14,6 +14,7 @@ import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
 import InfoIconWithTooltip from "components/molecules/InfoIconWithTooltip";
 import { coinSymbols } from "services/domain/coinSymbols";
+import { formatMDec } from "solana/marinade-anchor/common";
 import colors from "styles/customTheme/colors";
 import { millisecondsToDhms } from "utils/ms-to-dmhs";
 
@@ -82,7 +83,7 @@ const InfoBoxesSection = () => {
               {totalSOLStaked.toLocaleString()}
             </MHeading>
             <MText type="text-md" pb={2}>
-              ≈ ${((data?.sol?.usd ?? 0) * totalSOLStaked).toLocaleString()}
+              ≈ ${formatMDec((data?.sol?.usd ?? 0) * totalSOLStaked)}
             </MText>
           </Flex>
         ) : (
