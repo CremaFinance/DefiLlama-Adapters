@@ -11,5 +11,5 @@ test("coinGecko returns proper response", async () => {
   fetch.mockResponseOnce(JSON.stringify({ solana: { usd: 239.21 } }));
 
   const data = await fetchCoinGeckoPriceBySymbol(coinSymbols.SOL);
-  expect(data?.sol?.usd).toEqual(239.21);
+  expect(data.SOL?.usd).toEqual(239.21);
 });
