@@ -15,6 +15,7 @@ import { AccountsContextProvider } from "../contexts/AccountsContext";
 import { AnchorProvider } from "../contexts/AnchorContext";
 import { ConnectionProvider } from "../contexts/ConnectionProvider";
 import { MarinadeProvider } from "../contexts/MarinadeContext";
+import { QuarryProvider } from "../contexts/QuaryContext";
 import { StatsProvider } from "../contexts/StatsContext";
 import Layout from "components/layout";
 import createEmotionCache from "styles/createEmotionCache";
@@ -61,11 +62,13 @@ const MyApp = ({
               <ConnectionProvider>
                 <AnchorProvider>
                   <MarinadeProvider>
-                    <StatsProvider>
-                      <Layout>
-                        <Component {...pageProps} />
-                      </Layout>
-                    </StatsProvider>
+                    <QuarryProvider>
+                      <StatsProvider>
+                        <Layout>
+                          <Component {...pageProps} />
+                        </Layout>
+                      </StatsProvider>
+                    </QuarryProvider>
                   </MarinadeProvider>
                 </AnchorProvider>
               </ConnectionProvider>
