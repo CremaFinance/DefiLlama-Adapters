@@ -80,7 +80,7 @@ const InfoBoxesSection = () => {
           >
             <MText type="text-md">{t("appPage.info-total-sol-staked")}</MText>
             <MHeading type="heading-2xsm">
-              {totalSOLStaked.toLocaleString()}
+              {formatMDec(totalSOLStaked).toLocaleString()}
             </MHeading>
             <MText type="text-md" pb={2}>
               ≈ ${formatMDec((data?.sol?.usd ?? 0) * totalSOLStaked)}
