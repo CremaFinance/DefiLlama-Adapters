@@ -5,8 +5,7 @@ import {
   LiquidityAtrixPoolAddress,
 } from "./liquidityAtrixPoolAddress";
 
-const atrixUri =
-  "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/FgX1WD9WzMU3yLwXaFSarPfkgzjLb2DZCqmkx9ExpuvJ/logo.png";
+const atrixUri = "/pools/atrix.svg";
 
 export const liquidityPoolTokensAtrix: Record<
   LiquidityAtrixPoolAddress,

@@ -12,8 +12,7 @@ export const lendingLarixPoolTokens: Record<LendingLarixPoolAddress, Token> = {
     symbol: "mSOL",
     name: "Larix mSol",
     decimals: 6,
-    logoURI:
-      "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/Lrxqnh6ZHKbGy3dcrCED43nsoLkM1LTzU2jRfWe8qUC/logo.jpg",
+    logoURI: "/pools/larix.png",
     extensions: {},
   },
 };
