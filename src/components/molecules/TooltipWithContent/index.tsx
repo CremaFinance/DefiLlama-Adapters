@@ -35,7 +35,7 @@ const TooltipWithContent: FunctionComponent<TooltipWithContentpProps> = ({
       arrowShadowColor="transparent"
     >
       <PopoverTrigger>{children}</PopoverTrigger>
-      <PopoverContent width="220px" borderWidth="0">
+      <PopoverContent borderWidth="0">
         <PopoverArrow
           backgroundColor="marinadeEvenLighterGreen"
           borderWidth="0"
@@ -45,13 +45,13 @@ const TooltipWithContent: FunctionComponent<TooltipWithContentpProps> = ({
           backgroundColor="marinadeEvenLighterGreen"
           borderRadius="4px"
         >
-          <Text fontSize="11.52px" pb={1}>
+          <Text fontSize="14px" pb={1}>
             {tooltipText}
           </Text>
           {link ? (
             <Flex justifyContent="center">
               <MLink
-                font="text-sm"
+                font="text-md"
                 variant="link"
                 as="a"
                 color={colors.marinadeGreen}
@@ -64,7 +64,7 @@ const TooltipWithContent: FunctionComponent<TooltipWithContentpProps> = ({
                 {t("appPage.tooltip-time-to-unstake-read-more")}
                 <Image
                   src="/icons/external-link-green.svg"
-                  width="0.7rem"
+                  width="1rem"
                   ml={2}
                 />
               </MLink>
