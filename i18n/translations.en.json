@@ -220,7 +220,7 @@
     "info-validators": "Validators",
     "info-validators-action": "Show validators",
     "info-epoch-tooltip": "Epochs have variable length on the Solana blockchain. They are tied to the number of slots produced by the blockchain. You can find the related technical documentation here. Staking rewards are distributed at the end of each epoch.",
-    "info-week-apy-tooltip":"This APY is based on the average APY of the last 7 days. See our stats for more details.",
+    "info-week-apy-tooltip": "This APY is based on the average APY of the last 7 days. See our stats for more details.",
     "info-validators-tooltip": "Stake is only delegated to validators that are not part of the security group to secure the network and help with its decentralization. Our algorithm evaluates all validators and selects the top-performers. Learn more on our delegation strategy page.",
     "footer-join-us": "Join us",
     "footer-learn-more": "Learn more",
@@ -290,6 +290,7 @@
     "validators-table-balance": "Balance",
     "validators-table-validator": "Validator",
     "validators-table-state": "State",
-    "validators-table-delegated": "Delegated"
+    "validators-table-delegated": "Delegated",
+    "validators-link": "https://marinade.finance/app/validators"
   }
 }

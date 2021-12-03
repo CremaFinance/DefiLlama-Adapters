@@ -183,7 +183,12 @@ const InfoBoxesSection = () => {
             />
           </Flex>
           <MHeading type="heading-2xsm">{validators.toLocaleString()}</MHeading>
-          <MLink font="text-lg" color={colors.marinadeGreen} pb={2}>
+          <MLink
+            href="validators"
+            font="text-lg"
+            color={colors.marinadeGreen}
+            pb={2}
+          >
             {t("appPage.info-validators-action")}
           </MLink>
         </Flex>
