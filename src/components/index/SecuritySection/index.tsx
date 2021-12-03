@@ -110,7 +110,7 @@ export default function SecuritySection() {
           marginTop={4}
           marginX={8}
           key="neodyme"
-          icon="/logos/neodyme-white.png"
+          icon="/logos/neodyme-white.svg"
           title={t(`indexPage.security-section-audit-neodyme.title`)}
           subtitle={t(`indexPage.security-section-audit-neodyme.subtitle`)}
           externalUrl={t(
@@ -124,7 +124,7 @@ export default function SecuritySection() {
           marginTop={4}
           marginX={8}
           key="ackee"
-          icon="/logos/ackee-blockchain.svg"
+          icon="/logos/ackee-blockchain.png"
           title={t(`indexPage.security-section-audit-ackee.title`)}
           subtitle={t(`indexPage.security-section-audit-ackee.subtitle`)}
           externalUrl={t(`indexPage.security-section-audit-ackee.external-url`)}
