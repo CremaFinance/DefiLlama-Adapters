@@ -71,10 +71,14 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
         justifyContent={{ base: "space-between", lg: "flex-start" }}
       >
         <Flex>
-          <Image src={`/pools/${tokenA}.png`} width="24px" height="24px" />
+          <Image
+            src={`/pools/${tokenA.toLowerCase()}.png`}
+            width="24px"
+            height="24px"
+          />
           {tokenB && (
             <Image
-              src={tokenB ? `/pools/${tokenB}.png` : ""}
+              src={tokenB ? `/pools/${tokenB.toLowerCase()}.png` : ""}
               width="24px"
               height="24px"
               marginLeft="4px"
