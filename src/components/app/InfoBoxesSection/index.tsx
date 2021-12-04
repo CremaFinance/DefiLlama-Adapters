@@ -108,9 +108,18 @@ const InfoBoxesSection = () => {
         >
           <Flex justifyContent="space-between">
             <MText type="text-md">{t("appPage.info-epoch")}</MText>
-            <InfoIconWithTooltip
+            <TooltipWithContent
               tooltipText={t("appPage.info-epoch-tooltip")}
-            />
+              link={t("appPage.info-epoch-tooltip-docs-link")}
+            >
+              <IconButton
+                _focus={{ boxShadow: "none" }}
+                variant="link"
+                aria-label="Info epoch"
+                size="sm"
+                icon={<MdInfoOutline />}
+              />
+            </TooltipWithContent>
           </Flex>
           {epochData ? (
             <>
@@ -171,7 +180,6 @@ const InfoBoxesSection = () => {
           rounded="lg"
           width="207px"
           height="139px"
-          zIndex={5}
           py={5}
           pr={3}
           pl={6}
@@ -246,9 +254,18 @@ const InfoBoxesSection = () => {
                 <MHeading type="heading-2xsm">
                   {epochData.epochProgress.toFixed(1).replace(/[.,]0$/, "")}%
                 </MHeading>
-                <InfoIconWithTooltip
+                <TooltipWithContent
                   tooltipText={t("appPage.info-epoch-tooltip")}
-                />
+                  link={t("appPage.info-epoch-tooltip-docs-link")}
+                >
+                  <IconButton
+                    _focus={{ boxShadow: "none" }}
+                    variant="link"
+                    aria-label="Info epoch"
+                    size="sm"
+                    icon={<MdInfoOutline />}
+                  />
+                </TooltipWithContent>
               </Flex>
             </>
           ) : (
