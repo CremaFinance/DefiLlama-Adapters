@@ -79,8 +79,7 @@ const StakeInputsSection = () => {
       isWalletConnected
     );
     if (basicInputChecksErrors) {
-      toast(basicInputChecksErrors);
-      return false;
+      return toast(basicInputChecksErrors);
     }
 
     if (
@@ -89,9 +88,8 @@ const StakeInputsSection = () => {
       Number(format5Dec(Number(state?.staking_sol_cap), LAMPORTS_PER_SOL))
     ) {
       return toast({
-        title: "Amount entered exceeds the current Staking cap.",
-        description:
-          "Try using the MAX button to stake the maximum allowed amount.",
+        title: t("ammount-exceeds-current-staking-cap"),
+        description: t("try-using-max-button"),
         status: "warning",
         duration: 10000,
       });
@@ -116,10 +114,10 @@ const StakeInputsSection = () => {
           }
           setSolToStake(0);
           toast({
-            title: "Stake SOL confirmed",
+            title: t("stake-sol-confirmed"),
             description: (
               <p>
-                {"You've successfully staked your SOL "}
+                {t("successfully-staked-your-sol")}{" "}
                 <TransactionLink
                   chainName={chain.name}
                   transactionid={transactionSignature}
@@ -135,15 +133,13 @@ const StakeInputsSection = () => {
 
           let description = error.message;
           if (error.toString().includes("0xec6")) {
-            description =
-              "Mainnet Beta Capped TVL is FULL. Please wait for cap increments.";
+            description = t("capped-tvl-is-full");
           } else if (error.toString().includes("no record of a prior credit")) {
-            description =
-              "You need some SOL balance on your wallet to cover the transaction fees.";
+            description = t("missing-sol-for-fee");
           }
 
           toast({
-            title: "Something went wrong",
+            title: t("something-went-wrong"),
             description,
             status: "warning",
           });
