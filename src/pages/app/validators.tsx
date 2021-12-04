@@ -9,17 +9,11 @@ const Validators = () => {
     <Box>
       <Header onValidatorsPage />
       <Box
-        backgroundColor={colors.greenLight}
-        display={{ lg: "block", xl: "none" }}
-        height="30px"
-      />
-      <Box
         bg={colors.greenLight}
         width="100vw"
         minHeight={{ xl: "950px" }}
         height="100vh"
         display="flex"
-        alignItems="center"
       >
         <ValidatorsSection />
       </Box>

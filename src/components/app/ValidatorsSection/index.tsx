@@ -42,11 +42,12 @@ const ValidatorsSection = () => {
       display="flex"
       flexDirection="column"
       width={{ base: "90vw", xl: "1100px" }}
-      height={{ base: "90vh", xl: "770px" }}
+      height={{ base: "min(90vh, 100vh - 120px)", xl: "770px" }}
       maxHeight="770px"
       bg="white"
       marginLeft="auto"
       marginRight="auto"
+      marginTop="80px"
       border="1px solid #e2e8f0"
       borderRadius="8px"
       overflow="auto"

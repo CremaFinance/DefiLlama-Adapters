@@ -213,7 +213,6 @@ const ValidatorTable = () => {
     >
       <Table
         variant="unstyled"
-        overflow="scroll"
         height={{ base: "65vh", xl: "800px" }}
         maxHeight="570px"
       >
