@@ -1,19 +1,30 @@
 import { Box } from "@chakra-ui/layout";
 
+import Header from "../../components/app/Header/index";
 import ValidatorsSection from "../../components/app/ValidatorsSection";
 import colors from "styles/customTheme/colors";
 
 const Validators = () => {
   return (
-    <Box
-      bg={colors.greenLight}
-      width="100vw"
-      minWidth="400px"
-      height="100vh"
-      display="flex"
-      alignItems="center"
-    >
-      <ValidatorsSection />
+    <Box>
+      <Header onValidatorsPage />
+      <Box
+        backgroundColor={colors.greenLight}
+        display={{ lg: "block", xl: "none" }}
+        height="30px"
+        minWidth="400px"
+      />
+      <Box
+        bg={colors.greenLight}
+        width="100vw"
+        minWidth="400px"
+        minHeight={{ xl: "950px" }}
+        height="100vh"
+        display="flex"
+        alignItems="center"
+      >
+        <ValidatorsSection />
+      </Box>
     </Box>
   );
 };
