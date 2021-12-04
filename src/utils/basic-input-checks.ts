@@ -1,37 +1,36 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-import { useToast } from "@chakra-ui/react";
+import { UseToastOptions } from "@chakra-ui/react";
 
-export function checkIsPositive(value: number) {
+export function checkIsPositive(value: number): UseToastOptions | undefined {
   if (!Number.isNaN(value) || value <= 0.0001) {
-    const toast = useToast();
-    toast({
+    return {
       title: "Invalid amount",
       description: "Please input a valid amount",
       status: "warning",
-    });
-    return false;
+    };
   }
-  return true;
+  return undefined;
 }
 
-export function checkWallet(isWalletConnected: boolean): boolean {
+export function checkWallet(
+  isWalletConnected: boolean
+): UseToastOptions | undefined {
   if (!isWalletConnected) {
-    const toast = useToast();
-    toast({
+    return {
       title: "Wallet is not connected",
       description: "Please connect your wallet",
       status: "warning",
-    });
-    return false;
+    };
   }
-  return true;
+  return undefined;
 }
 
 export function basicInputChecks(
   value: number,
   isWalletConnected: boolean
-): boolean {
-  if (!checkWallet(isWalletConnected)) return false;
-  if (!checkIsPositive(value)) return false;
-  return true;
+): UseToastOptions | undefined {
+  const isWalletConnectedError = checkWallet(isWalletConnected);
+  if (isWalletConnectedError) return isWalletConnectedError;
+  const isPositiveError = checkIsPositive(value);
+  if (isPositiveError) return isPositiveError;
+  return undefined;
 }

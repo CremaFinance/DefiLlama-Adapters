@@ -74,7 +74,14 @@ const StakeInputsSection = () => {
   // eslint-disable-next-line consistent-return
   const stakeHandler = () => {
     let firstTimeStaker = Number(format5Dec(stSOLBalance ?? 0)) === 0;
-    if (!basicInputChecks(solToStake, isWalletConnected)) return false;
+    const basicInputChecksErrors = basicInputChecks(
+      solToStake,
+      isWalletConnected
+    );
+    if (basicInputChecksErrors) {
+      toast(basicInputChecksErrors);
+      return false;
+    }
 
     if (
       Number(solToStake) +
