@@ -104,13 +104,13 @@ export default function SecuritySection() {
         marginTop={4}
       >
         <IconWithTextBelow
-          height={70}
+          height="76px"
           opacity="0.6"
           marginBottom={8}
           marginTop={4}
-          marginX={8}
+          marginX="38px"
           key="neodyme"
-          icon="/logos/neodyme-white.png"
+          icon="/logos/neodyme-white.svg"
           title={t(`indexPage.security-section-audit-neodyme.title`)}
           subtitle={t(`indexPage.security-section-audit-neodyme.subtitle`)}
           externalUrl={t(
@@ -118,13 +118,14 @@ export default function SecuritySection() {
           )}
         />
         <IconWithTextBelow
-          height={70}
+          height="55px"
+          width="180px"
           opacity="0.6"
           marginBottom={8}
-          marginTop={4}
-          marginX={8}
+          marginTop={9}
+          marginX={9}
           key="ackee"
-          icon="/logos/ackee-blockchain.svg"
+          icon="/logos/ackee-blockchain.png"
           title={t(`indexPage.security-section-audit-ackee.title`)}
           subtitle={t(`indexPage.security-section-audit-ackee.subtitle`)}
           externalUrl={t(`indexPage.security-section-audit-ackee.external-url`)}

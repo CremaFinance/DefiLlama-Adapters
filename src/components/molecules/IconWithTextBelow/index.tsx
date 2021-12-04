@@ -12,14 +12,14 @@ type IconWithTextBelowProps = {
   title: string;
   subtitle?: string;
   externalUrl?: string;
-  height?: number;
+  height?: number | string;
   width?: string;
   opacity?: string;
   marginBottom?: number;
   marginTop?: number;
   titleColor?: string;
   subtitleColor?: string;
-  marginX?: number;
+  marginX?: number | string;
 };
 
 const IconWithTextBelow = ({
