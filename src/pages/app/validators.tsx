@@ -8,6 +8,7 @@ const Validators = () => {
     <Box
       bg={colors.greenLight}
       width="100vw"
+      minWidth="400px"
       height="100vh"
       display="flex"
       alignItems="center"
