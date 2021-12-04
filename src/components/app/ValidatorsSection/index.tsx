@@ -44,7 +44,6 @@ const ValidatorsSection = () => {
       width={{ base: "90vw", xl: "1100px" }}
       height={{ base: "90vh", xl: "770px" }}
       maxHeight="770px"
-      minWidth="360px"
       bg="white"
       marginLeft="auto"
       marginRight="auto"

@@ -216,7 +216,6 @@ const ValidatorTable = () => {
         overflow="scroll"
         height={{ base: "65vh", xl: "800px" }}
         maxHeight="570px"
-        minWidth="660px"
       >
         <Thead>
           <Tr>

@@ -12,12 +12,10 @@ const Validators = () => {
         backgroundColor={colors.greenLight}
         display={{ lg: "block", xl: "none" }}
         height="30px"
-        minWidth="400px"
       />
       <Box
         bg={colors.greenLight}
         width="100vw"
-        minWidth="400px"
         minHeight={{ xl: "950px" }}
         height="100vh"
         display="flex"
