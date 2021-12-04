@@ -12,6 +12,7 @@ import StakeInput, {
   StakeInputTypeEnum,
 } from "components/molecules/StakeInput";
 import SwitchButtons from "components/molecules/SwitchButtons";
+import TooltipWithContent from "components/molecules/TooltipWithContent";
 import colors from "styles/customTheme/colors";
 
 const StakeInputsSection = () => {
@@ -195,13 +196,18 @@ const StakeInputsSection = () => {
                 <MText type="text-md">
                   {t("appPage.stake-inputs-time-to-unstake")}
                 </MText>
-                <IconButton
-                  variant="link"
-                  aria-label="Info epoch"
-                  size="sm"
-                  _focus={{ boxShadow: "none" }}
-                  icon={<MdInfoOutline />}
-                />
+                <TooltipWithContent
+                  tooltipText={t("appPage.tooltip-time-to-unstake-text")}
+                  link={t("appPage.tooltip-time-to-unstake-docs-link")}
+                >
+                  <IconButton
+                    variant="link"
+                    aria-label="Info epoch"
+                    size="sm"
+                    _focus={{ boxShadow: "none" }}
+                    icon={<MdInfoOutline />}
+                  />
+                </TooltipWithContent>
               </Flex>
               <MText type="text-md">{timeToUnstake}</MText>
             </Flex>

@@ -1,4 +1,6 @@
 /* eslint-disable sonarjs/cognitive-complexity */
+
+import { updatePoolRewards } from "../../../utils/update-pool-rewards";
 import { Prices } from "services/domain/coinSymbols";
 import { coinTokens } from "services/domain/coinTokens";
 import { MarketPools } from "services/domain/market";
@@ -33,7 +35,7 @@ export const mapPortResponse = (
   prices: Prices
 ) => {
   const poolsArray = Object.entries(portPools).map(([poolkey, incoming]) => {
-    const pool = incoming;
+    let pool = incoming;
     if (pool.providerId) {
       const result = portResults.find(
         (portResult) => portResult.poolId === pool.providerId
@@ -53,17 +55,7 @@ export const mapPortResponse = (
           pool.tradingApy = Number(depositApy.slice(0, -1));
           pool.apy = pool.tradingApy;
 
-          if (pool.rewards) {
-            Object.entries(pool.rewards).forEach((entry) => {
-              const [key, reward] = entry;
-              const price = prices[key]?.usd;
-              if (price && reward && pool.liq) {
-                reward.apy =
-                  ((reward.dailyRate * price * 365) / pool.liq) * 100;
-                pool.apy = pool.apy ? (pool.apy += reward.apy) : undefined;
-              }
-            });
-          }
+          pool = updatePoolRewards(pool, prices);
         }
       }
     }

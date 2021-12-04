@@ -70,43 +70,41 @@
     "info-section-step-items": [
       {
         "title": "Stake SOL",
-        "subtitle": "Select amount of SOL to stake using Marinade liquid staking protocol."
+        "subtitle": "Select the amount of SOL you want to stake on the Marinade liquid staking protocol."
       },
       {
         "title": "Receive mSol",
-        "subtitle": "In return, you receive liquid SOL (mSol) increasing value with staking rewards."
+        "subtitle": "Receive liquid SOL (mSOL) in return, which increases in value relative to SOL each epoch from staking rewards."
       },
       {
         "title": "Participate in DeFi",
-        "subtitle": "Now you're free to use your liquid mSol in DeFi or swap back to SOL any time you like."
+        "subtitle": "Use mSOL in DeFi while earning staking rewards or swap back to SOL at any time."
       }
     ],
     "info-section-action": "Start staking SOL",
     "info-section-items": [
       {
-        "emphasis": "Stake Solana",
-        "heading": "without locking your funds in",
-        "desc": "By going with Marinade you avoid the unstaking period so you're free to use your assets at any time you like.",
+        "emphasis": "Stake on Solana",
+        "heading": "without locking up your funds",
+        "desc": "With Marinade, you can avoid the unstaking period and keep your investment liquid.",
         "link": "#",
         "quote": "Staking on Marinade is the easiest way to earn yields on your SOL and help decentralize the chain.",
         "name": "AlphaRay",
         "company": "Founder at Raydium"
       },
-
       {
-        "emphasis": "Spread the stake",
-        "heading": "to 300+ top-performing validators",
-        "desc": "Algorithmic strategy delegates to hundreds of validators to make the system more robust, secure and decentralised.",
+        "emphasis": "Stake with our strategy",
+        "heading": "and delegate to 400+ top-validators",
+        "desc": "Our algorithmic strategy delegates to hundreds of validators to make the Solana blockchain more robust, secure, and decentralized.",
         "link": "#",
         "quote": "Marinade's staking strategy makes it easy for users to help make Solana ever more decentralized and censorship resistant.",
         "name": "Dan Albert",
         "company": "Executive Director at Solana Foundation"
       },
-
       {
         "emphasis": "Take part",
         "heading": "in the DeFi ecosystem",
-        "desc": "By going with Marinade you avoid the unstaking period so you're free to use your assets at any time you like.",
+        "desc": "When you stake your SOL with Marinade, you receive a liquid and tokenized version of your stake. mSOL is integrated in a variety of DeFi protocols, so you can explore DeFi yields on top of your staking rewards.",
         "link": "#",
         "quote": "Marinade allows our users to strengthen the security of the Solana network while continuing to interact with other apps on Solana via our LP tokens.",
         "name": "Ian Macalinao",
@@ -126,7 +124,7 @@
       },
       {
         "title": "Unlocked liquidity",
-        "subtitle": "Put your staked SOL to work in DeFi and gain an additional yield."
+        "subtitle": "Put your staked SOL to work in DeFi and explore additional yield."
       }
     ],
 
@@ -135,7 +133,7 @@
     "contributor-section-action": "Join the Marinade DAO",
 
     "security-section-title": "The most trusted liquid staking on Solana",
-    "security-section-subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore aliqua.",
+    "security-section-subtitle": "Security is Marinade’s top priority. Everything has been designed to reduce the risks in the protocol, and we are now in the process of open sourcing our code. We are also working in close collaboration with our ecosystem partners to make it safer for everyone.",
     "security-section-action": "Read more about security",
     "security-section-items": [
       {
@@ -144,7 +142,7 @@
       },
       {
         "title": "Ecosystem governance",
-        "subtitle": "Until full DAO, the Marinade program is governed by the most reputable parties of Solana ecosystem."
+        "subtitle": "Until full DAO, the Marinade program is governed by the most reputable parties of the Solana ecosystem."
       },
       {
         "title": "Transparent delegation strategy",
@@ -154,20 +152,20 @@
     "security-section-audit-title": "Audits and code reviews",
     "security-section-audit-neodyme": {
       "title": "Neodyme team",
-      "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "subtitle": "Neodyme is an audit firm specializing in security that recently published a full article on Solana smart contract security. Their expertise in blockchain and their familiarity with Solana made them a perfect fit to audit our protocol.",
       "external-url": "https://marinade.finance/Neodyme.pdf"
     },
     "security-section-audit-ackee": {
       "title": "Ackee Blockchain",
-      "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "subtitle": "Ackee Blockchain specializes in audits and security assessments and has worked on the security of major blockchains such as Ethereum, Tezos, and Celo. Their audit has allowed us to further improve the security standard of our protocol.",
       "external-url": "https://marinade.finance/AckeeBlockchain.pdf"
     },
     "security-section-audit-kudelski": {
       "title": "Kudelski security",
-      "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "subtitle": "To become the next unit of account on the Solana network, we had to make sure that our protocol was as safe as Solana itself. Therefore, we got audited by Kudelski Security, a reputable audit firm that was chosen by Solana Labs to audit Solana.",
       "external-url": "https://marinade.finance/KudelskiSecurity.pdf"
     },
-    "footer-description": "Marinade.finance is a liquid staking protocol built on the Solana blockchain.",
+    "footer-description": "Marinade.Finance is a non-custodial liquid staking protocol built on the Solana blockchain.",
     "footer-product": "Product",
     "footer-stake-sol": "Stake SOL",
     "footer-validators": "Validators",
@@ -221,12 +219,14 @@
     "info-validators-action": "Show validators",
     "info-epoch-tooltip": "Epochs have variable length on the Solana blockchain. They are tied to the number of slots produced by the blockchain. You can find the related technical documentation here. Staking rewards are distributed at the end of each epoch.",
     "info-week-apy-tooltip": "This APY is based on the average APY of the last 7 days. See our stats for more details.",
-    "info-validators-tooltip": "Stake is only delegated to validators that are not part of the security group to secure the network and help with its decentralization. Our algorithm evaluates all validators and selects the top-performers. Learn more on our delegation strategy page.",
+    "info-validators-tooltip": "Stake is only delegated to validators that are not part of the security group to secure the network and help with its decentralization. Our algorithm evaluates all validators and selects the top-performers.",
+    "info-validators-tooltip-docs-link": "https://docs.marinade.finance/marinade-protocol/validators",
+
     "footer-join-us": "Join us",
     "footer-learn-more": "Learn more",
 
     "stake-inputs-title": "Stake Solana",
-    "stake-inputs-subtitle": "Stake SOL and receive mSOL while staking",
+    "stake-inputs-subtitle": "Stake SOL and use mSOL while staked",
     "stake-inputs-balance": "Balance",
     "stake-inputs-exchange-rate": "Exchange rate",
     "stake-inputs-unstake-fee": "Unstake fee",
@@ -249,9 +249,13 @@
     "defi-subtitle": {
       "header": "Participate in DeFi",
       "body-desktop": "Now it’s your time to cook! mSOL has been integrated in many DeFi protocols where you’ll be able to explore additional yield while still earning your staking rewards. Please keep in mind that selling all your mSOL will also mean selling your rewards accumulated until this point.",
-      "body-mobile": " Selling all your mSOL will also mean selling your rewards accumulated until this point."
+      "body-mobile": "Use mSOL and explore additional yield while still earning your staking rewards"
     },
     "stake-inputs-time-to-unstake": "Time to unstake",
+    "tooltip-time-to-unstake-text": "Unstaking will take 1 to 2 epochs. This time is an estimation; please refer to the docs to learn more.",
+    "tooltip-time-to-unstake-read-more": "See docs",
+    "tooltip-time-to-unstake-docs-link": "https://docs.marinade.finance/marinade-protocol/system-overview#delayed-unstaked",
+
     "tickets-accounts": "Ticket accounts",
     "sol": "SOL",
     "claim-action": "Claim",

@@ -38,9 +38,9 @@ import {
 
 import { useWallet } from "../hooks/useWallet";
 import { StakeAccount } from "../solana/domain/stake-account";
-import { findAssociatedTokenAddress } from "../solana/marinade-anchor/common";
 import * as marinade from "../solana/marinade-anchor/marinade-finance-schema";
 import * as MarinadeProgramJSON from "../solana/marinade-anchor/marinade_finance.json";
+import { findAssociatedTokenAddress } from "../utils/web3/find-associated-token-address";
 
 import { useAnchorProvider } from "./AnchorContext";
 import { useConnection, useKeys } from "./ConnectionProvider";
