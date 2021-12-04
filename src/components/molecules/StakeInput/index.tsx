@@ -83,7 +83,7 @@ const StakeInput = ({
       </Flex>
       <Flex alignItems="center" justifyContent="flex-start" mb={2}>
         <MText type="text-sm">{`${balanceLabel}: ${tokenBalance.toLocaleString()} ${tokenName}`}</MText>
-        {tokenBalance && stakeInputType === StakeInputTypeEnum.Source ? (
+        {stakeInputType === StakeInputTypeEnum.Source ? (
           <MButton
             variant="link"
             font="text-sm"
