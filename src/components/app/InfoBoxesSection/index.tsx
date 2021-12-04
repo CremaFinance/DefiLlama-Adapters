@@ -261,7 +261,7 @@ const InfoBoxesSection = () => {
           </Flex>
         </Flex>
         <Flex justifyContent="space-between" alignItems="center">
-          <MLink font="text-lg" color={colors.marinadeGreen}>
+          <MLink href="validators" font="text-lg" color={colors.marinadeGreen}>
             {t("appPage.info-validators")}
           </MLink>
           <Flex>
