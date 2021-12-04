@@ -36,7 +36,7 @@ const StakeInputsSection = () => {
   const sourceToken = "SOL";
   const sourceTokenIcon = "/icons/solana-dark.png";
   const sourceTokenBalance = nativeSOLBalance
-    ? nativeSOLBalance / LAMPORTS_PER_SOL
+    ? nativeSOLBalance / LAMPORTS_PER_SOL - 0.001
     : 0;
   const targetToken = "mSOL";
   const targetTokenIcon = "/icons/mSOL.svg";
