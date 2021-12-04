@@ -77,33 +77,35 @@ const InfoBoxesSection = () => {
             ≈ ${mSolUSD}
           </MText>
         </Flex>
-        {totalSOLStaked ? (
-          <Flex
-            bg={colors.white}
-            flexDirection="column"
-            justifyContent="space-between"
-            rounded="lg"
-            width="207px"
-            height="139px"
-            zIndex={5}
-            py={5}
-            px={6}
-            mt={8}
-            mx={2}
-          >
-            <MText type="text-md">{t("appPage.info-total-sol-staked")}</MText>
-            <MHeading type="heading-2xsm">
-              {numberToShortVersion(totalSOLStaked)}
-            </MHeading>
-            <MText type="text-md" pb={2}>
-              ≈ ${numberToShortVersion((solUSD ?? 0) * totalSOLStaked)}
-            </MText>
-          </Flex>
-        ) : (
-          <Flex flex={1} alignItems="center" justifyContent="center">
-            <Spinner size="md" mr={3} />
-          </Flex>
-        )}
+        <Flex
+          bg={colors.white}
+          flexDirection="column"
+          justifyContent="space-between"
+          rounded="lg"
+          width="207px"
+          height="139px"
+          zIndex={5}
+          py={5}
+          px={6}
+          mt={8}
+          mx={2}
+        >
+          <MText type="text-md">{t("appPage.info-total-sol-staked")}</MText>
+          {totalSOLStaked ? (
+            <>
+              <MHeading type="heading-2xsm">
+                {numberToShortVersion(totalSOLStaked)}
+              </MHeading>
+              <MText type="text-md" pb={2}>
+                ≈ ${numberToShortVersion((solUSD ?? 0) * totalSOLStaked)}
+              </MText>
+            </>
+          ) : (
+            <Flex flex={1} alignItems="center" justifyContent="center">
+              <Spinner size="md" mr={3} />
+            </Flex>
+          )}
+        </Flex>
         <Flex
           bg={colors.white}
           flexDirection="column"
@@ -243,18 +245,16 @@ const InfoBoxesSection = () => {
           <MText type="text-lg">{t("appPage.info-msol-sol-price")}</MText>
           <MHeading type="heading-2xsm">{mSOLvsSOLParity} SOL</MHeading>
         </Flex>
-        {totalSOLStaked ? (
-          <Flex justifyContent="space-between" pr={8}>
-            <MText type="text-lg">{t("appPage.info-total-staked")}</MText>
+        <Flex justifyContent="space-between" pr={8}>
+          <MText type="text-lg">{t("appPage.info-total-staked")}</MText>
+          {totalSOLStaked ? (
             <MHeading type="heading-2xsm">
               {numberToShortVersion(totalSOLStaked)} SOL
             </MHeading>
-          </Flex>
-        ) : (
-          <Flex flex={1} alignItems="center" justifyContent="center">
-            <Spinner size="md" mr={3} />
-          </Flex>
-        )}
+          ) : (
+            <Spinner size="sm" mr={3} />
+          )}
+        </Flex>
         <Flex justifyContent="space-between" alignItems="center">
           <MText type="text-lg">{t("appPage.info-epoch")}</MText>
           {epochData ? (
