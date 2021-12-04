@@ -25,7 +25,7 @@ const MobileMenu = ({ selectedMenu, setSelectedMenu, MENUS }: Props) => {
           as={Button}
           border="1px solid #E2E8F0"
           borderRadius="6px"
-          width="200px"
+          width="160px"
           height="40px"
           rightIcon={
             <Box position="relative" right="10px">
