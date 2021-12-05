@@ -1,3 +1,4 @@
+import { atrix } from "../pools/atrix";
 import { larix } from "../pools/larix";
 import { orca } from "../pools/orca";
 import { port } from "../pools/port";
@@ -8,6 +9,7 @@ export const providerKeys = {
   PORT: "port",
   RAYDIUM: "ray",
   LARIX: "larix",
+  ATRIX: "atrix",
 } as const;
 
 export const providers = {
@@ -15,6 +17,7 @@ export const providers = {
   [providerKeys.PORT]: port,
   [providerKeys.RAYDIUM]: raydium,
   [providerKeys.LARIX]: larix,
+  [providerKeys.ATRIX]: atrix,
 };
 
 export type Providers = typeof providerKeys[keyof typeof providerKeys];
