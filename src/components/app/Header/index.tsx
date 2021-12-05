@@ -119,9 +119,11 @@ const Header = ({ onValidatorsPage = false }: Props) => {
         </MButton>
       </Flex>
 
-      <Box pb="8px">
-        <Wallet />
-      </Box>
+      {!onValidatorsPage && (
+        <Box pb="8px">
+          <Wallet />
+        </Box>
+      )}
     </Flex>
   );
 };
