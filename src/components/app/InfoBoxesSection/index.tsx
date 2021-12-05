@@ -202,7 +202,12 @@ const InfoBoxesSection = () => {
             </TooltipWithContent>
           </Flex>
           <MHeading type="heading-2xsm">{validators.toLocaleString()}</MHeading>
-          <MLink font="text-lg" color={colors.marinadeGreen} pb={2}>
+          <MLink
+            href="validators"
+            font="text-lg"
+            color={colors.marinadeGreen}
+            pb={2}
+          >
             {t("appPage.info-validators-action")}
           </MLink>
         </Flex>
@@ -284,7 +289,7 @@ const InfoBoxesSection = () => {
           </Flex>
         </Flex>
         <Flex justifyContent="space-between" alignItems="center">
-          <MLink font="text-lg" color={colors.marinadeGreen}>
+          <MLink href="validators" font="text-lg" color={colors.marinadeGreen}>
             {t("appPage.info-validators")}
           </MLink>
           <Flex>

@@ -8,7 +8,11 @@ import MButton from "../../atoms/Button";
 import { Wallet } from "../../molecules/Wallet";
 import colors from "styles/customTheme/colors";
 
-const Header = () => {
+interface Props {
+  onValidatorsPage?: boolean;
+}
+
+const Header = ({ onValidatorsPage = false }: Props) => {
   const { t } = useTranslation();
 
   const [onTop, setOnTop] = useState(true);
@@ -84,12 +88,12 @@ const Header = () => {
           variant="link"
           color={colors.black}
           rounded="none"
-          isActive={isStakingActive}
+          isActive={!onValidatorsPage && isStakingActive}
           width="80px"
           fontWeight="normal"
           font="text-xl"
           mb="4px"
-          py={isStakingActive ? "4px" : "7px"}
+          py={!onValidatorsPage && isStakingActive ? "4px" : "7px"}
           _active={activeMenu}
           _hover={activeMenu}
           onClick={() => router.push("/app/staking")}
@@ -101,12 +105,12 @@ const Header = () => {
           variant="link"
           color={colors.black}
           rounded="none"
-          isActive={!isStakingActive}
+          isActive={!onValidatorsPage && !isStakingActive}
           width="107px"
           fontWeight="normal"
           font="text-xl"
           mb="4px"
-          py={!isStakingActive ? "4px" : "7px"}
+          py={!onValidatorsPage && !isStakingActive ? "4px" : "7px"}
           _active={activeMenu}
           _hover={activeMenu}
           onClick={() => router.push("/app/defi")}
@@ -115,9 +119,11 @@ const Header = () => {
         </MButton>
       </Flex>
 
-      <Box pb="8px">
-        <Wallet />
-      </Box>
+      {!onValidatorsPage && (
+        <Box pb="8px">
+          <Wallet />
+        </Box>
+      )}
     </Flex>
   );
 };

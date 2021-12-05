@@ -1,4 +1,4 @@
-const lamportsToSol = (amountNum: number): string => {
+const lamportsToSol = (amountNum: number, decimals = 9): string => {
   const amount = amountNum.toString();
   const n: number = amount.length;
   const formatted: string[] = [];
@@ -12,11 +12,11 @@ const lamportsToSol = (amountNum: number): string => {
     formatted.push(".");
     formatted.push("0");
     formatted.reverse();
-    return formatted.join("");
+    return formatted.join("").substring(0, 2 + decimals);
   }
 
   // handle decimals
-  for (let i = 0; i < 9; i += 1) {
+  for (let i = 9 - decimals; i < 9; i += 1) {
     formatted.push(amount.charAt(n - 1 - i));
   }
 

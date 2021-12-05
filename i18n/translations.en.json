@@ -254,9 +254,8 @@
     },
     "stake-inputs-time-to-unstake": "Time to unstake",
     "tooltip-time-to-unstake-text": "Unstaking will take 1 to 2 epochs. This time is an estimation; please refer to the docs to learn more.",
-    "tooltip-time-to-unstake-read-more": "See docs",    
+    "tooltip-time-to-unstake-read-more": "See docs",
     "tooltip-time-to-unstake-docs-link": "https://docs.marinade.finance/marinade-protocol/system-overview#delayed-unstaked",
-
 
     "tickets-accounts": "Ticket accounts",
     "sol": "SOL",
@@ -289,13 +288,14 @@
     "validators-menu-transactions": "Transactions",
     "validators-menu-stakes": "Stakes",
     "validators-menu-portfolio": "Portfolio",
-    "validators-menu-spl-token-txs": "SPL Token Token TXs",
+    "validators-menu-spl-token-txs": "SPL Token TXs",
     "validators-menu-dex-orders": "DEXOrders",
     "validators-button-basic": "Basic",
     "validators-table-account": "Account",
     "validators-table-balance": "Balance",
     "validators-table-validator": "Validator",
     "validators-table-state": "State",
-    "validators-table-delegated": "Delegated"
+    "validators-table-delegated": "Delegated",
+    "validators-link": "https://marinade.finance/app/validators"
   }
 }
