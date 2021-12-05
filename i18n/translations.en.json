@@ -166,6 +166,7 @@
       "external-url": "https://marinade.finance/KudelskiSecurity.pdf"
     },
     "footer-description": "Marinade.Finance is a non-custodial liquid staking protocol built on the Solana blockchain.",
+    "security-section-bug-bounty-action": "Bug bounty program",
     "footer-product": "Product",
     "footer-stake-sol": "Stake SOL",
     "footer-validators": "Validators",
