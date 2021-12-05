@@ -269,11 +269,15 @@ const ValidatorTable = () => {
                   </Flex>
                 </Td>
                 <Td {...cell} width="225px">
-                  <Box display={{ base: "None", lg: "flex" }}>
+                  <Box display={{ base: "none", lg: "flex" }}>
                     {lamportsToSol(tuple.lamports)} SOL
                   </Box>
-                  <Box display={{ base: "flex", lg: "none" }}>
+                  <Box display={{ base: "none", md: "flex", lg: "none" }}>
                     {lamportsToSol(tuple.lamports, 2)} SOL
+                  </Box>
+
+                  <Box display={{ base: "flex", md: "none" }}>
+                    {lamportsToSol(tuple.lamports, 2)}
                   </Box>
                 </Td>
                 <Td {...highlightedCell} width="225px">
