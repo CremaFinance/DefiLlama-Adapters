@@ -130,7 +130,7 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
         paddingTop={{ base: "8px", lg: "0" }}
       >
         {totalLockedValue ? (
-          <Heading lineHeight="140%" fontSize="16px">
+          <Heading lineHeight="140%" fontSize={{ base: "16px", lg: "18px" }}>
             {tvlString}
           </Heading>
         ) : (

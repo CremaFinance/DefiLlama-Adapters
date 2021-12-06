@@ -196,6 +196,10 @@ export function formatMDec(labelValue: number, dec = 2) {
   return `${(Math.abs(Number(labelValue)) / 1.0e6).toFixed(dec)}M`;
 }
 
+export function formatBDec(labelValue: number, dec = 2) {
+  return `${(Math.abs(Number(labelValue)) / 1.0e9).toFixed(dec)}B`;
+}
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isNumeric(str: any) {
   // if (typeof str != 'string') return false // we only process strings!
