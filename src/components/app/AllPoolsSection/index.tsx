@@ -12,9 +12,13 @@ const AllPoolsSection = () => {
   const pools = results.reduce(
     (acc, result) =>
       result.data
-        ? acc.concat(Object.values(result.data).map((market) => market))
+        ? acc.concat(
+            Object.entries(result.data).map(([key, pool]) => {
+              return { id: key, pool };
+            })
+          )
         : acc,
-    [] as Pool[]
+    [] as { id: string; pool: Pool }[]
   );
 
   return (
@@ -71,12 +75,8 @@ const AllPoolsSection = () => {
         flexWrap={{ base: "wrap", lg: "nowrap" }}
       >
         {pools?.map((pool) => (
-          <Flex
-            flexDirection="row"
-            key={`${pool.address}`}
-            justifyContent="center"
-          >
-            <PoolRow pool={pool} />
+          <Flex flexDirection="row" key={`${pool.id}`} justifyContent="center">
+            <PoolRow pool={pool.pool} />
           </Flex>
         ))}
       </Flex>
