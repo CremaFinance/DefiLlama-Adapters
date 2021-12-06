@@ -196,26 +196,6 @@ export function formatMDec(labelValue: number, dec = 2) {
   return `${(Math.abs(Number(labelValue)) / 1.0e6).toFixed(dec)}M`;
 }
 
-export function formatBDec(labelValue: number, dec = 2) {
-  return `${(Math.abs(Number(labelValue)) / 1.0e9).toFixed(dec)}B`;
-}
-
-export function formatNumber(labelValue: number, dec = 2) {
-  let formatted = "";
-
-  if (labelValue < 1_000) {
-    formatted = labelValue.toFixed(dec);
-  } else if (labelValue < 1_000_000) {
-    formatted = formatKDec(labelValue, dec);
-  } else if (labelValue < 1_000_000_000) {
-    formatted = formatMDec(labelValue, dec);
-  } else {
-    formatted = formatBDec(labelValue, dec);
-  }
-
-  return formatted;
-}
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isNumeric(str: any) {
   // if (typeof str != 'string') return false // we only process strings!
