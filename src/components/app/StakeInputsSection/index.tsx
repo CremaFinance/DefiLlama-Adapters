@@ -21,13 +21,9 @@ const StakeInputsSection = () => {
 
   const [isStakeActive, setStakeActive] = useState(true);
   const [isUnstakeNowActive, setUnstakeNowActive] = useState(true);
-  const [isAccountSelected, setIsAccountSelected] = useState(true);
+  const [stakeText, setStakeText] = useState(t("appPage.stake-sol-action"));
 
-  const stakeText = isUnstakeNowActive
-    ? t("appPage.stake-sol-action")
-    : t("appPage.deposit-stake-account-action");
-
-  const unstakeText = isAccountSelected
+  const unstakeText = isUnstakeNowActive
     ? t("appPage.unstake-now-action")
     : t("appPage.start-delayed-unstake-action");
 
@@ -83,7 +79,11 @@ const StakeInputsSection = () => {
   };
 
   const handleSelectAccountCallback = (value: boolean) => {
-    setIsAccountSelected(value);
+    setStakeText(
+      value
+        ? t("appPage.deposit-stake-account-action")
+        : t("appPage.stake-sol-action")
+    );
   };
 
   return (
