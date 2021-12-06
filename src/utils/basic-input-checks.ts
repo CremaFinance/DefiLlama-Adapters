@@ -1,7 +1,7 @@
 import { UseToastOptions } from "@chakra-ui/react";
 
 export function checkIsPositive(value: number): UseToastOptions | undefined {
-  if (!Number.isNaN(value) || value <= 0.0001) {
+  if (Number.isNaN(value) || value <= 0.0001) {
     return {
       title: "Invalid amount",
       description: "Please input a valid amount",

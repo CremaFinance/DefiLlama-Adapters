@@ -206,6 +206,7 @@ const StakeInputsSection = () => {
                   ? StakeInputTypeEnum.Source
                   : StakeInputTypeEnum.Target
               }
+              onValueChange={setSolToStake}
               tokenName={sourceToken}
               tokenIcon={sourceTokenIcon}
               tokenBalance={sourceTokenBalance}
