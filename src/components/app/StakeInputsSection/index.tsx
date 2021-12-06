@@ -9,6 +9,7 @@ import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
 import UnstakeTicketsSection from "../UnstakeTicketsSection";
 import StakeInput, {
+  StakeAccountType,
   StakeInputTypeEnum,
 } from "components/molecules/StakeInput";
 import SwitchButtons from "components/molecules/SwitchButtons";
@@ -20,8 +21,13 @@ const StakeInputsSection = () => {
 
   const [isStakeActive, setStakeActive] = useState(true);
   const [isUnstakeNowActive, setUnstakeNowActive] = useState(true);
+  const [isAccountSelected, setIsAccountSelected] = useState(true);
 
-  const unstakeText = isUnstakeNowActive
+  const stakeText = isUnstakeNowActive
+    ? t("appPage.stake-sol-action")
+    : t("appPage.deposit-stake-account-action");
+
+  const unstakeText = isAccountSelected
     ? t("appPage.unstake-now-action")
     : t("appPage.start-delayed-unstake-action");
 
@@ -36,6 +42,36 @@ const StakeInputsSection = () => {
   const targetTokenIcon = "/icons/mSOL.svg";
   const targetTokenBalance = 12.3;
   const timeToUnstake = "~7 days";
+  const currentAccount: StakeAccountType = {
+    address: "DKVAJA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5qdfbrvrt5",
+    balance: 0.114543543543,
+  };
+  const stakeAccounts: StakeAccountType[] = [
+    {
+      address: "asdfJA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5qvdvwf5",
+      balance: 0.115555,
+    },
+    {
+      address: "wwadJA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5q4vdg5",
+      balance: 0.115454334534,
+    },
+    {
+      address: "sfdsfdfVKRhTrWfVPxzydZQu8q15kWkpe5qpdv5",
+      balance: 0.1454353451,
+    },
+    {
+      address: "aaqwsA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5qpi55rff",
+      balance: 0.11353453534,
+    },
+    {
+      address: "d234dvJA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5qcdsf4",
+      balance: 0.1,
+    },
+    {
+      address: "DKVAJA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5qpiswy5",
+      balance: 0.11,
+    },
+  ];
 
   const handleStakeActive = (v: boolean) => {
     setStakeActive(v);
@@ -44,6 +80,10 @@ const StakeInputsSection = () => {
 
   const handleUnstakeNowActive = (v: boolean) => {
     setUnstakeNowActive(v);
+  };
+
+  const handleSelectAccountCallback = (value: boolean) => {
+    setIsAccountSelected(value);
   };
 
   return (
@@ -99,6 +139,7 @@ const StakeInputsSection = () => {
           />
           <Flex flexDirection={isStakeActive ? "column" : "column-reverse"}>
             <StakeInput
+              selectAccountCallback={handleSelectAccountCallback}
               stakeInputType={
                 isStakeActive
                   ? StakeInputTypeEnum.Source
@@ -107,10 +148,13 @@ const StakeInputsSection = () => {
               tokenName={sourceToken}
               tokenIcon={sourceTokenIcon}
               tokenBalance={sourceTokenBalance}
+              currentAccount={currentAccount}
+              stakeAccounts={stakeAccounts}
               width={["256px", "400px"]}
               mb={2}
             />
             <StakeInput
+              selectAccountCallback={handleSelectAccountCallback}
               stakeInputType={
                 isStakeActive
                   ? StakeInputTypeEnum.Target
@@ -119,6 +163,8 @@ const StakeInputsSection = () => {
               tokenName={targetToken}
               tokenIcon={targetTokenIcon}
               tokenBalance={targetTokenBalance}
+              currentAccount={currentAccount}
+              stakeAccounts={stakeAccounts}
               tokenCardWidth={["87px"]}
               width={["256px", "400px"]}
               mb={2}
@@ -240,7 +286,7 @@ const StakeInputsSection = () => {
             mx={4}
             mt={5}
           >
-            {isStakeActive ? t("appPage.stake-sol-action") : unstakeText}
+            {isStakeActive ? stakeText : unstakeText}
           </MButton>
           {!isUnstakeNowActive ? <UnstakeTicketsSection /> : null}
         </Flex>
