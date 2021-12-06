@@ -1,4 +1,4 @@
-import { useToast } from "@chakra-ui/react";
+import { UseToastOptions } from "@chakra-ui/react";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 
 import { format5Dec } from "./number-to-short-version";
@@ -6,11 +6,9 @@ import { format5Dec } from "./number-to-short-version";
 export function checkNativeSOLBalance(
   nativeSOLBalance: number,
   fundsNeeded: number
-): boolean {
+): UseToastOptions | undefined {
   if (fundsNeeded > nativeSOLBalance) {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const toast = useToast();
-    toast({
+    return {
       title: "Insufficient funds to run transaction",
       description: `You need at least ${format5Dec(
         fundsNeeded + 1e4,
@@ -19,8 +17,7 @@ export function checkNativeSOLBalance(
         nativeSOLBalance && format5Dec(nativeSOLBalance, LAMPORTS_PER_SOL)
       })`,
       status: "warning",
-    });
-    return false;
+    };
   }
-  return true;
+  return undefined;
 }
