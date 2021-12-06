@@ -45,7 +45,8 @@ type StakeInputProps = {
   mb?: number;
   currentAccount: StakeAccountType;
   stakeAccounts: StakeAccountType[];
-  selectAccountCallback: unknown;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  selectAccountCallback: any;
 };
 
 const StakeInput = ({
