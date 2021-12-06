@@ -20,10 +20,10 @@ import { MdContentCopy } from "react-icons/md";
 
 import { useTranslation } from "../../../hooks/useTranslation";
 import colors from "../../../styles/customTheme/colors";
+import { format5Dec, format2Dec } from "../../../utils/number-to-short-version";
 import { shortenAddress } from "../../../utils/shorten-address";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
-import { format5Dec, format2Dec } from "utils/number-to-short-version";
 
 export enum StakeInputTypeEnum {
   Source = "source",
