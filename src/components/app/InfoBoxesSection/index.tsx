@@ -14,7 +14,6 @@ import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
 import InfoIconWithTooltip from "components/molecules/InfoIconWithTooltip";
 import { coinSymbols } from "services/domain/coinSymbols";
-import { formatNumber } from "solana/marinade-anchor/common";
 import colors from "styles/customTheme/colors";
 import { millisecondsToDhms } from "utils/ms-to-dmhs";
 
@@ -80,10 +79,10 @@ const InfoBoxesSection = () => {
           >
             <MText type="text-md">{t("appPage.info-total-sol-staked")}</MText>
             <MHeading type="heading-2xsm">
-              {formatNumber(totalSOLStaked)}
+              {numberToShortVersion(totalSOLStaked)}
             </MHeading>
             <MText type="text-md" pb={2}>
-              ≈ ${formatNumber((data?.sol?.usd ?? 0) * totalSOLStaked)}
+              ≈ ${numberToShortVersion((data?.sol?.usd ?? 0) * totalSOLStaked)}
             </MText>
           </Flex>
         ) : (

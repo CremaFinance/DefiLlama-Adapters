@@ -4,7 +4,7 @@ import { HiOutlineInformationCircle } from "react-icons/hi";
 
 import { useTranslation } from "../../../hooks/useTranslation";
 import { Pool } from "../../../services/domain/pool";
-import { formatNumber } from "../../../solana/marinade-anchor/common";
+import { numberToShortVersion } from "../../../utils/number-to-short-version";
 import Button from "../../atoms/Button";
 import Heading from "../../atoms/Heading";
 import Text from "../../atoms/Text";
@@ -35,7 +35,7 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
   const tvlString = totalLockedValue
     ? t("appPage.pool-row.tvl")?.replace(
         "{{tvl}}",
-        formatNumber(totalLockedValue)
+        numberToShortVersion(totalLockedValue)
       )
     : "";
 
