@@ -11,6 +11,7 @@ export interface TokenExtensions {
   readonly tggroup?: string;
   readonly discord?: string;
   readonly coingeckoId?: string;
+  readonly binanceId?: string;
   readonly imageUrl?: string;
   readonly description?: string;
   readonly telegram?: string;
