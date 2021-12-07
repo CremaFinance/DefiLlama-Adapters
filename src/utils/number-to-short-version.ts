@@ -23,3 +23,9 @@ export function format2Dec(balance: number, divisor?: number): string {
     ? "0"
     : (Math.round((balance / (divisor || 1)) * 1e2) / 1e2).toString();
 }
+
+export function format9Dec(balance: number, divisor?: number): string {
+  return balance == null
+    ? "0"
+    : (Math.round((balance / (divisor || 1)) * 1e9) / 1e9).toString();
+}

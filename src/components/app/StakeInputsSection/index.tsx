@@ -1,5 +1,6 @@
 /* eslint-disable complexity */
 import { Flex, IconButton } from "@chakra-ui/react";
+import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
 import { useState } from "react";
 import { MdArrowDownward, MdInfoOutline } from "react-icons/md";
@@ -13,6 +14,7 @@ import StakeInput, {
 } from "components/molecules/StakeInput";
 import SwitchButtons from "components/molecules/SwitchButtons";
 import TooltipWithContent from "components/molecules/TooltipWithContent";
+import { useUserBalance } from "contexts/UserBalanceContext";
 import colors from "styles/customTheme/colors";
 
 const StakeInputsSection = () => {
@@ -20,6 +22,8 @@ const StakeInputsSection = () => {
 
   const [isStakeActive, setStakeActive] = useState(true);
   const [isUnstakeNowActive, setUnstakeNowActive] = useState(true);
+  // const [solToStake, setSolToStake] = useState<number>("");
+  const { nativeSOLBalance } = useUserBalance();
 
   const unstakeText = isUnstakeNowActive
     ? t("appPage.unstake-now-action")
@@ -31,7 +35,9 @@ const StakeInputsSection = () => {
   const maxUnstakeFee = 3;
   const sourceToken = "SOL";
   const sourceTokenIcon = "/icons/solana-dark.png";
-  const sourceTokenBalance = 123456;
+  const sourceTokenBalance = nativeSOLBalance
+    ? nativeSOLBalance / LAMPORTS_PER_SOL - 0.001
+    : 0;
   const targetToken = "mSOL";
   const targetTokenIcon = "/icons/mSOL.svg";
   const targetTokenBalance = 12.3;
