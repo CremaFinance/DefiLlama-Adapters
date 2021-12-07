@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import { useTranslation } from "../../../hooks/useTranslation";
 import colors from "../../../styles/customTheme/colors";
+import { format9Dec } from "../../../utils/number-to-short-version";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 
@@ -70,7 +71,7 @@ const StakeInput = ({
           textAlign="right"
           fontSize="28.13px"
           fontWeight="bold"
-          value={amount}
+          value={format9Dec(amount)}
           type="number"
           onChange={handleChange}
           isDisabled={stakeInputType === StakeInputTypeEnum.Target}
@@ -83,7 +84,7 @@ const StakeInput = ({
       </Flex>
       <Flex alignItems="center" justifyContent="flex-start" mb={2}>
         <MText type="text-sm">{`${balanceLabel}: ${tokenBalance.toLocaleString()} ${tokenName}`}</MText>
-        {stakeInputType === StakeInputTypeEnum.Source ? (
+        {tokenBalance && stakeInputType === StakeInputTypeEnum.Source ? (
           <MButton
             variant="link"
             font="text-sm"
