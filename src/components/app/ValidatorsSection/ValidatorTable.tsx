@@ -103,6 +103,7 @@ const options = {
       radius: 0,
     },
   },
+  maintainAspectRatio: false,
 };
 
 const graphData = {
@@ -111,8 +112,8 @@ const graphData = {
     {
       label: "Active Stakes",
       data: activeStakes,
-      borderColor: "red",
-      backgroundColor: "red",
+      borderColor: "#308d8a",
+      backgroundColor: "#308d8a",
     },
   ],
 };
@@ -356,8 +357,10 @@ const ValidatorTable = () => {
                     {lamportsToSol(tuple.lamports, 2)}
                   </Box>
                 </Td>
-                <Td {...cell}>
-                  <Line options={options} data={graphData} />
+                <Td {...cell} width="100px">
+                  <Box height="50px" position="relative" right="25%">
+                    <Line options={options} data={graphData} />
+                  </Box>
                 </Td>
                 <Td {...highlightedCell} width="225px">
                   <Flex alignItems="center" flexWrap="nowrap">
