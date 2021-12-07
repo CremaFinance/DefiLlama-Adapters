@@ -99,8 +99,13 @@ const StakeInputsSection = () => {
       Number(solToStake) * LAMPORTS_PER_SOL +
       (marinadeState?.transactionFee ?? 0) * 4 +
       (state?.rent_exempt_for_token_acc?.toNumber() ?? 0);
-    if (!checkNativeSOLBalance(nativeSOLBalance ?? 0, fundsNeeded))
-      return false;
+    const checkBalanceErrors = checkNativeSOLBalance(
+      nativeSOLBalance ?? 0,
+      fundsNeeded
+    );
+    if (checkBalanceErrors) {
+      return toast(checkBalanceErrors);
+    }
 
     setStakeLoading(true);
 
