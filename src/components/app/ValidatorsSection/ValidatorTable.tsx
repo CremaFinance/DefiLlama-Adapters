@@ -10,6 +10,16 @@ import {
   Spinner,
   Image,
 } from "@chakra-ui/react";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
 import { useTranslation } from "next-export-i18n";
 import { useState, useEffect } from "react";
 import { MdOutlineContentCopy } from "react-icons/md";
@@ -43,6 +53,16 @@ interface Validator {
     };
   };
 }
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const cell = {
   fontSize: "14.4px",
@@ -230,6 +250,9 @@ const ValidatorTable = () => {
             <Th {...cell} textAlign="left">
               {t("appPage.validators-table-balance")}
             </Th>
+            <Th {...cell} textAlign="left">
+              Graph
+            </Th>
             <Th {...cell} textAlign="left" position="relative" right="14px">
               {t("appPage.validators-table-validator")}
             </Th>
@@ -279,6 +302,9 @@ const ValidatorTable = () => {
                   <Box display={{ base: "flex", md: "none" }}>
                     {lamportsToSol(tuple.lamports, 2)}
                   </Box>
+                </Td>
+                <Td {...cell}>
+                  <MText>Chart</MText>
                 </Td>
                 <Td {...highlightedCell} width="225px">
                   <Flex alignItems="center" flexWrap="nowrap">
