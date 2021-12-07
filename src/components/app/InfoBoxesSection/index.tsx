@@ -93,10 +93,10 @@ const InfoBoxesSection = () => {
           >
             <MText type="text-md">{t("appPage.info-total-sol-staked")}</MText>
             <MHeading type="heading-2xsm">
-              {totalSOLStaked.toLocaleString()}
+              {numberToShortVersion(totalSOLStaked)}
             </MHeading>
             <MText type="text-md" pb={2}>
-              ≈ ${((solUSD ?? 0) * totalSOLStaked).toLocaleString()}
+              ≈ ${numberToShortVersion((solUSD ?? 0) * totalSOLStaked)}
             </MText>
           </Flex>
         ) : (

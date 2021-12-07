@@ -1,11 +1,15 @@
 export function numberToShortVersion(value: number): string {
-  if (value > 999 && value < 1000000) {
-    return `${(value / 1000).toFixed(2)}K`;
+  if (value < 1_000) {
+    return `${value.toFixed(2)}`;
   }
-  if (value > 1000000) {
-    return `${(value / 1000000).toFixed(2)}M`;
+  if (value < 1_000_000) {
+    return `${(value / 1_000).toFixed(2)}K`;
   }
-  return `${value}`;
+  if (value < 1_000_000_000) {
+    return `${(value / 1_000_000).toFixed(2)}M`;
+  }
+
+  return `${(value / 1_000_000_000).toFixed(2)}B`;
 }
 
 export function format5Dec(balance: number, divisor?: number): string {

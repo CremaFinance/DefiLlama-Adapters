@@ -195,7 +195,7 @@
         "swap": "Swap",
         "borrow": "Borrow"
       },
-      "tvl": "$ {{tvl}} TVL",
+      "tvl": "${{tvl}} TVL",
       "apyPopover": {
         "trading": "Trading APR",
         "emission": "Emission APR",
