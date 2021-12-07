@@ -78,7 +78,7 @@ const StakeInput = ({
           textAlign="right"
           fontSize="28.13px"
           fontWeight="bold"
-          value={format9Dec(amount)}
+          value={format9Dec(Number.isNaN(amount) ? 0 : Number(amount))}
           type="number"
           onChange={handleChange}
           isDisabled={stakeInputType === StakeInputTypeEnum.Target}
