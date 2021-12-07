@@ -292,13 +292,7 @@ const ValidatorTable = () => {
       >
         <Thead>
           <Tr>
-            <Th
-              {...cell}
-              width={{ base: "100px", xl: "460px" }}
-              textAlign="left"
-              position="relative"
-              right="23px"
-            >
+            <Th {...cell} textAlign="left" position="relative" right="23px">
               {t("appPage.validators-table-account")}
             </Th>
             <Th {...cell} textAlign="left">
@@ -321,24 +315,12 @@ const ValidatorTable = () => {
               <Tr key={tuple.pubkey.address}>
                 <Td
                   {...highlightedCell}
-                  width={{ base: "100px", xl: "460px" }}
                   textAlign="left"
                   position="relative"
                   right="10px"
+                  width="100px"
                 >
-                  <Flex
-                    alignItems="center"
-                    display={{ base: "none", xl: "flex" }}
-                  >
-                    <MText>{tuple.pubkey.address} </MText>
-                    <Box ml="7px">
-                      <MdOutlineContentCopy fontSize="14px" color="#171923" />
-                    </Box>
-                  </Flex>
-                  <Flex
-                    alignItems="center"
-                    display={{ base: "flex", xl: "none" }}
-                  >
+                  <Flex alignItems="center">
                     {shortenAddress(tuple.pubkey.address)}
                     <Box ml="7px">
                       <MdOutlineContentCopy fontSize="14px" color="#171923" />
@@ -358,7 +340,7 @@ const ValidatorTable = () => {
                   </Box>
                 </Td>
                 <Td {...cell} width="100px">
-                  <Box height="50px" position="relative" right="25%">
+                  <Box width="150px" height="50px">
                     <Line options={options} data={graphData} />
                   </Box>
                 </Td>
