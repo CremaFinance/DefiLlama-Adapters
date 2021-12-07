@@ -1,14 +1,14 @@
-import { Token } from "../../domain/token";
+import { TokenRecord } from "../../domain/token";
 
 import {
   lendingLarixPoolAddress,
   LendingLarixPoolAddress,
 } from "./lendingLarixPoolAddress";
 
-export const lendingLarixPoolTokens: Record<LendingLarixPoolAddress, Token> = {
+export const lendingLarixPoolTokens: TokenRecord<LendingLarixPoolAddress> = {
   [lendingLarixPoolAddress.LARIX_mSOL]: {
     chainId: 101,
-    address: "GoNeG1rhoZMuLqy6aUNfzyHjkCe9dwFuWTFwENPfU3q8",
+    address: "mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So",
     symbol: "mSOL",
     name: "Larix mSol",
     decimals: 6,

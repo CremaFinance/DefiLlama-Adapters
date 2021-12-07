@@ -3,14 +3,14 @@ import { FunctionComponent } from "react";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 
 import { useTranslation } from "../../../hooks/useTranslation";
-import { Pool } from "../../../services/domain/pool";
+import { Pool, PoolConfig } from "../../../services/domain/pool";
 import Button from "../../atoms/Button";
 import Heading from "../../atoms/Heading";
 import Text from "../../atoms/Text";
 import ApyAndRewardTooltip from "../ApyAndRewardTooltip";
 
 type PoolRowProps = {
-  pool: Pool;
+  pool: Pool | PoolConfig;
 };
 
 const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {

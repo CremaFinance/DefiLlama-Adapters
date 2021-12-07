@@ -9,7 +9,7 @@ export const updatePoolRewards = (poolToUpdate: Pool, prices: Prices) => {
       const price = prices[key]?.usd;
       if (price && reward && pool.liq) {
         reward.apy = ((reward.dailyRate * price * 365) / pool.liq) * 100;
-        pool.apy = pool.apy ? (pool.apy += reward.apy) : undefined;
+        pool.apy += reward.apy;
       }
     });
   }

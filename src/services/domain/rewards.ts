@@ -1,20 +1,26 @@
 import { CoinSymbols } from "./coinSymbols";
 
+type RewardConfig = {
+  /**
+   * Daily reward rate
+   */
+  dailyRate: number;
+  /**
+   * Apr description e.g. 'Emission' , 'Double Dip'
+   */
+  aprDescription: string;
+  apy?: number;
+};
+
+type Reward = RewardConfig & {
+  /** calculated when mapped */
+  apy: number;
+};
+
 export type Rewards = {
-  [key in CoinSymbols]?: {
-    /**
-     * Daily reward rate
-     *
-     * @category Config
-     */
-    dailyRate: number;
-    /**
-     * Apr description e.g. 'Emission' , 'Double Dip'
-     *
-     * @category Config
-     */
-    aprDescription: string;
-    // calculated when mapped
-    apy?: number;
-  };
+  [key in CoinSymbols]: Reward;
+};
+
+export type RewardsConfig = {
+  [key in CoinSymbols]: RewardConfig;
 };

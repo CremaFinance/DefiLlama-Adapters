@@ -1,7 +1,7 @@
 import { coinSymbols, CoinSymbols } from "./coinSymbols";
-import { Token } from "./token";
+import { TokenRecord } from "./token";
 
-export const coinTokens: Record<CoinSymbols, Token> = {
+export const coinTokens: TokenRecord<CoinSymbols> = {
   [coinSymbols.MNDE]: {
     chainId: 101,
     address: "MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey",

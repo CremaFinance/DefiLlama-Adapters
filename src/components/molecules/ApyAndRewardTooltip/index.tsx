@@ -10,12 +10,12 @@ import { PropsWithChildren, FunctionComponent } from "react";
 import { HiCheckCircle } from "react-icons/hi";
 
 import { useTranslation } from "../../../hooks/useTranslation";
-import { Rewards } from "../../../services/domain/rewards";
+import { Rewards, RewardsConfig } from "../../../services/domain/rewards";
 import Text from "../../atoms/Text";
 
 type ApyAndRewardTooltipProps = PropsWithChildren<{
   tradingApy?: number;
-  rewards?: Rewards;
+  rewards?: Rewards | RewardsConfig;
 }>;
 
 const ApyAndRewardTooltip: FunctionComponent<ApyAndRewardTooltipProps> = ({

@@ -1,6 +1,6 @@
 import { coinSymbols } from "../../domain/coinSymbols";
 import { marketTypes } from "../../domain/marketTypes";
-import { Pool } from "../../domain/pool";
+import { PoolConfig } from "../../domain/pool";
 
 import {
   lendingPortPoolAddress,
@@ -18,7 +18,7 @@ const actions = [
 
 export type PortPoolsResponse = Record<LendingPortPoolIds, PortPool>;
 
-export const portPools: Record<LendingPortPoolAddress, Pool> = {
+export const portPools: Record<LendingPortPoolAddress, PoolConfig> = {
   [lendingPortPoolAddress.PORT_mSOL]: {
     ...lendingPortPoolTokens[lendingPortPoolAddress.PORT_mSOL],
     ...{

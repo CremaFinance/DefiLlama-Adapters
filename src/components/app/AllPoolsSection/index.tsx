@@ -1,9 +1,9 @@
 import { Flex } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 
+import { Pool, PoolConfig } from "../../../services/domain/pool";
 import PoolRow from "components/molecules/PoolRow";
 import { usePools } from "hooks/usePools";
-import { Pool } from "services/domain/pool";
 
 const AllPoolsSection = () => {
   const { t } = useTranslation();
@@ -18,7 +18,7 @@ const AllPoolsSection = () => {
             })
           )
         : acc,
-    [] as { id: string; pool: Pool }[]
+    [] as { id: string; pool: Pool | PoolConfig }[]
   );
 
   return (

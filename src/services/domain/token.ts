@@ -10,3 +10,5 @@ export interface Token {
   readonly tags?: string[];
   readonly extensions?: TokenExtensions;
 }
+
+export type TokenRecord<K extends string> = Record<K, Token & { address: K }>;
