@@ -69,7 +69,7 @@
     "@storybook/addon-essentials": "^6.4.7",
     "@storybook/addon-links": "^6.4.8",
     "@storybook/react": "^6.4.8",
-    "@testing-library/jest-dom": "^5.16.0",
+    "@testing-library/jest-dom": "^5.16.1",
     "@types/jest": "^27.0.3",
     "@types/react": "^17.0.37",
     "babel-jest": "^27.4.2",
