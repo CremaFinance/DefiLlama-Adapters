@@ -3,6 +3,7 @@ import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
 import { MdInfoOutline } from "react-icons/md";
 
+import { useMarinade } from "../../../contexts/MarinadeContext";
 import { useStats } from "../../../contexts/StatsContext";
 import { useEpochInfo } from "../../../hooks/useEpochInfo";
 import { usePrice } from "../../../hooks/usePrice";
@@ -23,17 +24,26 @@ const InfoBoxesSection = () => {
   const { t } = useTranslation();
 
   const { data } = usePrice(coinSymbols.SOL);
+
   const epochData = useEpochInfo()?.data;
 
   const { totalStaked } = useStats();
+
+  const { marinadeState } = useMarinade();
 
   const totalSOLStaked = totalStaked
     ? Number(format2Dec(totalStaked, LAMPORTS_PER_SOL))
     : undefined;
 
-  // TODO: Use actual values from services
-  const mSOLvsSOLParity = 1.24;
+  const mSOLvsSOLParity = marinadeState?.state?.st_sol_price
+    ? marinadeState?.state?.st_sol_price?.toNumber() / 0x1_0000_0000
+    : 0;
 
+  const solUSD = data ? data[coinSymbols.SOL]?.usd : 0;
+
+  const mSolUSD = Number(format2Dec(solUSD ?? 0 * mSOLvsSOLParity));
+
+  // TODO: Use actual values from services
   const weekAPY = 7.16;
   const validators = 411;
 
@@ -60,9 +70,11 @@ const InfoBoxesSection = () => {
           mx={2}
         >
           <MText type="text-md">{t("appPage.info-msol-sol-price")}</MText>
-          <MHeading type="heading-2xsm">{mSOLvsSOLParity} SOL</MHeading>
+          <MHeading type="heading-2xsm">
+            {mSOLvsSOLParity.toFixed(5)} SOL
+          </MHeading>
           <MText type="text-md" pb={2}>
-            ≈ ${((data?.sol?.usd ?? 0) * mSOLvsSOLParity).toFixed(2)}
+            ≈ ${mSolUSD}
           </MText>
         </Flex>
         {totalSOLStaked ? (
@@ -84,7 +96,7 @@ const InfoBoxesSection = () => {
               {numberToShortVersion(totalSOLStaked)}
             </MHeading>
             <MText type="text-md" pb={2}>
-              ≈ ${numberToShortVersion((data?.sol?.usd ?? 0) * totalSOLStaked)}
+              ≈ ${numberToShortVersion((solUSD ?? 0) * totalSOLStaked)}
             </MText>
           </Flex>
         ) : (
