@@ -3,6 +3,7 @@ import { useTranslation } from "next-export-i18n";
 
 import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
+import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
 import IconWithTextBelow from "components/molecules/IconWithTextBelow";
 import colors from "styles/customTheme/colors";
@@ -104,13 +105,13 @@ export default function SecuritySection() {
         marginTop={4}
       >
         <IconWithTextBelow
-          height={70}
+          height="76px"
           opacity="0.6"
           marginBottom={8}
           marginTop={4}
-          marginX={8}
+          marginX="38px"
           key="neodyme"
-          icon="/logos/neodyme-white.png"
+          icon="/logos/neodyme-white.svg"
           title={t(`indexPage.security-section-audit-neodyme.title`)}
           subtitle={t(`indexPage.security-section-audit-neodyme.subtitle`)}
           externalUrl={t(
@@ -118,13 +119,14 @@ export default function SecuritySection() {
           )}
         />
         <IconWithTextBelow
-          height={70}
+          height="55px"
+          width="180px"
           opacity="0.6"
           marginBottom={8}
-          marginTop={4}
-          marginX={8}
+          marginTop={9}
+          marginX={9}
           key="ackee"
-          icon="/logos/ackee-blockchain.svg"
+          icon="/logos/ackee-blockchain.png"
           title={t(`indexPage.security-section-audit-ackee.title`)}
           subtitle={t(`indexPage.security-section-audit-ackee.subtitle`)}
           externalUrl={t(`indexPage.security-section-audit-ackee.external-url`)}
@@ -143,6 +145,27 @@ export default function SecuritySection() {
             `indexPage.security-section-audit-kudelski.external-url`
           )}
         />
+      </Flex>
+      <Flex mt={16} mb={8} justifyContent="center">
+        <MLink
+          isExternal
+          rel="noreferrer noopener"
+          style={{ textDecoration: "none" }}
+          mr={4}
+          href="https://docs.marinade.finance/developers/bug-bounty"
+        >
+          <MButton
+            font="text-xl"
+            bg={colors.greenVibrant}
+            _hover={{ bg: colors.greenVibrant800 }}
+            colorScheme={colors.greenVibrant}
+            width={272}
+            height="48px"
+            rounded="md"
+          >
+            {t(`indexPage.security-section-bug-bounty-action`)}
+          </MButton>
+        </MLink>
       </Flex>
     </Box>
   );

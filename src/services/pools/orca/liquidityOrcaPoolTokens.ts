@@ -6,6 +6,8 @@ import {
   LiquidityOrcaPoolAddress,
 } from "./liquidityOrcaPoolAddress";
 
+const orcaUri = "/pools/orca.png";
+
 export const liquidityPoolTokens: Record<LiquidityOrcaPoolAddress, Token> = {
   [liquidityOrcaPoolAddress.ORCA_mSOL_SOL]: {
     chainId: 101,
@@ -13,8 +15,7 @@ export const liquidityPoolTokens: Record<LiquidityOrcaPoolAddress, Token> = {
     symbol: "mSOL/SOL",
     name: "Orca Aquafarm Token (mSOL/SOL)",
     decimals: 6,
-    logoURI:
-      "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/3RTGL7gPF4V1ns1AeGFApT7cBEGVDfmJ77DqQi9AC6uG/logo.svg",
+    logoURI: orcaUri,
     tags: ["lp-token"],
     extensions: {},
   },
@@ -24,8 +25,7 @@ export const liquidityPoolTokens: Record<LiquidityOrcaPoolAddress, Token> = {
     symbol: "BTC/mSOL",
     name: "Orca BTC/mSOL[aquafarm]",
     decimals: 6,
-    logoURI:
-      "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/6uA1ADUJbvwYJZpzUn9z9LuyKoRVngBKcQTKdXsSivA8/logo.svg",
+    logoURI: orcaUri,
     tags: ["lp-token"],
     extensions: {
       website: "https://www.orca.so",
@@ -38,8 +38,7 @@ export const liquidityPoolTokens: Record<LiquidityOrcaPoolAddress, Token> = {
     symbol: "MNDE/mSOL",
     name: "Orca MNDE/mSOL[aquafarm]",
     decimals: 6,
-    logoURI:
-      "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/2FMpVEhvxiFxhfideFUMNxCoUZK3TfhezzajoHGTQKP2/logo.svg",
+    logoURI: orcaUri,
     tags: ["lp-token"],
   },
   [liquidityOrcaPoolAddress.ORCA_mSOL_USDT]: {
@@ -48,8 +47,7 @@ export const liquidityPoolTokens: Record<LiquidityOrcaPoolAddress, Token> = {
     symbol: "mSOL/USDT",
     name: "mSOL/USDT[aquafarm]",
     decimals: 9,
-    logoURI:
-      "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/7iKG16aukdXXw43MowbfrGqXhAoYe51iVR9u2Nf2dCEY/logo.svg",
+    logoURI: orcaUri,
     tags: ["lp-token"],
   },
   [liquidityOrcaPoolAddress.ORCA_mSOL_USDC]: {
@@ -58,8 +56,7 @@ export const liquidityPoolTokens: Record<LiquidityOrcaPoolAddress, Token> = {
     symbol: "mSOL/USDC[aquafarm]",
     name: "Orca mSOL/USDC[aquafarm]",
     decimals: 9,
-    logoURI:
-      "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/7iKG16aukdXXw43MowbfrGqXhAoYe51iVR9u2Nf2dCEY/logo.svg",
+    logoURI: orcaUri,
     tags: ["lp-token"],
   },
 };

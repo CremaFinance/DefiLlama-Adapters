@@ -16,7 +16,7 @@ test("coinPrice returns binance response", async () => {
     );
 
   const data = await fetchCoinPrice(coinSymbols.SOL);
-  expect(data?.sol?.usd).toEqual(235.83524298);
+  expect(data?.SOL?.usd).toEqual(235.83524298);
 });
 
 test("coinPrice returns coingecko response", async () => {
@@ -28,5 +28,5 @@ test("coinPrice returns coingecko response", async () => {
     .mockResponseOnce(JSON.stringify({ solana: { usd: 239.21 } }));
 
   const data = await fetchCoinPrice(coinSymbols.SOL);
-  expect(data?.sol?.usd).toEqual(239.21);
+  expect(data?.SOL?.usd).toEqual(239.21);
 });

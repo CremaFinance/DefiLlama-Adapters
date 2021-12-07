@@ -11,5 +11,5 @@ test("binance returns proper response", async () => {
   fetch.mockResponseOnce(JSON.stringify({ mins: 5, price: 235.83524298 }));
 
   const data = await fetchBinancePriceBySymbol(coinSymbols.SOL);
-  expect(data?.sol?.usd).toEqual(235.83524298);
+  expect(data.SOL?.usd).toEqual(235.83524298);
 });

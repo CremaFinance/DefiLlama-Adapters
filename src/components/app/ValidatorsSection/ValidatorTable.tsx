@@ -1,6 +1,5 @@
 import {
   Flex,
-  Text,
   Table,
   Thead,
   Tbody,
@@ -12,12 +11,13 @@ import {
   Image,
 } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
-// import Image from "next/image";
 import { useState, useEffect } from "react";
 import { MdOutlineContentCopy } from "react-icons/md";
 import { useQuery, UseQueryResult } from "react-query";
 
+import MText from "../../atoms/Text";
 import lamportsToSol from "utils/lamports-to-sol";
+import { shortenAddress } from "utils/shorten-address";
 
 interface Query {
   totalPages: number;
@@ -45,18 +45,20 @@ interface Validator {
 }
 
 const cell = {
-  height: "40px",
   fontSize: "14.4px",
   borderBottom: "1px solid #edf2f7",
+  py: { base: "1px", xl: "15px" },
+  height: { base: "40px", xl: "50px" },
 };
 
 const highlightedCell = {
-  height: "40px",
+  height: { base: "40px", xl: "50px" },
   fontSize: "14.4px",
   color: "#308d8a",
   fontWeight: "700",
   borderBottom: "1px solid #edf2f7",
   px: "10px",
+  py: { base: "1px", xl: "15px" },
   _hover: {
     textDecoration: "underline",
     cursor: "pointer",
@@ -202,11 +204,27 @@ const ValidatorTable = () => {
   }
 
   return (
-    <Flex mt="40px" ml="30px" mr="30px" direction="column">
-      <Table variant="unstyled">
+    <Flex
+      mt="20px"
+      ml="30px"
+      mr="30px"
+      direction="column"
+      height={{ base: "80vh", xl: "500px" }}
+    >
+      <Table
+        variant="unstyled"
+        height={{ base: "65vh", xl: "800px" }}
+        maxHeight="570px"
+      >
         <Thead>
           <Tr>
-            <Th {...cell} textAlign="left" position="relative" right="23px">
+            <Th
+              {...cell}
+              width={{ base: "100px", xl: "460px" }}
+              textAlign="left"
+              position="relative"
+              right="23px"
+            >
               {t("appPage.validators-table-account")}
             </Th>
             <Th {...cell} textAlign="left">
@@ -226,22 +244,44 @@ const ValidatorTable = () => {
               <Tr key={tuple.pubkey.address}>
                 <Td
                   {...highlightedCell}
+                  width={{ base: "100px", xl: "460px" }}
+                  textAlign="left"
                   position="relative"
                   right="10px"
-                  width="460px"
                 >
-                  <Flex alignItems="center">
-                    {tuple.pubkey.address}{" "}
+                  <Flex
+                    alignItems="center"
+                    display={{ base: "none", xl: "flex" }}
+                  >
+                    <MText>{tuple.pubkey.address} </MText>
+                    <Box ml="7px">
+                      <MdOutlineContentCopy fontSize="14px" color="#171923" />
+                    </Box>
+                  </Flex>
+                  <Flex
+                    alignItems="center"
+                    display={{ base: "flex", xl: "none" }}
+                  >
+                    {shortenAddress(tuple.pubkey.address)}
                     <Box ml="7px">
                       <MdOutlineContentCopy fontSize="14px" color="#171923" />
                     </Box>
                   </Flex>
                 </Td>
                 <Td {...cell} width="225px">
-                  {lamportsToSol(tuple.lamports)} SOL
+                  <Box display={{ base: "none", lg: "flex" }}>
+                    {lamportsToSol(tuple.lamports)} SOL
+                  </Box>
+                  <Box display={{ base: "none", md: "flex", lg: "none" }}>
+                    {lamportsToSol(tuple.lamports, 2)} SOL
+                  </Box>
+
+                  <Box display={{ base: "flex", md: "none" }}>
+                    {lamportsToSol(tuple.lamports, 2)}
+                  </Box>
                 </Td>
                 <Td {...highlightedCell} width="225px">
-                  <Flex alignItems="center">
+                  <Flex alignItems="center" flexWrap="nowrap">
                     {tuple.data.stake.delegation.validatorInfo.image && (
                       <Image
                         src={tuple.data.stake.delegation.validatorInfo.image}
@@ -250,15 +290,21 @@ const ValidatorTable = () => {
                       />
                     )}
 
-                    <Text pl="4px">
+                    <MText pl="4px">
                       {formatValidatorName(
                         tuple.data.stake.delegation.validatorInfo.name ||
                           tuple.data.stake.delegation.voter_pubkey.address
                       )}
-                    </Text>
+                    </MText>
                   </Flex>
                 </Td>
-                <Td {...cell} position="relative" left="25px" width="128px">
+                <Td
+                  {...cell}
+                  textAlign="right"
+                  position="relative"
+                  left="10px"
+                  width="128px"
+                >
                   {t("appPage.validators-table-delegated")}
                 </Td>
               </Tr>
@@ -271,16 +317,18 @@ const ValidatorTable = () => {
         <Flex
           justifyContent="flex-end"
           marginRight="20px"
-          height="100px"
+          height="80px"
           alignItems="center"
         >
           {pages.map((page) => (
             <Box key={page}>
               {page === pageNumber ? (
-                <Box {...currentPageStyle}>{page}</Box>
+                <Box {...currentPageStyle}>
+                  <MText> {page}</MText>
+                </Box>
               ) : (
                 <Box onClick={() => handlePagination(page)} {...pageStyle}>
-                  {page}
+                  <MText>{page}</MText>
                 </Box>
               )}
             </Box>

@@ -166,6 +166,7 @@
       "external-url": "https://marinade.finance/KudelskiSecurity.pdf"
     },
     "footer-description": "Marinade.Finance is a non-custodial liquid staking protocol built on the Solana blockchain.",
+    "security-section-bug-bounty-action": "Bug bounty program",
     "footer-product": "Product",
     "footer-stake-sol": "Stake SOL",
     "footer-validators": "Validators",
@@ -194,7 +195,7 @@
         "swap": "Swap",
         "borrow": "Borrow"
       },
-      "tvl": "$ {{tvl}} TVL",
+      "tvl": "${{tvl}} TVL",
       "apyPopover": {
         "trading": "Trading APR",
         "emission": "Emission APR",
@@ -217,7 +218,8 @@
     "info-see-performance-action": "See performance",
     "info-validators": "Validators",
     "info-validators-action": "Show validators",
-    "info-epoch-tooltip": "Epochs have variable length on the Solana blockchain. They are tied to the number of slots produced by the blockchain. You can find the related technical documentation here. Staking rewards are distributed at the end of each epoch.",
+    "info-epoch-tooltip": "Epochs have variable length on the Solana blockchain. They are tied to the number of slots produced by the blockchain.  Staking rewards are distributed at the end of each epoch.",
+    "info-epoch-tooltip-docs-link": "https://docs.solana.com/terminology#epoch",
     "info-week-apy-tooltip": "This APY is based on the average APY of the last 7 days. See our stats for more details.",
     "info-validators-tooltip": "Stake is only delegated to validators that are not part of the security group to secure the network and help with its decentralization. Our algorithm evaluates all validators and selects the top-performers.",
     "info-validators-tooltip-docs-link": "https://docs.marinade.finance/marinade-protocol/validators",
@@ -253,9 +255,8 @@
     },
     "stake-inputs-time-to-unstake": "Time to unstake",
     "tooltip-time-to-unstake-text": "Unstaking will take 1 to 2 epochs. This time is an estimation; please refer to the docs to learn more.",
-    "tooltip-time-to-unstake-read-more": "See docs",    
+    "tooltip-time-to-unstake-read-more": "See docs",
     "tooltip-time-to-unstake-docs-link": "https://docs.marinade.finance/marinade-protocol/system-overview#delayed-unstaked",
-
 
     "tickets-accounts": "Ticket accounts",
     "sol": "SOL",
@@ -288,13 +289,14 @@
     "validators-menu-transactions": "Transactions",
     "validators-menu-stakes": "Stakes",
     "validators-menu-portfolio": "Portfolio",
-    "validators-menu-spl-token-txs": "SPL Token Token TXs",
+    "validators-menu-spl-token-txs": "SPL Token TXs",
     "validators-menu-dex-orders": "DEXOrders",
     "validators-button-basic": "Basic",
     "validators-table-account": "Account",
     "validators-table-balance": "Balance",
     "validators-table-validator": "Validator",
     "validators-table-state": "State",
-    "validators-table-delegated": "Delegated"
+    "validators-table-delegated": "Delegated",
+    "validators-link": "https://marinade.finance/app/validators"
   }
 }
