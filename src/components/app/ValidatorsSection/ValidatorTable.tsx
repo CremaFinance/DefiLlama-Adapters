@@ -22,6 +22,7 @@ import {
 } from "chart.js";
 import { useTranslation } from "next-export-i18n";
 import { useState, useEffect } from "react";
+import { Line } from "react-chartjs-2";
 import { MdOutlineContentCopy } from "react-icons/md";
 import { useQuery, UseQueryResult } from "react-query";
 
@@ -63,6 +64,58 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+
+const epochs = [
+  220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234,
+  235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249,
+];
+const activeStakes = [
+  4072763.161070507, 4051075.066551863, 4052054.858973112, 5484387.030233282,
+  5684468.243501075, 5708780.209760917, 5741928.247340158, 5867284.539062156,
+  5903796.859640622, 5907522.166588127, 5892550.851038137, 5380652.535657598,
+  5345727.220581916, 5292535.108541975, 5271852.135467568, 5379139.069056723,
+  5386798.789321935, 5388546.43043774, 5401648.792333718, 5437185.096764735,
+  5462996.963574909, 5400193.764581964, 5411662.977977125, 5400563.433956664,
+  5223744.103347798, 5216777.860529208, 5232571.293974561, 5238363.018035473,
+  5241898.45501964, 5320538.49202316,
+];
+const options = {
+  responsive: true,
+  plugins: {
+    legend: {
+      position: "top" as const,
+      display: false,
+    },
+    title: {
+      display: false,
+    },
+  },
+  scales: {
+    x: {
+      display: false,
+    },
+    y: {
+      display: false,
+    },
+  },
+  elements: {
+    point: {
+      radius: 0,
+    },
+  },
+};
+
+const graphData = {
+  labels: epochs,
+  datasets: [
+    {
+      label: "Active Stakes",
+      data: activeStakes,
+      borderColor: "red",
+      backgroundColor: "red",
+    },
+  ],
+};
 
 const cell = {
   fontSize: "14.4px",
@@ -304,7 +357,7 @@ const ValidatorTable = () => {
                   </Box>
                 </Td>
                 <Td {...cell}>
-                  <MText>Chart</MText>
+                  <Line options={options} data={graphData} />
                 </Td>
                 <Td {...highlightedCell} width="225px">
                   <Flex alignItems="center" flexWrap="nowrap">
