@@ -1,13 +1,13 @@
 import { Flex, IconButton, useDisclosure, useToast } from "@chakra-ui/react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
+import { useTranslation } from "next-export-i18n";
 import { useState } from "react";
 import { MdInfoOutline } from "react-icons/md";
 
 import { useChain } from "../../../contexts/ConnectionProvider";
 import { useMarinade } from "../../../contexts/MarinadeContext";
 import { useUserBalance } from "../../../contexts/UserBalanceContext";
-import { useTranslation } from "../../../hooks/useTranslation";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 import StakeInput, {
