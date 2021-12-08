@@ -148,21 +148,9 @@ export async function getTokenBalance(
   }
 }
 
-export function format5Dec(balance: number, divisor?: number): string {
-  return balance === null
-    ? "--"
-    : (Math.round((balance / (divisor || 1)) * 1e5) / 1e5).toString();
-}
-
-export function format2Dec(balance: number, divisor?: number): string {
-  return balance == null
-    ? "0"
-    : (Math.round((balance / (divisor || 1)) * 1e2) / 1e2).toString();
-}
-
-export function formatKDec(balance: number): string {
+export function formatKDec(balance: number, dec = 1): string {
   return `${
-    Math.sign(balance) * +(Math.abs(balance) / 1000).toFixed(1)
+    Math.sign(balance) * +(Math.abs(balance) / 1000).toFixed(dec)
   }K`.toString();
 }
 

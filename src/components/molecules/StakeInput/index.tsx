@@ -20,7 +20,11 @@ import { MdContentCopy } from "react-icons/md";
 
 import { useTranslation } from "../../../hooks/useTranslation";
 import colors from "../../../styles/customTheme/colors";
-import { format5Dec, format2Dec } from "../../../utils/number-to-short-version";
+import {
+  format5Dec,
+  format2Dec,
+  format9Dec,
+} from "../../../utils/number-to-short-version";
 import { shortenAddress } from "../../../utils/shorten-address";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
@@ -44,6 +48,8 @@ type StakeInputProps = {
   currentAccount: StakeAccountType;
   stakeAccounts: StakeAccountType[];
   selectAccountCallback: (value: boolean) => void;
+  onValueChange?: (value: number) => void;
+  value?: number;
 };
 
 const StakeInput = ({
@@ -55,16 +61,21 @@ const StakeInput = ({
   currentAccount,
   stakeAccounts,
   selectAccountCallback,
+  onValueChange,
+  value = undefined,
 }: StakeInputProps) => {
   const { t } = useTranslation();
   const toast = useToast();
   const balanceLabel = t("appPage.balance");
   const [isWiderThan768] = useMediaQuery("(min-width: 768px)");
-  const [amount, setAmount] = useState(0);
   const [selectedAccount, setSelectedAccount] = useState(currentAccount);
   const [isStakeAccountSelected, setIsStakeAccountSelected] = useState(false);
+  const [amount, setAmount] = useState(value ?? "");
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setAmount(Number(event.target.value));
+    setAmount(event.target.value);
+    if (onValueChange) {
+      onValueChange(Number(event.target.value));
+    }
   };
 
   const handleSelectedWalletAccount = (account: StakeAccountType) => {
@@ -276,7 +287,7 @@ const StakeInput = ({
           textAlign="right"
           fontSize="28.13px"
           fontWeight="bold"
-          value={amount}
+          value={format9Dec(Number.isNaN(amount) ? 0 : Number(amount))}
           type="number"
           onChange={handleChange}
           isDisabled={
@@ -299,7 +310,7 @@ const StakeInput = ({
             font="text-sm"
             color={colors.marinadeGreen}
             fontWeight="bold"
-            onClick={() => setAmount(tokenBalance)}
+            onClick={() => setAmount(`${tokenBalance}`)}
             pb="1px"
             _hover={{}}
           >

@@ -166,6 +166,7 @@
       "external-url": "https://marinade.finance/KudelskiSecurity.pdf"
     },
     "footer-description": "Marinade.Finance is a non-custodial liquid staking protocol built on the Solana blockchain.",
+    "security-section-bug-bounty-action": "Bug bounty program",
     "footer-product": "Product",
     "footer-stake-sol": "Stake SOL",
     "footer-validators": "Validators",
@@ -194,7 +195,7 @@
         "swap": "Swap",
         "borrow": "Borrow"
       },
-      "tvl": "$ {{tvl}} TVL",
+      "tvl": "${{tvl}} TVL",
       "apyPopover": {
         "trading": "Trading APR",
         "emission": "Emission APR",
@@ -263,9 +264,8 @@
     },
     "stake-inputs-time-to-unstake": "Time to unstake",
     "tooltip-time-to-unstake-text": "Unstaking will take 1 to 2 epochs. This time is an estimation; please refer to the docs to learn more.",
-    "tooltip-time-to-unstake-read-more": "See docs",    
+    "tooltip-time-to-unstake-read-more": "See docs",
     "tooltip-time-to-unstake-docs-link": "https://docs.marinade.finance/marinade-protocol/system-overview#delayed-unstaked",
-
 
     "tickets-accounts": "Ticket accounts",
     "sol": "SOL",
@@ -295,16 +295,25 @@
       }
     ],
 
+    "ammount-exceeds-current-staking-cap": "Amount entered exceeds the current Staking cap.",
+    "capped-tvl-is-full": "Mainnet Beta Capped TVL is FULL. Please wait for cap increments.",
+    "missing-sol-for-fee": "You need some SOL balance on your wallet to cover the transaction fees.",
+    "something-went-wrong": "Something went wrong",
+    "stake-sol-confirmed": "Stake SOL confirmed",
+    "successfully-staked-your-sol": "You've successfully staked your SOL",
+    "try-using-max-button": "Try using the MAX button to stake the maximum allowed amount.",
+
     "validators-menu-transactions": "Transactions",
     "validators-menu-stakes": "Stakes",
     "validators-menu-portfolio": "Portfolio",
-    "validators-menu-spl-token-txs": "SPL Token Token TXs",
+    "validators-menu-spl-token-txs": "SPL Token TXs",
     "validators-menu-dex-orders": "DEXOrders",
     "validators-button-basic": "Basic",
     "validators-table-account": "Account",
     "validators-table-balance": "Balance",
     "validators-table-validator": "Validator",
     "validators-table-state": "State",
-    "validators-table-delegated": "Delegated"
+    "validators-table-delegated": "Delegated",
+    "validators-link": "https://marinade.finance/app/validators"
   }
 }

@@ -52,8 +52,8 @@ Branches:
 
 Pull Requests:
 ----------------
-- use the PR template
-- PR without review assigned is considered a WIP PR
+- use the provided PR template
+- PR without review assigned is considered a WIP PR and needs a WIP label - every PR has assigned a reviewer AND/OR WIP label
 - the last person that resolves the conversation and/or finishes the review (into dev) will merge the PR
 - use WIP label to signify PR to not get merged even after an approved review
 

@@ -3,6 +3,7 @@ import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
 import { MdInfoOutline } from "react-icons/md";
 
+import { useMarinade } from "../../../contexts/MarinadeContext";
 import { useStats } from "../../../contexts/StatsContext";
 import { useEpochInfo } from "../../../hooks/useEpochInfo";
 import { usePrice } from "../../../hooks/usePrice";
@@ -23,17 +24,26 @@ const InfoBoxesSection = () => {
   const { t } = useTranslation();
 
   const { data } = usePrice(coinSymbols.SOL);
+
   const epochData = useEpochInfo()?.data;
 
   const { totalStaked } = useStats();
+
+  const { marinadeState } = useMarinade();
 
   const totalSOLStaked = totalStaked
     ? Number(format2Dec(totalStaked, LAMPORTS_PER_SOL))
     : undefined;
 
-  // TODO: Use actual values from services
-  const mSOLvsSOLParity = 1.24;
+  const mSOLvsSOLParity = marinadeState?.state?.st_sol_price
+    ? marinadeState?.state?.st_sol_price?.toNumber() / 0x1_0000_0000
+    : 0;
 
+  const solUSD = data ? data[coinSymbols.SOL]?.usd : 0;
+
+  const mSolUSD = Number(format2Dec(solUSD ?? 0 * mSOLvsSOLParity));
+
+  // TODO: Use actual values from services
   const weekAPY = 7.16;
   const validators = 411;
 
@@ -60,38 +70,42 @@ const InfoBoxesSection = () => {
           mx={2}
         >
           <MText type="text-md">{t("appPage.info-msol-sol-price")}</MText>
-          <MHeading type="heading-2xsm">{mSOLvsSOLParity} SOL</MHeading>
+          <MHeading type="heading-2xsm">
+            {mSOLvsSOLParity.toFixed(5)} SOL
+          </MHeading>
           <MText type="text-md" pb={2}>
-            ≈ ${((data?.sol?.usd ?? 0) * mSOLvsSOLParity).toFixed(2)}
+            ≈ ${mSolUSD}
           </MText>
         </Flex>
-        {totalSOLStaked ? (
-          <Flex
-            bg={colors.white}
-            flexDirection="column"
-            justifyContent="space-between"
-            rounded="lg"
-            width="207px"
-            height="139px"
-            zIndex={5}
-            py={5}
-            px={6}
-            mt={8}
-            mx={2}
-          >
-            <MText type="text-md">{t("appPage.info-total-sol-staked")}</MText>
-            <MHeading type="heading-2xsm">
-              {totalSOLStaked.toLocaleString()}
-            </MHeading>
-            <MText type="text-md" pb={2}>
-              ≈ ${((data?.sol?.usd ?? 0) * totalSOLStaked).toLocaleString()}
-            </MText>
-          </Flex>
-        ) : (
-          <Flex flex={1} alignItems="center" justifyContent="center">
-            <Spinner size="md" mr={3} />
-          </Flex>
-        )}
+        <Flex
+          bg={colors.white}
+          flexDirection="column"
+          justifyContent="space-between"
+          rounded="lg"
+          width="207px"
+          height="139px"
+          zIndex={5}
+          py={5}
+          px={6}
+          mt={8}
+          mx={2}
+        >
+          <MText type="text-md">{t("appPage.info-total-sol-staked")}</MText>
+          {totalSOLStaked ? (
+            <>
+              <MHeading type="heading-2xsm">
+                {numberToShortVersion(totalSOLStaked)}
+              </MHeading>
+              <MText type="text-md" pb={2}>
+                ≈ ${numberToShortVersion((solUSD ?? 0) * totalSOLStaked)}
+              </MText>
+            </>
+          ) : (
+            <Flex flex={1} alignItems="center" justifyContent="center">
+              <Spinner size="md" mr={3} />
+            </Flex>
+          )}
+        </Flex>
         <Flex
           bg={colors.white}
           flexDirection="column"
@@ -202,7 +216,12 @@ const InfoBoxesSection = () => {
             </TooltipWithContent>
           </Flex>
           <MHeading type="heading-2xsm">{validators.toLocaleString()}</MHeading>
-          <MLink font="text-lg" color={colors.marinadeGreen} pb={2}>
+          <MLink
+            href="validators"
+            font="text-lg"
+            color={colors.marinadeGreen}
+            pb={2}
+          >
             {t("appPage.info-validators-action")}
           </MLink>
         </Flex>
@@ -226,18 +245,16 @@ const InfoBoxesSection = () => {
           <MText type="text-lg">{t("appPage.info-msol-sol-price")}</MText>
           <MHeading type="heading-2xsm">{mSOLvsSOLParity} SOL</MHeading>
         </Flex>
-        {totalSOLStaked ? (
-          <Flex justifyContent="space-between" pr={8}>
-            <MText type="text-lg">{t("appPage.info-total-staked")}</MText>
+        <Flex justifyContent="space-between" pr={8}>
+          <MText type="text-lg">{t("appPage.info-total-staked")}</MText>
+          {totalSOLStaked ? (
             <MHeading type="heading-2xsm">
               {numberToShortVersion(totalSOLStaked)} SOL
             </MHeading>
-          </Flex>
-        ) : (
-          <Flex flex={1} alignItems="center" justifyContent="center">
-            <Spinner size="md" mr={3} />
-          </Flex>
-        )}
+          ) : (
+            <Spinner size="sm" mr={3} />
+          )}
+        </Flex>
         <Flex justifyContent="space-between" alignItems="center">
           <MText type="text-lg">{t("appPage.info-epoch")}</MText>
           {epochData ? (
@@ -284,7 +301,7 @@ const InfoBoxesSection = () => {
           </Flex>
         </Flex>
         <Flex justifyContent="space-between" alignItems="center">
-          <MLink font="text-lg" color={colors.marinadeGreen}>
+          <MLink href="validators" font="text-lg" color={colors.marinadeGreen}>
             {t("appPage.info-validators")}
           </MLink>
           <Flex>

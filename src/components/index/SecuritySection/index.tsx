@@ -3,6 +3,7 @@ import { useTranslation } from "next-export-i18n";
 
 import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
+import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
 import IconWithTextBelow from "components/molecules/IconWithTextBelow";
 import colors from "styles/customTheme/colors";
@@ -144,6 +145,27 @@ export default function SecuritySection() {
             `indexPage.security-section-audit-kudelski.external-url`
           )}
         />
+      </Flex>
+      <Flex mt={16} mb={8} justifyContent="center">
+        <MLink
+          isExternal
+          rel="noreferrer noopener"
+          style={{ textDecoration: "none" }}
+          mr={4}
+          href="https://docs.marinade.finance/developers/bug-bounty"
+        >
+          <MButton
+            font="text-xl"
+            bg={colors.greenVibrant}
+            _hover={{ bg: colors.greenVibrant800 }}
+            colorScheme={colors.greenVibrant}
+            width={272}
+            height="48px"
+            rounded="md"
+          >
+            {t(`indexPage.security-section-bug-bounty-action`)}
+          </MButton>
+        </MLink>
       </Flex>
     </Box>
   );
