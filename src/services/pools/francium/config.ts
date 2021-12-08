@@ -4,13 +4,13 @@ import { Pool } from "../../domain/pool";
 
 import { FranciumPool } from "./franciumPool";
 import {
+  lendingFranciumPoolAddress,
+  LendingFranciumPoolAddress,
+} from "./lendingFranciumPoolAddress";
+import {
   lendingFranciumPoolIds,
   LendingFranciumPoolIds,
 } from "./lendingFranciumPoolIds";
-import {
-  lendingFranciumPoolKey,
-  LendingFranciumPoolKey,
-} from "./lendingFranciumPoolKey";
 import { lendingFranciumPoolTokens } from "./lendingFranciumPoolTokens";
 
 const provider = "Francium";
@@ -24,9 +24,9 @@ export type FranciumPoolsResponse = Record<
   FranciumPool
 >;
 
-export const franciumPools: Record<LendingFranciumPoolKey, Pool> = {
-  [lendingFranciumPoolKey.FRANCIUM_mSOL]: {
-    ...lendingFranciumPoolTokens[lendingFranciumPoolKey.FRANCIUM_mSOL],
+export const franciumPools: Record<LendingFranciumPoolAddress, Pool> = {
+  [lendingFranciumPoolAddress.FRANCIUM_mSOL]: {
+    ...lendingFranciumPoolTokens[lendingFranciumPoolAddress.FRANCIUM_mSOL],
     ...{
       provider,
       marketType: marketTypes.Lending,

@@ -3,7 +3,7 @@ import { LiquidityOrcaPoolAddress } from "../pools/orca/liquidityOrcaPoolAddress
 import { LendingPortPoolAddress } from "../pools/port/lendingPortPoolAddress";
 import { LiquidityRaydiumPoolAddress } from "../pools/raydium/liquidityRaydiumPoolAddress";
 import { LiquidityAtrixPoolAddress } from "services/pools/atrix/liquidityAtrixPoolAddress";
-import { LendingFranciumPoolKey } from "services/pools/francium/lendingFranciumPoolKey";
+import { LendingFranciumPoolAddress } from "services/pools/francium/lendingFranciumPoolAddress";
 
 import { Pool } from "./pool";
 
@@ -14,7 +14,7 @@ type LPTokens =
 type LendingTokens =
   | LendingPortPoolAddress
   | LendingLarixPoolAddress
-  | LendingFranciumPoolKey;
+  | LendingFranciumPoolAddress;
 
 export type MarketTokens = LPTokens | LendingTokens;
 
