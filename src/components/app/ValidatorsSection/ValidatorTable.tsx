@@ -27,7 +27,7 @@ import { MdOutlineContentCopy } from "react-icons/md";
 import { useQuery, UseQueryResult } from "react-query";
 
 import MText from "../../atoms/Text";
-import lamportsToSol from "utils/lamports-to-sol";
+import { numberToShortVersion } from "utils/number-to-short-version";
 import { shortenAddress } from "utils/shorten-address";
 
 interface Query {
@@ -327,24 +327,17 @@ const ValidatorTable = () => {
                     </Box>
                   </Flex>
                 </Td>
-                <Td {...cell} width="225px">
-                  <Box display={{ base: "none", lg: "flex" }}>
-                    {lamportsToSol(tuple.lamports)} SOL
-                  </Box>
-                  <Box display={{ base: "none", md: "flex", lg: "none" }}>
-                    {lamportsToSol(tuple.lamports, 2)} SOL
-                  </Box>
-
-                  <Box display={{ base: "flex", md: "none" }}>
-                    {lamportsToSol(tuple.lamports, 2)}
-                  </Box>
+                <Td {...cell} width="100px">
+                  <MText>
+                    {numberToShortVersion(tuple.lamports / 1e9)} SOL
+                  </MText>
                 </Td>
                 <Td {...cell} width="100px">
-                  <Box width="150px" height="50px">
+                  <Box width="150px" height="40px">
                     <Line options={options} data={graphData} />
                   </Box>
                 </Td>
-                <Td {...highlightedCell} width="225px">
+                <Td {...highlightedCell} width="180px">
                   <Flex alignItems="center" flexWrap="nowrap">
                     {tuple.data.stake.delegation.validatorInfo.image && (
                       <Image
