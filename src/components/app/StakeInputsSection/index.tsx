@@ -95,7 +95,7 @@ const StakeInputsSection = () => {
       alignItems="center"
     >
       <Flex
-        width={["288px", "480px"]}
+        width={["90vw", "480px"]}
         alignItems="center"
         flexDirection="column"
       >
@@ -116,7 +116,7 @@ const StakeInputsSection = () => {
           handleSwitch={handleStakeActive}
         />
         <Flex
-          width={["288px", "480px"]}
+          width={["90vw", "480px"]}
           bg={colors.white}
           rounded="md"
           alignItems="center"
@@ -150,7 +150,6 @@ const StakeInputsSection = () => {
               tokenBalance={sourceTokenBalance}
               currentAccount={currentAccount}
               stakeAccounts={stakeAccounts}
-              width={["256px", "400px"]}
               mb={2}
             />
             <StakeInput
@@ -165,16 +164,10 @@ const StakeInputsSection = () => {
               tokenBalance={targetTokenBalance}
               currentAccount={currentAccount}
               stakeAccounts={stakeAccounts}
-              tokenCardWidth={["87px"]}
-              width={["256px", "400px"]}
               mb={2}
             />
           </Flex>
-          <Flex
-            width={["256px", "400px"]}
-            my={1}
-            justifyContent="space-between"
-          >
+          <Flex width="100%" my={1} justifyContent="space-between">
             <Flex>
               <MText type="text-md">
                 {t("appPage.stake-inputs-exchange-rate")}
@@ -190,12 +183,7 @@ const StakeInputsSection = () => {
             <MText type="text-md">{`1 mSOL ≈ ${mSOLvsSOLParity} SOL`}</MText>
           </Flex>
           {isStakeActive ? (
-            <Flex
-              width={["256px", "400px"]}
-              mt={1}
-              mb={1}
-              justifyContent="space-between"
-            >
+            <Flex width="100%" mt={1} mb={1} justifyContent="space-between">
               <Flex>
                 <MText type="text-md">
                   {t("appPage.stake-inputs-stake-fee")}
@@ -211,12 +199,7 @@ const StakeInputsSection = () => {
               <MText type="text-md">0%</MText>
             </Flex>
           ) : (
-            <Flex
-              width={["256px", "400px"]}
-              mt={1}
-              mb={1}
-              justifyContent="space-between"
-            >
+            <Flex width="100%" mt={1} mb={1} justifyContent="space-between">
               <Flex>
                 <MText type="text-md">
                   {t("appPage.stake-inputs-unstake-fee")}
@@ -233,11 +216,7 @@ const StakeInputsSection = () => {
             </Flex>
           )}
           {!isUnstakeNowActive && !isStakeActive ? (
-            <Flex
-              width={["256px", "400px"]}
-              my={1}
-              justifyContent="space-between"
-            >
+            <Flex width="100%" my={1} justifyContent="space-between">
               <Flex>
                 <MText type="text-md">
                   {t("appPage.stake-inputs-time-to-unstake")}

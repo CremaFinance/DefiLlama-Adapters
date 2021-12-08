@@ -40,8 +40,6 @@ type StakeInputProps = {
   tokenIcon: string;
   tokenName: string;
   tokenBalance: number;
-  width: string[];
-  tokenCardWidth?: string[];
   mb?: number;
   currentAccount: StakeAccountType;
   stakeAccounts: StakeAccountType[];
@@ -53,8 +51,6 @@ const StakeInput = ({
   tokenIcon,
   tokenName,
   tokenBalance,
-  width,
-  tokenCardWidth = ["103px"],
   mb = 0,
   currentAccount,
   stakeAccounts,
@@ -109,12 +105,12 @@ const StakeInput = ({
   return (
     <Flex
       height="104px"
-      width={width}
+      width="100%"
       bg="gray.50"
       border="1px"
       borderColor="gray.100"
       rounded="md"
-      px={4}
+      px={[2, 4]}
       py={2}
       mb={mb}
       flexDirection="column"
@@ -128,10 +124,15 @@ const StakeInput = ({
             rounded="md"
             justifyContent="space-around"
             alignItems="center"
-            width={tokenCardWidth}
             height="44px"
+            px={2}
           >
-            <Image src={tokenIcon} alt="Source Token Logo" width="30px" />
+            <Image
+              src={tokenIcon}
+              alt="Source Token Logo"
+              width={["24px", "30px"]}
+              mr={2}
+            />
             <MText type="text-xl">{tokenName}</MText>
           </Flex>
         ) : (
@@ -145,7 +146,10 @@ const StakeInput = ({
               variant="solid"
               font="text-lg"
               height="44px"
-              leftIcon={<Image src={tokenIcon} width="30px" />}
+              px={2}
+              leftIcon={
+                <Image src={tokenIcon} mr={1} width={["24px", "30px"]} />
+              }
               rightIcon={
                 <Image src="/icons/expand-more-black.svg" width="1.5rem" />
               }
