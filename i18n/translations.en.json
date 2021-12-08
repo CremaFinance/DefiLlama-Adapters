@@ -286,6 +286,14 @@
       }
     ],
 
+    "ammount-exceeds-current-staking-cap": "Amount entered exceeds the current Staking cap.",
+    "capped-tvl-is-full": "Mainnet Beta Capped TVL is FULL. Please wait for cap increments.",
+    "missing-sol-for-fee": "You need some SOL balance on your wallet to cover the transaction fees.",
+    "something-went-wrong": "Something went wrong",
+    "stake-sol-confirmed": "Stake SOL confirmed",
+    "successfully-staked-your-sol": "You've successfully staked your SOL",
+    "try-using-max-button": "Try using the MAX button to stake the maximum allowed amount.",
+
     "validators-menu-transactions": "Transactions",
     "validators-menu-stakes": "Stakes",
     "validators-menu-portfolio": "Portfolio",

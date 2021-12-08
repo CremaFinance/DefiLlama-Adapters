@@ -20,6 +20,8 @@ type StakeInputProps = {
   width: string[];
   tokenCardWidth?: string[];
   mb?: number;
+  onValueChange?: (value: number) => void;
+  value?: number;
 };
 
 const StakeInput = ({
@@ -30,12 +32,17 @@ const StakeInput = ({
   width,
   tokenCardWidth = ["103px"],
   mb = 0,
+  onValueChange,
+  value = undefined,
 }: StakeInputProps) => {
   const { t } = useTranslation();
   const balanceLabel = t("appPage.balance");
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState(value ?? "");
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setAmount(Number(event.target.value));
+    setAmount(event.target.value);
+    if (onValueChange) {
+      onValueChange(Number(event.target.value));
+    }
   };
 
   return (
@@ -71,7 +78,7 @@ const StakeInput = ({
           textAlign="right"
           fontSize="28.13px"
           fontWeight="bold"
-          value={format9Dec(amount)}
+          value={format9Dec(Number.isNaN(amount) ? 0 : Number(amount))}
           type="number"
           onChange={handleChange}
           isDisabled={stakeInputType === StakeInputTypeEnum.Target}
@@ -90,7 +97,7 @@ const StakeInput = ({
             font="text-sm"
             color={colors.marinadeGreen}
             fontWeight="bold"
-            onClick={() => setAmount(tokenBalance)}
+            onClick={() => setAmount(`${tokenBalance}`)}
             pb="1px"
             _hover={{}}
           >
