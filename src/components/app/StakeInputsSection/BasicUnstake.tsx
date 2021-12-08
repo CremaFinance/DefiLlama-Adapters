@@ -34,21 +34,20 @@ const BasicUnstake = () => {
   const chain = useChain();
 
   const marinade = useMarinade();
+  const marinadeState = marinade?.marinadeState;
 
   const unstakeText = isUnstakeNowActive
     ? t("appPage.unstake-now-action")
     : t("appPage.start-delayed-unstake-action");
 
-  // TODO: Use actual values from services
-  const mSOLvsSOLParity = 1.01002;
   const minUnstakeFee = 0.3;
   const maxUnstakeFee = 3;
-  const sourceToken = "mSOL";
-  const sourceTokenIcon = "/icons/mSOL.svg";
-  const sourceTokenBalance = stSOLBalance ?? 0;
-  const targetToken = "SOL";
-  const targetTokenIcon = "/icons/solana-dark.png";
-  const targetTokenBalance = 0;
+  const mSOLvsSOLParity = marinadeState?.state?.st_sol_price
+    ? marinadeState?.state?.st_sol_price?.toNumber() / 0x1_0000_0000
+    : 0;
+  const targetTokenBalance = nativeSOLBalance
+    ? nativeSOLBalance / LAMPORTS_PER_SOL - 0.001
+    : 0;
   const timeToUnstake = "~7 days";
 
   // eslint-disable-next-line consistent-return
@@ -161,16 +160,16 @@ const BasicUnstake = () => {
       <StakeInput
         stakeInputType={StakeInputTypeEnum.Source}
         onValueChange={setStSolToUnstake}
-        tokenName={sourceToken}
-        tokenIcon={sourceTokenIcon}
-        tokenBalance={sourceTokenBalance}
+        tokenName="mSOL"
+        tokenIcon="/icons/mSOL.svg"
+        tokenBalance={stSOLBalance ?? 0}
         width={["256px", "400px"]}
         mb={2}
       />
       <StakeInput
         stakeInputType={StakeInputTypeEnum.Target}
-        tokenName={targetToken}
-        tokenIcon={targetTokenIcon}
+        tokenName="SOL"
+        tokenIcon="/icons/solana-dark.png"
         tokenBalance={targetTokenBalance}
         tokenCardWidth={["87px"]}
         width={["256px", "400px"]}
@@ -189,7 +188,9 @@ const BasicUnstake = () => {
             icon={<MdInfoOutline />}
           />
         </Flex>
-        <MText type="text-md">{`1 mSOL ≈ ${mSOLvsSOLParity} SOL`}</MText>
+        <MText type="text-md">{`1 mSOL ≈ ${mSOLvsSOLParity.toFixed(
+          5
+        )} SOL`}</MText>
       </Flex>
       <Flex
         width={["256px", "400px"]}

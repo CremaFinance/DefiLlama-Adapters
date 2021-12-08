@@ -36,16 +36,12 @@ const BasicStake = () => {
   const state = marinade?.marinadeState?.state;
   const marinadeState = marinade?.marinadeState;
 
-  // TODO: Use actual values from services
-  const mSOLvsSOLParity = 1.01002;
-  const sourceToken = "SOL";
-  const sourceTokenIcon = "/icons/solana-dark.png";
+  const mSOLvsSOLParity = marinadeState?.state?.st_sol_price
+    ? marinadeState?.state?.st_sol_price?.toNumber() / 0x1_0000_0000
+    : 0;
   const sourceTokenBalance = nativeSOLBalance
     ? nativeSOLBalance / LAMPORTS_PER_SOL - 0.001
     : 0;
-  const targetToken = "mSOL";
-  const targetTokenIcon = "/icons/mSOL.svg";
-  const targetTokenBalance = 12.3;
 
   // eslint-disable-next-line consistent-return
   const stakeHandler = () => {
@@ -134,17 +130,17 @@ const BasicStake = () => {
       <StakeInput
         stakeInputType={StakeInputTypeEnum.Source}
         onValueChange={setSolToStake}
-        tokenName={sourceToken}
-        tokenIcon={sourceTokenIcon}
+        tokenName="SOL"
+        tokenIcon="/icons/solana-dark.png"
         tokenBalance={sourceTokenBalance}
         width={["256px", "400px"]}
         mb={2}
       />
       <StakeInput
         stakeInputType={StakeInputTypeEnum.Target}
-        tokenName={targetToken}
-        tokenIcon={targetTokenIcon}
-        tokenBalance={targetTokenBalance}
+        tokenName="mSOL"
+        tokenIcon="/icons/mSOL.svg"
+        tokenBalance={stSOLBalance ?? 0}
         tokenCardWidth={["87px"]}
         width={["256px", "400px"]}
         mb={2}
@@ -162,7 +158,9 @@ const BasicStake = () => {
             icon={<MdInfoOutline />}
           />
         </Flex>
-        <MText type="text-md">{`1 mSOL ≈ ${mSOLvsSOLParity} SOL`}</MText>
+        <MText type="text-md">{`1 mSOL ≈ ${mSOLvsSOLParity.toFixed(
+          5
+        )} SOL`}</MText>
       </Flex>
       <Flex
         width={["256px", "400px"]}
