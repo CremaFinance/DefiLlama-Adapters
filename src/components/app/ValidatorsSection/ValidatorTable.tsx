@@ -121,7 +121,7 @@ const graphData = {
 const cell = {
   fontSize: "14.4px",
   borderBottom: "1px solid #edf2f7",
-  py: { base: "1px", xl: "15px" },
+  py: "0px",
   height: { base: "40px", xl: "50px" },
 };
 
@@ -132,7 +132,7 @@ const highlightedCell = {
   fontWeight: "700",
   borderBottom: "1px solid #edf2f7",
   px: "10px",
-  py: { base: "1px", xl: "15px" },
+  py: "0px",
   _hover: {
     textDecoration: "underline",
     cursor: "pointer",
