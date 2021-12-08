@@ -131,26 +131,24 @@ const BasicStake = () => {
 
   return (
     <>
-      <Flex flexDirection="column">
-        <StakeInput
-          stakeInputType={StakeInputTypeEnum.Source}
-          onValueChange={setSolToStake}
-          tokenName={sourceToken}
-          tokenIcon={sourceTokenIcon}
-          tokenBalance={sourceTokenBalance}
-          width={["256px", "400px"]}
-          mb={2}
-        />
-        <StakeInput
-          stakeInputType={StakeInputTypeEnum.Target}
-          tokenName={targetToken}
-          tokenIcon={targetTokenIcon}
-          tokenBalance={targetTokenBalance}
-          tokenCardWidth={["87px"]}
-          width={["256px", "400px"]}
-          mb={2}
-        />
-      </Flex>
+      <StakeInput
+        stakeInputType={StakeInputTypeEnum.Source}
+        onValueChange={setSolToStake}
+        tokenName={sourceToken}
+        tokenIcon={sourceTokenIcon}
+        tokenBalance={sourceTokenBalance}
+        width={["256px", "400px"]}
+        mb={2}
+      />
+      <StakeInput
+        stakeInputType={StakeInputTypeEnum.Target}
+        tokenName={targetToken}
+        tokenIcon={targetTokenIcon}
+        tokenBalance={targetTokenBalance}
+        tokenCardWidth={["87px"]}
+        width={["256px", "400px"]}
+        mb={2}
+      />
       <Flex width={["256px", "400px"]} my={1} justifyContent="space-between">
         <Flex>
           <MText type="text-md">
