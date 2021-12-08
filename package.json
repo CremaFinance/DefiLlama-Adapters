@@ -44,7 +44,7 @@
     "bn.js": "^5.2.0",
     "borsh": "^0.7.0",
     "bs58": "^4.0.1",
-    "framer-motion": "^5.4.1",
+    "framer-motion": "^5.4.3",
     "html-react-parser": "^1.4.1",
     "jest": "^27.4.3",
     "jest-fetch-mock": "^3.0.3",
