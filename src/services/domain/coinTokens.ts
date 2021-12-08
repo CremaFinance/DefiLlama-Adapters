@@ -201,4 +201,13 @@ export const coinTokens: Record<CoinSymbols, Token> = {
       coingeckoId: "atrix",
     },
   },
+  [coinSymbols.FRANCIUM]: {
+    chainId: 101,
+    address: "",
+    symbol: "FRANCIUM",
+    name: "Francium",
+    decimals: 9,
+    logoURI: "",
+    tags: [],
+  },
 };
