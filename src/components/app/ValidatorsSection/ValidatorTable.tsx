@@ -28,6 +28,7 @@ import { MdOutlineContentCopy } from "react-icons/md";
 import { useQuery, UseQueryResult } from "react-query";
 
 import MText from "../../atoms/Text";
+import { copyAddressToClipboard } from "utils/copy-to-clipboard";
 import { numberToShortVersion } from "utils/number-to-short-version";
 import { shortenAddress } from "utils/shorten-address";
 
@@ -183,18 +184,6 @@ const ValidatorTable = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [pages, setPages] = useState<(string | number)[]>([1, 2, 3, 4, 5]);
 
-  const copyAddressToClipboard = (v: string) => {
-    navigator.clipboard.writeText(v);
-
-    toast({
-      title: t("appPage.copy-success-title"),
-      description: t("appPage.copy-success-message"),
-      status: "success",
-      variant: "subtle",
-      isClosable: true,
-    });
-  };
-
   const handlePagination = (key: string | number) => {
     if (key === "<") {
       setPageNumber((p: number) => p - 1);
@@ -338,8 +327,10 @@ const ValidatorTable = () => {
                     {shortenAddress(tuple.pubkey.address)}
                     <Box
                       ml="7px"
+                      w="20px"
+                      h="20px"
                       onClick={() =>
-                        copyAddressToClipboard(tuple.pubkey.address)
+                        copyAddressToClipboard(tuple.pubkey.address, toast, t)
                       }
                     >
                       <MdOutlineContentCopy fontSize="14px" color="#171923" />
