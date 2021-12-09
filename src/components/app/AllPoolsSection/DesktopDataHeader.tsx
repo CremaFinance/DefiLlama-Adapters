@@ -16,7 +16,6 @@ const DesktopDataHeader = ({ sorting, setSorting }: DataHeaderProps) => {
       fontWeight="bold"
       fontSize="14.4px"
       lineHeight="140%"
-      bg="#FAF"
     >
       <Flex flex={1} maxWidth="1100px" paddingX="1.5rem">
         <DesktopSortingColumn
