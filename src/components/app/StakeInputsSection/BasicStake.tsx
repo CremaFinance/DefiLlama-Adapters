@@ -186,6 +186,7 @@ const BasicStake = () => {
         tokenBalance={stSOLBalance ?? 0}
         currentAccount={currentAccount}
         stakeAccounts={stakeAccounts}
+        value={solToStake / mSOLvsSOLParity}
         mb={2}
       />
       <Flex width={["256px", "400px"]} my={1} justifyContent="space-between">

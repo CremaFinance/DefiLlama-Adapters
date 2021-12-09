@@ -206,6 +206,7 @@ const BasicUnstake = () => {
         tokenBalance={targetTokenBalance}
         currentAccount={currentAccount}
         stakeAccounts={stakeAccounts}
+        value={stSolToUnstake * mSOLvsSOLParity}
         mb={2}
       />
       <Flex width={["256px", "400px"]} my={1} justifyContent="space-between">
