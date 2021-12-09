@@ -1,8 +1,8 @@
 import { Flex, IconButton, useToast } from "@chakra-ui/react";
 import { useWallet } from "@solana/wallet-adapter-react";
-import { LAMPORTS_PER_SOL } from "@solana/web3.js";
+import { LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { MdInfoOutline } from "react-icons/md";
 
 import { useUserBalance } from "../../../contexts/UserBalanceContext";
@@ -16,7 +16,8 @@ import StakeInput, {
 import SwitchButtons from "components/molecules/SwitchButtons";
 import TooltipWithContent from "components/molecules/TooltipWithContent";
 import TransactionLink from "components/molecules/TransactionLink";
-import { useChain } from "contexts/ConnectionProvider";
+import { AccountsContext } from "contexts/AccountsContext";
+import { useChain, useConnection, useKeys } from "contexts/ConnectionProvider";
 import { useMarinade } from "contexts/MarinadeContext";
 import colors from "styles/customTheme/colors";
 import { basicInputChecks } from "utils/basic-input-checks";
@@ -26,13 +27,25 @@ import { format5Dec } from "utils/number-to-short-version";
 const BasicUnstake = () => {
   const { t } = useTranslation();
   const toast = useToast();
+  const connection = useConnection();
+  const keys = useKeys();
 
   const [isUnstakeNowActive, setUnstakeNowActive] = useState(true);
   const [unstakeLoading, setUnstakeLoading] = useState(false);
   const [stSolToUnstake, setStSolToUnstake] = useState<number>(0);
   const { nativeSOLBalance, stSOLBalance } = useUserBalance();
   const { connected: isWalletConnected } = useWallet();
+  const { connected: walletConnected, publicKey: walletPubKey } = useWallet();
+
   const chain = useChain();
+  const {
+    getTicketAccountsAction,
+    ticketAccounts,
+    fetchTicketsLoading,
+    fetchTicketsLoadingAction,
+    walletPubKeyContext,
+    resetAccountsAction,
+  } = useContext(AccountsContext);
 
   const marinade = useMarinade();
   const marinadeState = marinade?.marinadeState;
@@ -81,6 +94,32 @@ const BasicUnstake = () => {
       balance: 0.11,
     },
   ];
+
+  useEffect(() => {
+    if (walletConnected) {
+      if (walletPubKey?.toBase58() === walletPubKeyContext?.toBase58()) {
+        getTicketAccountsAction(
+          keys,
+          walletConnected,
+          connection,
+          walletPubKey as PublicKey,
+          fetchTicketsLoading
+        );
+      } else {
+        getTicketAccountsAction(
+          keys,
+          walletConnected,
+          connection,
+          walletPubKey as PublicKey,
+          true
+        );
+      }
+    } else {
+      resetAccountsAction();
+      fetchTicketsLoadingAction(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [walletConnected]);
 
   // eslint-disable-next-line consistent-return
   const unstakeHandler = () => {
@@ -172,6 +211,13 @@ const BasicUnstake = () => {
       .finally(() => {
         setUnstakeLoading(false);
         setStSolToUnstake(0);
+        getTicketAccountsAction(
+          keys,
+          walletConnected,
+          connection,
+          walletPubKey as PublicKey,
+          true
+        );
       });
   };
 
@@ -280,7 +326,9 @@ const BasicUnstake = () => {
       >
         {unstakeText}
       </MButton>
-      {!isUnstakeNowActive ? <UnstakeTicketsSection /> : null}
+      {!isUnstakeNowActive ? (
+        <UnstakeTicketsSection ticketAccounts={ticketAccounts} />
+      ) : null}
     </>
   );
 };
