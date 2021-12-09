@@ -51,7 +51,7 @@ type StakeInputProps = {
   mb?: number;
   currentAccount: StakeAccountType;
   stakeAccounts: StakeAccountType[];
-  selectAccountCallback: (value: boolean) => void;
+  selectAccountCallback?: (value: boolean) => void;
   onValueChange?: (value: number) => void;
   value?: number;
 };
@@ -86,14 +86,18 @@ const StakeInput = ({
     setAmount(account.balance);
     setSelectedAccount(account);
     setIsStakeAccountSelected(false);
-    selectAccountCallback(false);
+    if (selectAccountCallback) {
+      selectAccountCallback(false);
+    }
   };
 
   const handleSelectedStakeAccount = (account: StakeAccountType) => {
     setAmount(account.balance);
     setSelectedAccount(account);
     setIsStakeAccountSelected(true);
-    selectAccountCallback(true);
+    if (selectAccountCallback) {
+      selectAccountCallback(true);
+    }
   };
 
   const copyToClipBoard = (v: string) => {
