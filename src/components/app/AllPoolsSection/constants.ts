@@ -1,4 +1,38 @@
 /* eslint-disable no-console */
+import { Dispatch, SetStateAction } from "react";
+
+import { Pool } from "../../../services/domain/pool";
+
+export enum COLUMNS {
+  APY = "APY",
+  TLV = "TLV",
+  PROVIDER = "PROVIDER",
+  PAIR = "PAIR",
+}
+
+export const COLUMNS_SORTER: Record<COLUMNS, (a: Pool, b: Pool) => number> = {
+  [COLUMNS.PAIR]: (a, b) =>
+    `${a.tokenA}-${a.tokenB}`.localeCompare(`${b.tokenA}-${b.tokenB}`, "en", {
+      sensitivity: "base",
+    }),
+  [COLUMNS.APY]: (a, b) => {
+    return (a.apy ?? 0) - (b.apy ?? 0);
+  },
+  [COLUMNS.TLV]: (a, b) =>
+    (a.totalLockedValue ?? 0) - (b.totalLockedValue ?? 0),
+  [COLUMNS.PROVIDER]: (a, b) => a.provider.localeCompare(b.provider),
+};
+
+export interface SortingState {
+  column: COLUMNS;
+  isInverted: boolean;
+}
+
+export interface DataHeaderProps {
+  sorting: SortingState;
+  setSorting: Dispatch<SetStateAction<SortingState>>;
+}
+
 const onMainClick = () => console.warn("Thing to do on main button");
 const onSecondaryClick = () => console.warn("Thing to do on secondary button");
 
