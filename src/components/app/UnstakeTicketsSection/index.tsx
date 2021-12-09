@@ -32,10 +32,12 @@ export interface TicketAccount {
 
 type UnstakeTicketsSectionProps = {
   ticketAccounts: TicketAccount[];
+  runClaimHandler: (accountPubkey: TicketAccount["key"]) => void;
 };
 
 const UnstakeTicketsSection = ({
   ticketAccounts,
+  runClaimHandler,
 }: UnstakeTicketsSectionProps) => {
   const { t } = useTranslation();
   const toast = useToast();
@@ -125,6 +127,9 @@ const UnstakeTicketsSection = ({
                     px={[4, 4]}
                     height="32px"
                     bg={colors.white}
+                    onClick={() => {
+                      runClaimHandler(new PublicKey(account.key));
+                    }}
                   >
                     {t("appPage.claim-action")}
                   </MButton>

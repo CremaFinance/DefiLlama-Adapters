@@ -8,7 +8,7 @@ import { MdInfoOutline } from "react-icons/md";
 import { useUserBalance } from "../../../contexts/UserBalanceContext";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
-import UnstakeTicketsSection from "../UnstakeTicketsSection";
+import UnstakeTicketsSection, { TicketAccount } from "../UnstakeTicketsSection";
 import StakeInput, {
   StakeAccountType,
   StakeInputTypeEnum,
@@ -221,6 +221,52 @@ const BasicUnstake = () => {
       });
   };
 
+  const runClaimHandler = (accountPubkey: TicketAccount["key"]) => {
+    marinade
+      .runClaim(accountPubkey)
+      .then(
+        (transactionSignature) => {
+          const successTitleMessage = t(
+            "appPage.claim-success-tooltip-title"
+          )?.replace("{{accountPubkey}}", accountPubkey);
+          toast({
+            title: successTitleMessage,
+            description: (
+              <p>
+                {t("appPage.claim-success-tooltip-body")}
+                <TransactionLink
+                  chainName={chain.name}
+                  transactionid={transactionSignature}
+                />
+              </p>
+            ),
+            status: "success",
+          });
+        },
+        (error) => {
+          toast({
+            title: "Something went wrong",
+            // eslint-disable-next-line no-nested-ternary
+            description: error.toString().includes("0x1104")
+              ? t("appPage.claim-error-tooltip-body-not-ready-yet")
+              : error.toString().includes("no record of a prior credit")
+              ? t("appPage.claim-error-tooltip-body-not-enough-sol-balance")
+              : error.message,
+            status: "warning",
+          });
+        }
+      )
+      .then(() =>
+        getTicketAccountsAction(
+          keys,
+          walletConnected,
+          connection,
+          walletPubKey as PublicKey,
+          true
+        )
+      );
+  };
+
   return (
     <>
       <SwitchButtons
@@ -327,7 +373,10 @@ const BasicUnstake = () => {
         {unstakeText}
       </MButton>
       {!isUnstakeNowActive ? (
-        <UnstakeTicketsSection ticketAccounts={ticketAccounts} />
+        <UnstakeTicketsSection
+          ticketAccounts={ticketAccounts}
+          runClaimHandler={runClaimHandler}
+        />
       ) : null}
     </>
   );
