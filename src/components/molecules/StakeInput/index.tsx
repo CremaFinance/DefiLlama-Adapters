@@ -269,7 +269,7 @@ const StakeInput = ({
                         _focus={{ boxShadow: "none" }}
                         onClick={(event) => {
                           event.stopPropagation();
-                          copyToClipBoard(currentAccount.address);
+                          copyToClipBoard(stakeAccount.address);
                         }}
                       />
                     </Flex>
