@@ -1,4 +1,16 @@
-import { Flex, Progress, Spinner, IconButton } from "@chakra-ui/react";
+import {
+  Flex,
+  Progress,
+  Spinner,
+  IconButton,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalCloseButton,
+} from "@chakra-ui/react";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
 import { MdInfoOutline } from "react-icons/md";
@@ -14,6 +26,7 @@ import {
 import MHeading from "../../atoms/Heading";
 import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
+import ValidatorsSection from "../ValidatorsSection/index";
 import InfoIconWithTooltip from "components/molecules/InfoIconWithTooltip";
 import TooltipWithContent from "components/molecules/TooltipWithContent";
 import { coinSymbols } from "services/domain/coinSymbols";
@@ -30,6 +43,8 @@ const InfoBoxesSection = () => {
   const { totalStaked } = useStats();
 
   const { marinadeState } = useMarinade();
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const totalSOLStaked = totalStaked
     ? Number(format2Dec(totalStaked, LAMPORTS_PER_SOL))
@@ -49,6 +64,16 @@ const InfoBoxesSection = () => {
 
   return (
     <>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay w="100vw" />
+        <ModalContent maxW="95vw" backgroundColor="white">
+          <ModalHeader>Validators</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <ValidatorsSection />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
       <Flex
         display={["none", "flex"]}
         aria-label="info-boxes-section"
@@ -216,11 +241,13 @@ const InfoBoxesSection = () => {
             </TooltipWithContent>
           </Flex>
           <MHeading type="heading-2xsm">{validators.toLocaleString()}</MHeading>
+
+          {/* Place Modal here */}
           <MLink
-            href="validators"
             font="text-lg"
             color={colors.marinadeGreen}
             pb={2}
+            onClick={() => onOpen()}
           >
             {t("appPage.info-validators-action")}
           </MLink>
