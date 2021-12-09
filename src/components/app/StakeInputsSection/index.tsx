@@ -14,6 +14,7 @@ import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
 import UnstakeTicketsSection from "../UnstakeTicketsSection";
 import StakeInput, {
+  StakeAccountType,
   StakeInputTypeEnum,
 } from "components/molecules/StakeInput";
 import SwitchButtons from "components/molecules/SwitchButtons";
@@ -31,6 +32,7 @@ const StakeInputsSection = () => {
 
   const [isStakeActive, setStakeActive] = useState(true);
   const [isUnstakeNowActive, setUnstakeNowActive] = useState(true);
+  const [stakeText, setStakeText] = useState(t("appPage.stake-sol-action"));
 
   const [stakeLoading, setStakeLoading] = useState(false);
   const [solToStake, setSolToStake] = useState<number>(0);
@@ -61,6 +63,36 @@ const StakeInputsSection = () => {
   const targetTokenIcon = "/icons/mSOL.svg";
   const targetTokenBalance = 12.3;
   const timeToUnstake = "~7 days";
+  const currentAccount: StakeAccountType = {
+    address: "DKVAJA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5qdfbrvrt5",
+    balance: 0.114543543543,
+  };
+  const stakeAccounts: StakeAccountType[] = [
+    {
+      address: "asdfJA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5qvdvwf5",
+      balance: 0.115555,
+    },
+    {
+      address: "wwadJA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5q4vdg5",
+      balance: 0.115454334534,
+    },
+    {
+      address: "sfdsfdfVKRhTrWfVPxzydZQu8q15kWkpe5qpdv5",
+      balance: 0.1454353451,
+    },
+    {
+      address: "aaqwsA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5qpi55rff",
+      balance: 0.11353453534,
+    },
+    {
+      address: "d234dvJA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5qcdsf4",
+      balance: 0.1,
+    },
+    {
+      address: "DKVAJA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5qpiswy5",
+      balance: 0.11,
+    },
+  ];
 
   const handleStakeActive = (v: boolean) => {
     setStakeActive(v);
@@ -71,6 +103,13 @@ const StakeInputsSection = () => {
     setUnstakeNowActive(v);
   };
 
+  const handleSelectAccountCallback = (value: boolean) => {
+    setStakeText(
+      value
+        ? t("appPage.deposit-stake-account-action")
+        : t("appPage.stake-sol-action")
+    );
+  };
   // eslint-disable-next-line consistent-return
   const stakeHandler = () => {
     let firstTimeStaker = Number(format5Dec(stSOLBalance ?? 0)) === 0;
@@ -162,7 +201,7 @@ const StakeInputsSection = () => {
       alignItems="center"
     >
       <Flex
-        width={["288px", "480px"]}
+        width={["90vw", "480px"]}
         alignItems="center"
         flexDirection="column"
       >
@@ -183,7 +222,7 @@ const StakeInputsSection = () => {
           handleSwitch={handleStakeActive}
         />
         <Flex
-          width={["288px", "480px"]}
+          width={["90vw", "480px"]}
           bg={colors.white}
           rounded="md"
           alignItems="center"
@@ -206,6 +245,7 @@ const StakeInputsSection = () => {
           />
           <Flex flexDirection={isStakeActive ? "column" : "column-reverse"}>
             <StakeInput
+              selectAccountCallback={handleSelectAccountCallback}
               stakeInputType={
                 isStakeActive
                   ? StakeInputTypeEnum.Source
@@ -215,10 +255,12 @@ const StakeInputsSection = () => {
               tokenName={sourceToken}
               tokenIcon={sourceTokenIcon}
               tokenBalance={sourceTokenBalance}
-              width={["256px", "400px"]}
+              currentAccount={currentAccount}
+              stakeAccounts={stakeAccounts}
               mb={2}
             />
             <StakeInput
+              selectAccountCallback={handleSelectAccountCallback}
               stakeInputType={
                 isStakeActive
                   ? StakeInputTypeEnum.Target
@@ -227,16 +269,12 @@ const StakeInputsSection = () => {
               tokenName={targetToken}
               tokenIcon={targetTokenIcon}
               tokenBalance={targetTokenBalance}
-              tokenCardWidth={["87px"]}
-              width={["256px", "400px"]}
+              currentAccount={currentAccount}
+              stakeAccounts={stakeAccounts}
               mb={2}
             />
           </Flex>
-          <Flex
-            width={["256px", "400px"]}
-            my={1}
-            justifyContent="space-between"
-          >
+          <Flex width="100%" my={1} justifyContent="space-between">
             <Flex>
               <MText type="text-md">
                 {t("appPage.stake-inputs-exchange-rate")}
@@ -252,12 +290,7 @@ const StakeInputsSection = () => {
             <MText type="text-md">{`1 mSOL ≈ ${mSOLvsSOLParity} SOL`}</MText>
           </Flex>
           {isStakeActive ? (
-            <Flex
-              width={["256px", "400px"]}
-              mt={1}
-              mb={1}
-              justifyContent="space-between"
-            >
+            <Flex width="100%" mt={1} mb={1} justifyContent="space-between">
               <Flex>
                 <MText type="text-md">
                   {t("appPage.stake-inputs-stake-fee")}
@@ -273,12 +306,7 @@ const StakeInputsSection = () => {
               <MText type="text-md">0%</MText>
             </Flex>
           ) : (
-            <Flex
-              width={["256px", "400px"]}
-              mt={1}
-              mb={1}
-              justifyContent="space-between"
-            >
+            <Flex width="100%" mt={1} mb={1} justifyContent="space-between">
               <Flex>
                 <MText type="text-md">
                   {t("appPage.stake-inputs-unstake-fee")}
@@ -295,11 +323,7 @@ const StakeInputsSection = () => {
             </Flex>
           )}
           {!isUnstakeNowActive && !isStakeActive ? (
-            <Flex
-              width={["256px", "400px"]}
-              my={1}
-              justifyContent="space-between"
-            >
+            <Flex width="100%" my={1} justifyContent="space-between">
               <Flex>
                 <MText type="text-md">
                   {t("appPage.stake-inputs-time-to-unstake")}
@@ -350,7 +374,7 @@ const StakeInputsSection = () => {
             mt={5}
             onClick={stakeHandler}
           >
-            {isStakeActive ? t("appPage.stake-sol-action") : unstakeText}
+            {isStakeActive ? stakeText : unstakeText}
           </MButton>
           {!isUnstakeNowActive ? <UnstakeTicketsSection /> : null}
         </Flex>
