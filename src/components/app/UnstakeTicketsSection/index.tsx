@@ -16,6 +16,7 @@ import { MdContentCopy } from "react-icons/md";
 
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
+import { useWallet } from "hooks/useWallet";
 import { LamportsToSol } from "solana/marinade-anchor/common";
 import { TicketAccountData } from "solana/marinade-anchor/marinade-finance-schema";
 import colors from "styles/customTheme/colors";
@@ -39,34 +40,11 @@ const UnstakeTicketsSection = ({
   const { t } = useTranslation();
   const toast = useToast();
   const [isWiderThan768] = useMediaQuery("(min-width: 768px)");
+  const { connected: isWalletConnected } = useWallet();
 
-  // TODO replace with actual values
-  // const ticketAccounts = [
-  //   {
-  //     key: 1,
-  //     address: "vfvvbfovbfobvfobvbvdfbvdfbvdfbvfdvbfvbfbvfvfvh",
-  //     amount: 12.2323333333,
-  //     claimed: false,
-  //   },
-  //   {
-  //     key: 2,
-  //     address: "aaaavfvvbfovbfobvfobvbvdfbvdfbvdfbvfdvbfvbfbvfvfvh",
-  //     amount: 12.2323,
-  //     claimed: false,
-  //   },
-  //   {
-  //     key: 3,
-  //     address: "bbbbvfvvbfovbfobvfobvbvdfbvdfbvdfbvfdvbfvbfbvfvfvh",
-  //     amount: 12.2323,
-  //     claimed: true,
-  //   },
-  //   {
-  //     key: 4,
-  //     address: "vfvvbfovbfobvfobvbvdfbvdfbvdfbvfdvbfvbfbvfvfvh",
-  //     amount: 12.2,
-  //     claimed: false,
-  //   },
-  // ];
+  const noTicketAccountsMessage = isWalletConnected
+    ? t("appPage.no-ticket-accounts-message")
+    : t("appPage.wallet-not-connected");
 
   const copyAddressToClipboard = (v: string) => {
     navigator.clipboard.writeText(v);
@@ -82,78 +60,82 @@ const UnstakeTicketsSection = ({
 
   return (
     <Flex width="100%" pt={12}>
-      <Table variant="simple">
-        <Thead>
-          <Tr>
-            <Td pl={0} pr={[2, 6]}>
-              <MText type="text-md" fontWeight="bold">
-                {t("appPage.tickets-accounts")}
-              </MText>
-            </Td>
-            <Td isNumeric px={[2, 6]}>
-              <MText type="text-md" fontWeight="bold">
-                {t("appPage.sol")}
-              </MText>
-            </Td>
-            <Td />
-          </Tr>
-        </Thead>
-        <Tbody>
-          {ticketAccounts.map((account) => (
-            <Tr key={account.key.toBase58()} height="60px">
-              <Td pl={0} py={0} pr={[2, 6]}>
-                <Flex>
-                  <MText type="text-md">
-                    {shortenAddress(`${account?.key?.toBase58()}`)}
-                  </MText>
-                  <IconButton
-                    variant="link"
-                    aria-label="Copy address"
-                    size="sm"
-                    icon={<MdContentCopy />}
-                    _focus={{ boxShadow: "none" }}
-                    onClick={() =>
-                      copyAddressToClipboard(account?.key?.toBase58())
-                    }
-                  />
-                </Flex>
-              </Td>
-              <Td isNumeric py={0} px={[2, 6]}>
-                <MText type="text-md">
-                  {isWiderThan768
-                    ? format5Dec(
-                        LamportsToSol(
-                          JSBI.BigInt(account.data.lamports_amount.toString())
-                        )
-                      )
-                    : format2Dec(
-                        LamportsToSol(
-                          JSBI.BigInt(account.data.lamports_amount.toString())
-                        )
-                      )}
+      {ticketAccounts.length ? (
+        <Table variant="simple">
+          <Thead>
+            <Tr>
+              <Td pl={0} pr={[2, 6]}>
+                <MText type="text-md" fontWeight="bold">
+                  {t("appPage.tickets-accounts")}
                 </MText>
               </Td>
-              <Td height="60px" pr={0} py={0} pl={[2, 6]} textAlign="end">
-                <MButton
-                  // isDisabled={account.claimed}
-                  font="text-md"
-                  colorScheme="gray"
-                  _hover={{ bg: "gray.100" }}
-                  border="1px"
-                  borderColor="gray.500"
-                  textColor={colors.black}
-                  rounded="md"
-                  px={[4, 4]}
-                  height="32px"
-                  bg={colors.white}
-                >
-                  {t("appPage.claim-action")}
-                </MButton>
+              <Td isNumeric px={[2, 6]}>
+                <MText type="text-md" fontWeight="bold">
+                  {t("appPage.sol")}
+                </MText>
               </Td>
+              <Td />
             </Tr>
-          ))}
-        </Tbody>
-      </Table>
+          </Thead>
+          <Tbody>
+            {ticketAccounts.map((account) => (
+              <Tr key={account.key.toBase58()} height="60px">
+                <Td pl={0} py={0} pr={[2, 6]}>
+                  <Flex>
+                    <MText type="text-md">
+                      {shortenAddress(`${account?.key?.toBase58()}`)}
+                    </MText>
+                    <IconButton
+                      variant="link"
+                      aria-label="Copy address"
+                      size="sm"
+                      icon={<MdContentCopy />}
+                      _focus={{ boxShadow: "none" }}
+                      onClick={() =>
+                        copyAddressToClipboard(account?.key?.toBase58())
+                      }
+                    />
+                  </Flex>
+                </Td>
+                <Td isNumeric py={0} px={[2, 6]}>
+                  <MText type="text-md">
+                    {isWiderThan768
+                      ? format5Dec(
+                          LamportsToSol(
+                            JSBI.BigInt(account.data.lamports_amount.toString())
+                          )
+                        )
+                      : format2Dec(
+                          LamportsToSol(
+                            JSBI.BigInt(account.data.lamports_amount.toString())
+                          )
+                        )}
+                  </MText>
+                </Td>
+                <Td height="60px" pr={0} py={0} pl={[2, 6]} textAlign="end">
+                  <MButton
+                    isDisabled={!account.ticketDue}
+                    font="text-md"
+                    colorScheme="gray"
+                    _hover={{ bg: "gray.100" }}
+                    border="1px"
+                    borderColor="gray.500"
+                    textColor={colors.black}
+                    rounded="md"
+                    px={[4, 4]}
+                    height="32px"
+                    bg={colors.white}
+                  >
+                    {t("appPage.claim-action")}
+                  </MButton>
+                </Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      ) : (
+        <MText type="text-md"> {noTicketAccountsMessage}</MText>
+      )}
     </Flex>
   );
 };

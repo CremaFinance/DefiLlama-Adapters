@@ -272,6 +272,8 @@
     "claim-action": "Claim",
     "copy-success-title": "Address copied",
     "copy-success-message": "Address copied success",
+    "no-ticket-accounts-message": " You don't have any valid ticket accounts. Start delayed unstake first.",
+    "wallet-not-connected": "Wallet not connected",
 
     "faq-title": "FAQ",
     "faq-items": [
