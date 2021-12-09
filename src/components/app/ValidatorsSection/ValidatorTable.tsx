@@ -9,6 +9,7 @@ import {
   Box,
   Spinner,
   Image,
+  useToast,
 } from "@chakra-ui/react";
 import {
   Chart as ChartJS,
@@ -178,8 +179,21 @@ const formatValidatorName = (name: string): string => {
 
 const ValidatorTable = () => {
   const { t } = useTranslation();
+  const toast = useToast();
   const [pageNumber, setPageNumber] = useState(1);
   const [pages, setPages] = useState<(string | number)[]>([1, 2, 3, 4, 5]);
+
+  const copyAddressToClipboard = (v: string) => {
+    navigator.clipboard.writeText(v);
+
+    toast({
+      title: t("appPage.copy-success-title"),
+      description: t("appPage.copy-success-message"),
+      status: "success",
+      variant: "subtle",
+      isClosable: true,
+    });
+  };
 
   const handlePagination = (key: string | number) => {
     if (key === "<") {
@@ -322,7 +336,12 @@ const ValidatorTable = () => {
                 >
                   <Flex alignItems="center">
                     {shortenAddress(tuple.pubkey.address)}
-                    <Box ml="7px">
+                    <Box
+                      ml="7px"
+                      onClick={() =>
+                        copyAddressToClipboard(tuple.pubkey.address)
+                      }
+                    >
                       <MdOutlineContentCopy fontSize="14px" color="#171923" />
                     </Box>
                   </Flex>
