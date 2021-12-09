@@ -197,6 +197,7 @@ const BasicUnstake = () => {
         tokenBalance={stSOLBalance ?? 0}
         currentAccount={currentAccount}
         stakeAccounts={stakeAccounts}
+        value={stSolToUnstake}
         mb={2}
       />
       <StakeInput

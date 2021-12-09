@@ -74,16 +74,16 @@ const StakeInput = ({
   const [isWiderThan768] = useMediaQuery("(min-width: 768px)");
   const [selectedAccount, setSelectedAccount] = useState(currentAccount);
   const [isStakeAccountSelected, setIsStakeAccountSelected] = useState(false);
-  const [amount, setAmount] = useState(0);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setAmount(Number(event.target.value));
     if (onValueChange) {
       onValueChange(Number(event.target.value));
     }
   };
 
   const handleSelectedWalletAccount = (account: StakeAccountType) => {
-    setAmount(account.balance);
+    if (onValueChange) {
+      onValueChange(account.balance);
+    }
     setSelectedAccount(account);
     setIsStakeAccountSelected(false);
     if (selectAccountCallback) {
@@ -92,7 +92,9 @@ const StakeInput = ({
   };
 
   const handleSelectedStakeAccount = (account: StakeAccountType) => {
-    setAmount(account.balance);
+    if (onValueChange) {
+      onValueChange(account.balance);
+    }
     setSelectedAccount(account);
     setIsStakeAccountSelected(true);
     if (selectAccountCallback) {
@@ -297,11 +299,7 @@ const StakeInput = ({
           textAlign="right"
           fontSize="28.13px"
           fontWeight="bold"
-          value={
-            stakeInputType === StakeInputTypeEnum.Source
-              ? format9Dec(amount)
-              : format9Dec(value ?? 0)
-          }
+          value={format9Dec(value ?? 0)}
           type="number"
           onChange={handleChange}
           isDisabled={
@@ -324,7 +322,7 @@ const StakeInput = ({
             font="text-sm"
             color={colors.marinadeGreen}
             fontWeight="bold"
-            onClick={() => setAmount(tokenBalance)}
+            onClick={() => (onValueChange ? onValueChange(tokenBalance) : {})}
             pb="1px"
             _hover={{}}
           >

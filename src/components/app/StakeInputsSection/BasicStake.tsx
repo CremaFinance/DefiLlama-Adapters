@@ -177,6 +177,7 @@ const BasicStake = () => {
         tokenBalance={sourceTokenBalance}
         currentAccount={currentAccount}
         stakeAccounts={stakeAccounts}
+        value={solToStake}
         mb={2}
       />
       <StakeInput
