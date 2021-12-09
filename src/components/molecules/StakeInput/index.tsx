@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import {
   Flex,
   Image,
@@ -25,7 +26,10 @@ import {
   format2Dec,
   format9Dec,
 } from "../../../utils/number-to-short-version";
-import { shortenAddress } from "../../../utils/shorten-address";
+import {
+  shortenAddress,
+  shortenAddressForMobile,
+} from "../../../utils/shorten-address";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 
@@ -166,7 +170,9 @@ const StakeInput = ({
               }
             >
               <MText fontWeight="400">
-                {shortenAddress(`${selectedAccount.address}`)}
+                {isWiderThan768
+                  ? shortenAddress(`${selectedAccount.address}`)
+                  : shortenAddressForMobile(`${selectedAccount.address}`)}
               </MText>
             </MenuButton>
             <MenuList
