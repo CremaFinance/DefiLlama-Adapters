@@ -1,6 +1,7 @@
 import { coinSymbols, CoinSymbols } from "./coinSymbols";
 import { TokenRecord } from "./token";
 
+/** All coiintokens used by marinade */
 export const coinTokens: TokenRecord<CoinSymbols> = {
   [coinSymbols.MNDE]: {
     chainId: 101,

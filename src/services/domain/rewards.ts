@@ -1,26 +1,25 @@
 import { CoinSymbols } from "./coinSymbols";
 
-type RewardConfig = {
-  /**
-   * Daily reward rate
-   */
+export type RewardConfig = {
+  /** Daily reward rate */
   dailyRate: number;
-  /**
-   * Apr description e.g. 'Emission' , 'Double Dip'
-   */
+  /** Apr description e.g. 'Emission' , 'Double Dip' */
   aprDescription: string;
+  /** calculated when mapped */
   apy?: number;
 };
 
-type Reward = RewardConfig & {
+export type Reward = RewardConfig & {
   /** calculated when mapped */
   apy: number;
 };
 
+/** keyed on the applicable reward Token coin symbol */
 export type Rewards = {
   [key in CoinSymbols]: Reward;
 };
 
+/** keyed on the applicable reward Token coin symbol */
 export type RewardsConfig = {
   [key in CoinSymbols]: RewardConfig;
 };
