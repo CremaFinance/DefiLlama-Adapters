@@ -10,6 +10,7 @@ import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 import UnstakeTicketsSection from "../UnstakeTicketsSection";
 import StakeInput, {
+  StakeAccountType,
   StakeInputTypeEnum,
 } from "components/molecules/StakeInput";
 import SwitchButtons from "components/molecules/SwitchButtons";
@@ -49,6 +50,37 @@ const BasicUnstake = () => {
     ? nativeSOLBalance / LAMPORTS_PER_SOL - 0.001
     : 0;
   const timeToUnstake = "~7 days";
+
+  const currentAccount: StakeAccountType = {
+    address: "DKVAJA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5qdfbrvrt5",
+    balance: 0.114543543543,
+  };
+  const stakeAccounts: StakeAccountType[] = [
+    {
+      address: "asdfJA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5qvdvwf5",
+      balance: 0.115555,
+    },
+    {
+      address: "wwadJA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5q4vdg5",
+      balance: 0.115454334534,
+    },
+    {
+      address: "sfdsfdfVKRhTrWfVPxzydZQu8q15kWkpe5qpdv5",
+      balance: 0.1454353451,
+    },
+    {
+      address: "aaqwsA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5qpi55rff",
+      balance: 0.11353453534,
+    },
+    {
+      address: "d234dvJA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5qcdsf4",
+      balance: 0.1,
+    },
+    {
+      address: "DKVAJA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5qpiswy5",
+      balance: 0.11,
+    },
+  ];
 
   // eslint-disable-next-line consistent-return
   const unstakeHandler = () => {
@@ -163,7 +195,8 @@ const BasicUnstake = () => {
         tokenName="mSOL"
         tokenIcon="/icons/mSOL.svg"
         tokenBalance={stSOLBalance ?? 0}
-        width={["256px", "400px"]}
+        currentAccount={currentAccount}
+        stakeAccounts={stakeAccounts}
         mb={2}
       />
       <StakeInput
@@ -171,8 +204,8 @@ const BasicUnstake = () => {
         tokenName="SOL"
         tokenIcon="/icons/solana-dark.png"
         tokenBalance={targetTokenBalance}
-        tokenCardWidth={["87px"]}
-        width={["256px", "400px"]}
+        currentAccount={currentAccount}
+        stakeAccounts={stakeAccounts}
         mb={2}
       />
       <Flex width={["256px", "400px"]} my={1} justifyContent="space-between">

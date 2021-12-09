@@ -11,6 +11,7 @@ import { useUserBalance } from "../../../contexts/UserBalanceContext";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 import StakeInput, {
+  StakeAccountType,
   StakeInputTypeEnum,
 } from "components/molecules/StakeInput";
 import TransactionLink from "components/molecules/TransactionLink";
@@ -24,6 +25,7 @@ const BasicStake = () => {
   const { t } = useTranslation();
   const toast = useToast();
 
+  const [stakeText, setStakeText] = useState(t("appPage.stake-sol-action"));
   const [stakeLoading, setStakeLoading] = useState(false);
   const [solToStake, setSolToStake] = useState<number>(0);
   const { nativeSOLBalance, stSOLBalance } = useUserBalance();
@@ -42,6 +44,45 @@ const BasicStake = () => {
   const sourceTokenBalance = nativeSOLBalance
     ? nativeSOLBalance / LAMPORTS_PER_SOL - 0.001
     : 0;
+
+  const handleSelectAccountCallback = (value: boolean) => {
+    setStakeText(
+      value
+        ? t("appPage.deposit-stake-account-action")
+        : t("appPage.stake-sol-action")
+    );
+  };
+
+  const currentAccount: StakeAccountType = {
+    address: "DKVAJA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5qdfbrvrt5",
+    balance: 0.114543543543,
+  };
+  const stakeAccounts: StakeAccountType[] = [
+    {
+      address: "asdfJA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5qvdvwf5",
+      balance: 0.115555,
+    },
+    {
+      address: "wwadJA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5q4vdg5",
+      balance: 0.115454334534,
+    },
+    {
+      address: "sfdsfdfVKRhTrWfVPxzydZQu8q15kWkpe5qpdv5",
+      balance: 0.1454353451,
+    },
+    {
+      address: "aaqwsA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5qpi55rff",
+      balance: 0.11353453534,
+    },
+    {
+      address: "d234dvJA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5qcdsf4",
+      balance: 0.1,
+    },
+    {
+      address: "DKVAJA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5qpiswy5",
+      balance: 0.11,
+    },
+  ];
 
   // eslint-disable-next-line consistent-return
   const stakeHandler = () => {
@@ -128,12 +169,14 @@ const BasicStake = () => {
   return (
     <>
       <StakeInput
+        selectAccountCallback={handleSelectAccountCallback}
         stakeInputType={StakeInputTypeEnum.Source}
         onValueChange={setSolToStake}
         tokenName="SOL"
         tokenIcon="/icons/solana-dark.png"
         tokenBalance={sourceTokenBalance}
-        width={["256px", "400px"]}
+        currentAccount={currentAccount}
+        stakeAccounts={stakeAccounts}
         mb={2}
       />
       <StakeInput
@@ -141,8 +184,8 @@ const BasicStake = () => {
         tokenName="mSOL"
         tokenIcon="/icons/mSOL.svg"
         tokenBalance={stSOLBalance ?? 0}
-        tokenCardWidth={["87px"]}
-        width={["256px", "400px"]}
+        currentAccount={currentAccount}
+        stakeAccounts={stakeAccounts}
         mb={2}
       />
       <Flex width={["256px", "400px"]} my={1} justifyContent="space-between">
@@ -193,7 +236,7 @@ const BasicStake = () => {
         mt={5}
         onClick={stakeHandler}
       >
-        {t("appPage.stake-sol-action")}
+        {stakeText}
       </MButton>
     </>
   );

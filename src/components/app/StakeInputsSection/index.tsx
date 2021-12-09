@@ -26,7 +26,7 @@ const StakeInputsSection = () => {
       alignItems="center"
     >
       <Flex
-        width={["288px", "480px"]}
+        width={["90vw", "480px"]}
         alignItems="center"
         flexDirection="column"
       >
@@ -47,7 +47,7 @@ const StakeInputsSection = () => {
           handleSwitch={setStakeActive}
         />
         <Flex
-          width={["288px", "480px"]}
+          width={["90vw", "480px"]}
           bg={colors.white}
           rounded="md"
           alignItems="center"
