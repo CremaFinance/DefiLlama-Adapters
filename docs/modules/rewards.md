@@ -10,7 +10,7 @@
 
 #### Defined in
 
-[rewards.ts:12](https://github.com/marinade-finance/marinade-web/blob/d10a23f/src/services/domain/rewards.ts#L12)
+[rewards.ts:12](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/rewards.ts#L12)
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 #### Defined in
 
-[rewards.ts:3](https://github.com/marinade-finance/marinade-web/blob/d10a23f/src/services/domain/rewards.ts#L3)
+[rewards.ts:3](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/rewards.ts#L3)
 
 ___
 
@@ -40,7 +40,7 @@ keyed on the applicable reward Token coin symbol
 
 #### Defined in
 
-[rewards.ts:18](https://github.com/marinade-finance/marinade-web/blob/d10a23f/src/services/domain/rewards.ts#L18)
+[rewards.ts:18](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/rewards.ts#L18)
 
 ___
 
@@ -52,4 +52,4 @@ keyed on the applicable reward Token coin symbol
 
 #### Defined in
 
-[rewards.ts:23](https://github.com/marinade-finance/marinade-web/blob/d10a23f/src/services/domain/rewards.ts#L23)
+[rewards.ts:23](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/rewards.ts#L23)

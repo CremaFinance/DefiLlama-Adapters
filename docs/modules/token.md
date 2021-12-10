@@ -20,4 +20,4 @@
 
 #### Defined in
 
-[token.ts:15](https://github.com/marinade-finance/marinade-web/blob/d10a23f/src/services/domain/token.ts#L15)
+[token.ts:15](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/token.ts#L15)

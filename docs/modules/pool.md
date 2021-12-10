@@ -24,7 +24,7 @@ Text and link for the 'Actions' available on a pool row in the UI
 
 #### Defined in
 
-[pool.ts:10](https://github.com/marinade-finance/marinade-web/blob/d10a23f/src/services/domain/pool.ts#L10)
+[pool.ts:10](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/pool.ts#L10)
 
 ___
 
@@ -36,8 +36,8 @@ ___
 
 ▸ (`prices`): `Promise`<`Record`<`string`, [`Pool`](../interfaces/pool.Pool.md)\>\>
 
-An async function that is reponsible for fetching the providers pools, mapping the values to a Pool type and returning them
-check the existing integrations for examples
+An async function that is reponsible for fetching the providers pools, mapping the values to a Pool type and returning them.
+Check the existing integrations for examples, but feel free to use own implementation, as log as the returned map is Record<string, Pool> (with string being the unique pool token address)
 some utilites that may be helpful:
 - src/utils/update-pool-rewards.ts
 - src/utils/update-pool.ts
@@ -54,4 +54,4 @@ some utilites that may be helpful:
 
 #### Defined in
 
-[pool.ts:53](https://github.com/marinade-finance/marinade-web/blob/d10a23f/src/services/domain/pool.ts#L53)
+[pool.ts:54](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/pool.ts#L54)

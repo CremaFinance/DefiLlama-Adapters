@@ -12,4 +12,4 @@ All coiintokens used by marinade
 
 #### Defined in
 
-[coinTokens.ts:5](https://github.com/marinade-finance/marinade-web/blob/d10a23f/src/services/domain/coinTokens.ts#L5)
+[coinTokens.ts:5](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/coinTokens.ts#L5)

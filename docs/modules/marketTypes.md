@@ -10,7 +10,7 @@
 
 #### Defined in
 
-[marketTypes.ts:6](https://github.com/marinade-finance/marinade-web/blob/d10a23f/src/services/domain/marketTypes.ts#L6)
+[marketTypes.ts:6](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/marketTypes.ts#L6)
 
 ## Variables
 
@@ -27,4 +27,4 @@
 
 #### Defined in
 
-[marketTypes.ts:1](https://github.com/marinade-finance/marinade-web/blob/d10a23f/src/services/domain/marketTypes.ts#L1)
+[marketTypes.ts:1](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/marketTypes.ts#L1)
