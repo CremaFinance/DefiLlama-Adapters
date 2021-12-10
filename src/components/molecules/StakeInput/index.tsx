@@ -1,5 +1,5 @@
 import { Flex, Image, Input } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import NumberFormat from "react-number-format";
 
 import { useTranslation } from "../../../hooks/useTranslation";
@@ -34,6 +34,10 @@ const StakeInput = ({
   const { t } = useTranslation();
   const balanceLabel = t("appPage.balance");
   const [amount, setAmount] = useState<number | undefined>();
+
+  useEffect(() => {
+    setAmount(0);
+  }, [stakeInputType]);
 
   return (
     <Flex
