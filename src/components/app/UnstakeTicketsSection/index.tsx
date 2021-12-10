@@ -15,6 +15,7 @@ import { MdContentCopy } from "react-icons/md";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
+import { copyAddressToClipboard } from "utils/copy-to-clipboard";
 import { format5Dec, format2Dec } from "utils/number-to-short-version";
 import { shortenAddress } from "utils/shorten-address";
 
@@ -51,18 +52,6 @@ const UnstakeTicketsSection = () => {
     },
   ];
 
-  const copyAddressToClipboard = (v: string) => {
-    navigator.clipboard.writeText(v);
-
-    toast({
-      title: t("appPage.copy-success-title"),
-      description: t("appPage.copy-success-message"),
-      status: "success",
-      variant: "subtle",
-      isClosable: true,
-    });
-  };
-
   return (
     <Flex width="100%" pt={12}>
       <Table variant="simple">
@@ -95,7 +84,9 @@ const UnstakeTicketsSection = () => {
                     size="sm"
                     icon={<MdContentCopy />}
                     _focus={{ boxShadow: "none" }}
-                    onClick={() => copyAddressToClipboard(ticket.address)}
+                    onClick={() =>
+                      copyAddressToClipboard(ticket.address, toast, t)
+                    }
                   />
                 </Flex>
               </Td>

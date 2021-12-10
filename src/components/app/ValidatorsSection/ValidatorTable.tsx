@@ -9,6 +9,7 @@ import {
   Box,
   Spinner,
   Image,
+  useToast,
 } from "@chakra-ui/react";
 import {
   Chart as ChartJS,
@@ -27,6 +28,7 @@ import { MdOutlineContentCopy } from "react-icons/md";
 import { useQuery, UseQueryResult } from "react-query";
 
 import MText from "../../atoms/Text";
+import { copyAddressToClipboard } from "utils/copy-to-clipboard";
 import { numberToShortVersion } from "utils/number-to-short-version";
 import { shortenAddress } from "utils/shorten-address";
 
@@ -178,6 +180,7 @@ const formatValidatorName = (name: string): string => {
 
 const ValidatorTable = () => {
   const { t } = useTranslation();
+  const toast = useToast();
   const [pageNumber, setPageNumber] = useState(1);
   const [pages, setPages] = useState<(string | number)[]>([1, 2, 3, 4, 5]);
 
@@ -322,7 +325,14 @@ const ValidatorTable = () => {
                 >
                   <Flex alignItems="center">
                     {shortenAddress(tuple.pubkey.address)}
-                    <Box ml="7px">
+                    <Box
+                      ml="7px"
+                      w="20px"
+                      h="20px"
+                      onClick={() =>
+                        copyAddressToClipboard(tuple.pubkey.address, toast, t)
+                      }
+                    >
                       <MdOutlineContentCopy fontSize="14px" color="#171923" />
                     </Box>
                   </Flex>
