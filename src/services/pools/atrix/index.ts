@@ -1,7 +1,6 @@
-import { getTokensList } from "../../../utils/tokens-list";
 import { updatePoolRewards } from "../../../utils/update-pool-rewards";
 import { Prices } from "../../domain/coinSymbols";
-import { MarketPools } from "../../domain/market";
+import { Pool } from "../../domain/pool";
 
 import { AtrixPoolsResponse } from "./atrixPool";
 import { atrixPools } from "./config";
@@ -32,16 +31,16 @@ export const mapAtrixPoolsResponse = (
         pool.totalLockedValue = Number.isNaN(tvl) ? undefined : tvl;
         pool.tradingApy = Number(apy);
         pool.apy = pool.tradingApy;
-        pool = updatePoolRewards(pool, prices);
+        pool = updatePoolRewards(pool as Pool, prices);
       }
     }
-    return { [poolkey]: pool };
+    return { [poolkey]: pool as Pool };
   });
 
   // convert to map
   return poolsArray.reduce((acc, pool) => {
     return { ...acc, ...pool };
-  }, {}) as MarketPools;
+  }, {});
 };
 
 export const getAtrix = async (prices: Prices) => {
@@ -51,6 +50,5 @@ export const getAtrix = async (prices: Prices) => {
 
 export const atrix = {
   fetchPools: getAtrix,
-  pools: atrixPools as MarketPools,
-  tokenList: getTokensList(Object.values(atrixPools)),
+  pools: atrixPools,
 };

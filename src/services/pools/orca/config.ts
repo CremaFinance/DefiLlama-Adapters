@@ -1,6 +1,6 @@
 import { coinSymbols } from "../../domain/coinSymbols";
 import { marketTypes } from "../../domain/marketTypes";
-import { Pool } from "../../domain/pool";
+import { PoolConfig } from "../../domain/pool";
 
 import {
   LiquidityOrcaPoolAddress,
@@ -23,10 +23,9 @@ const actions = [
 
 export type OrcaPoolsResponse = Record<LiquidityOrcaPoolIds, OrcaPool>;
 
-export const orcaPools: Record<LiquidityOrcaPoolAddress, Pool> = {
+export const orcaPools: Record<LiquidityOrcaPoolAddress, PoolConfig> = {
   [liquidityOrcaPoolAddress.ORCA_mSOL_SOL]: {
     ...liquidityPoolTokens[liquidityOrcaPoolAddress.ORCA_mSOL_SOL],
-
     ...{
       provider,
       marketType: marketTypes.LP,
