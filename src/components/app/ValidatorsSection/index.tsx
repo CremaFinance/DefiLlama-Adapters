@@ -27,6 +27,7 @@ import { MdOutlineContentCopy } from "react-icons/md";
 import { useQuery, UseQueryResult } from "react-query";
 
 import MText from "../../atoms/Text";
+import colors from "styles/customTheme/colors";
 import { numberToShortVersion } from "utils/number-to-short-version";
 import { shortenAddress } from "utils/shorten-address";
 
@@ -112,8 +113,8 @@ const graphData = {
     {
       label: "Active Stakes",
       data: activeStakes,
-      borderColor: "#308d8a",
-      backgroundColor: "#308d8a",
+      borderColor: colors.marinadeGreen,
+      backgroundColor: colors.marinadeGreen,
     },
   ],
 };
@@ -128,7 +129,7 @@ const cell = {
 const highlightedCell = {
   height: { base: "40px", xl: "50px" },
   fontSize: "14.4px",
-  color: "#308d8a",
+  color: colors.marinadeGreen,
   fontWeight: "700",
   borderBottom: "1px solid #edf2f7",
   px: "10px",
@@ -147,7 +148,7 @@ const currentPageStyle = {
   mt: "5px",
   pb: "5px",
   fontWeight: "700",
-  color: "#308d8a",
+  color: colors.marinadeGreen,
   cursor: "pointer",
   borderBottom: "2px solid #308d8a",
 };
@@ -278,14 +279,7 @@ const ValidatorTable = () => {
   }
 
   return (
-    <Flex
-      mt="20px"
-      ml="auto"
-      mr="auto"
-      direction="column"
-      width="95%"
-      maxWidth="1360px"
-    >
+    <Flex ml="auto" mr="auto" direction="column" width="95%" maxWidth="1360px">
       <Table variant="unstyled" maxHeight="570px">
         <Thead>
           <Tr>

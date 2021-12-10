@@ -48,10 +48,10 @@ const scrollbarProps = {
   "&::-webkit-scrollbar:horizontal": {
     height: "4px",
   },
-  "&::-webkit-scrollbar-track::horizontal": {
+  "&::-webkit-scrollbar-track:horizontal": {
     height: "6px",
   },
-  "&::-webkit-scrollbar-thumb::horizontal": {
+  "&::-webkit-scrollbar-thumb:horizontal": {
     background: "#CCCCCC",
     borderRadius: "24px",
   },
