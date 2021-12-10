@@ -66,12 +66,22 @@ const InfoBoxesSection = () => {
     <>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay w="100vw" />
-        <ModalContent maxW="95vw" backgroundColor="white">
+        <ModalContent
+          maxW="min(95vw, 1300px)"
+          maxH="min(80vh, 900px)"
+          backgroundColor="white"
+          overflow="auto"
+        >
           <ModalHeader>Validators</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <ValidatorsSection />
           </ModalBody>
+          {/* <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              Close
+            </Button>
+          </ModalFooter> */}
         </ModalContent>
       </Modal>
       <Flex
