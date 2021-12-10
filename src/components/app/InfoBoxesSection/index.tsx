@@ -26,7 +26,8 @@ import {
 import MHeading from "../../atoms/Heading";
 import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
-import ValidatorsSection from "../ValidatorsSection/index";
+// import ValidatorsSection from "../ValidatorsSection/index";
+import ValidatorsTable from "../ValidatorsSection/ValidatorTable";
 import InfoIconWithTooltip from "components/molecules/InfoIconWithTooltip";
 import TooltipWithContent from "components/molecules/TooltipWithContent";
 import { coinSymbols } from "services/domain/coinSymbols";
@@ -68,20 +69,15 @@ const InfoBoxesSection = () => {
         <ModalOverlay w="100vw" />
         <ModalContent
           maxW="min(95vw, 1300px)"
-          maxH="min(80vh, 900px)"
+          maxH="min(85vh, 900px)"
           backgroundColor="white"
           overflow="auto"
         >
           <ModalHeader>Validators</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <ValidatorsSection />
+            <ValidatorsTable />
           </ModalBody>
-          {/* <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
-            </Button>
-          </ModalFooter> */}
         </ModalContent>
       </Modal>
       <Flex

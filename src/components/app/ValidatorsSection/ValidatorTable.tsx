@@ -280,16 +280,14 @@ const ValidatorTable = () => {
   return (
     <Flex
       mt="20px"
-      ml="30px"
-      mr="30px"
+      ml="auto"
+      mr="auto"
       direction="column"
-      height={{ base: "80vh", xl: "500px" }}
+      // overflow="auto"
+      width="100%"
+      maxWidth="1360px"
     >
-      <Table
-        variant="unstyled"
-        height={{ base: "65vh", xl: "800px" }}
-        maxHeight="570px"
-      >
+      <Table variant="unstyled" maxHeight="570px">
         <Thead>
           <Tr>
             <Th {...cell} textAlign="left" position="relative" right="23px">
@@ -337,7 +335,7 @@ const ValidatorTable = () => {
                     <Line options={options} data={graphData} />
                   </Box>
                 </Td>
-                <Td {...highlightedCell} width="180px">
+                <Td {...highlightedCell} width="50px">
                   <Flex alignItems="center" flexWrap="nowrap">
                     {tuple.data.stake.delegation.validatorInfo.image && (
                       <Image
