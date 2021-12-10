@@ -1,5 +1,6 @@
 import { Flex, Image, Input } from "@chakra-ui/react";
 import { useState } from "react";
+import NumberFormat from "react-number-format";
 
 import { useTranslation } from "../../../hooks/useTranslation";
 import colors from "../../../styles/customTheme/colors";
@@ -32,10 +33,7 @@ const StakeInput = ({
 }: StakeInputProps) => {
   const { t } = useTranslation();
   const balanceLabel = t("appPage.balance");
-  const [amount, setAmount] = useState(0);
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setAmount(Number(event.target.value));
-  };
+  const [amount, setAmount] = useState<number | undefined>();
 
   return (
     <Flex
@@ -63,16 +61,22 @@ const StakeInput = ({
           <Image src={tokenIcon} alt="Source Token Logo" width="30px" />
           <MText type="text-xl">{tokenName}</MText>
         </Flex>
-        <Input
+
+        <NumberFormat
+          customInput={Input}
           variant="unstyled"
-          placeholder="0"
+          placeholder="0.0"
           flex={1}
           textAlign="right"
           fontSize="28.13px"
           fontWeight="bold"
           value={amount}
-          type="number"
-          onChange={handleChange}
+          allowNegative={false}
+          allowEmptyFormatting
+          decimalSeparator="."
+          decimalScale={9}
+          type="text"
+          onValueChange={(values) => setAmount(values.floatValue)}
           isDisabled={stakeInputType === StakeInputTypeEnum.Target}
           cursor={
             stakeInputType === StakeInputTypeEnum.Target
