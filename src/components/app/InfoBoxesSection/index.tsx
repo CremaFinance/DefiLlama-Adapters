@@ -27,13 +27,35 @@ import {
 import MHeading from "../../atoms/Heading";
 import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
-// import ValidatorsSection from "../ValidatorsSection/index";
-import ValidatorsTable from "../ValidatorsSection/ValidatorTable";
+import ValidatorsTable from "../ValidatorsSection";
 import InfoIconWithTooltip from "components/molecules/InfoIconWithTooltip";
 import TooltipWithContent from "components/molecules/TooltipWithContent";
 import { coinSymbols } from "services/domain/coinSymbols";
 import colors from "styles/customTheme/colors";
 import { millisecondsToDhms } from "utils/ms-to-dmhs";
+
+const scrollbarProps = {
+  "&::-webkit-scrollbar": {
+    width: "4px",
+  },
+  "&::-webkit-scrollbar-track": {
+    width: "6px",
+  },
+  "&::-webkit-scrollbar-thumb": {
+    background: "#CCCCCC",
+    borderRadius: "24px",
+  },
+  "&::-webkit-scrollbar:horizontal": {
+    height: "4px",
+  },
+  "&::-webkit-scrollbar-track::horizontal": {
+    height: "6px",
+  },
+  "&::-webkit-scrollbar-thumb::horizontal": {
+    background: "#CCCCCC",
+    borderRadius: "24px",
+  },
+};
 
 const InfoBoxesSection = () => {
   const { t } = useTranslation();
@@ -73,11 +95,12 @@ const InfoBoxesSection = () => {
           maxH="min(85vh, 900px)"
           backgroundColor="white"
           overflow="auto"
+          css={scrollbarProps}
         >
           <ModalHeader>Validators</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Box overflow="auto">
+            <Box overflow="auto" css={scrollbarProps}>
               <ValidatorsTable />
             </Box>
           </ModalBody>
