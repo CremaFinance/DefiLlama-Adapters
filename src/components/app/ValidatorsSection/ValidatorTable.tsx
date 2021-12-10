@@ -283,8 +283,7 @@ const ValidatorTable = () => {
       ml="auto"
       mr="auto"
       direction="column"
-      // overflow="auto"
-      width="100%"
+      width="95%"
       maxWidth="1360px"
     >
       <Table variant="unstyled" maxHeight="570px">

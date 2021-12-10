@@ -10,6 +10,7 @@ import {
   ModalHeader,
   ModalBody,
   ModalCloseButton,
+  Box,
 } from "@chakra-ui/react";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
@@ -76,7 +77,9 @@ const InfoBoxesSection = () => {
           <ModalHeader>Validators</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <ValidatorsTable />
+            <Box overflow="auto">
+              <ValidatorsTable />
+            </Box>
           </ModalBody>
         </ModalContent>
       </Modal>
