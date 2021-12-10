@@ -6,7 +6,7 @@ import colors from "styles/customTheme/colors";
 
 const Validators = () => {
   return (
-    <Box>
+    <Box overflow="hidden">
       <Header onValidatorsPage />
       <Box
         bg={colors.greenLight}

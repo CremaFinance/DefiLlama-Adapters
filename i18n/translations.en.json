@@ -195,7 +195,7 @@
         "swap": "Swap",
         "borrow": "Borrow"
       },
-      "tvl": "$ {{tvl}} TVL",
+      "tvl": "${{tvl}} TVL",
       "apyPopover": {
         "trading": "Trading APR",
         "emission": "Emission APR",
@@ -235,12 +235,21 @@
     "stake-inputs-stake-fee": "Stake fee",
     "stake-action": "Stake",
     "stake-sol-action": "Stake SOL",
+    "deposit-stake-account-action": "Deposit stake account",
     "unstake-action": "Unstake",
     "unstake-now-action": "Unstake now",
     "delayed-unstake-action": "Delayed unstake",
     "start-delayed-unstake-action": "Start delayed unstake",
     "balance": "Balance",
     "max": "Max",
+    "stake-dropdown-wallet-balance": "Wallet balance",
+    "stake-dropdown-stake-accounts": "Stake accounts",
+    "stake-dropdown-toast": {
+      "successTitle": "Copied",
+      "successBody": "You have successfully copied the address",
+      "errorTitle": "Failed to copy",
+      "errorBody": "Address was not copied"
+    },
     "success-stake": {
       "title": "Well done!",
       "body-line1": "You’re now staking with Marinade!",
@@ -285,6 +294,14 @@
         "response-2": "Also keep in mind that mSOL can be traded at its current value in exchange for any other cryptocurrency on a decentralized exchange without the need to unstake."
       }
     ],
+
+    "ammount-exceeds-current-staking-cap": "Amount entered exceeds the current Staking cap.",
+    "capped-tvl-is-full": "Mainnet Beta Capped TVL is FULL. Please wait for cap increments.",
+    "missing-sol-for-fee": "You need some SOL balance on your wallet to cover the transaction fees.",
+    "something-went-wrong": "Something went wrong",
+    "stake-sol-confirmed": "Stake SOL confirmed",
+    "successfully-staked-your-sol": "You've successfully staked your SOL",
+    "try-using-max-button": "Try using the MAX button to stake the maximum allowed amount.",
 
     "validators-menu-transactions": "Transactions",
     "validators-menu-stakes": "Stakes",
