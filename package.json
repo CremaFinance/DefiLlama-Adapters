@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@chakra-ui/layout": "^1.6.0",
-    "@chakra-ui/react": "^1.7.2",
+    "@chakra-ui/react": "^1.7.3",
     "@emotion/cache": "^11.6.0",
     "@emotion/react": "^11.7.0",
     "@emotion/server": "^11.4.0",
@@ -36,7 +36,7 @@
     "@saberhq/solana-contrib": "^1.10.6",
     "@saberhq/token-utils": "^1.10.5",
     "@solana/spl-token": "^0.1.8",
-    "@solana/spl-token-registry": "^0.2.726",
+    "@solana/spl-token-registry": "^0.2.753",
     "@solana/wallet-adapter-base": "^0.7.1",
     "@solana/wallet-adapter-react": "^0.13.0",
     "@solana/wallet-adapter-wallets": "^0.11.0",
