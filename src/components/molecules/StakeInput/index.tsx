@@ -1,9 +1,36 @@
-import { Flex, Image, Input } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
+/* eslint-disable complexity */
+import {
+  Flex,
+  Image,
+  Input,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Button,
+  useMediaQuery,
+  Divider,
+  Icon,
+  IconButton,
+  Box,
+  useToast,
+} from "@chakra-ui/react";
+import { useState } from "react";
+import { AiOutlineCheck } from "react-icons/ai";
+import { MdContentCopy } from "react-icons/md";
 import NumberFormat from "react-number-format";
 
 import { useTranslation } from "../../../hooks/useTranslation";
 import colors from "../../../styles/customTheme/colors";
+import {
+  format5Dec,
+  format2Dec,
+  // format9Dec,
+} from "../../../utils/number-to-short-version";
+import {
+  shortenAddress,
+  shortenAddressForMobile,
+} from "../../../utils/shorten-address";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 
@@ -12,14 +39,22 @@ export enum StakeInputTypeEnum {
   Target = "target",
 }
 
+export type StakeAccountType = {
+  address: string;
+  balance: number;
+};
+
 type StakeInputProps = {
   stakeInputType: StakeInputTypeEnum;
   tokenIcon: string;
   tokenName: string;
   tokenBalance: number;
-  width: string[];
-  tokenCardWidth?: string[];
   mb?: number;
+  currentAccount: StakeAccountType;
+  stakeAccounts: StakeAccountType[];
+  selectAccountCallback?: (value: boolean) => void;
+  onValueChange?: (value: string) => void;
+  value?: string;
 };
 
 const StakeInput = ({
@@ -27,44 +62,237 @@ const StakeInput = ({
   tokenIcon,
   tokenName,
   tokenBalance,
-  width,
-  tokenCardWidth = ["103px"],
   mb = 0,
+  currentAccount,
+  stakeAccounts,
+  selectAccountCallback,
+  onValueChange,
+  value = undefined,
 }: StakeInputProps) => {
   const { t } = useTranslation();
+  const toast = useToast();
   const balanceLabel = t("appPage.balance");
-  const [amount, setAmount] = useState<number | undefined>();
 
-  useEffect(() => {
-    setAmount(0);
-  }, [stakeInputType]);
+  const [isWiderThan768] = useMediaQuery("(min-width: 768px)");
+  const [selectedAccount, setSelectedAccount] = useState(currentAccount);
+  const [isStakeAccountSelected, setIsStakeAccountSelected] = useState(false);
+  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (onValueChange) {
+  //     onValueChange(Number(event.target.value));
+  //   }
+  // };
+
+  const handleSelectedWalletAccount = (account: StakeAccountType) => {
+    if (onValueChange) {
+      onValueChange(account.balance.toString());
+    }
+    setSelectedAccount(account);
+    setIsStakeAccountSelected(false);
+    if (selectAccountCallback) {
+      selectAccountCallback(false);
+    }
+  };
+
+  const handleSelectedStakeAccount = (account: StakeAccountType) => {
+    if (onValueChange) {
+      onValueChange(account.balance.toString());
+    }
+    setSelectedAccount(account);
+    setIsStakeAccountSelected(true);
+    if (selectAccountCallback) {
+      selectAccountCallback(true);
+    }
+  };
+
+  const copyToClipBoard = (v: string) => {
+    try {
+      navigator.clipboard.writeText(v);
+      toast({
+        title: t("appPage.stake-dropdown-toast.successTitle"),
+        description: t("appPage.stake-dropdown-toast.successBody"),
+        status: "success",
+        variant: "subtle",
+        isClosable: true,
+      });
+    } catch (err) {
+      toast({
+        title: t("appPage.stake-dropdown-toast.errorTitle"),
+        description: t("appPage.stake-dropdown-toast.errorTitle"),
+        status: "success",
+        variant: "subtle",
+        isClosable: true,
+      });
+    }
+  };
 
   return (
     <Flex
       height="104px"
-      width={width}
+      width="100%"
       bg="gray.50"
       border="1px"
       borderColor="gray.100"
       rounded="md"
-      px={4}
+      px={[2, 4]}
       py={2}
       mb={mb}
       flexDirection="column"
       justifyContent="space-between"
+      zIndez={50}
     >
       <Flex justifyContent="space-between">
-        <Flex
-          boxShadow="md"
-          rounded="md"
-          justifyContent="space-around"
-          alignItems="center"
-          width={tokenCardWidth}
-          height="44px"
-        >
-          <Image src={tokenIcon} alt="Source Token Logo" width="30px" />
-          <MText type="text-xl">{tokenName}</MText>
-        </Flex>
+        {stakeInputType === StakeInputTypeEnum.Target ? (
+          <Flex
+            boxShadow="md"
+            rounded="md"
+            justifyContent="space-around"
+            alignItems="center"
+            height="44px"
+            px={2}
+          >
+            <Image
+              src={tokenIcon}
+              alt="Source Token Logo"
+              width={["24px", "30px"]}
+              mr={2}
+            />
+            <MText type="text-xl">{tokenName}</MText>
+          </Flex>
+        ) : (
+          <Menu>
+            <MenuButton
+              boxShadow="md"
+              as={Button}
+              rounded="md"
+              bg="gray.50"
+              _focus={{ boxShadow: "none" }}
+              variant="solid"
+              font="text-lg"
+              height="44px"
+              px={2}
+              leftIcon={
+                <Image src={tokenIcon} mr={1} width={["24px", "30px"]} />
+              }
+              rightIcon={
+                <Image src="/icons/expand-more-black.svg" width="1.5rem" />
+              }
+            >
+              <MText fontWeight="400">
+                {isWiderThan768
+                  ? shortenAddress(`${selectedAccount.address}`)
+                  : shortenAddressForMobile(`${selectedAccount.address}`)}
+              </MText>
+            </MenuButton>
+            <MenuList
+              width="320px"
+              zIndex={11}
+              border="none"
+              rounded="md"
+              shadow="md"
+            >
+              <MenuItem>
+                <MText fontWeight="bold" type="text-lg">
+                  {t("appPage.stake-dropdown-wallet-balance")}
+                </MText>
+              </MenuItem>
+              <MenuItem
+                px={4}
+                onClick={() => {
+                  handleSelectedWalletAccount(currentAccount);
+                }}
+              >
+                <Flex justifyContent="space-between" width="100%">
+                  <Flex alignItems="center">
+                    {selectedAccount.address === currentAccount.address ? (
+                      <Icon
+                        as={AiOutlineCheck}
+                        width="16px"
+                        height="16px"
+                        color={colors.black}
+                        mr={2}
+                      />
+                    ) : (
+                      <Box width={6} />
+                    )}
+
+                    <MText width="100px" mr={2} type="text-lg">
+                      {shortenAddress(`${currentAccount.address}`)}
+                    </MText>
+                    <IconButton
+                      variant="link"
+                      aria-label="Copy address"
+                      size="sm"
+                      icon={<MdContentCopy />}
+                      _focus={{ boxShadow: "none" }}
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        copyToClipBoard(currentAccount.address);
+                      }}
+                    />
+                  </Flex>
+
+                  <MText type="text-lg">
+                    {isWiderThan768
+                      ? format5Dec(currentAccount.balance)
+                      : format2Dec(currentAccount.balance)}
+                  </MText>
+                </Flex>
+              </MenuItem>
+              <Divider orientation="horizontal" color="gray.100" />
+              <MenuItem>
+                <MText fontWeight="bold" type="text-lg">
+                  {t("appPage.stake-dropdown-stake-accounts")}
+                </MText>
+              </MenuItem>
+
+              {stakeAccounts.map((stakeAccount) => (
+                <MenuItem
+                  key={stakeAccount.address}
+                  onClick={() => {
+                    handleSelectedStakeAccount(stakeAccount);
+                  }}
+                  px={4}
+                >
+                  <Flex justifyContent="space-between" width="100%">
+                    <Flex alignItems="center">
+                      {selectedAccount.address === stakeAccount.address ? (
+                        <Icon
+                          as={AiOutlineCheck}
+                          width="16px"
+                          height="16px"
+                          color={colors.black}
+                          mr={2}
+                        />
+                      ) : (
+                        <Box width={6} />
+                      )}
+                      <MText width="100px" mr={2} type="text-lg">
+                        {shortenAddress(`${stakeAccount.address}`)}
+                      </MText>
+                      <IconButton
+                        variant="link"
+                        aria-label="Copy address"
+                        size="sm"
+                        icon={<MdContentCopy />}
+                        _focus={{ boxShadow: "none" }}
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          copyToClipBoard(stakeAccount.address);
+                        }}
+                      />
+                    </Flex>
+
+                    <MText type="text-lg">
+                      {isWiderThan768
+                        ? format5Dec(stakeAccount.balance)
+                        : format2Dec(stakeAccount.balance)}
+                    </MText>
+                  </Flex>
+                </MenuItem>
+              ))}
+            </MenuList>
+          </Menu>
+        )}
 
         <NumberFormat
           customInput={Input}
@@ -74,16 +302,25 @@ const StakeInput = ({
           textAlign="right"
           fontSize="28.13px"
           fontWeight="bold"
-          value={amount}
+          value={value}
+          // type="number"
+          onValueChange={(values) => {
+            if (onValueChange) {
+              onValueChange(values.value);
+            }
+          }}
           allowNegative={false}
           allowEmptyFormatting
           decimalSeparator="."
           decimalScale={9}
-          type="text"
-          onValueChange={(values) => setAmount(values.floatValue)}
-          isDisabled={stakeInputType === StakeInputTypeEnum.Target}
+          // onChange={handleChange}
+          isDisabled={
+            stakeInputType === StakeInputTypeEnum.Target ||
+            isStakeAccountSelected
+          }
           cursor={
-            stakeInputType === StakeInputTypeEnum.Target
+            stakeInputType === StakeInputTypeEnum.Target ||
+            isStakeAccountSelected
               ? "not-allowed"
               : "auto"
           }
@@ -97,7 +334,9 @@ const StakeInput = ({
             font="text-sm"
             color={colors.marinadeGreen}
             fontWeight="bold"
-            onClick={() => setAmount(tokenBalance)}
+            onClick={() =>
+              onValueChange ? onValueChange(tokenBalance.toString()) : {}
+            }
             pb="1px"
             _hover={{}}
           >

@@ -14,11 +14,14 @@ export async function fetchCoinPrice(
   if (!token) {
     throw new Error(`no config for ${source}`);
   }
+  const pricePromises = [];
 
-  const pricePromises = [
-    fetchBinancePriceByToken(token, source ?? ""),
-    fetchCoinGeckoPriceByToken(token, source ?? "", target),
-  ];
+  if (token.extensions?.binanceId) {
+    pricePromises.push(fetchBinancePriceByToken(token, source ?? ""));
+  }
+  if (token.extensions?.coingeckoId) {
+    pricePromises.push(fetchCoinGeckoPriceByToken(token, source ?? "", target));
+  }
 
   return promiseRace(pricePromises);
 }
