@@ -301,7 +301,7 @@ const ValidatorTable = () => {
               {t("appPage.validators-table-balance")}
             </Th>
             <Th {...cell} textAlign="left">
-              Graph
+              Stake Last 30 Epochs
             </Th>
             <Th {...cell} textAlign="left" position="relative" right="14px">
               {t("appPage.validators-table-validator")}
