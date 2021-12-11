@@ -30,4 +30,11 @@
   "exclude": [
     "node_modules"
   ]
+  ,
+    "typedocOptions": {
+        "entryPoints": ["src/services/domain/"],
+        "entryPointStrategy" : "expand",
+        
+        "hideInPageTOC":true,
+    }
 }
