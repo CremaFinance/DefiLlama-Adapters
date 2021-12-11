@@ -20,7 +20,7 @@ based on https://github.com/solana-labs/token-list/blob/main/src/lib/tokenlist.t
 
 #### Defined in
 
-[token.ts:6](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/token.ts#L6)
+[token.ts:6](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/token.ts#L6)
 
 ___
 
@@ -30,7 +30,7 @@ ___
 
 #### Defined in
 
-[token.ts:5](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/token.ts#L5)
+[token.ts:5](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/token.ts#L5)
 
 ___
 
@@ -40,7 +40,7 @@ ___
 
 #### Defined in
 
-[token.ts:8](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/token.ts#L8)
+[token.ts:8](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/token.ts#L8)
 
 ___
 
@@ -50,7 +50,7 @@ ___
 
 #### Defined in
 
-[token.ts:12](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/token.ts#L12)
+[token.ts:12](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/token.ts#L12)
 
 ___
 
@@ -60,7 +60,7 @@ ___
 
 #### Defined in
 
-[token.ts:10](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/token.ts#L10)
+[token.ts:10](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/token.ts#L10)
 
 ___
 
@@ -70,7 +70,7 @@ ___
 
 #### Defined in
 
-[token.ts:7](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/token.ts#L7)
+[token.ts:7](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/token.ts#L7)
 
 ___
 
@@ -80,7 +80,7 @@ ___
 
 #### Defined in
 
-[token.ts:9](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/token.ts#L9)
+[token.ts:9](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/token.ts#L9)
 
 ___
 
@@ -90,4 +90,4 @@ ___
 
 #### Defined in
 
-[token.ts:11](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/token.ts#L11)
+[token.ts:11](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/token.ts#L11)

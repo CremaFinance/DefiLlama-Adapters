@@ -46,7 +46,7 @@ export interface Pool extends PoolConfig {
 
 /**
  * An async function that is reponsible for fetching the providers pools, mapping the values to a Pool type and returning them.
- * Check the existing integrations for examples, but feel free to use own implementation, as log as the returned map is Record<string, Pool> (with string being the unique pool token address)
+ * Check the existing integrations for examples, but feel free to use own implementation, as long as the returned map is Record<string, Pool> (with string being the unique pool token address)
  * some utilites that may be helpful:
  * - src/utils/update-pool-rewards.ts
  * - src/utils/update-pool.ts

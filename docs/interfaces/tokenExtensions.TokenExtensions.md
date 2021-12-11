@@ -15,7 +15,7 @@ based on https://github.com/solana-labs/token-list/blob/main/src/lib/tokenlist.t
 
 #### Defined in
 
-[tokenExtensions.ts:8](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/tokenExtensions.ts#L8)
+[tokenExtensions.ts:8](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/tokenExtensions.ts#L8)
 
 ___
 
@@ -25,7 +25,7 @@ ___
 
 #### Defined in
 
-[tokenExtensions.ts:7](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/tokenExtensions.ts#L7)
+[tokenExtensions.ts:7](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/tokenExtensions.ts#L7)
 
 ___
 
@@ -35,7 +35,7 @@ ___
 
 #### Defined in
 
-[tokenExtensions.ts:17](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/tokenExtensions.ts#L17)
+[tokenExtensions.ts:17](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/tokenExtensions.ts#L17)
 
 ___
 
@@ -45,7 +45,7 @@ ___
 
 #### Defined in
 
-[tokenExtensions.ts:6](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/tokenExtensions.ts#L6)
+[tokenExtensions.ts:6](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/tokenExtensions.ts#L6)
 
 ___
 
@@ -55,7 +55,7 @@ ___
 
 #### Defined in
 
-[tokenExtensions.ts:16](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/tokenExtensions.ts#L16)
+[tokenExtensions.ts:16](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/tokenExtensions.ts#L16)
 
 ___
 
@@ -65,7 +65,7 @@ ___
 
 #### Defined in
 
-[tokenExtensions.ts:19](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/tokenExtensions.ts#L19)
+[tokenExtensions.ts:19](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/tokenExtensions.ts#L19)
 
 ___
 
@@ -75,7 +75,7 @@ ___
 
 #### Defined in
 
-[tokenExtensions.ts:15](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/tokenExtensions.ts#L15)
+[tokenExtensions.ts:15](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/tokenExtensions.ts#L15)
 
 ___
 
@@ -85,7 +85,7 @@ ___
 
 #### Defined in
 
-[tokenExtensions.ts:9](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/tokenExtensions.ts#L9)
+[tokenExtensions.ts:9](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/tokenExtensions.ts#L9)
 
 ___
 
@@ -95,7 +95,7 @@ ___
 
 #### Defined in
 
-[tokenExtensions.ts:11](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/tokenExtensions.ts#L11)
+[tokenExtensions.ts:11](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/tokenExtensions.ts#L11)
 
 ___
 
@@ -105,7 +105,7 @@ ___
 
 #### Defined in
 
-[tokenExtensions.ts:18](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/tokenExtensions.ts#L18)
+[tokenExtensions.ts:18](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/tokenExtensions.ts#L18)
 
 ___
 
@@ -115,7 +115,7 @@ ___
 
 #### Defined in
 
-[tokenExtensions.ts:12](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/tokenExtensions.ts#L12)
+[tokenExtensions.ts:12](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/tokenExtensions.ts#L12)
 
 ___
 
@@ -125,7 +125,7 @@ ___
 
 #### Defined in
 
-[tokenExtensions.ts:23](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/tokenExtensions.ts#L23)
+[tokenExtensions.ts:23](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/tokenExtensions.ts#L23)
 
 ___
 
@@ -135,7 +135,7 @@ ___
 
 #### Defined in
 
-[tokenExtensions.ts:22](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/tokenExtensions.ts#L22)
+[tokenExtensions.ts:22](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/tokenExtensions.ts#L22)
 
 ___
 
@@ -145,7 +145,7 @@ ___
 
 #### Defined in
 
-[tokenExtensions.ts:20](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/tokenExtensions.ts#L20)
+[tokenExtensions.ts:20](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/tokenExtensions.ts#L20)
 
 ___
 
@@ -155,7 +155,7 @@ ___
 
 #### Defined in
 
-[tokenExtensions.ts:13](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/tokenExtensions.ts#L13)
+[tokenExtensions.ts:13](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/tokenExtensions.ts#L13)
 
 ___
 
@@ -165,7 +165,7 @@ ___
 
 #### Defined in
 
-[tokenExtensions.ts:14](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/tokenExtensions.ts#L14)
+[tokenExtensions.ts:14](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/tokenExtensions.ts#L14)
 
 ___
 
@@ -175,7 +175,7 @@ ___
 
 #### Defined in
 
-[tokenExtensions.ts:10](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/tokenExtensions.ts#L10)
+[tokenExtensions.ts:10](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/tokenExtensions.ts#L10)
 
 ___
 
@@ -185,4 +185,4 @@ ___
 
 #### Defined in
 
-[tokenExtensions.ts:5](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/tokenExtensions.ts#L5)
+[tokenExtensions.ts:5](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/tokenExtensions.ts#L5)
