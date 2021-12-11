@@ -8,7 +8,7 @@ import {
   Td,
   Box,
   Spinner,
-  Image,
+  // Image,
 } from "@chakra-ui/react";
 import {
   Chart as ChartJS,
@@ -31,29 +31,46 @@ import colors from "styles/customTheme/colors";
 import { numberToShortVersion } from "utils/number-to-short-version";
 import { shortenAddress } from "utils/shorten-address";
 
+// await fetch("/api/validators", {
+//   method: "POST",
+//   headers: {
+//     "Content-Type": "application/json",
+//   },
+//   body: JSON.stringify({ pageNumber: 2 }),
+// });
+
 interface Query {
   totalPages: number;
-  data: Validator[];
+  validators: Validator[];
 }
 
 interface Validator {
-  pubkey: {
-    address: string;
-  };
-  lamports: number;
-  data: {
-    stake: {
-      delegation: {
-        validatorInfo: {
-          name: string;
-          image: string;
-        };
-        voter_pubkey: {
-          address: string;
-        };
-      };
-    };
-  };
+  validator_vote_address: string;
+  keybase_id: string;
+  validator_description: string;
+  stats: Stat[];
+  latest_data: unknown;
+}
+
+export interface Stat {
+  epoch: number;
+  score: number;
+  avg_position: number;
+  commission: number;
+  active_stake: number;
+  epoch_credits: number;
+  data_center_concentration: number;
+  can_halt_the_network_group: string;
+  stake_state: StakeState;
+  stake_state_reason: string;
+  pct: number;
+  stake_conc: number;
+  adj_credits: number;
+}
+
+export enum StakeState {
+  Baseline = "Baseline",
+  Bonus = "Bonus",
 }
 
 ChartJS.register(
@@ -194,15 +211,13 @@ const ValidatorTable = () => {
   };
 
   const fetchData = async (): Promise<Query> => {
-    const res = await fetch(
-      `https://prod-api.solana.surf/v1/account/4bZ6o3eUUNXhKuqjdCnCoPAoLgWiuLYixKaxoa8PpiKk/stakes?limit=10&offset=${
-        10 * (pageNumber - 1)
-      }`,
-      {
-        method: "GET",
-        mode: "cors",
-      }
-    );
+    const res = await fetch("/api/validators", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ pageNumber: 2 }),
+    });
 
     if (!res.ok) {
       throw new Error(res.statusText);
@@ -302,8 +317,8 @@ const ValidatorTable = () => {
         </Thead>
         <Tbody>
           {data !== undefined &&
-            data.data.map((tuple) => (
-              <Tr key={tuple.pubkey.address}>
+            data.validators.map((tuple) => (
+              <Tr key={tuple.validator_vote_address}>
                 <Td
                   {...highlightedCell}
                   textAlign="left"
@@ -312,7 +327,7 @@ const ValidatorTable = () => {
                   width="100px"
                 >
                   <Flex alignItems="center">
-                    {shortenAddress(tuple.pubkey.address)}
+                    {shortenAddress(tuple.validator_vote_address)}
                     <Box ml="7px">
                       <MdOutlineContentCopy fontSize="14px" color="#171923" />
                     </Box>
@@ -320,7 +335,10 @@ const ValidatorTable = () => {
                 </Td>
                 <Td {...cell} width="100px">
                   <MText>
-                    {numberToShortVersion(tuple.lamports / 1e9)} SOL
+                    {numberToShortVersion(
+                      tuple.stats[tuple.stats.length - 1].active_stake
+                    )}{" "}
+                    SOL
                   </MText>
                 </Td>
                 <Td {...cell} width="100px">
@@ -330,18 +348,20 @@ const ValidatorTable = () => {
                 </Td>
                 <Td {...highlightedCell} width="50px">
                   <Flex alignItems="center" flexWrap="nowrap">
-                    {tuple.data.stake.delegation.validatorInfo.image && (
+                    {/* No images currently */}
+
+                    {/* {tuple.data.stake.delegation.validatorInfo.image && (
                       <Image
                         src={tuple.data.stake.delegation.validatorInfo.image}
                         alt="?"
                         boxSize="12px"
                       />
-                    )}
+                    )} */}
 
                     <MText pl="4px">
                       {formatValidatorName(
-                        tuple.data.stake.delegation.validatorInfo.name ||
-                          tuple.data.stake.delegation.voter_pubkey.address
+                        tuple.validator_description ||
+                          tuple.validator_vote_address
                       )}
                     </MText>
                   </Flex>
