@@ -27,7 +27,7 @@ const validators = (req: NextApiRequest, res: NextApiResponse) => {
     validators.push(validatorData[i]);
   }
 
-  res.json(validators);
+  res.json({ totalPages: Math.floor(n / 10), validators: validators });
 };
 
 export default validators;
