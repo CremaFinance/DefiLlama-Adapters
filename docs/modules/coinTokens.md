@@ -8,8 +8,8 @@
 
 • **coinTokens**: [`TokenRecord`](token.md#tokenrecord)<[`CoinSymbols`](coinSymbols.md#coinsymbols)\>
 
-All coiintokens used by marinade
+All cointokens used by marinade
 
 #### Defined in
 
-[coinTokens.ts:5](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/coinTokens.ts#L5)
+[coinTokens.ts:5](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/coinTokens.ts#L5)

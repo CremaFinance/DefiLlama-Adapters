@@ -10,7 +10,7 @@
 
 #### Defined in
 
-[coinSymbols.ts:19](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/coinSymbols.ts#L19)
+[coinSymbols.ts:19](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/coinSymbols.ts#L19)
 
 ___
 
@@ -20,7 +20,7 @@ ___
 
 #### Defined in
 
-[coinSymbols.ts:20](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/coinSymbols.ts#L20)
+[coinSymbols.ts:20](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/coinSymbols.ts#L20)
 
 ## Variables
 
@@ -34,4 +34,4 @@ ___
 
 #### Defined in
 
-[coinSymbols.ts:3](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/coinSymbols.ts#L3)
+[coinSymbols.ts:3](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/coinSymbols.ts#L3)

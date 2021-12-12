@@ -19,7 +19,7 @@ The provider object that will be exported
 
 #### Defined in
 
-[providers.ts:4](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/providers.ts#L4)
+[providers.ts:4](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/providers.ts#L4)
 
 ___
 
@@ -35,4 +35,4 @@ ___
 
 #### Defined in
 
-[providers.ts:11](https://github.com/marinade-finance/marinade-web/blob/e32749b/src/services/domain/providers.ts#L11)
+[providers.ts:11](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/providers.ts#L11)

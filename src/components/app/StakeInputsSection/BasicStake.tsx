@@ -149,6 +149,10 @@ const BasicStake = () => {
           // eslint-disable-next-line no-console
           console.error(error);
 
+          if (error.toString().indexOf("Wallet") === 0) {
+            return;
+          }
+
           let description = error.message;
           if (error.toString().includes("0xec6")) {
             description = t("capped-tvl-is-full");
@@ -177,6 +181,7 @@ const BasicStake = () => {
         tokenBalance={sourceTokenBalance}
         currentAccount={currentAccount}
         stakeAccounts={stakeAccounts}
+        value={solToStake}
         mb={2}
       />
       <StakeInput
@@ -186,6 +191,7 @@ const BasicStake = () => {
         tokenBalance={stSOLBalance ?? 0}
         currentAccount={currentAccount}
         stakeAccounts={stakeAccounts}
+        value={solToStake / mSOLvsSOLParity}
         mb={2}
       />
       <Flex width={["256px", "400px"]} my={1} justifyContent="space-between">
