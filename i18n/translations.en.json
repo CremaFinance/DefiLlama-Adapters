@@ -240,8 +240,13 @@
     "unstake-now-action": "Unstake now",
     "delayed-unstake-action": "Delayed unstake",
     "start-delayed-unstake-action": "Start delayed unstake",
+    "cancel-action": "Cancel",
     "balance": "Balance",
     "max": "Max",
+    "unstake-cooldown-description": "You're starting the unstaking process, Marinade must unstake SOL and wait for the cool-down period. This action is irreversible, cannot be canceled or undone and you must wait the cool-down period to get your SOL. Approximately on",
+    "you-will-be-able-to-claim": "*, you'll be able to claim at least ≈",
+    "approximate-unstake-time-explanation": "*Solana can add more delay to the unstake based on total unstaking in the epoch. The time is approximate. Even if you have to wait another epoch, your funds are secure and your ticket will be valid and has no expiry time",
+    "delayed-agree-text": "By clicking on \"Start delayed unstake\" button you understand and agree with the above.",
     "stake-dropdown-wallet-balance": "Wallet balance",
     "stake-dropdown-stake-accounts": "Stake accounts",
     "stake-dropdown-toast": {

@@ -23,6 +23,8 @@ import { basicInputChecks } from "utils/basic-input-checks";
 import { checkNativeSOLBalance } from "utils/check-native-sol-balance";
 import { format5Dec, format9Dec } from "utils/number-to-short-version";
 
+import DelayedUnstakeModal from "./DelayedUnstakeModal";
+
 const BasicUnstake = () => {
   const { t } = useTranslation();
   const toast = useToast();
@@ -270,21 +272,27 @@ const BasicUnstake = () => {
           <MText type="text-md">{timeToUnstake}</MText>
         </Flex>
       ) : null}
-      <MButton
-        font="text-xl"
-        bg={colors.marinadeGreen}
-        isLoading={unstakeLoading}
-        _hover={{ bg: colors.green800 }}
-        colorScheme={colors.marinadeGreen}
-        rounded="md"
-        px={4}
-        height="48px"
-        mx={4}
-        mt={5}
-        onClick={unstakeHandler}
-      >
-        {unstakeText}
-      </MButton>
+      <DelayedUnstakeModal
+        stSolToUnstake={stSolToUnstake}
+        // eslint-disable-next-line react/no-children-prop
+        children={({ openModal }) => (
+          <MButton
+            font="text-xl"
+            bg={colors.marinadeGreen}
+            isLoading={unstakeLoading}
+            _hover={{ bg: colors.green800 }}
+            colorScheme={colors.marinadeGreen}
+            rounded="md"
+            px={4}
+            height="48px"
+            mx={4}
+            mt={5}
+            onClick={!isUnstakeNowActive ? openModal : unstakeHandler}
+          >
+            {unstakeText}
+          </MButton>
+        )}
+      />
       {!isUnstakeNowActive ? <UnstakeTicketsSection /> : null}
     </>
   );
