@@ -6,9 +6,13 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  useToast,
 } from "@chakra-ui/react";
+import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import dayjs from "dayjs";
+import { useState } from "react";
 
+import { useChain } from "../../../contexts/ConnectionProvider";
 import {
   useMarinade,
   useMarinadeState,
@@ -17,10 +21,14 @@ import { useUserBalance } from "../../../contexts/UserBalanceContext";
 import { useEpochInfo } from "../../../hooks/useEpochInfo";
 import { useTranslation } from "../../../hooks/useTranslation";
 import { useWallet } from "../../../hooks/useWallet";
-import { format2Dec } from "../../../utils/number-to-short-version";
+import { basicInputChecks } from "../../../utils/basic-input-checks";
+import { checkNativeSOLBalance } from "../../../utils/check-native-sol-balance";
+import { format2Dec, format5Dec } from "../../../utils/number-to-short-version";
 import { DEFAULT_ENDPOINT } from "../../../utils/web3/endpoints";
 import Button from "../../atoms/Button";
 import Text from "../../atoms/Text";
+import TransactionLink from "components/molecules/TransactionLink";
+import colors from "styles/customTheme/colors";
 
 type DelayedUnstakeModalProps = {
   stSolToUnstake: number;
@@ -34,93 +42,102 @@ const DelayedUnstakeModal = ({
   onClose,
 }: DelayedUnstakeModalProps) => {
   const { t } = useTranslation();
+  const toast = useToast();
+
+  const [unstakeLoading, setUnstakeLoading] = useState(false);
   const state = useMarinadeState();
   const epochData = useEpochInfo()?.data;
   const marinade = useMarinade();
   const { nativeSOLBalance, stSOLBalance } = useUserBalance();
   const { connected: isWalletConnected } = useWallet();
+  const chain = useChain();
 
   const EXTRA_WAIT_MILLISECONDS = 1000 * 60 * 60 * 4 + 1000 * 60 * 45; // 4 hours to finnish BE operations + 45 minutes to be safe
   const epochEnds = Date.now() + (epochData?.msUntilEpochEnd ?? 0);
 
-  //   function unstakeHandler() {
-  //     if (!basicInputChecks(stSolToUnstake, isWalletConnected)) return false;
+  // eslint-disable-next-line consistent-return
+  const delayedUnstakeHandler = () => {
+    const basicInputChecksErrors = basicInputChecks(
+      stSolToUnstake,
+      isWalletConnected
+    );
+    if (basicInputChecksErrors) {
+      return toast(basicInputChecksErrors);
+    }
 
-  //     const fundsNeeded = marinade.marinadeState!.transactionFee!;
-  //     if (!checkNativeSOLBalance(nativeSOLBalance, fundsNeeded)) return false;
+    const fundsNeeded = marinade.marinadeState?.transactionFee;
+    const checkBalanceErrors = checkNativeSOLBalance(
+      nativeSOLBalance ?? 0,
+      fundsNeeded ?? 0
+    );
+    if (checkBalanceErrors) {
+      return toast(checkBalanceErrors);
+    }
 
-  //     if (
-  //       stSOLBalance == undefined ||
-  //       stSOLBalance == null ||
-  //       isNaN(stSOLBalance)
-  //     )
-  //       return false;
+    if (!stSOLBalance || Number.isNaN(stSOLBalance)) return false;
 
-  //     let toUnstakeFullDecimals;
-  //     if (stSolToUnstake == Math.round(stSOLBalance * 1e5) / 1e5) {
-  //       // Note: input text has 5 decimals (rounded), while stSOLBalance has full decimals
-  //       // so if the user wants to unstake all, get precise balance
-  //       toUnstakeFullDecimals = stSOLBalance;
-  //     } else {
-  //       toUnstakeFullDecimals = stSolToUnstake;
-  //     }
+    let toUnstakeFullDecimals;
+    if (stSolToUnstake === Math.round(stSOLBalance * 1e5) / 1e5) {
+      // Note: input text has 5 decimals (rounded), while stSOLBalance has full decimals
+      // so if the user wants to unstake all, get precise balance
+      toUnstakeFullDecimals = stSOLBalance;
+    } else {
+      toUnstakeFullDecimals = stSolToUnstake;
+    }
 
-  //     if (toUnstakeFullDecimals > stSOLBalance) {
-  //       toastNotification({
-  //         title: "Insufficient funds to unstake",
-  //         description: `You requested to unstake ${toUnstakeFullDecimals} mSOL (and you have only ${stSOLBalance})`,
-  //         status: "warning",
-  //         duration: 5000,
-  //         isClosable: true,
-  //       });
-  //       return false;
-  //     }
+    if (toUnstakeFullDecimals > stSOLBalance) {
+      toast({
+        title: "Insufficient funds to unstake",
+        description: `You requested to unstake ${Number(
+          format5Dec(toUnstakeFullDecimals)
+        )} mSOL (have only ${Number(format5Dec(stSOLBalance))})`,
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+      });
+      return false;
+    }
 
-  //     setUnstakeLoading(true);
-  //     toUnstakeFullDecimals &&
-  //       marinade
-  //         .runOrderUnstake(toUnstakeFullDecimals * LAMPORTS_PER_SOL)
-  //         .then(
-  //           (transactionSignature) => {
-  //             setStSolToUnstake("0");
-  //             toastNotification({
-  //               title: "Unstake mSOL confirmed",
-  //               description: (
-  //                 <p>
-  //                   You've successfully unstaked your mSOL{" "}
-  //                   <TransactionLink
-  //                     chainName={chain.name}
-  //                     transactionid={transactionSignature}
-  //                   />
-  //                 </p>
-  //               ),
-  //               status: "success",
-  //               duration: 5000,
-  //               isClosable: true,
-  //             });
-  //           },
-  //           (error) => {
-  //             console.error(error);
-  //             toastNotification({
-  //               title: "Something went wrong",
-  //               description: error.message,
-  //               status: "warning",
-  //               duration: 5000,
-  //               isClosable: true,
-  //             });
-  //           }
-  //         )
-  //         .then(() => {
-  //           getTicketAccountsAction(
-  //             keys,
-  //             walletConnected,
-  //             connection,
-  //             walletPubKey as PublicKey,
-  //             true
-  //           );
-  //           setUnstakeLoading(false);
-  //         });
-  //   }
+    setUnstakeLoading(true);
+
+    marinade
+      .runOrderUnstake(toUnstakeFullDecimals * LAMPORTS_PER_SOL)
+      .then(
+        (transactionSignature) => {
+          toast({
+            title: "Unstake mSOL confirmed",
+            description: (
+              <p>
+                {"You've successfully unstaked your mSOL "}
+                <TransactionLink
+                  chainName={chain.name}
+                  transactionid={transactionSignature}
+                />
+              </p>
+            ),
+            status: "success",
+            duration: 5000,
+            isClosable: true,
+          });
+        },
+        (error) => {
+          // eslint-disable-next-line no-console
+          console.error(error);
+
+          toast({
+            title: "Something went wrong",
+            description: error.message,
+            status: "warning",
+            duration: 5000,
+            isClosable: true,
+          });
+        }
+      )
+      .finally(() => {
+        setUnstakeLoading(false);
+        onClose();
+      });
+  };
 
   return (
     <>
@@ -175,7 +192,10 @@ const DelayedUnstakeModal = ({
             </Button>
             <Button
               mt={4}
-              loadingText="Approve transaction in your wallet"
+              bg={colors.marinadeGreen}
+              isLoading={unstakeLoading}
+              _hover={{ bg: colors.green800 }}
+              colorScheme={colors.marinadeGreen}
               isDisabled={
                 !marinade.marinadeState ||
                 ((nativeSOLBalance === null || stSOLBalance === null) &&
@@ -183,6 +203,7 @@ const DelayedUnstakeModal = ({
               }
               size="lg"
               type="button"
+              onClick={delayedUnstakeHandler}
             >
               {t("appPage.start-delayed-unstake-action")}
             </Button>

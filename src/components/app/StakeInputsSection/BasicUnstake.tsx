@@ -85,6 +85,15 @@ const BasicUnstake = () => {
     },
   ];
 
+  const resetInputs = () => {
+    setUnstakeLoading(false);
+    setStSolToUnstake(0);
+
+    if (!isUnstakeNowActive) {
+      setShowModal(false);
+    }
+  };
+
   // eslint-disable-next-line consistent-return
   const unstakeHandler = () => {
     const basicInputChecksErrors = basicInputChecks(
@@ -171,11 +180,7 @@ const BasicUnstake = () => {
           });
         }
       )
-      .then(() => setStSolToUnstake(""))
-      .finally(() => {
-        setUnstakeLoading(false);
-        setStSolToUnstake("");
-      });
+      .finally(resetInputs);
   };
 
   return (
@@ -291,7 +296,7 @@ const BasicUnstake = () => {
       <DelayedUnstakeModal
         stSolToUnstake={stSolToUnstake}
         isOpen={showModal}
-        onClose={() => setShowModal(false)}
+        onClose={resetInputs}
       />
       {!isUnstakeNowActive ? <UnstakeTicketsSection /> : null}
     </>
