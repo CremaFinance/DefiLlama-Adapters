@@ -1,6 +1,6 @@
 import { coinSymbols } from "../../domain/coinSymbols";
 import { marketTypes } from "../../domain/marketTypes";
-import { Pool } from "../../domain/pool";
+import { PoolConfig } from "../../domain/pool";
 
 import { FranciumPool } from "./franciumPool";
 import {
@@ -24,7 +24,7 @@ export type FranciumPoolsResponse = Record<
   FranciumPool
 >;
 
-export const franciumPools: Record<LendingFranciumPoolAddress, Pool> = {
+export const franciumPools: Record<LendingFranciumPoolAddress, PoolConfig> = {
   [lendingFranciumPoolAddress.FRANCIUM_mSOL]: {
     ...lendingFranciumPoolTokens[lendingFranciumPoolAddress.FRANCIUM_mSOL],
     ...{

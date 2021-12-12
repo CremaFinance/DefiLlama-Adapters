@@ -1,6 +1,7 @@
 export interface FranciumPool {
   id: string;
-  apy: string;
+  apy: number;
+  borrowApr: number;
   liquidityLocked: number;
   available: number;
 }

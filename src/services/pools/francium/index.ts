@@ -1,9 +1,7 @@
-/* eslint-disable sonarjs/cognitive-complexity */
 /* eslint-disable @typescript-eslint/naming-convention */
 import { updatePoolRewards } from "../../../utils/update-pool-rewards";
+import { Pool } from "../../domain/pool";
 import { Prices } from "services/domain/coinSymbols";
-import { MarketPools } from "services/domain/market";
-import { getTokensList } from "utils/tokens-list";
 
 import { franciumPools } from "./config";
 import { FranciumPoolsResponse } from "./franciumPool";
@@ -29,23 +27,23 @@ export const mapFranciumResponse = (
         );
 
         if (result) {
-          const { available, apy, liquidityLocked } = result;
+          const { liquidityLocked, apy, available } = result;
 
           pool.liq = Number(available);
-          pool.totalLockedValue = Number(available);
-          pool.tradingApy = Number(apy) * 100 + Number(liquidityLocked) * 100;
+          pool.totalLockedValue = Number(liquidityLocked);
+          pool.tradingApy = Number(apy);
           pool.apy = pool.tradingApy;
-          pool = updatePoolRewards(pool, prices);
+          pool = updatePoolRewards(pool as Pool, prices);
         }
       }
-      return { [poolkey]: pool };
+      return { [poolkey]: pool as Pool };
     }
   );
 
   // convert to map
   return poolsArray.reduce((acc, pool) => {
     return { ...acc, ...pool };
-  }, {}) as MarketPools;
+  }, {});
 };
 
 export const getFrancium = async (prices: Prices) => {
@@ -55,6 +53,5 @@ export const getFrancium = async (prices: Prices) => {
 
 export const francium = {
   fetchPools: getFrancium,
-  pools: franciumPools as MarketPools,
-  tokenList: getTokensList(Object.values(franciumPools)),
+  pools: franciumPools,
 };
