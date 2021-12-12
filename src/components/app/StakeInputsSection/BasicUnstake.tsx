@@ -125,11 +125,13 @@ const BasicUnstake = () => {
     }
 
     if (toUnstakeFullDecimals > stSOLBalance) {
+      const description = t("appPage.you-requested-to-unstake")
+        ?.replace("{{requestedAmount}}", format5Dec(toUnstakeFullDecimals))
+        .replace("{{actualAmount}}", format5Dec(stSOLBalance));
+
       toast({
-        title: "Insufficient funds to unstake",
-        description: `You requested to unstake ${Number(
-          format5Dec(Number(toUnstakeFullDecimals))
-        )} mSOL (have only ${Number(format5Dec(stSOLBalance))})`,
+        title: t("appPage.insufficient-funds-to-unstake"),
+        description,
         status: "warning",
         duration: 5000,
         isClosable: true,
@@ -145,10 +147,10 @@ const BasicUnstake = () => {
         (transactionSignature) => {
           setStSolToUnstake("");
           toast({
-            title: "Unstake mSOL confirmed",
+            title: t("appPage.unstake-mSOL-confirmed"),
             description: (
               <p>
-                {"You've successfully unstaked your mSOL "}
+                {t("appPage.successfully-unstake-mSOL")}{" "}
                 <TransactionLink
                   chainName={chain.name}
                   transactionid={transactionSignature}
@@ -166,15 +168,15 @@ const BasicUnstake = () => {
 
           let description = error.message;
           if (error.toString().includes("0x1199")) {
-            description =
-              "Insufficient Liquidity in the Liquidity Pool. Please use Delayed Unstake";
+            description = t(
+              "appPage.insufficient-liquidity-in-the-liquidity-pool"
+            );
           } else if (error.toString().includes("no record of a prior credit")) {
-            description =
-              "You need some SOL balance on your wallet to cover the transaction fees.";
+            description = t("appPage.you-need-some-sol-balance-for-fee");
           }
 
           toast({
-            title: "Something went wrong",
+            title: t("appPage.something-went-wrong"),
             description,
             status: "warning",
           });
