@@ -31,7 +31,8 @@ const BasicUnstake = () => {
 
   const [isUnstakeNowActive, setUnstakeNowActive] = useState(true);
   const [unstakeLoading, setUnstakeLoading] = useState(false);
-  const [stSolToUnstake, setStSolToUnstake] = useState<string>("");
+  const [stSolToUnstake, setStSolToUnstake] = useState<number>(0);
+  const [showModal, setShowModal] = useState(false);
   const { nativeSOLBalance, stSOLBalance } = useUserBalance();
   const { connected: isWalletConnected } = useWallet();
   const chain = useChain();
@@ -272,26 +273,25 @@ const BasicUnstake = () => {
           <MText type="text-md">{timeToUnstake}</MText>
         </Flex>
       ) : null}
+      <MButton
+        font="text-xl"
+        bg={colors.marinadeGreen}
+        isLoading={unstakeLoading}
+        _hover={{ bg: colors.green800 }}
+        colorScheme={colors.marinadeGreen}
+        rounded="md"
+        px={4}
+        height="48px"
+        mx={4}
+        mt={5}
+        onClick={isUnstakeNowActive ? unstakeHandler : () => setShowModal(true)}
+      >
+        {unstakeText}
+      </MButton>
       <DelayedUnstakeModal
         stSolToUnstake={stSolToUnstake}
-        // eslint-disable-next-line react/no-children-prop
-        children={({ openModal }) => (
-          <MButton
-            font="text-xl"
-            bg={colors.marinadeGreen}
-            isLoading={unstakeLoading}
-            _hover={{ bg: colors.green800 }}
-            colorScheme={colors.marinadeGreen}
-            rounded="md"
-            px={4}
-            height="48px"
-            mx={4}
-            mt={5}
-            onClick={!isUnstakeNowActive ? openModal : unstakeHandler}
-          >
-            {unstakeText}
-          </MButton>
-        )}
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
       />
       {!isUnstakeNowActive ? <UnstakeTicketsSection /> : null}
     </>

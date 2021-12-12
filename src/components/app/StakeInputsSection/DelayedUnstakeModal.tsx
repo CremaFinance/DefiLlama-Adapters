@@ -6,7 +6,6 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  useDisclosure,
 } from "@chakra-ui/react";
 import dayjs from "dayjs";
 import { useTranslation } from "next-export-i18n";
@@ -23,21 +22,16 @@ import { DEFAULT_ENDPOINT } from "../../../utils/web3/endpoints";
 import Button from "../../atoms/Button";
 import Text from "../../atoms/Text";
 
-type ChildrenRenderProps = {
-  openModal: () => void;
-  closeModal?: () => void;
-};
-
-type ChildrenRenderFn = (props: ChildrenRenderProps) => React.ReactElement;
-
 type DelayedUnstakeModalProps = {
   stSolToUnstake: number;
-  children: ChildrenRenderFn;
+  isOpen: boolean;
+  onClose: () => void;
 };
 
 const DelayedUnstakeModal = ({
   stSolToUnstake,
-  children,
+  isOpen,
+  onClose,
 }: DelayedUnstakeModalProps) => {
   const { t } = useTranslation();
   const state = useMarinadeState();
@@ -128,10 +122,8 @@ const DelayedUnstakeModal = ({
   //         });
   //   }
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      {children({ openModal: onOpen })}
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
