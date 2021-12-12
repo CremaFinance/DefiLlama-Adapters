@@ -8,7 +8,6 @@ import {
   ModalOverlay,
 } from "@chakra-ui/react";
 import dayjs from "dayjs";
-import { useTranslation } from "next-export-i18n";
 
 import {
   useMarinade,
@@ -16,6 +15,7 @@ import {
 } from "../../../contexts/MarinadeContext";
 import { useUserBalance } from "../../../contexts/UserBalanceContext";
 import { useEpochInfo } from "../../../hooks/useEpochInfo";
+import { useTranslation } from "../../../hooks/useTranslation";
 import { useWallet } from "../../../hooks/useWallet";
 import { format2Dec } from "../../../utils/number-to-short-version";
 import { DEFAULT_ENDPOINT } from "../../../utils/web3/endpoints";
@@ -127,11 +127,11 @@ const DelayedUnstakeModal = ({
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>{t("start-delayed-unstake-action")}</ModalHeader>
+          <ModalHeader>{t("appPage.start-delayed-unstake-action")}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Text>
-              {t("unstake-cooldown-description")}
+              {t("appPage.unstake-cooldown-description")}
               <b>
                 {dayjs(
                   new Date(
@@ -147,9 +147,9 @@ const DelayedUnstakeModal = ({
                           : 1) +
                       EXTRA_WAIT_MILLISECONDS
                   )
-                ).format(" MMMM Do YYYY, h:mm a")}
+                ).format(" MMMM D YYYY, h:mm a")}
               </b>
-              {t("you-will-be-able-to-claim")}{" "}
+              {t("appPage.you-will-be-able-to-claim")}{" "}
               {stSolToUnstake &&
                 state &&
                 format2Dec(
@@ -159,9 +159,9 @@ const DelayedUnstakeModal = ({
               {" SOL."}
             </Text>
             <br />
-            <Text>{t("approximate-unstake-time-explanation")}</Text>
+            <Text>{t("appPage.approximate-unstake-time-explanation")}</Text>
             <br />
-            <Text>{t("delayed-agree-text")}</Text>
+            <Text>{t("appPage.delayed-agree-text")}</Text>
           </ModalBody>
           <ModalFooter>
             <Button
@@ -171,7 +171,7 @@ const DelayedUnstakeModal = ({
               mr={3}
               onClick={onClose}
             >
-              {t("cancel-action")}
+              {t("appPage.cancel-action")}
             </Button>
             <Button
               mt={4}
@@ -184,7 +184,7 @@ const DelayedUnstakeModal = ({
               size="lg"
               type="button"
             >
-              {t("start-delayed-unstake-action")}
+              {t("appPage.start-delayed-unstake-action")}
             </Button>
           </ModalFooter>
         </ModalContent>
