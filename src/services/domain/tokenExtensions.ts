@@ -1,3 +1,6 @@
+/** based on https://github.com/solana-labs/token-list/blob/main/src/lib/tokenlist.ts#L24
+ * - added binanceId
+ */
 export interface TokenExtensions {
   readonly website?: string;
   readonly bridgeContract?: string;
