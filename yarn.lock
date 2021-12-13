@@ -2798,7 +2798,7 @@
     lodash.mapvalues "^4.6.0"
     tslib "^2.3.1"
 
-"@saberhq/solana-contrib@^1.10.13", "@saberhq/solana-contrib@^1.10.15", "@saberhq/solana-contrib@^1.10.5":
+"@saberhq/solana-contrib@^1.10.13", "@saberhq/solana-contrib@^1.10.15":
   version "1.10.15"
   resolved "https://registry.yarnpkg.com/@saberhq/solana-contrib/-/solana-contrib-1.10.15.tgz#28b5fb25fdc03b8913b75102cb8d1ce33f7e2f69"
   integrity sha512-SZ82Og+wt0ZfU7IsBJdwcgYM/PIquoQSBT8xWTHgbqgrvj9d7QWg2ZAJYGV/1naZdRmJ5QskB1u8ttLctoqa/g==
@@ -2810,12 +2810,12 @@
     tiny-invariant "^1.2.0"
     tslib "^2.3.1"
 
-"@saberhq/token-utils@^1.10.5":
-  version "1.10.5"
-  resolved "https://registry.yarnpkg.com/@saberhq/token-utils/-/token-utils-1.10.5.tgz#4c18efc9c17296de4e8a79c17b9804a4d58d4617"
-  integrity sha512-CvvdLV3bEIiS0t08Lbgbeh82lsTPTkOL45n28qkRMldL7uCTejMB6t67nwXcWeGjQ27/lHMud7I2njQThTOTrg==
+"@saberhq/token-utils@^1.10.15":
+  version "1.10.15"
+  resolved "https://registry.yarnpkg.com/@saberhq/token-utils/-/token-utils-1.10.15.tgz#9094bbfb9085c16ef7560b179e213569518c528b"
+  integrity sha512-lQJVyr+VMR42pmISs087LBKey+ZvEmQX+CV5PKaa9zSVrInmSY0a9s89Q7kaEDFrRrcPXWeaB8XR62TCTjzA9A==
   dependencies:
-    "@saberhq/solana-contrib" "^1.10.5"
+    "@saberhq/solana-contrib" "^1.10.15"
     "@solana/buffer-layout" "^3.0.0"
     "@solana/spl-token" "^0.1.8"
     "@ubeswap/token-math" "^4.3.1"
