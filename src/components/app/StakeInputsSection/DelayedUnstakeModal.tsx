@@ -145,10 +145,12 @@ const DelayedUnstakeModal = ({
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>{t("appPage.start-delayed-unstake-action")}</ModalHeader>
-          <ModalCloseButton />
+          <ModalHeader fontSize="18px">
+            {t("appPage.start-delayed-unstake-action")}
+          </ModalHeader>
+          <ModalCloseButton mt={1} _focus={{ boxShadow: "none" }} />
           <ModalBody>
-            <Text>
+            <Text fontSize="14px">
               {t("appPage.unstake-cooldown-description")}
               <b>
                 {dayjs(
@@ -177,22 +179,35 @@ const DelayedUnstakeModal = ({
               {" SOL."}
             </Text>
             <br />
-            <Text>{t("appPage.approximate-unstake-time-explanation")}</Text>
+            <Text fontSize="14px">
+              {t("appPage.approximate-unstake-time-explanation")}
+            </Text>
             <br />
-            <Text>{t("appPage.delayed-agree-text")}</Text>
+            <Text fontSize="14px">{t("appPage.delayed-agree-text")}</Text>
           </ModalBody>
-          <ModalFooter>
+          <ModalFooter
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            flexDirection={["column-reverse", "row"]}
+          >
             <Button
-              mt={4}
+              font="text-lg"
+              colorScheme="gray"
+              _hover={{ bg: "gray.100" }}
+              border="1px"
+              borderColor="gray.500"
+              textColor={colors.black}
+              bg={colors.white}
+              mt={[4, 0]}
               size="lg"
-              colorScheme="blue"
-              mr={3}
+              mr={[0, 3]}
               onClick={onClose}
             >
               {t("appPage.cancel-action")}
             </Button>
             <Button
-              mt={4}
+              font="text-lg"
               bg={colors.marinadeGreen}
               isLoading={unstakeLoading}
               _hover={{ bg: colors.green800 }}
