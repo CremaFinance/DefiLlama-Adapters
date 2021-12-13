@@ -22,11 +22,7 @@ import NumberFormat from "react-number-format";
 
 import { useTranslation } from "../../../hooks/useTranslation";
 import colors from "../../../styles/customTheme/colors";
-import {
-  format5Dec,
-  format2Dec,
-  // format9Dec,
-} from "../../../utils/number-to-short-version";
+import { format5Dec, format2Dec } from "../../../utils/number-to-short-version";
 import {
   shortenAddress,
   shortenAddressForMobile,
@@ -76,11 +72,6 @@ const StakeInput = ({
   const [isWiderThan768] = useMediaQuery("(min-width: 768px)");
   const [selectedAccount, setSelectedAccount] = useState(currentAccount);
   const [isStakeAccountSelected, setIsStakeAccountSelected] = useState(false);
-  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   if (onValueChange) {
-  //     onValueChange(Number(event.target.value));
-  //   }
-  // };
 
   const handleSelectedWalletAccount = (account: StakeAccountType) => {
     if (onValueChange) {
@@ -303,8 +294,7 @@ const StakeInput = ({
           fontSize="28.13px"
           fontWeight="bold"
           value={value}
-          // type="number"
-          onValueChange={(values) => {
+          onValueChange={(values: { value: string }) => {
             if (onValueChange) {
               onValueChange(values.value);
             }
@@ -313,7 +303,6 @@ const StakeInput = ({
           allowEmptyFormatting
           decimalSeparator="."
           decimalScale={9}
-          // onChange={handleChange}
           isDisabled={
             stakeInputType === StakeInputTypeEnum.Target ||
             isStakeAccountSelected

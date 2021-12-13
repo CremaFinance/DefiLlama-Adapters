@@ -31,7 +31,7 @@ const BasicUnstake = () => {
 
   const [isUnstakeNowActive, setUnstakeNowActive] = useState(true);
   const [unstakeLoading, setUnstakeLoading] = useState(false);
-  const [stSolToUnstake, setStSolToUnstake] = useState<number>(0);
+  const [stSolToUnstake, setStSolToUnstake] = useState<string>("");
   const [showModal, setShowModal] = useState(false);
   const { nativeSOLBalance, stSOLBalance } = useUserBalance();
   const { connected: isWalletConnected } = useWallet();
@@ -87,7 +87,7 @@ const BasicUnstake = () => {
 
   const resetInputs = () => {
     setUnstakeLoading(false);
-    setStSolToUnstake(0);
+    setStSolToUnstake("");
 
     if (!isUnstakeNowActive) {
       setShowModal(false);
@@ -126,7 +126,10 @@ const BasicUnstake = () => {
 
     if (toUnstakeFullDecimals > stSOLBalance) {
       const description = t("appPage.you-requested-to-unstake")
-        ?.replace("{{requestedAmount}}", format5Dec(toUnstakeFullDecimals))
+        ?.replace(
+          "{{requestedAmount}}",
+          format5Dec(Number(toUnstakeFullDecimals))
+        )
         .replace("{{actualAmount}}", format5Dec(stSOLBalance));
 
       toast({
@@ -296,7 +299,7 @@ const BasicUnstake = () => {
         {unstakeText}
       </MButton>
       <DelayedUnstakeModal
-        stSolToUnstake={stSolToUnstake}
+        stSolToUnstake={Number(stSolToUnstake)}
         isOpen={showModal}
         onClose={resetInputs}
       />
