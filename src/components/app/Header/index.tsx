@@ -109,7 +109,7 @@ const Header = ({ onValidatorsPage = false }: Props) => {
           color={colors.black}
           rounded="none"
           isActive={isDefiActive}
-          width="107px"
+          width="80px"
           fontWeight="normal"
           font="text-xl"
           mb="4px"
@@ -118,7 +118,7 @@ const Header = ({ onValidatorsPage = false }: Props) => {
           _hover={activeMenu}
           onClick={() => router.push("/app/defi")}
         >
-          {t("appPage.use-msol-menu-item")}
+          {t("appPage.defi-menu-item")}
         </MButton>
 
         <MButton
