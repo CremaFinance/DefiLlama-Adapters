@@ -11,7 +11,7 @@ export const Default: ComponentStory<typeof SuccessStakeModal> = (args) => {
 };
 
 Default.args = {
-  stakedAmount: 12.15984,
+  stakedAmount: "12.15984",
   stakedCurrency: "mSOL",
   children: ({ openModal }) => (
     <Button variant="solid" onClick={openModal}>
