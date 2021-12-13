@@ -27,7 +27,7 @@ const BasicStake = () => {
 
   const [stakeText, setStakeText] = useState(t("appPage.stake-sol-action"));
   const [stakeLoading, setStakeLoading] = useState(false);
-  const [solToStake, setSolToStake] = useState<number>(0);
+  const [solToStake, setSolToStake] = useState<string>("");
   const { nativeSOLBalance, stSOLBalance } = useUserBalance();
   const { connected: isWalletConnected } = useWallet();
   const { onOpen } = useDisclosure();
@@ -88,7 +88,7 @@ const BasicStake = () => {
   const stakeHandler = () => {
     let firstTimeStaker = Number(format5Dec(stSOLBalance ?? 0)) === 0;
     const basicInputChecksErrors = basicInputChecks(
-      solToStake,
+      Number(solToStake),
       isWalletConnected
     );
     if (basicInputChecksErrors) {
@@ -130,7 +130,7 @@ const BasicStake = () => {
             onOpen();
             firstTimeStaker = false;
           }
-          setSolToStake(0);
+          setSolToStake("");
           toast({
             title: t("stake-sol-confirmed"),
             description: (
@@ -191,7 +191,7 @@ const BasicStake = () => {
         tokenBalance={stSOLBalance ?? 0}
         currentAccount={currentAccount}
         stakeAccounts={stakeAccounts}
-        value={solToStake / mSOLvsSOLParity}
+        value={(Number(solToStake) / mSOLvsSOLParity).toString()}
         mb={2}
       />
       <Flex width={["256px", "400px"]} my={1} justifyContent="space-between">
