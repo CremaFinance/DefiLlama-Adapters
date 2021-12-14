@@ -95,6 +95,8 @@ const RetroMnde = () => {
               fontWeight="700"
               color={colors.marinadeGreen}
               href={tuple.link}
+              rel="noreferrer noopener"
+              isExternal
             >
               {tuple.linkName}
             </MLink>
