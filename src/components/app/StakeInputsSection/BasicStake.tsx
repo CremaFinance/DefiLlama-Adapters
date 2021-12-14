@@ -14,6 +14,7 @@ import StakeInput, {
   StakeAccountType,
   StakeInputTypeEnum,
 } from "components/molecules/StakeInput";
+import SuccessStakeModal from "components/molecules/SuccessStakeModal";
 import TransactionLink from "components/molecules/TransactionLink";
 import { useStats } from "contexts/StatsContext";
 import colors from "styles/customTheme/colors";
@@ -30,7 +31,11 @@ const BasicStake = () => {
   const [solToStake, setSolToStake] = useState<string>("");
   const { nativeSOLBalance, stSOLBalance } = useUserBalance();
   const { connected: isWalletConnected } = useWallet();
-  const { onOpen } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure({
+    onClose: () => {
+      setSolToStake("");
+    },
+  });
   const { totalStaked } = useStats();
   const chain = useChain();
 
@@ -86,7 +91,6 @@ const BasicStake = () => {
 
   // eslint-disable-next-line consistent-return
   const stakeHandler = () => {
-    let firstTimeStaker = Number(format5Dec(stSOLBalance ?? 0)) === 0;
     const basicInputChecksErrors = basicInputChecks(
       Number(solToStake),
       isWalletConnected
@@ -126,11 +130,7 @@ const BasicStake = () => {
       .runStake(Number(solToStake) * LAMPORTS_PER_SOL)
       .then(
         (transactionSignature) => {
-          if (firstTimeStaker) {
-            onOpen();
-            firstTimeStaker = false;
-          }
-          setSolToStake("");
+          onOpen();
           toast({
             title: t("stake-sol-confirmed"),
             description: (
@@ -244,6 +244,12 @@ const BasicStake = () => {
       >
         {stakeText}
       </MButton>
+      <SuccessStakeModal
+        isOpen={isOpen}
+        onClose={onClose}
+        stakedAmount={solToStake}
+        stakedCurrency="mSOL"
+      />
     </>
   );
 };
