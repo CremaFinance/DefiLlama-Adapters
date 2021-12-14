@@ -16,6 +16,7 @@ import { MdContentCopy } from "react-icons/md";
 
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
+import { useEpochInfo } from "hooks/useEpochInfo";
 import { useWallet } from "hooks/useWallet";
 import { LamportsToSol } from "solana/marinade-anchor/common";
 import { TicketAccountData } from "solana/marinade-anchor/marinade-finance-schema";
@@ -43,6 +44,78 @@ const UnstakeTicketsSection = ({
   const toast = useToast();
   const [isWiderThan768] = useMediaQuery("(min-width: 768px)");
   const { connected: isWalletConnected } = useWallet();
+  const epochInfo = useEpochInfo()?.data;
+  const accounts: TicketAccount[] = [];
+
+  const SLOT_DURATION_MILLISECONDS = 600;
+  const EXTRA_WAIT_MILLISECONDS = 1000 * 60 * 60 * 4 + 1000 * 60 * 45;
+  const EPOCH_ELAPSED_MILLISECONDS = epochInfo
+    ? epochInfo.slotIndex * SLOT_DURATION_MILLISECONDS
+    : 0;
+  const MILLISECONDS_UNTIL_EPOCH_END = epochInfo
+    ? (epochInfo.slotsInEpoch - epochInfo.slotIndex) *
+      SLOT_DURATION_MILLISECONDS
+    : 0;
+  const epochStarted = Date.now() - EPOCH_ELAPSED_MILLISECONDS;
+  const epochEnds = Date.now() + MILLISECONDS_UNTIL_EPOCH_END;
+
+  ticketAccounts?.forEach((account: TicketAccount) => {
+    const createdEpoch = Number(account.data.created_epoch);
+    if (epochInfo) {
+      if (epochInfo?.epoch > createdEpoch + 2) {
+        accounts.push({
+          ...account,
+          ticketDue: true,
+          ticketDueDateTime: new Date(
+            epochStarted +
+              EXTRA_WAIT_MILLISECONDS -
+              SLOT_DURATION_MILLISECONDS * (epochInfo.epoch - createdEpoch - 2)
+          ),
+        });
+      } else if (epochInfo.epoch === createdEpoch + 2) {
+        const millisecondsElapsed =
+          epochInfo.slotIndex * SLOT_DURATION_MILLISECONDS;
+        accounts.push({
+          ...account,
+          ticketDue: millisecondsElapsed > EXTRA_WAIT_MILLISECONDS,
+          ticketDueDateTime: new Date(epochStarted + EXTRA_WAIT_MILLISECONDS),
+        });
+      } else if (epochInfo.epoch === createdEpoch + 1) {
+        accounts.push({
+          ...account,
+          ticketDue: false,
+          ticketDueDateTime: new Date(epochEnds + EXTRA_WAIT_MILLISECONDS),
+        });
+      } else if (epochInfo.epoch < createdEpoch) {
+        accounts.push({
+          ...account,
+          ticketDue: false,
+          ticketDueDateTime: new Date(
+            epochEnds +
+              2 * epochInfo.slotsInEpoch * SLOT_DURATION_MILLISECONDS +
+              EXTRA_WAIT_MILLISECONDS
+          ),
+        });
+      } else {
+        accounts.push({
+          ...account,
+          ticketDue: false,
+          ticketDueDateTime: new Date(
+            epochEnds +
+              epochInfo.slotsInEpoch * SLOT_DURATION_MILLISECONDS +
+              EXTRA_WAIT_MILLISECONDS
+          ),
+        });
+      }
+      return accounts.sort((a: TicketAccount, b: TicketAccount) => {
+        return a.ticketDue !== undefined && b.ticketDue !== undefined
+          ? +b.ticketDue - +a.ticketDue
+          : 1;
+      });
+    }
+
+    return null;
+  });
 
   const noTicketAccountsMessage = isWalletConnected
     ? t("appPage.no-ticket-accounts-message")
@@ -80,7 +153,7 @@ const UnstakeTicketsSection = ({
             </Tr>
           </Thead>
           <Tbody>
-            {ticketAccounts.map((account) => (
+            {accounts.map((account) => (
               <Tr key={account.key.toBase58()} height="60px">
                 <Td pl={0} py={0} pr={[2, 6]}>
                   <Flex>
