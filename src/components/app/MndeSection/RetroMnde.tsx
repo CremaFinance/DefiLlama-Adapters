@@ -1,4 +1,3 @@
-// import { PhoneIcon } from "@chakra-ui/icons";
 import { Flex, Box, Image, Icon } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { FiExternalLink } from "react-icons/fi";
@@ -79,11 +78,7 @@ const RetroMnde = () => {
           display="grid"
           placeItems="center"
         >
-          <Image
-            src="/icons/Marinade-icon-white.svg"
-            boxSize="27px"
-            bg={colors.cyan}
-          />
+          <Image src="/icons/Marinade-icon-white.svg" boxSize="27px" />
         </Box>
       </Flex>
 
