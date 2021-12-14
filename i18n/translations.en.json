@@ -183,7 +183,8 @@
   },
   "appPage": {
     "stake-menu-item": "Stake",
-    "use-msol-menu-item": "Use mSOL",
+    "defi-menu-item": "DeFi",
+    "mnde-menu-item": "MNDE",
     "connect-wallet": "Connect wallet",
     "wallet-missing": "Please click here to install official {{wallet}} extension",
     "disconnect-wallet": "Disconnect",
