@@ -47,7 +47,7 @@
     "bs58": "^4.0.1",
     "chart.js": "^3.6.2",
     "framer-motion": "^5.4.5",
-    "html-react-parser": "^1.4.2",
+    "html-react-parser": "^1.4.3",
     "jest": "^27.4.4",
     "jest-fetch-mock": "^3.0.3",
     "js-sha256": "^0.9.0",
@@ -66,7 +66,7 @@
     "ts-jest": "^27.1.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.0",
+    "@babel/core": "^7.16.5",
     "@commitlint/cli": "^15.0.0",
     "@commitlint/config-conventional": "^15.0.0",
     "@storybook/addon-actions": "^6.4.9",
@@ -76,7 +76,7 @@
     "@testing-library/jest-dom": "^5.16.1",
     "@types/jest": "^27.0.3",
     "@types/react": "^17.0.37",
-    "babel-jest": "^27.4.4",
+    "babel-jest": "^27.4.5",
     "babel-loader": "^8.2.3",
     "commitlint": "^15.0.0",
     "eslint": "^7.32.0",
