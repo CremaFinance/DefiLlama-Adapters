@@ -23,7 +23,7 @@ import { useTranslation } from "../../../hooks/useTranslation";
 import { useWallet } from "../../../hooks/useWallet";
 import { basicInputChecks } from "../../../utils/basic-input-checks";
 import { checkNativeSOLBalance } from "../../../utils/check-native-sol-balance";
-import { format2Dec, format5Dec } from "../../../utils/number-to-short-version";
+import { format5Dec } from "../../../utils/number-to-short-version";
 import { DEFAULT_ENDPOINT } from "../../../utils/web3/endpoints";
 import Button from "../../atoms/Button";
 import Text from "../../atoms/Text";
@@ -172,7 +172,7 @@ const DelayedUnstakeModal = ({
               {t("appPage.you-will-be-able-to-claim")}{" "}
               {stSolToUnstake &&
                 state &&
-                format2Dec(
+                format5Dec(
                   (stSolToUnstake * state?.state?.st_sol_price?.toNumber()) /
                     0x1_0000_0000
                 )}
