@@ -316,5 +316,9 @@
     "validators-table-state": "State",
     "validators-table-delegated": "Delegated",
     "validators-link": "https://marinade.finance/app/validators"
+  },
+  "mndePage": {
+    "retro-title": "MNDE Retro",
+    "retro-info": "Marinade retroactive claim for early adopters will be distributed in the following phases:"
   }
 }
