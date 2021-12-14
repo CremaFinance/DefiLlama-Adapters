@@ -263,6 +263,10 @@
       "body-desktop": "Now it’s your time to cook! mSOL has been integrated in many DeFi protocols where you’ll be able to explore additional yield while still earning your staking rewards. Please keep in mind that selling all your mSOL will also mean selling your rewards accumulated until this point.",
       "body-mobile": "Use mSOL and explore additional yield while still earning your staking rewards"
     },
+    "mnde": {
+      "description": "MNDE is the governance token of Marinade finance that will give you voting power over the future of our DAO. It is currently only accessible through Liquidity Mining or on secondary markets. Please know that on-chain voting is being developed and will be added as soon as possible. You can learn more about it in our documentation.",
+      "docs-link": "https://docs.marinade.finance/marinade-dao/tokenomics"
+    },
     "stake-inputs-time-to-unstake": "Time to unstake",
     "tooltip-time-to-unstake-text": "Unstaking will take 1 to 2 epochs. This time is an estimation; please refer to the docs to learn more.",
     "tooltip-time-to-unstake-read-more": "See docs",
