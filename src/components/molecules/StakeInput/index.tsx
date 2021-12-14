@@ -18,13 +18,14 @@ import {
 import { useState } from "react";
 import { AiOutlineCheck } from "react-icons/ai";
 import { MdContentCopy } from "react-icons/md";
+import NumberFormat from "react-number-format";
 
 import { useTranslation } from "../../../hooks/useTranslation";
 import colors from "../../../styles/customTheme/colors";
 import {
   format5Dec,
   format2Dec,
-  format9Dec,
+  // format9Dec,
 } from "../../../utils/number-to-short-version";
 import {
   shortenAddress,
@@ -52,8 +53,8 @@ type StakeInputProps = {
   currentAccount: StakeAccountType;
   stakeAccounts: StakeAccountType[];
   selectAccountCallback?: (value: boolean) => void;
-  onValueChange?: (value: number) => void;
-  value?: number;
+  onValueChange?: (value: string) => void;
+  value?: string;
 };
 
 const StakeInput = ({
@@ -71,19 +72,20 @@ const StakeInput = ({
   const { t } = useTranslation();
   const toast = useToast();
   const balanceLabel = t("appPage.balance");
+
   const [isWiderThan768] = useMediaQuery("(min-width: 768px)");
   const [selectedAccount, setSelectedAccount] = useState(currentAccount);
   const [isStakeAccountSelected, setIsStakeAccountSelected] = useState(false);
-  const [amount, setAmount] = useState(value ?? "");
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setAmount(event.target.value);
-    if (onValueChange) {
-      onValueChange(Number(event.target.value));
-    }
-  };
+  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (onValueChange) {
+  //     onValueChange(Number(event.target.value));
+  //   }
+  // };
 
   const handleSelectedWalletAccount = (account: StakeAccountType) => {
-    setAmount(account.balance);
+    if (onValueChange) {
+      onValueChange(account.balance.toString());
+    }
     setSelectedAccount(account);
     setIsStakeAccountSelected(false);
     if (selectAccountCallback) {
@@ -92,7 +94,9 @@ const StakeInput = ({
   };
 
   const handleSelectedStakeAccount = (account: StakeAccountType) => {
-    setAmount(account.balance);
+    if (onValueChange) {
+      onValueChange(account.balance.toString());
+    }
     setSelectedAccount(account);
     setIsStakeAccountSelected(true);
     if (selectAccountCallback) {
@@ -290,16 +294,26 @@ const StakeInput = ({
           </Menu>
         )}
 
-        <Input
+        <NumberFormat
+          customInput={Input}
           variant="unstyled"
-          placeholder="0"
+          placeholder="0.0"
           flex={1}
           textAlign="right"
           fontSize="28.13px"
           fontWeight="bold"
-          value={format9Dec(Number.isNaN(amount) ? 0 : Number(amount))}
-          type="number"
-          onChange={handleChange}
+          value={value}
+          // type="number"
+          onValueChange={(values) => {
+            if (onValueChange) {
+              onValueChange(values.value);
+            }
+          }}
+          allowNegative={false}
+          allowEmptyFormatting
+          decimalSeparator="."
+          decimalScale={9}
+          // onChange={handleChange}
           isDisabled={
             stakeInputType === StakeInputTypeEnum.Target ||
             isStakeAccountSelected
@@ -320,7 +334,9 @@ const StakeInput = ({
             font="text-sm"
             color={colors.marinadeGreen}
             fontWeight="bold"
-            onClick={() => setAmount(`${tokenBalance}`)}
+            onClick={() =>
+              onValueChange ? onValueChange(tokenBalance.toString()) : {}
+            }
             pb="1px"
             _hover={{}}
           >

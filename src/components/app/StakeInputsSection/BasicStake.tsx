@@ -14,6 +14,7 @@ import StakeInput, {
   StakeAccountType,
   StakeInputTypeEnum,
 } from "components/molecules/StakeInput";
+import SuccessStakeModal from "components/molecules/SuccessStakeModal";
 import TransactionLink from "components/molecules/TransactionLink";
 import { useStats } from "contexts/StatsContext";
 import colors from "styles/customTheme/colors";
@@ -27,10 +28,14 @@ const BasicStake = () => {
 
   const [stakeText, setStakeText] = useState(t("appPage.stake-sol-action"));
   const [stakeLoading, setStakeLoading] = useState(false);
-  const [solToStake, setSolToStake] = useState<number>(0);
+  const [solToStake, setSolToStake] = useState<string>("");
   const { nativeSOLBalance, stSOLBalance } = useUserBalance();
   const { connected: isWalletConnected } = useWallet();
-  const { onOpen } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure({
+    onClose: () => {
+      setSolToStake("");
+    },
+  });
   const { totalStaked } = useStats();
   const chain = useChain();
 
@@ -86,9 +91,8 @@ const BasicStake = () => {
 
   // eslint-disable-next-line consistent-return
   const stakeHandler = () => {
-    let firstTimeStaker = Number(format5Dec(stSOLBalance ?? 0)) === 0;
     const basicInputChecksErrors = basicInputChecks(
-      solToStake,
+      Number(solToStake),
       isWalletConnected
     );
     if (basicInputChecksErrors) {
@@ -126,11 +130,7 @@ const BasicStake = () => {
       .runStake(Number(solToStake) * LAMPORTS_PER_SOL)
       .then(
         (transactionSignature) => {
-          if (firstTimeStaker) {
-            onOpen();
-            firstTimeStaker = false;
-          }
-          setSolToStake(0);
+          onOpen();
           toast({
             title: t("stake-sol-confirmed"),
             description: (
@@ -148,6 +148,10 @@ const BasicStake = () => {
         (error) => {
           // eslint-disable-next-line no-console
           console.error(error);
+
+          if (error.toString().indexOf("Wallet") === 0) {
+            return;
+          }
 
           let description = error.message;
           if (error.toString().includes("0xec6")) {
@@ -177,6 +181,7 @@ const BasicStake = () => {
         tokenBalance={sourceTokenBalance}
         currentAccount={currentAccount}
         stakeAccounts={stakeAccounts}
+        value={solToStake}
         mb={2}
       />
       <StakeInput
@@ -186,6 +191,7 @@ const BasicStake = () => {
         tokenBalance={stSOLBalance ?? 0}
         currentAccount={currentAccount}
         stakeAccounts={stakeAccounts}
+        value={(Number(solToStake) / mSOLvsSOLParity).toString()}
         mb={2}
       />
       <Flex width={["256px", "400px"]} my={1} justifyContent="space-between">
@@ -238,6 +244,12 @@ const BasicStake = () => {
       >
         {stakeText}
       </MButton>
+      <SuccessStakeModal
+        isOpen={isOpen}
+        onClose={onClose}
+        stakedAmount={solToStake}
+        stakedCurrency="mSOL"
+      />
     </>
   );
 };

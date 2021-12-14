@@ -22,7 +22,7 @@ import { useMarinade } from "contexts/MarinadeContext";
 import colors from "styles/customTheme/colors";
 import { basicInputChecks } from "utils/basic-input-checks";
 import { checkNativeSOLBalance } from "utils/check-native-sol-balance";
-import { format5Dec } from "utils/number-to-short-version";
+import { format5Dec, format9Dec } from "utils/number-to-short-version";
 
 const BasicUnstake = () => {
   const { t } = useTranslation();
@@ -32,7 +32,7 @@ const BasicUnstake = () => {
 
   const [isUnstakeNowActive, setUnstakeNowActive] = useState(true);
   const [unstakeLoading, setUnstakeLoading] = useState(false);
-  const [stSolToUnstake, setStSolToUnstake] = useState<number>(0);
+  const [stSolToUnstake, setStSolToUnstake] = useState<string>("");
   const { nativeSOLBalance, stSOLBalance } = useUserBalance();
   const { connected: isWalletConnected } = useWallet();
   const { connected: walletConnected, publicKey: walletPubKey } = useWallet();
@@ -124,7 +124,7 @@ const BasicUnstake = () => {
   // eslint-disable-next-line consistent-return
   const unstakeHandler = () => {
     const basicInputChecksErrors = basicInputChecks(
-      stSolToUnstake,
+      Number(stSolToUnstake),
       isWalletConnected
     );
     if (basicInputChecksErrors) {
@@ -143,7 +143,7 @@ const BasicUnstake = () => {
     if (!stSOLBalance || Number.isNaN(stSOLBalance)) return false;
 
     let toUnstakeFullDecimals;
-    if (stSolToUnstake === Math.round(stSOLBalance * 1e5) / 1e5) {
+    if (Number(stSolToUnstake) === Math.round(stSOLBalance * 1e5) / 1e5) {
       // Note: input text has 5 decimals (rounded), while stSOLBalance has full decimals
       // so if the user wants to unstake all, get precise balance
       toUnstakeFullDecimals = stSOLBalance;
@@ -155,7 +155,7 @@ const BasicUnstake = () => {
       toast({
         title: "Insufficient funds to unstake",
         description: `You requested to unstake ${Number(
-          format5Dec(toUnstakeFullDecimals)
+          format5Dec(Number(toUnstakeFullDecimals))
         )} mSOL (have only ${Number(format5Dec(stSOLBalance))})`,
         status: "warning",
         duration: 5000,
@@ -167,10 +167,10 @@ const BasicUnstake = () => {
     setUnstakeLoading(true);
 
     marinade
-      .runUnstake(toUnstakeFullDecimals * LAMPORTS_PER_SOL)
+      .runUnstake(Number(toUnstakeFullDecimals) * LAMPORTS_PER_SOL)
       .then(
         (transactionSignature) => {
-          setStSolToUnstake(0);
+          setStSolToUnstake("");
           toast({
             title: "Unstake mSOL confirmed",
             description: (
@@ -207,10 +207,9 @@ const BasicUnstake = () => {
           });
         }
       )
-      .then(() => setStSolToUnstake(0))
+      .then(() => setStSolToUnstake(""))
       .finally(() => {
         setUnstakeLoading(false);
-        setStSolToUnstake(0);
         getTicketAccountsAction(
           keys,
           walletConnected,
@@ -218,6 +217,7 @@ const BasicUnstake = () => {
           walletPubKey as PublicKey,
           true
         );
+        setStSolToUnstake("");
       });
   };
 
@@ -279,7 +279,10 @@ const BasicUnstake = () => {
         active={isUnstakeNowActive}
         font="text-lg"
         display="flex"
-        handleSwitch={setUnstakeNowActive}
+        handleSwitch={() => {
+          setUnstakeNowActive((val) => !val);
+          setStSolToUnstake("");
+        }}
       />
       <StakeInput
         stakeInputType={StakeInputTypeEnum.Source}
@@ -289,6 +292,7 @@ const BasicUnstake = () => {
         tokenBalance={stSOLBalance ?? 0}
         currentAccount={currentAccount}
         stakeAccounts={stakeAccounts}
+        value={stSolToUnstake}
         mb={2}
       />
       <StakeInput
@@ -298,6 +302,7 @@ const BasicUnstake = () => {
         tokenBalance={targetTokenBalance}
         currentAccount={currentAccount}
         stakeAccounts={stakeAccounts}
+        value={format9Dec(Number(stSolToUnstake) * mSOLvsSOLParity)}
         mb={2}
       />
       <Flex width={["256px", "400px"]} my={1} justifyContent="space-between">

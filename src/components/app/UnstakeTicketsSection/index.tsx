@@ -21,6 +21,7 @@ import { useWallet } from "hooks/useWallet";
 import { LamportsToSol } from "solana/marinade-anchor/common";
 import { TicketAccountData } from "solana/marinade-anchor/marinade-finance-schema";
 import colors from "styles/customTheme/colors";
+import { copyAddressToClipboard } from "utils/copy-to-clipboard";
 import { format5Dec, format2Dec } from "utils/number-to-short-version";
 import { shortenAddress } from "utils/shorten-address";
 
@@ -121,18 +122,6 @@ const UnstakeTicketsSection = ({
     ? t("appPage.no-ticket-accounts-message")
     : t("appPage.wallet-not-connected");
 
-  const copyAddressToClipboard = (v: string) => {
-    navigator.clipboard.writeText(v);
-
-    toast({
-      title: t("appPage.copy-success-title"),
-      description: t("appPage.copy-success-message"),
-      status: "success",
-      variant: "subtle",
-      isClosable: true,
-    });
-  };
-
   return (
     <Flex width="100%" pt={12}>
       {ticketAccounts.length ? (
@@ -167,7 +156,11 @@ const UnstakeTicketsSection = ({
                       icon={<MdContentCopy />}
                       _focus={{ boxShadow: "none" }}
                       onClick={() =>
-                        copyAddressToClipboard(account?.key?.toBase58())
+                        copyAddressToClipboard(
+                          account?.key?.toBase58(),
+                          toast,
+                          t
+                        )
                       }
                     />
                   </Flex>

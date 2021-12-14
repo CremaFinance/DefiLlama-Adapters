@@ -1,6 +1,6 @@
 import { coinSymbols } from "../../domain/coinSymbols";
 import { marketTypes } from "../../domain/marketTypes";
-import { Pool } from "../../domain/pool";
+import { PoolConfig } from "../../domain/pool";
 
 import { LarixPool } from "./larixPool";
 import {
@@ -21,7 +21,7 @@ const actions = [
 
 export type LarixPoolsResponse = Record<LendingLarixPoolIds, LarixPool>;
 
-export const larixPools: Record<LendingLarixPoolAddress, Pool> = {
+export const larixPools: Record<LendingLarixPoolAddress, PoolConfig> = {
   [lendingLarixPoolAddress.LARIX_mSOL]: {
     ...lendingLarixPoolTokens[lendingLarixPoolAddress.LARIX_mSOL],
     ...{
