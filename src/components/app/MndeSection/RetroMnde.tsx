@@ -53,6 +53,7 @@ const RetroMnde = () => {
 
   return (
     <Box
+      mt="20px"
       ml="auto"
       mr="auto"
       height={{ base: "466px", lg: "476px" }}
