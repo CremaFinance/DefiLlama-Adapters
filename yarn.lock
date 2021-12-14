@@ -2787,21 +2787,21 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.1.0.tgz#7f698254aadf921e48dda8c0a6b304026b8a9323"
   integrity sha512-JLo+Y592QzIE+q7Dl2pMUtt4q8SKYI5jDrZxrozEQxnGVOyYE+GWK9eLkwTaeN9DDctlaRAQ3TBmzZ1qdLE30A==
 
-"@saberhq/anchor-contrib@^1.10.15":
-  version "1.10.15"
-  resolved "https://registry.yarnpkg.com/@saberhq/anchor-contrib/-/anchor-contrib-1.10.15.tgz#b0f867452d2a347d1042ba43e7697c191683299f"
-  integrity sha512-77Wh3g3lJuu46ueR7D+tfIkGZHo+edW1RD6N1ml+/79+sRuxqDz/9XkrBAi6By6gy3Aq6FZhJBvQtGHtYQvMxg==
+"@saberhq/anchor-contrib@^1.10.16":
+  version "1.10.16"
+  resolved "https://registry.yarnpkg.com/@saberhq/anchor-contrib/-/anchor-contrib-1.10.16.tgz#4c445dedacf57216e284c79995b53875d8a289d4"
+  integrity sha512-DV4Gi4NeQhW36+dDiVHhMej9ELpEzthK3zJH1eb7q/AWKQymC8i82+wqKlDHJ31j25gl3IoKcuIyOnUweI350w==
   dependencies:
-    "@saberhq/solana-contrib" "^1.10.15"
+    "@saberhq/solana-contrib" "^1.10.16"
     eventemitter3 "^4.0.7"
     lodash.camelcase "^4.3.0"
     lodash.mapvalues "^4.6.0"
     tslib "^2.3.1"
 
-"@saberhq/solana-contrib@^1.10.13", "@saberhq/solana-contrib@^1.10.15":
-  version "1.10.15"
-  resolved "https://registry.yarnpkg.com/@saberhq/solana-contrib/-/solana-contrib-1.10.15.tgz#28b5fb25fdc03b8913b75102cb8d1ce33f7e2f69"
-  integrity sha512-SZ82Og+wt0ZfU7IsBJdwcgYM/PIquoQSBT8xWTHgbqgrvj9d7QWg2ZAJYGV/1naZdRmJ5QskB1u8ttLctoqa/g==
+"@saberhq/solana-contrib@^1.10.13", "@saberhq/solana-contrib@^1.10.15", "@saberhq/solana-contrib@^1.10.16":
+  version "1.10.16"
+  resolved "https://registry.yarnpkg.com/@saberhq/solana-contrib/-/solana-contrib-1.10.16.tgz#e232635637090768ebcfcbc143957d6d69274ade"
+  integrity sha512-A8Yl6uvNuRf2tqJ4U+WmIqtl1jov0/Xy0bwZj+Y18otR8dsapu5fYLXpgP1T3JESv5oLAuQZ37+/Q/mgd+Zjrg==
   dependencies:
     "@types/promise-retry" "^1.1.3"
     "@types/retry" "^0.12.1"
@@ -14993,10 +14993,10 @@ typedoc@^0.22.10:
     minimatch "^3.0.4"
     shiki "^0.9.12"
 
-typescript@^4.4.3, typescript@^4.5.3:
-  version "4.5.3"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.5.3.tgz#afaa858e68c7103317d89eb90c5d8906268d353c"
-  integrity sha512-eVYaEHALSt+s9LbvgEv4Ef+Tdq7hBiIZgii12xXJnukryt3pMgJf6aKhoCZ3FWQsu6sydEnkg11fYXLzhLBjeQ==
+typescript@^4.4.3, typescript@^4.5.4:
+  version "4.5.4"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.5.4.tgz#a17d3a0263bf5c8723b9c52f43c5084edf13c2e8"
+  integrity sha512-VgYs2A2QIRuGphtzFV7aQJduJ2gyfTljngLzjpfW9FoYZF6xuw1W0vW9ghCKLfcWrCFxK81CSGRAvS1pn4fIUg==
 
 uglify-js@^3.1.4:
   version "3.14.3"
