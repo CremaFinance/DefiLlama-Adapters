@@ -46,7 +46,7 @@
     "borsh": "^0.7.0",
     "bs58": "^4.0.1",
     "chart.js": "^3.6.2",
-    "framer-motion": "^5.4.5",
+    "framer-motion": "^5.5.1",
     "html-react-parser": "^1.4.3",
     "jest": "^27.4.4",
     "jest-fetch-mock": "^3.0.3",
