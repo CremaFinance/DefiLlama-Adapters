@@ -98,14 +98,18 @@ const RetroMnde = () => {
               rel="noreferrer noopener"
               isExternal
             >
-              {tuple.linkName}
+              <Flex alignItems="center">
+                {tuple.linkName}
+                <Image
+                  src="/icons/external-link-green.svg"
+                  boxSize="16px"
+                  ml="6px"
+                  mr={{ base: "3px", lg: "5px" }}
+                  cursor="pointer"
+                />
+              </Flex>
             </MLink>
-            <Image
-              src="/icons/external-link-green.svg"
-              boxSize="16px"
-              ml="6px"
-              mr={{ base: "3px", lg: "5px" }}
-            />
+
             <MTooltip tooltipText={tuple.info} iconSize="md" />
           </Flex>
         </Flex>
