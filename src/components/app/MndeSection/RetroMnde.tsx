@@ -1,5 +1,8 @@
-import { Flex, Box, Image } from "@chakra-ui/react";
+// import { PhoneIcon } from "@chakra-ui/icons";
+import { Flex, Box, Image, Icon } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
+import { FiExternalLink } from "react-icons/fi";
+import { IoCheckmarkCircle } from "react-icons/io5";
 
 import MButton from "../../atoms/Button";
 import MLink from "../../atoms/Link";
@@ -68,7 +71,20 @@ const RetroMnde = () => {
         <MText fontSize="22.5px" fontWeight="700">
           {t("mndePage.retro-title")}
         </MText>
-        <Image src="/favicon.svg" boxSize="40px" borderRadius="full" />
+
+        <Box
+          bg={colors.marinadeGreen}
+          borderRadius="full"
+          boxSize="40px"
+          display="grid"
+          placeItems="center"
+        >
+          <Image
+            src="/icons/Marinade-icon-white.svg"
+            boxSize="27px"
+            bg={colors.cyan}
+          />
+        </Box>
       </Flex>
 
       <MText mt="16px" mb="16px" fontSize="14.3px">
@@ -84,8 +100,15 @@ const RetroMnde = () => {
           borderBottom="1px solid #EDF2F7"
           alignItems="center"
         >
-          <Flex>
-            <Image src="/icons/checkmark.svg" boxSize="20px" mr="10px" />
+          <Flex alignItems="center">
+            <Icon
+              as={IoCheckmarkCircle}
+              color={colors.marinadeGreen}
+              width="20px"
+              height="20px"
+              mr="10px"
+            />
+
             <MText fontSize="14.4px">{tuple.dateRange}</MText>
           </Flex>
 
@@ -100,9 +123,10 @@ const RetroMnde = () => {
             >
               <Flex alignItems="center">
                 {tuple.linkName}
-                <Image
-                  src="/icons/external-link-green.svg"
-                  boxSize="16px"
+                <Icon
+                  as={FiExternalLink}
+                  width="16px"
+                  height="16px"
                   ml="6px"
                   mr={{ base: "3px", lg: "5px" }}
                   cursor="pointer"
