@@ -23,6 +23,8 @@ import { basicInputChecks } from "utils/basic-input-checks";
 import { checkNativeSOLBalance } from "utils/check-native-sol-balance";
 import { format5Dec, format9Dec } from "utils/number-to-short-version";
 
+import DelayedUnstakeModal from "./DelayedUnstakeModal";
+
 const BasicUnstake = () => {
   const { t } = useTranslation();
   const toast = useToast();
@@ -30,6 +32,7 @@ const BasicUnstake = () => {
   const [isUnstakeNowActive, setUnstakeNowActive] = useState(true);
   const [unstakeLoading, setUnstakeLoading] = useState(false);
   const [stSolToUnstake, setStSolToUnstake] = useState<string>("");
+  const [showModal, setShowModal] = useState(false);
   const { nativeSOLBalance, stSOLBalance } = useUserBalance();
   const { connected: isWalletConnected } = useWallet();
   const chain = useChain();
@@ -82,6 +85,15 @@ const BasicUnstake = () => {
     },
   ];
 
+  const resetInputs = () => {
+    setUnstakeLoading(false);
+    setStSolToUnstake("");
+
+    if (!isUnstakeNowActive) {
+      setShowModal(false);
+    }
+  };
+
   // eslint-disable-next-line consistent-return
   const unstakeHandler = () => {
     const basicInputChecksErrors = basicInputChecks(
@@ -113,11 +125,16 @@ const BasicUnstake = () => {
     }
 
     if (toUnstakeFullDecimals > stSOLBalance) {
-      toast({
-        title: "Insufficient funds to unstake",
-        description: `You requested to unstake ${Number(
+      const description = t("appPage.you-requested-to-unstake")
+        ?.replace(
+          "{{requestedAmount}}",
           format5Dec(Number(toUnstakeFullDecimals))
-        )} mSOL (have only ${Number(format5Dec(stSOLBalance))})`,
+        )
+        .replace("{{actualAmount}}", format5Dec(stSOLBalance));
+
+      toast({
+        title: t("appPage.insufficient-funds-to-unstake"),
+        description,
         status: "warning",
         duration: 5000,
         isClosable: true,
@@ -133,10 +150,10 @@ const BasicUnstake = () => {
         (transactionSignature) => {
           setStSolToUnstake("");
           toast({
-            title: "Unstake mSOL confirmed",
+            title: t("appPage.unstake-mSOL-confirmed"),
             description: (
               <p>
-                {"You've successfully unstaked your mSOL "}
+                {t("appPage.successfully-unstake-mSOL")}{" "}
                 <TransactionLink
                   chainName={chain.name}
                   transactionid={transactionSignature}
@@ -154,25 +171,21 @@ const BasicUnstake = () => {
 
           let description = error.message;
           if (error.toString().includes("0x1199")) {
-            description =
-              "Insufficient Liquidity in the Liquidity Pool. Please use Delayed Unstake";
+            description = t(
+              "appPage.insufficient-liquidity-in-the-liquidity-pool"
+            );
           } else if (error.toString().includes("no record of a prior credit")) {
-            description =
-              "You need some SOL balance on your wallet to cover the transaction fees.";
+            description = t("appPage.you-need-some-sol-balance-for-fee");
           }
 
           toast({
-            title: "Something went wrong",
+            title: t("appPage.something-went-wrong"),
             description,
             status: "warning",
           });
         }
       )
-      .then(() => setStSolToUnstake(""))
-      .finally(() => {
-        setUnstakeLoading(false);
-        setStSolToUnstake("");
-      });
+      .finally(resetInputs);
   };
 
   return (
@@ -281,10 +294,15 @@ const BasicUnstake = () => {
         height="48px"
         mx={4}
         mt={5}
-        onClick={unstakeHandler}
+        onClick={isUnstakeNowActive ? unstakeHandler : () => setShowModal(true)}
       >
         {unstakeText}
       </MButton>
+      <DelayedUnstakeModal
+        stSolToUnstake={Number(stSolToUnstake)}
+        isOpen={showModal}
+        onClose={resetInputs}
+      />
       {!isUnstakeNowActive ? <UnstakeTicketsSection /> : null}
     </>
   );

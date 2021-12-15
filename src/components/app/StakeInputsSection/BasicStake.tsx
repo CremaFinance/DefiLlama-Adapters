@@ -105,8 +105,8 @@ const BasicStake = () => {
       Number(format5Dec(Number(state?.staking_sol_cap), LAMPORTS_PER_SOL))
     ) {
       return toast({
-        title: t("ammount-exceeds-current-staking-cap"),
-        description: t("try-using-max-button"),
+        title: t("appPage.ammount-exceeds-current-staking-cap"),
+        description: t("appPage.try-using-max-button"),
         status: "warning",
         duration: 10000,
       });
@@ -132,10 +132,10 @@ const BasicStake = () => {
         (transactionSignature) => {
           onOpen();
           toast({
-            title: t("stake-sol-confirmed"),
+            title: t("appPage.stake-sol-confirmed"),
             description: (
               <p>
-                {t("successfully-staked-your-sol")}{" "}
+                {t("appPage.successfully-staked-your-sol")}{" "}
                 <TransactionLink
                   chainName={chain.name}
                   transactionid={transactionSignature}
@@ -155,13 +155,13 @@ const BasicStake = () => {
 
           let description = error.message;
           if (error.toString().includes("0xec6")) {
-            description = t("capped-tvl-is-full");
+            description = t("appPage.capped-tvl-is-full");
           } else if (error.toString().includes("no record of a prior credit")) {
-            description = t("missing-sol-for-fee");
+            description = t("appPage.missing-sol-for-fee");
           }
 
           toast({
-            title: t("something-went-wrong"),
+            title: t("appPage.something-went-wrong"),
             description,
             status: "warning",
           });
