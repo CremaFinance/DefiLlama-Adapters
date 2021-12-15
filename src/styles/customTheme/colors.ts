@@ -54,6 +54,7 @@ const colors = {
   marinadeEvenLighterGreen: "#ECFAF5",
   white: "#FFFFFF",
   white800: "#FFFFFFCC",
+  gray: "#E2E8F0",
 };
 
 export default colors;

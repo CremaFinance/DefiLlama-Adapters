@@ -11,6 +11,7 @@ import colors from "styles/customTheme/colors";
 
 const RetroMnde = () => {
   const { t } = useTranslation();
+  const claimableMnde = 0.00035; /* should be pulled from services */
 
   const RETRO_DATES = [
     {
@@ -52,19 +53,18 @@ const RetroMnde = () => {
   ];
 
   return (
-    <Box
+    <Flex
       mt="20px"
       ml="auto"
       mr="auto"
       height={{ base: "466px", lg: "476px" }}
       width={{ base: "288px", lg: "360px" }}
-      display="flex"
       flexDirection="column"
       alignItems="center"
       padding={{ base: "16px", lg: "32px" }}
       background="white"
-      border="1px solid #E2E8F0"
-      box-boxSizing="border-box"
+      border="1px solid"
+      borderColor={colors.gray}
       borderRadius="8px"
     >
       <Flex width="100%" justifyContent="space-between" alignItems="center">
@@ -89,11 +89,13 @@ const RetroMnde = () => {
 
       {RETRO_DATES.map((tuple, ind) => (
         <Flex
+          key={tuple.dateRange}
           justifyContent="space-between"
           width="100%"
           height="34px"
-          borderTop={ind === 0 ? "1px solid #EDF2F7" : ""}
-          borderBottom="1px solid #EDF2F7"
+          borderTop={ind === 0 ? "1px solid" : ""}
+          borderBottom="1px solid"
+          borderColor={colors.gray}
           alignItems="center"
         >
           <Flex alignItems="center">
@@ -138,14 +140,15 @@ const RetroMnde = () => {
         height="60px"
         width="100%"
         marginTop="32px"
-        borderBottom="1px solid #EDF2F7"
-        borderTop="1px solid #EDF2F7"
+        borderBottom="1px solid"
+        borderTop="1px solid"
+        borderColor={colors.gray}
         alignItems="center"
         justifyContent="space-between"
       >
         <Flex alignItems="center">
           <Image src="/icons/mSOL.svg" boxSize="24px" mr="4px" />
-          <MText>0.00035 MNDE</MText>
+          <MText>{claimableMnde} MNDE</MText>
         </Flex>
         <MButton
           variant="outline"
@@ -158,7 +161,7 @@ const RetroMnde = () => {
           {t("Claim")}
         </MButton>
       </Flex>
-    </Box>
+    </Flex>
   );
 };
 
