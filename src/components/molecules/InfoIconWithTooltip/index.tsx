@@ -6,9 +6,13 @@ import colors from "../../../styles/customTheme/colors";
 
 type InfoIconWithTooltipProps = {
   tooltipText: string;
+  iconSize?: string;
 };
 
-const InfoIconWithTooltip = ({ tooltipText }: InfoIconWithTooltipProps) => {
+const InfoIconWithTooltip = ({
+  tooltipText,
+  iconSize = "sm",
+}: InfoIconWithTooltipProps) => {
   const [isTooltiplOpen, setIsTooltipOpen] = useState(false);
 
   return (
@@ -26,7 +30,7 @@ const InfoIconWithTooltip = ({ tooltipText }: InfoIconWithTooltipProps) => {
         onMouseLeave={() => setIsTooltipOpen(false)}
         variant="link"
         aria-label="Info epoch"
-        size="sm"
+        size={iconSize}
         icon={<MdInfoOutline />}
       />
     </Tooltip>

@@ -5,6 +5,8 @@ import InfoBoxesSection from "../InfoBoxesSection";
 import { useTranslation } from "hooks/useTranslation";
 import colors from "styles/customTheme/colors";
 
+import RetroMnde from "./RetroMnde";
+
 const MndeSection = () => {
   const { t } = useTranslation();
 
@@ -19,6 +21,9 @@ const MndeSection = () => {
       alignItems="stretch"
     >
       <InfoBoxesSection />
+
+      <RetroMnde />
+
       <Flex
         marginTop={{ base: "24px", lg: "40px" }}
         marginBottom={{ base: "24px", lg: "80px" }}
