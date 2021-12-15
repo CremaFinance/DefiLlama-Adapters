@@ -1,6 +1,7 @@
 import { Flex, Text, Image } from "@chakra-ui/react";
 
 import MLink from "../../atoms/Link";
+import MNDEFarmCard from "../../molecules/MNDEFarmCard";
 import InfoBoxesSection from "../InfoBoxesSection";
 import { useTranslation } from "hooks/useTranslation";
 import colors from "styles/customTheme/colors";
@@ -14,15 +15,12 @@ const MndeSection = () => {
     <Flex
       py="72px"
       pb={[12, 8]}
-      height="100vh"
       aria-label="mnde-section"
       position="relative"
       flexDirection="column"
       alignItems="stretch"
     >
       <InfoBoxesSection />
-
-      <RetroMnde />
 
       <Flex
         marginTop={{ base: "24px", lg: "40px" }}
@@ -55,6 +53,10 @@ const MndeSection = () => {
           {t("appPage.tooltip-time-to-unstake-read-more")}
           <Image src="/icons/external-link-green.svg" width="1rem" ml={2} />
         </MLink>
+      </Flex>
+      <Flex>
+        <MNDEFarmCard />
+        <RetroMnde />
       </Flex>
     </Flex>
   );
