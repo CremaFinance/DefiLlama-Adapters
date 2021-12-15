@@ -239,17 +239,6 @@ const BasicUnstake = () => {
       });
   };
 
-  const toastClaimErrorMessage = (error) => {
-    if (error.includes("0x1104")) {
-      return t("appPage.claim-error-tooltip-body-not-ready-yet");
-    }
-
-    if (error.includes("no record of a prior credit")) {
-      return t("appPage.claim-error-tooltip-body-not-enough-sol-balance");
-    }
-    return error.message;
-  };
-
   const runClaimHandler = (accountPubkey: TicketAccount["key"]) => {
     marinade
       .runClaim(accountPubkey)
@@ -273,9 +262,21 @@ const BasicUnstake = () => {
           });
         },
         (error) => {
+          let errorMessage;
+          if (error.includes("0x1104")) {
+            errorMessage = t("appPage.claim-error-tooltip-body-not-ready-yet");
+          }
+
+          if (error.includes("no record of a prior credit")) {
+            errorMessage = t(
+              "appPage.claim-error-tooltip-body-not-enough-sol-balance"
+            );
+          }
+          errorMessage = error.message;
+
           toast({
             title: t("appPage.claim-error-tooltip-title"),
-            description: toastClaimErrorMessage(error),
+            description: errorMessage,
             status: "warning",
           });
         }
