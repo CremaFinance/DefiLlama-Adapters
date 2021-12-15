@@ -1,8 +1,8 @@
 import { Flex, IconButton, useToast } from "@chakra-ui/react";
 import { useWallet } from "@solana/wallet-adapter-react";
-import { LAMPORTS_PER_SOL } from "@solana/web3.js";
+import { LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { MdInfoOutline } from "react-icons/md";
 
 import { useUserBalance } from "../../../contexts/UserBalanceContext";
@@ -16,8 +16,10 @@ import StakeInput, {
 import SwitchButtons from "components/molecules/SwitchButtons";
 import TooltipWithContent from "components/molecules/TooltipWithContent";
 import TransactionLink from "components/molecules/TransactionLink";
-import { useChain } from "contexts/ConnectionProvider";
+import { AccountsContext } from "contexts/AccountsContext";
+import { useChain, useConnection, useKeys } from "contexts/ConnectionProvider";
 import { useMarinade } from "contexts/MarinadeContext";
+import { TicketAccount } from "solana/domain/ticket-account";
 import colors from "styles/customTheme/colors";
 import { basicInputChecks } from "utils/basic-input-checks";
 import { checkNativeSOLBalance } from "utils/check-native-sol-balance";
@@ -28,14 +30,25 @@ import DelayedUnstakeModal from "./DelayedUnstakeModal";
 const BasicUnstake = () => {
   const { t } = useTranslation();
   const toast = useToast();
+  const connection = useConnection();
+  const keys = useKeys();
 
   const [isUnstakeNowActive, setUnstakeNowActive] = useState(true);
   const [unstakeLoading, setUnstakeLoading] = useState(false);
   const [stSolToUnstake, setStSolToUnstake] = useState<string>("");
   const [showModal, setShowModal] = useState(false);
   const { nativeSOLBalance, stSOLBalance } = useUserBalance();
-  const { connected: isWalletConnected } = useWallet();
+  const { connected: walletConnected, publicKey: walletPubKey } = useWallet();
+
   const chain = useChain();
+  const {
+    getTicketAccountsAction,
+    ticketAccounts,
+    fetchTicketsLoading,
+    fetchTicketsLoadingAction,
+    walletPubKeyContext,
+    resetAccountsAction,
+  } = useContext(AccountsContext);
 
   const marinade = useMarinade();
   const marinadeState = marinade?.marinadeState;
@@ -85,6 +98,32 @@ const BasicUnstake = () => {
     },
   ];
 
+  useEffect(() => {
+    if (walletConnected) {
+      if (walletPubKey?.toBase58() === walletPubKeyContext?.toBase58()) {
+        getTicketAccountsAction(
+          keys,
+          walletConnected,
+          connection,
+          walletPubKey as PublicKey,
+          fetchTicketsLoading
+        );
+      } else {
+        getTicketAccountsAction(
+          keys,
+          walletConnected,
+          connection,
+          walletPubKey as PublicKey,
+          true
+        );
+      }
+    } else {
+      resetAccountsAction();
+      fetchTicketsLoadingAction(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [walletConnected]);
+
   const resetInputs = () => {
     setUnstakeLoading(false);
     setStSolToUnstake("");
@@ -98,7 +137,7 @@ const BasicUnstake = () => {
   const unstakeHandler = () => {
     const basicInputChecksErrors = basicInputChecks(
       Number(stSolToUnstake),
-      isWalletConnected
+      walletConnected
     );
     if (basicInputChecksErrors) {
       return toast(basicInputChecksErrors);
@@ -185,7 +224,72 @@ const BasicUnstake = () => {
           });
         }
       )
-      .finally(resetInputs);
+      .then(() => setStSolToUnstake(""))
+      .finally(() => {
+        setUnstakeLoading(false);
+        getTicketAccountsAction(
+          keys,
+          walletConnected,
+          connection,
+          walletPubKey as PublicKey,
+          true
+        );
+        setStSolToUnstake("");
+        resetInputs();
+      });
+  };
+
+  const runClaimHandler = (accountPubkey: TicketAccount["key"]) => {
+    marinade
+      .runClaim(accountPubkey)
+      .then(
+        (transactionSignature) => {
+          const successTitleMessage = t(
+            "appPage.claim-success-tooltip-title"
+          )?.replace("{{accountPubkey}}", accountPubkey);
+          toast({
+            title: successTitleMessage,
+            description: (
+              <p>
+                {t("appPage.claim-success-tooltip-body")}
+                <TransactionLink
+                  chainName={chain.name}
+                  transactionid={transactionSignature}
+                />
+              </p>
+            ),
+            status: "success",
+          });
+        },
+        (error) => {
+          let errorMessage;
+          if (error.includes("0x1104")) {
+            errorMessage = t("appPage.claim-error-tooltip-body-not-ready-yet");
+          }
+
+          if (error.includes("no record of a prior credit")) {
+            errorMessage = t(
+              "appPage.claim-error-tooltip-body-not-enough-sol-balance"
+            );
+          }
+          errorMessage = error.message;
+
+          toast({
+            title: t("appPage.claim-error-tooltip-title"),
+            description: errorMessage,
+            status: "warning",
+          });
+        }
+      )
+      .then(() =>
+        getTicketAccountsAction(
+          keys,
+          walletConnected,
+          connection,
+          walletPubKey as PublicKey,
+          true
+        )
+      );
   };
 
   return (
@@ -298,12 +402,18 @@ const BasicUnstake = () => {
       >
         {unstakeText}
       </MButton>
+
       <DelayedUnstakeModal
         stSolToUnstake={Number(stSolToUnstake)}
         isOpen={showModal}
         onClose={resetInputs}
       />
-      {!isUnstakeNowActive ? <UnstakeTicketsSection /> : null}
+      {!isUnstakeNowActive ? (
+        <UnstakeTicketsSection
+          ticketAccounts={ticketAccounts}
+          runClaimHandler={runClaimHandler}
+        />
+      ) : null}
     </>
   );
 };

@@ -288,6 +288,13 @@
     "claim-action": "Claim",
     "copy-success-title": "Address copied",
     "copy-success-message": "Address copied success",
+    "no-ticket-accounts-message": " You don't have any valid ticket accounts. Start delayed unstake first.",
+    "wallet-not-connected": "Wallet not connected",
+    "claim-success-tooltip-title": "Claim of {{accountPubkey}} account confirmed",
+    "claim-success-tooltip-body": "You've successfully claimed your ticket",
+    "claim-error-tooltip-title": "Something went wrong",
+    "claim-error-tooltip-body-not-ready-yet": "Your ticket is not ready yet. Wait a few hours and try again (0x1104)",
+    "claim-error-tooltip-body-not-enough-sol-balance": "You need some SOL balance on your wallet to cover the transaction fees.",
 
     "faq-title": "FAQ",
     "faq-items": [
