@@ -18,19 +18,13 @@ import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 import { useEpochInfo } from "hooks/useEpochInfo";
 import { useWallet } from "hooks/useWallet";
+import { TicketAccount } from "solana/domain/ticket-account";
 import { LamportsToSol } from "solana/marinade-anchor/common";
-import { TicketAccountData } from "solana/marinade-anchor/marinade-finance-schema";
 import colors from "styles/customTheme/colors";
 import { copyAddressToClipboard } from "utils/copy-to-clipboard";
 import { format5Dec, format2Dec } from "utils/number-to-short-version";
 import { shortenAddress } from "utils/shorten-address";
-
-export interface TicketAccount {
-  ticketDueDateTime?: Date;
-  ticketDue?: boolean;
-  key: PublicKey;
-  data: TicketAccountData;
-}
+import { DEFAULT_ENDPOINT } from "utils/web3/endpoints";
 
 type UnstakeTicketsSectionProps = {
   ticketAccounts: TicketAccount[];
@@ -48,7 +42,7 @@ const UnstakeTicketsSection = ({
   const epochInfo = useEpochInfo()?.data;
   const accounts: TicketAccount[] = [];
 
-  const SLOT_DURATION_MILLISECONDS = 600;
+  const SLOT_DURATION_MILLISECONDS = DEFAULT_ENDPOINT.slotTimeAvg1h;
   const EXTRA_WAIT_MILLISECONDS = 1000 * 60 * 60 * 4 + 1000 * 60 * 45;
   const EPOCH_ELAPSED_MILLISECONDS = epochInfo
     ? epochInfo.slotIndex * SLOT_DURATION_MILLISECONDS

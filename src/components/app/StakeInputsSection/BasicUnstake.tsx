@@ -8,7 +8,7 @@ import { MdInfoOutline } from "react-icons/md";
 import { useUserBalance } from "../../../contexts/UserBalanceContext";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
-import UnstakeTicketsSection, { TicketAccount } from "../UnstakeTicketsSection";
+import UnstakeTicketsSection from "../UnstakeTicketsSection";
 import StakeInput, {
   StakeAccountType,
   StakeInputTypeEnum,
@@ -19,6 +19,7 @@ import TransactionLink from "components/molecules/TransactionLink";
 import { AccountsContext } from "contexts/AccountsContext";
 import { useChain, useConnection, useKeys } from "contexts/ConnectionProvider";
 import { useMarinade } from "contexts/MarinadeContext";
+import { TicketAccount } from "solana/domain/ticket-account";
 import colors from "styles/customTheme/colors";
 import { basicInputChecks } from "utils/basic-input-checks";
 import { checkNativeSOLBalance } from "utils/check-native-sol-balance";
@@ -37,7 +38,6 @@ const BasicUnstake = () => {
   const [stSolToUnstake, setStSolToUnstake] = useState<string>("");
   const [showModal, setShowModal] = useState(false);
   const { nativeSOLBalance, stSOLBalance } = useUserBalance();
-  const { connected: isWalletConnected } = useWallet();
   const { connected: walletConnected, publicKey: walletPubKey } = useWallet();
 
   const chain = useChain();
@@ -137,7 +137,7 @@ const BasicUnstake = () => {
   const unstakeHandler = () => {
     const basicInputChecksErrors = basicInputChecks(
       Number(stSolToUnstake),
-      isWalletConnected
+      walletConnected
     );
     if (basicInputChecksErrors) {
       return toast(basicInputChecksErrors);
@@ -239,6 +239,17 @@ const BasicUnstake = () => {
       });
   };
 
+  const toastClaimErrorMessage = (error) => {
+    if (error.includes("0x1104")) {
+      return t("appPage.claim-error-tooltip-body-not-ready-yet");
+    }
+
+    if (error.includes("no record of a prior credit")) {
+      return t("appPage.claim-error-tooltip-body-not-enough-sol-balance");
+    }
+    return error.message;
+  };
+
   const runClaimHandler = (accountPubkey: TicketAccount["key"]) => {
     marinade
       .runClaim(accountPubkey)
@@ -263,13 +274,8 @@ const BasicUnstake = () => {
         },
         (error) => {
           toast({
-            title: "Something went wrong",
-            // eslint-disable-next-line no-nested-ternary
-            description: error.toString().includes("0x1104")
-              ? t("appPage.claim-error-tooltip-body-not-ready-yet")
-              : error.toString().includes("no record of a prior credit")
-              ? t("appPage.claim-error-tooltip-body-not-enough-sol-balance")
-              : error.message,
+            title: t("appPage.claim-error-tooltip-title"),
+            description: toastClaimErrorMessage(error),
             status: "warning",
           });
         }
