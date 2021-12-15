@@ -31,14 +31,6 @@ import colors from "styles/customTheme/colors";
 import { numberToShortVersion } from "utils/number-to-short-version";
 import { shortenAddress } from "utils/shorten-address";
 
-// await fetch("/api/validators", {
-//   method: "POST",
-//   headers: {
-//     "Content-Type": "application/json",
-//   },
-//   body: JSON.stringify({ pageNumber: 2 }),
-// });
-
 interface Query {
   totalPages: number;
   validators: Validator[];
