@@ -47,7 +47,7 @@
     "bs58": "^4.0.1",
     "chart.js": "^3.6.2",
     "dayjs": "^1.10.7",
-    "framer-motion": "^5.5.1",
+    "framer-motion": "^5.5.3",
     "html-react-parser": "^1.4.3",
     "jest": "^27.4.5",
     "jest-fetch-mock": "^3.0.3",
