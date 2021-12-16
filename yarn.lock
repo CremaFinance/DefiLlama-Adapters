@@ -2795,12 +2795,12 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.1.0.tgz#7f698254aadf921e48dda8c0a6b304026b8a9323"
   integrity sha512-JLo+Y592QzIE+q7Dl2pMUtt4q8SKYI5jDrZxrozEQxnGVOyYE+GWK9eLkwTaeN9DDctlaRAQ3TBmzZ1qdLE30A==
 
-"@saberhq/anchor-contrib@^1.10.16":
-  version "1.10.16"
-  resolved "https://registry.yarnpkg.com/@saberhq/anchor-contrib/-/anchor-contrib-1.10.16.tgz#4c445dedacf57216e284c79995b53875d8a289d4"
-  integrity sha512-DV4Gi4NeQhW36+dDiVHhMej9ELpEzthK3zJH1eb7q/AWKQymC8i82+wqKlDHJ31j25gl3IoKcuIyOnUweI350w==
+"@saberhq/anchor-contrib@^1.11.0":
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/@saberhq/anchor-contrib/-/anchor-contrib-1.11.0.tgz#f3b7bb038090968836f8553c9c06b89feda88cb8"
+  integrity sha512-iluHqfosiEKvsyV2dDgx7EgLNYliddQ8rraRkrNmcQq236C82OhZTQA+OlciVUibdh0sajLYfPZkGTUDJtdABA==
   dependencies:
-    "@saberhq/solana-contrib" "^1.10.16"
+    "@saberhq/solana-contrib" "^1.11.0"
     eventemitter3 "^4.0.7"
     lodash.camelcase "^4.3.0"
     lodash.mapvalues "^4.6.0"
