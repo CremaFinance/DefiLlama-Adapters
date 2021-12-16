@@ -64,7 +64,7 @@ const RetroMnde = () => {
       padding={{ base: "16px", lg: "32px" }}
       background="white"
       border="1px solid"
-      borderColor={colors.gray}
+      borderColor={colors.lightGray}
       borderRadius="8px"
     >
       <Flex width="100%" justifyContent="space-between" alignItems="center">
@@ -95,7 +95,7 @@ const RetroMnde = () => {
           height="34px"
           borderTop={ind === 0 ? "1px solid" : ""}
           borderBottom="1px solid"
-          borderColor={colors.gray}
+          borderColor={colors.lightGray}
           alignItems="center"
         >
           <Flex alignItems="center">
@@ -142,7 +142,7 @@ const RetroMnde = () => {
         marginTop="32px"
         borderBottom="1px solid"
         borderTop="1px solid"
-        borderColor={colors.gray}
+        borderColor={colors.lightGray}
         alignItems="center"
         justifyContent="space-between"
       >
