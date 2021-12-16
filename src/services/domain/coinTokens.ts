@@ -1,7 +1,8 @@
 import { coinSymbols, CoinSymbols } from "./coinSymbols";
-import { Token } from "./token";
+import { TokenRecord } from "./token";
 
-export const coinTokens: Record<CoinSymbols, Token> = {
+/** All cointokens used by marinade */
+export const coinTokens: TokenRecord<CoinSymbols> = {
   [coinSymbols.MNDE]: {
     chainId: 101,
     address: "MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey",
@@ -65,6 +66,7 @@ export const coinTokens: Record<CoinSymbols, Token> = {
       serumV3Usdc: "9wFFyRfZBsuAha4YcuxcXLKwMxJR43S7fPfQLusDBzvT",
       serumV3Usdt: "HWHvQhFmJB3NUcu1aihKmrKegfVxBEHzwVX6yZCKEsi1",
       coingeckoId: "solana",
+      binanceId: "SOL",
     },
   },
   [coinSymbols.USDC]: {
@@ -79,6 +81,7 @@ export const coinTokens: Record<CoinSymbols, Token> = {
     extensions: {
       website: "https://www.centre.io/",
       coingeckoId: "usd-coin",
+      binanceId: "USDC",
       serumV3Usdt: "77quYg4MGneUdjgXCunt9GgM1usmrxKY31twEy3WHwcS",
     },
   },
@@ -112,6 +115,7 @@ export const coinTokens: Record<CoinSymbols, Token> = {
       serumV3Usdc: "A8YFbxQYFVqKZaoYJLLUVcQiWP7G2MeEgW5wsAQgMvFw",
       serumV3Usdt: "C1EuT9VokAKLiW7i2ASnZUvxDoKuKkCpDDeNxAptuNe4",
       coingeckoId: "bitcoin",
+      binanceId: "BTC",
     },
   },
   [coinSymbols.whETH]: {
@@ -129,6 +133,7 @@ export const coinTokens: Record<CoinSymbols, Token> = {
       serumV3Usdc: "4tSvZvnbyzHXLMTiFonMyxZoHmFqau1XArcRCVHLZ5gX",
       serumV3Usdt: "7dLVkUfBVfCGkFhSXDCq1ukM9usathSgS716t643iFGF",
       coingeckoId: "ethereum",
+      binanceId: "ETH",
     },
   },
   [coinSymbols.PORT]: {
@@ -154,6 +159,7 @@ export const coinTokens: Record<CoinSymbols, Token> = {
     tags: [],
     extensions: {
       coingeckoId: "raydium",
+      binanceId: "RAY",
     },
   },
   [coinSymbols.ETH]: {
@@ -167,6 +173,7 @@ export const coinTokens: Record<CoinSymbols, Token> = {
     tags: [],
     extensions: {
       coingeckoId: "ethereum",
+      binanceId: "ETH",
     },
   },
   [coinSymbols.LARIX]: {
@@ -194,5 +201,14 @@ export const coinTokens: Record<CoinSymbols, Token> = {
     extensions: {
       coingeckoId: "atrix",
     },
+  },
+  [coinSymbols.FRANCIUM]: {
+    chainId: 101,
+    address: "",
+    symbol: "FRANCIUM",
+    name: "Francium",
+    decimals: 9,
+    logoURI: "",
+    tags: [],
   },
 };

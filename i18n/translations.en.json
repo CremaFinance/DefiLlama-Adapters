@@ -183,7 +183,8 @@
   },
   "appPage": {
     "stake-menu-item": "Stake",
-    "use-msol-menu-item": "Use mSOL",
+    "defi-menu-item": "DeFi",
+    "mnde-menu-item": "MNDE",
     "connect-wallet": "Connect wallet",
     "wallet-missing": "Please click here to install official {{wallet}} extension",
     "disconnect-wallet": "Disconnect",
@@ -195,7 +196,7 @@
         "swap": "Swap",
         "borrow": "Borrow"
       },
-      "tvl": "$ {{tvl}} TVL",
+      "tvl": "${{tvl}} TVL",
       "apyPopover": {
         "trading": "Trading APR",
         "emission": "Emission APR",
@@ -244,12 +245,32 @@
     "stake-inputs-stake-fee": "Stake fee",
     "stake-action": "Stake",
     "stake-sol-action": "Stake SOL",
+    "deposit-stake-account-action": "Deposit stake account",
     "unstake-action": "Unstake",
     "unstake-now-action": "Unstake now",
     "delayed-unstake-action": "Delayed unstake",
     "start-delayed-unstake-action": "Start delayed unstake",
+    "cancel-action": "Cancel",
     "balance": "Balance",
     "max": "Max",
+    "unstake-cooldown-description": "You're starting the unstaking process, Marinade must unstake SOL and wait for the cool-down period. This action is irreversible, cannot be canceled or undone and you must wait the cool-down period to get your SOL. Approximately on",
+    "you-will-be-able-to-claim": "*, you'll be able to claim at least ≈",
+    "approximate-unstake-time-explanation": "*Solana can add more delay to the unstake based on total unstaking in the epoch. The time is approximate. Even if you have to wait another epoch, your funds are secure and your ticket will be valid and has no expiry time",
+    "delayed-agree-text": "By clicking on \"Start delayed unstake\" button you understand and agree with the above.",
+    "successfully-unstake-mSOL": "You've successfully unstaked your mSOL",
+    "unstake-mSOL-confirmed": "Unstake mSOL confirmed",
+    "stake-dropdown-wallet-balance": "Wallet balance",
+    "stake-dropdown-stake-accounts": "Stake accounts",
+    "insufficient-funds-to-unstake": "Insufficient funds to unstake",
+    "you-requested-to-unstake": "You requested to unstake {{requestedAmount}} mSOL (have only {{actualAmount}})",
+    "insufficient-liquidity-in-the-liquidity-pool": "Insufficient Liquidity in the Liquidity Pool. Please use Delayed Unstake",
+    "you-need-some-sol-balance-for-fee": "You need some SOL balance on your wallet to cover the transaction fees.",
+    "stake-dropdown-toast": {
+      "successTitle": "Copied",
+      "successBody": "You have successfully copied the address",
+      "errorTitle": "Failed to copy",
+      "errorBody": "Address was not copied"
+    },
     "success-stake": {
       "title": "Well done!",
       "body-line1": "You’re now staking with Marinade!",
@@ -262,6 +283,10 @@
       "body-desktop": "Now it’s your time to cook! mSOL has been integrated in many DeFi protocols where you’ll be able to explore additional yield while still earning your staking rewards. Please keep in mind that selling all your mSOL will also mean selling your rewards accumulated until this point.",
       "body-mobile": "Use mSOL and explore additional yield while still earning your staking rewards"
     },
+    "mnde": {
+      "description": "MNDE is the governance token of Marinade finance that will give you voting power over the future of our DAO. It is currently only accessible through Liquidity Mining or on secondary markets. Please know that on-chain voting is being developed and will be added as soon as possible. You can learn more about it in our documentation.",
+      "docs-link": "https://docs.marinade.finance/marinade-dao/tokenomics"
+    },
     "stake-inputs-time-to-unstake": "Time to unstake",
     "tooltip-time-to-unstake-text": "Unstaking will take 1 to 2 epochs. This time is an estimation; please refer to the docs to learn more.",
     "tooltip-time-to-unstake-read-more": "See docs",
@@ -272,6 +297,13 @@
     "claim-action": "Claim",
     "copy-success-title": "Address copied",
     "copy-success-message": "Address copied success",
+    "no-ticket-accounts-message": " You don't have any valid ticket accounts. Start delayed unstake first.",
+    "wallet-not-connected": "Wallet not connected",
+    "claim-success-tooltip-title": "Claim of {{accountPubkey}} account confirmed",
+    "claim-success-tooltip-body": "You've successfully claimed your ticket",
+    "claim-error-tooltip-title": "Something went wrong",
+    "claim-error-tooltip-body-not-ready-yet": "Your ticket is not ready yet. Wait a few hours and try again (0x1104)",
+    "claim-error-tooltip-body-not-enough-sol-balance": "You need some SOL balance on your wallet to cover the transaction fees.",
 
     "faq-title": "FAQ",
     "faq-items": [
@@ -295,6 +327,14 @@
       }
     ],
 
+    "ammount-exceeds-current-staking-cap": "Amount entered exceeds the current Staking cap.",
+    "capped-tvl-is-full": "Mainnet Beta Capped TVL is FULL. Please wait for cap increments.",
+    "missing-sol-for-fee": "You need some SOL balance on your wallet to cover the transaction fees.",
+    "something-went-wrong": "Something went wrong",
+    "stake-sol-confirmed": "Stake SOL confirmed",
+    "successfully-staked-your-sol": "You've successfully staked your SOL",
+    "try-using-max-button": "Try using the MAX button to stake the maximum allowed amount.",
+
     "validators-menu-transactions": "Transactions",
     "validators-menu-stakes": "Stakes",
     "validators-menu-portfolio": "Portfolio",
@@ -307,5 +347,9 @@
     "validators-table-state": "State",
     "validators-table-delegated": "Delegated",
     "validators-link": "https://marinade.finance/app/validators"
+  },
+  "mndePage": {
+    "retro-title": "MNDE Retro",
+    "retro-info": "Marinade retroactive claim for early adopters will be distributed in the following phases:"
   }
 }

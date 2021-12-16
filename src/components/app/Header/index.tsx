@@ -47,7 +47,10 @@ const Header = ({ onValidatorsPage = false }: Props) => {
   };
 
   const router = useRouter();
-  const isStakingActive = router.pathname.includes("staking");
+  const isStakingActive =
+    !onValidatorsPage && router.pathname.includes("staking");
+  const isDefiActive = !onValidatorsPage && router.pathname.includes("defi");
+  const isMndeActive = !onValidatorsPage && router.pathname.includes("mnde");
 
   return (
     <Flex
@@ -88,12 +91,12 @@ const Header = ({ onValidatorsPage = false }: Props) => {
           variant="link"
           color={colors.black}
           rounded="none"
-          isActive={!onValidatorsPage && isStakingActive}
+          isActive={isStakingActive}
           width="80px"
           fontWeight="normal"
           font="text-xl"
           mb="4px"
-          py={!onValidatorsPage && isStakingActive ? "4px" : "7px"}
+          py={isStakingActive ? "4px" : "7px"}
           _active={activeMenu}
           _hover={activeMenu}
           onClick={() => router.push("/app/staking")}
@@ -105,17 +108,34 @@ const Header = ({ onValidatorsPage = false }: Props) => {
           variant="link"
           color={colors.black}
           rounded="none"
-          isActive={!onValidatorsPage && !isStakingActive}
-          width="107px"
+          isActive={isDefiActive}
+          width="80px"
           fontWeight="normal"
           font="text-xl"
           mb="4px"
-          py={!onValidatorsPage && !isStakingActive ? "4px" : "7px"}
+          py={isDefiActive ? "4px" : "7px"}
           _active={activeMenu}
           _hover={activeMenu}
           onClick={() => router.push("/app/defi")}
         >
-          {t("appPage.use-msol-menu-item")}
+          {t("appPage.defi-menu-item")}
+        </MButton>
+
+        <MButton
+          variant="link"
+          color={colors.black}
+          rounded="none"
+          isActive={isMndeActive}
+          width="80px"
+          fontWeight="normal"
+          font="text-xl"
+          mb="4px"
+          py={isMndeActive ? "4px" : "7px"}
+          _active={activeMenu}
+          _hover={activeMenu}
+          onClick={() => router.push("/app/mnde")}
+        >
+          {t("appPage.mnde-menu-item")}
         </MButton>
       </Flex>
 

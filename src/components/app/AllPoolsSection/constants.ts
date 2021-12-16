@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { Dispatch, SetStateAction } from "react";
 
-import { Pool } from "../../../services/domain/pool";
+import { Pool, PoolConfig } from "../../../services/domain/pool";
 
 export enum COLUMNS {
   APY = "APY",
@@ -10,7 +10,10 @@ export enum COLUMNS {
   PAIR = "PAIR",
 }
 
-export const COLUMNS_SORTER: Record<COLUMNS, (a: Pool, b: Pool) => number> = {
+export const COLUMNS_SORTER: Record<
+  COLUMNS,
+  (a: Pool | PoolConfig, b: Pool | PoolConfig) => number
+> = {
   [COLUMNS.PAIR]: (a, b) =>
     `${a.tokenA}-${a.tokenB}`.localeCompare(`${b.tokenA}-${b.tokenB}`, "en", {
       sensitivity: "base",

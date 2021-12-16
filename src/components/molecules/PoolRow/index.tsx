@@ -3,14 +3,15 @@ import { FunctionComponent } from "react";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 
 import { useTranslation } from "../../../hooks/useTranslation";
-import { Pool } from "../../../services/domain/pool";
+import { Pool, PoolConfig } from "../../../services/domain/pool";
+import { numberToShortVersion } from "../../../utils/number-to-short-version";
 import Button from "../../atoms/Button";
 import Heading from "../../atoms/Heading";
 import Text from "../../atoms/Text";
 import ApyAndRewardTooltip from "../ApyAndRewardTooltip";
 
 type PoolRowProps = {
-  pool: Pool;
+  pool: Pool | PoolConfig;
 };
 
 const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
@@ -34,7 +35,7 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
   const tvlString = totalLockedValue
     ? t("appPage.pool-row.tvl")?.replace(
         "{{tvl}}",
-        totalLockedValue.toLocaleString()
+        numberToShortVersion(totalLockedValue)
       )
     : "";
 
@@ -132,7 +133,13 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
         maxWidth="274px"
         paddingTop={{ base: "8px", lg: "0" }}
       >
-        {totalLockedValue ? <Text>{tvlString}</Text> : <Spinner size="xs" />}
+        {totalLockedValue ? (
+          <Heading lineHeight="140%" fontSize={{ base: "16px", lg: "18px" }}>
+            {tvlString}
+          </Heading>
+        ) : (
+          <Spinner size="xs" />
+        )}
       </Flex>
       <Flex
         flex={{ base: undefined, lg: 1 }}

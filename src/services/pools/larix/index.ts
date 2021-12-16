@@ -1,9 +1,7 @@
-/* eslint-disable sonarjs/cognitive-complexity */
 /* eslint-disable @typescript-eslint/naming-convention */
 import { updatePoolRewards } from "../../../utils/update-pool-rewards";
+import { Pool } from "../../domain/pool";
 import { Prices } from "services/domain/coinSymbols";
-import { MarketPools } from "services/domain/market";
-import { getTokensList } from "utils/tokens-list";
 
 import { larixPools } from "./config";
 import { LarixPoolsResponse } from "./larixPool";
@@ -35,16 +33,16 @@ export const mapLarixResponse = (
         pool.tradingApy =
           Number(supply_apy) * 100 + Number(supply_distribution_apy) * 100;
         pool.apy = pool.tradingApy;
-        pool = updatePoolRewards(pool, prices);
+        pool = updatePoolRewards(pool as Pool, prices);
       }
     }
-    return { [poolkey]: pool };
+    return { [poolkey]: pool as Pool };
   });
 
   // convert to map
   return poolsArray.reduce((acc, pool) => {
     return { ...acc, ...pool };
-  }, {}) as MarketPools;
+  }, {});
 };
 
 export const getLarix = async (prices: Prices) => {
@@ -54,6 +52,5 @@ export const getLarix = async (prices: Prices) => {
 
 export const larix = {
   fetchPools: getLarix,
-  pools: larixPools as MarketPools,
-  tokenList: getTokensList(Object.values(larixPools)),
+  pools: larixPools,
 };

@@ -1,9 +1,9 @@
 import { Flex } from "@chakra-ui/react";
 import { useMemo, useState } from "react";
 
-import { usePools } from "../../../hooks/usePools";
+import { Pool, PoolConfig } from "../../../services/domain/pool";
 import PoolRow from "components/molecules/PoolRow";
-import { Pool } from "services/domain/pool";
+import { usePools } from "hooks/usePools";
 
 import { COLUMNS, COLUMNS_SORTER, SortingState } from "./constants";
 import DesktopDataHeader from "./DesktopDataHeader";
@@ -23,12 +23,16 @@ const AllPoolsSection = () => {
         .reduce(
           (acc, result) =>
             result.data
-              ? acc.concat(Object.values(result.data).map((market) => market))
+              ? acc.concat(
+                  Object.entries(result.data).map(([key, pool]) => {
+                    return { id: key, pool };
+                  })
+                )
               : acc,
-          [] as Pool[]
+          [] as { id: string; pool: Pool | PoolConfig }[]
         )
         .sort((a, b) => {
-          const ratio = COLUMNS_SORTER[sorting.column](a, b);
+          const ratio = COLUMNS_SORTER[sorting.column](a.pool, b.pool);
           return sorting.isInverted ? ratio : -ratio;
         }),
     [results, sorting]
@@ -48,12 +52,8 @@ const AllPoolsSection = () => {
         flexWrap={{ base: "wrap", lg: "nowrap" }}
       >
         {sortedPools?.map((pool) => (
-          <Flex
-            flexDirection="row"
-            key={`${pool.address}-${pool.provider}`}
-            justifyContent="center"
-          >
-            <PoolRow pool={pool} />
+          <Flex flexDirection="row" key={`${pool.id}`} justifyContent="center">
+            <PoolRow pool={pool.pool} />
           </Flex>
         ))}
       </Flex>
