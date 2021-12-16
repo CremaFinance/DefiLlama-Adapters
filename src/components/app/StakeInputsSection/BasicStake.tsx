@@ -1,11 +1,10 @@
 import { Flex, IconButton, useDisclosure, useToast } from "@chakra-ui/react";
-import { useWallet } from "@solana/wallet-adapter-react";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MdInfoOutline } from "react-icons/md";
 
-import { useChain } from "../../../contexts/ConnectionProvider";
+import { useChain, useConnection } from "../../../contexts/ConnectionProvider";
 import { useMarinade } from "../../../contexts/MarinadeContext";
 import { useUserBalance } from "../../../contexts/UserBalanceContext";
 import MButton from "../../atoms/Button";
@@ -16,7 +15,9 @@ import StakeInput, {
 } from "components/molecules/StakeInput";
 import SuccessStakeModal from "components/molecules/SuccessStakeModal";
 import TransactionLink from "components/molecules/TransactionLink";
+import { AccountsContext } from "contexts/AccountsContext";
 import { useStats } from "contexts/StatsContext";
+import { useWallet } from "hooks/useWallet";
 import colors from "styles/customTheme/colors";
 import { basicInputChecks } from "utils/basic-input-checks";
 import { checkNativeSOLBalance } from "utils/check-native-sol-balance";
@@ -26,11 +27,12 @@ const BasicStake = () => {
   const { t } = useTranslation();
   const toast = useToast();
 
+  const connection = useConnection();
   const [stakeText, setStakeText] = useState(t("appPage.stake-sol-action"));
   const [stakeLoading, setStakeLoading] = useState(false);
   const [solToStake, setSolToStake] = useState<string>("");
   const { nativeSOLBalance, stSOLBalance } = useUserBalance();
-  const { connected: isWalletConnected } = useWallet();
+  const { connected: isWalletConnected, publicKey: walletPubKey } = useWallet();
   const { isOpen, onOpen, onClose } = useDisclosure({
     onClose: () => {
       setSolToStake("");
@@ -42,6 +44,37 @@ const BasicStake = () => {
   const marinade = useMarinade();
   const state = marinade?.marinadeState?.state;
   const marinadeState = marinade?.marinadeState;
+
+  const {
+    getStakeAccountsAction,
+    stakeAccounts,
+    fetchStakesLoading,
+    walletPubKeyContext,
+    resetAccountsAction,
+    fetchStakesLoadingAction,
+  } = useContext(AccountsContext);
+
+  useEffect(() => {
+    if (walletPubKey === null || !isWalletConnected) {
+      resetAccountsAction();
+      fetchStakesLoadingAction(false);
+      return;
+    }
+
+    if (walletPubKey?.toBase58() === walletPubKeyContext?.toBase58()) {
+      getStakeAccountsAction(
+        isWalletConnected,
+        connection,
+        walletPubKey,
+        fetchStakesLoading
+      );
+    } else {
+      getStakeAccountsAction(isWalletConnected, connection, walletPubKey, true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isWalletConnected]);
+
+  stakeAccounts.forEach(() => {});
 
   const mSOLvsSOLParity = marinadeState?.state?.st_sol_price
     ? marinadeState?.state?.st_sol_price?.toNumber() / 0x1_0000_0000
@@ -62,32 +95,6 @@ const BasicStake = () => {
     address: "DKVAJA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5qdfbrvrt5",
     balance: 0.114543543543,
   };
-  const stakeAccounts: StakeAccountType[] = [
-    {
-      address: "asdfJA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5qvdvwf5",
-      balance: 0.115555,
-    },
-    {
-      address: "wwadJA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5q4vdg5",
-      balance: 0.115454334534,
-    },
-    {
-      address: "sfdsfdfVKRhTrWfVPxzydZQu8q15kWkpe5qpdv5",
-      balance: 0.1454353451,
-    },
-    {
-      address: "aaqwsA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5qpi55rff",
-      balance: 0.11353453534,
-    },
-    {
-      address: "d234dvJA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5qcdsf4",
-      balance: 0.1,
-    },
-    {
-      address: "DKVAJA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5qpiswy5",
-      balance: 0.11,
-    },
-  ];
 
   // eslint-disable-next-line consistent-return
   const stakeHandler = () => {
@@ -180,7 +187,7 @@ const BasicStake = () => {
         tokenIcon="/icons/solana-dark.png"
         tokenBalance={sourceTokenBalance}
         currentAccount={currentAccount}
-        stakeAccounts={stakeAccounts}
+        stakeAccounts={[]}
         value={solToStake}
         mb={2}
       />
@@ -190,7 +197,7 @@ const BasicStake = () => {
         tokenIcon="/icons/mSOL.svg"
         tokenBalance={stSOLBalance ?? 0}
         currentAccount={currentAccount}
-        stakeAccounts={stakeAccounts}
+        stakeAccounts={[]}
         value={(Number(solToStake) / mSOLvsSOLParity).toString()}
         mb={2}
       />
