@@ -209,7 +209,16 @@
       "apy": "APY",
       "tvl": "TVL",
       "provider": "Provider",
-      "title": "All pools"
+      "title": "All pools",
+      "mobile-sorter": {
+        "label": "Sort by:",
+        "apy-asc": "APY (asc)",
+        "apy-dsc": "APY (dsc)",
+        "pair": "Pair",
+        "provider": "Provider",
+        "tlv-asc": "TVL (asc)",
+        "tlv-dsc": "TVL (dsc)"
+      }
     },
     "info-msol-sol-price": "MSOL/SOL price",
     "info-total-sol-staked": "Total SOL staked",

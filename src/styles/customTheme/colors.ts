@@ -36,6 +36,9 @@ const overridenChakraColors: DeepPartial<Theme["colors"]> = {
     100: "#FDEEEB",
     500: "#E2543D",
   },
+  gray: {
+    100: "#EDF2F7",
+  },
 };
 
 const colors = {
