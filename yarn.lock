@@ -2818,12 +2818,12 @@
     tiny-invariant "^1.2.0"
     tslib "^2.3.1"
 
-"@saberhq/token-utils@^1.11.0":
-  version "1.11.0"
-  resolved "https://registry.yarnpkg.com/@saberhq/token-utils/-/token-utils-1.11.0.tgz#e778c21399db21462c5b4f19eeae2c840d7289d4"
-  integrity sha512-jIt3fHe2LSes8RtpoKEoX7pwaDESdcsOWTsOXAhnQrhy4e+PWkenSnMyUyNBB/1TKTLWz8Ew64WbMaYNPUVVIA==
+"@saberhq/token-utils@^1.11.1":
+  version "1.11.1"
+  resolved "https://registry.yarnpkg.com/@saberhq/token-utils/-/token-utils-1.11.1.tgz#4d0f20fd99e123b2b27ef464270c4beeed5f0b53"
+  integrity sha512-5TtKw6OBdH0XItIj/Ivg1Yx+pWwEAp6onIoWKS8ClneAyY+QJ/MNYf7G3oqAORfyUh+0Dn5kDIrxg4N0Yo1vPg==
   dependencies:
-    "@saberhq/solana-contrib" "^1.11.0"
+    "@saberhq/solana-contrib" "^1.11.1"
     "@solana/buffer-layout" "^4.0.0"
     "@solana/spl-token" "^0.1.8"
     "@ubeswap/token-math" "^4.4.1"
