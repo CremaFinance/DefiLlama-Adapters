@@ -336,6 +336,12 @@
     "retro-title": "MNDE Retro",
     "retro-info": "Marinade retroactive claim for early adopters will be distributed in the following phases:",
     "your-deposit": "Your deposit",
-    "claim-action": "Claim"
+    "claim-action": "Claim",
+    "claim-success-title": "Claim MNDE confirmed",
+    "claim-success-description": "You've successfully claimed your MNDE",
+    "claim-failed-title": "Something went wrong",
+    "claim-failed-description": "Error processing transaction",
+    "claim-ineligible": "Your wallet is not eligible for this wave of MNDE retroactive rewards. Learn about selection criteria",
+    "claim-ineligible-link": "https://docs.marinade.finance/marinade-dao/tokenomics/retroactive-rewards"
   }
 }

@@ -1,21 +1,96 @@
-import { Box, Flex, Image, Icon } from "@chakra-ui/react";
+import { Box, Flex, Image, Icon, useToast, Spinner } from "@chakra-ui/react";
+import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
+import { useState, useCallback } from "react";
 import { FiExternalLink } from "react-icons/fi";
 import { IoCheckmarkCircle } from "react-icons/io5";
 
+import { useChain } from "../../../contexts/ConnectionProvider";
+import { useMarinade } from "../../../contexts/MarinadeContext";
+import { useUserBalance } from "../../../contexts/UserBalanceContext";
 import { useWallet } from "../../../hooks/useWallet";
 import MButton from "../../atoms/Button";
 import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
 import MTooltip from "../../molecules/InfoIconWithTooltip";
 import { Wallet } from "../../molecules/Wallet";
+import TransactionLink from "components/molecules/TransactionLink";
+import { useMaridrop } from "contexts/MaridropContext";
 import colors from "styles/customTheme/colors";
+import { checkNativeSOLBalance } from "utils/check-native-sol-balance";
+import { format5Dec } from "utils/number-to-short-version";
 
 const RetroMnde = () => {
   const { t } = useTranslation();
-  const { connected } = useWallet();
+  const toast = useToast();
 
-  const claimableMnde = 0.00035; /* should be pulled from services */
+  const [isClaimProcessing, setIsClaimProcessing] = useState(false);
+
+  const { connected } = useWallet();
+  const chain = useChain();
+
+  const { promise, claim } = useMaridrop();
+  const { nativeSOLBalance } = useUserBalance();
+
+  const marinade = useMarinade();
+  const state = marinade?.marinadeState?.state;
+  const marinadeState = marinade?.marinadeState;
+
+  // eslint-disable-next-line consistent-return
+  const claimHandler = useCallback(() => {
+    const fundsNeeded =
+      (marinadeState?.transactionFee ?? 0) +
+      (state?.rent_exempt_for_token_acc?.toNumber() ?? 0);
+
+    const checkBalanceErrors = checkNativeSOLBalance(
+      nativeSOLBalance ?? 0,
+      fundsNeeded
+    );
+
+    if (checkBalanceErrors) {
+      return toast(checkBalanceErrors);
+    }
+
+    setIsClaimProcessing(true);
+
+    claim()
+      .then(
+        (transactionSignature: string) => {
+          toast({
+            title: t("mndePage.claim-success-title"),
+            description: (
+              <p>
+                {t("mndePage.claim-success-description")}{" "}
+                <TransactionLink
+                  chainName={chain.name}
+                  transactionid={transactionSignature}
+                />
+              </p>
+            ),
+            status: "success",
+          });
+        },
+        (error: unknown) => {
+          // eslint-disable-next-line no-console
+          console.error(error);
+
+          toast({
+            title: t("mndePage.claim-failed-title"),
+            description: t("mndePage.claim-failed-description"),
+            status: "warning",
+          });
+        }
+      )
+      .finally(() => setIsClaimProcessing(false));
+  }, [
+    chain.name,
+    claim,
+    marinadeState?.transactionFee,
+    nativeSOLBalance,
+    state?.rent_exempt_for_token_acc,
+    t,
+    toast,
+  ]);
 
   const RETRO_DATES = [
     {
@@ -143,20 +218,52 @@ const RetroMnde = () => {
           alignItems="center"
           justifyContent="space-between"
         >
-          <Flex alignItems="center">
-            <Image src="/icons/mnde.svg" boxSize="24px" mr="4px" />
-            <MText>{claimableMnde} MNDE</MText>
-          </Flex>
-          <MButton
-            variant="outline"
-            borderColor="gray"
-            color="black"
-            width={{ base: "70px", lg: "80px" }}
-            fontWeight="500"
-            fontSize="14.4px"
-          >
-            {t("Claim")}
-          </MButton>
+          {
+            // eslint-disable-next-line no-nested-ternary
+            promise === null ? (
+              <MText>
+                {t("mndePage.claim-ineligible")}{" "}
+                <MLink
+                  fontSize={{ base: "11px", lg: "14.4px" }}
+                  fontWeight="700"
+                  color={colors.marinadeGreen}
+                  href={t("mndePage.claim-ineligible-link")}
+                  rel="noreferrer noopener"
+                  isExternal
+                >
+                  here.
+                </MLink>
+              </MText>
+            ) : promise === undefined ? (
+              <Spinner />
+            ) : (
+              <>
+                <Flex alignItems="center">
+                  <Image src="/icons/mnde.svg" boxSize="24px" mr="4px" />
+                  <MText>
+                    {format5Dec(
+                      promise?.nonClaimedAmount.toNumber(),
+                      LAMPORTS_PER_SOL
+                    )}{" "}
+                    MNDE
+                  </MText>
+                </Flex>
+                <MButton
+                  variant="outline"
+                  borderColor="gray"
+                  color="black"
+                  width={{ base: "70px", lg: "80px" }}
+                  fontWeight="500"
+                  fontSize="14.4px"
+                  onClick={() => claimHandler()}
+                  isLoading={isClaimProcessing}
+                  disabled={promise?.nonClaimedAmount.isZero()}
+                >
+                  {t("Claim")}
+                </MButton>
+              </>
+            )
+          }
         </Flex>
       ) : (
         <Wallet />
