@@ -25,3 +25,5 @@ export const providers: Providers<ProviderKeys> = {
   [providerKeys.ATRIX]: atrix,
   [providerKeys.FRANCIUM]: francium,
 };
+
+export type ProviderOptions = Record<string, Record<string, unknown>>;

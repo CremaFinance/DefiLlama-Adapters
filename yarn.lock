@@ -2806,7 +2806,7 @@
     lodash.mapvalues "^4.6.0"
     tslib "^2.3.1"
 
-"@saberhq/solana-contrib@^1.10.16", "@saberhq/solana-contrib@^1.11.0":
+"@saberhq/solana-contrib@^1.11.0":
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/@saberhq/solana-contrib/-/solana-contrib-1.11.0.tgz#e5184d3c2b8fe7d9abbe59000150804d464ccd53"
   integrity sha512-SzL1K6K8lT8HB8+pIP2ohrYVuqEt1334JVlcxocc1koNfoGojxVnjcBH+NeJ6FeRoYxZuPsiIgAzJvCXcoCr1Q==

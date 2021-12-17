@@ -1,7 +1,9 @@
 import { Flex } from "@chakra-ui/react";
 import { useMemo, useState } from "react";
 
+import { useStats } from "../../../contexts/StatsContext";
 import { Pool, PoolConfig } from "../../../services/domain/pool";
+import { providerKeys } from "../../../services/pools/index";
 import PoolRow from "components/molecules/PoolRow";
 import { usePools } from "hooks/usePools";
 
@@ -15,7 +17,11 @@ const AllPoolsSection = () => {
     isInverted: false,
   });
 
-  const results = usePools();
+  const { totalStaked } = useStats();
+  // just for an example
+  const results = usePools({
+    [providerKeys.ORCA]: { msolsupply: totalStaked },
+  });
 
   const sortedPools = useMemo(
     () =>
