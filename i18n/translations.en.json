@@ -332,6 +332,23 @@
     "missing-sol-for-fee": "You need some SOL balance on your wallet to cover the transaction fees.",
     "something-went-wrong": "Something went wrong",
     "stake-sol-confirmed": "Stake SOL confirmed",
+    "stake-account": {
+      "title": "Stake of {{accountAddress}} account confirmed",
+      "message": "You've successfully staked your account"
+    },
+    "no-stake-accounts": {
+      "line-1": "Your stake accounts will be shown here.",
+      "line-2": "You dont have any valid stake accounts."
+    },
+    "stake-accounts-connect-wallet": "Connect your wallet to see your stake accounts.",
+    "stake-account-errors": {
+      "mainnetFull": "Mainnet Beta Capped TVL is FULL. Please wait for cap increments.",
+      "checkValidatorCommision": "Can not accept Stake accounts from this Validator (check validator commission & performance).",
+      "accountLockup": "The stake account has a Lockup (0xb3aa)",
+      "invalidAccountData": "You can only deposit fully activated stake accounts. Wait for the next epoch.",
+      "noPriorRecord": "You need some SOL balance on your wallet to cover the transaction fees.",
+      "insufficientFunds": "Insufficient funds. Need at least 1 SOL"
+    },
     "successfully-staked-your-sol": "You've successfully staked your SOL",
     "try-using-max-button": "Try using the MAX button to stake the maximum allowed amount.",
 
