@@ -80,7 +80,7 @@ export const MaridropProvider: FC<{ children: ReactNode }> = ({ children }) => {
     })();
   }, [program]);
 
-  const [promise, setPromise] = useState<MaridropPromise | undefined>();
+  const [promise, setPromise] = useState<MaridropPromise | undefined | null>();
   useEffect(() => {
     if (connected) {
       (async () => {
@@ -98,7 +98,7 @@ export const MaridropProvider: FC<{ children: ReactNode }> = ({ children }) => {
           setPromise(promise as MaridropPromise);
         } catch (e) {
           // TODO: differentiate no account from network error
-          setPromise(undefined);
+          setPromise(null);
         }
       })();
     } else {
