@@ -2806,7 +2806,7 @@
     lodash.mapvalues "^4.6.0"
     tslib "^2.3.1"
 
-"@saberhq/solana-contrib@^1.10.16", "@saberhq/solana-contrib@^1.11.0":
+"@saberhq/solana-contrib@^1.11.0":
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/@saberhq/solana-contrib/-/solana-contrib-1.11.0.tgz#e5184d3c2b8fe7d9abbe59000150804d464ccd53"
   integrity sha512-SzL1K6K8lT8HB8+pIP2ohrYVuqEt1334JVlcxocc1koNfoGojxVnjcBH+NeJ6FeRoYxZuPsiIgAzJvCXcoCr1Q==
@@ -8421,10 +8421,10 @@ fragment-cache@^0.2.1:
   dependencies:
     map-cache "^0.2.2"
 
-framer-motion@^5.5.3:
-  version "5.5.3"
-  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-5.5.3.tgz#3a4e0725eae458830202b0eb80202951698f8c8d"
-  integrity sha512-rS/eeTLdCsxg6F4Ikk+c+X9emawLSngwxdmXtgfT9qB8yiR2gi8/bdmfeSwyh3ngw63WcVVx3olIkwAY7x3p3A==
+framer-motion@^5.5.5:
+  version "5.5.5"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-5.5.5.tgz#2cc9345e720ec1b93189ee76423799c72a3224b4"
+  integrity sha512-+LPAF5ddo02qKh+MK4h1ChwqUFvrLkK1NDWwrHy+MuCVmQDGgiFNHvwqOSklTDGkEtbio3dCOEDy23+ZyNAa9g==
   dependencies:
     framesync "6.0.1"
     hey-listen "^1.0.8"
