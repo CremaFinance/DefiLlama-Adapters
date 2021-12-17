@@ -221,7 +221,7 @@ const RetroMnde = () => {
           {
             // eslint-disable-next-line no-nested-ternary
             promise === null ? (
-              <MText>
+              <MText fontSize={{ base: "11px", lg: "14.4px" }}>
                 {t("mndePage.claim-ineligible")}{" "}
                 <MLink
                   fontSize={{ base: "11px", lg: "14.4px" }}
