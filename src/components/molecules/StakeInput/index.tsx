@@ -21,6 +21,7 @@ import { MdContentCopy } from "react-icons/md";
 import NumberFormat from "react-number-format";
 
 import { useTranslation } from "../../../hooks/useTranslation";
+import { useWallet } from "../../../hooks/useWallet";
 import colors from "../../../styles/customTheme/colors";
 import { format5Dec, format2Dec } from "../../../utils/number-to-short-version";
 import {
@@ -29,7 +30,6 @@ import {
 } from "../../../utils/shorten-address";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
-import { useWallet } from "hooks/useWallet";
 
 export enum StakeInputTypeEnum {
   Source = "source",
