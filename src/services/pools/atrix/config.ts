@@ -10,8 +10,8 @@ import {
 import {
   LiquidityPoolAtrixIds,
   liquidityPoolAtrixIds,
-} from "./liquidityRaydiumPoolIds";
-import { liquidityPoolTokensAtrix } from "./liquidityRaydiumPoolTokens";
+} from "./liquidityAtrixPoolIds";
+import { liquidityPoolTokensAtrix } from "./liquidityAtrixPoolTokens";
 
 const provider = "Atrix";
 const actions = [
