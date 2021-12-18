@@ -29,7 +29,7 @@ const RetroMnde = () => {
   const { connected } = useWallet();
   const chain = useChain();
 
-  const { promise, claim } = useMaridrop();
+  const maridrop = useMaridrop();
   const { nativeSOLBalance } = useUserBalance();
 
   const marinade = useMarinade();
@@ -53,7 +53,16 @@ const RetroMnde = () => {
 
     setIsClaimProcessing(true);
 
-    claim()
+    if (!maridrop) {
+      return toast({
+        title: t("appPage.something-went-wrong"),
+        description: "",
+        status: "warning",
+      });
+    }
+
+    maridrop
+      .claim()
       .then(
         (transactionSignature: string) => {
           toast({
@@ -84,7 +93,7 @@ const RetroMnde = () => {
       .finally(() => setIsClaimProcessing(false));
   }, [
     chain.name,
-    claim,
+    maridrop,
     marinadeState?.transactionFee,
     nativeSOLBalance,
     state?.rent_exempt_for_token_acc,
@@ -220,7 +229,7 @@ const RetroMnde = () => {
         >
           {
             // eslint-disable-next-line no-nested-ternary
-            promise === null ? (
+            maridrop?.promise === null ? (
               <MText fontSize={{ base: "11px", lg: "14.4px" }}>
                 {t("mndePage.claim-ineligible")}{" "}
                 <MLink
@@ -234,7 +243,7 @@ const RetroMnde = () => {
                   here.
                 </MLink>
               </MText>
-            ) : promise === undefined ? (
+            ) : maridrop?.promise === undefined ? (
               <Spinner />
             ) : (
               <>
@@ -242,7 +251,7 @@ const RetroMnde = () => {
                   <Image src="/icons/mnde.svg" boxSize="24px" mr="4px" />
                   <MText>
                     {format5Dec(
-                      promise?.nonClaimedAmount.toNumber(),
+                      maridrop?.promise?.nonClaimedAmount.toNumber(),
                       LAMPORTS_PER_SOL
                     )}{" "}
                     MNDE
@@ -257,7 +266,7 @@ const RetroMnde = () => {
                   fontSize="14.4px"
                   onClick={() => claimHandler()}
                   isLoading={isClaimProcessing}
-                  disabled={promise?.nonClaimedAmount.isZero()}
+                  disabled={maridrop?.promise?.nonClaimedAmount.isZero()}
                 >
                   {t("Claim")}
                 </MButton>
