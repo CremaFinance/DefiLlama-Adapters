@@ -4,37 +4,30 @@ import {
   ModalCloseButton,
   ModalContent,
   ModalOverlay,
-  useDisclosure,
   Flex,
   Image,
 } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 
 import { useTranslation } from "../../../hooks/useTranslation";
 import colors from "../../../styles/customTheme/colors";
-import Button from "../../atoms/Button";
+import MButton from "../../atoms/Button";
 import Text from "../../atoms/Text";
 
-type ChildrenRenderProps = {
-  openModal: () => void;
-  closeModal?: () => void;
-};
-
-type ChildrenRenderFn = (props: ChildrenRenderProps) => React.ReactElement;
-
 interface SuccessStakeModalProps {
-  children: ChildrenRenderFn;
   onClose: () => Promise<void> | void;
-  stakedAmount: number;
+  isOpen: boolean;
+  stakedAmount: string;
   stakedCurrency: string;
 }
 
 const SuccessStakeModal = ({
   onClose: onCloseProp,
-  children,
+  isOpen: isOpenProp,
   stakedAmount,
   stakedCurrency,
 }: SuccessStakeModalProps) => {
-  const { isOpen, onOpen, onClose } = useDisclosure({ onClose: onCloseProp });
+  const router = useRouter();
   const { t } = useTranslation();
 
   const bodyLine1 = t("appPage.success-stake.body-line1");
@@ -48,8 +41,7 @@ const SuccessStakeModal = ({
 
   return (
     <>
-      {children({ openModal: onOpen })}
-      <Modal isOpen={isOpen} onClose={onClose} size="lg">
+      <Modal isOpen={isOpenProp} onClose={onCloseProp} size="lg">
         <ModalOverlay />
         <ModalContent maxW="480px">
           <ModalCloseButton />
@@ -59,7 +51,7 @@ const SuccessStakeModal = ({
                 marginTop="38px"
                 width="219.03px"
                 height="166.64px"
-                src="/public/success-stake.png"
+                src="/ilustrations/success-stake.png"
               />
               <Text
                 marginTop="18px"
@@ -88,15 +80,18 @@ const SuccessStakeModal = ({
                 {bodyAfterLine2}
               </Text>
               <Flex marginTop="24px" marginBottom="31px">
-                <Button
+                <MButton
                   variant="big-solid"
                   fontSize="18px"
                   lineHeight="25.2px"
                   fontWeight="bold"
                   paddingX="44px"
+                  onClick={() => {
+                    router.push("/app/defi").finally(onCloseProp);
+                  }}
                 >
                   {buttonText}
-                </Button>
+                </MButton>
               </Flex>
             </Flex>
           </ModalBody>

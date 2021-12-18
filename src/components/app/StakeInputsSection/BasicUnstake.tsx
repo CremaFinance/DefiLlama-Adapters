@@ -1,8 +1,8 @@
 import { Flex, IconButton, useToast } from "@chakra-ui/react";
 import { useWallet } from "@solana/wallet-adapter-react";
-import { LAMPORTS_PER_SOL } from "@solana/web3.js";
+import { LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { MdInfoOutline } from "react-icons/md";
 
 import { useUserBalance } from "../../../contexts/UserBalanceContext";
@@ -16,23 +16,39 @@ import StakeInput, {
 import SwitchButtons from "components/molecules/SwitchButtons";
 import TooltipWithContent from "components/molecules/TooltipWithContent";
 import TransactionLink from "components/molecules/TransactionLink";
-import { useChain } from "contexts/ConnectionProvider";
+import { AccountsContext } from "contexts/AccountsContext";
+import { useChain, useConnection, useKeys } from "contexts/ConnectionProvider";
 import { useMarinade } from "contexts/MarinadeContext";
+import { TicketAccount } from "solana/domain/ticket-account";
 import colors from "styles/customTheme/colors";
 import { basicInputChecks } from "utils/basic-input-checks";
 import { checkNativeSOLBalance } from "utils/check-native-sol-balance";
-import { format5Dec } from "utils/number-to-short-version";
+import { format5Dec, format9Dec } from "utils/number-to-short-version";
+
+import DelayedUnstakeModal from "./DelayedUnstakeModal";
 
 const BasicUnstake = () => {
   const { t } = useTranslation();
   const toast = useToast();
+  const connection = useConnection();
+  const keys = useKeys();
 
   const [isUnstakeNowActive, setUnstakeNowActive] = useState(true);
   const [unstakeLoading, setUnstakeLoading] = useState(false);
-  const [stSolToUnstake, setStSolToUnstake] = useState<number>(0);
+  const [stSolToUnstake, setStSolToUnstake] = useState<string>("");
+  const [showModal, setShowModal] = useState(false);
   const { nativeSOLBalance, stSOLBalance } = useUserBalance();
-  const { connected: isWalletConnected } = useWallet();
+  const { connected: walletConnected, publicKey: walletPubKey } = useWallet();
+
   const chain = useChain();
+  const {
+    getTicketAccountsAction,
+    ticketAccounts,
+    fetchTicketsLoading,
+    fetchTicketsLoadingAction,
+    walletPubKeyContext,
+    resetAccountsAction,
+  } = useContext(AccountsContext);
 
   const marinade = useMarinade();
   const marinadeState = marinade?.marinadeState;
@@ -82,11 +98,46 @@ const BasicUnstake = () => {
     },
   ];
 
+  useEffect(() => {
+    if (walletConnected) {
+      if (walletPubKey?.toBase58() === walletPubKeyContext?.toBase58()) {
+        getTicketAccountsAction(
+          keys,
+          walletConnected,
+          connection,
+          walletPubKey as PublicKey,
+          fetchTicketsLoading
+        );
+      } else {
+        getTicketAccountsAction(
+          keys,
+          walletConnected,
+          connection,
+          walletPubKey as PublicKey,
+          true
+        );
+      }
+    } else {
+      resetAccountsAction();
+      fetchTicketsLoadingAction(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [walletConnected]);
+
+  const resetInputs = () => {
+    setUnstakeLoading(false);
+    setStSolToUnstake("");
+
+    if (!isUnstakeNowActive) {
+      setShowModal(false);
+    }
+  };
+
   // eslint-disable-next-line consistent-return
   const unstakeHandler = () => {
     const basicInputChecksErrors = basicInputChecks(
-      stSolToUnstake,
-      isWalletConnected
+      Number(stSolToUnstake),
+      walletConnected
     );
     if (basicInputChecksErrors) {
       return toast(basicInputChecksErrors);
@@ -104,7 +155,7 @@ const BasicUnstake = () => {
     if (!stSOLBalance || Number.isNaN(stSOLBalance)) return false;
 
     let toUnstakeFullDecimals;
-    if (stSolToUnstake === Math.round(stSOLBalance * 1e5) / 1e5) {
+    if (Number(stSolToUnstake) === Math.round(stSOLBalance * 1e5) / 1e5) {
       // Note: input text has 5 decimals (rounded), while stSOLBalance has full decimals
       // so if the user wants to unstake all, get precise balance
       toUnstakeFullDecimals = stSOLBalance;
@@ -113,11 +164,16 @@ const BasicUnstake = () => {
     }
 
     if (toUnstakeFullDecimals > stSOLBalance) {
+      const description = t("appPage.you-requested-to-unstake")
+        ?.replace(
+          "{{requestedAmount}}",
+          format5Dec(Number(toUnstakeFullDecimals))
+        )
+        .replace("{{actualAmount}}", format5Dec(stSOLBalance));
+
       toast({
-        title: "Insufficient funds to unstake",
-        description: `You requested to unstake ${Number(
-          format5Dec(toUnstakeFullDecimals)
-        )} mSOL (have only ${Number(format5Dec(stSOLBalance))})`,
+        title: t("appPage.insufficient-funds-to-unstake"),
+        description,
         status: "warning",
         duration: 5000,
         isClosable: true,
@@ -128,15 +184,15 @@ const BasicUnstake = () => {
     setUnstakeLoading(true);
 
     marinade
-      .runUnstake(toUnstakeFullDecimals * LAMPORTS_PER_SOL)
+      .runUnstake(Number(toUnstakeFullDecimals) * LAMPORTS_PER_SOL)
       .then(
         (transactionSignature) => {
-          setStSolToUnstake(0);
+          setStSolToUnstake("");
           toast({
-            title: "Unstake mSOL confirmed",
+            title: t("appPage.unstake-mSOL-confirmed"),
             description: (
               <p>
-                {"You've successfully unstaked your mSOL "}
+                {t("appPage.successfully-unstake-mSOL")}{" "}
                 <TransactionLink
                   chainName={chain.name}
                   transactionid={transactionSignature}
@@ -154,25 +210,86 @@ const BasicUnstake = () => {
 
           let description = error.message;
           if (error.toString().includes("0x1199")) {
-            description =
-              "Insufficient Liquidity in the Liquidity Pool. Please use Delayed Unstake";
+            description = t(
+              "appPage.insufficient-liquidity-in-the-liquidity-pool"
+            );
           } else if (error.toString().includes("no record of a prior credit")) {
-            description =
-              "You need some SOL balance on your wallet to cover the transaction fees.";
+            description = t("appPage.you-need-some-sol-balance-for-fee");
           }
 
           toast({
-            title: "Something went wrong",
+            title: t("appPage.something-went-wrong"),
             description,
             status: "warning",
           });
         }
       )
-      .then(() => setStSolToUnstake(0))
+      .then(() => setStSolToUnstake(""))
       .finally(() => {
         setUnstakeLoading(false);
-        setStSolToUnstake(0);
+        getTicketAccountsAction(
+          keys,
+          walletConnected,
+          connection,
+          walletPubKey as PublicKey,
+          true
+        );
+        setStSolToUnstake("");
+        resetInputs();
       });
+  };
+
+  const runClaimHandler = (accountPubkey: TicketAccount["key"]) => {
+    marinade
+      .runClaim(accountPubkey)
+      .then(
+        (transactionSignature) => {
+          const successTitleMessage = t(
+            "appPage.claim-success-tooltip-title"
+          )?.replace("{{accountPubkey}}", accountPubkey);
+          toast({
+            title: successTitleMessage,
+            description: (
+              <p>
+                {t("appPage.claim-success-tooltip-body")}
+                <TransactionLink
+                  chainName={chain.name}
+                  transactionid={transactionSignature}
+                />
+              </p>
+            ),
+            status: "success",
+          });
+        },
+        (error) => {
+          let errorMessage;
+          if (error.includes("0x1104")) {
+            errorMessage = t("appPage.claim-error-tooltip-body-not-ready-yet");
+          }
+
+          if (error.includes("no record of a prior credit")) {
+            errorMessage = t(
+              "appPage.claim-error-tooltip-body-not-enough-sol-balance"
+            );
+          }
+          errorMessage = error.message;
+
+          toast({
+            title: t("appPage.claim-error-tooltip-title"),
+            description: errorMessage,
+            status: "warning",
+          });
+        }
+      )
+      .then(() =>
+        getTicketAccountsAction(
+          keys,
+          walletConnected,
+          connection,
+          walletPubKey as PublicKey,
+          true
+        )
+      );
   };
 
   return (
@@ -187,7 +304,10 @@ const BasicUnstake = () => {
         active={isUnstakeNowActive}
         font="text-lg"
         display="flex"
-        handleSwitch={setUnstakeNowActive}
+        handleSwitch={() => {
+          setUnstakeNowActive((val) => !val);
+          setStSolToUnstake("");
+        }}
       />
       <StakeInput
         stakeInputType={StakeInputTypeEnum.Source}
@@ -207,7 +327,7 @@ const BasicUnstake = () => {
         tokenBalance={targetTokenBalance}
         currentAccount={currentAccount}
         stakeAccounts={stakeAccounts}
-        value={stSolToUnstake * mSOLvsSOLParity}
+        value={format9Dec(Number(stSolToUnstake) * mSOLvsSOLParity)}
         mb={2}
       />
       <Flex width={["256px", "400px"]} my={1} justifyContent="space-between">
@@ -278,11 +398,22 @@ const BasicUnstake = () => {
         height="48px"
         mx={4}
         mt={5}
-        onClick={unstakeHandler}
+        onClick={isUnstakeNowActive ? unstakeHandler : () => setShowModal(true)}
       >
         {unstakeText}
       </MButton>
-      {!isUnstakeNowActive ? <UnstakeTicketsSection /> : null}
+
+      <DelayedUnstakeModal
+        stSolToUnstake={Number(stSolToUnstake)}
+        isOpen={showModal}
+        onClose={resetInputs}
+      />
+      {!isUnstakeNowActive ? (
+        <UnstakeTicketsSection
+          ticketAccounts={ticketAccounts}
+          runClaimHandler={runClaimHandler}
+        />
+      ) : null}
     </>
   );
 };
