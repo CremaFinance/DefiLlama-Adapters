@@ -6,7 +6,7 @@ import { marinadePools } from "./config";
 import { MarinadePool } from "./marinadePool";
 
 export async function fetchMarinadePools(): Promise<MarinadePool> {
-  const response = await fetch(`https://api.atrix.finance/api/tvl`);
+  const response = await fetch(`https://api.marinade.finance/lp/apy/7d`);
   if (!response.ok) {
     throw new Error(response.statusText);
   }
@@ -21,7 +21,6 @@ export const mapMarinadePoolsResponse = (
   const poolsArray = Object.entries(marinadePools).map(
     ([poolkey, incoming]) => {
       let pool = incoming;
-
       if (pool.providerId) {
         const result = marinadeResults;
         if (result) {
