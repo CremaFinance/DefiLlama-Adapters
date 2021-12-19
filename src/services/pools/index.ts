@@ -14,6 +14,7 @@ export const providerKeys = {
   LARIX: "larix",
   ATRIX: "atrix",
   FRANCIUM: "francium",
+  MNDE: "marinade",
 } as const;
 export type ProviderKeys = typeof providerKeys[keyof typeof providerKeys];
 

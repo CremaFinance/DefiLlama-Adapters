@@ -17,10 +17,9 @@ const AllPoolsSection = () => {
     isInverted: false,
   });
 
-  const { totalStaked } = useStats();
-  // just for an example
+  const { liqPoolBalance } = useStats();
   const results = usePools({
-    [providerKeys.ORCA]: { msolsupply: totalStaked },
+    [providerKeys.MNDE]: { tvl: liqPoolBalance },
   });
 
   const sortedPools = useMemo(

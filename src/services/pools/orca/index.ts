@@ -42,9 +42,7 @@ export const mapOrcaPoolsResponse = (
   }, {});
 };
 
-export const getOrca: FetchPools = async (prices, options) => {
-  // eslint-disable-next-line no-console
-  console.log(options);
+export const getOrca: FetchPools = async (prices) => {
   const results = await fetchOrcaPools();
   return mapOrcaPoolsResponse(results, prices);
 };
