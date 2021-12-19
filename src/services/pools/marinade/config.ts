@@ -16,7 +16,7 @@ import { MarinadePool } from "./marinadePool";
 const provider = "Marinade";
 const actions = [
   {
-    text: "Add Liquidity",
+    text: "Manage deposit",
     url: "https://marinade-web.pages.dev",
   },
   {
