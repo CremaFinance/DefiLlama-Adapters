@@ -15,7 +15,7 @@ export const liquidityPoolTokensMarinade: Record<
     symbol: "mSO-SOL-LP",
     name: "MNDE mSOL/SOL",
     decimals: 9,
-    logoURI: "/pools/mnde",
+    logoURI: "/pools/mnde.png",
     tags: ["lp-token"],
   },
 };

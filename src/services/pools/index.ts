@@ -3,6 +3,7 @@ import { Providers } from "../domain/providers";
 import { atrix } from "./atrix";
 import { francium } from "./francium";
 import { larix } from "./larix";
+import { marinade } from "./marinade";
 import { orca } from "./orca";
 import { port } from "./port";
 import { raydium } from "./raydium";
@@ -25,6 +26,7 @@ export const providers: Providers<ProviderKeys> = {
   [providerKeys.LARIX]: larix,
   [providerKeys.ATRIX]: atrix,
   [providerKeys.FRANCIUM]: francium,
+  [providerKeys.MNDE]: marinade,
 };
 
 export type ProviderOptions = Record<string, Record<string, unknown>>;
