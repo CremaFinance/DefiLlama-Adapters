@@ -1,9 +1,9 @@
 /* eslint-disable complexity */
-import { Box, Flex, Icon, Image } from "@chakra-ui/react";
+import { Box, Flex, Icon, Image, useToast } from "@chakra-ui/react";
 import { BN } from "@project-serum/anchor";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { IoCheckmarkCircle } from "react-icons/io5";
 
 import { useWallet } from "../../../hooks/useWallet";
@@ -11,6 +11,8 @@ import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
 import { Wallet } from "../../molecules/Wallet";
+import TransactionLink from "components/molecules/TransactionLink";
+import { useChain } from "contexts/ConnectionProvider";
 import { useMarinade } from "contexts/MarinadeContext";
 import { useQuarryProvider } from "contexts/QuaryContext";
 import { usePrices } from "hooks/usePrices";
@@ -21,12 +23,15 @@ import { format2Dec, format5Dec } from "utils/number-to-short-version";
 
 const MNDEFarmCard = () => {
   const { t } = useTranslation();
+  const toast = useToast();
   const { connected } = useWallet();
   const {
+    mndeTokadaptState,
     farms: { mSOL },
   } = useQuarryProvider();
   const prices = usePrices([coinSymbols.SOL, coinSymbols.MNDE]);
   const { marinadeState } = useMarinade();
+  const chain = useChain();
 
   const mSOLFarmAnnualRewards = parseFloat(
     mSOL?.quarry?.computeAnnualRewardsRate()?.toString()
@@ -70,6 +75,45 @@ const MNDEFarmCard = () => {
     }, 1000);
     return () => clearTimeout(clock);
   }, []);
+
+  const [isClaimProcessing, setIsClaimProcessing] = useState(false);
+
+  // eslint-disable-next-line consistent-return
+  const claimHandler = useCallback(() => {
+    setIsClaimProcessing(true);
+    mSOL
+      .claim()
+      .then(
+        (transactionSignature) => {
+          toast({
+            title: t("mndePage.claim-mnde-confirmed"),
+            description: (
+              <p>
+                {t("mndePage.succesfully-claimed-mnde")}{" "}
+                <TransactionLink
+                  chainName={chain.name}
+                  transactionid={transactionSignature}
+                />
+              </p>
+            ),
+            status: "success",
+          });
+        },
+        (error) => {
+          // eslint-disable-next-line no-console
+          console.error(error);
+
+          toast({
+            title: t("mndePage.something-went-wrong"),
+            description: t("mndePage.error-processing-transaction"),
+            status: "warning",
+          });
+        }
+      )
+      .finally(() => {
+        setIsClaimProcessing(false);
+      });
+  }, [chain.name, mSOL, t, toast]);
 
   return (
     <Flex
@@ -159,6 +203,13 @@ const MNDEFarmCard = () => {
               width={{ base: "70px", lg: "80px" }}
               fontWeight="500"
               fontSize="14.4px"
+              onClick={() => claimHandler()}
+              isLoading={isClaimProcessing}
+              isDisabled={
+                !mndeTokadaptState ||
+                Number(format5Dec(rewards?.toNumber(), LAMPORTS_PER_SOL)) <
+                  0.00001
+              }
             >
               {t("mndePage.claim-action")}
             </MButton>
