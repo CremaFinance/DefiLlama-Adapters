@@ -1,11 +1,11 @@
 import { Flex, Text, Image } from "@chakra-ui/react";
 
 import MLink from "../../atoms/Link";
-import MNDEFarmCard from "../../molecules/MNDEFarmCard";
 import InfoBoxesSection from "../InfoBoxesSection";
 import { useTranslation } from "hooks/useTranslation";
 import colors from "styles/customTheme/colors";
 
+import MNDEFarmCard from "./MNDEFarmCard";
 import RetroMnde from "./RetroMnde";
 
 const MndeSection = () => {

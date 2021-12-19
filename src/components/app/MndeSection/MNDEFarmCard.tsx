@@ -10,7 +10,7 @@ import { useWallet } from "../../../hooks/useWallet";
 import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
-import { Wallet } from "../Wallet";
+import { Wallet } from "../../molecules/Wallet";
 import { useMarinade } from "contexts/MarinadeContext";
 import { useQuarryProvider } from "contexts/QuaryContext";
 import { usePrices } from "hooks/usePrices";
