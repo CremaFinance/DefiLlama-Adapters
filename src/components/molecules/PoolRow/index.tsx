@@ -1,18 +1,6 @@
-import {
-  Flex,
-  Image,
-  Icon,
-  Spinner,
-  useDisclosure,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalCloseButton,
-} from "@chakra-ui/react";
+import { Flex, Image, Icon, Spinner, useDisclosure } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent } from "react";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 
 import { Pool, PoolConfig } from "../../../services/domain/pool";
@@ -21,11 +9,7 @@ import Button from "../../atoms/Button";
 import Heading from "../../atoms/Heading";
 import Text from "../../atoms/Text";
 import ApyAndRewardTooltip from "../ApyAndRewardTooltip";
-import StakeInput, {
-  StakeInputTypeEnum,
-} from "components/molecules/StakeInput";
-import SwitchButtons from "components/molecules/SwitchButtons";
-import colors from "styles/customTheme/colors";
+import MndeLiquidityModal from "components/molecules/MndeLiquidityModal";
 
 type PoolRowProps = {
   pool: Pool | PoolConfig;
@@ -45,15 +29,6 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
   const { t } = useTranslation();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const totalApy = apy?.toFixed(2);
-  const [isAddLiquidityActive, setAddLiquidityActive] = useState(true);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [liquidityAmount, setLiquidityAmount] = useState<number>(0);
-  // const [inputIcon, setInputIcon] = useState("solana-dark");
-
-  // const handleSwitchButton = () => {
-  //   setAddLiquidityActive(!isAddLiquidityActive);
-  //   setInputIcon(isAddLiquidityActive ? "solana-dark" : "solana-lp");
-  // };
 
   const totalApyString = totalApy
     ? t("appPage.pool-row.total-apy")?.replace("{{totalApy}}", totalApy)
@@ -75,118 +50,8 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
     />
   );
 
-  const liquidityButtonText = isAddLiquidityActive
-    ? t("appPage.liquidity-modal.add-liquidity")
-    : t("appPage.liquidity-modal.remove-liquidity");
-
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay w="100vw" />
-        <ModalContent
-          px={[4, 8]}
-          pb={[4, 8]}
-          w={["90vw", "480px"]}
-          backgroundColor="white"
-          overflow="auto"
-        >
-          <ModalHeader mb={[2, 0]} />
-          <ModalCloseButton _focus={{ boxShadow: "none" }} />
-          <ModalBody p={0}>
-            <Flex display="flex" justifyContent="center">
-              <SwitchButtons
-                leftText={t("appPage.liquidity-modal.add-liquidity")}
-                rightText={t("appPage.liquidity-modal.remove-liquidity")}
-                height={40}
-                mb={8}
-                width={["254px", "322px"]}
-                buttonWidth={["121px", "155px"]}
-                active={isAddLiquidityActive}
-                font="text-lg"
-                display="flex"
-                handleSwitch={setAddLiquidityActive}
-              />
-            </Flex>
-            <Flex mb={2}>
-              <Image src="/pools/msol.png" width="24px" height="24px" />
-              <Text marginLeft="8px" fontSize="14.4px">
-                mSOL - SOL LP
-              </Text>
-            </Flex>
-            <Flex justifyContent="space-between">
-              <Text lineHeight="21.6px" fontSize="14.4px">
-                Balance
-              </Text>
-              <Text lineHeight="21.6px" fontSize="14.4px">
-                0
-              </Text>
-            </Flex>
-            <Flex width="100%" justifyContent="flex-end">
-              <Text lineHeight="21.6px" fontSize="14.4px">
-                = 0 SOL
-              </Text>
-            </Flex>
-            <Flex mb={4} width="100%" justifyContent="flex-end">
-              <Text lineHeight="21.6px" fontSize="14.4px">
-                = $0.18
-              </Text>
-            </Flex>
-            <StakeInput
-              stakeInputType={StakeInputTypeEnum.Liquidity}
-              onValueChange={setLiquidityAmount}
-              tokenName="SOL"
-              tokenIcon={
-                isAddLiquidityActive
-                  ? "/icons/solana-dark.png"
-                  : "/icons/solana-lp.png"
-              }
-              tokenBalance={20}
-              value={20}
-              mb={4}
-            />
-            <Flex h="52px">
-              {!isAddLiquidityActive ? (
-                <Flex>
-                  <Flex justifyContent="space-between">
-                    <Text lineHeight="21.6px" fontSize="14.4px">
-                      You will recive
-                    </Text>
-                    <Text lineHeight="21.6px" fontSize="14.4px">
-                      0.0013 SOL
-                    </Text>
-                  </Flex>
-                  <Flex mb={4} width="100%" justifyContent="flex-end">
-                    <Text lineHeight="21.6px" fontSize="14.4px">
-                      = 0 mSOL
-                    </Text>
-                  </Flex>
-                </Flex>
-              ) : null}
-            </Flex>
-            <Flex justifyContent="center">
-              <Button
-                font="text-xl"
-                bg={colors.marinadeGreen}
-                // isLoading={}
-                _hover={{ bg: colors.green800 }}
-                colorScheme={colors.marinadeGreen}
-                rounded="md"
-                height="48px"
-                my={8}
-                // onClick={liquidityHandler}
-              >
-                {liquidityButtonText}
-              </Button>
-            </Flex>
-            <Text lineHeight="21.6px" fontSize="14.4px">
-              You are adding liquidity only in SOL. When removing liquidity, you
-              you will burn shares from the liquidity pool. You will receive SOL
-              and mSOL from the pool according to the actual pool composition.
-            </Text>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
-
       <Flex
         bg="white"
         paddingX={{ base: "24px", lg: "1.5rem" }}
@@ -328,6 +193,7 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
           </Flex>
         </Flex>
       </Flex>
+      <MndeLiquidityModal isOpen={isOpen} onClose={onClose} />
     </>
   );
 };
