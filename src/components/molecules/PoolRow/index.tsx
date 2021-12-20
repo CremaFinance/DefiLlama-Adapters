@@ -9,7 +9,7 @@ import Button from "../../atoms/Button";
 import Heading from "../../atoms/Heading";
 import Text from "../../atoms/Text";
 import ApyAndRewardTooltip from "../ApyAndRewardTooltip";
-import MndeLiquidityModal from "components/molecules/MndeLiquidityModal";
+import MndeLiquidityModal from "../MndeLiquidityModal";
 
 type PoolRowProps = {
   pool: Pool | PoolConfig;
