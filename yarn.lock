@@ -2128,10 +2128,10 @@
     "@ethersproject/logger" "^5.5.0"
     hash.js "1.1.7"
 
-"@fontsource/lexend@^4.5.1":
-  version "4.5.1"
-  resolved "https://registry.yarnpkg.com/@fontsource/lexend/-/lexend-4.5.1.tgz#905f5ed1f3f40e7150b79d6c11e7b4839977999e"
-  integrity sha512-opFE25zKj2vo978f+QWgID9K4qMsPE6S59RRuwOcyuVL0pBbTErYUVWxfHn8kgDGyy99w+vwxoKI2hGqCHeN2g==
+"@fontsource/lexend@^4.5.2":
+  version "4.5.2"
+  resolved "https://registry.yarnpkg.com/@fontsource/lexend/-/lexend-4.5.2.tgz#eb2949e46831b9a89ece254145d053ad52a3a637"
+  integrity sha512-8wcqpW5ohWGptW8T9HYT20MDrfBmaAkmI/eE/ytwaqRT7WmxZjido72WjSZmKf5F872HHoaIOQWmZbYMdgMdcg==
 
 "@fontsource/maven-pro@^4.5.1":
   version "4.5.1"
@@ -2795,21 +2795,21 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.1.0.tgz#7f698254aadf921e48dda8c0a6b304026b8a9323"
   integrity sha512-JLo+Y592QzIE+q7Dl2pMUtt4q8SKYI5jDrZxrozEQxnGVOyYE+GWK9eLkwTaeN9DDctlaRAQ3TBmzZ1qdLE30A==
 
-"@saberhq/anchor-contrib@^1.11.1":
-  version "1.11.1"
-  resolved "https://registry.yarnpkg.com/@saberhq/anchor-contrib/-/anchor-contrib-1.11.1.tgz#1843523d0bce4fbc28bd9f4703500975ccd62945"
-  integrity sha512-Poztx0jJH9mhvEzE6sq9tWX4V6CcG2jXV7Msr50s0BX6xdVnzfFIWO413fSyJ4bfcLo79hSXS4tVL5hrnPHeCA==
+"@saberhq/anchor-contrib@^1.11.2":
+  version "1.11.2"
+  resolved "https://registry.yarnpkg.com/@saberhq/anchor-contrib/-/anchor-contrib-1.11.2.tgz#a639cc7a57b37ed6067d9660d5be2df94cce9dfc"
+  integrity sha512-25N35hcx9Oz+VffnFZ2El6EB4QPBCroU/yewbOy6PNnRV7uynp2yMZfu44bqIf4OauuHOm+jET8yuhFXOGLyKw==
   dependencies:
-    "@saberhq/solana-contrib" "^1.11.1"
+    "@saberhq/solana-contrib" "^1.11.2"
     eventemitter3 "^4.0.7"
     lodash.camelcase "^4.3.0"
     lodash.mapvalues "^4.6.0"
     tslib "^2.3.1"
 
-"@saberhq/solana-contrib@^1.11.0", "@saberhq/solana-contrib@^1.11.1":
-  version "1.11.1"
-  resolved "https://registry.yarnpkg.com/@saberhq/solana-contrib/-/solana-contrib-1.11.1.tgz#db6b1f166e6d6e51d54c515e49220b133c5fe8ff"
-  integrity sha512-a+WBT89YeNY1mrVMcP3QHUCOj5pIR8r+W9/bIYuMDDvkbC+oLslqmYwjuhu+X4sPNZT+FuoiP+SBK7DXVtwvDg==
+"@saberhq/solana-contrib@^1.11.0", "@saberhq/solana-contrib@^1.11.2":
+  version "1.11.2"
+  resolved "https://registry.yarnpkg.com/@saberhq/solana-contrib/-/solana-contrib-1.11.2.tgz#455981fc62c4b93c93919f6e9fe5184f2c235f70"
+  integrity sha512-mfAL7P5qPdXcQcPTV1scAKmcs54+OMiC8/7iuDDWe0NIycj0PZ2gZ8bTTpxmSoIiZoJSmr79+UGVDfT/VGkmsA==
   dependencies:
     "@types/promise-retry" "^1.1.3"
     "@types/retry" "^0.12.1"
@@ -2818,12 +2818,12 @@
     tiny-invariant "^1.2.0"
     tslib "^2.3.1"
 
-"@saberhq/token-utils@^1.11.1":
-  version "1.11.1"
-  resolved "https://registry.yarnpkg.com/@saberhq/token-utils/-/token-utils-1.11.1.tgz#4d0f20fd99e123b2b27ef464270c4beeed5f0b53"
-  integrity sha512-5TtKw6OBdH0XItIj/Ivg1Yx+pWwEAp6onIoWKS8ClneAyY+QJ/MNYf7G3oqAORfyUh+0Dn5kDIrxg4N0Yo1vPg==
+"@saberhq/token-utils@^1.11.2":
+  version "1.11.2"
+  resolved "https://registry.yarnpkg.com/@saberhq/token-utils/-/token-utils-1.11.2.tgz#8c99e754fda7ae046d00dc8099a378b5518eaae5"
+  integrity sha512-JdcaLg9wlEPE/3KBGxvIpS57Z0CFgIZPnZ8EdTPSz0amyreBNSFZ6dX2ooFgxdgAfc5jexaQ9F6XXCV+1jvKfQ==
   dependencies:
-    "@saberhq/solana-contrib" "^1.11.1"
+    "@saberhq/solana-contrib" "^1.11.2"
     "@solana/buffer-layout" "^4.0.0"
     "@solana/spl-token" "^0.1.8"
     "@ubeswap/token-math" "^4.4.1"
@@ -9142,10 +9142,10 @@ html-minifier-terser@^5.0.1:
     relateurl "^0.2.7"
     terser "^4.6.3"
 
-html-react-parser@^1.4.3:
-  version "1.4.3"
-  resolved "https://registry.yarnpkg.com/html-react-parser/-/html-react-parser-1.4.3.tgz#baf3e42e363d132e28fc4b9fb00958ea63361ff7"
-  integrity sha512-srOhHeBdKYS4cpX5KRNw8t+RvXTrtondOb45vA5kELEqCLk7qWRBPnyIbF6N3wHngmswR88tYEQTzNBPX1qeWw==
+html-react-parser@^1.4.4:
+  version "1.4.4"
+  resolved "https://registry.yarnpkg.com/html-react-parser/-/html-react-parser-1.4.4.tgz#610f6c0b146fc88354118334dd0ea0a71292a083"
+  integrity sha512-7G44bVuoH2chiCDxOfyWMiFl5q9GWtMokbaL48dIC6KjWGEzjKh6oA36ziz8emaQFOhCJcXpFrvTHpuWdHpORg==
   dependencies:
     domhandler "4.3.0"
     html-dom-parser "1.0.4"
@@ -12947,10 +12947,10 @@ react-merge-refs@^1.1.0:
   resolved "https://registry.yarnpkg.com/react-merge-refs/-/react-merge-refs-1.1.0.tgz#73d88b892c6c68cbb7a66e0800faa374f4c38b06"
   integrity sha512-alTKsjEL0dKH/ru1Iyn7vliS2QRcBp9zZPGoWxUOvRGWPUYgjo+V01is7p04It6KhgrzhJGnIj9GgX8W4bZoCQ==
 
-react-number-format@^4.8.0:
-  version "4.8.0"
-  resolved "https://registry.yarnpkg.com/react-number-format/-/react-number-format-4.8.0.tgz#2ec5efbe7f45c4b1b8951d34774f30e4c69040a4"
-  integrity sha512-oGGiQpqzvKTR5PD2/AJbyUsci8jyupaoKxpuSPevjpWHMhFkUtmo390t+EIpJOgnuAHZogLu6PHiXgb/OXETKA==
+react-number-format@^4.9.0:
+  version "4.9.0"
+  resolved "https://registry.yarnpkg.com/react-number-format/-/react-number-format-4.9.0.tgz#fd1defb74cc6ccc43a9e579f67d752c03ba897e4"
+  integrity sha512-HC4ZfvZSm6Gqq77/D4gz823XkvqK4AWAg4PxPv9Paz08hryAOnDjZk89iWmRLafeSOYG3TOx37ypHXMRez8q+w==
   dependencies:
     prop-types "^15.7.2"
 
