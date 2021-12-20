@@ -89,6 +89,7 @@ const options = {
       display: false,
     },
   },
+  tension: 0.3,
   scales: {
     x: {
       display: false,
@@ -333,14 +334,14 @@ const ValidatorTable = () => {
                   </MText>
                 </Td>
                 <Td {...cell} width="100px">
-                  <Box width="150px" height="40px">
+                  <Box width="178px" height="40px">
                     <Line
                       options={options}
                       data={genGraph(genEpochs(tuple), genActiveStakes(tuple))}
                     />
                   </Box>
                 </Td>
-                <Td {...highlightedCell} width="50px">
+                <Td {...highlightedCell} width="100px">
                   <Flex alignItems="center" flexWrap="nowrap">
                     {/* No images currently */}
 
