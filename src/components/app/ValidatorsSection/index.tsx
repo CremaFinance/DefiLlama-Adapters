@@ -78,6 +78,9 @@ ChartJS.register(
 const options = {
   responsive: true,
   plugins: {
+    tooltip: {
+      enabled: false,
+    },
     legend: {
       position: "top" as const,
       display: false,
