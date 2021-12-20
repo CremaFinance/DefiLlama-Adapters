@@ -140,6 +140,7 @@ const StakeInput = ({
             alignItems="center"
             height="44px"
             px={2}
+            bg="white"
           >
             <Image
               src={tokenIcon}
@@ -155,7 +156,7 @@ const StakeInput = ({
               boxShadow="md"
               as={Button}
               rounded="md"
-              bg="gray.50"
+              bg="white"
               _focus={{ boxShadow: "none" }}
               variant="solid"
               font="text-lg"
