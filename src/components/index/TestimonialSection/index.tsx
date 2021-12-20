@@ -44,9 +44,15 @@ const TestimonialSection = () => {
           display="flex"
           flexDirection={{ base: "column", md: "row" }}
         >
-          {t("indexPage.testimonial-section-name")}
-          {", "}
-          <MText as="span" type="text-lg" fontWeight="normal" mb={4}>
+          {t("indexPage.testimonial-section-name")}, {"   "}
+          <MText
+            position="relative"
+            left={{ base: "0px", md: "5px" }}
+            as="span"
+            type="text-lg"
+            fontWeight="normal"
+            mb={4}
+          >
             {t("indexPage.testimonial-section-position")}
           </MText>
         </MText>
