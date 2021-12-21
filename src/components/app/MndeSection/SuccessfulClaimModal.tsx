@@ -50,7 +50,7 @@ const SuccessfulClaimModal = ({
           px={{ base: "16px", md: "24px" }}
           fontSize={{ base: "18px", md: "22.5px" }}
         >
-          Congratulations!
+          {t("Congratulations!")}
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody
@@ -96,29 +96,36 @@ const SuccessfulClaimModal = ({
               height="40px"
               mr="16px"
               fontSize="16px"
+              onClick={() => onClose()}
             >
-              OK
+              {t("OK")}
             </MButton>
-            <MButton
-              variant="solid"
-              width="165px"
-              height="40px"
-              fontSize="16px"
+            <a
+              href="https://discord.com/invite/6EtUf4Euu6"
+              target="_blank"
+              rel="noreferrer"
             >
-              <Flex alignItems="center">
-                <MText>mDAO Discord </MText>
-                <Icon
-                  position="relative"
-                  bottom="1px"
-                  as={FiExternalLink}
-                  width="14px"
-                  height="14px"
-                  ml="6px"
-                  mr={{ base: "3px", md: "5px" }}
-                  cursor="pointer"
-                />
-              </Flex>
-            </MButton>
+              <MButton
+                variant="solid"
+                width="165px"
+                height="40px"
+                fontSize="16px"
+              >
+                <Flex alignItems="center">
+                  <MText>{t("mDAO Discord")} </MText>
+                  <Icon
+                    position="relative"
+                    bottom="1px"
+                    as={FiExternalLink}
+                    width="14px"
+                    height="14px"
+                    ml="6px"
+                    mr={{ base: "3px", md: "5px" }}
+                    cursor="pointer"
+                  />
+                </Flex>
+              </MButton>
+            </a>
           </Flex>
         </ModalBody>
       </ModalContent>
