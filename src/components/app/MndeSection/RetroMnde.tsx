@@ -245,10 +245,10 @@ const RetroMnde = () => {
             {
               // eslint-disable-next-line no-nested-ternary
               maridrop?.promise === null ? (
-                <MText fontSize={{ base: "11px", lg: "14.4px" }}>
+                <MText fontSize={{ base: "11px", lg: "14px" }}>
                   {t("mndePage.claim-ineligible")}{" "}
                   <MLink
-                    fontSize={{ base: "11px", lg: "14.4px" }}
+                    fontSize={{ base: "11px", lg: "14px" }}
                     fontWeight="700"
                     color={colors.marinadeGreen}
                     href={t("mndePage.claim-ineligible-link")}
