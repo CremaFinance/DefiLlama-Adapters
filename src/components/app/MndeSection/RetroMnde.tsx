@@ -1,4 +1,12 @@
-import { Box, Flex, Image, Icon, useToast, Spinner } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Image,
+  Icon,
+  useToast,
+  Spinner,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
 import { useState, useCallback } from "react";
@@ -20,8 +28,11 @@ import colors from "styles/customTheme/colors";
 import { checkNativeSOLBalance } from "utils/check-native-sol-balance";
 import { format5Dec } from "utils/number-to-short-version";
 
+import SuccessfulClaimModal from "./SuccessfulClaimModal";
+
 const RetroMnde = () => {
   const { t } = useTranslation();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
 
   const [isClaimProcessing, setIsClaimProcessing] = useState(false);
@@ -65,6 +76,7 @@ const RetroMnde = () => {
       .claim()
       .then(
         (transactionSignature: string) => {
+          onOpen();
           toast({
             title: t("mndePage.claim-success-title"),
             description: (
@@ -96,6 +108,7 @@ const RetroMnde = () => {
     maridrop,
     marinadeState?.transactionFee,
     nativeSOLBalance,
+    onOpen,
     state?.rent_exempt_for_token_acc,
     t,
     toast,
@@ -141,143 +154,146 @@ const RetroMnde = () => {
   ];
 
   return (
-    <Flex
-      ml="auto"
-      mr="auto"
-      height={{ base: "466px", lg: "476px" }}
-      width={{ base: "288px", lg: "360px" }}
-      flexDirection="column"
-      padding={{ base: "16px", lg: "32px" }}
-      background="white"
-      border="1px solid"
-      borderColor={colors.lightGray}
-      borderRadius="8px"
-      justifyContent="space-between"
-    >
-      <Box>
-        <Flex width="100%" justifyContent="space-between" alignItems="center">
-          <MText fontSize="22.5px" fontWeight="700">
-            {t("mndePage.retro-title")}
+    <>
+      <SuccessfulClaimModal isOpen={isOpen} onClose={onClose} />
+      <Flex
+        ml="auto"
+        mr="auto"
+        height={{ base: "466px", lg: "476px" }}
+        width={{ base: "288px", lg: "360px" }}
+        flexDirection="column"
+        padding={{ base: "16px", lg: "32px" }}
+        background="white"
+        border="1px solid"
+        borderColor={colors.lightGray}
+        borderRadius="8px"
+        justifyContent="space-between"
+      >
+        <Box>
+          <Flex width="100%" justifyContent="space-between" alignItems="center">
+            <MText fontSize="22.5px" fontWeight="700">
+              {t("mndePage.retro-title")}
+            </MText>
+
+            <Image src="/icons/mnde.svg" boxSize="40px" />
+          </Flex>
+
+          <MText mt="16px" mb="16px" fontSize="14.3px">
+            {t("mndePage.retro-info")}
           </MText>
 
-          <Image src="/icons/mnde.svg" boxSize="40px" />
-        </Flex>
+          {RETRO_DATES.map((tuple, ind) => (
+            <Flex
+              key={tuple.dateRange}
+              justifyContent="space-between"
+              width="100%"
+              height="34px"
+              borderTop={ind === 0 ? "1px solid" : ""}
+              borderBottom="1px solid"
+              borderColor={colors.lightGray}
+              alignItems="center"
+            >
+              <Flex alignItems="center">
+                <Icon
+                  as={IoCheckmarkCircle}
+                  color={colors.marinadeGreen}
+                  width="20px"
+                  height="20px"
+                  mr="10px"
+                />
 
-        <MText mt="16px" mb="16px" fontSize="14.3px">
-          {t("mndePage.retro-info")}
-        </MText>
+                <MText fontSize="14.4px">{tuple.dateRange}</MText>
+              </Flex>
 
-        {RETRO_DATES.map((tuple, ind) => (
-          <Flex
-            key={tuple.dateRange}
-            justifyContent="space-between"
-            width="100%"
-            height="34px"
-            borderTop={ind === 0 ? "1px solid" : ""}
-            borderBottom="1px solid"
-            borderColor={colors.lightGray}
-            alignItems="center"
-          >
-            <Flex alignItems="center">
-              <Icon
-                as={IoCheckmarkCircle}
-                color={colors.marinadeGreen}
-                width="20px"
-                height="20px"
-                mr="10px"
-              />
-
-              <MText fontSize="14.4px">{tuple.dateRange}</MText>
-            </Flex>
-
-            <Flex alignItems="center" position="relative" left="10px">
-              <MLink
-                fontSize={{ base: "11px", lg: "14.4px" }}
-                fontWeight="700"
-                color={colors.marinadeGreen}
-                href={tuple.link}
-                rel="noreferrer noopener"
-                isExternal
-              >
-                <Flex alignItems="center">
-                  {tuple.linkName}
-                  <Icon
-                    as={FiExternalLink}
-                    width="16px"
-                    height="16px"
-                    ml="6px"
-                    mr={{ base: "3px", lg: "5px" }}
-                    cursor="pointer"
-                  />
-                </Flex>
-              </MLink>
-
-              <MTooltip tooltipText={tuple.info} iconSize="md" />
-            </Flex>
-          </Flex>
-        ))}
-      </Box>
-
-      {connected ? (
-        <Flex
-          height="60px"
-          width="100%"
-          borderY="1px solid"
-          borderColor={colors.lightGray}
-          alignItems="center"
-          justifyContent="space-between"
-        >
-          {
-            // eslint-disable-next-line no-nested-ternary
-            maridrop?.promise === null ? (
-              <MText fontSize={{ base: "11px", lg: "14.4px" }}>
-                {t("mndePage.claim-ineligible")}{" "}
+              <Flex alignItems="center" position="relative" left="10px">
                 <MLink
                   fontSize={{ base: "11px", lg: "14.4px" }}
                   fontWeight="700"
                   color={colors.marinadeGreen}
-                  href={t("mndePage.claim-ineligible-link")}
+                  href={tuple.link}
                   rel="noreferrer noopener"
                   isExternal
                 >
-                  here.
+                  <Flex alignItems="center">
+                    {tuple.linkName}
+                    <Icon
+                      as={FiExternalLink}
+                      width="16px"
+                      height="16px"
+                      ml="6px"
+                      mr={{ base: "3px", lg: "5px" }}
+                      cursor="pointer"
+                    />
+                  </Flex>
                 </MLink>
-              </MText>
-            ) : maridrop?.promise === undefined ? (
-              <Spinner />
-            ) : (
-              <>
-                <Flex alignItems="center">
-                  <Image src="/icons/mnde.svg" boxSize="24px" mr="4px" />
-                  <MText>
-                    {format5Dec(
-                      maridrop?.promise?.nonClaimedAmount.toNumber(),
-                      LAMPORTS_PER_SOL
-                    )}{" "}
-                    MNDE
-                  </MText>
-                </Flex>
-                <MButton
-                  variant="outline"
-                  borderColor="gray"
-                  color="black"
-                  width={{ base: "70px", lg: "80px" }}
-                  fontWeight="500"
-                  fontSize="14.4px"
-                  onClick={() => claimHandler()}
-                  isLoading={isClaimProcessing}
-                  disabled={maridrop?.promise?.nonClaimedAmount.isZero()}
-                >
-                  {t("Claim")}
-                </MButton>
-              </>
-            )
-          }
-        </Flex>
-      ) : (
-        <Wallet />
-      )}
-    </Flex>
+
+                <MTooltip tooltipText={tuple.info} iconSize="md" />
+              </Flex>
+            </Flex>
+          ))}
+        </Box>
+
+        {connected ? (
+          <Flex
+            height="60px"
+            width="100%"
+            borderY="1px solid"
+            borderColor={colors.lightGray}
+            alignItems="center"
+            justifyContent="space-between"
+          >
+            {
+              // eslint-disable-next-line no-nested-ternary
+              maridrop?.promise === null ? (
+                <MText fontSize={{ base: "11px", lg: "14.4px" }}>
+                  {t("mndePage.claim-ineligible")}{" "}
+                  <MLink
+                    fontSize={{ base: "11px", lg: "14.4px" }}
+                    fontWeight="700"
+                    color={colors.marinadeGreen}
+                    href={t("mndePage.claim-ineligible-link")}
+                    rel="noreferrer noopener"
+                    isExternal
+                  >
+                    here.
+                  </MLink>
+                </MText>
+              ) : maridrop?.promise === undefined ? (
+                <Spinner />
+              ) : (
+                <>
+                  <Flex alignItems="center">
+                    <Image src="/icons/mnde.svg" boxSize="24px" mr="4px" />
+                    <MText>
+                      {format5Dec(
+                        maridrop?.promise?.nonClaimedAmount.toNumber(),
+                        LAMPORTS_PER_SOL
+                      )}{" "}
+                      MNDE
+                    </MText>
+                  </Flex>
+                  <MButton
+                    variant="outline"
+                    borderColor="gray"
+                    color="black"
+                    width={{ base: "70px", lg: "80px" }}
+                    fontWeight="500"
+                    fontSize="14.4px"
+                    onClick={() => claimHandler()}
+                    isLoading={isClaimProcessing}
+                    disabled={maridrop?.promise?.nonClaimedAmount.isZero()}
+                  >
+                    {t("Claim")}
+                  </MButton>
+                </>
+              )
+            }
+          </Flex>
+        ) : (
+          <Wallet />
+        )}
+      </Flex>
+    </>
   );
 };
 
