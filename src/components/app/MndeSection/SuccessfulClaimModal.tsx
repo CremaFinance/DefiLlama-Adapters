@@ -29,12 +29,12 @@ const SuccessfulClaimModal = ({
 
   const OPTIONS = [
     {
-      title: t("Access  mDAO community on discord"),
+      title: t("mndePage.modal-claim-success-subtitle-1"),
       height: { base: "52px", md: "32px" },
     },
-    { title: t("Participate in mDAO governance"), height: "32px" },
+    { title: t("mndePage.modal-claim-success-subtitle-2"), height: "32px" },
     {
-      title: t("Provide liquidity on Orca.so and Raydium.io"),
+      title: t("mndePage.modal-claim-success-subtitle-3"),
       height: { base: "52px", md: "32px" },
     },
   ];
@@ -50,7 +50,7 @@ const SuccessfulClaimModal = ({
           px={{ base: "16px", md: "24px" }}
           fontSize={{ base: "18px", md: "22.5px" }}
         >
-          {t("Congratulations!")}
+          {t("mndePage.modal-claim-success-title")}
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody
@@ -58,9 +58,7 @@ const SuccessfulClaimModal = ({
           mt={{ base: "8px", md: "0px" }}
         >
           <MText fontSize="14.4px" mb="24px">
-            {t(
-              "You've successfully claimed your MNDE. Here's what you can do with it:"
-            )}
+            {t("mndePage.modal-claim-success-description")}
           </MText>
 
           {OPTIONS.map((option, ind) => (
@@ -112,7 +110,7 @@ const SuccessfulClaimModal = ({
                 fontSize="16px"
               >
                 <Flex alignItems="center">
-                  <MText>{t("mDAO Discord")} </MText>
+                  <MText>{t("mndePage.modal-claim-success-discord")} </MText>
                   <Icon
                     position="relative"
                     bottom="1px"
