@@ -13,6 +13,7 @@ import { FiExternalLink } from "react-icons/fi";
 import { IoCheckmarkCircle } from "react-icons/io5";
 
 import MButton from "../../atoms/Button";
+import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
 
@@ -98,7 +99,7 @@ const SuccessfulClaimModal = ({
             >
               {t("OK")}
             </MButton>
-            <a
+            <MLink
               href="https://discord.com/invite/6EtUf4Euu6"
               target="_blank"
               rel="noreferrer"
@@ -123,7 +124,7 @@ const SuccessfulClaimModal = ({
                   />
                 </Flex>
               </MButton>
-            </a>
+            </MLink>
           </Flex>
         </ModalBody>
       </ModalContent>

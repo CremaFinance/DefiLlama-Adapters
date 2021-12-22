@@ -255,7 +255,7 @@ const RetroMnde = () => {
                     rel="noreferrer noopener"
                     isExternal
                   >
-                    here.
+                    {t("here.")}
                   </MLink>
                 </MText>
               ) : maridrop?.promise === undefined ? (
