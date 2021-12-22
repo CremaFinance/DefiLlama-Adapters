@@ -33,16 +33,14 @@ export const mapFarmPools = (
           let bestBorrowApr: number;
           // leverage
           if (pool.leverage) {
-            Object.entries(pool.leverage.leverageTokens).forEach((entry) => {
-              const [coinSymbol] = entry;
+            Object.keys(pool.leverage.leverageTokens).forEach((coinSymbol) => {
               const lendingPool = results.data.lend.find(
                 (p) => p.id === coinSymbol
               );
-
               if (lendingPool && pool.leverage) {
                 if (!pool.leverage?.leverageAmount) {
                   pool.leverage.leverageAmount =
-                    (poolInfo.maxLeverage + poolInfo.minLeverage) /
+                    (poolInfo.maxLeverage * poolInfo.minLeverage) /
                       pool.leverage.ratio ?? 2;
                 }
                 const apr =
@@ -62,7 +60,7 @@ export const mapFarmPools = (
                 pool.tradingApy = pool?.leverage?.leverageAmount
                   ? poolInfo.tradingFeeAPR * pool.leverage.leverageAmount
                   : poolInfo.tradingFeeAPR;
-                pool.apr = pool.tradingApy + bestBorrowApr;
+                pool.apy = pool.tradingApy + bestBorrowApr;
               }
             });
           }

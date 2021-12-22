@@ -3,10 +3,10 @@ export const farmPoolIds = {
     liquidityId: "mSOL-SOL[Orca Double-Dip]",
     infoId: "55",
   },
-  // FRANCIUM_ORCA_mSOL_whETH: {
-  //   liquidityId: "mSOL-whETH[Orca Double-Dip]",
-  //   infoId: "39",
-  // },
+  FRANCIUM_ORCA_mSOL_whETH: {
+    liquidityId: "mSOL-whETH[Orca Double-Dip]",
+    infoId: "39",
+  },
   FRANCIUM_ORCA_BTC_mSOL: {
     liquidityId: "BTC-mSOL[Orca Double-Dip]",
     infoId: "36",
@@ -19,10 +19,10 @@ export const farmPoolIds = {
     liquidityId: "mSOL-USDC[Orca Double-Dip]",
     infoId: "34",
   },
-  // FRANCIUM_ORCA_ORCA_mSOL: {
-  //   liquidityId: "ORCA-mSOL[Orca Double-Dip]",
-  //   infoId: "33",
-  // },
+  FRANCIUM_ORCA_ORCA_mSOL: {
+    liquidityId: "ORCA-mSOL[Orca Double-Dip]",
+    infoId: "33",
+  },
 } as const;
 
 export type FarmPoolIds = keyof typeof farmPoolIds;

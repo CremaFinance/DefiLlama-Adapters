@@ -19,15 +19,15 @@ export const farmPoolTokens: Record<FarmPoolAddress, Token> = {
     logoURI,
     extensions: {},
   },
-  // [poolAddress.FRANCIUM_ORCA_mSOL_whETH]: {
-  //   chainId: 101,
-  //   address: "FRANCIUM_mSOL_whETH",
-  //   symbol: "mSOL/whETH",
-  //   name: "Francium Orca mSOL/whETH[aquafarm]",
-  //   decimals: 6,
-  //   logoURI,
-  //   extensions: {},
-  // },
+  [farmPoolAddress.FRANCIUM_ORCA_mSOL_whETH]: {
+    chainId: 101,
+    address: "FRANCIUM_mSOL_whETH",
+    symbol: "mSOL/whETH",
+    name: "Francium Orca mSOL/whETH[aquafarm]",
+    decimals: 6,
+    logoURI,
+    extensions: {},
+  },
   [farmPoolAddress.FRANCIUM_ORCA_BTC_mSOL]: {
     chainId: 101,
     address: "FRANCIUM_BTC_mSOL",
@@ -55,15 +55,15 @@ export const farmPoolTokens: Record<FarmPoolAddress, Token> = {
     logoURI,
     extensions: {},
   },
-  // [poolAddress.FRANCIUM_ORCA_ORCA_mSOL]: {
-  //   chainId: 101,
-  //   address: "FRANCIUM_ORCA_mSOL",
-  //   symbol: "ORCA/mSOL",
-  //   name: "Francium Orca mSOL/USDC[aquafarm]",
-  //   decimals: 6,
-  //   logoURI,
-  //   extensions: {},
-  // },
+  [farmPoolAddress.FRANCIUM_ORCA_ORCA_mSOL]: {
+    chainId: 101,
+    address: "FRANCIUM_ORCA_mSOL",
+    symbol: "ORCA/mSOL",
+    name: "Francium Orca mSOL/USDC[aquafarm]",
+    decimals: 6,
+    logoURI,
+    extensions: {},
+  },
 };
 
 export const lendingPoolTokens: Record<LendingPoolAddress, Token> = {

@@ -24,6 +24,7 @@ export const updatePoolRewardsFromTotalYeildFarmAPR = (
 ) => {
   const pool = poolToUpdate;
   if (pool.rewards) {
+    pool.rewards = { ...pool.rewards };
     let totalRewards = 0;
     Object.entries(pool.rewards).forEach((entry) => {
       const [rewardKey, reward] = entry;
@@ -31,7 +32,6 @@ export const updatePoolRewardsFromTotalYeildFarmAPR = (
       if (price && reward) {
         reward.apy = reward.dailyRate * price;
         totalRewards += reward.apy;
-        // pool.apy += reward.apy;
       }
     });
     Object.values(pool.rewards).forEach((rewardToUpdate) => {
@@ -42,5 +42,6 @@ export const updatePoolRewardsFromTotalYeildFarmAPR = (
       return reward;
     });
   }
+
   return pool;
 };

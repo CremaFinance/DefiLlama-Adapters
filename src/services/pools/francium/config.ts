@@ -25,7 +25,9 @@ const farmActions = [
 
 export const franciumFarmPools: Record<FarmPoolAddress, PoolConfig> = {
   [farmPoolAddress.FRANCIUM_ORCA_BTC_mSOL]: {
-    ...orcaPools[liquidityOrcaPoolAddress.ORCA_BTC_mSOL],
+    ...JSON.parse(
+      JSON.stringify(orcaPools[liquidityOrcaPoolAddress.ORCA_BTC_mSOL])
+    ),
     ...farmPoolTokens[farmPoolAddress.FRANCIUM_ORCA_BTC_mSOL],
     ...{
       provider,
@@ -42,8 +44,29 @@ export const franciumFarmPools: Record<FarmPoolAddress, PoolConfig> = {
   },
 
   [farmPoolAddress.FRANCIUM_ORCA_mSOL_SOL]: {
-    ...orcaPools[liquidityOrcaPoolAddress.ORCA_mSOL_SOL],
+    ...JSON.parse(
+      JSON.stringify(orcaPools[liquidityOrcaPoolAddress.ORCA_mSOL_SOL])
+    ),
     ...farmPoolTokens[farmPoolAddress.FRANCIUM_ORCA_mSOL_SOL],
+    ...{
+      provider,
+      marketType: marketTypes.Leveraged,
+      actions: farmActions,
+      leverage: {
+        ratio: 2,
+        leverageTokens: {
+          [coinSymbols.mSOL]: undefined,
+          [coinSymbols.SOL]: undefined,
+        },
+      },
+    },
+  },
+
+  [farmPoolAddress.FRANCIUM_ORCA_ORCA_mSOL]: {
+    ...JSON.parse(
+      JSON.stringify(orcaPools[liquidityOrcaPoolAddress.ORCA_ORCA_mSOL])
+    ),
+    ...farmPoolTokens[farmPoolAddress.FRANCIUM_ORCA_ORCA_mSOL],
     ...{
       provider,
       marketType: marketTypes.Leveraged,
@@ -59,8 +82,11 @@ export const franciumFarmPools: Record<FarmPoolAddress, PoolConfig> = {
   },
 
   [farmPoolAddress.FRANCIUM_ORCA_mSOL_USDC]: {
-    ...orcaPools[liquidityOrcaPoolAddress.ORCA_mSOL_USDC],
+    ...JSON.parse(
+      JSON.stringify(orcaPools[liquidityOrcaPoolAddress.ORCA_mSOL_USDC])
+    ),
     ...farmPoolTokens[farmPoolAddress.FRANCIUM_ORCA_mSOL_USDC],
+
     ...{
       provider,
       marketType: marketTypes.Leveraged,
@@ -76,7 +102,9 @@ export const franciumFarmPools: Record<FarmPoolAddress, PoolConfig> = {
   },
 
   [farmPoolAddress.FRANCIUM_ORCA_mSOL_USDT]: {
-    ...orcaPools[liquidityOrcaPoolAddress.ORCA_mSOL_USDT],
+    ...JSON.parse(
+      JSON.stringify(orcaPools[liquidityOrcaPoolAddress.ORCA_mSOL_USDT])
+    ),
     ...farmPoolTokens[farmPoolAddress.FRANCIUM_ORCA_mSOL_USDT],
     ...{
       provider,
@@ -87,6 +115,25 @@ export const franciumFarmPools: Record<FarmPoolAddress, PoolConfig> = {
         leverageTokens: {
           [coinSymbols.USDT]: undefined,
           [coinSymbols.mSOL]: undefined,
+        },
+      },
+    },
+  },
+
+  [farmPoolAddress.FRANCIUM_ORCA_mSOL_whETH]: {
+    ...JSON.parse(
+      JSON.stringify(orcaPools[liquidityOrcaPoolAddress.ORCA_mSOL_whETH])
+    ),
+    ...farmPoolTokens[farmPoolAddress.FRANCIUM_ORCA_mSOL_whETH],
+    ...{
+      provider,
+      marketType: marketTypes.Leveraged,
+      actions: farmActions,
+      leverage: {
+        ratio: 2,
+        leverageTokens: {
+          [coinSymbols.mSOL]: undefined,
+          [coinSymbols.ETH]: undefined,
         },
       },
     },

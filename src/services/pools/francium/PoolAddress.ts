@@ -1,11 +1,11 @@
 // todo find and replace values here with actual pool token addresses
 export const farmPoolAddress = {
   FRANCIUM_ORCA_mSOL_SOL: "FRANCIUM_ORCA_mSOL_SOL",
-  // FRANCIUM_ORCA_mSOL_whETH: "FRANCIUM_ORCA_mSOL-whETH",
+  FRANCIUM_ORCA_mSOL_whETH: "FRANCIUM_ORCA_mSOL_whETH",
   FRANCIUM_ORCA_BTC_mSOL: "FRANCIUM_ORCA_BTC_mSOL",
   FRANCIUM_ORCA_mSOL_USDT: "FRANCIUM_ORCA_mSOL_USDT",
   FRANCIUM_ORCA_mSOL_USDC: "FRANCIUM_ORCA_mSOL_USDC",
-  // FRANCIUM_ORCA_ORCA_mSOL: "FRANCIUM_ORCA_ORCA-mSOL",
+  FRANCIUM_ORCA_ORCA_mSOL: "FRANCIUM_ORCA_ORCA_mSOL",
 } as const;
 
 export type FarmPoolAddress =
