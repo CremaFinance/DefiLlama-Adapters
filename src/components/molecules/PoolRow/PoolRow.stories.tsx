@@ -41,8 +41,12 @@ Liqiudity.args = {
       },
     },
     actions: [
-      { text: "Add Liquidity", url: "https://www.orca.so/pools" },
-      { text: "Swap", url: "https://www.orca.so/pools" },
+      {
+        text: "Add Liquidity",
+        url: "https://www.orca.so/pools",
+        isExternal: true,
+      },
+      { text: "Swap", url: "https://www.orca.so/pools", isExternal: true },
     ],
     liq: 58699447.755302526,
     totalLockedValue: 58699447.755302526,
@@ -79,8 +83,16 @@ Lending.args = {
       },
     },
     actions: [
-      { text: "Supply", url: "https://mainnet.port.finance/#/supply" },
-      { text: "Borrow", url: "https://mainnet.port.finance/#/borrow" },
+      {
+        text: "Supply",
+        url: "https://mainnet.port.finance/#/supply",
+        isExternal: true,
+      },
+      {
+        text: "Borrow",
+        url: "https://mainnet.port.finance/#/borrow",
+        isExternal: true,
+      },
     ],
     liq: 79582225.60157867,
     totalLockedValue: 79582225.60157867,

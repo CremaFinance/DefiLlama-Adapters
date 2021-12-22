@@ -50,8 +50,8 @@ type StakeInputProps = {
   tokenName: string;
   tokenBalance: number;
   mb?: number;
-  currentAccount: StakeAccountType;
-  stakeAccounts: StakeAccountType[];
+  currentAccount?: StakeAccountType;
+  stakeAccounts?: StakeAccountType[];
   selectAccountCallback?: (
     value: boolean,
     stakeAccount: StakeAccountType
