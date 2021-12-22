@@ -7,7 +7,7 @@ import * as quarry from "@quarryprotocol/quarry-sdk";
 import { SolanaProvider, TransactionEnvelope } from "@saberhq/solana-contrib";
 import * as st from "@saberhq/token-utils";
 import { Token, TOKEN_PROGRAM_ID } from "@solana/spl-token";
-import { PublicKey, TransactionSignature } from "@solana/web3.js";
+import { PublicKey } from "@solana/web3.js";
 import React, {
   createContext,
   FC,
@@ -18,6 +18,8 @@ import React, {
   useState,
 } from "react";
 
+import { Farm } from "../services/domain/farm";
+import { TokadaptState } from "../services/domain/tokadaptState";
 import * as tokadaptIDL from "../solana/tokadapt.json";
 import { findAssociatedTokenAddress } from "../utils/web3/find-associated-token-address";
 import { useWallet } from "hooks/useWallet";
@@ -26,13 +28,6 @@ import { defaultAnchorProvider, useAnchorProvider } from "./AnchorContext";
 import { useChain } from "./ConnectionProvider";
 import { useMarinadeState } from "./MarinadeContext";
 
-export interface TokadaptState {
-  adminAuthority: PublicKey;
-  inputMint: PublicKey;
-  outputStorage: PublicKey;
-  outputStorageAuthorityBump: PublicKey;
-}
-
 export interface QuarryProviderProps {
   sdk?: quarry.QuarrySDK;
   mndeRewarder?: quarry.RewarderWrapper;
@@ -40,17 +35,6 @@ export interface QuarryProviderProps {
   mndeTokadapt?: anchor.Program;
   mndeTokadaptState?: TokadaptState;
   farms: Record<string, Farm>;
-}
-
-export interface Farm {
-  token: st.Token;
-  quarry: quarry.QuarryWrapper;
-  miner?: quarry.MinerWrapper;
-  minerData?: quarry.MinerData;
-
-  stake(uiAmount: string): Promise<TransactionSignature>;
-  withdraw(uiAmount: string): Promise<TransactionSignature>;
-  claim(): Promise<TransactionSignature>;
 }
 
 const MNDE_REWARDER = new PublicKey(
@@ -91,7 +75,7 @@ function loadFarm({
         // TODO: chainId:
       });
       const quarry = await rewarder.getQuarry(token);
-      let miner: quarry.MinerWrapper;
+      let miner: quarry.MinerWrapper | undefined;
       let minerData;
       if (connected) {
         miner = await quarry.getMinerActions();
@@ -100,134 +84,141 @@ function loadFarm({
         } catch (e) {
           // Do noting here because it is hard to differentiate absense of miner from error
         }
+      }
 
-        const stake = async (uiAmount: string) => {
-          let tx = new TransactionEnvelope(rewarder.sdk.provider, []);
-          if (!(await quarry.provider.getAccountInfo(miner.minerKey))) {
-            const { miner: minerKey, tx: createMinerTx } =
-              await quarry.createMiner({});
-            tx = createMinerTx;
-          }
+      const stake = async (uiAmount: string) => {
+        let tx = new TransactionEnvelope(rewarder.sdk.provider, []);
+        if (miner && !(await quarry.provider.getAccountInfo(miner.minerKey))) {
+          const { miner: minerKey, tx: createMinerTx } =
+            await quarry.createMiner({});
+          tx = createMinerTx;
+        }
 
+        if (miner) {
           tx = tx.combine(miner.stake(st.TokenAmount.parse(token, uiAmount)));
+        }
 
-          const { signature } = await tx.confirm();
-          // reload minerdata
-          loadFarm({
-            connected,
-            rewarder,
-            tokadapt,
-            tokadaptState,
-            stakeToken,
-            setFarm,
-          });
-          return signature;
-        };
+        const { signature } = await tx.confirm();
+        // reload minerdata
+        loadFarm({
+          connected,
+          rewarder,
+          tokadapt,
+          tokadaptState,
+          stakeToken,
+          setFarm,
+        });
+        return signature;
+      };
 
-        const withdraw = async (uiAmount: string) => {
-          let tx = new TransactionEnvelope(rewarder.sdk.provider, []);
-          if (!(await quarry.provider.getAccountInfo(miner.minerKey))) {
-            const { miner: minerKey, tx: createMinerTx } =
-              await quarry.createMiner({});
-            tx = createMinerTx;
-          }
+      const withdraw = async (uiAmount: string) => {
+        let tx = new TransactionEnvelope(rewarder.sdk.provider, []);
+        if (miner && !(await quarry.provider.getAccountInfo(miner.minerKey))) {
+          const { miner: minerKey, tx: createMinerTx } =
+            await quarry.createMiner({});
+          tx = createMinerTx;
+        }
 
+        if (miner) {
           tx = tx.combine(
             miner.withdraw(st.TokenAmount.parse(token, uiAmount))
           );
+        }
 
-          const { signature } = await tx.confirm();
-          // reload minerdata
-          loadFarm({
-            connected,
-            rewarder,
-            tokadapt,
-            tokadaptState,
-            stakeToken,
-            setFarm,
-          });
-          return signature;
-        };
-
-        const claim = async () => {
-          if (!(await quarry.provider.getAccountInfo(miner.minerKey))) {
-            throw Error("Claim record was not found");
-          }
-          const tx = await miner.claim();
-          if (tokadapt) {
-            if (!tokadaptState) {
-              throw new Error("Token adapter was not loaded. Try again later");
-            }
-            const { address: mndeAccount, instruction: createAtaInstruction } =
-              await st.getOrCreateATA({
-                provider: rewarder.sdk.provider,
-                mint: MNDE_MINT,
-                owner: rewarder.sdk.provider.wallet.publicKey,
-                payer: rewarder.sdk.provider.wallet.publicKey,
-              });
-            if (createAtaInstruction) {
-              tx.instructions.push(createAtaInstruction);
-            }
-            const pointAccount = await findAssociatedTokenAddress(
-              rewarder.sdk.provider.wallet.publicKey,
-              quarry.rewarderData.rewardsTokenMint
-            );
-            tx.instructions.push(
-              tokadapt.instruction.swap(new anchor.BN("18446744073709551615"), {
-                accounts: {
-                  state: TOKADAPT_STATE_ID,
-                  input: pointAccount,
-                  inputAuthority: rewarder.sdk.provider.wallet.publicKey,
-                  inputMint: quarry.rewarderData.rewardsTokenMint,
-                  outputStorage: tokadaptState.outputStorage,
-                  outputStorageAuthority: (
-                    await PublicKey.findProgramAddress(
-                      [
-                        new TextEncoder().encode("storage"),
-                        TOKADAPT_STATE_ID.toBytes(),
-                      ],
-                      TOKADAPT_PROGRAM_ID
-                    )
-                  )[0],
-                  target: mndeAccount,
-                  tokenProgram: TOKEN_PROGRAM_ID,
-                },
-              })
-            );
-            tx.instructions.push(
-              Token.createCloseAccountInstruction(
-                TOKEN_PROGRAM_ID,
-                pointAccount,
-                rewarder.sdk.provider.wallet.publicKey,
-                rewarder.sdk.provider.wallet.publicKey,
-                []
-              )
-            );
-          }
-
-          const { signature } = await tx.confirm();
-          // reload minerdata
-          loadFarm({
-            connected,
-            rewarder,
-            tokadapt,
-            tokadaptState,
-            stakeToken,
-            setFarm,
-          });
-          return signature;
-        };
-
-        setFarm({
-          token,
-          quarry,
-          miner,
-          minerData,
-          stake,
-          withdraw,
-          claim,
+        const { signature } = await tx.confirm();
+        // reload minerdata
+        loadFarm({
+          connected,
+          rewarder,
+          tokadapt,
+          tokadaptState,
+          stakeToken,
+          setFarm,
         });
-      }
+        return signature;
+      };
+
+      const claim = async () => {
+        if (miner && !(await quarry.provider.getAccountInfo(miner.minerKey))) {
+          throw Error("Claim record was not found");
+        }
+        const tx = await miner?.claim();
+        if (tokadapt && tx) {
+          if (!tokadaptState) {
+            throw new Error("Token adapter was not loaded. Try again later");
+          }
+          const { address: mndeAccount, instruction: createAtaInstruction } =
+            await st.getOrCreateATA({
+              provider: rewarder.sdk.provider,
+              mint: MNDE_MINT,
+              owner: rewarder.sdk.provider.wallet.publicKey,
+              payer: rewarder.sdk.provider.wallet.publicKey,
+            });
+          if (createAtaInstruction) {
+            tx.instructions.push(createAtaInstruction);
+          }
+          const pointAccount = await findAssociatedTokenAddress(
+            rewarder.sdk.provider.wallet.publicKey,
+            quarry.rewarderData.rewardsTokenMint
+          );
+          tx.instructions.push(
+            tokadapt.instruction.swap(new anchor.BN("18446744073709551615"), {
+              accounts: {
+                state: TOKADAPT_STATE_ID,
+                input: pointAccount,
+                inputAuthority: rewarder.sdk.provider.wallet.publicKey,
+                inputMint: quarry.rewarderData.rewardsTokenMint,
+                outputStorage: tokadaptState.outputStorage,
+                outputStorageAuthority: (
+                  await PublicKey.findProgramAddress(
+                    [
+                      new TextEncoder().encode("storage"),
+                      TOKADAPT_STATE_ID.toBytes(),
+                    ],
+                    TOKADAPT_PROGRAM_ID
+                  )
+                )[0],
+                target: mndeAccount,
+                tokenProgram: TOKEN_PROGRAM_ID,
+              },
+            })
+          );
+          tx.instructions.push(
+            Token.createCloseAccountInstruction(
+              TOKEN_PROGRAM_ID,
+              pointAccount,
+              rewarder.sdk.provider.wallet.publicKey,
+              rewarder.sdk.provider.wallet.publicKey,
+              []
+            )
+          );
+        }
+
+        if (tx) {
+          const { signature } = await tx.confirm();
+          // reload minerdata
+          loadFarm({
+            connected,
+            rewarder,
+            tokadapt,
+            tokadaptState,
+            stakeToken,
+            setFarm,
+          });
+          return signature;
+        }
+        return "";
+      };
+
+      setFarm({
+        token,
+        quarry,
+        miner,
+        minerData,
+        stake,
+        withdraw,
+        claim,
+      });
     })();
   } else {
     setFarm();
