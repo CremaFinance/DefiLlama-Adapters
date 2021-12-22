@@ -1,11 +1,11 @@
 import { Flex, IconButton, useDisclosure, useToast } from "@chakra-ui/react";
-import { useWallet } from "@solana/wallet-adapter-react";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
+import BN from "bn.js";
 import { useTranslation } from "next-export-i18n";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MdInfoOutline } from "react-icons/md";
 
-import { useChain } from "../../../contexts/ConnectionProvider";
+import { useChain, useConnection } from "../../../contexts/ConnectionProvider";
 import { useMarinade } from "../../../contexts/MarinadeContext";
 import { useUserBalance } from "../../../contexts/UserBalanceContext";
 import MButton from "../../atoms/Button";
@@ -16,21 +16,31 @@ import StakeInput, {
 } from "components/molecules/StakeInput";
 import SuccessStakeModal from "components/molecules/SuccessStakeModal";
 import TransactionLink from "components/molecules/TransactionLink";
+import { AccountsContext } from "contexts/AccountsContext";
 import { useStats } from "contexts/StatsContext";
+import { useEpochInfo } from "hooks/useEpochInfo";
+import { useWallet } from "hooks/useWallet";
+import { StakeAccount } from "solana/domain/stake-account";
 import colors from "styles/customTheme/colors";
 import { basicInputChecks } from "utils/basic-input-checks";
 import { checkNativeSOLBalance } from "utils/check-native-sol-balance";
 import { format5Dec } from "utils/number-to-short-version";
+import { shortenAddress } from "utils/shorten-address";
 
 const BasicStake = () => {
   const { t } = useTranslation();
   const toast = useToast();
 
+  const connection = useConnection();
   const [stakeText, setStakeText] = useState(t("appPage.stake-sol-action"));
   const [stakeLoading, setStakeLoading] = useState(false);
   const [solToStake, setSolToStake] = useState<string>("");
+  const [stakeAccount, setStakeAccount] = useState<StakeAccountType | null>(
+    null
+  );
   const { nativeSOLBalance, stSOLBalance } = useUserBalance();
-  const { connected: isWalletConnected } = useWallet();
+  const { connected: isWalletConnected, publicKey: walletPubKey } = useWallet();
+  const epochInfo = useEpochInfo()?.data;
   const { isOpen, onOpen, onClose } = useDisclosure({
     onClose: () => {
       setSolToStake("");
@@ -43,6 +53,35 @@ const BasicStake = () => {
   const state = marinade?.marinadeState?.state;
   const marinadeState = marinade?.marinadeState;
 
+  const {
+    getStakeAccountsAction,
+    stakeAccounts,
+    fetchStakesLoading,
+    walletPubKeyContext,
+    resetAccountsAction,
+    fetchStakesLoadingAction,
+  } = useContext(AccountsContext);
+
+  useEffect(() => {
+    if (walletPubKey === null || !isWalletConnected) {
+      resetAccountsAction();
+      fetchStakesLoadingAction(false);
+      return;
+    }
+
+    if (walletPubKey?.toBase58() === walletPubKeyContext?.toBase58()) {
+      getStakeAccountsAction(
+        isWalletConnected,
+        connection,
+        walletPubKey,
+        fetchStakesLoading
+      );
+    } else {
+      getStakeAccountsAction(isWalletConnected, connection, walletPubKey, true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isWalletConnected]);
+
   const mSOLvsSOLParity = marinadeState?.state?.st_sol_price
     ? marinadeState?.state?.st_sol_price?.toNumber() / 0x1_0000_0000
     : 0;
@@ -50,47 +89,134 @@ const BasicStake = () => {
     ? nativeSOLBalance / LAMPORTS_PER_SOL - 0.001
     : 0;
 
-  const handleSelectAccountCallback = (value: boolean) => {
+  const handleSelectAccountCallback = (
+    value: boolean,
+    account: StakeAccountType
+  ) => {
     setStakeText(
       value
         ? t("appPage.deposit-stake-account-action")
         : t("appPage.stake-sol-action")
     );
+    setStakeAccount(value ? account : null);
   };
 
   const currentAccount: StakeAccountType = {
-    address: "DKVAJA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5qdfbrvrt5",
-    balance: 0.114543543543,
+    address: walletPubKey?.toBase58().toString() || "",
+    balance: sourceTokenBalance,
   };
-  const stakeAccounts: StakeAccountType[] = [
-    {
-      address: "asdfJA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5qvdvwf5",
-      balance: 0.115555,
-    },
-    {
-      address: "wwadJA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5q4vdg5",
-      balance: 0.115454334534,
-    },
-    {
-      address: "sfdsfdfVKRhTrWfVPxzydZQu8q15kWkpe5qpdv5",
-      balance: 0.1454353451,
-    },
-    {
-      address: "aaqwsA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5qpi55rff",
-      balance: 0.11353453534,
-    },
-    {
-      address: "d234dvJA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5qcdsf4",
-      balance: 0.1,
-    },
-    {
-      address: "DKVAJA6ZQAVKRhTrWfVPxzydZQu8q15kWkpe5qpiswy5",
-      balance: 0.11,
-    },
-  ];
+  const parseStakeAccounts = (): StakeAccountType[] => {
+    return stakeAccounts
+      ?.filter(
+        (account: StakeAccount) =>
+          account?.account?.data?.parsed?.info?.stake != null
+      )
+      ?.filter(
+        (account: StakeAccount) =>
+          account?.account?.data?.parsed?.info?.stake?.delegation
+            ?.deactivationEpoch === "18446744073709551615"
+      )
+      .map((account: StakeAccount) => {
+        const stakeStart = Number(
+          account?.account?.data?.parsed?.info?.stake?.delegation
+            ?.activationEpoch
+        );
+        const currentEpoch = epochInfo?.epoch;
+        if (
+          currentEpoch &&
+          marinade?.marinadeState?.state?.stake_system?.min_stake !==
+            undefined &&
+          stakeStart > currentEpoch - 2 &&
+          new BN(
+            account?.account?.data?.parsed?.info?.stake?.delegation?.stake
+          ).lt(marinade?.marinadeState?.state?.stake_system?.min_stake)
+        ) {
+          return { ...account, isStakable: false };
+        }
+        return { ...account, isStakable: true };
+      })
+      .map((account: StakeAccount) => {
+        return {
+          address: account?.pubkey?.toBase58().toString(),
+          balance: Number(
+            format5Dec(
+              Number(
+                account?.account?.data?.parsed?.info?.stake?.delegation?.stake
+              ),
+              LAMPORTS_PER_SOL
+            )
+          ),
+          isStakable: account.isStakable,
+        };
+      })
+      .sort((accountA: StakeAccountType, accountB: StakeAccountType) => {
+        return accountA.balance - accountB.balance;
+      });
+  };
+
+  const advancedStake = async () => {
+    const [selectedStakeAccount] = stakeAccounts.filter(
+      (account: StakeAccount) =>
+        account?.pubkey.toBase58().toString() === stakeAccount?.address
+    );
+    if (selectedStakeAccount !== null) {
+      try {
+        const accountAddress = shortenAddress(stakeAccount?.address || "");
+
+        const transactionSignature = await marinade.runDepositStakeAccount(
+          selectedStakeAccount
+        );
+
+        toast({
+          title: t("appPage.stake-account.title", { accountAddress }),
+          description: (
+            <p>
+              {t("appPage.stake-account.message")}{" "}
+              <TransactionLink
+                chainName={chain.name}
+                transactionid={transactionSignature}
+              />
+            </p>
+          ),
+          status: "success",
+        });
+      } catch (error) {
+        const errors = {
+          mainnetFull: "0xec6",
+          checkValidatorCommision: "0xec6",
+          accountLockup: "0xb3aa",
+          invalidAccountData: "invalid account data for instruction",
+          noPriorRecord: "no record of a prior credit",
+          insufficientFunds: "insufficient funds for instruction",
+        };
+        const description =
+          Object.keys(errors)
+            .slice(0)
+            .reduce((previousValue, currentValue, currentIndex, array) => {
+              if (
+                (error as Error)
+                  .toString()
+                  .includes((errors as { [key: string]: string })[currentValue])
+              ) {
+                array.splice(1); // breaks reduce if result is found
+                return t(`appPage.stake-account-errors.${currentValue}`);
+              }
+              return "";
+            }, "") || (error as Error).message;
+        toast({
+          title: t("appPage.something-went-wrong"),
+          description,
+          status: "warning",
+        });
+      }
+    }
+  };
 
   // eslint-disable-next-line consistent-return
   const stakeHandler = () => {
+    if (stakeAccount !== null) {
+      return advancedStake();
+    }
     const basicInputChecksErrors = basicInputChecks(
       Number(solToStake),
       isWalletConnected
@@ -180,7 +306,7 @@ const BasicStake = () => {
         tokenIcon="/icons/solana-dark.png"
         tokenBalance={sourceTokenBalance}
         currentAccount={currentAccount}
-        stakeAccounts={stakeAccounts}
+        stakeAccounts={parseStakeAccounts()}
         value={solToStake}
         mb={2}
       />
@@ -190,7 +316,7 @@ const BasicStake = () => {
         tokenIcon="/icons/mSOL.svg"
         tokenBalance={stSOLBalance ?? 0}
         currentAccount={currentAccount}
-        stakeAccounts={stakeAccounts}
+        stakeAccounts={[]}
         value={(Number(solToStake) / mSOLvsSOLParity).toString()}
         mb={2}
       />

@@ -54,7 +54,7 @@ const MndeSection = () => {
           <Image src="/icons/external-link-green.svg" width="1rem" ml={2} />
         </MLink>
       </Flex>
-      <Flex>
+      <Flex flexDirection={["column", "row"]}>
         <MNDEFarmCard />
         <RetroMnde />
       </Flex>

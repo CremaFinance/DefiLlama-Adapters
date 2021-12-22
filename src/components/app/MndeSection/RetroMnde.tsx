@@ -78,10 +78,10 @@ const RetroMnde = () => {
         (transactionSignature: string) => {
           onOpen();
           toast({
-            title: t("mndePage.claim-success-title"),
+            title: t("mndePage.claim-mnde-confirmed"),
             description: (
               <p>
-                {t("mndePage.claim-success-description")}{" "}
+                {t("mndePage.succesfully-claimed-mnde")}{" "}
                 <TransactionLink
                   chainName={chain.name}
                   transactionid={transactionSignature}
@@ -96,8 +96,8 @@ const RetroMnde = () => {
           console.error(error);
 
           toast({
-            title: t("mndePage.claim-failed-title"),
-            description: t("mndePage.claim-failed-description"),
+            title: t("mndePage.something-went-wrong"),
+            description: t("mndePage.error-processing-transaction"),
             status: "warning",
           });
         }
