@@ -60,11 +60,9 @@ const ApyAndRewardTooltip: FunctionComponent<ApyAndRewardTooltipProps> = ({
           borderRadius="4px"
         >
           {leverage && (
-            <Text fontSize="11.52px" marginBottom="4px">
-              <Text as="span" fontWeight="bold">
-                {leverage.leverageAmount}x
-              </Text>{" "}
-              {t("appPage.pool-row.apyPopover.leverage")}:
+            <Text fontSize="11.52px" marginBottom="4px" fontWeight="bold">
+              {leverage.leverageAmount}x{" "}
+              {t("appPage.pool-row.apyPopover.leverage")}
             </Text>
           )}
 
