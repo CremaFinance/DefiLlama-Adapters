@@ -13,9 +13,9 @@ import {
 import { useTranslation } from "next-export-i18n";
 import { useState } from "react";
 
+import colors from "../../../styles/customTheme/colors";
 import StakeInput, { StakeInputTypeEnum } from "../StakeInput";
 import SwitchButtons from "../SwitchButtons";
-import colors from "styles/customTheme/colors";
 
 interface MndeLiquidityModalProps {
   onClose: () => Promise<void> | void;
