@@ -18,6 +18,7 @@ import { MaridropProvider } from "../contexts/MaridropContext";
 import { MarinadeProvider } from "../contexts/MarinadeContext";
 import { QuarryProvider } from "../contexts/QuaryContext";
 import { StatsProvider } from "../contexts/StatsContext";
+import { UserBalanceProvider } from "../contexts/UserBalanceContext";
 import Layout from "components/layout";
 import createEmotionCache from "styles/createEmotionCache";
 import customTheme from "styles/customTheme";
@@ -66,9 +67,11 @@ const MyApp = ({
                     <QuarryProvider>
                       <MaridropProvider>
                         <StatsProvider>
-                          <Layout>
-                            <Component {...pageProps} />
-                          </Layout>
+                          <UserBalanceProvider>
+                            <Layout>
+                              <Component {...pageProps} />
+                            </Layout>
+                          </UserBalanceProvider>
                         </StatsProvider>
                       </MaridropProvider>
                     </QuarryProvider>
