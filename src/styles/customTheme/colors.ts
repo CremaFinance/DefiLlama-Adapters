@@ -36,6 +36,9 @@ const overridenChakraColors: DeepPartial<Theme["colors"]> = {
     100: "#FDEEEB",
     500: "#E2543D",
   },
+  gray: {
+    100: "#EDF2F7",
+  },
 };
 
 const colors = {
@@ -54,6 +57,7 @@ const colors = {
   marinadeEvenLighterGreen: "#ECFAF5",
   white: "#FFFFFF",
   white800: "#FFFFFFCC",
+  lightGray: "#EDF2F7",
 };
 
 export default colors;

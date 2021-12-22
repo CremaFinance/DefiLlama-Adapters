@@ -1,7 +1,7 @@
 import { Connection, PublicKey } from "@solana/web3.js";
 import bs58 from "bs58";
 
-import { STAKE_PROGRAM_ID } from "../utils/web3/ids";
+import { STAKE_PROGRAM_ID } from "./ids";
 
 export async function findStakeAccountsByOwner(
   connection: Connection,
@@ -15,7 +15,10 @@ export async function findStakeAccountsByOwner(
   return connection.getParsedProgramAccounts(new PublicKey(STAKE_PROGRAM_ID), {
     filters: [
       {
-        memcmp: { bytes: bs58.encode(new Uint8Array([2, 0, 0, 0])), offset: 0 },
+        memcmp: {
+          bytes: bs58.encode(new Uint8Array([2, 0, 0, 0])),
+          offset: 0,
+        },
       },
       { memcmp: { bytes: bs58.encode(data), offset: 44 } },
     ],
