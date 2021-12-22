@@ -53,7 +53,7 @@ const SuccessfulClaimModal = ({
         >
           {t("mndePage.modal-claim-success-title")}
         </ModalHeader>
-        <ModalCloseButton />
+        <ModalCloseButton _focus={{ boxShadow: "none" }} />
         <ModalBody
           px={{ base: "16px", md: "24px" }}
           mt={{ base: "8px", md: "0px" }}
@@ -103,27 +103,30 @@ const SuccessfulClaimModal = ({
               href="https://discord.com/invite/6EtUf4Euu6"
               target="_blank"
               rel="noreferrer"
+              width="165px"
+              height="40px"
+              font="text-lg"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              _hover={{ bg: colors.green800 }}
+              _focus={{ boxShadow: "none" }}
+              colorScheme={colors.marinadeGreen}
+              bg={colors.marinadeGreen}
+              color="white"
+              rounded="md"
             >
-              <MButton
-                variant="solid"
-                width="165px"
-                height="40px"
-                fontSize="16px"
-              >
-                <Flex alignItems="center">
-                  <MText>{t("mndePage.modal-claim-success-discord")} </MText>
-                  <Icon
-                    position="relative"
-                    bottom="1px"
-                    as={FiExternalLink}
-                    width="14px"
-                    height="14px"
-                    ml="6px"
-                    mr={{ base: "3px", md: "5px" }}
-                    cursor="pointer"
-                  />
-                </Flex>
-              </MButton>
+              {t("mndePage.modal-claim-success-discord")}{" "}
+              <Icon
+                position="relative"
+                bottom="1px"
+                as={FiExternalLink}
+                width="14px"
+                height="14px"
+                ml="6px"
+                mr={{ base: "3px", md: "5px" }}
+                cursor="pointer"
+              />
             </MLink>
           </Flex>
         </ModalBody>
