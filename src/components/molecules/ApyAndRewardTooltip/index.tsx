@@ -10,17 +10,20 @@ import { PropsWithChildren, FunctionComponent } from "react";
 import { HiCheckCircle } from "react-icons/hi";
 
 import { useTranslation } from "../../../hooks/useTranslation";
+import { Leverage, LeverageConfig } from "../../../services/domain/leverage";
 import { Rewards, RewardsConfig } from "../../../services/domain/rewards";
 import Text from "../../atoms/Text";
 
 type ApyAndRewardTooltipProps = PropsWithChildren<{
   tradingApy?: number;
   rewards?: Rewards | RewardsConfig;
+  leverage?: Leverage | LeverageConfig;
 }>;
 
 const ApyAndRewardTooltip: FunctionComponent<ApyAndRewardTooltipProps> = ({
   tradingApy,
   rewards,
+  leverage,
   children,
 }) => {
   const { t } = useTranslation();
@@ -56,6 +59,15 @@ const ApyAndRewardTooltip: FunctionComponent<ApyAndRewardTooltipProps> = ({
           backgroundColor="marinadeEvenLighterGreen"
           borderRadius="4px"
         >
+          {leverage && (
+            <Text fontSize="11.52px" marginBottom="4px">
+              <Text as="span" fontWeight="bold">
+                {leverage.leverageAmount}x
+              </Text>{" "}
+              {t("appPage.pool-row.apyPopover.leverage")}:
+            </Text>
+          )}
+
           <Text fontSize="11.52px" marginBottom="4px">
             {t("appPage.pool-row.apyPopover.trading")}:
             <Text as="span" fontWeight="bold">
@@ -70,6 +82,18 @@ const ApyAndRewardTooltip: FunctionComponent<ApyAndRewardTooltipProps> = ({
               </Text>
             </Text>
           ))}
+          {leverage && leverage.selectedToken && (
+            <Text fontSize="11.52px" marginBottom="4px">
+              {leverage.selectedToken.symbol}{" "}
+              {t("appPage.pool-row.apyPopover.borrow")}:
+              <Text as="span" fontWeight="bold">
+                {leverage.selectedToken?.borrowApr
+                  ? leverage.selectedToken?.borrowApr.toFixed(2)
+                  : 0}
+                %
+              </Text>
+            </Text>
+          )}
           {rewardsList.map((reward) => (
             <Text fontSize="11.52px">
               <Icon

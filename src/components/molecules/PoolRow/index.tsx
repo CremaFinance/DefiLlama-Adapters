@@ -24,6 +24,7 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
     logoURI,
     rewards,
     actions,
+    leverage,
   } = pool;
   const { t } = useTranslation();
   const totalApy = apy?.toFixed(2);
@@ -109,7 +110,11 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
         ) : (
           <Spinner size="xs" />
         )}
-        <ApyAndRewardTooltip rewards={rewards} tradingApy={tradingApy}>
+        <ApyAndRewardTooltip
+          rewards={rewards}
+          tradingApy={tradingApy}
+          leverage={leverage}
+        >
           <Button
             variant="link"
             _hover={{}}
