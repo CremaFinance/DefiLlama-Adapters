@@ -18,10 +18,12 @@ const actions = [
   {
     text: "Manage deposit",
     url: "https://marinade-web.pages.dev",
+    isExternal: false,
   },
   {
     text: "Swap",
     url: "https://marinade-web.pages.dev",
+    isExternal: false,
   },
 ];
 

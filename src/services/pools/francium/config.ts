@@ -15,8 +15,8 @@ import { lendingFranciumPoolTokens } from "./lendingFranciumPoolTokens";
 
 const provider = "Francium";
 const actions = [
-  { text: "Supply", url: "https://francium.io/" },
-  { text: "Borrow", url: "https://francium.io/" },
+  { text: "Supply", url: "https://francium.io/", isExternal: true },
+  { text: "Borrow", url: "https://francium.io/", isExternal: true },
 ];
 
 export type FranciumPoolsResponse = Record<

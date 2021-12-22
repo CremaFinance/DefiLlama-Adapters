@@ -7,7 +7,7 @@ import { Token } from "./token";
  * Text and link for the 'Actions' available on a pool row in the UI
  *
  */
-export type Action = { text: string; url: string };
+export type Action = { text: string; url: string; isExternal: boolean };
 
 /* the unique pooltoken address */
 export type PoolAddress = string;

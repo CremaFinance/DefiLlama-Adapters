@@ -1,4 +1,4 @@
-import { Flex, Image, Icon, Spinner, useDisclosure } from "@chakra-ui/react";
+import { Flex, Image, Icon, Spinner } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { FunctionComponent } from "react";
 import { HiOutlineInformationCircle } from "react-icons/hi";
@@ -9,7 +9,7 @@ import Button from "../../atoms/Button";
 import Heading from "../../atoms/Heading";
 import Text from "../../atoms/Text";
 import ApyAndRewardTooltip from "../ApyAndRewardTooltip";
-import MndeLiquidityModal from "../MndeLiquidityModal";
+import PoolRowActionsSection from "../PoolRowActionsSection";
 
 type PoolRowProps = {
   pool: Pool | PoolConfig;
@@ -27,7 +27,6 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
     actions,
   } = pool;
   const { t } = useTranslation();
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const totalApy = apy?.toFixed(2);
 
   const totalApyString = totalApy
@@ -155,45 +154,9 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
           justifyContent={{ base: "stretch", lg: "flex-end" }}
           marginTop={{ base: "16px", lg: "0" }}
         >
-          <Flex
-            flexDir={{ base: "row-reverse", lg: "column" }}
-            justifyContent={{ base: "stretch", lg: undefined }}
-            width={{ base: undefined, lg: "145px" }}
-            flex={1}
-          >
-            <Flex flex={{ base: 1.4, lg: 0 }}>
-              <Button
-                variant="solid"
-                marginBottom={{ base: 0, lg: "8px" }}
-                flex={1}
-                rightIcon={
-                  <Image src="/icons/external-link-white.svg" width="0.8rem" />
-                }
-                onClick={() => window.open(actions[0].url, "_blank")}
-              >
-                {actions[0].text}
-              </Button>
-            </Flex>
-            <Flex
-              flex={{ base: 1, lg: 0 }}
-              marginRight={{ base: "8px", lg: 0 }}
-            >
-              <Button
-                variant="outline"
-                onClick={() => onOpen()}
-                // onClick={() => window.open(actions[1].url, "_blank")}
-                flex={1}
-                rightIcon={
-                  <Image src="/icons/external-link-green.svg" width="0.8rem" />
-                }
-              >
-                {actions[1].text}
-              </Button>
-            </Flex>
-          </Flex>
+          <PoolRowActionsSection actions={actions} />
         </Flex>
       </Flex>
-      <MndeLiquidityModal isOpen={isOpen} onClose={onClose} />
     </>
   );
 };

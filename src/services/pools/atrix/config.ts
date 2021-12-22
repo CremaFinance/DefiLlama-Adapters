@@ -18,10 +18,12 @@ const actions = [
   {
     text: "Add Liquidity",
     url: "https://app.atrix.finance/#/pools",
+    isExternal: true,
   },
   {
     text: "Swap",
     url: "https://app.atrix.finance/#/swap",
+    isExternal: true,
   },
 ];
 
