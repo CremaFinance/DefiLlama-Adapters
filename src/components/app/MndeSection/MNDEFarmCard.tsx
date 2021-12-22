@@ -1,5 +1,5 @@
 /* eslint-disable complexity */
-import { Box, Flex, Icon, Image, useToast } from "@chakra-ui/react";
+import { Box, Flex, Icon, Image, Spinner, useToast } from "@chakra-ui/react";
 import { BN } from "@project-serum/anchor";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
@@ -138,42 +138,52 @@ const MNDEFarmCard = () => {
           </Flex>
           <Image src="/icons/mnde.svg" boxSize="40px" />
         </Flex>
-        <MHeading fontSize="22.5px" mb="4px">
-          {`${apr} % APR`}
-        </MHeading>
-        <MText type="text-md" mt="1px">{`${addCommas(
-          format2Dec(totalDeposited?.toNumber(), LAMPORTS_PER_SOL)
-        )} mSOL = $ ${addCommas(format2Dec(totalDepositValue))} TVL`}</MText>
-        <Flex
-          height="56px"
-          width="100%"
-          mt="16px"
-          mb="16px"
-          borderY="1px solid"
-          borderColor={colors.lightGray}
-          alignItems="center"
-        >
-          <Icon
-            as={IoCheckmarkCircle}
-            color={colors.marinadeGreen}
-            width="24px"
-            height="24px"
-            mr="10px"
-          />
-          <MText>{`${addCommas(
-            format2Dec(mSOLFarmAnnualRewards * 7, LAMPORTS_PER_SOL * 365)
-          )} MNDE/week`}</MText>
-        </Flex>
-        <Flex
-          justifyContent="space-between"
-          display={connected ? "flex" : "none"}
-        >
-          <MText>{t("mndePage.your-deposit")}:</MText>
-          <MText>{`${format2Dec(
-            userStake.toNumber(),
-            LAMPORTS_PER_SOL
-          )} MSOL`}</MText>
-        </Flex>
+        {apr ? (
+          <>
+            <MHeading fontSize="22.5px" mb="4px">
+              {`${apr} % APR`}
+            </MHeading>
+            <MText type="text-md" mt="1px">{`${addCommas(
+              format2Dec(totalDeposited?.toNumber(), LAMPORTS_PER_SOL)
+            )} mSOL = $ ${addCommas(
+              format2Dec(totalDepositValue)
+            )} TVL`}</MText>
+            <Flex
+              height="56px"
+              width="100%"
+              mt="16px"
+              mb="16px"
+              borderY="1px solid"
+              borderColor={colors.lightGray}
+              alignItems="center"
+            >
+              <Icon
+                as={IoCheckmarkCircle}
+                color={colors.marinadeGreen}
+                width="24px"
+                height="24px"
+                mr="10px"
+              />
+              <MText>{`${addCommas(
+                format2Dec(mSOLFarmAnnualRewards * 7, LAMPORTS_PER_SOL * 365)
+              )} MNDE/week`}</MText>
+            </Flex>
+            <Flex
+              justifyContent="space-between"
+              display={connected ? "flex" : "none"}
+            >
+              <MText>{t("mndePage.your-deposit")}:</MText>
+              <MText>{`${format2Dec(
+                userStake.toNumber(),
+                LAMPORTS_PER_SOL
+              )} MSOL`}</MText>
+            </Flex>
+          </>
+        ) : (
+          <Flex height="100px" alignItems="center" justifyContent="center">
+            <Spinner size="md" />
+          </Flex>
+        )}
       </Box>
       {connected ? (
         <Flex flexDirection="column" alignItems="center">
