@@ -146,7 +146,11 @@ const MndeLiquidityModal = ({
               </Button>
             </Flex>
             <Text lineHeight="21.6px" fontSize="14.4px">
-              {t("appPage.liquidity-modal.description")}
+              {t(
+                isAddLiquidityActive
+                  ? "appPage.liquidity-modal.description-add-liqidity"
+                  : "appPage.liquidity-modal.description-remove-liqidity"
+              )}
             </Text>
           </ModalBody>
         </ModalContent>
