@@ -14,9 +14,11 @@ import defaultSEOConfig from "../../next-seo.config";
 import { AccountsContextProvider } from "../contexts/AccountsContext";
 import { AnchorProvider } from "../contexts/AnchorContext";
 import { ConnectionProvider } from "../contexts/ConnectionProvider";
+import { MaridropProvider } from "../contexts/MaridropContext";
 import { MarinadeProvider } from "../contexts/MarinadeContext";
 import { QuarryProvider } from "../contexts/QuaryContext";
 import { StatsProvider } from "../contexts/StatsContext";
+import { UserBalanceProvider } from "../contexts/UserBalanceContext";
 import Layout from "components/layout";
 import createEmotionCache from "styles/createEmotionCache";
 import customTheme from "styles/customTheme";
@@ -63,11 +65,15 @@ const MyApp = ({
                 <AnchorProvider>
                   <MarinadeProvider>
                     <QuarryProvider>
-                      <StatsProvider>
-                        <Layout>
-                          <Component {...pageProps} />
-                        </Layout>
-                      </StatsProvider>
+                      <MaridropProvider>
+                        <StatsProvider>
+                          <UserBalanceProvider>
+                            <Layout>
+                              <Component {...pageProps} />
+                            </Layout>
+                          </UserBalanceProvider>
+                        </StatsProvider>
+                      </MaridropProvider>
                     </QuarryProvider>
                   </MarinadeProvider>
                 </AnchorProvider>
