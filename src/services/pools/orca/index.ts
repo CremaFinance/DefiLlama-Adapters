@@ -1,6 +1,6 @@
 import { updatePoolFromTokens } from "../../../utils/update-pool";
 import { Prices } from "../../domain/coinSymbols";
-import { Pool } from "../../domain/pool";
+import { FetchPools, Pool } from "../../domain/pool";
 import { Provider } from "../../domain/providers";
 
 import { orcaPools, OrcaPoolsResponse } from "./config";
@@ -42,7 +42,7 @@ export const mapOrcaPoolsResponse = (
   }, {});
 };
 
-export const getOrca = async (prices: Prices) => {
+export const getOrca: FetchPools = async (prices) => {
   const results = await fetchOrcaPools();
   return mapOrcaPoolsResponse(results, prices);
 };

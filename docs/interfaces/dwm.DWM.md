@@ -12,7 +12,7 @@
 
 #### Defined in
 
-[dwm.ts:2](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/dwm.ts#L2)
+[dwm.ts:2](https://github.com/marinade-finance/marinade-web/blob/c14991b/src/services/domain/dwm.ts#L2)
 
 ___
 
@@ -22,7 +22,7 @@ ___
 
 #### Defined in
 
-[dwm.ts:4](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/dwm.ts#L4)
+[dwm.ts:4](https://github.com/marinade-finance/marinade-web/blob/c14991b/src/services/domain/dwm.ts#L4)
 
 ___
 
@@ -32,4 +32,4 @@ ___
 
 #### Defined in
 
-[dwm.ts:3](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/dwm.ts#L3)
+[dwm.ts:3](https://github.com/marinade-finance/marinade-web/blob/c14991b/src/services/domain/dwm.ts#L3)
