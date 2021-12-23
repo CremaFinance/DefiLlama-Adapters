@@ -111,7 +111,11 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
           ) : (
             <Spinner size="xs" />
           )}
-          <ApyAndRewardTooltip rewards={rewards} tradingApy={tradingApy}>
+          <ApyAndRewardTooltip
+            rewards={rewards}
+            tradingApy={tradingApy}
+            leverage={leverage}
+          >
             <Button
               variant="link"
               _hover={{}}
