@@ -15,8 +15,8 @@ import { farmPoolTokens, lendingPoolTokens } from "./PoolTokens";
 
 const provider = "Francium";
 const lendActions = [
-  { text: "Supply", url: "https://francium.io/app/lend" },
-  { text: "Borrow", url: "https://francium.io/app/lend" },
+  { text: "Supply", url: "https://francium.io/app/lend", isExternal: true },
+  { text: "Borrow", url: "https://francium.io/app/lend", isExternal: true },
 ];
 const farmActions = [
   { text: "Add Liquidity", url: "https://francium.io/app/invest/farm" },

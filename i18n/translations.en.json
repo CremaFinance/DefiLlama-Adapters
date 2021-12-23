@@ -206,6 +206,16 @@
         "borrow": "borrow APR"
       }
     },
+    "liquidity-modal": {
+      "add-liquidity": "Add liquidity",
+      "remove-liquidity": "Remove liquidity",
+      "get-lp": "Get LP",
+      "balance": "Balance",
+      "conversion-explained": "You will receive",
+      "description-add-liqidity": "You are adding liquidity only in SOL. When removing liquidity, you will burn shares from the liquidity pool. You will receive SOL and mSOL from the pool according to the actual pool composition.",
+      "description-remove-liqidity": "You will burn shares from the liquidity pool. You will receive SOL and mSOL from the pool according to the actual pool composition.",
+      "pool": "mSOL - SOL LP"
+    },
     "all-pools-section": {
       "pair": "Pair",
       "apy": "APY",
@@ -374,8 +384,17 @@
     "claim-action": "Claim",
     "claim-mnde-confirmed": "Claim MNDE confirmed",
     "succesfully-claimed-mnde": "You've successfully claimed your MNDE",
-    "manage-deposit-action": "Manage deposit",
     "something-went-wrong": "Something went wrong",
-    "error-processing-transaction": "Error processing transaction"
+    "error-processing-transaction": "Error processing transaction",
+    "claim-ineligible": "Your wallet is not eligible for this wave of MNDE retroactive rewards. Learn about selection criteria",
+    "claim-ineligible-link": "https://docs.marinade.finance/marinade-dao/tokenomics/retroactive-rewards",
+    "modal-claim-success-title": "Congratulations!",
+    "modal-claim-success-description": "You've successfully claimed your MNDE. Here's what you can do with it:",
+    "modal-claim-success-subtitle-1": "Access mDAO community on discord",
+    "modal-claim-success-subtitle-2": "Participate in mDAO governance",
+    "modal-claim-success-subtitle-3": "Provide liquidity on Orca.so and Raydium.io",
+    "modal-claim-success-discord": "mDAO Discord",
+    "manage-deposit-action": "Manage deposit",
+    "here": "here"
   }
 }

@@ -8,7 +8,10 @@ import { Token } from "./token";
  * Text and link for the 'Actions' available on a pool row in the UI
  *
  */
-export type Action = { text: string; url: string };
+export type Action = { text: string; url: string; isExternal: boolean };
+
+/* the unique pooltoken address */
+export type PoolAddress = string;
 
 /**
  * An interface that extends [[`Token`]] and adds more properties to support integration
@@ -54,4 +57,11 @@ export interface Pool extends PoolConfig {
  * - src/utils/update-pool-rewards.ts
  * - src/utils/update-pool.ts
  */
-export type FetchPools = (prices: Prices) => Promise<Record<string, Pool>>;
+export type FetchPools = (
+  prices: Prices,
+  /** optional additional required provider settings
+   * e.g. for marinade pool we pass in 'options:{ mSolTvl: 19929920} needed for calcs
+   * these will be available to pool row
+   * */
+  options?: Record<string, unknown>
+) => Promise<Record<string, Pool>>;

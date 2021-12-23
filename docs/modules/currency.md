@@ -10,7 +10,7 @@
 
 #### Defined in
 
-[currency.ts:6](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/currency.ts#L6)
+[currency.ts:6](https://github.com/marinade-finance/marinade-web/blob/c14991b/src/services/domain/currency.ts#L6)
 
 ___
 
@@ -20,7 +20,7 @@ ___
 
 #### Defined in
 
-[currency.ts:7](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/currency.ts#L7)
+[currency.ts:7](https://github.com/marinade-finance/marinade-web/blob/c14991b/src/services/domain/currency.ts#L7)
 
 ## Variables
 
@@ -34,4 +34,4 @@ ___
 
 #### Defined in
 
-[currency.ts:1](https://github.com/marinade-finance/marinade-web/blob/3661e26/src/services/domain/currency.ts#L1)
+[currency.ts:1](https://github.com/marinade-finance/marinade-web/blob/c14991b/src/services/domain/currency.ts#L1)

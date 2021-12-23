@@ -10,18 +10,20 @@ import {
 import {
   LiquidityPoolAtrixIds,
   liquidityPoolAtrixIds,
-} from "./liquidityRaydiumPoolIds";
-import { liquidityPoolTokensAtrix } from "./liquidityRaydiumPoolTokens";
+} from "./liquidityAtrixPoolIds";
+import { liquidityPoolTokensAtrix } from "./liquidityAtrixPoolTokens";
 
 const provider = "Atrix";
 const actions = [
   {
     text: "Add Liquidity",
     url: "https://app.atrix.finance/#/pools",
+    isExternal: true,
   },
   {
     text: "Swap",
     url: "https://app.atrix.finance/#/swap",
+    isExternal: true,
   },
 ];
 

@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/cognitive-complexity */
 /* eslint-disable complexity */
 import {
   Flex,
@@ -34,6 +35,7 @@ import MText from "../../atoms/Text";
 export enum StakeInputTypeEnum {
   Source = "source",
   Target = "target",
+  Liquidity = "liquidity",
 }
 
 export type StakeAccountType = {
@@ -48,8 +50,8 @@ type StakeInputProps = {
   tokenName: string;
   tokenBalance: number;
   mb?: number;
-  currentAccount: StakeAccountType;
-  stakeAccounts: StakeAccountType[];
+  currentAccount?: StakeAccountType;
+  stakeAccounts?: StakeAccountType[];
   selectAccountCallback?: (
     value: boolean,
     stakeAccount: StakeAccountType
@@ -129,25 +131,10 @@ const StakeInput = ({
       justifyContent="space-between"
     >
       <Flex justifyContent="space-between">
-        {stakeInputType === StakeInputTypeEnum.Target ? (
-          <Flex
-            boxShadow="md"
-            rounded="md"
-            justifyContent="space-around"
-            alignItems="center"
-            height="44px"
-            px={2}
-            bg="white"
-          >
-            <Image
-              src={tokenIcon}
-              alt="Source Token Logo"
-              width={["24px", "30px"]}
-              mr={2}
-            />
-            <MText type="text-xl">{tokenName}</MText>
-          </Flex>
-        ) : (
+        {stakeInputType === StakeInputTypeEnum.Source &&
+        currentAccount !== undefined &&
+        selectedAccount !== undefined &&
+        stakeAccounts !== undefined ? (
           <Menu>
             <MenuButton
               boxShadow="md"
@@ -315,8 +302,25 @@ const StakeInput = ({
               )}
             </MenuList>
           </Menu>
+        ) : (
+          <Flex
+            boxShadow="md"
+            rounded="md"
+            justifyContent="space-around"
+            alignItems="center"
+            height="44px"
+            px={2}
+            bg="white"
+          >
+            <Image
+              src={tokenIcon}
+              alt="Source Token Logo"
+              width={["24px", "30px"]}
+              mr={2}
+            />
+            <MText type="text-xl">{tokenName}</MText>
+          </Flex>
         )}
-
         <NumberFormat
           customInput={Input}
           variant="unstyled"
@@ -351,7 +355,8 @@ const StakeInput = ({
         <MText type="text-sm">{`${balanceLabel}: ${tokenBalance.toLocaleString()} ${tokenName}`}</MText>
         {tokenBalance &&
         !isStakeAccountSelected &&
-        stakeInputType === StakeInputTypeEnum.Source ? (
+        (stakeInputType === StakeInputTypeEnum.Source ||
+          stakeInputType === StakeInputTypeEnum.Liquidity) ? (
           <MButton
             variant="link"
             font="text-sm"

@@ -2,12 +2,12 @@ import { useQueries } from "react-query";
 
 import { CoinSymbols, Prices } from "../services/domain/coinSymbols";
 import { fetchCoinPrice } from "../services/markets/coinPrice";
-import { providers } from "../services/pools";
+import { providers, ProviderOptions } from "../services/pools";
 import { getProviderTokens } from "../utils/tokens-list";
 
 const refetchInterval = 5 * 60 * 1000;
 
-export const usePools = () => {
+export const usePools = (providerOptions?: ProviderOptions) => {
   const priceTokens = Object.values(providers).reduce((acc, provider) => {
     return acc.concat(getProviderTokens(provider).map((token) => token));
   }, [] as CoinSymbols[]);
@@ -29,7 +29,10 @@ export const usePools = () => {
   const providerQueries = Object.entries(providers).map(([key, provider]) => {
     return {
       queryKey: ["provider", key],
-      queryFn: () => provider.fetchPools(prices),
+      queryFn: () => {
+        const options = providerOptions ? providerOptions[key] : undefined;
+        return provider.fetchPools(prices, options);
+      },
       enabled: getProviderTokens(provider).every((t) => prices[t]),
       placeholderData: provider.pools,
       refetchInterval,

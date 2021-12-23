@@ -18,10 +18,12 @@ const actions = [
   {
     text: "Add Liquidity",
     url: "https://raydium.io/liquidity/?ammId=EGyhb2uLAsRUbRx9dNFBjMVYnFaASWMvD6RE1aEf2LxL",
+    isExternal: true,
   },
   {
     text: "Swap",
     url: "https://raydium.io/swap/?ammId=EGyhb2uLAsRUbRx9dNFBjMVYnFaASWMvD6RE1aEf2LxL",
+    isExternal: true,
   },
 ];
 

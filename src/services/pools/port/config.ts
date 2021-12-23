@@ -12,8 +12,16 @@ import { PortPool } from "./portPool";
 
 const provider = "Port";
 const actions = [
-  { text: "Supply", url: "https://mainnet.port.finance/#/supply" },
-  { text: "Borrow", url: "https://mainnet.port.finance/#/borrow" },
+  {
+    text: "Supply",
+    url: "https://mainnet.port.finance/#/supply",
+    isExternal: true,
+  },
+  {
+    text: "Borrow",
+    url: "https://mainnet.port.finance/#/borrow",
+    isExternal: true,
+  },
 ];
 
 export type PortPoolsResponse = Record<LendingPortPoolIds, PortPool>;
