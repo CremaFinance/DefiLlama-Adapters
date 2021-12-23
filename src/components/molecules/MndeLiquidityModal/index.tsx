@@ -33,15 +33,21 @@ const MndeLiquidityModal = ({
   const [liquidityAmount, setLiquidityAmount] = useState<string>("");
 
   // replace these with data from services
+  const lpBalance = 0;
   const addLiqBalance = 0;
   const addLiqSolBalance = 0;
   const addLiqDollarBalance = 0.18;
   const removeLiqSolBalance = 0.0013;
   const removeLiqmSolBalance = 0.0023;
 
+  const removeLiquidityButton =
+    lpBalance === 0
+      ? t("appPage.liquidity-modal.get-lp")
+      : t("appPage.liquidity-modal.remove-liquidity");
+
   const liquidityButtonText = isAddLiquidityActive
     ? t("appPage.liquidity-modal.add-liquidity")
-    : t("appPage.liquidity-modal.remove-liquidity");
+    : removeLiquidityButton;
 
   return (
     <>
@@ -136,7 +142,6 @@ const MndeLiquidityModal = ({
                 rounded="md"
                 height="48px"
                 my={8}
-                // onClick={liquidityHandler}
               >
                 {liquidityButtonText}
               </Button>
