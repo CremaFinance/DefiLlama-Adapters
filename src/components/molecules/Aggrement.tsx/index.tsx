@@ -43,8 +43,8 @@ const Agreement = () => {
               <Heading textAlign="center">
                 {t("appPage.agreement.header")}
               </Heading>
-              <Circle size="60px">
-                <Image src="/logos/marinade-logo.svg" />
+              <Circle size="40px" bgColor={colors.marinadeGreen}>
+                <Image width={30} src="/marinade-icon-white.svg" />
               </Circle>
             </Flex>
 
