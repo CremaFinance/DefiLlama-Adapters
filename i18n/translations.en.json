@@ -206,7 +206,11 @@
     },
     "liquidity-modal": {
       "add-liquidity": "Add liquidity",
-      "remove-liquidity": "Remove liquidity"
+      "remove-liquidity": "Remove liquidity",
+      "balance": "Balance",
+      "conversion-explained": "You will receive",
+      "description": "You are adding liquidity only in SOL. When removing liquidity, you will burn shares from the liquidity pool. You will receive SOL and mSOL from the pool according to the actual pool composition.",
+      "pool": "mSOL - SOL LP"
     },
     "all-pools-section": {
       "pair": "Pair",

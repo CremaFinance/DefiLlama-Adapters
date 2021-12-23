@@ -32,6 +32,13 @@ const MndeLiquidityModal = ({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [liquidityAmount, setLiquidityAmount] = useState<string>("");
 
+  // replace these with data from services
+  const addLiqBalance = 0;
+  const addLiqSolBalance = 0;
+  const addLiqDollarBalance = 0.18;
+  const removeLiqSolBalance = 0.0013;
+  const removeLiqmSolBalance = 0.0023;
+
   const liquidityButtonText = isAddLiquidityActive
     ? t("appPage.liquidity-modal.add-liquidity")
     : t("appPage.liquidity-modal.remove-liquidity");
@@ -67,25 +74,25 @@ const MndeLiquidityModal = ({
             <Flex mb={2}>
               <Image src="/pools/msol.png" width="24px" height="24px" />
               <Text marginLeft="8px" fontSize="14.4px">
-                mSOL - SOL LP
+                {t("appPage.liquidity-modal.pool")}
               </Text>
             </Flex>
             <Flex justifyContent="space-between">
               <Text lineHeight="21.6px" fontSize="14.4px">
-                Balance
+                {t("appPage.liquidity-modal.balance")}
               </Text>
               <Text lineHeight="21.6px" fontSize="14.4px">
-                0
+                {addLiqBalance}
               </Text>
             </Flex>
             <Flex width="100%" justifyContent="flex-end">
               <Text lineHeight="21.6px" fontSize="14.4px">
-                = 0 SOL
+                {`= ${addLiqSolBalance} SOL`}
               </Text>
             </Flex>
             <Flex mb={4} width="100%" justifyContent="flex-end">
               <Text lineHeight="21.6px" fontSize="14.4px">
-                = $0.18
+                {`= $ ${addLiqDollarBalance}`}
               </Text>
             </Flex>
             <StakeInput
@@ -103,20 +110,23 @@ const MndeLiquidityModal = ({
             />
             <Flex h="52px">
               {!isAddLiquidityActive ? (
-                <Flex>
+                <Flex flexDirection="column" flex={1}>
                   <Flex justifyContent="space-between">
                     <Text lineHeight="21.6px" fontSize="14.4px">
-                      You will recive
+                      {t("appPage.liquidity-modal.conversion-explained")}
                     </Text>
                     <Text lineHeight="21.6px" fontSize="14.4px">
-                      0.0013 SOL
+                      {`= $ ${removeLiqSolBalance} SOL`}
                     </Text>
                   </Flex>
-                  <Flex mb={4} width="100%" justifyContent="flex-end">
-                    <Text lineHeight="21.6px" fontSize="14.4px">
-                      = 0 mSOL
-                    </Text>
-                  </Flex>
+                  <Text
+                    mb={4}
+                    align="end"
+                    lineHeight="21.6px"
+                    fontSize="14.4px"
+                  >
+                    {`= $ ${removeLiqmSolBalance} mSOL`}
+                  </Text>
                 </Flex>
               ) : null}
             </Flex>
@@ -136,9 +146,7 @@ const MndeLiquidityModal = ({
               </Button>
             </Flex>
             <Text lineHeight="21.6px" fontSize="14.4px">
-              You are adding liquidity only in SOL. When removing liquidity, you
-              you will burn shares from the liquidity pool. You will receive SOL
-              and mSOL from the pool according to the actual pool composition.
+              {t("appPage.liquidity-modal.description")}
             </Text>
           </ModalBody>
         </ModalContent>
