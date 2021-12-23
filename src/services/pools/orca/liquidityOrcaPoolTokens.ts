@@ -59,4 +59,22 @@ export const liquidityPoolTokens: TokenRecord<LiquidityOrcaPoolAddress> = {
     logoURI: orcaUri,
     tags: ["lp-token"],
   },
+  [liquidityOrcaPoolAddress.ORCA_ORCA_mSOL]: {
+    chainId: 101,
+    address: liquidityOrcaPoolAddress.ORCA_ORCA_mSOL,
+    symbol: "ORCA/mSOL",
+    name: "Orca ORCA/mSOL[aquafarm]",
+    decimals: 6,
+    logoURI: orcaUri,
+    tags: ["lp-token"],
+  },
+  [liquidityOrcaPoolAddress.ORCA_mSOL_whETH]: {
+    chainId: 101,
+    address: liquidityOrcaPoolAddress.ORCA_mSOL_whETH,
+    symbol: "mSOL/whETH[aquafarm]",
+    name: "Orca mSOL/whETH[aquafarm]",
+    decimals: 6,
+    logoURI: orcaUri,
+    tags: ["lp-token"],
+  },
 };

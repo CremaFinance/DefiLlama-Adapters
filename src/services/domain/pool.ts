@@ -1,4 +1,5 @@
 import { CoinSymbols, Prices } from "./coinSymbols";
+import { LeverageConfig } from "./leverage";
 import { MarketTypes } from "./marketTypes";
 import { Rewards, RewardsConfig } from "./rewards";
 import { Token } from "./token";
@@ -27,12 +28,14 @@ export interface PoolConfig extends Token {
   /* for UI */
   actions: Action[];
   rewards?: RewardsConfig;
-  tradingApy?: number;
-  apy?: number;
+  tradingApy?: number; // todo double check think this is actually apr
+  apr?: number;
+  apy?: number; // todo we are actually showing apr need to calc apy
   totalLockedValue?: number;
   liq?: number;
   tokenA: CoinSymbols;
   tokenB?: CoinSymbols;
+  leverage?: LeverageConfig;
 }
 
 /**
