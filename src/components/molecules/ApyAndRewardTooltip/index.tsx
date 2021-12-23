@@ -93,7 +93,7 @@ const ApyAndRewardTooltip: FunctionComponent<ApyAndRewardTooltipProps> = ({
             </Text>
           )}
           {rewardsList.map((reward) => (
-            <Text fontSize="11.52px">
+            <Text fontSize="11.52px" marginBottom="4px">
               <Icon
                 as={HiCheckCircle}
                 color="green800"

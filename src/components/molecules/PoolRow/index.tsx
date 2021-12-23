@@ -25,6 +25,7 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
     logoURI,
     rewards,
     actions,
+    leverage,
   } = pool;
   const { t } = useTranslation();
   const totalApy = apy?.toFixed(2);
