@@ -85,16 +85,12 @@ const MndeLiquidityModal = ({
                 {addLiqBalance}
               </Text>
             </Flex>
-            <Flex width="100%" justifyContent="flex-end">
-              <Text lineHeight="21.6px" fontSize="14.4px">
-                {`= ${addLiqSolBalance} SOL`}
-              </Text>
-            </Flex>
-            <Flex mb={4} width="100%" justifyContent="flex-end">
-              <Text lineHeight="21.6px" fontSize="14.4px">
-                {`= $ ${addLiqDollarBalance}`}
-              </Text>
-            </Flex>
+            <Text align="end" lineHeight="21.6px" fontSize="14.4px">
+              {`= ${addLiqSolBalance} SOL`}
+            </Text>
+            <Text align="end" mb={4} lineHeight="21.6px" fontSize="14.4px">
+              {`= $ ${addLiqDollarBalance}`}
+            </Text>
             <StakeInput
               stakeInputType={StakeInputTypeEnum.Liquidity}
               onValueChange={setLiquidityAmount}
