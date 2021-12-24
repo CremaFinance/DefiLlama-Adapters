@@ -45,7 +45,7 @@
     "bn.js": "^5.2.0",
     "borsh": "^0.7.0",
     "bs58": "^4.0.1",
-    "chart.js": "^3.6.2",
+    "chart.js": "^3.7.0",
     "dayjs": "^1.10.7",
     "framer-motion": "^5.5.5",
     "html-react-parser": "^1.4.4",
