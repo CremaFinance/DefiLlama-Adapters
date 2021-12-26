@@ -65,7 +65,7 @@ export const ConnectWallet = () => {
   }, [adapter, showToast]);
 
   useEffect(() => {
-    if (adapter && !adapter.ready && wallet && !connected && !connecting) {
+    if (adapter && wallet && !connected && !connecting) {
       tryConnect();
     }
   }, [tryConnect, adapter, wallet, connected, connecting]);
