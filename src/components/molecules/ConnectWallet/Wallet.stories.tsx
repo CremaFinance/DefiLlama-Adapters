@@ -1,9 +1,9 @@
 import { ComponentStory } from "@storybook/react";
 
-import { Wallet } from "./index";
+import { ConnectWallet } from "./index";
 
 export default { title: "Molecules/Wallet" };
 
-export const Default: ComponentStory<typeof Wallet> = () => {
-  return <Wallet />;
+export const Default: ComponentStory<typeof ConnectWallet> = () => {
+  return <ConnectWallet />;
 };
