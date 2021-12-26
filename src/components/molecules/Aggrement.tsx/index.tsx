@@ -4,7 +4,6 @@ import {
   ModalBody,
   ModalContent,
   ModalOverlay,
-  Link as ChakraLink,
   Text,
   Stack,
   useDisclosure,
@@ -14,9 +13,9 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
-import Link from "next/link";
 import { useRouter } from "next/router";
 
+import Link from "../../atoms/Link";
 import { useLocalStorageState } from "hooks/useLocalStorageState";
 import colors from "styles/customTheme/colors";
 
@@ -48,25 +47,19 @@ const Agreement = () => {
               </Circle>
             </Flex>
 
-            <Text textAlign="center">
+            <Text>
               {t("appPage.agreement.body.0.text")}{" "}
-              <ChakraLink
+              <Link
                 as={Link}
                 href="/terms"
-                target="_blank"
                 textDecor="underline"
+                rel="noreferrer noopener"
+                color={colors.marinadeGreen}
+                fontWeight={800}
+                _focus={{ boxShadow: "none" }}
               >
-                <Text
-                  as="span"
-                  textDecor="underline"
-                  color={colors.marinadeGreen}
-                  fontWeight={800}
-                  cursor="pointer"
-                >
-                  {" "}
-                  {t("appPage.agreement.body.1.text")}
-                </Text>
-              </ChakraLink>
+                {t("appPage.agreement.body.1.text")}
+              </Link>
               {t("appPage.agreement.body.2.text")}
             </Text>
             <Stack spacing={4} direction="row" justifyContent="center">
@@ -76,15 +69,17 @@ const Agreement = () => {
                 colorScheme="black"
                 href="/"
                 borderRadius="2px"
+                _focus={{ boxShadow: "none" }}
               >
-                <ChakraLink
+                <Link
                   as={Link}
                   href="/"
-                  target="_blank"
                   textDecor="underline"
+                  rel="noreferrer noopener"
+                  _focus={{ boxShadow: "none" }}
                 >
                   {t("appPage.agreement.buttons.secondary")}
-                </ChakraLink>
+                </Link>
               </Button>
               <Button
                 onClick={() => {
@@ -93,6 +88,7 @@ const Agreement = () => {
                 }}
                 colorScheme="green"
                 borderRadius="6px"
+                _focus={{ boxShadow: "none" }}
               >
                 {t("appPage.agreement.buttons.primary")}
               </Button>

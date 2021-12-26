@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import { Box, Heading, ListItem, OrderedList, Text } from "@chakra-ui/layout";
 import { FC } from "react";
 
