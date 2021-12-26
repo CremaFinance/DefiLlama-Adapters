@@ -201,7 +201,9 @@
         "trading": "Trading APR",
         "emission": "Emission APR",
         "doubleDip": "Double Dip APR",
-        "reward": "≈ {{reward}} {{provider}}/day reward"
+        "reward": "≈ {{reward}} {{provider}}/day reward",
+        "leverage": "Leverage",
+        "borrow": "borrow APR"
       }
     },
     "liquidity-modal": {
