@@ -36,7 +36,10 @@ export const WalletConnectionProvider: FC<{ children: ReactNode }> = ({
 
   const onError = useCallback(
     (error: WalletError) => {
-      if (error.name !== "WalletNotFoundError") {
+      if (
+        error.name !== "WalletNotFoundError" &&
+        error.name !== "WalletNotReadyError"
+      ) {
         toast({
           title: error.name,
           status: "error",

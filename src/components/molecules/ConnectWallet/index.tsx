@@ -53,11 +53,14 @@ export const ConnectWallet = () => {
   const tryConnect = useCallback(async () => {
     if (adapter) {
       try {
-        // try to force connection to access adpater errors if not installed
+        // try to force connection to access adapater errors if not installed
         await adapter.connect();
       } catch (e) {
         const error = e as WalletError;
-        if (error.name === "WalletNotFoundError") {
+        if (
+          error.name === "WalletNotFoundError" ||
+          error.name === "WalletNotReadyError"
+        ) {
           showToast();
         }
       }
