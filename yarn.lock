@@ -3000,12 +3000,12 @@
     tiny-invariant "^1.2.0"
     tslib "^2.3.1"
 
-"@saberhq/token-utils@^1.11.3":
-  version "1.11.3"
-  resolved "https://registry.yarnpkg.com/@saberhq/token-utils/-/token-utils-1.11.3.tgz#b6b283f0ee3aae5db7cf1df67724e4218ca1ff81"
-  integrity sha512-/GRnNQlm0GYKJOZxrNwWxWAak+bDtyFEMlWVO/oloPKjjAW037IPPoxl+O0AWYOShEy7JooEDsg1nnbzAa6hYQ==
+"@saberhq/token-utils@^1.12.4":
+  version "1.12.4"
+  resolved "https://registry.yarnpkg.com/@saberhq/token-utils/-/token-utils-1.12.4.tgz#7cf25bbc5694cb83a4522433864372db4f00a925"
+  integrity sha512-CXQBkopq/OBO+9hBQ2W1bwdN0IQ0/pE/ninIF/9LWopEd0nlYdzy+j0DqJ5wipl2l3Q4jb4dj5AbcJ4PRFkHPg==
   dependencies:
-    "@saberhq/solana-contrib" "^1.11.3"
+    "@saberhq/solana-contrib" "^1.12.4"
     "@solana/buffer-layout" "^4.0.0"
     "@solana/spl-token" "^0.1.8"
     "@ubeswap/token-math" "^4.4.1"
