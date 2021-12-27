@@ -53,7 +53,7 @@ export const ConnectWallet = () => {
   const tryConnect = useCallback(async () => {
     if (adapter) {
       try {
-        // try to force connection to access adapater errors if not installed
+        // try to force connection to access adapter errors if not installed
         await adapter.connect();
       } catch (e) {
         const error = e as WalletError;
