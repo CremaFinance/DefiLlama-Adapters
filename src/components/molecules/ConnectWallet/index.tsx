@@ -4,7 +4,6 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
-  useMediaQuery,
   useToast,
   Link,
 } from "@chakra-ui/react";
@@ -28,7 +27,6 @@ export const ConnectWallet = () => {
   } = useWallet();
 
   const { t } = useTranslation();
-
   const toast = useToast();
 
   const msg = t("appPage.wallet-missing")?.replace(
@@ -73,7 +71,6 @@ export const ConnectWallet = () => {
     }
   }, [tryConnect, adapter, wallet, connected, connecting]);
 
-  const [isLargerThan430] = useMediaQuery("(min-width: 430px)");
   if (connected) {
     return (
       <MButton
@@ -97,7 +94,7 @@ export const ConnectWallet = () => {
         leftIcon={<Image src="/icons/wallet.svg" width="0.8rem" />}
         rightIcon={<Image src="/icons/expand-more.svg" width="0.5rem" />}
       >
-        {isLargerThan430 ? t("appPage.connect-wallet") : ""}
+        {t("appPage.connect-wallet")}
       </MenuButton>
       <MenuList border="none" rounded="md" shadow="none">
         {wallets.map((walletItem) => (
