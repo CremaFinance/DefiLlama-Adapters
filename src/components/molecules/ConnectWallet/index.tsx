@@ -5,17 +5,74 @@ import {
   MenuItem,
   MenuList,
   useMediaQuery,
+  useToast,
+  Link,
 } from "@chakra-ui/react";
+import { WalletError } from "@solana/wallet-adapter-base";
+import { useCallback, useEffect } from "react";
 
 import { useTranslation } from "../../../hooks/useTranslation";
 import { useWallet } from "../../../hooks/useWallet";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 
-export const Wallet = () => {
-  const { wallets, select, disconnect, connected } = useWallet();
+export const ConnectWallet = () => {
+  const {
+    wallets,
+    select,
+    disconnect,
+    connected,
+    wallet,
+    adapter,
+    connecting,
+  } = useWallet();
 
   const { t } = useTranslation();
+
+  const toast = useToast();
+
+  const msg = t("appPage.wallet-missing")?.replace(
+    "{{wallet}}",
+    String(wallet?.name)
+  );
+
+  const showToast = useCallback(() => {
+    toast({
+      title: "Wallet extension not detected",
+      status: "error",
+      description: (
+        <Link target="_blank" rel="noreferrer noopener" href={wallet?.url}>
+          {msg}
+        </Link>
+      ),
+      variant: "subtle",
+      isClosable: true,
+    });
+  }, [msg, toast, wallet?.url]);
+
+  const tryConnect = useCallback(async () => {
+    if (adapter) {
+      try {
+        // try to force connection to access adapter errors if not installed
+        await adapter.connect();
+      } catch (e) {
+        const error = e as WalletError;
+        if (
+          error.name === "WalletNotFoundError" ||
+          error.name === "WalletNotReadyError"
+        ) {
+          showToast();
+        }
+      }
+    }
+  }, [adapter, showToast]);
+
+  useEffect(() => {
+    if (adapter && wallet && !connected && !connecting) {
+      tryConnect();
+    }
+  }, [tryConnect, adapter, wallet, connected, connecting]);
+
   const [isLargerThan430] = useMediaQuery("(min-width: 430px)");
   if (connected) {
     return (
