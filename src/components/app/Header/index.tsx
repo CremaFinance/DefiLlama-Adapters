@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
 
 import MButton from "../../atoms/Button";
-import { Wallet } from "../../molecules/Wallet";
+import { ConnectWallet } from "../../molecules/ConnectWallet";
 import colors from "styles/customTheme/colors";
 
 interface Props {
@@ -148,7 +148,7 @@ const Header = ({ onValidatorsPage = false }: Props) => {
           justifyContent="flex-end"
           pb="8px"
         >
-          <Wallet />
+          <ConnectWallet />
         </Flex>
       )}
     </Flex>
