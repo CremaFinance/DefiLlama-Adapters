@@ -24,6 +24,7 @@ import {
   format2Dec,
   numberToShortVersion,
 } from "../../../utils/number-to-short-version";
+import Countdown from "../../atoms/Countdown";
 import MHeading from "../../atoms/Heading";
 import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
@@ -32,7 +33,6 @@ import InfoIconWithTooltip from "components/molecules/InfoIconWithTooltip";
 import TooltipWithContent from "components/molecules/TooltipWithContent";
 import { coinSymbols } from "services/domain/coinSymbols";
 import colors from "styles/customTheme/colors";
-import { millisecondsToDhms } from "utils/ms-to-dmhs";
 
 const scrollbarProps = {
   "&::-webkit-scrollbar": {
@@ -210,7 +210,7 @@ const InfoBoxesSection = () => {
                 />
               </Flex>
               <MText type="text-md" pb={2}>
-                ETA: {millisecondsToDhms(epochData.msUntilEpochEnd ?? 0)}
+                ETA: <Countdown initialTimeLeft={epochData.msUntilEpochEnd} />
               </MText>
             </>
           ) : (
