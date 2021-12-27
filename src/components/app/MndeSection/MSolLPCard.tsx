@@ -21,22 +21,24 @@ import colors from "styles/customTheme/colors";
 import { addCommas } from "utils/add-commas";
 import { format2Dec, format5Dec } from "utils/number-to-short-version";
 
-const MNDEFarmCard = () => {
+const MSolLPCard = () => {
   const { t } = useTranslation();
   const toast = useToast();
   const { connected } = useWallet();
   const {
     mndeTokadaptState,
-    farms: { mSOL },
+    farms: { mLP },
   } = useQuarryProvider();
   const prices = usePrices([coinSymbols.SOL, coinSymbols.MNDE]);
   const { marinadeState } = useMarinade();
   const chain = useChain();
 
-  const mSOLFarmAnnualRewards = parseFloat(
-    mSOL?.quarry?.computeAnnualRewardsRate()?.toString()
+  const mLPFarmAnnualRewards = parseFloat(
+    mLP?.quarry?.computeAnnualRewardsRate()?.toString()
   );
-  const totalDeposited = mSOL?.quarry?.quarryData?.totalTokensDeposited;
+
+  const totalDeposited = mLP?.quarry?.quarryData?.totalTokensDeposited;
+
   const mSOLvsSOLParity = marinadeState?.state?.st_sol_price
     ? marinadeState?.state?.st_sol_price?.toNumber() / 0x1_0000_0000
     : 0;
@@ -46,23 +48,17 @@ const MNDEFarmCard = () => {
     (Math.round((totalDeposited?.toNumber() / LAMPORTS_PER_SOL) * 1e2) / 1e2) *
     mSolUSD;
 
-  const aprNum =
-    prices[coinSymbols.MNDE]?.usd &&
-    mSOLFarmAnnualRewards &&
-    (100 * mSOLFarmAnnualRewards * (prices[coinSymbols.MNDE]?.usd ?? 0)) /
-      (totalDeposited?.toNumber() * mSolUSD);
-  const apr =
-    aprNum && !Number.isNaN(aprNum) ? Number(format2Dec(aprNum)) : undefined;
+  const apr = 10.6; // TODO: calculate the APR
 
   const [timestamp, setTimestamp] = useState<BN>(
     new BN(Math.round(new Date().getTime() / 1000))
   );
 
-  const userStake = mSOL?.minerData?.balance || new BN(0);
-  const rewardsPerTokenPaid = mSOL?.minerData?.rewardsPerTokenPaid || new BN(0);
-  const rewardsEarned = mSOL?.minerData?.rewardsEarned || new BN(0);
+  const userStake = mLP?.minerData?.balance || new BN(0);
+  const rewardsPerTokenPaid = mLP?.minerData?.rewardsPerTokenPaid || new BN(0);
+  const rewardsEarned = mLP?.minerData?.rewardsEarned || new BN(0);
 
-  const rewards = mSOL?.quarry?.payroll?.calculateRewardsEarned(
+  const rewards = mLP?.quarry?.payroll?.calculateRewardsEarned(
     timestamp,
     userStake,
     rewardsPerTokenPaid,
@@ -81,7 +77,7 @@ const MNDEFarmCard = () => {
   // eslint-disable-next-line consistent-return
   const claimHandler = useCallback(() => {
     setIsClaimProcessing(true);
-    mSOL
+    mLP
       .claim()
       .then(
         (transactionSignature) => {
@@ -113,7 +109,7 @@ const MNDEFarmCard = () => {
       .finally(() => {
         setIsClaimProcessing(false);
       });
-  }, [chain.name, mSOL, t, toast]);
+  }, [chain.name, mLP, t, toast]);
 
   return (
     <Flex
@@ -133,8 +129,8 @@ const MNDEFarmCard = () => {
       <Box>
         <Flex width="100%" justifyContent="space-between">
           <Flex>
-            <Image src="/icons/mSOL.svg" boxSize="24px" mr="4px" />
-            <MText ml={1}>MSOL</MText>
+            <Image src="/icons/mSOL-SOL-LP.png" boxSize="24px" mr="4px" />
+            <MText ml={1}>MSOL-SOL LP</MText>
           </Flex>
           <Image src="/icons/mnde.svg" boxSize="40px" />
         </Flex>
@@ -165,7 +161,7 @@ const MNDEFarmCard = () => {
                 mr="10px"
               />
               <MText>{`${addCommas(
-                format2Dec(mSOLFarmAnnualRewards * 7, LAMPORTS_PER_SOL * 365)
+                format2Dec(mLPFarmAnnualRewards * 7, LAMPORTS_PER_SOL * 365)
               )} MNDE/week`}</MText>
             </Flex>
             <Flex
@@ -231,4 +227,4 @@ const MNDEFarmCard = () => {
     </Flex>
   );
 };
-export default MNDEFarmCard;
+export default MSolLPCard;

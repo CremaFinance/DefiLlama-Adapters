@@ -6,6 +6,7 @@ import { useTranslation } from "hooks/useTranslation";
 import colors from "styles/customTheme/colors";
 
 import MNDEFarmCard from "./MNDEFarmCard";
+import MSolLPCard from "./MSolLPCard";
 import RetroMnde from "./RetroMnde";
 
 const MndeSection = () => {
@@ -54,8 +55,9 @@ const MndeSection = () => {
           <Image src="/icons/external-link-green.svg" width="1rem" ml={2} />
         </MLink>
       </Flex>
-      <Flex flexDirection={["column", "row"]}>
+      <Flex flexDirection={["column", "row"]} zIndex={10} flexWrap="wrap">
         <MNDEFarmCard />
+        <MSolLPCard />
         <RetroMnde />
       </Flex>
     </Flex>
