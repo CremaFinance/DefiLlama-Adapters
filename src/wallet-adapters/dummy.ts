@@ -11,7 +11,9 @@ import { Connection, PublicKey, Transaction } from "@solana/web3.js";
 import { DEFAULT_PUBLIC_KEY } from "../utils/web3/ids";
 
 export class DummyWalletAdapter extends EventEmitter implements WalletAdapter {
-  ready = false;
+  ready = () => {
+    return Promise.resolve(false);
+  };
 
   connecting = false;
 
