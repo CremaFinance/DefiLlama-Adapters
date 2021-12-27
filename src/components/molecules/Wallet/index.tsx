@@ -1,11 +1,4 @@
-import {
-  Image,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-  useMediaQuery,
-} from "@chakra-ui/react";
+import { Image, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 
 import { useTranslation } from "../../../hooks/useTranslation";
 import { useWallet } from "../../../hooks/useWallet";
@@ -16,7 +9,6 @@ export const Wallet = () => {
   const { wallets, select, disconnect, connected } = useWallet();
 
   const { t } = useTranslation();
-  const [isLargerThan430] = useMediaQuery("(min-width: 430px)");
   if (connected) {
     return (
       <MButton
@@ -40,7 +32,7 @@ export const Wallet = () => {
         leftIcon={<Image src="/icons/wallet.svg" width="0.8rem" />}
         rightIcon={<Image src="/icons/expand-more.svg" width="0.5rem" />}
       >
-        {isLargerThan430 ? t("appPage.connect-wallet") : ""}
+        {t("appPage.connect-wallet")}
       </MenuButton>
       <MenuList border="none" rounded="md" shadow="none">
         {wallets.map((walletItem) => (

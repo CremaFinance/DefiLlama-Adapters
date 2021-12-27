@@ -1,4 +1,4 @@
-import { Box, Flex, Image } from "@chakra-ui/react";
+import { Box, Flex, Image, useMediaQuery } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
@@ -47,6 +47,7 @@ const Header = ({ onValidatorsPage = false }: Props) => {
   };
 
   const router = useRouter();
+  const [isLargerThan430] = useMediaQuery("(min-width: 430px)");
   const isStakingActive =
     !onValidatorsPage && router.pathname.includes("staking");
   const isDefiActive = !onValidatorsPage && router.pathname.includes("defi");
@@ -64,6 +65,7 @@ const Header = ({ onValidatorsPage = false }: Props) => {
       py={[2, 4]}
       zIndex={1000}
       px={{ base: 4, md: "12vw" }}
+      flexWrap={isLargerThan430 ? "nowrap" : "wrap"}
     >
       <Link href="/" passHref>
         <Box pb="8px">
@@ -140,9 +142,14 @@ const Header = ({ onValidatorsPage = false }: Props) => {
       </Flex>
 
       {!onValidatorsPage && (
-        <Box pb="8px">
+        <Flex
+          pt={[2, 0]}
+          width={isLargerThan430 ? "160px" : "100%"}
+          justifyContent="flex-end"
+          pb="8px"
+        >
           <Wallet />
-        </Box>
+        </Flex>
       )}
     </Flex>
   );
