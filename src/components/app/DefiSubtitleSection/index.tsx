@@ -3,7 +3,6 @@ import {
   Text,
   Button,
   Icon,
-  useBreakpointValue,
   Popover,
   PopoverTrigger,
   PopoverContent,
@@ -18,11 +17,6 @@ import colors from "styles/customTheme/colors";
 const DefiSubtitleSection = () => {
   const { t } = useTranslation();
 
-  const values = useBreakpointValue({
-    base: { tooltip: true, subtitleKey: "body-mobile" },
-    md: { tooltip: false, subtitleKey: "body-desktop" },
-  });
-
   return (
     <Flex
       direction="column"
@@ -31,12 +25,21 @@ const DefiSubtitleSection = () => {
       marginBottom={{ base: "24px", lg: "80px" }}
       marginX="8px"
     >
-      {values?.tooltip ? (
+      <Flex alignItems="center">
+        <Text
+          color={colors.black}
+          textAlign="center"
+          fontWeight="bold"
+          fontSize={["22.5px", "43.95px"]}
+          maxWidth="670px"
+        >
+          {t("appPage.defi-subtitle.header")}
+        </Text>
+
         <Popover
           placement="bottom"
-          trigger="click"
+          trigger="hover"
           arrowSize={11}
-          arrowPadding={100}
           arrowShadowColor="transparent"
         >
           <PopoverTrigger>
@@ -44,13 +47,10 @@ const DefiSubtitleSection = () => {
               variant="link"
               _hover={{}}
               textAlign="center"
-              fontWeight="bold"
-              fontSize="22.5px"
               lineHeight="150%"
-              marginBottom="8px"
               color={colors.black}
+              _focus={{ boxShadow: "none" }}
             >
-              {t("appPage.defi-subtitle.header")}
               <Icon
                 as={HiOutlineInformationCircle}
                 width="16px"
@@ -60,7 +60,11 @@ const DefiSubtitleSection = () => {
               />
             </Button>
           </PopoverTrigger>
-          <PopoverContent width="220px" borderWidth="0">
+          <PopoverContent
+            _focus={{ boxShadow: "none" }}
+            width="220px"
+            borderWidth="0"
+          >
             <PopoverArrow
               backgroundColor="marinadeEvenLighterGreen"
               borderWidth="0"
@@ -73,7 +77,7 @@ const DefiSubtitleSection = () => {
               <Text
                 color={colors.black}
                 textAlign="center"
-                fontSize="18px"
+                fontSize="14.4px"
                 lineHeight="27px"
                 maxWidth="670px"
               >
@@ -82,18 +86,7 @@ const DefiSubtitleSection = () => {
             </PopoverBody>
           </PopoverContent>
         </Popover>
-      ) : (
-        <Text
-          textAlign="center"
-          fontWeight="bold"
-          fontSize="43.95px"
-          lineHeight="61.53px"
-          marginBottom="8px"
-          color={colors.black}
-        >
-          {t("appPage.defi-subtitle.header")}
-        </Text>
-      )}
+      </Flex>
       <Text
         color={colors.black}
         textAlign="center"
@@ -101,7 +94,7 @@ const DefiSubtitleSection = () => {
         lineHeight={{ base: "20px", md: "27px" }}
         maxWidth={{ base: "288px", md: "670px" }}
       >
-        {t(`appPage.defi-subtitle.${values?.subtitleKey}`)}
+        {t("appPage.defi-subtitle.body-mobile")}
       </Text>
     </Flex>
   );

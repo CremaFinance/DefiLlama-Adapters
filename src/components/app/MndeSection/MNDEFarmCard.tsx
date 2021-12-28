@@ -129,6 +129,7 @@ const MNDEFarmCard = () => {
       borderColor={colors.lightGray}
       borderRadius="8px"
       justifyContent="space-between"
+      zIndex={6}
     >
       <Box>
         <Flex width="100%" justifyContent="space-between">

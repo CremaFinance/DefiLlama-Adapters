@@ -3,8 +3,6 @@ import { Box, Flex, Image } from "@chakra-ui/react";
 import Footer from "components/app/Footer";
 import Header from "components/app/Header";
 import MndeSection from "components/app/MndeSection";
-import LogoStripSection from "components/index/LogoStripSection";
-import TestimonialSection from "components/index/TestimonialSection";
 import colors from "styles/customTheme/colors";
 
 const Mnde = () => {
@@ -33,8 +31,6 @@ const Mnde = () => {
       </Flex>
       <Header />
       <MndeSection />
-      <LogoStripSection />
-      <TestimonialSection />
       <Footer />
     </Box>
   );
