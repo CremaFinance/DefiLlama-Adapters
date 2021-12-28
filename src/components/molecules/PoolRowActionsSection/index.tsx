@@ -2,7 +2,6 @@ import {
   Flex,
   Image,
   useDisclosure,
-  useMediaQuery,
   Menu,
   MenuButton,
   MenuItem,
@@ -27,7 +26,6 @@ const PoolRowActionsSection: FunctionComponent<PoolRowActionsSectionProps> = ({
   const { t } = useTranslation();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { connected: isWalletConnected, wallets, select } = useWallet();
-  const [isLargerThan430] = useMediaQuery("(min-width: 430px)");
 
   return (
     <>
@@ -90,14 +88,13 @@ const PoolRowActionsSection: FunctionComponent<PoolRowActionsSectionProps> = ({
                   <MenuButton
                     as={Button}
                     variant="solid"
-                    font="text-sm"
                     height="32px"
                     leftIcon={<Image src="/icons/wallet.svg" width="0.8rem" />}
                     rightIcon={
                       <Image src="/icons/expand-more.svg" width="0.5rem" />
                     }
                   >
-                    {isLargerThan430 ? t("appPage.connect-wallet") : ""}
+                    {t("appPage.connect")}
                   </MenuButton>
                   <MenuList border="none" rounded="md" shadow="none">
                     {wallets.map((walletItem) => (
