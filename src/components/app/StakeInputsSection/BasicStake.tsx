@@ -344,7 +344,7 @@ const BasicStake = () => {
         justifyContent="space-between"
       >
         <Flex>
-          <MText type="text-md">{t("appPage.stake-inputs-stake-fee")}</MText>
+          <MText type="text-md">{t("appPage.stake-inputs-deposit-fee")}</MText>
           <IconButton
             variant="link"
             aria-label="Info stake fee"
