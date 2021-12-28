@@ -326,13 +326,13 @@ const BasicStake = () => {
         {stakeText}
       </MButton>
 
-      <Flex width={["256px", "400px"]} my={1} justifyContent="space-between">
+      <Flex width="100%" my={1} justifyContent="space-between">
         <MText type="text-md">You will receive</MText>
         <MText type="text-md">{`${
           Number(solToStake) / mSOLvsSOLParity
         } mSOL`}</MText>
       </Flex>
-      <Flex width={["256px", "400px"]} my={1} justifyContent="space-between">
+      <Flex width="100%" my={1} justifyContent="space-between">
         <Flex>
           <MText type="text-md">
             {t("appPage.stake-inputs-exchange-rate")}
@@ -349,12 +349,7 @@ const BasicStake = () => {
           5
         )} SOL`}</MText>
       </Flex>
-      <Flex
-        width={["256px", "400px"]}
-        mt={1}
-        mb={1}
-        justifyContent="space-between"
-      >
+      <Flex width="100%" mt={1} mb={1} justifyContent="space-between">
         <Flex>
           <MText type="text-md">{t("appPage.stake-inputs-deposit-fee")}</MText>
           <IconButton
