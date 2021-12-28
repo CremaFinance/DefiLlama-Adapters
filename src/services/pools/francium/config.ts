@@ -19,8 +19,16 @@ const lendActions = [
   { text: "Borrow", url: "https://francium.io/app/lend", isExternal: true },
 ];
 const farmActions = [
-  { text: "Add Liquidity", url: "https://francium.io/app/invest/farm" },
-  { text: "Swap", url: "https://francium.io/app/invest/farm" },
+  {
+    text: "Add Liquidity",
+    url: "https://francium.io/app/invest/farm",
+    isExternal: true,
+  },
+  {
+    text: "Swap",
+    url: "https://francium.io/app/invest/farm",
+    isExternal: true,
+  },
 ];
 
 export const franciumFarmPools: Record<FarmPoolAddress, PoolConfig> = {
