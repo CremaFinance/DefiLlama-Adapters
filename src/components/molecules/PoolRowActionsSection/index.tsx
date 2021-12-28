@@ -14,7 +14,7 @@ import { useWallet } from "../../../hooks/useWallet";
 import { Action } from "../../../services/domain/pool";
 import Button from "../../atoms/Button";
 import MText from "../../atoms/Text";
-import MndeLiquidityModal from "../MndeLiquidityModal";
+import SolLiquidityModal from "../SolLiquidityModal";
 
 type PoolRowActionsSectionProps = {
   actions: Action[];
@@ -132,7 +132,7 @@ const PoolRowActionsSection: FunctionComponent<PoolRowActionsSectionProps> = ({
         </Flex>
       )}
 
-      <MndeLiquidityModal isOpen={isOpen} onClose={onClose} />
+      <SolLiquidityModal isOpen={isOpen} onClose={onClose} />
     </>
   );
 };

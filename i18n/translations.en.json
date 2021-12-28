@@ -394,7 +394,11 @@
         "primary": "Agree",
         "secondary": "Leave the app"
       }
-    }
+    },
+
+    "ammount-exceeds-current-liquidity-cap": "Amount entered exceeds the current Liquidity cap.",
+    "liquidity-sol-confirmed": "Add liquidity confirmed",
+    "successfully-liquidity-your-sol": "You've successfully added liquidity"
   },
   "mndePage": {
     "retro-title": "MNDE Retro",
