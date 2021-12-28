@@ -151,7 +151,7 @@ const InfoBoxesSection = () => {
           {totalSOLStaked ? (
             <>
               <MHeading type="heading-2xsm">
-                {numberToShortVersion(totalSOLStaked)}
+                {numberToShortVersion(totalSOLStaked)} SOL
               </MHeading>
               <MText type="text-md" pb={2}>
                 ≈ ${numberToShortVersion((solUSD ?? 0) * totalSOLStaked)}
@@ -222,7 +222,6 @@ const InfoBoxesSection = () => {
         <Flex
           bg={colors.white}
           flexDirection="column"
-          justifyContent="space-between"
           rounded="lg"
           width="207px"
           height="139px"
@@ -233,16 +232,13 @@ const InfoBoxesSection = () => {
           mt={8}
           mx={2}
         >
-          <Flex justifyContent="space-between">
+          <Flex justifyContent="space-between" mb={3}>
             <MText type="text-md">{t("appPage.info-week-apy")}</MText>
             <InfoIconWithTooltip
               tooltipText={t("appPage.info-week-apy-tooltip")}
             />
           </Flex>
           <MHeading type="heading-2xsm">{weekAPY}%</MHeading>
-          <MLink font="text-lg" color={colors.marinadeGreen} pb={2}>
-            {t("appPage.info-see-performance-action")}
-          </MLink>
         </Flex>
         <Flex
           bg={colors.white}

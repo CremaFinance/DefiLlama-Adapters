@@ -6,8 +6,6 @@ import Footer from "components/app/Footer";
 import Header from "components/app/Header";
 import StakeInputsSection from "components/app/StakeInputsSection";
 import StakingSection from "components/app/StakingSection";
-import LogoStripSection from "components/index/LogoStripSection";
-import TestimonialSection from "components/index/TestimonialSection";
 import colors from "styles/customTheme/colors";
 
 const Staking = () => {
@@ -39,8 +37,6 @@ const Staking = () => {
         <StakingSection />
         <StakeInputsSection />
         <FAQSection />
-        <LogoStripSection />
-        <TestimonialSection />
         <Footer />
       </Box>
     </UserBalanceProvider>

@@ -57,7 +57,12 @@ const AllPoolsSection = () => {
         flexWrap={{ base: "wrap", lg: "nowrap" }}
       >
         {sortedPools?.map((pool) => (
-          <Flex flexDirection="row" key={`${pool.id}`} justifyContent="center">
+          <Flex
+            zIndex={6}
+            flexDirection="row"
+            key={`${pool.id}`}
+            justifyContent="center"
+          >
             <PoolRow pool={pool.pool} />
           </Flex>
         ))}

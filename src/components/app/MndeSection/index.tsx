@@ -1,7 +1,6 @@
 import { Flex, Text, Image } from "@chakra-ui/react";
 
 import MLink from "../../atoms/Link";
-import InfoBoxesSection from "../InfoBoxesSection";
 import { useTranslation } from "hooks/useTranslation";
 import colors from "styles/customTheme/colors";
 
@@ -20,8 +19,6 @@ const MndeSection = () => {
       flexDirection="column"
       alignItems="stretch"
     >
-      <InfoBoxesSection />
-
       <Flex
         marginTop={{ base: "24px", lg: "40px" }}
         marginBottom={{ base: "24px", lg: "80px" }}

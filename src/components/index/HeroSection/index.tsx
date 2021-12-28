@@ -65,10 +65,6 @@ const HeroSection = () => {
         >
           {t("indexPage.hero-section-button")}
         </MButton>
-
-        <MText type="text-xl" fontWeight="bold" color={colors.blackMate800}>
-          6.21% APY
-        </MText>
       </Box>
 
       <Flex justifyContent="flex-end">

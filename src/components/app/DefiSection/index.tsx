@@ -2,7 +2,6 @@ import { Flex } from "@chakra-ui/react";
 
 import AllPoolsSection from "../AllPoolsSection";
 import DefiSubtitleSection from "../DefiSubtitleSection";
-import InfoBoxesSection from "../InfoBoxesSection";
 
 const DefiSection = () => {
   return (
@@ -14,7 +13,6 @@ const DefiSection = () => {
       flexDirection="column"
       alignItems="stretch"
     >
-      <InfoBoxesSection />
       <DefiSubtitleSection />
       <AllPoolsSection />
     </Flex>
