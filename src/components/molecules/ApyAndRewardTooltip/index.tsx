@@ -55,25 +55,25 @@ const ApyAndRewardTooltip: FunctionComponent<ApyAndRewardTooltipProps> = ({
           borderWidth="0"
         />
         <PopoverBody
-          padding="8px"
+          padding="8px 8px 0 8px"
           backgroundColor="marinadeEvenLighterGreen"
           borderRadius="4px"
         >
           {leverage && (
-            <Text fontSize="11.52px" marginBottom="4px" fontWeight="bold">
+            <Text fontSize="14.40px" marginBottom="8px" fontWeight="bold">
               {leverage.leverageAmount}x{" "}
               {t("appPage.pool-row.apyPopover.leverage")}
             </Text>
           )}
 
-          <Text fontSize="11.52px" marginBottom="4px">
+          <Text fontSize="14.40px" marginBottom="8px">
             {t("appPage.pool-row.apyPopover.trading")}:
             <Text as="span" fontWeight="bold">
               {tradingApy && tradingApy.toFixed(2)}%
             </Text>
           </Text>
           {rewardsList.map((reward) => (
-            <Text fontSize="11.52px" marginBottom="4px">
+            <Text fontSize="14.40px" marginBottom="8px">
               {reward?.aprDescription}:
               <Text as="span" fontWeight="bold">
                 {reward?.apy && reward?.apy.toFixed(2)}%
@@ -81,7 +81,7 @@ const ApyAndRewardTooltip: FunctionComponent<ApyAndRewardTooltipProps> = ({
             </Text>
           ))}
           {leverage && leverage.selectedToken && (
-            <Text fontSize="11.52px" marginBottom="4px">
+            <Text fontSize="14.40px" marginBottom="8px">
               {leverage.selectedToken.symbol}{" "}
               {t("appPage.pool-row.apyPopover.borrow")}:
               <Text as="span" fontWeight="bold">
@@ -93,7 +93,7 @@ const ApyAndRewardTooltip: FunctionComponent<ApyAndRewardTooltipProps> = ({
             </Text>
           )}
           {rewardsList.map((reward) => (
-            <Text fontSize="11.52px" marginBottom="4px">
+            <Text fontSize="14.40px" marginBottom="8px">
               <Icon
                 as={HiCheckCircle}
                 color="green800"
