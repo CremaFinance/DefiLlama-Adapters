@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import {
   Modal,
   ModalBody,
@@ -23,10 +24,12 @@ import TransactionLink from "components/molecules/TransactionLink";
 import { useChain } from "contexts/ConnectionProvider";
 import { useMarinade } from "contexts/MarinadeContext";
 import { useStats } from "contexts/StatsContext";
+import { usePrice } from "hooks/usePrice";
 import { useWallet } from "hooks/useWallet";
+import { coinSymbols } from "services/domain/coinSymbols";
 import { basicInputChecks } from "utils/basic-input-checks";
 import { checkNativeSOLBalance } from "utils/check-native-sol-balance";
-import { format5Dec } from "utils/number-to-short-version";
+import { format2Dec, format5Dec } from "utils/number-to-short-version";
 
 interface SolLiquidityModalProps {
   onClose: () => Promise<void> | void;
@@ -43,25 +46,24 @@ const SolLiquidityModal = ({
   const [isAddLiquidityActive, setAddLiquidityActive] = useState(true);
   const [addLiquidityLoading, setAddLiquidityLoading] = useState(false);
   const [liquidityAmount, setLiquidityAmount] = useState<string>("");
-  const { nativeSOLBalance } = useUserBalance();
+  const { nativeSOLBalance, liqSOLBalance, liquiditySOLPart } =
+    useUserBalance();
   const { connected: isWalletConnected } = useWallet();
   const { liqPoolBalance } = useStats();
   const chain = useChain();
+  const { data } = usePrice(coinSymbols.SOL);
+  const solUSD = data ? data[coinSymbols.SOL]?.usd : 0;
 
   const marinade = useMarinade();
   const state = marinade?.marinadeState?.state;
   const marinadeState = marinade?.marinadeState;
 
   // replace these with data from services
-  const lpBalance = 0;
-  const addLiqBalance = 0;
-  const addLiqSolBalance = 0;
-  const addLiqDollarBalance = 0.18;
   const removeLiqSolBalance = 0.0013;
   const removeLiqmSolBalance = 0.0023;
 
   const removeLiquidityButton =
-    lpBalance === 0
+    liqSOLBalance === 0
       ? t("appPage.liquidity-modal.get-lp")
       : t("appPage.liquidity-modal.remove-liquidity");
 
@@ -181,14 +183,14 @@ const SolLiquidityModal = ({
                 {t("appPage.liquidity-modal.balance")}
               </Text>
               <Text lineHeight="21.6px" fontSize="14.4px">
-                {addLiqBalance}
+                {format5Dec(liqSOLBalance ?? 0)}
               </Text>
             </Flex>
             <Text align="end" lineHeight="21.6px" fontSize="14.4px">
-              {`= ${addLiqSolBalance} SOL`}
+              {`= ${format5Dec(liquiditySOLPart ?? 0)} SOL`}
             </Text>
             <Text align="end" mb={4} lineHeight="21.6px" fontSize="14.4px">
-              {`= $ ${addLiqDollarBalance}`}
+              {`= $ ${format2Dec((liquiditySOLPart ?? 0) * (solUSD ?? 0))}`}
             </Text>
             <StakeInput
               stakeInputType={StakeInputTypeEnum.Liquidity}
