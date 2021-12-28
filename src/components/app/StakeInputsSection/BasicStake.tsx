@@ -327,7 +327,7 @@ const BasicStake = () => {
       </MButton>
 
       <Flex width="100%" my={1} justifyContent="space-between">
-        <MText type="text-md">You will receive</MText>
+        <MText type="text-md">{t("appPage.conversion-explained")}</MText>
         <MText type="text-md">{`${
           Number(solToStake) / mSOLvsSOLParity
         } mSOL`}</MText>
