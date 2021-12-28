@@ -12,7 +12,7 @@ const MndeSection = () => {
 
   return (
     <Flex
-      py="72px"
+      pt={["100px", "72px"]}
       pb={[12, 8]}
       aria-label="mnde-section"
       position="relative"

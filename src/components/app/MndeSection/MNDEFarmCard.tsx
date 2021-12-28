@@ -10,7 +10,7 @@ import { useWallet } from "../../../hooks/useWallet";
 import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
-import { Wallet } from "../../molecules/Wallet";
+import { ConnectWallet } from "../../molecules/ConnectWallet";
 import TransactionLink from "components/molecules/TransactionLink";
 import { useChain } from "contexts/ConnectionProvider";
 import { useMarinade } from "contexts/MarinadeContext";
@@ -227,7 +227,7 @@ const MNDEFarmCard = () => {
           </Flex>
         </Flex>
       ) : (
-        <Wallet />
+        <ConnectWallet />
       )}
     </Flex>
   );

@@ -20,8 +20,8 @@ import { useWallet } from "../../../hooks/useWallet";
 import MButton from "../../atoms/Button";
 import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
+import { ConnectWallet } from "../../molecules/ConnectWallet";
 import MTooltip from "../../molecules/InfoIconWithTooltip";
-import { Wallet } from "../../molecules/Wallet";
 import TransactionLink from "components/molecules/TransactionLink";
 import { useMaridrop } from "contexts/MaridropContext";
 import colors from "styles/customTheme/colors";
@@ -291,7 +291,7 @@ const RetroMnde = () => {
             }
           </Flex>
         ) : (
-          <Wallet />
+          <ConnectWallet />
         )}
       </Flex>
     </>
