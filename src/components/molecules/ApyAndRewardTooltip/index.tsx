@@ -55,7 +55,7 @@ const ApyAndRewardTooltip: FunctionComponent<ApyAndRewardTooltipProps> = ({
           borderWidth="0"
         />
         <PopoverBody
-          padding="8px"
+          padding="8px 8px 0 8px"
           backgroundColor="marinadeEvenLighterGreen"
           borderRadius="4px"
         >
