@@ -16,20 +16,20 @@ import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
 import { useState } from "react";
 
+import { useChain } from "../../../contexts/ConnectionProvider";
+import { useMarinade } from "../../../contexts/MarinadeContext";
+import { useStats } from "../../../contexts/StatsContext";
 import { useUserBalance } from "../../../contexts/UserBalanceContext";
+import { usePrice } from "../../../hooks/usePrice";
+import { useWallet } from "../../../hooks/useWallet";
+import { coinSymbols } from "../../../services/domain/coinSymbols";
 import colors from "../../../styles/customTheme/colors";
+import { basicInputChecks } from "../../../utils/basic-input-checks";
+import { checkNativeSOLBalance } from "../../../utils/check-native-sol-balance";
+import { format2Dec, format5Dec } from "../../../utils/number-to-short-version";
 import StakeInput, { StakeInputTypeEnum } from "../StakeInput";
 import SwitchButtons from "../SwitchButtons";
-import TransactionLink from "components/molecules/TransactionLink";
-import { useChain } from "contexts/ConnectionProvider";
-import { useMarinade } from "contexts/MarinadeContext";
-import { useStats } from "contexts/StatsContext";
-import { usePrice } from "hooks/usePrice";
-import { useWallet } from "hooks/useWallet";
-import { coinSymbols } from "services/domain/coinSymbols";
-import { basicInputChecks } from "utils/basic-input-checks";
-import { checkNativeSOLBalance } from "utils/check-native-sol-balance";
-import { format2Dec, format5Dec } from "utils/number-to-short-version";
+import TransactionLink from "../TransactionLink";
 
 interface SolLiquidityModalProps {
   onClose: () => Promise<void> | void;
@@ -195,11 +195,11 @@ const SolLiquidityModal = ({
             <StakeInput
               stakeInputType={StakeInputTypeEnum.Liquidity}
               onValueChange={setLiquidityAmount}
-              tokenName="SOL"
+              tokenName={isAddLiquidityActive ? "SOL" : "mSOL-SOL LP"}
               tokenIcon={
                 isAddLiquidityActive
                   ? "/icons/solana-dark.png"
-                  : "/icons/solana-lp.png"
+                  : "/icons/mSOL-SOL LP.svg"
               }
               tokenBalance={
                 nativeSOLBalance
