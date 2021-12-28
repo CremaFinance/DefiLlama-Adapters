@@ -38,7 +38,7 @@ const BasicStake = () => {
   const [stakeAccount, setStakeAccount] = useState<StakeAccountType | null>(
     null
   );
-  const { nativeSOLBalance, stSOLBalance } = useUserBalance();
+  const { nativeSOLBalance } = useUserBalance();
   const { connected: isWalletConnected, publicKey: walletPubKey } = useWallet();
   const epochInfo = useEpochInfo()?.data;
   const { isOpen, onOpen, onClose } = useDisclosure({
@@ -310,16 +310,12 @@ const BasicStake = () => {
         value={solToStake}
         mb={2}
       />
-      <StakeInput
-        stakeInputType={StakeInputTypeEnum.Target}
-        tokenName="mSOL"
-        tokenIcon="/icons/mSOL.svg"
-        tokenBalance={stSOLBalance ?? 0}
-        currentAccount={currentAccount}
-        stakeAccounts={[]}
-        value={(Number(solToStake) / mSOLvsSOLParity).toString()}
-        mb={2}
-      />
+      <Flex width={["256px", "400px"]} my={1} justifyContent="space-between">
+        <MText type="text-md">You will receive</MText>
+        <MText type="text-md">{`${
+          Number(solToStake) / mSOLvsSOLParity
+        } mSOL`}</MText>
+      </Flex>
       <Flex width={["256px", "400px"]} my={1} justifyContent="space-between">
         <Flex>
           <MText type="text-md">
