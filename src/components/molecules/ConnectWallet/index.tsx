@@ -96,7 +96,7 @@ export const ConnectWallet = () => {
       >
         {t("appPage.connect-wallet")}
       </MenuButton>
-      <MenuList border="none" rounded="md" shadow="none">
+      <MenuList zIndex={10} border="none" rounded="md" shadow="none">
         {wallets.map((walletItem) => (
           <MenuItem
             key={walletItem.name}

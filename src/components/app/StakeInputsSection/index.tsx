@@ -1,9 +1,7 @@
 import { Flex } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { useState } from "react";
-import { MdArrowDownward } from "react-icons/md";
 
-import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
 import SwitchButtons from "components/molecules/SwitchButtons";
@@ -56,23 +54,6 @@ const StakeInputsSection = () => {
           position="relative"
           p={[4, 10]}
         >
-          <MButton
-            top={isStakeActive ? ["109", "133px"] : ["182px", "205px"]}
-            variant="ghost"
-            position="absolute"
-            aria-label="Swap direction"
-            bg="gray.50"
-            border="2px"
-            borderColor={colors.white}
-            p={0}
-            height="30px"
-            minWidth="30px"
-            rounded="3xl"
-            zIndex={10}
-            onClick={() => setStakeActive(!isStakeActive)}
-          >
-            <MdArrowDownward color={colors.marinadeGreen} fontSize="24px" />
-          </MButton>
           {isStakeActive ? <BasicStake /> : <BasicUnstake />}
         </Flex>
       </Flex>

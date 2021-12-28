@@ -38,7 +38,7 @@ const BasicStake = () => {
   const [stakeAccount, setStakeAccount] = useState<StakeAccountType | null>(
     null
   );
-  const { nativeSOLBalance, stSOLBalance } = useUserBalance();
+  const { nativeSOLBalance } = useUserBalance();
   const { connected: isWalletConnected, publicKey: walletPubKey } = useWallet();
   const epochInfo = useEpochInfo()?.data;
   const { isOpen, onOpen, onClose } = useDisclosure({
@@ -310,17 +310,29 @@ const BasicStake = () => {
         value={solToStake}
         mb={2}
       />
-      <StakeInput
-        stakeInputType={StakeInputTypeEnum.Target}
-        tokenName="mSOL"
-        tokenIcon="/icons/mSOL.svg"
-        tokenBalance={stSOLBalance ?? 0}
-        currentAccount={currentAccount}
-        stakeAccounts={[]}
-        value={(Number(solToStake) / mSOLvsSOLParity).toString()}
-        mb={2}
-      />
-      <Flex width={["256px", "400px"]} my={1} justifyContent="space-between">
+      <MButton
+        font="text-xl"
+        bg={colors.marinadeGreen}
+        isLoading={stakeLoading}
+        _hover={{ bg: colors.green800 }}
+        colorScheme={colors.marinadeGreen}
+        rounded="md"
+        px={4}
+        height="48px"
+        mx={4}
+        my={4}
+        onClick={stakeHandler}
+      >
+        {stakeText}
+      </MButton>
+
+      <Flex width="100%" my={1} justifyContent="space-between">
+        <MText type="text-md">{t("appPage.conversion-explained")}</MText>
+        <MText type="text-md">{`${
+          Number(solToStake) / mSOLvsSOLParity
+        } mSOL`}</MText>
+      </Flex>
+      <Flex width="100%" my={1} justifyContent="space-between">
         <Flex>
           <MText type="text-md">
             {t("appPage.stake-inputs-exchange-rate")}
@@ -337,12 +349,7 @@ const BasicStake = () => {
           5
         )} SOL`}</MText>
       </Flex>
-      <Flex
-        width={["256px", "400px"]}
-        mt={1}
-        mb={1}
-        justifyContent="space-between"
-      >
+      <Flex width="100%" mt={1} mb={1} justifyContent="space-between">
         <Flex>
           <MText type="text-md">{t("appPage.stake-inputs-deposit-fee")}</MText>
           <IconButton
@@ -355,21 +362,6 @@ const BasicStake = () => {
         </Flex>
         <MText type="text-md">0%</MText>
       </Flex>
-      <MButton
-        font="text-xl"
-        bg={colors.marinadeGreen}
-        isLoading={stakeLoading}
-        _hover={{ bg: colors.green800 }}
-        colorScheme={colors.marinadeGreen}
-        rounded="md"
-        px={4}
-        height="48px"
-        mx={4}
-        mt={5}
-        onClick={stakeHandler}
-      >
-        {stakeText}
-      </MButton>
       <SuccessStakeModal
         isOpen={isOpen}
         onClose={onClose}
