@@ -212,7 +212,7 @@ const MNDEFarmCard = () => {
               borderColor="gray"
               color="black"
               width={{ base: "70px", lg: "80px" }}
-              fontWeight="500"
+              fontWeight="600"
               fontSize="14.4px"
               onClick={() => claimHandler()}
               isLoading={isClaimProcessing}

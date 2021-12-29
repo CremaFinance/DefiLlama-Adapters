@@ -93,6 +93,7 @@ const SuccessfulClaimModal = ({
               color="black"
               width="55px"
               height="40px"
+              fontWeight="600"
               mr="16px"
               fontSize="16px"
               onClick={() => onClose()}
