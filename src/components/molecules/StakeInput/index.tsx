@@ -131,7 +131,8 @@ const StakeInput = ({
       justifyContent="space-between"
     >
       <Flex justifyContent="space-between">
-        {stakeInputType === StakeInputTypeEnum.Source &&
+        {isWalletConnected &&
+        stakeInputType === StakeInputTypeEnum.Source &&
         currentAccount !== undefined &&
         selectedAccount !== undefined &&
         stakeAccounts !== undefined ? (
