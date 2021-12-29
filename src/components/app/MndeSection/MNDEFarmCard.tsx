@@ -117,8 +117,8 @@ const MNDEFarmCard = () => {
 
   return (
     <Flex
-      ml="auto"
-      mr="auto"
+      ml="11.5px"
+      mr="11.5px"
       height={{ base: "466px", lg: "476px" }}
       width={{ base: "288px", lg: "360px" }}
       flexDirection="column"

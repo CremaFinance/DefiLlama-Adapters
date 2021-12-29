@@ -25,6 +25,7 @@ const MSolLPCard = () => {
   const { t } = useTranslation();
   const toast = useToast();
   const { connected } = useWallet();
+
   const {
     mndeTokadaptState,
     farms: { mLP },
@@ -113,8 +114,8 @@ const MSolLPCard = () => {
 
   return (
     <Flex
-      ml="auto"
-      mr="auto"
+      ml="11.5px"
+      mr="11.5px"
       height={{ base: "466px", lg: "476px" }}
       width={{ base: "288px", lg: "360px" }}
       flexDirection="column"

@@ -55,10 +55,19 @@ const MndeSection = () => {
           <Image src="/icons/external-link-green.svg" width="1rem" ml={2} />
         </MLink>
       </Flex>
-      <Flex flexDirection={["column", "row"]} zIndex={10} flexWrap="wrap">
-        <MNDEFarmCard />
-        <MSolLPCard />
-        <RetroMnde />
+      <Flex
+        flexDirection={["column", "row"]}
+        zIndex={10}
+        flexWrap="wrap"
+        justifyContent="center"
+        alignItems="center"
+        px={{ base: 4, lg: "11vw" }}
+      >
+        <>
+          <MNDEFarmCard />
+          <MSolLPCard />
+          <RetroMnde />
+        </>
       </Flex>
     </Flex>
   );
