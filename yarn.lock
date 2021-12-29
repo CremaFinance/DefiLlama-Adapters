@@ -2857,12 +2857,12 @@
     tiny-invariant "^1.2.0"
     tslib "^2.3.1"
 
-"@saberhq/token-utils@^1.12.6":
-  version "1.12.6"
-  resolved "https://registry.yarnpkg.com/@saberhq/token-utils/-/token-utils-1.12.6.tgz#1dc974ecc16761e16f684f2e301f28947ee463cf"
-  integrity sha512-kQswtmEF0IjY/GFz9AfEspI2fsA5HEdO5sptYqylpik/WkTdBnMeq19gEROyQAoWDa4Oy7xNjI3JGnIG6yG8eQ==
+"@saberhq/token-utils@^1.12.8":
+  version "1.12.8"
+  resolved "https://registry.yarnpkg.com/@saberhq/token-utils/-/token-utils-1.12.8.tgz#bfefd3d276abf69f8d9ea633316191d9cb53f40a"
+  integrity sha512-raLdkE/s52AfvmVdFbSCh/HNrhYf4fi6KxAQSTai9JKbCaUFKI7rUe3IWqtELIO8EwpElTODN3f4Le0GSbnRgQ==
   dependencies:
-    "@saberhq/solana-contrib" "^1.12.6"
+    "@saberhq/solana-contrib" "^1.12.8"
     "@solana/buffer-layout" "^4.0.0"
     "@solana/spl-token" "^0.1.8"
     "@ubeswap/token-math" "^4.4.1"
