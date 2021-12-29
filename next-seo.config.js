@@ -8,10 +8,9 @@ const defaultSEOConfig = {
   openGraph: {
     url: "https://marinade.finance",
     title: "marinade.finance",
-    description: "marinade.finance",
     images: [
       {
-        url: "https://marinade-web.pages.dev/marinade.png",
+        url: "https://marinade-web.pages.dev/marinade-meta.png",
         alt: "marinade.finance og-image",
       },
     ],
