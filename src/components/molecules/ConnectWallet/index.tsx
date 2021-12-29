@@ -12,6 +12,7 @@ import { useCallback, useEffect } from "react";
 
 import { useTranslation } from "../../../hooks/useTranslation";
 import { useWallet } from "../../../hooks/useWallet";
+import { shortenAddress } from "../../../utils/shorten-address";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 
@@ -24,6 +25,7 @@ export const ConnectWallet = () => {
     wallet,
     adapter,
     connecting,
+    publicKey,
   } = useWallet();
 
   const { t } = useTranslation();
@@ -71,7 +73,7 @@ export const ConnectWallet = () => {
     }
   }, [tryConnect, adapter, wallet, connected, connecting]);
 
-  if (connected) {
+  if (connected && publicKey) {
     return (
       <MButton
         variant="solid"
@@ -79,7 +81,7 @@ export const ConnectWallet = () => {
         height="40px"
         onClick={() => disconnect()}
       >
-        {t("appPage.disconnect-wallet")}
+        {shortenAddress(publicKey.toString())}
       </MButton>
     );
   }
