@@ -2845,7 +2845,7 @@
     lodash.mapvalues "^4.6.0"
     tslib "^2.3.1"
 
-"@saberhq/solana-contrib@^1.12.4", "@saberhq/solana-contrib@^1.12.6", "@saberhq/solana-contrib@^1.12.8":
+"@saberhq/solana-contrib@^1.12.4", "@saberhq/solana-contrib@^1.12.8":
   version "1.12.8"
   resolved "https://registry.yarnpkg.com/@saberhq/solana-contrib/-/solana-contrib-1.12.8.tgz#c92161db11db86017abf0dc7b81363b094b6f55b"
   integrity sha512-6+yctPmVCcXiaN7IZ9sJBQwdNtKRh16SRR0ASSYTRd1zA3jwhZpI8iYMehn36RE2xwJkRIuH5jz5C3H6xx7Dew==
@@ -2897,10 +2897,10 @@
   dependencies:
     buffer "~6.0.3"
 
-"@solana/spl-token-registry@^0.2.1107":
-  version "0.2.1107"
-  resolved "https://registry.yarnpkg.com/@solana/spl-token-registry/-/spl-token-registry-0.2.1107.tgz#c423c4d542ee5a60c190a79aba9bbc2f342ae0bf"
-  integrity sha512-GXMzI3H6o3fzMMVY8Rh5lPsZ8gJaA28psd64+4HgYLHqIafxLH+IywthLgYbfe3m/4MlK+4dfHbKi2Z1KYPg7Q==
+"@solana/spl-token-registry@^0.2.1120":
+  version "0.2.1120"
+  resolved "https://registry.yarnpkg.com/@solana/spl-token-registry/-/spl-token-registry-0.2.1120.tgz#86d02ff35e661ec8d82a4dcc55caf38d567fef7c"
+  integrity sha512-V7rs9MO4s3ULzyU+0lFvM35IovK36umjTSaPiyDTJHrCW9zDe6DSUQIdW4AMMaFNeqfJwZNCcMvMu4HftHm7tg==
   dependencies:
     cross-fetch "3.0.6"
 
