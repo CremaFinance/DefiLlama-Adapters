@@ -68,10 +68,6 @@ const SolLiquidityModal = ({
       ? t("appPage.liquidity-modal.get-lp")
       : t("appPage.liquidity-modal.remove-liquidity");
 
-  const liquidityButtonText = isAddLiquidityActive
-    ? t("appPage.liquidity-modal.add-liquidity")
-    : removeLiquidityButton;
-
   // eslint-disable-next-line consistent-return
   const addLiquidityHandler = () => {
     const basicInputChecksErrors = basicInputChecks(
@@ -309,24 +305,41 @@ const SolLiquidityModal = ({
               ) : null}
             </Flex>
             <Flex justifyContent="center">
-              <Button
-                font="text-xl"
-                bg={colors.marinadeGreen}
-                isLoading={loading}
-                _hover={{ bg: colors.green800 }}
-                colorScheme={colors.marinadeGreen}
-                rounded="md"
-                height="48px"
-                _focus={{ boxShadow: "none" }}
-                my={8}
-                onClick={
-                  isAddLiquidityActive
-                    ? addLiquidityHandler
-                    : removeLiquidityHandler
-                }
-              >
-                {liquidityButtonText}
-              </Button>
+              {isAddLiquidityActive ? (
+                <Button
+                  font="text-xl"
+                  bg={colors.marinadeGreen}
+                  isLoading={loading}
+                  _hover={{ bg: colors.green800 }}
+                  colorScheme={colors.marinadeGreen}
+                  rounded="md"
+                  height="48px"
+                  _focus={{ boxShadow: "none" }}
+                  my={8}
+                  onClick={addLiquidityHandler}
+                >
+                  {t("appPage.liquidity-modal.add-liquidity")}
+                </Button>
+              ) : (
+                <Button
+                  font="text-xl"
+                  bg={colors.marinadeGreen}
+                  isLoading={loading}
+                  _hover={{ bg: colors.green800 }}
+                  colorScheme={colors.marinadeGreen}
+                  rounded="md"
+                  height="48px"
+                  _focus={{ boxShadow: "none" }}
+                  my={8}
+                  onClick={
+                    liqSOLBalance === 0
+                      ? () => setAddLiquidityActive(true)
+                      : removeLiquidityHandler
+                  }
+                >
+                  {removeLiquidityButton}
+                </Button>
+              )}
             </Flex>
             <Text lineHeight="21.6px" fontSize="14.4px">
               {t(
