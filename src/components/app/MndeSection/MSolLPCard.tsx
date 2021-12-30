@@ -13,43 +13,55 @@ import MText from "../../atoms/Text";
 import { Wallet } from "../../molecules/Wallet";
 import TransactionLink from "components/molecules/TransactionLink";
 import { useChain } from "contexts/ConnectionProvider";
-import { useMarinade } from "contexts/MarinadeContext";
 import { useQuarryProvider } from "contexts/QuaryContext";
+import { useStats } from "contexts/StatsContext";
 import { usePrices } from "hooks/usePrices";
 import { coinSymbols } from "services/domain/coinSymbols";
 import colors from "styles/customTheme/colors";
 import { addCommas } from "utils/add-commas";
-import { format2Dec, format5Dec } from "utils/number-to-short-version";
+import {
+  format2Dec,
+  format5Dec,
+  numberToShortVersion,
+} from "utils/number-to-short-version";
 
 const MSolLPCard = () => {
   const { t } = useTranslation();
   const toast = useToast();
   const { connected } = useWallet();
+  const stats = useStats();
 
   const {
     mndeTokadaptState,
     farms: { mLP },
   } = useQuarryProvider();
   const prices = usePrices([coinSymbols.SOL, coinSymbols.MNDE]);
-  const { marinadeState } = useMarinade();
   const chain = useChain();
 
-  const mLPFarmAnnualRewards = parseFloat(
-    mLP?.quarry?.computeAnnualRewardsRate()?.toString()
-  );
+  const solPrice = prices[coinSymbols.SOL]?.usd;
+  const mndePrice = prices[coinSymbols.MNDE]?.usd;
 
   const totalDeposited = mLP?.quarry?.quarryData?.totalTokensDeposited;
 
-  const mSOLvsSOLParity = marinadeState?.state?.st_sol_price
-    ? marinadeState?.state?.st_sol_price?.toNumber() / 0x1_0000_0000
-    : 0;
-  const solUSD = prices[coinSymbols.SOL]?.usd;
-  const mSolUSD = Number(format2Dec(solUSD ?? 0 * mSOLvsSOLParity));
-  const totalDepositValue =
-    (Math.round((totalDeposited?.toNumber() / LAMPORTS_PER_SOL) * 1e2) / 1e2) *
-    mSolUSD;
+  const poolValueUsd =
+    solPrice &&
+    stats?.liqPoolBalance !== null &&
+    stats?.liqPoolMSolAmount !== null &&
+    stats?.mSOLPrice !== null &&
+    (stats.liqPoolBalance * solPrice +
+      stats.liqPoolMSolAmount * stats.mSOLPrice) /
+      LAMPORTS_PER_SOL;
 
-  const apr = 10.6; // TODO: calculate the APR
+  const mLPFarmAnnualRewards =
+    mLP?.quarry?.quarryData.annualRewardsRate.toNumber();
+
+  const annualRewardsUsd =
+    mLPFarmAnnualRewards !== undefined &&
+    mndePrice &&
+    (mLPFarmAnnualRewards * mndePrice) / LAMPORTS_PER_SOL;
+
+  const apr =
+    annualRewardsUsd && poolValueUsd && (annualRewardsUsd / poolValueUsd) * 100;
 
   const [timestamp, setTimestamp] = useState<BN>(
     new BN(Math.round(new Date().getTime() / 1000))
@@ -58,7 +70,6 @@ const MSolLPCard = () => {
   const userStake = mLP?.minerData?.balance || new BN(0);
   const rewardsPerTokenPaid = mLP?.minerData?.rewardsPerTokenPaid || new BN(0);
   const rewardsEarned = mLP?.minerData?.rewardsEarned || new BN(0);
-
   const rewards = mLP?.quarry?.payroll?.calculateRewardsEarned(
     timestamp,
     userStake,
@@ -79,7 +90,7 @@ const MSolLPCard = () => {
   const claimHandler = useCallback(() => {
     setIsClaimProcessing(true);
     mLP
-      .claim()
+      ?.claim()
       .then(
         (transactionSignature) => {
           toast({
@@ -138,13 +149,11 @@ const MSolLPCard = () => {
         {apr ? (
           <>
             <MHeading fontSize="22.5px" mb="4px">
-              {`${apr} % APR`}
+              {`${numberToShortVersion(apr)} % APR`}
             </MHeading>
             <MText type="text-md" mt="1px">{`${addCommas(
-              format2Dec(totalDeposited?.toNumber(), LAMPORTS_PER_SOL)
-            )} mSOL = $ ${addCommas(
-              format2Dec(totalDepositValue)
-            )} TVL`}</MText>
+              format2Dec(totalDeposited?.toNumber() ?? 0, LAMPORTS_PER_SOL)
+            )} mSOL = $ ${addCommas(format2Dec(poolValueUsd))} TVL`}</MText>
             <Flex
               height="56px"
               width="100%"
@@ -199,7 +208,7 @@ const MSolLPCard = () => {
             <Flex alignItems="center">
               <Image src="/icons/mnde.svg" boxSize="24px" mr="4px" />
               <MText>{`${format5Dec(
-                rewards?.toNumber(),
+                rewards?.toNumber() ?? 0,
                 LAMPORTS_PER_SOL
               )} MNDE`}</MText>
             </Flex>
@@ -214,7 +223,7 @@ const MSolLPCard = () => {
               isLoading={isClaimProcessing}
               isDisabled={
                 !mndeTokadaptState ||
-                Number(format5Dec(rewards?.toNumber(), LAMPORTS_PER_SOL)) <
+                Number(format5Dec(rewards?.toNumber() ?? 0, LAMPORTS_PER_SOL)) <
                   0.00001
               }
             >
