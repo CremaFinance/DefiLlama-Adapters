@@ -13,14 +13,18 @@ import MText from "../../atoms/Text";
 import { Wallet } from "../../molecules/Wallet";
 import TransactionLink from "components/molecules/TransactionLink";
 import { useChain } from "contexts/ConnectionProvider";
-import { useMarinade } from "contexts/MarinadeContext";
 import { useQuarryProvider } from "contexts/QuaryContext";
+import { useStats } from "contexts/StatsContext";
 import { usePrices } from "hooks/usePrices";
 import { coinSymbols } from "services/domain/coinSymbols";
 import colors from "styles/customTheme/colors";
 import { addCommas } from "utils/add-commas";
-import { format2Dec, format5Dec } from "utils/number-to-short-version";
+import {
+  format5Dec,
+  numberToShortVersion,
+} from "utils/number-to-short-version";
 
+// eslint-disable-next-line sonarjs/cognitive-complexity
 const MNDEFarmCard = () => {
   const { t } = useTranslation();
   const toast = useToast();
@@ -30,29 +34,35 @@ const MNDEFarmCard = () => {
     farms: { mSOL },
   } = useQuarryProvider();
   const prices = usePrices([coinSymbols.SOL, coinSymbols.MNDE]);
-  const { marinadeState } = useMarinade();
   const chain = useChain();
+  const stats = useStats();
 
-  const mSOLFarmAnnualRewards = parseFloat(
-    mSOL?.quarry?.computeAnnualRewardsRate()?.toString()
-  );
+  const solUSD =
+    prices[coinSymbols.SOL]?.usd && Number(prices[coinSymbols.SOL]?.usd);
+  const mSolUSD =
+    solUSD && stats?.mSOLvsSOLParity !== null
+      ? solUSD * stats?.mSOLvsSOLParity
+      : null;
+  const mndeUSD =
+    prices[coinSymbols.MNDE]?.usd && Number(prices[coinSymbols.MNDE]?.usd);
+
   const totalDeposited = mSOL?.quarry?.quarryData?.totalTokensDeposited;
-  const mSOLvsSOLParity = marinadeState?.state?.st_sol_price
-    ? marinadeState?.state?.st_sol_price?.toNumber() / 0x1_0000_0000
-    : 0;
-  const solUSD = prices[coinSymbols.SOL]?.usd;
-  const mSolUSD = Number(format2Dec(solUSD ?? 0 * mSOLvsSOLParity));
-  const totalDepositValue =
-    (Math.round((totalDeposited?.toNumber() / LAMPORTS_PER_SOL) * 1e2) / 1e2) *
-    mSolUSD;
+  const poolValueUSD =
+    mSolUSD !== null && totalDeposited
+      ? (mSolUSD * totalDeposited.toNumber()) / LAMPORTS_PER_SOL
+      : null;
+  const mSOLFarmAnnualRewards =
+    mSOL?.quarry?.quarryData?.annualRewardsRate.toNumber();
 
-  const aprNum =
-    prices[coinSymbols.MNDE]?.usd &&
+  const annualRewardsUSD =
     mSOLFarmAnnualRewards &&
-    (100 * mSOLFarmAnnualRewards * (prices[coinSymbols.MNDE]?.usd ?? 0)) /
-      (totalDeposited?.toNumber() * mSolUSD);
+    mndeUSD &&
+    (mSOLFarmAnnualRewards * mndeUSD) / LAMPORTS_PER_SOL;
+
   const apr =
-    aprNum && !Number.isNaN(aprNum) ? Number(format2Dec(aprNum)) : undefined;
+    poolValueUSD !== null && annualRewardsUSD
+      ? (annualRewardsUSD / poolValueUSD) * 100
+      : null;
 
   const [timestamp, setTimestamp] = useState<BN>(
     new BN(Math.round(new Date().getTime() / 1000))
@@ -82,7 +92,7 @@ const MNDEFarmCard = () => {
   const claimHandler = useCallback(() => {
     setIsClaimProcessing(true);
     mSOL
-      .claim()
+      ?.claim()
       .then(
         (transactionSignature) => {
           toast({
@@ -141,12 +151,16 @@ const MNDEFarmCard = () => {
         {apr ? (
           <>
             <MHeading fontSize="22.5px" mb="4px">
-              {`${apr} % APR`}
+              {`${numberToShortVersion(apr)} % APR`}
             </MHeading>
             <MText type="text-md" mt="1px">{`${addCommas(
-              format2Dec(totalDeposited?.toNumber(), LAMPORTS_PER_SOL)
+              numberToShortVersion(
+                totalDeposited !== undefined
+                  ? totalDeposited.toNumber() / LAMPORTS_PER_SOL
+                  : 0
+              )
             )} mSOL = $ ${addCommas(
-              format2Dec(totalDepositValue)
+              numberToShortVersion(poolValueUSD ?? 0)
             )} TVL`}</MText>
             <Flex
               height="56px"
@@ -165,7 +179,9 @@ const MNDEFarmCard = () => {
                 mr="10px"
               />
               <MText>{`${addCommas(
-                format2Dec(mSOLFarmAnnualRewards * 7, LAMPORTS_PER_SOL * 365)
+                numberToShortVersion(
+                  (((mSOLFarmAnnualRewards ?? 0) * 7) / LAMPORTS_PER_SOL) * 365
+                )
               )} MNDE/week`}</MText>
             </Flex>
             <Flex
@@ -173,9 +189,8 @@ const MNDEFarmCard = () => {
               display={connected ? "flex" : "none"}
             >
               <MText>{t("mndePage.your-deposit")}:</MText>
-              <MText>{`${format2Dec(
-                userStake.toNumber(),
-                LAMPORTS_PER_SOL
+              <MText>{`${numberToShortVersion(
+                userStake.toNumber() / LAMPORTS_PER_SOL
               )} MSOL`}</MText>
             </Flex>
           </>
@@ -202,7 +217,7 @@ const MNDEFarmCard = () => {
             <Flex alignItems="center">
               <Image src="/icons/mnde.svg" boxSize="24px" mr="4px" />
               <MText>{`${format5Dec(
-                rewards?.toNumber(),
+                rewards ? rewards?.toNumber() : 0,
                 LAMPORTS_PER_SOL
               )} MNDE`}</MText>
             </Flex>
@@ -217,8 +232,12 @@ const MNDEFarmCard = () => {
               isLoading={isClaimProcessing}
               isDisabled={
                 !mndeTokadaptState ||
-                Number(format5Dec(rewards?.toNumber(), LAMPORTS_PER_SOL)) <
-                  0.00001
+                Number(
+                  format5Dec(
+                    rewards ? rewards?.toNumber() : 0,
+                    LAMPORTS_PER_SOL
+                  )
+                ) < 0.00001
               }
             >
               {t("mndePage.claim-action")}
