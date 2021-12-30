@@ -88,6 +88,7 @@ const MobileDataHeader = ({ setSorting }: DataHeaderProps) => {
       fontSize="14.4px"
       lineHeight="140%"
       marginBottom="24px"
+      zIndex={7}
     >
       <Text marginLeft="2px" fontWeight="normal">
         {t(`${tPrefix}.label`)}
@@ -99,13 +100,14 @@ const MobileDataHeader = ({ setSorting }: DataHeaderProps) => {
           bg={colors.white}
           borderRadius="6px"
           border="1px solid #E2E8F0"
+          _focus={{ boxShadow: "none" }}
           rightIcon={<BsChevronDown />}
         >
           <Text textAlign="left" fontWeight="500">
             {sortingOptions[sortingKey]?.label}
           </Text>
         </MenuButton>
-        <MenuList zIndex={6}>
+        <MenuList>
           {Object.entries(sortingOptions).map(([key, val]) => (
             <MenuItemOption
               key={key}
