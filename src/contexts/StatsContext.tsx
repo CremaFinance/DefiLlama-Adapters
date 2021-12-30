@@ -38,9 +38,9 @@ export interface Stats {
   lpTokenSupply: null | number | undefined;
 
   /**
-   * The price of the mSOL token in USD
+   * The ratio of mSOL to SOL
    */
-  mSOLPrice: null | number;
+  mSOLvsSOLParity: null | number;
 
   unstakeFee: null | number;
 }
@@ -50,7 +50,7 @@ const StatsContext = createContext<Stats>({
   liqPoolBalance: null,
   liqPoolMSolAmount: null,
   lpTokenSupply: null,
-  mSOLPrice: null,
+  mSOLvsSOLParity: null,
   unstakeFee: null,
 });
 
@@ -60,6 +60,9 @@ export function StatsProvider({ children }: StatsProviderProps) {
   const marinadeState = useMarinadeState();
 
   const state = marinadeState ? marinadeState.state : null;
+
+  const mSOLvsSOLParity =
+    (state && state?.st_sol_price.toNumber() / 0x1_0000_0000) ?? null;
 
   const totalStaked = useMemo(() => {
     if (marinadeState === null || marinadeState === undefined) {
@@ -177,9 +180,6 @@ export function StatsProvider({ children }: StatsProviderProps) {
     };
   }, [liqPoolMSolLeg, connection]);
 
-  const mSOLPriceFixed =
-    marinadeState?.state?.st_sol_price?.toNumber() ?? 0 / 0x1_0000_0000;
-
   const unstakeFee = useMemo(() => {
     if (
       state === null ||
@@ -208,7 +208,7 @@ export function StatsProvider({ children }: StatsProviderProps) {
         liqPoolBalance,
         liqPoolMSolAmount,
         lpTokenSupply,
-        mSOLPrice: mSOLPriceFixed,
+        mSOLvsSOLParity,
         unstakeFee,
       }}
     >

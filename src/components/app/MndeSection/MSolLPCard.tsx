@@ -39,6 +39,10 @@ const MSolLPCard = () => {
   const chain = useChain();
 
   const solPrice = prices[coinSymbols.SOL]?.usd;
+  const mSOLPrice =
+    solPrice &&
+    stats?.mSOLvsSOLParity !== null &&
+    solPrice * stats?.mSOLvsSOLParity;
   const mndePrice = prices[coinSymbols.MNDE]?.usd;
 
   const totalDeposited = mLP?.quarry?.quarryData?.totalTokensDeposited;
@@ -47,9 +51,9 @@ const MSolLPCard = () => {
     solPrice &&
     stats?.liqPoolBalance !== null &&
     stats?.liqPoolMSolAmount !== null &&
-    stats?.mSOLPrice !== null &&
-    (stats.liqPoolBalance * solPrice +
-      stats.liqPoolMSolAmount * stats.mSOLPrice) /
+    mSOLPrice &&
+    mSOLPrice !== null &&
+    (stats.liqPoolBalance * solPrice + stats.liqPoolMSolAmount * mSOLPrice) /
       LAMPORTS_PER_SOL;
 
   const mLPFarmAnnualRewards =
