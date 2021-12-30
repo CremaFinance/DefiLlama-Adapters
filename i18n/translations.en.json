@@ -189,6 +189,8 @@
     "connect": "Connect",
     "wallet-missing": "Please click here to install official {{wallet}} extension",
     "disconnect-wallet": "Disconnect",
+    "disconnect-wallet-title": "Disconnected from wallet",
+    "disconnect-wallet-description": "You've successfully disconnected from your wallet",
     "pool-row": {
       "total-apy": "{{totalApy}} % APY",
       "buttons": {
@@ -573,7 +575,9 @@
       },
       {
         "header": "Notices",
-        "text": ["All notices, requests, demands, and determinations for us under these Terms (other than routine operational communications) shall be sent to info@marinade.finance"]
+        "text": [
+          "All notices, requests, demands, and determinations for us under these Terms (other than routine operational communications) shall be sent to info@marinade.finance"
+        ]
       },
       {
         "header": "Assignment",

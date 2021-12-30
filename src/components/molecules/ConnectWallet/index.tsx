@@ -12,6 +12,7 @@ import { useCallback, useEffect } from "react";
 
 import { useTranslation } from "../../../hooks/useTranslation";
 import { useWallet } from "../../../hooks/useWallet";
+import { shortenAddress } from "../../../utils/shorten-address";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 
@@ -24,6 +25,7 @@ export const ConnectWallet = () => {
     wallet,
     adapter,
     connecting,
+    publicKey,
   } = useWallet();
 
   const { t } = useTranslation();
@@ -71,18 +73,16 @@ export const ConnectWallet = () => {
     }
   }, [tryConnect, adapter, wallet, connected, connecting]);
 
-  if (connected) {
-    return (
-      <MButton
-        variant="solid"
-        font="text-lg"
-        height="40px"
-        onClick={() => disconnect()}
-      >
-        {t("appPage.disconnect-wallet")}
-      </MButton>
-    );
-  }
+  const tryDisconnect = useCallback(async () => {
+    await disconnect();
+    toast({
+      title: t("appPage.disconnect-wallet-title"),
+      status: "success",
+      description: t("appPage.disconnect-wallet-description"),
+      variant: "subtle",
+      isClosable: true,
+    });
+  }, [disconnect, t, toast]);
 
   return (
     <Menu>
@@ -94,20 +94,28 @@ export const ConnectWallet = () => {
         leftIcon={<Image src="/icons/wallet.svg" width="0.8rem" />}
         rightIcon={<Image src="/icons/expand-more.svg" width="0.5rem" />}
       >
-        {t("appPage.connect-wallet")}
+        {connected && publicKey
+          ? shortenAddress(publicKey.toString())
+          : t("appPage.connect-wallet")}
       </MenuButton>
       <MenuList zIndex={10} border="none" rounded="md" shadow="none">
-        {wallets.map((walletItem) => (
-          <MenuItem
-            key={walletItem.name}
-            icon={<Image src={walletItem.icon} width="0.8rem" />}
-            onClick={() => {
-              select(walletItem.name);
-            }}
-          >
-            <MText type="text-lg">{walletItem.name}</MText>
+        {connected ? (
+          <MenuItem key="disconnect" onClick={() => tryDisconnect()}>
+            <MText type="text-lg">{t("appPage.disconnect-wallet")}</MText>
           </MenuItem>
-        ))}
+        ) : (
+          wallets.map((walletItem) => (
+            <MenuItem
+              key={walletItem.name}
+              icon={<Image src={walletItem.icon} width="0.8rem" />}
+              onClick={() => {
+                select(walletItem.name);
+              }}
+            >
+              <MText type="text-lg">{walletItem.name}</MText>
+            </MenuItem>
+          ))
+        )}
       </MenuList>
     </Menu>
   );
