@@ -61,7 +61,7 @@ const MndeSection = () => {
         flexWrap="wrap"
         justifyContent="center"
         alignItems="center"
-        px={{ base: "4px", lg: "11vw" }}
+        px={{ base: "4px", lg: "6vw" }}
       >
         <>
           <MNDEFarmCard />

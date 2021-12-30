@@ -79,6 +79,9 @@ const MNDEFarmCard = () => {
     rewardsEarned
   );
 
+  const weeklyRewardsMNDE =
+    ((mSOLFarmAnnualRewards ?? 0) / LAMPORTS_PER_SOL / 365) * 7;
+
   useEffect(() => {
     const clock = setInterval(() => {
       setTimestamp(new BN(Math.round(new Date().getTime() / 1000)));
@@ -177,9 +180,7 @@ const MNDEFarmCard = () => {
                 mr="10px"
               />
               <MText>{`${addCommas(
-                numberToShortVersion(
-                  (((mSOLFarmAnnualRewards ?? 0) * 7) / LAMPORTS_PER_SOL) * 365
-                )
+                numberToShortVersion(weeklyRewardsMNDE)
               )} MNDE/week`}</MText>
             </Flex>
             <Flex

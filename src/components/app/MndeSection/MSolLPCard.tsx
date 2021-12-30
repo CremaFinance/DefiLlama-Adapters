@@ -18,13 +18,12 @@ import { useStats } from "contexts/StatsContext";
 import { usePrices } from "hooks/usePrices";
 import { coinSymbols } from "services/domain/coinSymbols";
 import colors from "styles/customTheme/colors";
-import { addCommas } from "utils/add-commas";
 import {
-  format2Dec,
   format5Dec,
   numberToShortVersion,
 } from "utils/number-to-short-version";
 
+// eslint-disable-next-line sonarjs/cognitive-complexity
 const MSolLPCard = () => {
   const { t } = useTranslation();
   const toast = useToast();
@@ -47,7 +46,7 @@ const MSolLPCard = () => {
 
   const totalDeposited = mLP?.quarry?.quarryData?.totalTokensDeposited;
 
-  const poolValueUsd =
+  const poolValueUSD =
     solPrice &&
     stats?.liqPoolBalance !== null &&
     stats?.liqPoolMSolAmount !== null &&
@@ -59,13 +58,13 @@ const MSolLPCard = () => {
   const mLPFarmAnnualRewards =
     mLP?.quarry?.quarryData.annualRewardsRate.toNumber();
 
-  const annualRewardsUsd =
+  const annualRewardsUSD =
     mLPFarmAnnualRewards !== undefined &&
     mndePrice &&
     (mLPFarmAnnualRewards * mndePrice) / LAMPORTS_PER_SOL;
 
   const apr =
-    annualRewardsUsd && poolValueUsd && (annualRewardsUsd / poolValueUsd) * 100;
+    annualRewardsUSD && poolValueUSD && (annualRewardsUSD / poolValueUSD) * 100;
 
   const [timestamp, setTimestamp] = useState<BN>(
     new BN(Math.round(new Date().getTime() / 1000))
@@ -80,6 +79,9 @@ const MSolLPCard = () => {
     rewardsPerTokenPaid,
     rewardsEarned
   );
+
+  const weeklyRewardsMNDE =
+    ((mLPFarmAnnualRewards ?? 0) / LAMPORTS_PER_SOL / 365) * 7;
 
   useEffect(() => {
     const clock = setInterval(() => {
@@ -155,9 +157,9 @@ const MSolLPCard = () => {
             <MHeading fontSize="22.5px" mb="4px">
               {`${numberToShortVersion(apr)} % APR`}
             </MHeading>
-            <MText type="text-md" mt="1px">{`${addCommas(
-              format2Dec(totalDeposited?.toNumber() ?? 0, LAMPORTS_PER_SOL)
-            )} mSOL = $ ${addCommas(format2Dec(poolValueUsd))} TVL`}</MText>
+            <MText type="text-md" mt="1px">{`${numberToShortVersion(
+              (totalDeposited?.toNumber() ?? 0) / LAMPORTS_PER_SOL
+            )} mSOL = $ ${numberToShortVersion(poolValueUSD)} TVL`}</MText>
             <Flex
               height="56px"
               width="100%"
@@ -174,8 +176,8 @@ const MSolLPCard = () => {
                 height="24px"
                 mr="10px"
               />
-              <MText>{`${addCommas(
-                format2Dec(mLPFarmAnnualRewards * 7, LAMPORTS_PER_SOL * 365)
+              <MText>{`${numberToShortVersion(
+                weeklyRewardsMNDE
               )} MNDE/week`}</MText>
             </Flex>
             <Flex
@@ -183,9 +185,8 @@ const MSolLPCard = () => {
               display={connected ? "flex" : "none"}
             >
               <MText>{t("mndePage.your-deposit")}:</MText>
-              <MText>{`${format2Dec(
-                userStake.toNumber(),
-                LAMPORTS_PER_SOL
+              <MText>{`${numberToShortVersion(
+                userStake.toNumber() / LAMPORTS_PER_SOL
               )} MSOL`}</MText>
             </Flex>
           </>
