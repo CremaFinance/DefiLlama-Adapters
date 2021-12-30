@@ -42,15 +42,15 @@ const MNDEFarmCard = () => {
   const mSolUSD =
     solUSD && stats?.mSOLvsSOLParity !== null
       ? solUSD * stats?.mSOLvsSOLParity
-      : null;
+      : undefined;
   const mndeUSD =
     prices[coinSymbols.MNDE]?.usd && Number(prices[coinSymbols.MNDE]?.usd);
 
   const totalDeposited = mSOL?.quarry?.quarryData?.totalTokensDeposited;
   const poolValueUSD =
-    mSolUSD !== null && totalDeposited
+    mSolUSD && totalDeposited
       ? (mSolUSD * totalDeposited.toNumber()) / LAMPORTS_PER_SOL
-      : null;
+      : undefined;
   const mSOLFarmAnnualRewards =
     mSOL?.quarry?.quarryData?.annualRewardsRate.toNumber();
 
@@ -60,9 +60,9 @@ const MNDEFarmCard = () => {
     (mSOLFarmAnnualRewards * mndeUSD) / LAMPORTS_PER_SOL;
 
   const apr =
-    poolValueUSD !== null && annualRewardsUSD
+    poolValueUSD && annualRewardsUSD
       ? (annualRewardsUSD / poolValueUSD) * 100
-      : null;
+      : undefined;
 
   const [timestamp, setTimestamp] = useState<BN>(
     new BN(Math.round(new Date().getTime() / 1000))
@@ -155,9 +155,7 @@ const MNDEFarmCard = () => {
             </MHeading>
             <MText type="text-md" mt="1px">{`${addCommas(
               numberToShortVersion(
-                totalDeposited !== undefined
-                  ? totalDeposited.toNumber() / LAMPORTS_PER_SOL
-                  : 0
+                (totalDeposited?.toNumber() ?? 0) / LAMPORTS_PER_SOL
               )
             )} mSOL = $ ${addCommas(
               numberToShortVersion(poolValueUSD ?? 0)
@@ -232,12 +230,8 @@ const MNDEFarmCard = () => {
               isLoading={isClaimProcessing}
               isDisabled={
                 !mndeTokadaptState ||
-                Number(
-                  format5Dec(
-                    rewards ? rewards?.toNumber() : 0,
-                    LAMPORTS_PER_SOL
-                  )
-                ) < 0.00001
+                Number(format5Dec(rewards?.toNumber() ?? 0, LAMPORTS_PER_SOL)) <
+                  0.00001
               }
             >
               {t("mndePage.claim-action")}
