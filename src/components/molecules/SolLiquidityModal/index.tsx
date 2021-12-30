@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/cognitive-complexity */
 /* eslint-disable complexity */
 import {
   Modal,
@@ -44,10 +45,14 @@ const SolLiquidityModal = ({
   const toast = useToast();
 
   const [isAddLiquidityActive, setAddLiquidityActive] = useState(true);
-  const [addLiquidityLoading, setAddLiquidityLoading] = useState(false);
-  const [liquidityAmount, setLiquidityAmount] = useState<string>("");
-  const { nativeSOLBalance, liqSOLBalance, liquiditySOLPart } =
-    useUserBalance();
+  const [loading, setLoading] = useState(false);
+  const [amount, setAmount] = useState<string>("");
+  const {
+    nativeSOLBalance,
+    liqSOLBalance,
+    liquiditySOLPart,
+    liquidityMSolPart,
+  } = useUserBalance();
   const { connected: isWalletConnected } = useWallet();
   const { liqPoolBalance } = useStats();
   const chain = useChain();
@@ -57,10 +62,6 @@ const SolLiquidityModal = ({
   const marinade = useMarinade();
   const state = marinade?.marinadeState?.state;
   const marinadeState = marinade?.marinadeState;
-
-  // replace these with data from services
-  const removeLiqSolBalance = 0.0013;
-  const removeLiqmSolBalance = 0.0023;
 
   const removeLiquidityButton =
     liqSOLBalance === 0
@@ -74,7 +75,7 @@ const SolLiquidityModal = ({
   // eslint-disable-next-line consistent-return
   const addLiquidityHandler = () => {
     const basicInputChecksErrors = basicInputChecks(
-      Number(liquidityAmount),
+      Number(amount),
       isWalletConnected
     );
     if (basicInputChecksErrors) {
@@ -82,7 +83,7 @@ const SolLiquidityModal = ({
     }
 
     if (
-      Number(liquidityAmount) +
+      Number(amount) +
         Number(format5Dec(liqPoolBalance ?? 0, LAMPORTS_PER_SOL)) >
       Number(
         format5Dec(Number(state?.liq_pool?.liquidity_sol_cap), LAMPORTS_PER_SOL)
@@ -97,7 +98,7 @@ const SolLiquidityModal = ({
     }
 
     const fundsNeeded =
-      Number(liquidityAmount) * LAMPORTS_PER_SOL +
+      Number(amount) * LAMPORTS_PER_SOL +
       (marinadeState?.transactionFee ?? 0) * 4 +
       (marinadeState?.state.rent_exempt_for_token_acc.toNumber() ?? 0);
     const checkBalanceErrors = checkNativeSOLBalance(
@@ -108,13 +109,13 @@ const SolLiquidityModal = ({
       return toast(checkBalanceErrors);
     }
 
-    setAddLiquidityLoading(true);
+    setLoading(true);
 
     marinade
-      .runAddLiquidity(Number(liquidityAmount) * LAMPORTS_PER_SOL)
+      .runAddLiquidity(Number(amount) * LAMPORTS_PER_SOL)
       .then(
         (transactionSignature) => {
-          setLiquidityAmount("");
+          setAmount("");
 
           toast({
             title: t("appPage.liquidity-sol-confirmed"),
@@ -141,7 +142,75 @@ const SolLiquidityModal = ({
           });
         }
       )
-      .finally(() => setAddLiquidityLoading(false));
+      .finally(() => setLoading(false));
+  };
+
+  // eslint-disable-next-line consistent-return
+  const removeLiquidityHandler = () => {
+    const basicInputChecksErrors = basicInputChecks(
+      Number(amount),
+      isWalletConnected
+    );
+    if (basicInputChecksErrors) {
+      return toast(basicInputChecksErrors);
+    }
+
+    const fundsNeeded =
+      Number(amount) * LAMPORTS_PER_SOL +
+      (marinadeState?.transactionFee ?? 0) * 4 +
+      (marinadeState?.state.rent_exempt_for_token_acc.toNumber() ?? 0);
+    const checkBalanceErrors = checkNativeSOLBalance(
+      nativeSOLBalance ?? 0,
+      fundsNeeded
+    );
+    if (checkBalanceErrors) {
+      return toast(checkBalanceErrors);
+    }
+
+    if (liqSOLBalance && Number(amount) > liqSOLBalance) {
+      return toast({
+        title: t("appPage.insufficient-funds-to-remove"),
+        description: t("appPage.requested-liquidity-not-enough-funds")
+          .replace("{{amount}}", amount)
+          .replace("liqSOLBalance", liqSOLBalance),
+        status: "warning",
+      });
+    }
+    setLoading(true);
+
+    marinade
+      .runRemoveLiquidity(Number(amount) * LAMPORTS_PER_SOL)
+      .then(
+        (transactionSignature) => {
+          setAmount("");
+          toast({
+            title: t("appPage.remove-liquidity-confirmed"),
+            description: (
+              <p>
+                {t("appPage.successfully-removed-liquidity-your-sol")}{" "}
+                <TransactionLink
+                  chainName={chain.name}
+                  transactionid={transactionSignature}
+                />
+              </p>
+            ),
+            status: "success",
+          });
+        },
+        (error) => {
+          // eslint-disable-next-line no-console
+          console.error(error);
+
+          toast({
+            title: t("appPage.something-went-wrong"),
+            description: error.toString().includes("0xa7")
+              ? t("appPage.your-lp-account-is-deactivated")
+              : error.message,
+            status: "warning",
+          });
+        }
+      )
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -192,23 +261,31 @@ const SolLiquidityModal = ({
             <Text align="end" mb={4} lineHeight="21.6px" fontSize="14.4px">
               {`= $ ${format2Dec((liquiditySOLPart ?? 0) * (solUSD ?? 0))}`}
             </Text>
-            <StakeInput
-              stakeInputType={StakeInputTypeEnum.Liquidity}
-              onValueChange={setLiquidityAmount}
-              tokenName={isAddLiquidityActive ? "SOL" : "mSOL-SOL LP"}
-              tokenIcon={
-                isAddLiquidityActive
-                  ? "/icons/solana-dark.png"
-                  : "/icons/mSOL-SOL LP.svg"
-              }
-              tokenBalance={
-                nativeSOLBalance
-                  ? nativeSOLBalance / LAMPORTS_PER_SOL - 0.001
-                  : 0
-              }
-              value={liquidityAmount}
-              mb={4}
-            />
+            {isAddLiquidityActive ? (
+              <StakeInput
+                stakeInputType={StakeInputTypeEnum.Liquidity}
+                onValueChange={setAmount}
+                tokenName="SOL"
+                tokenIcon="/icons/solana-dark.png"
+                tokenBalance={
+                  nativeSOLBalance
+                    ? nativeSOLBalance / LAMPORTS_PER_SOL - 0.001
+                    : 0
+                }
+                value={amount}
+                mb={4}
+              />
+            ) : (
+              <StakeInput
+                stakeInputType={StakeInputTypeEnum.Liquidity}
+                onValueChange={setAmount}
+                tokenName=""
+                tokenIcon="/icons/mSOL-SOL LP.svg"
+                tokenBalance={liqSOLBalance ?? 0}
+                value={amount}
+                mb={4}
+              />
+            )}
             <Flex h="52px">
               {!isAddLiquidityActive ? (
                 <Flex flexDirection="column" flex={1}>
@@ -217,7 +294,7 @@ const SolLiquidityModal = ({
                       {t("appPage.liquidity-modal.conversion-explained")}
                     </Text>
                     <Text lineHeight="21.6px" fontSize="14.4px">
-                      {`= $ ${removeLiqSolBalance} SOL`}
+                      {`= $ ${format5Dec(liquiditySOLPart ?? 0)} SOL`}
                     </Text>
                   </Flex>
                   <Text
@@ -226,7 +303,7 @@ const SolLiquidityModal = ({
                     lineHeight="21.6px"
                     fontSize="14.4px"
                   >
-                    {`= $ ${removeLiqmSolBalance} mSOL`}
+                    {`= $ ${format5Dec(liquidityMSolPart ?? 0)} mSOL`}
                   </Text>
                 </Flex>
               ) : null}
@@ -235,14 +312,18 @@ const SolLiquidityModal = ({
               <Button
                 font="text-xl"
                 bg={colors.marinadeGreen}
-                isLoading={addLiquidityLoading}
+                isLoading={loading}
                 _hover={{ bg: colors.green800 }}
                 colorScheme={colors.marinadeGreen}
                 rounded="md"
                 height="48px"
                 _focus={{ boxShadow: "none" }}
                 my={8}
-                onClick={addLiquidityHandler}
+                onClick={
+                  isAddLiquidityActive
+                    ? addLiquidityHandler
+                    : removeLiquidityHandler
+                }
               >
                 {liquidityButtonText}
               </Button>
