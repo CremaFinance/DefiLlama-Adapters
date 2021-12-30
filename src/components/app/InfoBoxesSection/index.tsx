@@ -299,7 +299,9 @@ const InfoBoxesSection = () => {
       >
         <Flex justifyContent="space-between" pr={8}>
           <MText type="text-lg">{t("appPage.info-msol-sol-price")}</MText>
-          <MHeading type="heading-2xsm">{mSOLvsSOLParity} SOL</MHeading>
+          <MHeading type="heading-2xsm">
+            {mSOLvsSOLParity.toFixed(5)} SOL
+          </MHeading>
         </Flex>
         <Flex justifyContent="space-between" pr={8}>
           <MText type="text-lg">{t("appPage.info-total-staked")}</MText>
