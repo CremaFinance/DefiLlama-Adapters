@@ -159,7 +159,7 @@ const MSolLPCard = () => {
             </MHeading>
             <MText type="text-md" mt="1px">{`${numberToShortVersion(
               (totalDeposited?.toNumber() ?? 0) / LAMPORTS_PER_SOL
-            )} mSOL = $ ${numberToShortVersion(poolValueUSD)} TVL`}</MText>
+            )} LP = $ ${numberToShortVersion(poolValueUSD)} TVL`}</MText>
             <Flex
               height="56px"
               width="100%"
