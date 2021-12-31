@@ -1,3 +1,6 @@
+import { LAMPORTS_PER_SOL } from "@solana/web3.js";
+
+import { format2Dec } from "../../../utils/number-to-short-version";
 import { updatePoolRewards } from "../../../utils/update-pool-rewards";
 import { Prices } from "../../domain/coinSymbols";
 import { FetchPools, Pool } from "../../domain/pool";
@@ -25,10 +28,17 @@ export const mapMarinadePoolsResponse = (
         const result = marinadeResults;
         if (result) {
           const { value } = result;
+
           pool.liq = Number.isNaN(value) ? undefined : value;
-          pool.totalLockedValue = Number.isNaN(options?.tvl)
-            ? undefined
-            : Number(options?.tvl);
+          if (options && options?.tvl && pool.tokenB) {
+            const price = prices[pool.tokenB]?.usd;
+            pool.totalLockedValue = price
+              ? Number(
+                  format2Dec(Number(options.tvl) * +price, LAMPORTS_PER_SOL)
+                )
+              : undefined;
+          }
+
           pool.tradingApy = Number(value) * 100;
           pool.apy = pool.tradingApy;
           pool = updatePoolRewards(pool as Pool, prices);

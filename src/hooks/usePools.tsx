@@ -27,8 +27,12 @@ export const usePools = (providerOptions?: ProviderOptions) => {
   }, {}) as Prices;
 
   const providerQueries = Object.entries(providers).map(([key, provider]) => {
+    const optionsKey =
+      providerOptions && providerOptions[key]
+        ? JSON.stringify(providerOptions[key])
+        : "";
     return {
-      queryKey: ["provider", key],
+      queryKey: ["provider", key + optionsKey],
       queryFn: () => {
         const options = providerOptions ? providerOptions[key] : undefined;
         return provider.fetchPools(prices, options);
