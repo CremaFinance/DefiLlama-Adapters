@@ -1,3 +1,5 @@
+import { LAMPORTS_PER_SOL } from "@solana/web3.js";
+
 import { format2Dec } from "../../../utils/number-to-short-version";
 import { updatePoolRewards } from "../../../utils/update-pool-rewards";
 import { Prices } from "../../domain/coinSymbols";
@@ -5,8 +7,6 @@ import { FetchPools, Pool } from "../../domain/pool";
 
 import { marinadePools } from "./config";
 import { MarinadePool } from "./marinadePool";
-
-const LAMPORTS_PER_SOL = 1000000000;
 
 export async function fetchMarinadePools(): Promise<MarinadePool> {
   const response = await fetch(`https://api.marinade.finance/lp/apy/7d`);
