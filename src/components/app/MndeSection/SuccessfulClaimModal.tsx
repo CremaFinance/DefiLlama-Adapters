@@ -90,6 +90,7 @@ const SuccessfulClaimModal = ({
           >
             <MButton
               variant="outline"
+              _hover={{ bg: "gray.100" }}
               color="black"
               width="55px"
               height="40px"
