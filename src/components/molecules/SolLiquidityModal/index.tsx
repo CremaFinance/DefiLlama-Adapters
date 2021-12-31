@@ -290,7 +290,14 @@ const SolLiquidityModal = ({
                       {t("appPage.liquidity-modal.conversion-explained")}
                     </Text>
                     <Text lineHeight="21.6px" fontSize="14.4px">
-                      {`= $ ${format5Dec(liquiditySOLPart ?? 0)} SOL`}
+                      {`= ${
+                        liquiditySOLPart && liqSOLBalance
+                          ? format5Dec(
+                              (Number(amount) * liquiditySOLPart) /
+                                liqSOLBalance
+                            )
+                          : 0
+                      } SOL`}
                     </Text>
                   </Flex>
                   <Text
@@ -299,7 +306,13 @@ const SolLiquidityModal = ({
                     lineHeight="21.6px"
                     fontSize="14.4px"
                   >
-                    {`= $ ${format5Dec(liquidityMSolPart ?? 0)} mSOL`}
+                    {`= ${
+                      liquidityMSolPart && liqSOLBalance
+                        ? format5Dec(
+                            (Number(amount) * liquidityMSolPart) / liqSOLBalance
+                          )
+                        : 0
+                    } mSOL`}
                   </Text>
                 </Flex>
               ) : null}
