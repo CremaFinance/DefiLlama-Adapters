@@ -17,11 +17,31 @@ import { useConnection } from "./ConnectionProvider";
 import { useMarinadeState } from "./MarinadeContext";
 
 export interface Stats {
+  /**
+   * The total amount of SOL staked by Marinade in Lamports
+   */
   totalStaked: null | number | undefined;
+
+  /**
+   * The total amount of SOL staked in the mSOL-SOL Pool in Lamports
+   */
   liqPoolBalance: null | number;
+
+  /**
+   * The total amount of mSOL staked in the mSOL-SOL Pool in Lamports
+   */
   liqPoolMSolAmount: null | number;
+
+  /**
+   * The total supply of the mSOL-SOL LP token in Lamports
+   */
   lpTokenSupply: null | number | undefined;
-  lpTokenPrice: null | number;
+
+  /**
+   * The ratio of mSOL to SOL
+   */
+  mSOLvsSOLParity: null | number;
+
   unstakeFee: null | number;
 }
 
@@ -30,7 +50,7 @@ const StatsContext = createContext<Stats>({
   liqPoolBalance: null,
   liqPoolMSolAmount: null,
   lpTokenSupply: null,
-  lpTokenPrice: null,
+  mSOLvsSOLParity: null,
   unstakeFee: null,
 });
 
@@ -40,6 +60,9 @@ export function StatsProvider({ children }: StatsProviderProps) {
   const marinadeState = useMarinadeState();
 
   const state = marinadeState ? marinadeState.state : null;
+
+  const mSOLvsSOLParity =
+    (state && state?.st_sol_price.toNumber() / 0x1_0000_0000) ?? null;
 
   const totalStaked = useMemo(() => {
     if (marinadeState === null || marinadeState === undefined) {
@@ -157,31 +180,6 @@ export function StatsProvider({ children }: StatsProviderProps) {
     };
   }, [liqPoolMSolLeg, connection]);
 
-  const mSOLPriceFixed = marinadeState?.state?.st_sol_price?.toNumber();
-
-  const lpTokenPrice = useMemo(() => {
-    if (lpTokenSupply === 0) {
-      return 1;
-    }
-    if (
-      liqPoolBalance !== null &&
-      liqPoolBalance !== undefined &&
-      liqPoolMSolAmount !== null &&
-      liqPoolMSolAmount !== undefined &&
-      lpTokenSupply !== null &&
-      lpTokenSupply !== undefined &&
-      mSOLPriceFixed !== null &&
-      mSOLPriceFixed !== undefined
-    ) {
-      return (
-        (liqPoolBalance +
-          (liqPoolMSolAmount * mSOLPriceFixed) / 0x1_0000_0000) /
-        lpTokenSupply
-      );
-    }
-    return null;
-  }, [liqPoolBalance, liqPoolMSolAmount, lpTokenSupply, mSOLPriceFixed]);
-
   const unstakeFee = useMemo(() => {
     if (
       state === null ||
@@ -210,7 +208,7 @@ export function StatsProvider({ children }: StatsProviderProps) {
         liqPoolBalance,
         liqPoolMSolAmount,
         lpTokenSupply,
-        lpTokenPrice,
+        mSOLvsSOLParity,
         unstakeFee,
       }}
     >

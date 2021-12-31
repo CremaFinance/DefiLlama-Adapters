@@ -10,7 +10,7 @@ import { useWallet } from "../../../hooks/useWallet";
 import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
-import { ConnectWallet } from "../../molecules/ConnectWallet";
+import { Wallet } from "../../molecules/Wallet";
 import TransactionLink from "components/molecules/TransactionLink";
 import { useChain } from "contexts/ConnectionProvider";
 import { useQuarryProvider } from "contexts/QuaryContext";
@@ -18,61 +18,62 @@ import { useStats } from "contexts/StatsContext";
 import { usePrices } from "hooks/usePrices";
 import { coinSymbols } from "services/domain/coinSymbols";
 import colors from "styles/customTheme/colors";
-import { addCommas } from "utils/add-commas";
 import {
   format5Dec,
   numberToShortVersion,
 } from "utils/number-to-short-version";
 
 // eslint-disable-next-line sonarjs/cognitive-complexity
-const MNDEFarmCard = () => {
+const MSolLPCard = () => {
   const { t } = useTranslation();
   const toast = useToast();
   const { connected } = useWallet();
+  const stats = useStats();
+
   const {
     mndeTokadaptState,
-    farms: { mSOL },
+    farms: { mLP },
   } = useQuarryProvider();
   const prices = usePrices([coinSymbols.SOL, coinSymbols.MNDE]);
   const chain = useChain();
-  const stats = useStats();
 
-  const solUSD =
-    prices[coinSymbols.SOL]?.usd && Number(prices[coinSymbols.SOL]?.usd);
-  const mSolUSD =
-    solUSD && stats?.mSOLvsSOLParity !== null
-      ? solUSD * stats?.mSOLvsSOLParity
-      : undefined;
-  const mndeUSD =
-    prices[coinSymbols.MNDE]?.usd && Number(prices[coinSymbols.MNDE]?.usd);
+  const solPrice = prices[coinSymbols.SOL]?.usd;
+  const mSOLPrice =
+    solPrice &&
+    stats?.mSOLvsSOLParity !== null &&
+    solPrice * stats?.mSOLvsSOLParity;
+  const mndePrice = prices[coinSymbols.MNDE]?.usd;
 
-  const totalDeposited = mSOL?.quarry?.quarryData?.totalTokensDeposited;
+  const totalDeposited = mLP?.quarry?.quarryData?.totalTokensDeposited;
+
   const poolValueUSD =
-    mSolUSD && totalDeposited
-      ? (mSolUSD * totalDeposited.toNumber()) / LAMPORTS_PER_SOL
-      : undefined;
-  const mSOLFarmAnnualRewards =
-    mSOL?.quarry?.quarryData?.annualRewardsRate.toNumber();
+    solPrice &&
+    stats?.liqPoolBalance !== null &&
+    stats?.liqPoolMSolAmount !== null &&
+    mSOLPrice &&
+    mSOLPrice !== null &&
+    (stats.liqPoolBalance * solPrice + stats.liqPoolMSolAmount * mSOLPrice) /
+      LAMPORTS_PER_SOL;
+
+  const mLPFarmAnnualRewards =
+    mLP?.quarry?.quarryData.annualRewardsRate.toNumber();
 
   const annualRewardsUSD =
-    mSOLFarmAnnualRewards &&
-    mndeUSD &&
-    (mSOLFarmAnnualRewards * mndeUSD) / LAMPORTS_PER_SOL;
+    mLPFarmAnnualRewards !== undefined &&
+    mndePrice &&
+    (mLPFarmAnnualRewards * mndePrice) / LAMPORTS_PER_SOL;
 
   const apr =
-    poolValueUSD && annualRewardsUSD
-      ? (annualRewardsUSD / poolValueUSD) * 100
-      : undefined;
+    annualRewardsUSD && poolValueUSD && (annualRewardsUSD / poolValueUSD) * 100;
 
   const [timestamp, setTimestamp] = useState<BN>(
     new BN(Math.round(new Date().getTime() / 1000))
   );
 
-  const userStake = mSOL?.minerData?.balance || new BN(0);
-  const rewardsPerTokenPaid = mSOL?.minerData?.rewardsPerTokenPaid || new BN(0);
-  const rewardsEarned = mSOL?.minerData?.rewardsEarned || new BN(0);
-
-  const rewards = mSOL?.quarry?.payroll?.calculateRewardsEarned(
+  const userStake = mLP?.minerData?.balance || new BN(0);
+  const rewardsPerTokenPaid = mLP?.minerData?.rewardsPerTokenPaid || new BN(0);
+  const rewardsEarned = mLP?.minerData?.rewardsEarned || new BN(0);
+  const rewards = mLP?.quarry?.payroll?.calculateRewardsEarned(
     timestamp,
     userStake,
     rewardsPerTokenPaid,
@@ -80,7 +81,7 @@ const MNDEFarmCard = () => {
   );
 
   const weeklyRewardsMNDE =
-    ((mSOLFarmAnnualRewards ?? 0) / LAMPORTS_PER_SOL / 365) * 7;
+    ((mLPFarmAnnualRewards ?? 0) / LAMPORTS_PER_SOL / 365) * 7;
 
   useEffect(() => {
     const clock = setInterval(() => {
@@ -94,7 +95,7 @@ const MNDEFarmCard = () => {
   // eslint-disable-next-line consistent-return
   const claimHandler = useCallback(() => {
     setIsClaimProcessing(true);
-    mSOL
+    mLP
       ?.claim()
       .then(
         (transactionSignature) => {
@@ -126,7 +127,7 @@ const MNDEFarmCard = () => {
       .finally(() => {
         setIsClaimProcessing(false);
       });
-  }, [chain.name, mSOL, t, toast]);
+  }, [chain.name, mLP, t, toast]);
 
   return (
     <Flex
@@ -142,13 +143,12 @@ const MNDEFarmCard = () => {
       borderColor={colors.lightGray}
       borderRadius="8px"
       justifyContent="space-between"
-      zIndex={6}
     >
       <Box>
         <Flex width="100%" justifyContent="space-between">
           <Flex>
-            <Image src="/icons/mSOL.svg" boxSize="24px" mr="4px" />
-            <MText ml={1}>MSOL</MText>
+            <Image src="/icons/mSOL-SOL-LP.png" boxSize="24px" mr="4px" />
+            <MText ml={1}>MSOL-SOL LP</MText>
           </Flex>
           <Image src="/icons/mnde.svg" boxSize="40px" />
         </Flex>
@@ -157,13 +157,9 @@ const MNDEFarmCard = () => {
             <MHeading fontSize="22.5px" mb="4px">
               {`${numberToShortVersion(apr)} % APR`}
             </MHeading>
-            <MText type="text-md" mt="1px">{`${addCommas(
-              numberToShortVersion(
-                (totalDeposited?.toNumber() ?? 0) / LAMPORTS_PER_SOL
-              )
-            )} mSOL = $ ${addCommas(
-              numberToShortVersion(poolValueUSD ?? 0)
-            )} TVL`}</MText>
+            <MText type="text-md" mt="1px">{`${numberToShortVersion(
+              (totalDeposited?.toNumber() ?? 0) / LAMPORTS_PER_SOL
+            )} LP = $ ${numberToShortVersion(poolValueUSD)} TVL`}</MText>
             <Flex
               height="56px"
               width="100%"
@@ -180,8 +176,8 @@ const MNDEFarmCard = () => {
                 height="24px"
                 mr="10px"
               />
-              <MText>{`${addCommas(
-                numberToShortVersion(weeklyRewardsMNDE)
+              <MText>{`${numberToShortVersion(
+                weeklyRewardsMNDE
               )} MNDE/week`}</MText>
             </Flex>
             <Flex
@@ -217,7 +213,7 @@ const MNDEFarmCard = () => {
             <Flex alignItems="center">
               <Image src="/icons/mnde.svg" boxSize="24px" mr="4px" />
               <MText>{`${format5Dec(
-                rewards ? rewards?.toNumber() : 0,
+                rewards?.toNumber() ?? 0,
                 LAMPORTS_PER_SOL
               )} MNDE`}</MText>
             </Flex>
@@ -241,9 +237,9 @@ const MNDEFarmCard = () => {
           </Flex>
         </Flex>
       ) : (
-        <ConnectWallet />
+        <Wallet />
       )}
     </Flex>
   );
 };
-export default MNDEFarmCard;
+export default MSolLPCard;
