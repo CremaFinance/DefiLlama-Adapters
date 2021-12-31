@@ -46,7 +46,7 @@ export const coinTokens: TokenRecord<CoinSymbols> = {
       coingeckoId: "msol",
       website: "https://marinade.finance",
       twitter: "https://twitter.com/MarinadeFinance",
-      discord: "https://discord.gg/mGqZA5pjRN",
+      discord: "https://discord.com/invite/6EtUf4Euu6",
       medium: "https://medium.com/marinade-finance",
       github: "https://github.com/marinade-finance",
       serumV3Usdc: "6oGsL2puUgySccKzn9XA9afqF217LfxP5ocq4B3LWsjy",

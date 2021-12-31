@@ -56,7 +56,7 @@ const ContributorSection = () => {
             target="_blank"
             rel="noreferrer noopener"
             mr={4}
-            href="https://discord.gg/mGqZA5pjRN"
+            href="https://discord.com/invite/6EtUf4Euu6"
           >
             <Image
               cursor="pointer"
