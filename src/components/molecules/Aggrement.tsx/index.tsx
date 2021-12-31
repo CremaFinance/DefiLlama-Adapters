@@ -47,7 +47,6 @@ const Agreement = () => {
                 <Image width={30} src="/marinade-icon-white.svg" />
               </Circle>
             </Flex>
-
             <Text>
               {t("appPage.agreement.body.0.text")}{" "}
               <Link
@@ -72,7 +71,7 @@ const Agreement = () => {
                 borderColor="gray.500"
                 textColor={colors.black}
                 rounded="md"
-                px={[4, 4]}
+                px={4}
                 height="40px"
                 bg={colors.white}
               >
@@ -86,7 +85,6 @@ const Agreement = () => {
                   {t("appPage.agreement.buttons.secondary")}
                 </Link>
               </MButton>
-
               <Button
                 onClick={() => {
                   setTermsAgreement(true);

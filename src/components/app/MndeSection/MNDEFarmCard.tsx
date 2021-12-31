@@ -210,6 +210,7 @@ const MNDEFarmCard = () => {
             <MButton
               variant="outline"
               borderColor="gray"
+              _hover={{ bg: "gray.100" }}
               color="black"
               width={{ base: "70px", lg: "80px" }}
               fontWeight="600"

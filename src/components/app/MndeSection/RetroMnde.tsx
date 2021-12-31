@@ -277,6 +277,7 @@ const RetroMnde = () => {
                     variant="outline"
                     borderColor="gray"
                     color="black"
+                    _hover={{ bg: "gray.100" }}
                     width={{ base: "70px", lg: "80px" }}
                     fontWeight="600"
                     fontSize="14.4px"
