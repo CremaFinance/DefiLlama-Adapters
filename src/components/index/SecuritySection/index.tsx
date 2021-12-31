@@ -75,17 +75,24 @@ export default function SecuritySection() {
         />
       </Flex>
       <Flex mt={16} mb={8} justifyContent="center">
-        <MButton
+        <MLink
+          target="_blank"
+          rel="noreferrer noopener"
+          href="https://docs.marinade.finance/marinade-protocol/security"
           font="text-xl"
           bg={colors.greenVibrant}
           _hover={{ bg: colors.greenVibrant800 }}
           colorScheme={colors.greenVibrant}
+          color="white"
           width={272}
           height="48px"
           rounded="md"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
         >
           {t("indexPage.security-section-action")}
-        </MButton>
+        </MLink>
       </Flex>
       <MHeading
         type="heading-sm"
