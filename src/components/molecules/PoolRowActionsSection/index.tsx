@@ -52,6 +52,7 @@ const PoolRowActionsSection: FunctionComponent<PoolRowActionsSectionProps> = ({
           <Flex flex={{ base: 1, lg: 0 }} marginRight={{ base: "8px", lg: 0 }}>
             <Button
               variant="outline"
+              _hover={{ bg: "gray.100" }}
               onClick={() => window.open(actions[1].url, "_blank")}
               flex={1}
               rightIcon={
@@ -120,6 +121,7 @@ const PoolRowActionsSection: FunctionComponent<PoolRowActionsSectionProps> = ({
             >
               <Button
                 variant="outline"
+                _hover={{ bg: "gray.100" }}
                 onClick={() => window.open(actions[1].url, "_blank")}
                 flex={1}
               >

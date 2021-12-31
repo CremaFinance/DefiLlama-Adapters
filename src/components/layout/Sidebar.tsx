@@ -32,6 +32,7 @@ function Sidebar() {
         fontSize="3xl"
         _hover={{ bg: "none" }}
         _active={{ bg: "gray.100" }}
+        _focus={{ boxShadow: "none" }}
         rounded="md"
         variant="ghost"
         onClick={onOpen}
@@ -42,7 +43,7 @@ function Sidebar() {
       <Drawer size="sm" isOpen={isOpen} placement="right" onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent bg={colors.greenLight}>
-          <DrawerCloseButton />
+          <DrawerCloseButton _focus={{ boxShadow: "none" }} />
           <DrawerHeader>
             <Link href="/" passHref>
               <Image
@@ -107,8 +108,9 @@ function Sidebar() {
               font="text-xl"
               size="sm"
               rounded="md"
-              bg={colors.greenVibrant}
-              _hover={{ bg: colors.greenVibrant800 }}
+              bg={colors.marinadeGreen}
+              _hover={{ bg: colors.green800 }}
+              colorScheme={colors.marinadeGreen}
               color={colors.white}
               rightIcon={<IoMdArrowRoundForward />}
               onClick={() => router.push("/app/staking")}

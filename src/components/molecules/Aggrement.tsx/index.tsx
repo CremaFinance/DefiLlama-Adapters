@@ -15,6 +15,7 @@ import {
 import { useTranslation } from "next-export-i18n";
 import { useRouter } from "next/router";
 
+import MButton from "../../atoms/Button";
 import Link from "../../atoms/Link";
 import { useLocalStorageState } from "hooks/useLocalStorageState";
 import colors from "styles/customTheme/colors";
@@ -46,7 +47,6 @@ const Agreement = () => {
                 <Image width={30} src="/marinade-icon-white.svg" />
               </Circle>
             </Flex>
-
             <Text>
               {t("appPage.agreement.body.0.text")}{" "}
               <Link
@@ -63,24 +63,28 @@ const Agreement = () => {
               {t("appPage.agreement.body.2.text")}
             </Text>
             <Stack spacing={4} direction="row" justifyContent="center">
-              <Button
-                onClick={() => setTermsAgreement(false)}
-                variant="outline"
-                colorScheme="black"
-                href="/"
-                borderRadius="2px"
-                _focus={{ boxShadow: "none" }}
+              <MButton
+                font="text-lg"
+                colorScheme="gray"
+                _hover={{ bg: "gray.100" }}
+                border="1px"
+                borderColor="gray.500"
+                textColor={colors.black}
+                rounded="md"
+                px={4}
+                height="40px"
+                bg={colors.white}
               >
                 <Link
                   as={Link}
                   href="/"
-                  textDecor="underline"
+                  _hover={{ textDecoration: "none" }}
                   rel="noreferrer noopener"
                   _focus={{ boxShadow: "none" }}
                 >
                   {t("appPage.agreement.buttons.secondary")}
                 </Link>
-              </Button>
+              </MButton>
               <Button
                 onClick={() => {
                   setTermsAgreement(true);

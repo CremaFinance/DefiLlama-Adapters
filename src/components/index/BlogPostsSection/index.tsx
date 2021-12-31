@@ -155,6 +155,7 @@ export default function BlogPosts() {
           mx={4}
           my={[2, 0]}
           colorScheme={colors.marinadeGreen}
+          _hover={{ textDecoration: "underline" }}
           rounded="md"
           rightIcon={<HiArrowRight />}
         >
