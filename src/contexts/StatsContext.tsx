@@ -10,11 +10,13 @@ import {
   useMemo,
   useState,
 } from "react";
+import { Query, useQuery, UseQueryResult } from "react-query";
 
 import { isError } from "../utils/is-error";
 
 import { useConnection } from "./ConnectionProvider";
 import { useMarinadeState } from "./MarinadeContext";
+import { useQuarryProvider } from "./QuaryContext";
 
 export interface Stats {
   /**
@@ -43,6 +45,7 @@ export interface Stats {
   mSOLvsSOLParity: null | number;
 
   unstakeFee: null | number;
+  totalValidatorsCount: null | number;
 }
 
 const StatsContext = createContext<Stats>({
@@ -52,6 +55,7 @@ const StatsContext = createContext<Stats>({
   lpTokenSupply: null,
   mSOLvsSOLParity: null,
   unstakeFee: null,
+  totalValidatorsCount: null,
 });
 
 type StatsProviderProps = { children: ReactNode };
@@ -201,6 +205,44 @@ export function StatsProvider({ children }: StatsProviderProps) {
     );
   }, [liqPoolBalance, state]);
 
+  const [totalValidatorsCount, settotalValidatorsCount] = useState<
+    number | null
+  >(null);
+
+  const fetchData = async (): Promise<{
+    data: unknown;
+    totalPages: number;
+  }> => {
+    const res = await fetch(
+      `https://prod-api.solana.surf/v1/account/4bZ6o3eUUNXhKuqjdCnCoPAoLgWiuLYixKaxoa8PpiKk/stakes?limit=1&offset=0`,
+      {
+        method: "GET",
+        mode: "cors",
+      }
+    );
+
+    if (!res.ok) {
+      throw new Error(res.statusText);
+    }
+
+    return res.json();
+  };
+
+  const { data }: UseQueryResult<{ data: unknown; totalPages: number }, Error> =
+    useQuery<{ data: unknown; totalPages: number }, Error>(
+      `total_validators_count`,
+      fetchData,
+      {
+        keepPreviousData: true,
+      }
+    );
+
+  useEffect(() => {
+    if (data) {
+      settotalValidatorsCount(data.totalPages);
+    }
+  }, [data]);
+
   return (
     <StatsContext.Provider
       value={{
@@ -210,6 +252,7 @@ export function StatsProvider({ children }: StatsProviderProps) {
         lpTokenSupply,
         mSOLvsSOLParity,
         unstakeFee,
+        totalValidatorsCount,
       }}
     >
       {children}

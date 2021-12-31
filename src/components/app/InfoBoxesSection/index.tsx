@@ -64,7 +64,7 @@ const InfoBoxesSection = () => {
 
   const epochData = useEpochInfo()?.data;
 
-  const { totalStaked } = useStats();
+  const { totalStaked, totalValidatorsCount } = useStats();
 
   const { marinadeState } = useMarinade();
 
@@ -84,7 +84,6 @@ const InfoBoxesSection = () => {
 
   // TODO: Use actual values from services
   const weekAPY = 7.16;
-  const validators = 411;
 
   return (
     <>
@@ -269,7 +268,7 @@ const InfoBoxesSection = () => {
               />
             </TooltipWithContent>
           </Flex>
-          <MHeading type="heading-2xsm">{validators.toLocaleString()}</MHeading>
+          <MHeading type="heading-2xsm">{totalValidatorsCount}</MHeading>
 
           {/* Place Modal here */}
           <MLink
@@ -367,9 +366,7 @@ const InfoBoxesSection = () => {
             {t("appPage.info-validators")}
           </MLink>
           <Flex>
-            <MHeading type="heading-2xsm">
-              {validators.toLocaleString()}
-            </MHeading>
+            <MHeading type="heading-2xsm">{totalValidatorsCount}</MHeading>
             <TooltipWithContent
               tooltipText={t("appPage.info-validators-tooltip")}
               link={t("appPage.info-validators-tooltip-docs-link")}
