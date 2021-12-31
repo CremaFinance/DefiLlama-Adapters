@@ -27,7 +27,7 @@
       "tvl": {
         "desc": "TVL"
       },
-      "accumulated": { "desc": "Accumulated rewards" }
+      "accumulated": { "desc": "Rewards paid" }
     },
     "testimonial-section-image": "/anatoly.png",
     "testimonial-section-quote": "Liquid Staking solutions like Marinade help increase decentralization while creating new opportunities for users through staking derivatives.",
