@@ -56,14 +56,13 @@ const FAQSection = () => {
               </MText>
               <MText type="text-md" lineHeight="170%" mt="16px">
                 {t(`appPage.faq-items.0.response-1`)}
-                <Link color={colors.marinadeGreen} fontWeight="700">
-                  {t("here")}
-                </Link>
-                .
-              </MText>
-              <MText type="text-md" lineHeight="170%" mt="16px">
-                {t(`appPage.faq-items.0.response-2`)}
-                <Link color={colors.marinadeGreen} fontWeight="700">
+                <Link
+                  target="_blank"
+                  href={t("appPage.faq-items.0.link")}
+                  rel="noreferrer noopener"
+                  color={colors.marinadeGreen}
+                  fontWeight="700"
+                >
                   {t("here")}
                 </Link>
                 .
@@ -89,7 +88,13 @@ const FAQSection = () => {
               </MText>
               <MText type="text-md" lineHeight="170%" mt="16px">
                 {t(`appPage.faq-items.1.response-1`)}
-                <Link color={colors.marinadeGreen} fontWeight="700">
+                <Link
+                  target="_blank"
+                  href={t("appPage.faq-items.1.link")}
+                  rel="noreferrer noopener"
+                  color={colors.marinadeGreen}
+                  fontWeight="700"
+                >
                   {t("here")}
                 </Link>
                 .

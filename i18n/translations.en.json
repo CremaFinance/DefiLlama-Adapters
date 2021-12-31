@@ -326,14 +326,15 @@
       {
         "question": "How do I get my staking rewards?",
         "response-0": "Staking rewards are directly integrated into the price of mSOL. This means that each epoch, the price of mSOL increases against SOL at an annual rate of approximately 6.67%, our current APY. You do not have rewards to claim, but you will exchange your mSOL for more SOL in the future when you unstake.",
-        "response-1": "You can learn more ",
-        "response-2": "You can also monitor mSOL's price evolution "
+        "response-1": "You can also monitor mSOL's price evolution ",
+        "link": "https://stats.marinade.finance/d/sqUQd1Onk/marinade-kpi-dashboard?from=now-90d&to=now&orgId=1&viewPanel=22"
       },
       {
         "question": "Can I unstake at any time?",
         "response-0": "Yes. Marinade allows you to directly swap your mSOL back to SOL by using our ‘Unstake now’ option.",
         "response-1": "If there is enough liquidity left after you unstake, the fee will be 0.3%. You can learn more about our fee structure ",
-        "response-2": "You can also unstake without any fee by using our ‘Delayed unstake’ option."
+        "response-2": "You can also unstake without any fee by using our ‘Delayed unstake’ option.",
+        "link": "https://docs.marinade.finance/faq/faq#what-fees-does-marinade-charge"
       },
       {
         "question": "Where can I use mSOL?",
