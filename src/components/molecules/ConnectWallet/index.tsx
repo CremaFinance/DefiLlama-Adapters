@@ -8,7 +8,7 @@ import {
   Link,
 } from "@chakra-ui/react";
 import { WalletError } from "@solana/wallet-adapter-base";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { useTranslation } from "../../../hooks/useTranslation";
 import { useWallet } from "../../../hooks/useWallet";
@@ -35,6 +35,8 @@ export const ConnectWallet = () => {
     "{{wallet}}",
     String(wallet?.name)
   );
+
+  const [requestConnect, setRequestConnect] = useState(false);
 
   const showToast = useCallback(() => {
     toast({
@@ -68,10 +70,10 @@ export const ConnectWallet = () => {
   }, [adapter, showToast]);
 
   useEffect(() => {
-    if (adapter && wallet && !connected && !connecting) {
+    if (adapter && wallet && !connected && !connecting && requestConnect) {
       tryConnect();
     }
-  }, [tryConnect, adapter, wallet, connected, connecting]);
+  }, [tryConnect, adapter, wallet, connected, connecting, requestConnect]);
 
   const tryDisconnect = useCallback(async () => {
     await disconnect();
@@ -110,6 +112,7 @@ export const ConnectWallet = () => {
               icon={<Image src={walletItem.icon} width="0.8rem" />}
               onClick={() => {
                 select(walletItem.name);
+                setRequestConnect(true);
               }}
             >
               <MText type="text-lg">{walletItem.name}</MText>
