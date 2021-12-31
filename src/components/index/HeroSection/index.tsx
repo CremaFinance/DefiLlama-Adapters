@@ -1,16 +1,44 @@
 import { Box, Flex, Image, useMediaQuery } from "@chakra-ui/react";
+import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
 import { useRouter } from "next/dist/client/router";
 
 import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
+import { useMarinade } from "contexts/MarinadeContext";
+import { useStats } from "contexts/StatsContext";
+import { usePrice } from "hooks/usePrice";
+import { coinSymbols } from "services/domain/coinSymbols";
 import colors from "styles/customTheme/colors";
+import { format2Dec } from "utils/number-to-short-version";
 
 const HeroSection = () => {
   const router = useRouter();
   const { t } = useTranslation();
   const [isTallerThan700] = useMediaQuery("(min-height: 700px)");
+  const { totalValidatorsCount, totalStaked, liqPoolBalance } = useStats();
+  const { marinadeState } = useMarinade();
+
+  const { data } = usePrice(coinSymbols.SOL);
+  const solUSD = data ? data[coinSymbols.SOL]?.usd : 0;
+
+  const tvlUsd =
+    liqPoolBalance && totalStaked && solUSD
+      ? `$${new Intl.NumberFormat("en-US").format(
+          Number(
+            format2Dec(
+              (liqPoolBalance + totalStaked) * +solUSD,
+              LAMPORTS_PER_SOL
+            )
+          )
+        )}`
+      : "--";
+
+  const mSolPrice =
+    marinadeState?.state?.st_sol_price.toNumber() &&
+    marinadeState?.state?.st_sol_price.toNumber() / 0x1_0000_0000;
+  const mSolTotalSupply = marinadeState?.state?.st_sol_supply.toNumber();
 
   return (
     <Box
@@ -103,24 +131,50 @@ const HeroSection = () => {
         flexWrap="wrap"
         zIndex={5}
       >
-        {[0, 1, 2].map((index) => {
-          return (
-            <Box
-              display="flex"
-              flexDirection="row"
-              mr={{ md: 4, lg: 8 }}
-              mt={{ base: 2, md: 0 }}
-              key={`desktop-hstack-${index}`}
-            >
-              <MHeading type="heading-xsm" color={colors.marinadeGreen} mr={1}>
-                {t(`indexPage.hero-section-stats.${index}.number`)}
-              </MHeading>{" "}
-              <MHeading type="heading-xsm" mr={1}>
-                {t(`indexPage.hero-section-stats.${index}.desc`)}
-              </MHeading>
-            </Box>
-          );
-        })}
+        <Box
+          display="flex"
+          flexDirection="row"
+          mr={{ md: 4, lg: 8 }}
+          mt={{ base: 2, md: 0 }}
+          key="desktop-hstack-1"
+        >
+          <MHeading type="heading-xsm" color={colors.marinadeGreen} mr={1}>
+            {totalValidatorsCount || "--"}
+          </MHeading>{" "}
+          <MHeading type="heading-xsm" mr={1}>
+            {t(`indexPage.hero-section-stats.validators.desc`)}
+          </MHeading>
+        </Box>
+        <Box
+          display="flex"
+          flexDirection="row"
+          mr={{ md: 4, lg: 8 }}
+          mt={{ base: 2, md: 0 }}
+          key="desktop-hstack-1"
+        >
+          <MHeading type="heading-xsm" color={colors.marinadeGreen} mr={1}>
+            {tvlUsd}
+          </MHeading>{" "}
+          <MHeading type="heading-xsm" mr={1}>
+            {t(`indexPage.hero-section-stats.tvl.desc`)}
+          </MHeading>
+        </Box>
+        <Box
+          display="flex"
+          flexDirection="row"
+          mr={{ md: 4, lg: 8 }}
+          mt={{ base: 2, md: 0 }}
+          key="desktop-hstack-1"
+        >
+          <MHeading type="heading-xsm" color={colors.marinadeGreen} mr={1}>
+            {mSolTotalSupply && mSolPrice
+              ? format2Dec(mSolTotalSupply * (mSolPrice - 1))
+              : "--"}
+          </MHeading>{" "}
+          <MHeading type="heading-xsm" mr={1}>
+            {t(`indexPage.hero-section-stats.accumulated.desc`)}
+          </MHeading>
+        </Box>
       </Box>
     </Box>
   );

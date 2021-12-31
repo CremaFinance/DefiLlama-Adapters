@@ -17,20 +17,18 @@
     "hero-section-subtitle": "without locking in your funds",
     "hero-section-desc": "Receive mSOL, the ultimate unit of the Solana ecosystem.",
     "hero-section-button": "Start staking SOL",
-    "hero-section-stats": [
-      {
-        "number": "20+",
+    "hero-section-stats": {
+      "defiIntegrations": {
         "desc": "DeFi integrations"
       },
-      {
-        "number": "400+",
-        "desc": "validators"
+      "validators": {
+        "desc": "Validators"
       },
-      {
-        "number": "$334M+",
+      "tvl": {
         "desc": "TVL"
-      }
-    ],
+      },
+      "accumulated": { "desc": "Accumulated rewards" }
+    },
     "testimonial-section-image": "/anatoly.png",
     "testimonial-section-quote": "Liquid Staking solutions like Marinade help increase decentralization while creating new opportunities for users through staking derivatives.",
     "testimonial-section-name": "Anatoly Yakovenko",
@@ -571,7 +569,9 @@
       },
       {
         "header": "Notices",
-        "text": ["All notices, requests, demands, and determinations for us under these Terms (other than routine operational communications) shall be sent to info@marinade.finance"]
+        "text": [
+          "All notices, requests, demands, and determinations for us under these Terms (other than routine operational communications) shall be sent to info@marinade.finance"
+        ]
       },
       {
         "header": "Assignment",
