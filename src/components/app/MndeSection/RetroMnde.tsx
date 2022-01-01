@@ -278,8 +278,9 @@ const RetroMnde = () => {
                     variant="outline"
                     borderColor="gray"
                     color="black"
+                    _hover={{ bg: "gray.100" }}
                     width={{ base: "70px", lg: "80px" }}
-                    fontWeight="500"
+                    fontWeight="600"
                     fontSize="14.4px"
                     onClick={() => claimHandler()}
                     isLoading={isClaimProcessing}

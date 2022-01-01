@@ -108,6 +108,7 @@ export default function InfoSection() {
               variant="link"
               color={colors.black}
               bg="none"
+              _hover={{ textDecoration: "underline" }}
               rightIcon={<Image src="/icons/arrow-right.svg" width="0.8rem" />}
               mb={8}
             >
@@ -193,6 +194,7 @@ export default function InfoSection() {
               variant="link"
               color={colors.black}
               bg="none"
+              _hover={{ textDecoration: "underline" }}
               rightIcon={<Image src="/icons/arrow-right.svg" width="0.8rem" />}
               mb={8}
               mt={2}
@@ -277,6 +279,7 @@ export default function InfoSection() {
               variant="link"
               color={colors.black}
               bg="none"
+              _hover={{ textDecoration: "underline" }}
               rightIcon={<Image src="/icons/arrow-right.svg" width="0.8rem" />}
               mb={8}
             >

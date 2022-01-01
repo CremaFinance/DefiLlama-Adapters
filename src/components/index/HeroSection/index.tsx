@@ -11,7 +11,7 @@ import { useStats } from "contexts/StatsContext";
 import { usePrice } from "hooks/usePrice";
 import { coinSymbols } from "services/domain/coinSymbols";
 import colors from "styles/customTheme/colors";
-import { format2Dec } from "utils/number-to-short-version";
+import { numberToShortVersion } from "utils/number-to-short-version";
 
 const HeroSection = () => {
   const router = useRouter();
@@ -25,20 +25,18 @@ const HeroSection = () => {
 
   const tvlUsd =
     liqPoolBalance && totalStaked && solUSD
-      ? `$${new Intl.NumberFormat("en-US").format(
-          Number(
-            format2Dec(
-              (liqPoolBalance + totalStaked) * +solUSD,
-              LAMPORTS_PER_SOL
-            )
-          )
-        )}`
-      : "--";
+      ? ((liqPoolBalance + totalStaked) / LAMPORTS_PER_SOL) * +solUSD
+      : 0;
 
   const mSolPrice =
     marinadeState?.state?.st_sol_price.toNumber() &&
     marinadeState?.state?.st_sol_price.toNumber() / 0x1_0000_0000;
   const mSolTotalSupply = marinadeState?.state?.st_sol_supply.toNumber();
+
+  const totalRewards =
+    mSolTotalSupply && mSolPrice
+      ? (mSolTotalSupply / LAMPORTS_PER_SOL) * (mSolPrice - 1)
+      : 0;
 
   return (
     <Box
@@ -149,7 +147,7 @@ const HeroSection = () => {
           key="desktop-hstack-1"
         >
           <MHeading type="heading-xsm" color={colors.marinadeGreen} mr={1}>
-            {tvlUsd}
+            ${numberToShortVersion(tvlUsd)}
           </MHeading>{" "}
           <MHeading type="heading-xsm" mr={1}>
             {t(`indexPage.hero-section-stats.tvl.desc`)}
@@ -163,9 +161,7 @@ const HeroSection = () => {
           key="desktop-hstack-1"
         >
           <MHeading type="heading-xsm" color={colors.marinadeGreen} mr={1}>
-            {mSolTotalSupply && mSolPrice
-              ? format2Dec(mSolTotalSupply * (mSolPrice - 1))
-              : "--"}
+            ${numberToShortVersion(totalRewards)}
           </MHeading>{" "}
           <MHeading type="heading-xsm" mr={1}>
             {t(`indexPage.hero-section-stats.accumulated.desc`)}
