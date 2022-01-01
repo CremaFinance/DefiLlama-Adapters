@@ -33,9 +33,9 @@ const UnstakeOptions = ({
       mb={mb}
     >
       <Flex
-        bg={active ? colors.marinadeLighterGreen : "gray.100"}
+        bg={active ? colors.marinadeLighterGreen : "gray.50"}
         border="1px"
-        borderColor={active ? colors.marinadeGreen : "gray.300"}
+        borderColor={active ? colors.marinadeGreen : "gray.100"}
         rounded="sm"
         height="fit-content"
         width="100%"
@@ -72,9 +72,9 @@ const UnstakeOptions = ({
         </Flex>
       </Flex>
       <Flex
-        bg={active ? "gray.100" : colors.marinadeLighterGreen}
+        bg={active ? "gray.50" : colors.marinadeLighterGreen}
         border="1px"
-        borderColor={active ? "gray.300" : colors.marinadeGreen}
+        borderColor={active ? "gray.100" : colors.marinadeGreen}
         rounded="sm"
         height="fit-content"
         width="100%"
