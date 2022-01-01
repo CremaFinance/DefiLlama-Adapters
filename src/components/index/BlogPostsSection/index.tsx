@@ -30,7 +30,7 @@ export default function BlogPosts() {
       "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/marinade-finance"
     );
     const postsParsed = await req.json();
-    setPosts(postsParsed.items.slice(0, 3)?.reverse());
+    setPosts(postsParsed.items.slice(0, 3));
   }
 
   function blogPosts() {

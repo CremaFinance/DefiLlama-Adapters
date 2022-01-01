@@ -36,7 +36,7 @@
     "@saberhq/solana-contrib": "^1.12.4",
     "@saberhq/token-utils": "^1.12.9",
     "@solana/spl-token": "^0.1.8",
-    "@solana/spl-token-registry": "^0.2.1146",
+    "@solana/spl-token-registry": "^0.2.1178",
     "@solana/wallet-adapter-base": "^0.8.1",
     "@solana/wallet-adapter-react": "^0.14.1",
     "@solana/wallet-adapter-wallets": "^0.13.0",
@@ -67,7 +67,7 @@
     "ts-jest": "^27.1.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.5",
+    "@babel/core": "^7.16.7",
     "@commitlint/cli": "^16.0.0",
     "@commitlint/config-conventional": "^16.0.0",
     "@storybook/addon-actions": "^6.4.9",
@@ -75,7 +75,7 @@
     "@storybook/addon-links": "^6.4.9",
     "@storybook/react": "^6.4.9",
     "@testing-library/jest-dom": "^5.16.1",
-    "@types/jest": "^27.0.3",
+    "@types/jest": "^27.4.0",
     "@types/react": "^17.0.38",
     "babel-jest": "^27.4.5",
     "babel-loader": "^8.2.3",
