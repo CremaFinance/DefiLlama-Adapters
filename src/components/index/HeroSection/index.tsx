@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import { Box, Flex, Image, useMediaQuery } from "@chakra-ui/react";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
@@ -35,7 +36,7 @@ const HeroSection = () => {
 
   const totalRewards =
     mSolTotalSupply && mSolPrice
-      ? (mSolTotalSupply / LAMPORTS_PER_SOL) * (mSolPrice - 1)
+      ? (mSolTotalSupply / LAMPORTS_PER_SOL) * (mSolPrice - 1) * (solUSD ?? 0)
       : 0;
 
   return (
