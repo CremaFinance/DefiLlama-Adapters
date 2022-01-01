@@ -394,7 +394,10 @@
         "primary": "Agree",
         "secondary": "Leave the app"
       }
-    }
+    },
+    "exchange-rate-tooltip": "The mSOL/SOL price increases with every epoch by accumulating staking rewards into mSOL price. That's why the rate is not 1:1.",
+    "deposit-fee-tooltip": "There is 0% fee for depositing SOL to stake and receiving mSOL.",
+    "unstake-fee-tooltip": "The unstake fee varies between 0.3% and 3% depending on how much liquidity is in the pool and how big amount you're unstaking."
   },
   "mndePage": {
     "retro-title": "MNDE Retro",

@@ -299,13 +299,15 @@ const BasicUnstake = () => {
           <MText type="text-md">
             {t("appPage.stake-inputs-exchange-rate")}
           </MText>
-          <IconButton
-            variant="link"
-            aria-label="Info epoch"
-            size="sm"
-            _focus={{ boxShadow: "none" }}
-            icon={<MdInfoOutline />}
-          />
+          <TooltipWithContent tooltipText={t("appPage.exchange-rate-tooltip")}>
+            <IconButton
+              variant="link"
+              aria-label="Info epoch"
+              size="sm"
+              _focus={{ boxShadow: "none" }}
+              icon={<MdInfoOutline />}
+            />
+          </TooltipWithContent>
         </Flex>
         <MText type="text-md">{`1 mSOL ≈ ${mSOLvsSOLParity.toFixed(
           5
@@ -319,13 +321,15 @@ const BasicUnstake = () => {
       >
         <Flex>
           <MText type="text-md">{t("appPage.stake-inputs-unstake-fee")}</MText>
-          <IconButton
-            variant="link"
-            aria-label="Info unstake fee"
-            size="sm"
-            _focus={{ boxShadow: "none" }}
-            icon={<MdInfoOutline />}
-          />
+          <TooltipWithContent tooltipText={t("appPage.unstake-fee-tooltip")}>
+            <IconButton
+              variant="link"
+              aria-label="Info unstake fee"
+              size="sm"
+              _focus={{ boxShadow: "none" }}
+              icon={<MdInfoOutline />}
+            />
+          </TooltipWithContent>
         </Flex>
         <MText type="text-md">{`${minUnstakeFee}-${maxUnstakeFee}%`}</MText>
       </Flex>
