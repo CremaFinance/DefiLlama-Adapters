@@ -356,8 +356,7 @@ const StakeInput = ({
         <MText type="text-sm">{`${balanceLabel}: ${tokenBalance.toLocaleString()} ${tokenName}`}</MText>
         {tokenBalance &&
         !isStakeAccountSelected &&
-        (stakeInputType === StakeInputTypeEnum.Source ||
-          stakeInputType === StakeInputTypeEnum.Liquidity) ? (
+        stakeInputType !== StakeInputTypeEnum.Target ? (
           <MButton
             variant="link"
             font="text-sm"
@@ -367,6 +366,7 @@ const StakeInput = ({
               onValueChange ? onValueChange(tokenBalance.toString()) : {}
             }
             pb="1px"
+            pl="4px"
             _hover={{}}
           >
             ({t("appPage.max")})

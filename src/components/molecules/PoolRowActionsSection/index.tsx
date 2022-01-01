@@ -14,7 +14,7 @@ import { useWallet } from "../../../hooks/useWallet";
 import { Action } from "../../../services/domain/pool";
 import Button from "../../atoms/Button";
 import MText from "../../atoms/Text";
-import MndeLiquidityModal from "../MndeLiquidityModal";
+import SolLiquidityModal from "../SolLiquidityModal";
 
 type PoolRowActionsSectionProps = {
   actions: Action[];
@@ -39,7 +39,6 @@ const PoolRowActionsSection: FunctionComponent<PoolRowActionsSectionProps> = ({
           <Flex flex={{ base: 1.4, lg: 0 }}>
             <Button
               variant="solid"
-              marginBottom={{ base: 0, lg: "8px" }}
               flex={1}
               rightIcon={
                 <Image src="/icons/external-link-white.svg" width="0.8rem" />
@@ -49,19 +48,25 @@ const PoolRowActionsSection: FunctionComponent<PoolRowActionsSectionProps> = ({
               {actions[0].text}
             </Button>
           </Flex>
-          <Flex flex={{ base: 1, lg: 0 }} marginRight={{ base: "8px", lg: 0 }}>
-            <Button
-              variant="outline"
-              _hover={{ bg: "gray.100" }}
-              onClick={() => window.open(actions[1].url, "_blank")}
-              flex={1}
-              rightIcon={
-                <Image src="/icons/external-link-green.svg" width="0.8rem" />
-              }
+          {actions[1] ? (
+            <Flex
+              flex={{ base: 1, lg: 0 }}
+              marginTop={{ base: 0, lg: "8px" }}
+              marginRight={{ base: "8px", lg: 0 }}
             >
-              {actions[1].text}
-            </Button>
-          </Flex>
+              <Button
+                variant="outline"
+                _hover={{ bg: "gray.100" }}
+                onClick={() => window.open(actions[1].url, "_blank")}
+                flex={1}
+                rightIcon={
+                  <Image src="/icons/external-link-green.svg" width="0.8rem" />
+                }
+              >
+                {actions[1].text}
+              </Button>
+            </Flex>
+          ) : null}
         </Flex>
       ) : (
         <Flex
@@ -72,12 +77,7 @@ const PoolRowActionsSection: FunctionComponent<PoolRowActionsSectionProps> = ({
         >
           <Flex flex={{ base: 1.4, lg: 0 }}>
             {isWalletConnected ? (
-              <Button
-                variant="solid"
-                marginBottom={{ base: 0, lg: "8px" }}
-                flex={1}
-                onClick={() => onOpen()}
-              >
+              <Button variant="solid" flex={1} onClick={() => onOpen()}>
                 {actions[0].text}
               </Button>
             ) : (
@@ -114,9 +114,10 @@ const PoolRowActionsSection: FunctionComponent<PoolRowActionsSectionProps> = ({
               </Flex>
             )}
           </Flex>
-          {isWalletConnected ? (
+          {isWalletConnected && actions[1] ? (
             <Flex
               flex={{ base: 1, lg: 0 }}
+              marginTop={{ base: 0, lg: "8px" }}
               marginRight={{ base: "8px", lg: 0 }}
             >
               <Button
@@ -132,7 +133,7 @@ const PoolRowActionsSection: FunctionComponent<PoolRowActionsSectionProps> = ({
         </Flex>
       )}
 
-      <MndeLiquidityModal isOpen={isOpen} onClose={onClose} />
+      <SolLiquidityModal isOpen={isOpen} onClose={onClose} />
     </>
   );
 };

@@ -394,7 +394,16 @@
         "primary": "Agree",
         "secondary": "Leave the app"
       }
-    }
+    },
+
+    "ammount-exceeds-current-liquidity-cap": "Amount entered exceeds the current Liquidity cap.",
+    "liquidity-sol-confirmed": "Add liquidity confirmed",
+    "successfully-liquidity-your-sol": "You've successfully added liquidity",
+    "insufficient-funds-to-remove": "Insufficient funds to remove",
+    "requested-liquidity-not-enough-funds": "You requested to remove {{amount}} liquidity (have only {{liqSOLBalance}})",
+    "remove-liquidity-confirmed": "Remove liquidity confirmed",
+    "successfully-removed-liquidity-your-sol": "You've successfully removed liquidity",
+    "your-lp-account-is-deactivated": "Your mSOL-SOL LP account is deactivated. Add any SOL liquidity to the LP to re-activate the account and try to remove liquidity again."
   },
   "mndePage": {
     "retro-title": "MNDE Retro",
