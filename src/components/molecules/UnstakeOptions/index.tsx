@@ -25,6 +25,8 @@ const UnstakeOptions = ({
 
   return (
     <Flex
+      flexDirection={{ base: "column", md: "row" }}
+      gap={[2, 6]}
       width="100%"
       justifyContent="space-between"
       alignItems="center"
@@ -36,8 +38,9 @@ const UnstakeOptions = ({
         borderColor={active ? colors.marinadeGreen : "gray.300"}
         rounded="sm"
         height="fit-content"
-        width="188px"
-        p={4}
+        width="100%"
+        flex={1}
+        p={[2, 4]}
         _hover={{}}
         cursor="pointer"
         onClick={() => handleSwitch(true)}
@@ -74,8 +77,9 @@ const UnstakeOptions = ({
         borderColor={active ? "gray.300" : colors.marinadeGreen}
         rounded="sm"
         height="fit-content"
-        width="188px"
-        p={4}
+        width="100%"
+        flex={1}
+        p={[2, 4]}
         _hover={{}}
         cursor="pointer"
         onClick={() => handleSwitch(true)}

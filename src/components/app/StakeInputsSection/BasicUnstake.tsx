@@ -284,6 +284,7 @@ const BasicUnstake = () => {
         px={4}
         height="48px"
         mx={4}
+        mb={4}
         onClick={isUnstakeNowActive ? unstakeHandler : () => setShowModal(true)}
       >
         {t("appPage.unstake-action")}
