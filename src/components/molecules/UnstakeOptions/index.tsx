@@ -33,10 +33,10 @@ const UnstakeOptions = ({
       mb={mb}
     >
       <Flex
-        bg={active ? colors.marinadeLighterGreen : "gray.50"}
+        bg={active ? colors.marinadeEvenLighterGreen : "gray.50"}
         border="1px"
-        borderColor={active ? colors.marinadeGreen : "gray.100"}
-        rounded="sm"
+        borderColor={active ? colors.marinadeBorderGreen : "gray.100"}
+        rounded="md"
         height="fit-content"
         width="100%"
         flex={1}
@@ -47,7 +47,7 @@ const UnstakeOptions = ({
       >
         <Flex width="100%" flexDirection="column">
           <Flex alignItems="center" justifyContent="space-between" pb={2}>
-            <MText fontWeight="bold" type="text-md">
+            <MText color="gray.500" fontWeight="bold" type="text-md">
               {t("appPage.unstake-now-action")}
             </MText>
             {active ? (
@@ -68,10 +68,10 @@ const UnstakeOptions = ({
         </Flex>
       </Flex>
       <Flex
-        bg={active ? "gray.50" : colors.marinadeLighterGreen}
+        bg={active ? "gray.50" : colors.marinadeEvenLighterGreen}
         border="1px"
-        borderColor={active ? "gray.100" : colors.marinadeGreen}
-        rounded="sm"
+        borderColor={active ? "gray.100" : colors.marinadeBorderGreen}
+        rounded="md"
         height="fit-content"
         width="100%"
         flex={1}
@@ -82,7 +82,7 @@ const UnstakeOptions = ({
       >
         <Flex width="100%" flexDirection="column">
           <Flex alignItems="center" justifyContent="space-between" pb={2}>
-            <MText fontWeight="bold" type="text-md">
+            <MText color="gray.500" fontWeight="bold" type="text-md">
               {t("appPage.delayed-unstake")}
             </MText>
             {!active ? (
