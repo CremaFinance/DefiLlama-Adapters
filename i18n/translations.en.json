@@ -106,7 +106,9 @@
         "link": "#",
         "quote": "Marinade allows our users to strengthen the security of the Solana network while continuing to interact with other apps on Solana via our LP tokens.",
         "name": "Ian Macalinao",
-        "company": "Co-founder at Saber"
+        "company": "Co-founder at Saber",
+        "explore-defi": "Explore DeFi"
+
       }
     ],
 
@@ -168,9 +170,9 @@
     "footer-product": "Product",
     "footer-stake-sol": "Stake SOL",
     "footer-validators": "Validators",
-    "footer-receive-msol": "Receive mSOL",
+    "footer-msol": "mSOL",
     "footer-marinde-dao": "Marinade DAO",
-    "footer-defi-recipes-integration": "DeFi recipes / integrations",
+    "footer-defi-integration": "DeFi / integrations",
     "footer-learn": "Learn",
     "footer-docs": "Docs",
     "footer-security": "Security",
