@@ -162,7 +162,6 @@ export default function BlogPosts() {
               cursor="pointer"
             />
           }
-          mb={8}
         >
           <Link
             as={Link}
