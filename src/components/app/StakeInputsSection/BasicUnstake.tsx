@@ -18,6 +18,7 @@ import TransactionLink from "components/molecules/TransactionLink";
 import { AccountsContext } from "contexts/AccountsContext";
 import { useChain, useConnection, useKeys } from "contexts/ConnectionProvider";
 import { useMarinade } from "contexts/MarinadeContext";
+import { useStats } from "contexts/StatsContext";
 import { TicketAccount } from "solana/domain/ticket-account";
 import colors from "styles/customTheme/colors";
 import { basicInputChecks } from "utils/basic-input-checks";
@@ -38,6 +39,7 @@ const BasicUnstake = () => {
   const [showModal, setShowModal] = useState(false);
   const { nativeSOLBalance, stSOLBalance } = useUserBalance();
   const { connected: walletConnected, publicKey: walletPubKey } = useWallet();
+  const { liqPoolBalance } = useStats();
 
   const chain = useChain();
   const {
@@ -50,7 +52,49 @@ const BasicUnstake = () => {
   } = useContext(AccountsContext);
 
   const marinade = useMarinade();
+  const state = marinade?.marinadeState?.state;
   const marinadeState = marinade?.marinadeState;
+
+  const stSolPrice: number = state?.st_sol_price
+    ? state?.st_sol_price.toNumber() / 0x1_0000_0000
+    : 0;
+  const liquidity = liqPoolBalance ? BigInt(liqPoolBalance) : BigInt(0);
+  const receiveLamports = BigInt(
+    Number(stSolToUnstake) * stSolPrice * LAMPORTS_PER_SOL
+  );
+
+  function getDiscountBasisPoints(): number {
+    if (
+      !state?.liq_pool?.lp_max_fee.basis_points ||
+      !state?.liq_pool?.lp_min_fee?.basis_points
+    ) {
+      return 0;
+    }
+
+    if (receiveLamports > liquidity) {
+      // more asked than available => max discount
+      return state?.liq_pool?.lp_max_fee.basis_points;
+    }
+
+    const target = BigInt(
+      state?.liq_pool?.lp_liquidity_target
+        ? state?.liq_pool?.lp_liquidity_target.toNumber()
+        : 0
+    );
+    const liqAfter = liquidity - receiveLamports;
+    if (liqAfter >= target) {
+      // still >= target after swap => min discount
+      return state?.liq_pool?.lp_min_fee?.basis_points;
+    }
+
+    const range = BigInt(
+      state?.liq_pool?.lp_max_fee?.basis_points -
+        state?.liq_pool?.lp_min_fee?.basis_points
+    );
+    // here 0<after<target, so 0<proportion<range
+    const proportion: bigint = (range * liqAfter) / target;
+    return state?.liq_pool?.lp_max_fee?.basis_points - Number(proportion);
+  }
 
   const unstakeText = isUnstakeNowActive
     ? t("appPage.unstake-now-action")
@@ -65,6 +109,10 @@ const BasicUnstake = () => {
     ? nativeSOLBalance / LAMPORTS_PER_SOL - 0.001
     : 0;
   const timeToUnstake = "~7 days";
+  const realReceive = isUnstakeNowActive
+    ? receiveLamports -
+      (receiveLamports * BigInt(getDiscountBasisPoints())) / BigInt(10000)
+    : receiveLamports;
 
   useEffect(() => {
     if (walletConnected) {
@@ -291,7 +339,7 @@ const BasicUnstake = () => {
         tokenName="SOL"
         tokenIcon="/icons/solana-dark.png"
         tokenBalance={targetTokenBalance}
-        value={format9Dec(Number(stSolToUnstake) * mSOLvsSOLParity)}
+        value={format9Dec(Number(realReceive) / LAMPORTS_PER_SOL)}
         mb={2}
       />
       <Flex width={["256px", "400px"]} my={1} justifyContent="space-between">

@@ -20,11 +20,6 @@ const actions = [
     url: "https://marinade-web.pages.dev",
     isExternal: false,
   },
-  {
-    text: "Swap",
-    url: "https://marinade-web.pages.dev",
-    isExternal: false,
-  },
 ];
 
 export type MarinadePoolsResponse = Record<

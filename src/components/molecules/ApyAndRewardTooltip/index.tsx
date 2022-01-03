@@ -73,7 +73,11 @@ const ApyAndRewardTooltip: FunctionComponent<ApyAndRewardTooltipProps> = ({
             </Text>
           </Text>
           {rewardsList.map((reward) => (
-            <Text fontSize="14.40px" marginBottom="8px">
+            <Text
+              key={`${reward.apy}-${reward.aprDescription}`}
+              fontSize="14.40px"
+              marginBottom="8px"
+            >
               {reward?.aprDescription}:
               <Text as="span" fontWeight="bold">
                 {reward?.apy && reward?.apy.toFixed(2)}%
@@ -93,7 +97,11 @@ const ApyAndRewardTooltip: FunctionComponent<ApyAndRewardTooltipProps> = ({
             </Text>
           )}
           {rewardsList.map((reward) => (
-            <Text fontSize="14.40px" marginBottom="8px">
+            <Text
+              key={`${reward.name}-${reward.dailyRate}`}
+              fontSize="14.40px"
+              marginBottom="8px"
+            >
               <Icon
                 as={HiCheckCircle}
                 color="green800"
