@@ -10,6 +10,7 @@ import { useMarinade } from "../../../contexts/MarinadeContext";
 import { useUserBalance } from "../../../contexts/UserBalanceContext";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
+import TooltipWithContent from "../../molecules/TooltipWithContent";
 import StakeInput, {
   StakeAccountType,
   StakeInputTypeEnum,
@@ -337,13 +338,15 @@ const BasicStake = () => {
           <MText type="text-md">
             {t("appPage.stake-inputs-exchange-rate")}
           </MText>
-          <IconButton
-            variant="link"
-            aria-label="Info epoch"
-            size="sm"
-            _focus={{ boxShadow: "none" }}
-            icon={<MdInfoOutline />}
-          />
+          <TooltipWithContent tooltipText={t("appPage.exchange-rate-tooltip")}>
+            <IconButton
+              variant="link"
+              aria-label="Exchange rate info"
+              size="sm"
+              _focus={{ boxShadow: "none" }}
+              icon={<MdInfoOutline />}
+            />
+          </TooltipWithContent>
         </Flex>
         <MText type="text-md">{`1 mSOL ≈ ${mSOLvsSOLParity.toFixed(
           5
@@ -352,13 +355,15 @@ const BasicStake = () => {
       <Flex width="100%" mt={1} mb={1} justifyContent="space-between">
         <Flex>
           <MText type="text-md">{t("appPage.stake-inputs-deposit-fee")}</MText>
-          <IconButton
-            variant="link"
-            aria-label="Info stake fee"
-            size="sm"
-            _focus={{ boxShadow: "none" }}
-            icon={<MdInfoOutline />}
-          />
+          <TooltipWithContent tooltipText={t("appPage.deposit-fee-tooltip")}>
+            <IconButton
+              variant="link"
+              aria-label="Info stake fee"
+              size="sm"
+              _focus={{ boxShadow: "none" }}
+              icon={<MdInfoOutline />}
+            />
+          </TooltipWithContent>
         </Flex>
         <MText type="text-md">0%</MText>
       </Flex>

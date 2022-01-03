@@ -395,8 +395,10 @@
         "secondary": "Leave the app"
       }
     },
-
-    "ammount-exceeds-current-liquidity-cap": "Amount entered exceeds the current Liquidity cap.",
+    "exchange-rate-tooltip": "The mSOL/SOL price increases with every epoch by accumulating staking rewards into mSOL price. That's why the rate is not 1:1.",
+    "deposit-fee-tooltip": "There is 0% fee for depositing SOL to stake and receiving mSOL.",
+    "unstake-fee-tooltip": "The unstake fee varies between 0.3% and 3% depending on how much liquidity is in the pool and how big amount you're unstaking.",
+    "amount-exceeds-current-liquidity-cap": "Amount entered exceeds the current Liquidity cap.",
     "liquidity-sol-confirmed": "Add liquidity confirmed",
     "successfully-liquidity-your-sol": "You've successfully added liquidity",
     "insufficient-funds-to-remove": "Insufficient funds to remove",
