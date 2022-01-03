@@ -38,6 +38,10 @@ const BasicUnstake = () => {
   const { nativeSOLBalance, stSOLBalance } = useUserBalance();
   const { connected: walletConnected, publicKey: walletPubKey } = useWallet();
 
+  const unstakeButtonText = isUnstakeNowActive
+    ? t("appPage.start-unstake-action")
+    : t("appPage.start-delayed-unstake-action");
+
   const chain = useChain();
   const {
     getTicketAccountsAction,
@@ -287,7 +291,7 @@ const BasicUnstake = () => {
         mb={4}
         onClick={isUnstakeNowActive ? unstakeHandler : () => setShowModal(true)}
       >
-        {t("appPage.unstake-action")}
+        {unstakeButtonText}
       </MButton>
 
       <Flex width={["256px", "400px"]} my={1} justifyContent="space-between">
