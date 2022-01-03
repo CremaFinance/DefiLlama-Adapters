@@ -13,6 +13,7 @@ import {
   Button,
   useToast,
 } from "@chakra-ui/react";
+import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
 import { useState } from "react";
 
@@ -52,6 +53,7 @@ const MSolStakeModal = ({
   const {
     farms: { mSOL },
   } = useQuarryProvider();
+  const userStake = mSOL?.minerData?.balance;
 
   const { data } = usePrice(coinSymbols.SOL);
   const solUSD = data ? data[coinSymbols.SOL]?.usd : 0;
@@ -131,6 +133,81 @@ const MSolStakeModal = ({
       .finally(() => setLoading(false));
   };
 
+  // eslint-disable-next-line consistent-return
+  const unstakeMSolHandler = () => {
+    const basicInputChecksErrors = basicInputChecks(Number(amount), connected);
+    if (basicInputChecksErrors) {
+      return toast(basicInputChecksErrors);
+    }
+
+    if (!userStake) return false;
+
+    const fundsNeeded =
+      (marinadeState?.transactionFee ?? 0) * 4 +
+      (marinadeState?.state.rent_exempt_for_token_acc.toNumber() ?? 0);
+
+    const checkBalanceErrors = checkNativeSOLBalance(
+      nativeSOLBalance ?? 0,
+      fundsNeeded
+    );
+    if (checkBalanceErrors) {
+      return toast(checkBalanceErrors);
+    }
+
+    if (Number(amount) > userStake?.toNumber() / LAMPORTS_PER_SOL) {
+      return toast({
+        title: t("mndePage.msol-stake-modal.insufficient-funds-to-withdraw"),
+        description: t(
+          "mndePage.msol-stake-modal.requested-withdraw-not-enough-funds"
+        )
+          .replace("{{amount}}", amount)
+          .replace(
+            "{{mSOLBalance}}",
+            format2Dec(userStake?.toNumber(), LAMPORTS_PER_SOL)
+          ),
+        status: "warning",
+      });
+    }
+
+    setLoading(true);
+
+    mSOL
+      .withdraw(amount)
+      .then(
+        (transactionSignature) => {
+          setAmount("");
+
+          toast({
+            title: t("mndePage.msol-stake-modal.msol-withdrew-confirmed"),
+            description: (
+              <p>
+                {t("mndePage.msol-stake-modal.successfully-withdrew-msol")}{" "}
+                <TransactionLink
+                  chainName={chain.name}
+                  transactionid={transactionSignature}
+                />
+              </p>
+            ),
+            status: "success",
+          });
+        },
+        // eslint-disable-next-line sonarjs/no-identical-functions
+        (error) => {
+          // eslint-disable-next-line no-console
+          console.error(error);
+
+          toast({
+            title: t("appPage.something-went-wrong"),
+            description: error.toString().includes("0xa7")
+              ? t("mndePage.msol-stake-modal.your-msol-account-is-deactivated")
+              : error.message,
+            status: "warning",
+          });
+        }
+      )
+      .finally(() => setLoading(false));
+  };
+
   return (
     <>
       <Modal isOpen={isOpenProp} onClose={onCloseProp}>
@@ -184,7 +261,9 @@ const MSolStakeModal = ({
               onValueChange={setAmount}
               tokenName="mSOL"
               tokenIcon="/icons/mSOL.svg"
-              tokenBalance={stSOLBalance ?? 0}
+              tokenBalance={
+                isDepositActive ? stSOLBalance ?? 0 : userStake?.toNumber() ?? 0
+              }
               value={amount}
               mb={4}
             />
@@ -215,6 +294,7 @@ const MSolStakeModal = ({
                   height="48px"
                   _focus={{ boxShadow: "none" }}
                   my={8}
+                  onClick={unstakeMSolHandler}
                 >
                   {t("mndePage.msol-stake-modal.withdraw-msol")}
                 </Button>
