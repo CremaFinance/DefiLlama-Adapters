@@ -38,31 +38,23 @@ interface Query {
 
 interface Validator {
   validator_vote_address: string;
-  keybase_id: string;
   validator_description: string;
-  stats: Stat[];
-  latest_data: unknown;
+  most_recent_apy: number;
+  epoch_stats: Stat[];
 }
 
 interface Stat {
   epoch: number;
   score: number;
-  avg_position: number;
+  rank: number;
+  vote_address: string;
   commission: number;
-  active_stake: number;
-  epoch_credits: number;
   data_center_concentration: number;
-  can_halt_the_network_group: string;
-  stake_state: StakeState;
-  stake_state_reason: string;
+  apy: number;
+  delinquent: string;
   pct: number;
-  stake_conc: number;
-  adj_credits: number;
-}
-
-enum StakeState {
-  Baseline = "Baseline",
-  Bonus = "Bonus",
+  marinade_staked: number;
+  should_have: number;
 }
 
 ChartJS.register(
@@ -107,20 +99,20 @@ const options = {
 };
 
 const genEpochs = (validator: Validator) => {
-  return validator.stats.map((tuple) => tuple.epoch);
+  return validator.epoch_stats.map((tuple) => tuple.epoch);
 };
 
-const genActiveStakes = (validator: Validator) => {
-  return validator.stats.map((tuple) => tuple.active_stake);
+const genPctValues = (validator: Validator) => {
+  return validator.epoch_stats.map((tuple) => tuple.pct);
 };
 
-const genGraph = (_epochs: number[], _activeStakes: number[]) => {
+const genGraph = (_epochs: number[], _pctValues: number[]) => {
   return {
     labels: _epochs,
     datasets: [
       {
-        label: "Active Stakes",
-        data: _activeStakes,
+        label: "Historical Marinade % SOL allocation",
+        data: _pctValues,
         borderColor: colors.marinadeGreen,
         backgroundColor: colors.marinadeGreen,
       },
@@ -203,19 +195,22 @@ const ValidatorTable = () => {
   };
 
   const fetchData = async (): Promise<Query> => {
-    const res = await fetch("/api/validators", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ pageNumber }),
-    });
+    const res = await fetch(
+      `https://marinade-dashboard-api.herokuapp.com/validators/?page=${pageNumber}`
+    );
 
     if (!res.ok) {
       throw new Error(res.statusText);
     }
 
-    return res.json();
+    const data = await res.json();
+
+    // eslint-disable-next-line no-restricted-syntax
+    for (const validator of data.validators) {
+      validator.epoch_stats.reverse();
+    }
+
+    return data;
   };
 
   const {
@@ -293,17 +288,18 @@ const ValidatorTable = () => {
             <Th {...cell} textAlign="left" position="relative" right="23px">
               {t("appPage.validators-table-account")}
             </Th>
-            <Th {...cell} textAlign="left">
-              {t("appPage.validators-table-balance")}
-            </Th>
-            <Th {...cell} textAlign="left">
-              Stake Last 30 Epochs
-            </Th>
             <Th {...cell} textAlign="left" position="relative" right="14px">
               {t("appPage.validators-table-validator")}
             </Th>
-            <Th {...cell} textAlign="right" position="relative" right="10px">
-              {t("appPage.validators-table-state")}
+
+            <Th {...cell} textAlign="left">
+              {t("appPage.validators-table-staked")}
+            </Th>
+            <Th {...cell} textAlign="left">
+              {t("appPage.validators-table-graph")}
+            </Th>
+            <Th {...cell} textAlign="right" position="relative" left="10px">
+              {t("appPage.validators-table-apy")}
             </Th>
           </Tr>
         </Thead>
@@ -316,7 +312,7 @@ const ValidatorTable = () => {
                   textAlign="left"
                   position="relative"
                   right="10px"
-                  width="100px"
+                  width="200px"
                 >
                   <Flex alignItems="center">
                     {shortenAddress(tuple.validator_vote_address)}
@@ -325,34 +321,8 @@ const ValidatorTable = () => {
                     </Box>
                   </Flex>
                 </Td>
-                <Td {...cell} width="100px">
-                  <MText>
-                    {numberToShortVersion(
-                      tuple.stats[tuple.stats.length - 1].active_stake
-                    )}{" "}
-                    SOL
-                  </MText>
-                </Td>
-                <Td {...cell} width="100px">
-                  <Box width="178px" height="40px">
-                    <Line
-                      options={options}
-                      data={genGraph(genEpochs(tuple), genActiveStakes(tuple))}
-                    />
-                  </Box>
-                </Td>
-                <Td {...highlightedCell} width="100px">
+                <Td {...highlightedCell} width="200px">
                   <Flex alignItems="center" flexWrap="nowrap">
-                    {/* No images currently */}
-
-                    {/* {tuple.data.stake.delegation.validatorInfo.image && (
-                      <Image
-                        src={tuple.data.stake.delegation.validatorInfo.image}
-                        alt="?"
-                        boxSize="12px"
-                      />
-                    )} */}
-
                     <MText pl="4px">
                       {formatValidatorName(
                         tuple.validator_description ||
@@ -361,6 +331,24 @@ const ValidatorTable = () => {
                     </MText>
                   </Flex>
                 </Td>
+
+                <Td {...cell} width="200px">
+                  <MText>
+                    {numberToShortVersion(
+                      tuple.epoch_stats[tuple.epoch_stats.length - 1]
+                        .marinade_staked
+                    )}{" "}
+                    SOL
+                  </MText>
+                </Td>
+                <Td {...cell} width="200px">
+                  <Box width="178px" height="30px">
+                    <Line
+                      options={options}
+                      data={genGraph(genEpochs(tuple), genPctValues(tuple))}
+                    />
+                  </Box>
+                </Td>
                 <Td
                   {...cell}
                   textAlign="right"
@@ -368,7 +356,7 @@ const ValidatorTable = () => {
                   left="10px"
                   width="128px"
                 >
-                  {t("appPage.validators-table-delegated")}
+                  {numberToShortVersion(tuple.most_recent_apy)}%
                 </Td>
               </Tr>
             ))}
