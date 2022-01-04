@@ -1,5 +1,3 @@
-/* eslint-disable sonarjs/cognitive-complexity */
-/* eslint-disable complexity */
 import {
   Modal,
   ModalBody,
@@ -7,27 +5,24 @@ import {
   ModalContent,
   ModalOverlay,
   Flex,
-  Image,
   ModalHeader,
-  Text,
   Button,
   useToast,
 } from "@chakra-ui/react";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
+import { useRouter } from "next/dist/client/router";
 import { useState } from "react";
 
 import { useChain } from "../../../contexts/ConnectionProvider";
 import { useMarinade } from "../../../contexts/MarinadeContext";
 import { useQuarryProvider } from "../../../contexts/QuaryContext";
 import { useUserBalance } from "../../../contexts/UserBalanceContext";
-import { usePrice } from "../../../hooks/usePrice";
 import { useWallet } from "../../../hooks/useWallet";
-import { coinSymbols } from "../../../services/domain/coinSymbols";
 import colors from "../../../styles/customTheme/colors";
 import { basicInputChecks } from "../../../utils/basic-input-checks";
 import { checkNativeSOLBalance } from "../../../utils/check-native-sol-balance";
-import { format2Dec, format5Dec } from "../../../utils/number-to-short-version";
+import { format2Dec } from "../../../utils/number-to-short-version";
 import StakeInput, { StakeInputTypeEnum } from "../StakeInput";
 import SwitchButtons from "../SwitchButtons";
 import TransactionLink from "../TransactionLink";
@@ -43,6 +38,7 @@ const MSolStakeModal = ({
 }: MSolStakeModalProps) => {
   const { t } = useTranslation();
   const toast = useToast();
+  const router = useRouter();
 
   const [isDepositActive, setDepositActive] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -55,17 +51,8 @@ const MSolStakeModal = ({
   } = useQuarryProvider();
   const userStake = mSOL?.minerData?.balance;
 
-  const { data } = usePrice(coinSymbols.SOL);
-  const solUSD = data ? data[coinSymbols.SOL]?.usd : 0;
-
   const marinade = useMarinade();
-  const state = marinade?.marinadeState?.state;
   const marinadeState = marinade?.marinadeState;
-
-  const mSOLvsSOLParity = state?.st_sol_price
-    ? state?.st_sol_price?.toNumber() / 0x1_0000_0000
-    : 0;
-  const solEquivalent = (stSOLBalance ?? 0) * mSOLvsSOLParity;
 
   // eslint-disable-next-line consistent-return
   const stakemSolHandler = () => {
@@ -210,7 +197,7 @@ const MSolStakeModal = ({
 
   return (
     <>
-      <Modal isOpen={isOpenProp} onClose={onCloseProp}>
+      <Modal isOpen={isOpenProp} onClose={onCloseProp} isCentered>
         <ModalOverlay w="100vw" />
         <ModalContent
           px={[4, 8]}
@@ -236,26 +223,6 @@ const MSolStakeModal = ({
                 handleSwitch={setDepositActive}
               />
             </Flex>
-            <Flex mb={2}>
-              <Image src="/icons/mSOL.svg" width="24px" height="24px" />
-              <Text marginLeft="8px" fontSize="14.4px">
-                mSOL
-              </Text>
-            </Flex>
-            <Flex justifyContent="space-between">
-              <Text lineHeight="21.6px" fontSize="14.4px">
-                {t("appPage.liquidity-modal.balance")}
-              </Text>
-              <Text lineHeight="21.6px" fontSize="14.4px">
-                {format5Dec(stSOLBalance ?? 0)}
-              </Text>
-            </Flex>
-            <Text align="end" lineHeight="21.6px" fontSize="14.4px">
-              {`= ${format5Dec(solEquivalent)} SOL`}
-            </Text>
-            <Text align="end" mb={4} lineHeight="21.6px" fontSize="14.4px">
-              {`= $ ${format2Dec((solEquivalent ?? 0) * (solUSD ?? 0))}`}
-            </Text>
             <StakeInput
               stakeInputType={StakeInputTypeEnum.Source}
               onValueChange={setAmount}
@@ -281,9 +248,15 @@ const MSolStakeModal = ({
                   height="48px"
                   _focus={{ boxShadow: "none" }}
                   my={8}
-                  onClick={stakemSolHandler}
+                  onClick={
+                    stSOLBalance
+                      ? stakemSolHandler
+                      : () => router.push("/app/staking")
+                  }
                 >
-                  {t("mndePage.msol-stake-modal.deposit-msol")}
+                  {stSOLBalance
+                    ? t("mndePage.msol-stake-modal.deposit-msol")
+                    : t("mndePage.msol-stake-modal.get-msol")}
                 </Button>
               ) : (
                 <Button
@@ -296,9 +269,15 @@ const MSolStakeModal = ({
                   height="48px"
                   _focus={{ boxShadow: "none" }}
                   my={8}
-                  onClick={unstakeMSolHandler}
+                  onClick={
+                    userStake?.toNumber()
+                      ? unstakeMSolHandler
+                      : () => setDepositActive(true)
+                  }
                 >
-                  {t("mndePage.msol-stake-modal.withdraw-msol")}
+                  {userStake?.toNumber()
+                    ? t("mndePage.msol-stake-modal.withdraw-msol")
+                    : t("mndePage.msol-stake-modal.deposit-first-msol")}
                 </Button>
               )}
             </Flex>

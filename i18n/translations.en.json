@@ -439,7 +439,9 @@
       "insufficient-funds-to-withdraw": "Insufficient funds to withdraw",
       "requested-withdraw-not-enough-funds": "You requested to withdraw {{amount}} mSOL (have only {{mSOLBalance}})",
       "msol-withdrew-confirmed": "mSOL withdrew confirmed",
-      "successfully-withdrew-msol": "You've successfully withdrew mSOL"
+      "successfully-withdrew-msol": "You've successfully withdrew mSOL",
+      "deposit-first-msol": "Deposit first",
+      "get-msol": "Get mSOL"
     }
   },
   "termsPage": {
