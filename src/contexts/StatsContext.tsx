@@ -210,11 +210,10 @@ export function StatsProvider({ children }: StatsProviderProps) {
   >(null);
 
   const fetchData = async (): Promise<{
-    data: unknown;
-    totalPages: number;
+    count: number;
   }> => {
     const res = await fetch(
-      `https://prod-api.solana.surf/v1/account/4bZ6o3eUUNXhKuqjdCnCoPAoLgWiuLYixKaxoa8PpiKk/stakes?limit=1&offset=0`,
+      `https://marinade-dashboard-api.herokuapp.com/validators/count`,
       {
         method: "GET",
         mode: "cors",
@@ -228,18 +227,16 @@ export function StatsProvider({ children }: StatsProviderProps) {
     return res.json();
   };
 
-  const { data }: UseQueryResult<{ data: unknown; totalPages: number }, Error> =
-    useQuery<{ data: unknown; totalPages: number }, Error>(
-      `total_validators_count`,
-      fetchData,
-      {
-        keepPreviousData: true,
-      }
-    );
+  const { data }: UseQueryResult<{ count: number }, Error> = useQuery<
+    { count: number },
+    Error
+  >(`total_validators_count`, fetchData, {
+    keepPreviousData: true,
+  });
 
   useEffect(() => {
     if (data) {
-      settotalValidatorsCount(data.totalPages);
+      settotalValidatorsCount(data.count);
     }
   }, [data]);
 
