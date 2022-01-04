@@ -257,6 +257,7 @@
     "stake-inputs-balance": "Balance",
     "stake-inputs-exchange-rate": "Exchange rate",
     "stake-inputs-unstake-fee": "Unstake fee",
+    "from-fee": "from",
     "stake-inputs-deposit-fee": "Deposit fee",
     "stake-action": "Stake",
     "stake-sol-action": "Stake SOL",

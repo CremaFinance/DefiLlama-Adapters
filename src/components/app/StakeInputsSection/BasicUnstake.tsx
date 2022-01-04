@@ -99,8 +99,7 @@ const BasicUnstake = () => {
     const proportion: bigint = (range * liqAfter) / target;
     return state?.liq_pool?.lp_max_fee?.basis_points - Number(proportion);
   }
-  const minUnstakeFee = 0.3;
-  const maxUnstakeFee = 3;
+  const minUnstakeFee = "0.3";
   const mSOLvsSOLParity = marinadeState?.state?.st_sol_price
     ? marinadeState?.state?.st_sol_price?.toNumber() / 0x1_0000_0000
     : 0;
@@ -323,7 +322,7 @@ const BasicUnstake = () => {
           delayedUnstakeReceive={format9Dec(
             Number(delayedUnstakeReceive) / LAMPORTS_PER_SOL
           )}
-          unstakeNowFee={`${minUnstakeFee}-${maxUnstakeFee}%`}
+          unstakeNowFee={minUnstakeFee}
           active={isUnstakeNowActive}
           mb={6}
           handleSwitch={() => {
