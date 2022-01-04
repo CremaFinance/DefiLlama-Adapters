@@ -39,7 +39,6 @@ const UnstakeOptions = ({
         border="1px"
         borderColor={active ? colors.marinadeBorderGreen : "gray.100"}
         rounded="md"
-        height="fit-content"
         width="100%"
         flex={1}
         p={[2, 4]}
@@ -76,13 +75,12 @@ const UnstakeOptions = ({
         border="1px"
         borderColor={active ? "gray.100" : colors.marinadeBorderGreen}
         rounded="md"
-        height="fit-content"
         width="100%"
         flex={1}
         p={[2, 4]}
         _hover={{}}
         cursor="pointer"
-        onClick={() => handleSwitch(true)}
+        onClick={() => handleSwitch(false)}
       >
         <Flex width="100%" flexDirection="column">
           <Flex alignItems="center" justifyContent="space-between" pb={2}>

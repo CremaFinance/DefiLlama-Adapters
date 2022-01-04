@@ -325,9 +325,7 @@ const BasicUnstake = () => {
           unstakeNowFee={minUnstakeFee}
           active={isUnstakeNowActive}
           mb={6}
-          handleSwitch={() => {
-            setUnstakeNowActive((val) => !val);
-          }}
+          handleSwitch={(val) => setUnstakeNowActive(val)}
         />
       ) : null}
 
