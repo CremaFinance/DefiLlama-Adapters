@@ -1,6 +1,6 @@
 import { coinSymbols } from "../../domain/coinSymbols";
 import { marketTypes } from "../../domain/marketTypes";
-import { Pool } from "../../domain/pool";
+import { PoolConfig } from "../../domain/pool";
 
 import {
   LiquidityOrcaPoolAddress,
@@ -17,16 +17,15 @@ const provider = "Orca";
 const orcaReward = "Emission";
 const mndeReward = "Double Dip";
 const actions = [
-  { text: "Add Liquidity", url: "https://www.orca.so/pools" },
-  { text: "Swap", url: "https://www.orca.so/pools" },
+  { text: "Add Liquidity", url: "https://www.orca.so/pools", isExternal: true },
+  { text: "Swap", url: "https://www.orca.so/pools", isExternal: true },
 ];
 
 export type OrcaPoolsResponse = Record<LiquidityOrcaPoolIds, OrcaPool>;
 
-export const orcaPools: Record<LiquidityOrcaPoolAddress, Pool> = {
+export const orcaPools: Record<LiquidityOrcaPoolAddress, PoolConfig> = {
   [liquidityOrcaPoolAddress.ORCA_mSOL_SOL]: {
     ...liquidityPoolTokens[liquidityOrcaPoolAddress.ORCA_mSOL_SOL],
-
     ...{
       provider,
       marketType: marketTypes.LP,
@@ -109,9 +108,45 @@ export const orcaPools: Record<LiquidityOrcaPoolAddress, Pool> = {
       rewards: {
         [coinSymbols.ORCA]: {
           aprDescription: orcaReward,
-          dailyRate: 5634 / 7,
+          dailyRate: 776.57,
         },
-        [coinSymbols.MNDE]: { aprDescription: mndeReward, dailyRate: 29494 },
+        [coinSymbols.MNDE]: { aprDescription: mndeReward, dailyRate: 20000 },
+      },
+      actions,
+    },
+  },
+  [liquidityOrcaPoolAddress.ORCA_ORCA_mSOL]: {
+    ...liquidityPoolTokens[liquidityOrcaPoolAddress.ORCA_ORCA_mSOL],
+    ...{
+      provider,
+      marketType: marketTypes.LP,
+      providerId: liquidityOrcaPoolIds.ORCA_ORCA_mSOL,
+      tokenA: coinSymbols.ORCA,
+      tokenB: coinSymbols.mSOL,
+      rewards: {
+        [coinSymbols.ORCA]: {
+          aprDescription: orcaReward,
+          dailyRate: 1359 / 7,
+        },
+        [coinSymbols.MNDE]: { aprDescription: mndeReward, dailyRate: 2457 },
+      },
+      actions,
+    },
+  },
+  [liquidityOrcaPoolAddress.ORCA_mSOL_whETH]: {
+    ...liquidityPoolTokens[liquidityOrcaPoolAddress.ORCA_mSOL_whETH],
+    ...{
+      provider,
+      marketType: marketTypes.LP,
+      providerId: liquidityOrcaPoolIds.ORCA_mSOL_whETH,
+      tokenA: coinSymbols.mSOL,
+      tokenB: coinSymbols.ETH,
+      rewards: {
+        [coinSymbols.ORCA]: {
+          aprDescription: orcaReward,
+          dailyRate: 2718 / 7,
+        },
+        [coinSymbols.MNDE]: { aprDescription: mndeReward, dailyRate: 2457 },
       },
       actions,
     },

@@ -1,7 +1,8 @@
 import { coinSymbols, CoinSymbols } from "./coinSymbols";
-import { Token } from "./token";
+import { TokenRecord } from "./token";
 
-export const coinTokens: Record<CoinSymbols, Token> = {
+/** All cointokens used by marinade */
+export const coinTokens: TokenRecord<CoinSymbols> = {
   [coinSymbols.MNDE]: {
     chainId: 101,
     address: "MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey",
@@ -45,7 +46,7 @@ export const coinTokens: Record<CoinSymbols, Token> = {
       coingeckoId: "msol",
       website: "https://marinade.finance",
       twitter: "https://twitter.com/MarinadeFinance",
-      discord: "https://discord.gg/mGqZA5pjRN",
+      discord: "https://discord.com/invite/6EtUf4Euu6",
       medium: "https://medium.com/marinade-finance",
       github: "https://github.com/marinade-finance",
       serumV3Usdc: "6oGsL2puUgySccKzn9XA9afqF217LfxP5ocq4B3LWsjy",
@@ -200,5 +201,14 @@ export const coinTokens: Record<CoinSymbols, Token> = {
     extensions: {
       coingeckoId: "atrix",
     },
+  },
+  [coinSymbols.FRANCIUM]: {
+    chainId: 101,
+    address: "",
+    symbol: "FRANCIUM",
+    name: "Francium",
+    decimals: 9,
+    logoURI: "",
+    tags: [],
   },
 };

@@ -1,32 +1,37 @@
 import { Prices } from "services/domain/coinSymbols";
 import { coinTokens } from "services/domain/coinTokens";
-import { Pool } from "services/domain/pool";
+import { Pool, PoolConfig } from "services/domain/pool";
 
 import { updatePoolRewards } from "./update-pool-rewards";
 
-export const updatePool = (
-  poolToUpdate: Pool,
+export const updatePoolFromTokens = (
+  poolConfig: PoolConfig,
   prices: Prices,
   tokenAAmount: string,
   tokenBAmount: string,
   apy: string
-) => {
-  const pool = poolToUpdate;
+): Pool | PoolConfig => {
   const tokenA =
-    Number(tokenAAmount) / (1 * 10) ** coinTokens[pool.tokenA].decimals;
-  const tokenAPrice = prices[pool.tokenA]?.usd; // potential to make target selectable
+    Number(tokenAAmount) / (1 * 10) ** coinTokens[poolConfig.tokenA].decimals;
+  const tokenAPrice = prices[poolConfig.tokenA]?.usd; // potential to make target selectable
 
   const tokenB =
     Number(tokenBAmount) /
-    (1 * 10) ** coinTokens[pool.tokenB as string].decimals;
-  const tokenBPrice = prices[pool.tokenB ?? ""]?.usd;
+    (1 * 10) ** coinTokens[poolConfig.tokenB as string].decimals;
+  const tokenBPrice = prices[poolConfig.tokenB ?? ""]?.usd;
 
   if (tokenAPrice && tokenBPrice) {
     const liq = tokenA * tokenAPrice + tokenB * tokenBPrice;
-    pool.liq = Number.isNaN(liq) ? undefined : liq;
-    pool.totalLockedValue = Number.isNaN(liq) ? undefined : liq;
-    pool.tradingApy = Number(apy) * 100;
-    pool.apy = pool.tradingApy;
+    const pool = {
+      ...poolConfig,
+      ...{
+        liq: Number.isNaN(liq) ? undefined : liq,
+        totalLockedValue: Number.isNaN(liq) ? undefined : liq,
+        tradingApy: Number(apy) * 100,
+        apy: Number(apy) * 100,
+      },
+    };
+    return updatePoolRewards(pool as Pool, prices);
   }
-  return updatePoolRewards(pool, prices);
+  return poolConfig;
 };

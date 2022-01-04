@@ -24,6 +24,7 @@ import {
   format2Dec,
   numberToShortVersion,
 } from "../../../utils/number-to-short-version";
+import Countdown from "../../atoms/Countdown";
 import MHeading from "../../atoms/Heading";
 import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
@@ -32,7 +33,6 @@ import InfoIconWithTooltip from "components/molecules/InfoIconWithTooltip";
 import TooltipWithContent from "components/molecules/TooltipWithContent";
 import { coinSymbols } from "services/domain/coinSymbols";
 import colors from "styles/customTheme/colors";
-import { millisecondsToDhms } from "utils/ms-to-dmhs";
 
 const scrollbarProps = {
   "&::-webkit-scrollbar": {
@@ -64,7 +64,7 @@ const InfoBoxesSection = () => {
 
   const epochData = useEpochInfo()?.data;
 
-  const { totalStaked } = useStats();
+  const { totalStaked, totalValidatorsCount } = useStats();
 
   const { marinadeState } = useMarinade();
 
@@ -84,7 +84,6 @@ const InfoBoxesSection = () => {
 
   // TODO: Use actual values from services
   const weekAPY = 7.16;
-  const validators = 411;
 
   return (
     <>
@@ -151,7 +150,7 @@ const InfoBoxesSection = () => {
           {totalSOLStaked ? (
             <>
               <MHeading type="heading-2xsm">
-                {numberToShortVersion(totalSOLStaked)}
+                {numberToShortVersion(totalSOLStaked)} SOL
               </MHeading>
               <MText type="text-md" pb={2}>
                 ≈ ${numberToShortVersion((solUSD ?? 0) * totalSOLStaked)}
@@ -170,7 +169,7 @@ const InfoBoxesSection = () => {
           rounded="lg"
           width="207px"
           height="139px"
-          zIndex={5}
+          zIndex={6}
           py={5}
           pr={3}
           pl={6}
@@ -210,7 +209,7 @@ const InfoBoxesSection = () => {
                 />
               </Flex>
               <MText type="text-md" pb={2}>
-                ETA: {millisecondsToDhms(epochData.msUntilEpochEnd ?? 0)}
+                ETA: <Countdown initialTimeLeft={epochData.msUntilEpochEnd} />
               </MText>
             </>
           ) : (
@@ -222,7 +221,6 @@ const InfoBoxesSection = () => {
         <Flex
           bg={colors.white}
           flexDirection="column"
-          justifyContent="space-between"
           rounded="lg"
           width="207px"
           height="139px"
@@ -233,16 +231,13 @@ const InfoBoxesSection = () => {
           mt={8}
           mx={2}
         >
-          <Flex justifyContent="space-between">
+          <Flex justifyContent="space-between" mb={3}>
             <MText type="text-md">{t("appPage.info-week-apy")}</MText>
             <InfoIconWithTooltip
               tooltipText={t("appPage.info-week-apy-tooltip")}
             />
           </Flex>
           <MHeading type="heading-2xsm">{weekAPY}%</MHeading>
-          <MLink font="text-lg" color={colors.marinadeGreen} pb={2}>
-            {t("appPage.info-see-performance-action")}
-          </MLink>
         </Flex>
         <Flex
           bg={colors.white}
@@ -251,6 +246,7 @@ const InfoBoxesSection = () => {
           rounded="lg"
           width="207px"
           height="139px"
+          zIndex={5}
           py={5}
           pr={3}
           pl={6}
@@ -272,7 +268,7 @@ const InfoBoxesSection = () => {
               />
             </TooltipWithContent>
           </Flex>
-          <MHeading type="heading-2xsm">{validators.toLocaleString()}</MHeading>
+          <MHeading type="heading-2xsm">{totalValidatorsCount}</MHeading>
 
           {/* Place Modal here */}
           <MLink
@@ -302,7 +298,9 @@ const InfoBoxesSection = () => {
       >
         <Flex justifyContent="space-between" pr={8}>
           <MText type="text-lg">{t("appPage.info-msol-sol-price")}</MText>
-          <MHeading type="heading-2xsm">{mSOLvsSOLParity} SOL</MHeading>
+          <MHeading type="heading-2xsm">
+            {mSOLvsSOLParity.toFixed(5)} SOL
+          </MHeading>
         </Flex>
         <Flex justifyContent="space-between" pr={8}>
           <MText type="text-lg">{t("appPage.info-total-staked")}</MText>
@@ -368,9 +366,7 @@ const InfoBoxesSection = () => {
             {t("appPage.info-validators")}
           </MLink>
           <Flex>
-            <MHeading type="heading-2xsm">
-              {validators.toLocaleString()}
-            </MHeading>
+            <MHeading type="heading-2xsm">{totalValidatorsCount}</MHeading>
             <TooltipWithContent
               tooltipText={t("appPage.info-validators-tooltip")}
               link={t("appPage.info-validators-tooltip-docs-link")}

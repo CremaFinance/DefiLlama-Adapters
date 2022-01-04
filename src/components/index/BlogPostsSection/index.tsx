@@ -1,8 +1,8 @@
-import { Skeleton, Box, Flex, Image } from "@chakra-ui/react";
+import { Skeleton, Box, Flex, Image, Link, Icon } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { useRouter } from "next/dist/client/router";
 import { useEffect, useState } from "react";
-import { HiArrowRight } from "react-icons/hi";
+import { FiExternalLink } from "react-icons/fi";
 
 import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
@@ -30,7 +30,7 @@ export default function BlogPosts() {
       "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/marinade-finance"
     );
     const postsParsed = await req.json();
-    setPosts(postsParsed.items.slice(0, 3)?.reverse());
+    setPosts(postsParsed.items.slice(0, 3));
   }
 
   function blogPosts() {
@@ -148,17 +148,31 @@ export default function BlogPosts() {
         >
           {t("indexPage.blog-section-primary-button")}
         </MButton>
-
         <MButton
           font="text-xl"
           variant="link"
-          mx={4}
-          my={[2, 0]}
-          colorScheme={colors.marinadeGreen}
-          rounded="md"
-          rightIcon={<HiArrowRight />}
+          color={colors.black}
+          bg="none"
+          _hover={{ textDecoration: "underline" }}
+          rightIcon={
+            <Icon
+              as={FiExternalLink}
+              width="16px"
+              height="16px"
+              cursor="pointer"
+            />
+          }
         >
-          {t("indexPage.blog-section-secondary-button")}
+          <Link
+            as={Link}
+            target="_blank"
+            href="https://docs.marinade.finance/faq/faq#unstake-now"
+            _hover={{ textDecoration: "none" }}
+            rel="noreferrer noopener"
+            _focus={{ boxShadow: "none" }}
+          >
+            {t("indexPage.blog-section-secondary-button")}
+          </Link>
         </MButton>
       </Flex>
     </Box>

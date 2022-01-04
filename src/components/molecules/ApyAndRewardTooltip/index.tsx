@@ -10,17 +10,20 @@ import { PropsWithChildren, FunctionComponent } from "react";
 import { HiCheckCircle } from "react-icons/hi";
 
 import { useTranslation } from "../../../hooks/useTranslation";
-import { Rewards } from "../../../services/domain/rewards";
+import { Leverage, LeverageConfig } from "../../../services/domain/leverage";
+import { Rewards, RewardsConfig } from "../../../services/domain/rewards";
 import Text from "../../atoms/Text";
 
 type ApyAndRewardTooltipProps = PropsWithChildren<{
   tradingApy?: number;
-  rewards?: Rewards;
+  rewards?: Rewards | RewardsConfig;
+  leverage?: Leverage | LeverageConfig;
 }>;
 
 const ApyAndRewardTooltip: FunctionComponent<ApyAndRewardTooltipProps> = ({
   tradingApy,
   rewards,
+  leverage,
   children,
 }) => {
   const { t } = useTranslation();
@@ -52,26 +55,53 @@ const ApyAndRewardTooltip: FunctionComponent<ApyAndRewardTooltipProps> = ({
           borderWidth="0"
         />
         <PopoverBody
-          padding="8px"
+          padding="8px 8px 0 8px"
           backgroundColor="marinadeEvenLighterGreen"
           borderRadius="4px"
         >
-          <Text fontSize="11.52px" marginBottom="4px">
+          {leverage && (
+            <Text fontSize="14.40px" marginBottom="8px" fontWeight="bold">
+              {leverage.leverageAmount}x{" "}
+              {t("appPage.pool-row.apyPopover.leverage")}
+            </Text>
+          )}
+
+          <Text fontSize="14.40px" marginBottom="8px">
             {t("appPage.pool-row.apyPopover.trading")}:
             <Text as="span" fontWeight="bold">
               {tradingApy && tradingApy.toFixed(2)}%
             </Text>
           </Text>
           {rewardsList.map((reward) => (
-            <Text fontSize="11.52px" marginBottom="4px">
+            <Text
+              key={`${reward.apy}-${reward.aprDescription}`}
+              fontSize="14.40px"
+              marginBottom="8px"
+            >
               {reward?.aprDescription}:
               <Text as="span" fontWeight="bold">
                 {reward?.apy && reward?.apy.toFixed(2)}%
               </Text>
             </Text>
           ))}
+          {leverage && leverage.selectedToken && (
+            <Text fontSize="14.40px" marginBottom="8px">
+              {leverage.selectedToken.symbol}{" "}
+              {t("appPage.pool-row.apyPopover.borrow")}:
+              <Text as="span" fontWeight="bold">
+                {leverage.selectedToken?.borrowApr
+                  ? leverage.selectedToken?.borrowApr.toFixed(2)
+                  : 0}
+                %
+              </Text>
+            </Text>
+          )}
           {rewardsList.map((reward) => (
-            <Text fontSize="11.52px">
+            <Text
+              key={`${reward.name}-${reward.dailyRate}`}
+              fontSize="14.40px"
+              marginBottom="8px"
+            >
               <Icon
                 as={HiCheckCircle}
                 color="green800"

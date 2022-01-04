@@ -1,15 +1,15 @@
-import { useQueries, QueryOptions } from "react-query";
+import { useQueries } from "react-query";
 
 import { CoinSymbols, Prices } from "../services/domain/coinSymbols";
-import { MarketPools } from "../services/domain/market";
-import { providers } from "../services/domain/providers";
 import { fetchCoinPrice } from "../services/markets/coinPrice";
+import { providers, ProviderOptions } from "../services/pools";
+import { getProviderTokens } from "../utils/tokens-list";
 
 const refetchInterval = 5 * 60 * 1000;
 
-export const usePools = () => {
+export const usePools = (providerOptions?: ProviderOptions) => {
   const priceTokens = Object.values(providers).reduce((acc, provider) => {
-    return acc.concat(provider.tokenList.map((token) => token));
+    return acc.concat(getProviderTokens(provider).map((token) => token));
   }, [] as CoinSymbols[]);
 
   const uniqPriceTokens = Array.from(new Set(priceTokens));
@@ -26,13 +26,18 @@ export const usePools = () => {
     return { ...acc, ...data };
   }, {}) as Prices;
 
-  const providerQueries: QueryOptions<MarketPools>[] = Object.entries(
-    providers
-  ).map(([key, provider]) => {
+  const providerQueries = Object.entries(providers).map(([key, provider]) => {
+    const optionsKey =
+      providerOptions && providerOptions[key]
+        ? JSON.stringify(providerOptions[key])
+        : "";
     return {
-      queryKey: ["provider", key],
-      queryFn: () => provider.fetchPools(prices),
-      enabled: provider.tokenList.every((t) => prices[t]),
+      queryKey: ["provider", key + optionsKey],
+      queryFn: () => {
+        const options = providerOptions ? providerOptions[key] : undefined;
+        return provider.fetchPools(prices, options);
+      },
+      enabled: getProviderTokens(provider).every((t) => prices[t]),
       placeholderData: provider.pools,
       refetchInterval,
     };

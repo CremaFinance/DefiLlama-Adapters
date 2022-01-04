@@ -10,19 +10,42 @@ import {
   useMemo,
   useState,
 } from "react";
+import { Query, useQuery, UseQueryResult } from "react-query";
 
 import { isError } from "../utils/is-error";
 
 import { useConnection } from "./ConnectionProvider";
 import { useMarinadeState } from "./MarinadeContext";
+import { useQuarryProvider } from "./QuaryContext";
 
 export interface Stats {
+  /**
+   * The total amount of SOL staked by Marinade in Lamports
+   */
   totalStaked: null | number | undefined;
+
+  /**
+   * The total amount of SOL staked in the mSOL-SOL Pool in Lamports
+   */
   liqPoolBalance: null | number;
+
+  /**
+   * The total amount of mSOL staked in the mSOL-SOL Pool in Lamports
+   */
   liqPoolMSolAmount: null | number;
+
+  /**
+   * The total supply of the mSOL-SOL LP token in Lamports
+   */
   lpTokenSupply: null | number | undefined;
-  lpTokenPrice: null | number;
+
+  /**
+   * The ratio of mSOL to SOL
+   */
+  mSOLvsSOLParity: null | number;
+
   unstakeFee: null | number;
+  totalValidatorsCount: null | number;
 }
 
 const StatsContext = createContext<Stats>({
@@ -30,8 +53,9 @@ const StatsContext = createContext<Stats>({
   liqPoolBalance: null,
   liqPoolMSolAmount: null,
   lpTokenSupply: null,
-  lpTokenPrice: null,
+  mSOLvsSOLParity: null,
   unstakeFee: null,
+  totalValidatorsCount: null,
 });
 
 type StatsProviderProps = { children: ReactNode };
@@ -40,6 +64,9 @@ export function StatsProvider({ children }: StatsProviderProps) {
   const marinadeState = useMarinadeState();
 
   const state = marinadeState ? marinadeState.state : null;
+
+  const mSOLvsSOLParity =
+    (state && state?.st_sol_price.toNumber() / 0x1_0000_0000) ?? null;
 
   const totalStaked = useMemo(() => {
     if (marinadeState === null || marinadeState === undefined) {
@@ -157,31 +184,6 @@ export function StatsProvider({ children }: StatsProviderProps) {
     };
   }, [liqPoolMSolLeg, connection]);
 
-  const mSOLPriceFixed = marinadeState?.state?.st_sol_price?.toNumber();
-
-  const lpTokenPrice = useMemo(() => {
-    if (lpTokenSupply === 0) {
-      return 1;
-    }
-    if (
-      liqPoolBalance !== null &&
-      liqPoolBalance !== undefined &&
-      liqPoolMSolAmount !== null &&
-      liqPoolMSolAmount !== undefined &&
-      lpTokenSupply !== null &&
-      lpTokenSupply !== undefined &&
-      mSOLPriceFixed !== null &&
-      mSOLPriceFixed !== undefined
-    ) {
-      return (
-        (liqPoolBalance +
-          (liqPoolMSolAmount * mSOLPriceFixed) / 0x1_0000_0000) /
-        lpTokenSupply
-      );
-    }
-    return null;
-  }, [liqPoolBalance, liqPoolMSolAmount, lpTokenSupply, mSOLPriceFixed]);
-
   const unstakeFee = useMemo(() => {
     if (
       state === null ||
@@ -203,6 +205,44 @@ export function StatsProvider({ children }: StatsProviderProps) {
     );
   }, [liqPoolBalance, state]);
 
+  const [totalValidatorsCount, settotalValidatorsCount] = useState<
+    number | null
+  >(null);
+
+  const fetchData = async (): Promise<{
+    data: unknown;
+    totalPages: number;
+  }> => {
+    const res = await fetch(
+      `https://prod-api.solana.surf/v1/account/4bZ6o3eUUNXhKuqjdCnCoPAoLgWiuLYixKaxoa8PpiKk/stakes?limit=1&offset=0`,
+      {
+        method: "GET",
+        mode: "cors",
+      }
+    );
+
+    if (!res.ok) {
+      throw new Error(res.statusText);
+    }
+
+    return res.json();
+  };
+
+  const { data }: UseQueryResult<{ data: unknown; totalPages: number }, Error> =
+    useQuery<{ data: unknown; totalPages: number }, Error>(
+      `total_validators_count`,
+      fetchData,
+      {
+        keepPreviousData: true,
+      }
+    );
+
+  useEffect(() => {
+    if (data) {
+      settotalValidatorsCount(data.totalPages);
+    }
+  }, [data]);
+
   return (
     <StatsContext.Provider
       value={{
@@ -210,8 +250,9 @@ export function StatsProvider({ children }: StatsProviderProps) {
         liqPoolBalance,
         liqPoolMSolAmount,
         lpTokenSupply,
-        lpTokenPrice,
+        mSOLvsSOLParity,
         unstakeFee,
+        totalValidatorsCount,
       }}
     >
       {children}

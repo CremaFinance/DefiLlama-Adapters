@@ -1,6 +1,6 @@
 import { coinSymbols } from "../../domain/coinSymbols";
 import { marketTypes } from "../../domain/marketTypes";
-import { Pool } from "../../domain/pool";
+import { PoolConfig } from "../../domain/pool";
 
 import { AtrixPool } from "./atrixPool";
 import {
@@ -10,24 +10,26 @@ import {
 import {
   LiquidityPoolAtrixIds,
   liquidityPoolAtrixIds,
-} from "./liquidityRaydiumPoolIds";
-import { liquidityPoolTokensAtrix } from "./liquidityRaydiumPoolTokens";
+} from "./liquidityAtrixPoolIds";
+import { liquidityPoolTokensAtrix } from "./liquidityAtrixPoolTokens";
 
 const provider = "Atrix";
 const actions = [
   {
     text: "Add Liquidity",
     url: "https://app.atrix.finance/#/pools",
+    isExternal: true,
   },
   {
     text: "Swap",
     url: "https://app.atrix.finance/#/swap",
+    isExternal: true,
   },
 ];
 
 export type AtrixPoolsResponse = Record<LiquidityPoolAtrixIds, AtrixPool>;
 
-export const atrixPools: Record<LiquidityAtrixPoolAddress, Pool> = {
+export const atrixPools: Record<LiquidityAtrixPoolAddress, PoolConfig> = {
   [liquidityAtrixPoolAddress.ATRIX_mSOL_USDC]: {
     ...liquidityPoolTokensAtrix[liquidityAtrixPoolAddress.ATRIX_mSOL_USDC],
     ...{
@@ -37,8 +39,8 @@ export const atrixPools: Record<LiquidityAtrixPoolAddress, Pool> = {
       tokenA: coinSymbols.mSOL,
       tokenB: coinSymbols.USDC,
       rewards: {
-        [coinSymbols.RAYDIUM]: undefined,
-        [coinSymbols.MNDE]: undefined,
+        // [coinSymbols.RAYDIUM]: undefined,
+        // [coinSymbols.MNDE]: undefined,
       },
       actions,
     },
@@ -52,8 +54,8 @@ export const atrixPools: Record<LiquidityAtrixPoolAddress, Pool> = {
       tokenA: coinSymbols.mSOL,
       tokenB: coinSymbols.USDT,
       rewards: {
-        [coinSymbols.RAYDIUM]: undefined,
-        [coinSymbols.MNDE]: undefined,
+        // [coinSymbols.RAYDIUM]: undefined,
+        // [coinSymbols.MNDE]: undefined,
       },
       actions,
     },

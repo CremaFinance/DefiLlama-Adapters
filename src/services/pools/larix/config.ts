@@ -1,6 +1,6 @@
 import { coinSymbols } from "../../domain/coinSymbols";
 import { marketTypes } from "../../domain/marketTypes";
-import { Pool } from "../../domain/pool";
+import { PoolConfig } from "../../domain/pool";
 
 import { LarixPool } from "./larixPool";
 import {
@@ -15,13 +15,13 @@ import { lendingLarixPoolTokens } from "./lendingLarixPoolTokens";
 
 const provider = "Larix";
 const actions = [
-  { text: "Supply", url: "https://projectlarix.com/" },
-  { text: "Borrow", url: "https://projectlarix.com/" },
+  { text: "Supply", url: "https://projectlarix.com/", isExternal: true },
+  { text: "Borrow", url: "https://projectlarix.com/", isExternal: true },
 ];
 
 export type LarixPoolsResponse = Record<LendingLarixPoolIds, LarixPool>;
 
-export const larixPools: Record<LendingLarixPoolAddress, Pool> = {
+export const larixPools: Record<LendingLarixPoolAddress, PoolConfig> = {
   [lendingLarixPoolAddress.LARIX_mSOL]: {
     ...lendingLarixPoolTokens[lendingLarixPoolAddress.LARIX_mSOL],
     ...{

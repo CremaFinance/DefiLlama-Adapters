@@ -1,11 +1,11 @@
-import { Box, Flex, Image } from "@chakra-ui/react";
+import { Box, Flex, Image, useMediaQuery } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
 
 import MButton from "../../atoms/Button";
-import { Wallet } from "../../molecules/Wallet";
+import { ConnectWallet } from "../../molecules/ConnectWallet";
 import colors from "styles/customTheme/colors";
 
 interface Props {
@@ -47,7 +47,11 @@ const Header = ({ onValidatorsPage = false }: Props) => {
   };
 
   const router = useRouter();
-  const isStakingActive = router.pathname.includes("staking");
+  const [isLargerThan430] = useMediaQuery("(min-width: 430px)");
+  const isStakingActive =
+    !onValidatorsPage && router.pathname.includes("staking");
+  const isDefiActive = !onValidatorsPage && router.pathname.includes("defi");
+  const isMndeActive = !onValidatorsPage && router.pathname.includes("mnde");
 
   return (
     <Flex
@@ -61,6 +65,7 @@ const Header = ({ onValidatorsPage = false }: Props) => {
       py={[2, 4]}
       zIndex={1000}
       px={{ base: 4, md: "12vw" }}
+      flexWrap={isLargerThan430 ? "nowrap" : "wrap"}
     >
       <Link href="/" passHref>
         <Box pb="8px">
@@ -88,12 +93,12 @@ const Header = ({ onValidatorsPage = false }: Props) => {
           variant="link"
           color={colors.black}
           rounded="none"
-          isActive={!onValidatorsPage && isStakingActive}
+          isActive={isStakingActive}
           width="80px"
           fontWeight="normal"
           font="text-xl"
           mb="4px"
-          py={!onValidatorsPage && isStakingActive ? "4px" : "7px"}
+          py={isStakingActive ? "4px" : "7px"}
           _active={activeMenu}
           _hover={activeMenu}
           onClick={() => router.push("/app/staking")}
@@ -105,24 +110,46 @@ const Header = ({ onValidatorsPage = false }: Props) => {
           variant="link"
           color={colors.black}
           rounded="none"
-          isActive={!onValidatorsPage && !isStakingActive}
-          width="107px"
+          isActive={isDefiActive}
+          width="80px"
           fontWeight="normal"
           font="text-xl"
           mb="4px"
-          py={!onValidatorsPage && !isStakingActive ? "4px" : "7px"}
+          py={isDefiActive ? "4px" : "7px"}
           _active={activeMenu}
           _hover={activeMenu}
           onClick={() => router.push("/app/defi")}
         >
-          {t("appPage.use-msol-menu-item")}
+          {t("appPage.defi-menu-item")}
+        </MButton>
+
+        <MButton
+          variant="link"
+          color={colors.black}
+          rounded="none"
+          isActive={isMndeActive}
+          width="80px"
+          fontWeight="normal"
+          font="text-xl"
+          mb="4px"
+          py={isMndeActive ? "4px" : "7px"}
+          _active={activeMenu}
+          _hover={activeMenu}
+          onClick={() => router.push("/app/mnde")}
+        >
+          {t("appPage.mnde-menu-item")}
         </MButton>
       </Flex>
 
       {!onValidatorsPage && (
-        <Box pb="8px">
-          <Wallet />
-        </Box>
+        <Flex
+          pt={[2, 0]}
+          width={isLargerThan430 ? "160px" : "100%"}
+          justifyContent="flex-end"
+          pb="8px"
+        >
+          <ConnectWallet />
+        </Flex>
       )}
     </Flex>
   );

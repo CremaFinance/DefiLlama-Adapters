@@ -1,7 +1,7 @@
-import { getTokensList } from "../../../utils/tokens-list";
-import { updatePool } from "../../../utils/update-pool";
+import { updatePoolFromTokens } from "../../../utils/update-pool";
 import { Prices } from "../../domain/coinSymbols";
-import { MarketPools } from "../../domain/market";
+import { FetchPools, Pool } from "../../domain/pool";
+import { Provider } from "../../domain/providers";
 
 import { orcaPools, OrcaPoolsResponse } from "./config";
 import { LiquidityOrcaPoolIds } from "./liquidityOrcaPoolIds";
@@ -21,28 +21,33 @@ export const mapOrcaPoolsResponse = (
   const poolsArray = Object.entries(orcaPools).map(([key, incoming]) => {
     let pool = incoming;
     if (pool.providerId) {
-      const result = orcaResults[pool.providerId as LiquidityOrcaPoolIds]; // map
+      const result = orcaResults[pool.providerId as LiquidityOrcaPoolIds];
       if (result) {
         const { tokenAAmount, tokenBAmount, apy } = result;
-        pool = updatePool(pool, prices, tokenAAmount, tokenBAmount, apy.week);
+        pool = updatePoolFromTokens(
+          pool,
+          prices,
+          tokenAAmount,
+          tokenBAmount,
+          apy.week
+        );
       }
     }
-    return { [key]: pool };
+    return { [key]: pool as Pool };
   });
 
   // convert to map
   return poolsArray.reduce((acc, pool) => {
     return { ...acc, ...pool };
-  }, {}) as MarketPools;
+  }, {});
 };
 
-export const getOrca = async (prices: Prices) => {
+export const getOrca: FetchPools = async (prices) => {
   const results = await fetchOrcaPools();
   return mapOrcaPoolsResponse(results, prices);
 };
 
-export const orca = {
+export const orca: Provider = {
   fetchPools: getOrca,
-  pools: orcaPools as MarketPools,
-  tokenList: getTokensList(Object.values(orcaPools)),
+  pools: orcaPools,
 };

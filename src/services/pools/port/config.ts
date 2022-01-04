@@ -1,6 +1,6 @@
 import { coinSymbols } from "../../domain/coinSymbols";
 import { marketTypes } from "../../domain/marketTypes";
-import { Pool } from "../../domain/pool";
+import { PoolConfig } from "../../domain/pool";
 
 import {
   lendingPortPoolAddress,
@@ -12,13 +12,21 @@ import { PortPool } from "./portPool";
 
 const provider = "Port";
 const actions = [
-  { text: "Supply", url: "https://mainnet.port.finance/#/supply" },
-  { text: "Borrow", url: "https://mainnet.port.finance/#/borrow" },
+  {
+    text: "Supply",
+    url: "https://mainnet.port.finance/#/supply",
+    isExternal: true,
+  },
+  {
+    text: "Borrow",
+    url: "https://mainnet.port.finance/#/borrow",
+    isExternal: true,
+  },
 ];
 
 export type PortPoolsResponse = Record<LendingPortPoolIds, PortPool>;
 
-export const portPools: Record<LendingPortPoolAddress, Pool> = {
+export const portPools: Record<LendingPortPoolAddress, PoolConfig> = {
   [lendingPortPoolAddress.PORT_mSOL]: {
     ...lendingPortPoolTokens[lendingPortPoolAddress.PORT_mSOL],
     ...{

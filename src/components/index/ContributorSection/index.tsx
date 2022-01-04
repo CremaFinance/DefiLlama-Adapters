@@ -1,8 +1,8 @@
 import { Flex, Image, Link } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 
-import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
+import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
 
@@ -38,25 +38,34 @@ const ContributorSection = () => {
         >
           {t("indexPage.contributor-section-subtitle")}
         </MText>
-        <MButton
-          font="text-xl"
-          rounded="md"
-          bg={colors.marinadeGreen}
-          _hover={{ bg: colors.green800 }}
+        <MLink
+          target="_blank"
+          rel="noreferrer noopener"
+          href="https://discord.com/invite/6EtUf4Euu6"
+          w="245.6px"
+          h="48px"
           colorScheme={colors.marinadeGreen}
+          bg={colors.marinadeGreen}
           color={colors.white}
+          _hover={{ bg: colors.green800 }}
+          _focus={{ boxShadow: "none" }}
+          font="text-xl"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          rounded="md"
           mt={8}
           mb={8}
-          p="24px"
+          p="16px"
         >
           {t("indexPage.contributor-section-action")}
-        </MButton>
+        </MLink>
         <Flex mt={[0, 8]} mb={16}>
           <Link
             target="_blank"
             rel="noreferrer noopener"
             mr={4}
-            href="https://discord.gg/mGqZA5pjRN"
+            href="https://discord.com/invite/6EtUf4Euu6"
           >
             <Image
               cursor="pointer"
