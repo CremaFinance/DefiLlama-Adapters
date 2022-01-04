@@ -10,8 +10,9 @@ export const Default: ComponentStory<typeof UnstakeOptions> = (args) => {
 
 Default.args = {
   active: true,
-  unstakeBalance: "0",
-  unstakeNowFee: 0,
+  unstakeNowReceive: "0",
+  delayedUnstakeReceive: "0",
+  unstakeNowFee: "0",
   mb: 2,
   handleSwitch: () => {},
 };
