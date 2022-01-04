@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import {
   Flex,
   Progress,
@@ -64,7 +65,7 @@ const InfoBoxesSection = () => {
 
   const epochData = useEpochInfo()?.data;
 
-  const { totalStaked, totalValidatorsCount } = useStats();
+  const { totalStaked, totalValidatorsCount, stakeAPY } = useStats();
 
   const { marinadeState } = useMarinade();
 
@@ -81,9 +82,7 @@ const InfoBoxesSection = () => {
   const solUSD = data ? data[coinSymbols.SOL]?.usd : 0;
 
   const mSolUSD = Number(format2Dec(solUSD ?? 0 * mSOLvsSOLParity));
-
-  // TODO: Use actual values from services
-  const weekAPY = 7.16;
+  const stakeAPYValue = (stakeAPY ?? 0) * 100;
 
   return (
     <>
@@ -209,7 +208,11 @@ const InfoBoxesSection = () => {
                 />
               </Flex>
               <MText type="text-md" pb={2}>
-                ETA: <Countdown initialTimeLeft={epochData.msUntilEpochEnd} />
+                ETA:{" "}
+                <Countdown
+                  initialTimeLeft={epochData.msUntilEpochEnd}
+                  showSeconds={false}
+                />
               </MText>
             </>
           ) : (
@@ -232,12 +235,18 @@ const InfoBoxesSection = () => {
           mx={2}
         >
           <Flex justifyContent="space-between" mb={3}>
-            <MText type="text-md">{t("appPage.info-week-apy")}</MText>
-            <InfoIconWithTooltip
-              tooltipText={t("appPage.info-week-apy-tooltip")}
-            />
+            <MText type="text-md">APY</MText>
+            <InfoIconWithTooltip tooltipText={t("appPage.info-apy-tooltip")} />
           </Flex>
-          <MHeading type="heading-2xsm">{weekAPY}%</MHeading>
+          {stakeAPYValue ? (
+            <MHeading type="heading-2xsm">
+              {format2Dec(stakeAPYValue)}%
+            </MHeading>
+          ) : (
+            <Flex flex={1} alignItems="center" justifyContent="center">
+              <Spinner size="md" mr={3} />
+            </Flex>
+          )}
         </Flex>
         <Flex
           bg={colors.white}
@@ -348,13 +357,17 @@ const InfoBoxesSection = () => {
         </Flex>
         <Flex justifyContent="space-between" alignItems="center">
           <MLink font="text-lg" color={colors.marinadeGreen}>
-            {t("appPage.info-week-apy")}
+            APY
           </MLink>
           <Flex>
-            <MHeading type="heading-2xsm">{weekAPY}%</MHeading>
-            <InfoIconWithTooltip
-              tooltipText={t("appPage.info-week-apy-tooltip")}
-            />
+            {stakeAPYValue ? (
+              <MHeading type="heading-2xsm">
+                {format2Dec(stakeAPYValue)}%
+              </MHeading>
+            ) : (
+              <Spinner size="sm" mr={3} />
+            )}
+            <InfoIconWithTooltip tooltipText={t("appPage.info-apy-tooltip")} />
           </Flex>
         </Flex>
         <Flex justifyContent="space-between" alignItems="center">
