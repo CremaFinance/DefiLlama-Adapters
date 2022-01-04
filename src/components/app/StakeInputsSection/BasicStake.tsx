@@ -75,13 +75,13 @@ const BasicStake = () => {
         isWalletConnected,
         connection,
         walletPubKey,
-        fetchStakesLoading
+        !fetchStakesLoading || !stakeLoading
       );
     } else {
       getStakeAccountsAction(isWalletConnected, connection, walletPubKey, true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isWalletConnected]);
+  }, [isWalletConnected, stakeLoading]);
 
   const mSOLvsSOLParity = marinadeState?.state?.st_sol_price
     ? marinadeState?.state?.st_sol_price?.toNumber() / 0x1_0000_0000
