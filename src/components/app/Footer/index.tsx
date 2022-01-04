@@ -1,7 +1,9 @@
-import { Box, Flex, Image, Link } from "@chakra-ui/react";
+import { Box, Flex, Image, Link, Icon } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import NextLink from "next/link";
+import { FiExternalLink } from "react-icons/fi";
 
+import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
 
@@ -98,10 +100,35 @@ const Footer = () => {
           <MText pb={2} type="text-2xl" color={colors.white} fontWeight="800">
             {t("appPage.footer-learn-more")}
           </MText>
-
-          <MText type="text-xl" color={colors.white} mb={2}>
-            <Link href="/">{t("indexPage.footer-docs")}</Link>
-          </MText>
+          <MButton
+            font="text-xl"
+            fontWeight={500}
+            variant="link"
+            color={colors.white}
+            bg="none"
+            _hover={{ textDecoration: "underline" }}
+            width="fit-content"
+            mb={2}
+            rightIcon={
+              <Icon
+                as={FiExternalLink}
+                width="16px"
+                height="16px"
+                cursor="pointer"
+              />
+            }
+          >
+            <Link
+              as={Link}
+              target="_blank"
+              href="https://docs.marinade.finance/"
+              _hover={{ textDecoration: "none" }}
+              rel="noreferrer noopener"
+              _focus={{ boxShadow: "none" }}
+            >
+              {t("indexPage.footer-docs")}
+            </Link>
+          </MButton>
         </Flex>
       </Flex>
 

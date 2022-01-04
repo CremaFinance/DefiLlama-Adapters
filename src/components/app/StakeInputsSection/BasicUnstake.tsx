@@ -8,6 +8,7 @@ import { MdInfoOutline } from "react-icons/md";
 import { useUserBalance } from "../../../contexts/UserBalanceContext";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
+import TooltipWithContent from "../../molecules/TooltipWithContent";
 import UnstakeTicketsSection from "../UnstakeTicketsSection";
 import StakeInput, {
   StakeInputTypeEnum,
@@ -17,6 +18,7 @@ import UnstakeOptions from "components/molecules/UnstakeOptions";
 import { AccountsContext } from "contexts/AccountsContext";
 import { useChain, useConnection, useKeys } from "contexts/ConnectionProvider";
 import { useMarinade } from "contexts/MarinadeContext";
+import { useStats } from "contexts/StatsContext";
 import { TicketAccount } from "solana/domain/ticket-account";
 import colors from "styles/customTheme/colors";
 import { basicInputChecks } from "utils/basic-input-checks";
@@ -37,6 +39,7 @@ const BasicUnstake = () => {
   const [showModal, setShowModal] = useState(false);
   const { nativeSOLBalance, stSOLBalance } = useUserBalance();
   const { connected: walletConnected, publicKey: walletPubKey } = useWallet();
+  const { liqPoolBalance } = useStats();
 
   const unstakeButtonText = isUnstakeNowActive
     ? t("appPage.start-unstake-action")
@@ -53,12 +56,62 @@ const BasicUnstake = () => {
   } = useContext(AccountsContext);
 
   const marinade = useMarinade();
+  const state = marinade?.marinadeState?.state;
   const marinadeState = marinade?.marinadeState;
 
+  const stSolPrice: number = state?.st_sol_price
+    ? state?.st_sol_price.toNumber() / 0x1_0000_0000
+    : 0;
+  const liquidity = liqPoolBalance ? BigInt(liqPoolBalance) : BigInt(0);
+  const receiveLamports = BigInt(
+    Number(stSolToUnstake) * stSolPrice * LAMPORTS_PER_SOL
+  );
+
+  function getDiscountBasisPoints(): number {
+    if (
+      !state?.liq_pool?.lp_max_fee.basis_points ||
+      !state?.liq_pool?.lp_min_fee?.basis_points
+    ) {
+      return 0;
+    }
+
+    if (receiveLamports > liquidity) {
+      // more asked than available => max discount
+      return state?.liq_pool?.lp_max_fee.basis_points;
+    }
+
+    const target = BigInt(
+      state?.liq_pool?.lp_liquidity_target
+        ? state?.liq_pool?.lp_liquidity_target.toNumber()
+        : 0
+    );
+    const liqAfter = liquidity - receiveLamports;
+    if (liqAfter >= target) {
+      // still >= target after swap => min discount
+      return state?.liq_pool?.lp_min_fee?.basis_points;
+    }
+
+    const range = BigInt(
+      state?.liq_pool?.lp_max_fee?.basis_points -
+        state?.liq_pool?.lp_min_fee?.basis_points
+    );
+    // here 0<after<target, so 0<proportion<range
+    const proportion: bigint = (range * liqAfter) / target;
+    return state?.liq_pool?.lp_max_fee?.basis_points - Number(proportion);
+  }
   const minUnstakeFee = 0.3;
   const mSOLvsSOLParity = marinadeState?.state?.st_sol_price
     ? marinadeState?.state?.st_sol_price?.toNumber() / 0x1_0000_0000
     : 0;
+
+  // const realReceive = isUnstakeNowActive
+  //   ? receiveLamports -
+  //     (receiveLamports * BigInt(getDiscountBasisPoints())) / BigInt(10000)
+  //   : receiveLamports;
+  const unstakeNowReceive =
+    receiveLamports -
+    (receiveLamports * BigInt(getDiscountBasisPoints())) / BigInt(10000);
+  const delayedUnstakeReceive = receiveLamports;
 
   useEffect(() => {
     if (walletConnected) {
@@ -267,7 +320,12 @@ const BasicUnstake = () => {
       />
       {walletConnected ? (
         <UnstakeOptions
-          unstakeBalance={format9Dec(Number(stSolToUnstake) * mSOLvsSOLParity)}
+          unstakeNowReceive={format9Dec(
+            Number(unstakeNowReceive) / LAMPORTS_PER_SOL
+          )}
+          delayedUnstakeReceive={format9Dec(
+            Number(delayedUnstakeReceive) / LAMPORTS_PER_SOL
+          )}
           unstakeNowFee={minUnstakeFee}
           active={isUnstakeNowActive}
           mb={6}
@@ -299,13 +357,15 @@ const BasicUnstake = () => {
           <MText type="text-md">
             {t("appPage.stake-inputs-exchange-rate")}
           </MText>
-          <IconButton
-            variant="link"
-            aria-label="Info epoch"
-            size="sm"
-            _focus={{ boxShadow: "none" }}
-            icon={<MdInfoOutline />}
-          />
+          <TooltipWithContent tooltipText={t("appPage.exchange-rate-tooltip")}>
+            <IconButton
+              variant="link"
+              aria-label="Info epoch"
+              size="sm"
+              _focus={{ boxShadow: "none" }}
+              icon={<MdInfoOutline />}
+            />
+          </TooltipWithContent>
         </Flex>
         <MText type="text-md">{`1 mSOL ≈ ${mSOLvsSOLParity.toFixed(
           5

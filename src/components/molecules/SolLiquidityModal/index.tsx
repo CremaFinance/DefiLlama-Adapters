@@ -86,7 +86,7 @@ const SolLiquidityModal = ({
       )
     ) {
       return toast({
-        title: t("appPage.ammount-exceeds-current-liquidity-cap"),
+        title: t("appPage.amount-exceeds-current-liquidity-cap"),
         description: t("appPage.try-using-max-button"),
         status: "warning",
         duration: 10000,

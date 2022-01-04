@@ -1,6 +1,7 @@
-import { Box, Flex, Image, useMediaQuery } from "@chakra-ui/react";
+import { Box, Flex, Image, Icon, Link, useMediaQuery } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { useRouter } from "next/dist/client/router";
+import { FiExternalLink } from "react-icons/fi";
 
 import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
@@ -109,10 +110,26 @@ export default function InfoSection() {
               color={colors.black}
               bg="none"
               _hover={{ textDecoration: "underline" }}
-              rightIcon={<Image src="/icons/arrow-right.svg" width="0.8rem" />}
+              rightIcon={
+                <Icon
+                  as={FiExternalLink}
+                  width="16px"
+                  height="16px"
+                  cursor="pointer"
+                />
+              }
               mb={8}
             >
-              {readMode}
+              <Link
+                as={Link}
+                target="_blank"
+                href="https://docs.marinade.finance/faq/faq#unstake-now"
+                _hover={{ textDecoration: "none" }}
+                rel="noreferrer noopener"
+                _focus={{ boxShadow: "none" }}
+              >
+                {readMode}
+              </Link>
             </MButton>
 
             <Flex
@@ -195,11 +212,27 @@ export default function InfoSection() {
               color={colors.black}
               bg="none"
               _hover={{ textDecoration: "underline" }}
-              rightIcon={<Image src="/icons/arrow-right.svg" width="0.8rem" />}
+              rightIcon={
+                <Icon
+                  as={FiExternalLink}
+                  width="16px"
+                  height="16px"
+                  cursor="pointer"
+                />
+              }
               mb={8}
               mt={2}
             >
-              {readMode}
+              <Link
+                as={Link}
+                target="_blank"
+                href="https://docs.marinade.finance/marinade-protocol/validators"
+                _hover={{ textDecoration: "none" }}
+                rel="noreferrer noopener"
+                _focus={{ boxShadow: "none" }}
+              >
+                {readMode}
+              </Link>
             </MButton>
 
             <Flex
@@ -282,8 +315,9 @@ export default function InfoSection() {
               _hover={{ textDecoration: "underline" }}
               rightIcon={<Image src="/icons/arrow-right.svg" width="0.8rem" />}
               mb={8}
+              onClick={() => router.push("/app/defi")}
             >
-              {readMode}
+              {t("indexPage.info-section-items.2.explore-defi")}
             </MButton>
 
             <Box
