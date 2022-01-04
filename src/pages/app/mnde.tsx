@@ -1,4 +1,4 @@
-import { Box, Flex, Image } from "@chakra-ui/react";
+import { Flex, Image } from "@chakra-ui/react";
 
 import Footer from "components/app/Footer";
 import Header from "components/app/Header";
@@ -7,7 +7,13 @@ import colors from "styles/customTheme/colors";
 
 const Mnde = () => {
   return (
-    <Box position="relative" overflow="hidden" bg={colors.greenLight}>
+    <Flex
+      position="relative"
+      overflow="hidden"
+      bg={colors.greenLight}
+      flexDirection="column"
+      height={{ base: "unset", "2xl": "100vh" }}
+    >
       <Flex width="100vw" justifyContent="flex-end">
         <Image
           src="../../ilustrations/left-leaf.svg"
@@ -30,9 +36,11 @@ const Mnde = () => {
         />
       </Flex>
       <Header />
-      <MndeSection />
+      <Flex flex={1}>
+        <MndeSection />
+      </Flex>
       <Footer />
-    </Box>
+    </Flex>
   );
 };
 

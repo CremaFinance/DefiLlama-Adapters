@@ -18,7 +18,7 @@ const MndeSection = () => {
       aria-label="mnde-section"
       position="relative"
       flexDirection="column"
-      alignItems="stretch"
+      width="100vw"
     >
       <Flex
         marginTop={{ base: "24px", lg: "40px" }}
