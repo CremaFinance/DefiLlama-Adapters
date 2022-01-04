@@ -8,13 +8,13 @@ import { MdInfoOutline } from "react-icons/md";
 import { useUserBalance } from "../../../contexts/UserBalanceContext";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
+import TooltipWithContent from "../../molecules/TooltipWithContent";
 import UnstakeTicketsSection from "../UnstakeTicketsSection";
 import StakeInput, {
   StakeInputTypeEnum,
 } from "components/molecules/StakeInput";
-import SwitchButtons from "components/molecules/SwitchButtons";
-import TooltipWithContent from "components/molecules/TooltipWithContent";
 import TransactionLink from "components/molecules/TransactionLink";
+import UnstakeOptions from "components/molecules/UnstakeOptions";
 import { AccountsContext } from "contexts/AccountsContext";
 import { useChain, useConnection, useKeys } from "contexts/ConnectionProvider";
 import { useMarinade } from "contexts/MarinadeContext";
@@ -40,6 +40,10 @@ const BasicUnstake = () => {
   const { nativeSOLBalance, stSOLBalance } = useUserBalance();
   const { connected: walletConnected, publicKey: walletPubKey } = useWallet();
   const { liqPoolBalance } = useStats();
+
+  const unstakeButtonText = isUnstakeNowActive
+    ? t("appPage.start-unstake-action")
+    : t("appPage.start-delayed-unstake-action");
 
   const chain = useChain();
   const {
@@ -95,24 +99,15 @@ const BasicUnstake = () => {
     const proportion: bigint = (range * liqAfter) / target;
     return state?.liq_pool?.lp_max_fee?.basis_points - Number(proportion);
   }
-
-  const unstakeText = isUnstakeNowActive
-    ? t("appPage.unstake-now-action")
-    : t("appPage.start-delayed-unstake-action");
-
-  const minUnstakeFee = 0.3;
-  const maxUnstakeFee = 3;
+  const minUnstakeFee = "0.3";
   const mSOLvsSOLParity = marinadeState?.state?.st_sol_price
     ? marinadeState?.state?.st_sol_price?.toNumber() / 0x1_0000_0000
     : 0;
-  const targetTokenBalance = nativeSOLBalance
-    ? nativeSOLBalance / LAMPORTS_PER_SOL - 0.001
-    : 0;
-  const timeToUnstake = "~7 days";
-  const realReceive = isUnstakeNowActive
-    ? receiveLamports -
-      (receiveLamports * BigInt(getDiscountBasisPoints())) / BigInt(10000)
-    : receiveLamports;
+
+  const unstakeNowReceive =
+    receiveLamports -
+    (receiveLamports * BigInt(getDiscountBasisPoints())) / BigInt(10000);
+  const delayedUnstakeReceive = receiveLamports;
 
   useEffect(() => {
     if (walletConnected) {
@@ -310,21 +305,6 @@ const BasicUnstake = () => {
 
   return (
     <>
-      <SwitchButtons
-        leftText={t("appPage.unstake-now-action")}
-        rightText={t("appPage.delayed-unstake-action")}
-        mb={8}
-        height={40}
-        width={["254px", "322px"]}
-        buttonWidth={["121px", "155px"]}
-        active={isUnstakeNowActive}
-        font="text-lg"
-        display="flex"
-        handleSwitch={() => {
-          setUnstakeNowActive((val) => !val);
-          setStSolToUnstake("");
-        }}
-      />
       <StakeInput
         stakeInputType={StakeInputTypeEnum.Source}
         onValueChange={setStSolToUnstake}
@@ -332,16 +312,39 @@ const BasicUnstake = () => {
         tokenIcon="/icons/mSOL.svg"
         tokenBalance={stSOLBalance ?? 0}
         value={stSolToUnstake}
-        mb={2}
+        mb={6}
       />
-      <StakeInput
-        stakeInputType={StakeInputTypeEnum.Target}
-        tokenName="SOL"
-        tokenIcon="/icons/solana-dark.png"
-        tokenBalance={targetTokenBalance}
-        value={format9Dec(Number(realReceive) / LAMPORTS_PER_SOL)}
-        mb={2}
-      />
+      {walletConnected ? (
+        <UnstakeOptions
+          unstakeNowReceive={format9Dec(
+            Number(unstakeNowReceive) / LAMPORTS_PER_SOL
+          )}
+          delayedUnstakeReceive={format9Dec(
+            Number(delayedUnstakeReceive) / LAMPORTS_PER_SOL
+          )}
+          unstakeNowFee={minUnstakeFee}
+          active={isUnstakeNowActive}
+          mb={6}
+          handleSwitch={(val) => setUnstakeNowActive(val)}
+        />
+      ) : null}
+
+      <MButton
+        font="text-xl"
+        bg={colors.marinadeGreen}
+        isLoading={unstakeLoading}
+        _hover={{ bg: colors.green800 }}
+        colorScheme={colors.marinadeGreen}
+        rounded="md"
+        px={4}
+        height="48px"
+        mx={4}
+        mb={4}
+        onClick={isUnstakeNowActive ? unstakeHandler : () => setShowModal(true)}
+      >
+        {unstakeButtonText}
+      </MButton>
+
       <Flex width={["256px", "400px"]} my={1} justifyContent="space-between">
         <Flex>
           <MText type="text-md">
@@ -361,64 +364,6 @@ const BasicUnstake = () => {
           5
         )} SOL`}</MText>
       </Flex>
-      <Flex
-        width={["256px", "400px"]}
-        mt={1}
-        mb={1}
-        justifyContent="space-between"
-      >
-        <Flex>
-          <MText type="text-md">{t("appPage.stake-inputs-unstake-fee")}</MText>
-          <TooltipWithContent tooltipText={t("appPage.unstake-fee-tooltip")}>
-            <IconButton
-              variant="link"
-              aria-label="Info unstake fee"
-              size="sm"
-              _focus={{ boxShadow: "none" }}
-              icon={<MdInfoOutline />}
-            />
-          </TooltipWithContent>
-        </Flex>
-        <MText type="text-md">{`${minUnstakeFee}-${maxUnstakeFee}%`}</MText>
-      </Flex>
-      {!isUnstakeNowActive ? (
-        <Flex width={["256px", "400px"]} my={1} justifyContent="space-between">
-          <Flex>
-            <MText type="text-md">
-              {t("appPage.stake-inputs-time-to-unstake")}
-            </MText>
-            <TooltipWithContent
-              tooltipText={t("appPage.tooltip-time-to-unstake-text")}
-              link={t("appPage.tooltip-time-to-unstake-docs-link")}
-            >
-              <IconButton
-                variant="link"
-                aria-label="Info epoch"
-                size="sm"
-                _focus={{ boxShadow: "none" }}
-                icon={<MdInfoOutline />}
-              />
-            </TooltipWithContent>
-          </Flex>
-          <MText type="text-md">{timeToUnstake}</MText>
-        </Flex>
-      ) : null}
-      <MButton
-        font="text-xl"
-        bg={colors.marinadeGreen}
-        isLoading={unstakeLoading}
-        _hover={{ bg: colors.green800 }}
-        colorScheme={colors.marinadeGreen}
-        rounded="md"
-        px={4}
-        height="48px"
-        mx={4}
-        mt={5}
-        onClick={isUnstakeNowActive ? unstakeHandler : () => setShowModal(true)}
-      >
-        {unstakeText}
-      </MButton>
-
       <DelayedUnstakeModal
         stSolToUnstake={Number(stSolToUnstake)}
         isOpen={showModal}
