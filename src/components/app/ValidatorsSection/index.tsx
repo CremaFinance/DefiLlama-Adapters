@@ -40,6 +40,7 @@ interface Validator {
   validator_vote_address: string;
   validator_description: string;
   most_recent_apy: number;
+  most_recent_marinade_staked: number;
   epoch_stats: Stat[];
 }
 
@@ -196,21 +197,14 @@ const ValidatorTable = () => {
 
   const fetchData = async (): Promise<Query> => {
     const res = await fetch(
-      `https://marinade-dashboard-api.herokuapp.com/validators/?page=${pageNumber}`
+      `https://marinade-dashboard-api-test.herokuapp.com/validators/?page=${pageNumber}`
     );
 
     if (!res.ok) {
       throw new Error(res.statusText);
     }
 
-    const data = await res.json();
-
-    // eslint-disable-next-line no-restricted-syntax
-    for (const validator of data.validators) {
-      validator.epoch_stats.reverse();
-    }
-
-    return data;
+    return res.json();
   };
 
   const {
@@ -334,10 +328,7 @@ const ValidatorTable = () => {
 
                 <Td {...cell} width="200px">
                   <MText>
-                    {numberToShortVersion(
-                      tuple.epoch_stats[tuple.epoch_stats.length - 1]
-                        .marinade_staked
-                    )}{" "}
+                    {numberToShortVersion(tuple.most_recent_marinade_staked)}{" "}
                     SOL
                   </MText>
                 </Td>
