@@ -67,7 +67,7 @@ const UnstakeOptions = ({
           <MText color={colors.black} type="text-sm">
             {`${t("appPage.stake-inputs-unstake-fee")}: ${t(
               "appPage.from-fee"
-            )} ${unstakeNowFee}`}
+            )} ${unstakeNowFee}%`}
           </MText>
         </Flex>
       </Flex>
