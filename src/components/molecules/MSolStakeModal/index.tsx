@@ -262,7 +262,9 @@ const MSolStakeModal = ({
               tokenName="mSOL"
               tokenIcon="/icons/mSOL.svg"
               tokenBalance={
-                isDepositActive ? stSOLBalance ?? 0 : userStake?.toNumber() ?? 0
+                isDepositActive
+                  ? stSOLBalance ?? 0
+                  : (userStake?.toNumber() ?? 0) / LAMPORTS_PER_SOL
               }
               value={amount}
               mb={4}
