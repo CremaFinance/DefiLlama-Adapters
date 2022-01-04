@@ -7,7 +7,8 @@ import MText from "../../atoms/Text";
 
 type UnstakeOptionsProps = {
   active: boolean;
-  unstakeBalance: string;
+  unstakeNowReceive: string;
+  delayedUnstakeReceive: string;
   unstakeNowFee: number;
   mb: number;
   handleSwitch: (v: boolean) => void;
@@ -15,7 +16,8 @@ type UnstakeOptionsProps = {
 
 const UnstakeOptions = ({
   active,
-  unstakeBalance,
+  unstakeNowReceive,
+  delayedUnstakeReceive,
   unstakeNowFee,
   mb,
   handleSwitch,
@@ -60,7 +62,7 @@ const UnstakeOptions = ({
             ) : null}
           </Flex>
           <MText color={colors.black} type="text-xl" fontWeight="bold">
-            {unstakeBalance} SOL
+            {unstakeNowReceive} SOL
           </MText>
           <MText color={colors.black} type="text-sm">
             {t("appPage.stake-inputs-unstake-fee")}: {unstakeNowFee}%
@@ -95,7 +97,7 @@ const UnstakeOptions = ({
             ) : null}
           </Flex>
           <MText color={colors.black} type="text-xl" fontWeight="bold">
-            {unstakeBalance} SOL
+            {delayedUnstakeReceive} SOL
           </MText>
           <MText color={colors.black} type="text-sm">
             {t("appPage.stake-inputs-unstake-fee")}: {delayedUnstakeFee}%
