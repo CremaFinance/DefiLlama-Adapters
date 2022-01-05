@@ -64,7 +64,7 @@ const BasicUnstake = () => {
     : 0;
   const liquidity = liqPoolBalance ? BigInt(liqPoolBalance) : BigInt(0);
   const receiveLamports = BigInt(
-    Number(stSolToUnstake) * stSolPrice * LAMPORTS_PER_SOL
+    Math.round(Number(stSolToUnstake) * stSolPrice * LAMPORTS_PER_SOL)
   );
 
   function getDiscountBasisPoints(): number {
