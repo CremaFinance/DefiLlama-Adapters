@@ -32,7 +32,7 @@
     "@fontsource/maven-pro": "^4.5.1",
     "@project-serum/anchor": "^0.17.0",
     "@quarryprotocol/quarry-sdk": "^1.11.0",
-    "@saberhq/anchor-contrib": "^1.12.9",
+    "@saberhq/anchor-contrib": "^1.12.20",
     "@saberhq/solana-contrib": "^1.12.4",
     "@saberhq/token-utils": "^1.12.20",
     "@solana/spl-token": "^0.1.8",
