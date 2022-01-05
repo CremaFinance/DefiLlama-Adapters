@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@chakra-ui/layout": "^1.6.0",
-    "@chakra-ui/react": "^1.7.3",
+    "@chakra-ui/react": "^1.7.4",
     "@emotion/cache": "^11.7.1",
     "@emotion/react": "^11.7.1",
     "@emotion/server": "^11.4.0",
@@ -77,7 +77,7 @@
     "@testing-library/jest-dom": "^5.16.1",
     "@types/jest": "^27.4.0",
     "@types/react": "^17.0.38",
-    "babel-jest": "^27.4.5",
+    "babel-jest": "^27.4.6",
     "babel-loader": "^8.2.3",
     "commitlint": "^16.0.1",
     "eslint": "^7.32.0",
