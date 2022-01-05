@@ -2890,18 +2890,18 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.1.0.tgz#7f698254aadf921e48dda8c0a6b304026b8a9323"
   integrity sha512-JLo+Y592QzIE+q7Dl2pMUtt4q8SKYI5jDrZxrozEQxnGVOyYE+GWK9eLkwTaeN9DDctlaRAQ3TBmzZ1qdLE30A==
 
-"@saberhq/anchor-contrib@^1.12.9":
-  version "1.12.9"
-  resolved "https://registry.yarnpkg.com/@saberhq/anchor-contrib/-/anchor-contrib-1.12.9.tgz#dc990ea291321c9af23130a32e8753cb02c3a03a"
-  integrity sha512-BqA9PElh8G5z+KFCo2+lECLIO7cihgXQuRAhmy+KoQWWSY139292cAc89/uksFObqcVd/7Y2gsr97ASrdtbeRQ==
+"@saberhq/anchor-contrib@^1.12.20":
+  version "1.12.20"
+  resolved "https://registry.yarnpkg.com/@saberhq/anchor-contrib/-/anchor-contrib-1.12.20.tgz#146e830b061cc1929043000bcbb60165cd36a168"
+  integrity sha512-jsHzrn1SCwXCHJ5EsfPEukevBJwbBaspuFGirvCJpY4ngaUY6bAOMJYbN/YAq2ny2SpVDhIbc10ePGHOiPl5XQ==
   dependencies:
-    "@saberhq/solana-contrib" "^1.12.9"
+    "@saberhq/solana-contrib" "^1.12.20"
     eventemitter3 "^4.0.7"
     lodash.camelcase "^4.3.0"
     lodash.mapvalues "^4.6.0"
     tslib "^2.3.1"
 
-"@saberhq/solana-contrib@^1.12.20", "@saberhq/solana-contrib@^1.12.4", "@saberhq/solana-contrib@^1.12.9":
+"@saberhq/solana-contrib@^1.12.20", "@saberhq/solana-contrib@^1.12.4":
   version "1.12.20"
   resolved "https://registry.yarnpkg.com/@saberhq/solana-contrib/-/solana-contrib-1.12.20.tgz#9ee1b281f9d9b6ecaf33f321dec1eb252eb4b548"
   integrity sha512-3pDWYIui62dFN7M+QvD5NpgH3KkANKwOGzIJo0MQqlw459CGjFnqC/dMNxE3F1tIeIWb1DzklamJoG8vGIRYhA==
@@ -2953,10 +2953,10 @@
   dependencies:
     buffer "~6.0.3"
 
-"@solana/spl-token-registry@^0.2.1257":
-  version "0.2.1257"
-  resolved "https://registry.yarnpkg.com/@solana/spl-token-registry/-/spl-token-registry-0.2.1257.tgz#b2f2e580dcda4b620041be7c5c7a9cbcf41ebc72"
-  integrity sha512-tpRfM7NRGOLBLjMo0E1gSJ3+xaHk5qDgyFUW2HvyYVJu0WM2/2eeAdECRAWRkIVaVzMcvyuKP35NdiLL55ah2Q==
+"@solana/spl-token-registry@^0.2.1258":
+  version "0.2.1258"
+  resolved "https://registry.yarnpkg.com/@solana/spl-token-registry/-/spl-token-registry-0.2.1258.tgz#76064bef30bdc8042696b5929a6baa166751804a"
+  integrity sha512-kCyFQ4LU9DU/7MMuTksnVrAd0S5pPMeZVCNJP0jPX2xmUk4CqzcBxQj1kayTrshbOQs0B42jAT1AOm6G7VLzqw==
   dependencies:
     cross-fetch "3.0.6"
 
