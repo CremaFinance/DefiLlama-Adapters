@@ -9,7 +9,9 @@ type UnstakeOptionsProps = {
   active: boolean;
   unstakeNowReceive: string;
   delayedUnstakeReceive: string;
-  unstakeNowFee: string;
+  initialUnstakeNowFee: string;
+  actualUnstakeNowFee: string;
+  inputValue: string;
   mb: number;
   handleSwitch: (v: boolean) => void;
 };
@@ -18,7 +20,9 @@ const UnstakeOptions = ({
   active,
   unstakeNowReceive,
   delayedUnstakeReceive,
-  unstakeNowFee,
+  initialUnstakeNowFee,
+  actualUnstakeNowFee,
+  inputValue,
   mb,
   handleSwitch,
 }: UnstakeOptionsProps) => {
@@ -63,11 +67,20 @@ const UnstakeOptions = ({
           <MText color={colors.black} type="text-xl" fontWeight="bold">
             {unstakeNowReceive} SOL
           </MText>
-          <MText color={colors.black} type="text-sm">
-            {`${t("appPage.stake-inputs-unstake-fee")}: ${t(
-              "appPage.from-fee"
-            )} ${unstakeNowFee}%`}
-          </MText>
+          <Flex>
+            <MText color={colors.black} type="text-sm">
+              {t("appPage.stake-inputs-unstake-fee")}:
+            </MText>
+            {inputValue === "0" || inputValue === "" ? (
+              <MText color={colors.black} type="text-sm">
+                {initialUnstakeNowFee}%
+              </MText>
+            ) : (
+              <MText color={colors.black} type="text-sm">
+                {actualUnstakeNowFee}%
+              </MText>
+            )}
+          </Flex>
         </Flex>
       </Flex>
       <Flex

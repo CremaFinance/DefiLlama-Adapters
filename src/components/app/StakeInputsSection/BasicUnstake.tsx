@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import { Flex, IconButton, useToast } from "@chakra-ui/react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
@@ -23,7 +24,11 @@ import { TicketAccount } from "solana/domain/ticket-account";
 import colors from "styles/customTheme/colors";
 import { basicInputChecks } from "utils/basic-input-checks";
 import { checkNativeSOLBalance } from "utils/check-native-sol-balance";
-import { format5Dec, format9Dec } from "utils/number-to-short-version";
+import {
+  format2Dec,
+  format5Dec,
+  format9Dec,
+} from "utils/number-to-short-version";
 
 import DelayedUnstakeModal from "./DelayedUnstakeModal";
 
@@ -39,7 +44,7 @@ const BasicUnstake = () => {
   const [showModal, setShowModal] = useState(false);
   const { nativeSOLBalance, stSOLBalance } = useUserBalance();
   const { connected: walletConnected, publicKey: walletPubKey } = useWallet();
-  const { liqPoolBalance } = useStats();
+  const { liqPoolBalance, unstakeFee } = useStats();
 
   const unstakeButtonText = isUnstakeNowActive
     ? t("appPage.start-unstake-action")
@@ -108,6 +113,9 @@ const BasicUnstake = () => {
     receiveLamports -
     (receiveLamports * BigInt(getDiscountBasisPoints())) / BigInt(10000);
   const delayedUnstakeReceive = receiveLamports;
+
+  const feeBp = getDiscountBasisPoints() ? getDiscountBasisPoints() : 0;
+  const percentageFee = receiveLamports ? feeBp / 100 : 0;
 
   useEffect(() => {
     if (walletConnected) {
@@ -322,7 +330,13 @@ const BasicUnstake = () => {
           delayedUnstakeReceive={format9Dec(
             Number(delayedUnstakeReceive) / LAMPORTS_PER_SOL
           )}
-          unstakeNowFee={minUnstakeFee}
+          inputValue={stSolToUnstake}
+          initialUnstakeNowFee={minUnstakeFee}
+          actualUnstakeNowFee={
+            unstakeFee && percentageFee
+              ? format2Dec(percentageFee)
+              : "from 0.3%"
+          }
           active={isUnstakeNowActive}
           mb={6}
           handleSwitch={(val) => setUnstakeNowActive(val)}
