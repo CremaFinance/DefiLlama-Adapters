@@ -10,8 +10,9 @@ import {
   useMemo,
   useState,
 } from "react";
-import { Query, useQuery, UseQueryResult } from "react-query";
+import { useQuery, UseQueryResult } from "react-query";
 
+import { fetchStakeAPY } from "../services/marinade/stakeAPY";
 import { isError } from "../utils/is-error";
 
 import { useConnection } from "./ConnectionProvider";
@@ -44,6 +45,11 @@ export interface Stats {
    */
   mSOLvsSOLParity: null | number;
 
+  /**
+   * APY on stake
+   */
+  stakeAPY: null | number;
+
   unstakeFee: null | number;
   totalValidatorsCount: null | number;
 }
@@ -54,6 +60,7 @@ const StatsContext = createContext<Stats>({
   liqPoolMSolAmount: null,
   lpTokenSupply: null,
   mSOLvsSOLParity: null,
+  stakeAPY: null,
   unstakeFee: null,
   totalValidatorsCount: null,
 });
@@ -240,6 +247,8 @@ export function StatsProvider({ children }: StatsProviderProps) {
     }
   }, [data]);
 
+  const stakeAPY = useQuery<number, Error>("stakeAPY", () => fetchStakeAPY());
+
   return (
     <StatsContext.Provider
       value={{
@@ -248,6 +257,7 @@ export function StatsProvider({ children }: StatsProviderProps) {
         liqPoolMSolAmount,
         lpTokenSupply,
         mSOLvsSOLParity,
+        stakeAPY: stakeAPY.data ?? 0,
         unstakeFee,
         totalValidatorsCount,
       }}
