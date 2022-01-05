@@ -41,10 +41,10 @@ const SuccessStakeModal = ({
 
   return (
     <>
-      <Modal isOpen={isOpenProp} onClose={onCloseProp} size="lg">
+      <Modal isOpen={isOpenProp} onClose={onCloseProp} size="lg" isCentered>
         <ModalOverlay />
         <ModalContent maxW="480px">
-          <ModalCloseButton />
+          <ModalCloseButton _focus={{ boxShadow: "none" }} />
           <ModalBody display="flex" justifyContent="center">
             <Flex flexDir="column" height="100%" alignItems="center" margin="0">
               <Image
