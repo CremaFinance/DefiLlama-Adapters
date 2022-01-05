@@ -48,6 +48,7 @@ const Header = () => {
     >
       <Link href="/" passHref>
         <Image
+          pt={2}
           cursor="pointer"
           src="./marinade-logo-black.svg"
           alt="Marinade Logo"
@@ -55,7 +56,7 @@ const Header = () => {
         />
       </Link>
 
-      <Box mt={2} mr={2}>
+      <Box mr={2}>
         <Box display={["block", "block", "none"]}>
           <Sidebar />
         </Box>

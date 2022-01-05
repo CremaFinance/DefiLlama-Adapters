@@ -64,27 +64,25 @@ const Header = ({ onValidatorsPage = false }: Props) => {
       transition="background 0.3s ease, box-shadow 0.3s ease"
       py={[2, 4]}
       zIndex={1000}
-      px={{ base: 4, md: "12vw" }}
+      px={{ base: 4, md: "40px", lg: 160 }}
       flexWrap={isLargerThan430 ? "nowrap" : "wrap"}
     >
       <Link href="/" passHref>
-        <Box pb="8px">
-          <Box display={["none", "block"]}>
-            <Image
-              cursor="pointer"
-              src="../../marinade-logo-black.svg"
-              alt="Marinade Logo"
-              width={200}
-            />
-          </Box>
-          <Box display={["block", "none"]}>
-            <Image
-              cursor="pointer"
-              src="../../marinade-icon-black.svg"
-              alt="Marinade Logo"
-              width={38}
-            />
-          </Box>
+        <Box>
+          <Image
+            cursor="pointer"
+            src="../../marinade-logo-black.svg"
+            alt="Marinade Logo"
+            width={200}
+            display={["none", "block"]}
+          />
+          <Image
+            cursor="pointer"
+            src="../../marinade-icon-black.svg"
+            alt="Marinade Logo"
+            width={38}
+            display={["block", "none"]}
+          />
         </Box>
       </Link>
 
