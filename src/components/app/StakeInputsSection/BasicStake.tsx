@@ -1,4 +1,10 @@
-import { Flex, IconButton, useDisclosure, useToast } from "@chakra-ui/react";
+import {
+  Flex,
+  IconButton,
+  useDisclosure,
+  useToast,
+  Box,
+} from "@chakra-ui/react";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import BN from "bn.js";
 import { useTranslation } from "next-export-i18n";
@@ -10,6 +16,7 @@ import { useMarinade } from "../../../contexts/MarinadeContext";
 import { useUserBalance } from "../../../contexts/UserBalanceContext";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
+import { ConnectWallet } from "../../molecules/ConnectWallet";
 import TooltipWithContent from "../../molecules/TooltipWithContent";
 import StakeInput, {
   StakeAccountType,
@@ -311,21 +318,27 @@ const BasicStake = () => {
         value={solToStake}
         mb={2}
       />
-      <MButton
-        font="text-xl"
-        bg={colors.marinadeGreen}
-        isLoading={stakeLoading}
-        _hover={{ bg: colors.green800 }}
-        colorScheme={colors.marinadeGreen}
-        rounded="md"
-        px={4}
-        height="48px"
-        mx={4}
-        my={4}
-        onClick={stakeHandler}
-      >
-        {stakeText}
-      </MButton>
+      {isWalletConnected ? (
+        <MButton
+          font="text-xl"
+          bg={colors.marinadeGreen}
+          isLoading={stakeLoading}
+          _hover={{ bg: colors.green800 }}
+          colorScheme={colors.marinadeGreen}
+          rounded="md"
+          px={4}
+          height="48px"
+          mx={4}
+          my={4}
+          onClick={stakeHandler}
+        >
+          {stakeText}
+        </MButton>
+      ) : (
+        <Box my={4}>
+          <ConnectWallet />
+        </Box>
+      )}
 
       <Flex width="100%" my={1} justifyContent="space-between">
         <MText type="text-md">{t("appPage.conversion-explained")}</MText>
