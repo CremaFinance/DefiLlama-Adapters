@@ -48,11 +48,12 @@ const Header = () => {
     >
       <Link href="/" passHref>
         <Image
-          pt={2}
+          mt={1}
           cursor="pointer"
           src="./marinade-logo-black.svg"
           alt="Marinade Logo"
           width={[160, 200]}
+          height="40px"
         />
       </Link>
 

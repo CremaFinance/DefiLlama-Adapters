@@ -74,6 +74,7 @@ const Header = ({ onValidatorsPage = false }: Props) => {
             src="../../marinade-logo-black.svg"
             alt="Marinade Logo"
             width={200}
+            height="40px"
             display={["none", "block"]}
           />
           <Image
