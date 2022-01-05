@@ -1,5 +1,13 @@
 /* eslint-disable complexity */
-import { Box, Flex, Icon, Image, Spinner, useToast } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Icon,
+  Image,
+  Spinner,
+  useDisclosure,
+  useToast,
+} from "@chakra-ui/react";
 import { BN } from "@project-serum/anchor";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
@@ -11,6 +19,7 @@ import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
 import { ConnectWallet } from "../../molecules/ConnectWallet";
+import MSolStakeModal from "components/molecules/MSolStakeModal";
 import TransactionLink from "components/molecules/TransactionLink";
 import { useChain } from "contexts/ConnectionProvider";
 import { useQuarryProvider } from "contexts/QuaryContext";
@@ -28,6 +37,7 @@ import {
 const MNDEFarmCard = () => {
   const { t } = useTranslation();
   const toast = useToast();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const { connected } = useWallet();
   const {
     mndeTokadaptState,
@@ -129,122 +139,131 @@ const MNDEFarmCard = () => {
   }, [chain.name, mSOL, t, toast]);
 
   return (
-    <Flex
-      ml="11.5px"
-      mr="11.5px"
-      height={{ base: "466px", lg: "476px" }}
-      width={{ base: "288px", lg: "360px" }}
-      flexDirection="column"
-      padding={{ base: "16px", lg: "32px" }}
-      mb="16px"
-      background="white"
-      border="1px solid"
-      borderColor={colors.lightGray}
-      borderRadius="8px"
-      justifyContent="space-between"
-      zIndex={6}
-    >
-      <Box>
-        <Flex width="100%" justifyContent="space-between">
-          <Flex>
-            <Image src="/icons/mSOL.svg" boxSize="24px" mr="4px" />
-            <MText ml={1}>MSOL</MText>
+    <>
+      <Flex
+        ml="11.5px"
+        mr="11.5px"
+        height={{ base: "466px", lg: "476px" }}
+        width={{ base: "288px", lg: "360px" }}
+        flexDirection="column"
+        padding={{ base: "16px", lg: "32px" }}
+        mb="16px"
+        background="white"
+        border="1px solid"
+        borderColor={colors.lightGray}
+        borderRadius="8px"
+        justifyContent="space-between"
+        zIndex={6}
+      >
+        <Box>
+          <Flex width="100%" justifyContent="space-between">
+            <Flex>
+              <Image src="/icons/mSOL.svg" boxSize="24px" mr="4px" />
+              <MText ml={1}>MSOL</MText>
+            </Flex>
+            <Image src="/icons/mnde.svg" boxSize="40px" />
           </Flex>
-          <Image src="/icons/mnde.svg" boxSize="40px" />
-        </Flex>
-        {apr ? (
-          <>
-            <MHeading fontSize="22.5px" mb="4px">
-              {`${numberToShortVersion(apr)} % APR`}
-            </MHeading>
-            <MText type="text-md" mt="1px">{`${addCommas(
-              numberToShortVersion(
-                (totalDeposited?.toNumber() ?? 0) / LAMPORTS_PER_SOL
-              )
-            )} mSOL = $ ${addCommas(
-              numberToShortVersion(poolValueUSD ?? 0)
-            )} TVL`}</MText>
-            <Flex
-              height="56px"
-              width="100%"
-              mt="16px"
-              mb="16px"
-              borderY="1px solid"
-              borderColor={colors.lightGray}
-              alignItems="center"
-            >
-              <Icon
-                as={IoCheckmarkCircle}
-                color={colors.marinadeGreen}
-                width="24px"
-                height="24px"
-                mr="10px"
-              />
-              <MText>{`${addCommas(
-                numberToShortVersion(weeklyRewardsMNDE)
-              )} MNDE/week`}</MText>
+          {apr ? (
+            <>
+              <MHeading fontSize="22.5px" mb="4px">
+                {`${numberToShortVersion(apr)} % APR`}
+              </MHeading>
+              <MText type="text-md" mt="1px">{`${addCommas(
+                numberToShortVersion(
+                  (totalDeposited?.toNumber() ?? 0) / LAMPORTS_PER_SOL
+                )
+              )} mSOL = $ ${addCommas(
+                numberToShortVersion(poolValueUSD ?? 0)
+              )} TVL`}</MText>
+              <Flex
+                height="56px"
+                width="100%"
+                mt="16px"
+                mb="16px"
+                borderY="1px solid"
+                borderColor={colors.lightGray}
+                alignItems="center"
+              >
+                <Icon
+                  as={IoCheckmarkCircle}
+                  color={colors.marinadeGreen}
+                  width="24px"
+                  height="24px"
+                  mr="10px"
+                />
+                <MText>{`${addCommas(
+                  numberToShortVersion(weeklyRewardsMNDE)
+                )} MNDE/week`}</MText>
+              </Flex>
+              <Flex
+                justifyContent="space-between"
+                display={connected ? "flex" : "none"}
+              >
+                <MText>{t("mndePage.your-deposit")}:</MText>
+                <MText>{`${numberToShortVersion(
+                  userStake.toNumber() / LAMPORTS_PER_SOL
+                )} MSOL`}</MText>
+              </Flex>
+            </>
+          ) : (
+            <Flex height="100px" alignItems="center" justifyContent="center">
+              <Spinner size="md" />
             </Flex>
-            <Flex
-              justifyContent="space-between"
-              display={connected ? "flex" : "none"}
-            >
-              <MText>{t("mndePage.your-deposit")}:</MText>
-              <MText>{`${numberToShortVersion(
-                userStake.toNumber() / LAMPORTS_PER_SOL
-              )} MSOL`}</MText>
-            </Flex>
-          </>
-        ) : (
-          <Flex height="100px" alignItems="center" justifyContent="center">
-            <Spinner size="md" />
-          </Flex>
-        )}
-      </Box>
-      {connected ? (
-        <Flex flexDirection="column" alignItems="center">
-          <MButton variant="solid" width="142px" height="40px">
-            {t("mndePage.manage-deposit-action")}
-          </MButton>
-          <Flex
-            height="60px"
-            width="100%"
-            marginTop="32px"
-            borderBottom="1px solid #EDF2F7"
-            borderTop="1px solid #EDF2F7"
-            alignItems="center"
-            justifyContent="space-between"
-          >
-            <Flex alignItems="center">
-              <Image src="/icons/mnde.svg" boxSize="24px" mr="4px" />
-              <MText>{`${format5Dec(
-                rewards ? rewards?.toNumber() : 0,
-                LAMPORTS_PER_SOL
-              )} MNDE`}</MText>
-            </Flex>
+          )}
+        </Box>
+        {connected ? (
+          <Flex flexDirection="column" alignItems="center">
             <MButton
-              variant="outline"
-              borderColor="gray"
-              _hover={{ bg: "gray.100" }}
-              color="black"
-              width={{ base: "70px", lg: "80px" }}
-              fontWeight="600"
-              fontSize="14.4px"
-              onClick={() => claimHandler()}
-              isLoading={isClaimProcessing}
-              isDisabled={
-                !mndeTokadaptState ||
-                Number(format5Dec(rewards?.toNumber() ?? 0, LAMPORTS_PER_SOL)) <
-                  0.00001
-              }
+              variant="solid"
+              width="142px"
+              height="40px"
+              onClick={() => onOpen()}
             >
-              {t("mndePage.claim-action")}
+              {t("mndePage.manage-deposit-action")}
             </MButton>
+            <Flex
+              height="60px"
+              width="100%"
+              marginTop="32px"
+              borderBottom="1px solid #EDF2F7"
+              borderTop="1px solid #EDF2F7"
+              alignItems="center"
+              justifyContent="space-between"
+            >
+              <Flex alignItems="center">
+                <Image src="/icons/mnde.svg" boxSize="24px" mr="4px" />
+                <MText>{`${format5Dec(
+                  rewards ? rewards?.toNumber() : 0,
+                  LAMPORTS_PER_SOL
+                )} MNDE`}</MText>
+              </Flex>
+              <MButton
+                variant="outline"
+                borderColor="gray"
+                _hover={{ bg: "gray.100" }}
+                color="black"
+                width={{ base: "70px", lg: "80px" }}
+                fontWeight="600"
+                fontSize="14.4px"
+                onClick={() => claimHandler()}
+                isLoading={isClaimProcessing}
+                isDisabled={
+                  !mndeTokadaptState ||
+                  Number(
+                    format5Dec(rewards?.toNumber() ?? 0, LAMPORTS_PER_SOL)
+                  ) < 0.00001
+                }
+              >
+                {t("mndePage.claim-action")}
+              </MButton>
+            </Flex>
           </Flex>
-        </Flex>
-      ) : (
-        <ConnectWallet />
-      )}
-    </Flex>
+        ) : (
+          <ConnectWallet />
+        )}
+      </Flex>
+      <MSolStakeModal isOpen={isOpen} onClose={onClose} />
+    </>
   );
 };
 export default MNDEFarmCard;

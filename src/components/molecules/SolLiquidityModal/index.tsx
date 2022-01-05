@@ -168,7 +168,7 @@ const SolLiquidityModal = ({
         title: t("appPage.insufficient-funds-to-remove"),
         description: t("appPage.requested-liquidity-not-enough-funds")
           .replace("{{amount}}", amount)
-          .replace("liqSOLBalance", liqSOLBalance),
+          .replace("{{liqSOLBalance}}", liqSOLBalance),
         status: "warning",
       });
     }

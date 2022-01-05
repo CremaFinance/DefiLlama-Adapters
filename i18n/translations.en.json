@@ -431,7 +431,22 @@
     "modal-claim-success-subtitle-3": "Provide liquidity on Orca.so and Raydium.io",
     "modal-claim-success-discord": "mDAO Discord",
     "manage-deposit-action": "Manage deposit",
-    "here": "here"
+    "here": "here",
+    "msol-stake-modal": {
+      "deposit-msol": "Deposit mSOL",
+      "withdraw-msol": "Withdraw mSOL",
+      "insufficient-funds-to-deposit": "Insufficient funds to deposit",
+      "requested-deposit-not-enough-funds": "You requested to deposit {{amount}} mSOL (have only {{mSOLBalance}})",
+      "msol-deposit-confirmed": "mSOL deposit confirmed",
+      "successfully-deposited-msol": "You've successfully deposited mSOL",
+      "your-msol-account-is-deactivated": "Your mSOL account is deactivated. Stake any SOL amount to re-activate the account and try to withdraw mSOL again.",
+      "insufficient-funds-to-withdraw": "Insufficient funds to withdraw",
+      "requested-withdraw-not-enough-funds": "You requested to withdraw {{amount}} mSOL (have only {{mSOLBalance}})",
+      "msol-withdrew-confirmed": "mSOL withdrew confirmed",
+      "successfully-withdrew-msol": "You've successfully withdrew mSOL",
+      "deposit-first-msol": "Deposit first",
+      "get-msol": "Get mSOL"
+    }
   },
   "termsPage": {
     "page-header": "TERMS OF USE",
