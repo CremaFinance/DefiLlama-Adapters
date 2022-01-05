@@ -2953,10 +2953,10 @@
   dependencies:
     buffer "~6.0.3"
 
-"@solana/spl-token-registry@^0.2.1221":
-  version "0.2.1221"
-  resolved "https://registry.yarnpkg.com/@solana/spl-token-registry/-/spl-token-registry-0.2.1221.tgz#a97e3404efc825be40e9b51622dab7bc46b26eef"
-  integrity sha512-F7fupnq2uukm/4C+7QZkpX1+skJ6+iltk+T5ytfVfBYddQw9PA7MQr2W5PuOJ9qDKkMqcb2NYJk8SddkWD7NDg==
+"@solana/spl-token-registry@^0.2.1257":
+  version "0.2.1257"
+  resolved "https://registry.yarnpkg.com/@solana/spl-token-registry/-/spl-token-registry-0.2.1257.tgz#b2f2e580dcda4b620041be7c5c7a9cbcf41ebc72"
+  integrity sha512-tpRfM7NRGOLBLjMo0E1gSJ3+xaHk5qDgyFUW2HvyYVJu0WM2/2eeAdECRAWRkIVaVzMcvyuKP35NdiLL55ah2Q==
   dependencies:
     cross-fetch "3.0.6"
 
@@ -9352,10 +9352,10 @@ html-minifier-terser@^5.0.1:
     relateurl "^0.2.7"
     terser "^4.6.3"
 
-html-react-parser@^1.4.4:
-  version "1.4.4"
-  resolved "https://registry.yarnpkg.com/html-react-parser/-/html-react-parser-1.4.4.tgz#610f6c0b146fc88354118334dd0ea0a71292a083"
-  integrity sha512-7G44bVuoH2chiCDxOfyWMiFl5q9GWtMokbaL48dIC6KjWGEzjKh6oA36ziz8emaQFOhCJcXpFrvTHpuWdHpORg==
+html-react-parser@^1.4.5:
+  version "1.4.5"
+  resolved "https://registry.yarnpkg.com/html-react-parser/-/html-react-parser-1.4.5.tgz#030ad310c4020658d568dd9a6d237fb90284b499"
+  integrity sha512-dxo0z1G9b3mS1VGmcVw4cUGwVsEwkJZZ7r29pOSdE69JukJyFTCL1I6TXSEp2p1LAHvuO6ZBiEVp2M5lXqKLAg==
   dependencies:
     domhandler "4.3.0"
     html-dom-parser "1.0.4"
@@ -15206,10 +15206,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typedoc-plugin-markdown@^3.11.8:
-  version "3.11.8"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-markdown/-/typedoc-plugin-markdown-3.11.8.tgz#fff6da4e06e5bc51d67e07d92c88d40e87c8b29d"
-  integrity sha512-j2Kwi/RnwDwiNr9CMy4lrwB9+1alwjrMakb9+7S0Bz9gnDsdqamOguZ6e27iB97U18nK6GBeR8qDarIyoJYDCg==
+typedoc-plugin-markdown@^3.11.9:
+  version "3.11.9"
+  resolved "https://registry.yarnpkg.com/typedoc-plugin-markdown/-/typedoc-plugin-markdown-3.11.9.tgz#fd1fe609458b6ed04bb9fc40035248d9da68f0b8"
+  integrity sha512-wgJWPfq2wXMktfeBBx1ZObQw2a02Qz0F67juYt6urCY9PYpAX38XcB2d2Nb4grymn95X/ThwtU5PaK2eWyq7AQ==
   dependencies:
     handlebars "^4.7.7"
 

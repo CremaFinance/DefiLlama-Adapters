@@ -36,7 +36,7 @@
     "@saberhq/solana-contrib": "^1.12.4",
     "@saberhq/token-utils": "^1.12.20",
     "@solana/spl-token": "^0.1.8",
-    "@solana/spl-token-registry": "^0.2.1221",
+    "@solana/spl-token-registry": "^0.2.1257",
     "@solana/wallet-adapter-base": "^0.8.1",
     "@solana/wallet-adapter-react": "^0.14.1",
     "@solana/wallet-adapter-wallets": "^0.13.0",
@@ -48,7 +48,7 @@
     "chart.js": "^3.7.0",
     "dayjs": "^1.10.7",
     "framer-motion": "^5.5.5",
-    "html-react-parser": "^1.4.4",
+    "html-react-parser": "^1.4.5",
     "jest": "^27.4.5",
     "jest-fetch-mock": "^3.0.3",
     "js-sha256": "^0.9.0",
@@ -92,7 +92,7 @@
     "prettier": "^2.5.1",
     "standard-version": "^9.3.2",
     "typedoc": "^0.22.10",
-    "typedoc-plugin-markdown": "^3.11.8",
+    "typedoc-plugin-markdown": "^3.11.9",
     "typescript": "^4.5.4"
   },
   "lint-staged": {
