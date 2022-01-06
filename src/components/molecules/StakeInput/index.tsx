@@ -87,10 +87,12 @@ const StakeInput = ({
   const marinadeState = marinade?.marinadeState;
 
   const BUFFER =
-    0.01 +
-    ((marinadeState?.transactionFee ?? 0) * 4 +
-      (state?.rent_exempt_for_token_acc?.toNumber() ?? 0)) /
-      LAMPORTS_PER_SOL;
+    tokenName === "SOL"
+      ? 0.01 +
+        ((marinadeState?.transactionFee ?? 0) * 4 +
+          (state?.rent_exempt_for_token_acc?.toNumber() ?? 0)) /
+          LAMPORTS_PER_SOL
+      : 0;
 
   const handleSelectedAccount = (
     account: StakeAccountType,
