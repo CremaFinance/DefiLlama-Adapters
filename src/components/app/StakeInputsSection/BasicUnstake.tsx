@@ -73,48 +73,11 @@ const BasicUnstake = () => {
     Math.round(Number(stSolToUnstake) * stSolPrice * LAMPORTS_PER_SOL)
   );
 
-  function getDiscountBasisPoints(): number {
-    if (
-      !state?.liq_pool?.lp_max_fee.basis_points ||
-      !state?.liq_pool?.lp_min_fee?.basis_points
-    ) {
-      return 0;
-    }
-
-    if (receiveLamports > liquidity) {
-      // more asked than available => max discount
-      return state?.liq_pool?.lp_max_fee.basis_points;
-    }
-
-    const target = BigInt(
-      state?.liq_pool?.lp_liquidity_target
-        ? state?.liq_pool?.lp_liquidity_target.toNumber()
-        : 0
-    );
-    const liqAfter = liquidity - receiveLamports;
-    if (liqAfter >= target) {
-      // still >= target after swap => min discount
-      return state?.liq_pool?.lp_min_fee?.basis_points;
-    }
-
-    const range = BigInt(
-      state?.liq_pool?.lp_max_fee?.basis_points -
-        state?.liq_pool?.lp_min_fee?.basis_points
-    );
-    // here 0<after<target, so 0<proportion<range
-    const proportion: bigint = (range * liqAfter) / target;
-    return state?.liq_pool?.lp_max_fee?.basis_points - Number(proportion);
-  }
   const minUnstakeFee = 0.3;
   const maxUnstakeFee = 3;
   const mSOLvsSOLParity = marinadeState?.state?.st_sol_price
     ? marinadeState?.state?.st_sol_price?.toNumber() / 0x1_0000_0000
     : 0;
-
-  const unstakeNowReceive =
-    receiveLamports -
-    (receiveLamports * BigInt(getDiscountBasisPoints())) / BigInt(10000);
-  const delayedUnstakeReceive = receiveLamports;
 
   const unstakeFeePercentage = () => {
     let unstakefee = 0.3;
@@ -134,8 +97,13 @@ const BasicUnstake = () => {
           ((liqPoolBalance || 0) - Number(stSolToUnstake) * LAMPORTS_PER_SOL)) /
           state?.liq_pool?.lp_liquidity_target.toNumber();
     }
-    return Number(format2Dec(unstakefee));
+    return Math.min(3, Number(format2Dec(unstakefee)));
   };
+
+  const unstakeNowReceive =
+    Number(receiveLamports) -
+    (Number(receiveLamports) * unstakeFeePercentage()) / 100;
+  const delayedUnstakeReceive = receiveLamports;
 
   useEffect(() => {
     if (walletConnected) {
