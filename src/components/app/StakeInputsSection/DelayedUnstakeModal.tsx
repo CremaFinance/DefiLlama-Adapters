@@ -155,92 +155,91 @@ const DelayedUnstakeModal = ({
   };
 
   return (
-    <>
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader fontSize="18px">
-            {t("appPage.start-delayed-unstake-action")}
-          </ModalHeader>
-          <ModalCloseButton mt={1} _focus={{ boxShadow: "none" }} />
-          <ModalBody>
-            <Text fontSize="14px">
-              {t("appPage.unstake-cooldown-description")}
-              <b>
-                {dayjs(
-                  new Date(
-                    epochEnds +
-                      (epochData?.slotsInEpoch ?? 0) *
-                        DEFAULT_ENDPOINT.slotTimeAvg1h *
-                        /* Note: we add one more epoch if stake-delta is already started (we're in the stake-delta-window) */
-                        (Number(
-                          marinade?.marinadeState?.state.stake_system
-                            ?.last_stake_delta_epoch
-                        ) === epochData?.epoch
-                          ? 2
-                          : 1) +
-                      EXTRA_WAIT_MILLISECONDS
-                  )
-                ).format(" MMMM D YYYY, h:mm a")}
-              </b>
-              {t("appPage.you-will-be-able-to-claim")}{" "}
-              {stSolToUnstake &&
-                state &&
-                format5Dec(
-                  (stSolToUnstake * state?.state?.st_sol_price?.toNumber()) /
-                    0x1_0000_0000
-                )}
-              {" SOL."}
-            </Text>
-            <br />
-            <Text fontSize="14px">
-              {t("appPage.approximate-unstake-time-explanation")}
-            </Text>
-            <br />
-            <Text fontSize="14px">{t("appPage.delayed-agree-text")}</Text>
-          </ModalBody>
-          <ModalFooter
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            flexDirection={["column-reverse", "row"]}
+    <Modal isOpen={isOpen} onClose={onClose}>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader fontSize="18px">
+          {t("appPage.start-delayed-unstake-action")}
+        </ModalHeader>
+        <ModalCloseButton mt={1} _focus={{ boxShadow: "none" }} />
+        <ModalBody>
+          <Text fontSize="14px">
+            {t("appPage.unstake-cooldown-description")}
+            <b>
+              {dayjs(
+                new Date(
+                  epochEnds +
+                    (epochData?.slotsInEpoch ?? 0) *
+                      DEFAULT_ENDPOINT.slotTimeAvg1h *
+                      /* Note: we add one more epoch if stake-delta is already started (we're in the stake-delta-window) */
+                      (Number(
+                        marinade?.marinadeState?.state.stake_system
+                          ?.last_stake_delta_epoch
+                      ) === epochData?.epoch
+                        ? 2
+                        : 1) +
+                    EXTRA_WAIT_MILLISECONDS
+                )
+              ).format(" MMMM D YYYY, h:mm a")}
+            </b>
+            {t("appPage.you-will-be-able-to-claim")}{" "}
+            {stSolToUnstake &&
+              state &&
+              state.state?.st_sol_price &&
+              format5Dec(
+                (stSolToUnstake * state.state.st_sol_price.toNumber()) /
+                  0x1_0000_0000
+              )}
+            {" SOL."}
+          </Text>
+          <br />
+          <Text fontSize="14px">
+            {t("appPage.approximate-unstake-time-explanation")}
+          </Text>
+          <br />
+          <Text fontSize="14px">{t("appPage.delayed-agree-text")}</Text>
+        </ModalBody>
+        <ModalFooter
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          flexDirection={["column-reverse", "row"]}
+        >
+          <Button
+            font="text-lg"
+            colorScheme="gray"
+            _hover={{ bg: "gray.100" }}
+            border="1px"
+            borderColor="gray.500"
+            textColor={colors.black}
+            bg={colors.white}
+            mt={[4, 0]}
+            size="lg"
+            mr={[0, 3]}
+            onClick={onClose}
           >
-            <Button
-              font="text-lg"
-              colorScheme="gray"
-              _hover={{ bg: "gray.100" }}
-              border="1px"
-              borderColor="gray.500"
-              textColor={colors.black}
-              bg={colors.white}
-              mt={[4, 0]}
-              size="lg"
-              mr={[0, 3]}
-              onClick={onClose}
-            >
-              {t("appPage.cancel-action")}
-            </Button>
-            <Button
-              font="text-lg"
-              bg={colors.marinadeGreen}
-              isLoading={unstakeLoading}
-              _hover={{ bg: colors.green800 }}
-              colorScheme={colors.marinadeGreen}
-              isDisabled={
-                !marinade.marinadeState ||
-                ((nativeSOLBalance === null || stSOLBalance === null) &&
-                  isWalletConnected)
-              }
-              size="lg"
-              type="button"
-              onClick={delayedUnstakeHandler}
-            >
-              {t("appPage.start-delayed-unstake-action")}
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-    </>
+            {t("appPage.cancel-action")}
+          </Button>
+          <Button
+            font="text-lg"
+            bg={colors.marinadeGreen}
+            isLoading={unstakeLoading}
+            _hover={{ bg: colors.green800 }}
+            colorScheme={colors.marinadeGreen}
+            isDisabled={
+              !marinade.marinadeState ||
+              ((nativeSOLBalance === null || stSOLBalance === null) &&
+                isWalletConnected)
+            }
+            size="lg"
+            type="button"
+            onClick={delayedUnstakeHandler}
+          >
+            {t("appPage.start-delayed-unstake-action")}
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
   );
 };
 

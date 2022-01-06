@@ -227,161 +227,153 @@ const SolLiquidityModal = ({
   };
 
   return (
-    <>
-      <Modal isOpen={isOpenProp} onClose={onCloseProp}>
-        <ModalOverlay w="100vw" />
-        <ModalContent
-          px={[4, 8]}
-          pb={[4, 8]}
-          w={["90vw", "480px"]}
-          backgroundColor="white"
-          overflow="auto"
-        >
-          <ModalHeader mb={[2, 0]} />
-          <ModalCloseButton _focus={{ boxShadow: "none" }} />
-          <ModalBody p={0}>
-            <Flex display="flex" justifyContent="center">
-              <SwitchButtons
-                leftText={t("appPage.liquidity-modal.add-liquidity")}
-                rightText={t("appPage.liquidity-modal.remove-liquidity")}
-                height={40}
-                mb={8}
-                width={["254px", "322px"]}
-                buttonWidth={["121px", "155px"]}
-                active={isAddLiquidityActive}
-                font="text-lg"
-                display="flex"
-                handleSwitch={setAddLiquidityActive}
-              />
-            </Flex>
-            <Flex mb={2}>
-              <Image src="/icons/mSOL-SOL LP.svg" width="24px" height="24px" />
-              <Text marginLeft="8px" fontSize="14.4px">
-                {t("appPage.liquidity-modal.pool")}
-              </Text>
-            </Flex>
-            <Flex justifyContent="space-between">
-              <Text lineHeight="21.6px" fontSize="14.4px">
-                {t("appPage.liquidity-modal.balance")}
-              </Text>
-              <Text lineHeight="21.6px" fontSize="14.4px">
-                {format5Dec(liqSOLBalance ?? 0)}
-              </Text>
-            </Flex>
-            <Text align="end" lineHeight="21.6px" fontSize="14.4px">
-              {`= ${format5Dec(liquiditySOLPart ?? 0)} SOL`}
+    <Modal isOpen={isOpenProp} onClose={onCloseProp}>
+      <ModalOverlay w="100vw" />
+      <ModalContent
+        px={[4, 8]}
+        pb={[4, 8]}
+        w={["90vw", "480px"]}
+        backgroundColor="white"
+        overflow="auto"
+      >
+        <ModalHeader mb={[2, 0]} />
+        <ModalCloseButton _focus={{ boxShadow: "none" }} />
+        <ModalBody p={0}>
+          <Flex display="flex" justifyContent="center">
+            <SwitchButtons
+              leftText={t("appPage.liquidity-modal.add-liquidity")}
+              rightText={t("appPage.liquidity-modal.remove-liquidity")}
+              height={40}
+              mb={8}
+              width={["254px", "322px"]}
+              buttonWidth={["121px", "155px"]}
+              active={isAddLiquidityActive}
+              font="text-lg"
+              display="flex"
+              handleSwitch={setAddLiquidityActive}
+            />
+          </Flex>
+          <Flex mb={2}>
+            <Image src="/icons/mSOL-SOL LP.svg" width="24px" height="24px" />
+            <Text marginLeft="8px" fontSize="14.4px">
+              {t("appPage.liquidity-modal.pool")}
             </Text>
-            <Text align="end" mb={4} lineHeight="21.6px" fontSize="14.4px">
-              {`= $ ${format2Dec((liquiditySOLPart ?? 0) * (solUSD ?? 0))}`}
+          </Flex>
+          <Flex justifyContent="space-between">
+            <Text lineHeight="21.6px" fontSize="14.4px">
+              {t("appPage.liquidity-modal.balance")}
             </Text>
-            {isAddLiquidityActive ? (
-              <StakeInput
-                stakeInputType={StakeInputTypeEnum.Liquidity}
-                onValueChange={setAmount}
-                tokenName="SOL"
-                tokenIcon="/icons/solana-dark.png"
-                tokenBalance={
-                  nativeSOLBalance
-                    ? nativeSOLBalance / LAMPORTS_PER_SOL - 0.001
-                    : 0
-                }
-                value={amount}
-                mb={4}
-              />
-            ) : (
-              <StakeInput
-                stakeInputType={StakeInputTypeEnum.Liquidity}
-                onValueChange={setAmount}
-                tokenName=""
-                tokenIcon="/icons/mSOL-SOL LP.svg"
-                tokenBalance={liqSOLBalance ?? 0}
-                value={amount}
-                mb={4}
-              />
-            )}
-            <Flex h="52px">
-              {!isAddLiquidityActive ? (
-                <Flex flexDirection="column" flex={1}>
-                  <Flex justifyContent="space-between">
-                    <Text lineHeight="21.6px" fontSize="14.4px">
-                      {t("appPage.liquidity-modal.conversion-explained")}
-                    </Text>
-                    <Text lineHeight="21.6px" fontSize="14.4px">
-                      {`= ${
-                        liquiditySOLPart && liqSOLBalance
-                          ? format5Dec(
-                              (Number(amount) * liquiditySOLPart) /
-                                liqSOLBalance
-                            )
-                          : 0
-                      } SOL`}
-                    </Text>
-                  </Flex>
-                  <Text
-                    mb={4}
-                    align="end"
-                    lineHeight="21.6px"
-                    fontSize="14.4px"
-                  >
+            <Text lineHeight="21.6px" fontSize="14.4px">
+              {format5Dec(liqSOLBalance ?? 0)}
+            </Text>
+          </Flex>
+          <Text align="end" lineHeight="21.6px" fontSize="14.4px">
+            {`= ${format5Dec(liquiditySOLPart ?? 0)} SOL`}
+          </Text>
+          <Text align="end" mb={4} lineHeight="21.6px" fontSize="14.4px">
+            {`= $ ${format2Dec((liquiditySOLPart ?? 0) * (solUSD ?? 0))}`}
+          </Text>
+          {isAddLiquidityActive ? (
+            <StakeInput
+              stakeInputType={StakeInputTypeEnum.Liquidity}
+              onValueChange={setAmount}
+              tokenName="SOL"
+              tokenIcon="/icons/solana-dark.png"
+              tokenBalance={
+                nativeSOLBalance
+                  ? nativeSOLBalance / LAMPORTS_PER_SOL - 0.001
+                  : 0
+              }
+              value={amount}
+              mb={4}
+            />
+          ) : (
+            <StakeInput
+              stakeInputType={StakeInputTypeEnum.Liquidity}
+              onValueChange={setAmount}
+              tokenName=""
+              tokenIcon="/icons/mSOL-SOL LP.svg"
+              tokenBalance={liqSOLBalance ?? 0}
+              value={amount}
+              mb={4}
+            />
+          )}
+          <Flex h="52px">
+            {!isAddLiquidityActive ? (
+              <Flex flexDirection="column" flex={1}>
+                <Flex justifyContent="space-between">
+                  <Text lineHeight="21.6px" fontSize="14.4px">
+                    {t("appPage.liquidity-modal.conversion-explained")}
+                  </Text>
+                  <Text lineHeight="21.6px" fontSize="14.4px">
                     {`= ${
-                      liquidityMSolPart && liqSOLBalance
+                      liquiditySOLPart && liqSOLBalance
                         ? format5Dec(
-                            (Number(amount) * liquidityMSolPart) / liqSOLBalance
+                            (Number(amount) * liquiditySOLPart) / liqSOLBalance
                           )
                         : 0
-                    } mSOL`}
+                    } SOL`}
                   </Text>
                 </Flex>
-              ) : null}
-            </Flex>
-            <Flex justifyContent="center">
-              {isAddLiquidityActive ? (
-                <Button
-                  font="text-xl"
-                  bg={colors.marinadeGreen}
-                  isLoading={loading}
-                  _hover={{ bg: colors.green800 }}
-                  colorScheme={colors.marinadeGreen}
-                  rounded="md"
-                  height="48px"
-                  _focus={{ boxShadow: "none" }}
-                  my={8}
-                  onClick={addLiquidityHandler}
-                >
-                  {t("appPage.liquidity-modal.add-liquidity")}
-                </Button>
-              ) : (
-                <Button
-                  font="text-xl"
-                  bg={colors.marinadeGreen}
-                  isLoading={loading}
-                  _hover={{ bg: colors.green800 }}
-                  colorScheme={colors.marinadeGreen}
-                  rounded="md"
-                  height="48px"
-                  _focus={{ boxShadow: "none" }}
-                  my={8}
-                  onClick={
-                    liqSOLBalance === 0
-                      ? () => setAddLiquidityActive(true)
-                      : removeLiquidityHandler
-                  }
-                >
-                  {removeLiquidityButton}
-                </Button>
-              )}
-            </Flex>
-            <Text lineHeight="21.6px" fontSize="14.4px">
-              {t(
-                isAddLiquidityActive
-                  ? "appPage.liquidity-modal.description-add-liqidity"
-                  : "appPage.liquidity-modal.description-remove-liqidity"
-              )}
-            </Text>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
-    </>
+                <Text mb={4} align="end" lineHeight="21.6px" fontSize="14.4px">
+                  {`= ${
+                    liquidityMSolPart && liqSOLBalance
+                      ? format5Dec(
+                          (Number(amount) * liquidityMSolPart) / liqSOLBalance
+                        )
+                      : 0
+                  } mSOL`}
+                </Text>
+              </Flex>
+            ) : null}
+          </Flex>
+          <Flex justifyContent="center">
+            {isAddLiquidityActive ? (
+              <Button
+                font="text-xl"
+                bg={colors.marinadeGreen}
+                isLoading={loading}
+                _hover={{ bg: colors.green800 }}
+                colorScheme={colors.marinadeGreen}
+                rounded="md"
+                height="48px"
+                _focus={{ boxShadow: "none" }}
+                my={8}
+                onClick={addLiquidityHandler}
+              >
+                {t("appPage.liquidity-modal.add-liquidity")}
+              </Button>
+            ) : (
+              <Button
+                font="text-xl"
+                bg={colors.marinadeGreen}
+                isLoading={loading}
+                _hover={{ bg: colors.green800 }}
+                colorScheme={colors.marinadeGreen}
+                rounded="md"
+                height="48px"
+                _focus={{ boxShadow: "none" }}
+                my={8}
+                onClick={
+                  liqSOLBalance === 0
+                    ? () => setAddLiquidityActive(true)
+                    : removeLiquidityHandler
+                }
+              >
+                {removeLiquidityButton}
+              </Button>
+            )}
+          </Flex>
+          <Text lineHeight="21.6px" fontSize="14.4px">
+            {t(
+              isAddLiquidityActive
+                ? "appPage.liquidity-modal.description-add-liqidity"
+                : "appPage.liquidity-modal.description-remove-liqidity"
+            )}
+          </Text>
+        </ModalBody>
+      </ModalContent>
+    </Modal>
   );
 };
 
