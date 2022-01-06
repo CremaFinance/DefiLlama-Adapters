@@ -314,7 +314,7 @@ const BasicStake = () => {
         onValueChange={setSolToStake}
         tokenName="SOL"
         tokenIcon="/icons/solana-dark.png"
-        tokenBalance={sourceTokenBalance}
+        tokenBalance={(nativeSOLBalance ?? 0) / LAMPORTS_PER_SOL}
         currentAccount={currentAccount}
         stakeAccounts={parseStakeAccounts()}
         value={solToStake}

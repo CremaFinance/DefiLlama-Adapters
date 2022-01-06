@@ -29,17 +29,14 @@ import { coinSymbols } from "services/domain/coinSymbols";
 import colors from "styles/customTheme/colors";
 import { basicInputChecks } from "utils/basic-input-checks";
 import { checkNativeSOLBalance } from "utils/check-native-sol-balance";
-import {
-  format2Dec,
-  format5Dec,
-  numberToShortVersion,
-} from "utils/number-to-short-version";
+import { format2Dec, format5Dec } from "utils/number-to-short-version";
 
 interface Props {
   onCloseProp: () => Promise<void> | void;
   isOpenProp: boolean;
 }
 
+// eslint-disable-next-line complexity
 const MSolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
   const { t } = useTranslation();
   const toast = useToast();
@@ -264,11 +261,7 @@ const MSolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
               onValueChange={setAmount}
               tokenName="LP"
               tokenIcon="/icons/mSOL-SOL LP.svg"
-              tokenBalance={
-                parseFloat(
-                  numberToShortVersion(userStake.toNumber() / LAMPORTS_PER_SOL)
-                ) ?? 0
-              }
+              tokenBalance={userStake.toNumber() / LAMPORTS_PER_SOL}
               value={amount}
               mb={4}
             />

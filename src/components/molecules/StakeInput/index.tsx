@@ -26,7 +26,11 @@ import { useMarinade } from "../../../contexts/MarinadeContext";
 import { useTranslation } from "../../../hooks/useTranslation";
 import { useWallet } from "../../../hooks/useWallet";
 import colors from "../../../styles/customTheme/colors";
-import { format5Dec, format2Dec } from "../../../utils/number-to-short-version";
+import {
+  format5Dec,
+  format2Dec,
+  numberToShortVersion,
+} from "../../../utils/number-to-short-version";
 import {
   shortenAddress,
   shortenAddressForMobile,
@@ -366,7 +370,9 @@ const StakeInput = ({
         />
       </Flex>
       <Flex alignItems="center" justifyContent="flex-start" mb={2}>
-        <MText type="text-sm">{`${balanceLabel}: ${tokenBalance.toLocaleString()} ${tokenName}`}</MText>
+        <MText type="text-sm">{`${balanceLabel}: ${numberToShortVersion(
+          tokenBalance
+        )} ${tokenName}`}</MText>
         {tokenBalance &&
         !isStakeAccountSelected &&
         stakeInputType !== StakeInputTypeEnum.Target ? (

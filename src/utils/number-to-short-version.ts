@@ -1,15 +1,15 @@
 export function numberToShortVersion(value: number): string {
   if (value < 1_000) {
-    return `${value.toFixed(2)}`;
+    return `${Math.floor(value * 100) / 100}`;
   }
   if (value < 1_000_000) {
-    return `${(value / 1_000).toFixed(2)}K`;
+    return `${Math.floor((value / 1_000) * 100) / 100}K`;
   }
   if (value < 1_000_000_000) {
-    return `${(value / 1_000_000).toFixed(2)}M`;
+    return `${Math.floor((value / 1_000_000) * 100) / 100}M`;
   }
 
-  return `${(value / 1_000_000_000).toFixed(2)}B`;
+  return `${Math.floor((value / 1_000_000_000) * 100) / 100}B`;
 }
 
 export function format5Dec(balance: number, divisor?: number): string {
