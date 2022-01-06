@@ -19,6 +19,7 @@ import { AccountsContext } from "contexts/AccountsContext";
 import { useChain, useConnection, useKeys } from "contexts/ConnectionProvider";
 import { useMarinade } from "contexts/MarinadeContext";
 import { useStats } from "contexts/StatsContext";
+import { useTracking } from "hooks/useTracking";
 import { TicketAccount } from "solana/domain/ticket-account";
 import colors from "styles/customTheme/colors";
 import { basicInputChecks } from "utils/basic-input-checks";
@@ -30,6 +31,7 @@ import DelayedUnstakeModal from "./DelayedUnstakeModal";
 const BasicUnstake = () => {
   const { t } = useTranslation();
   const toast = useToast();
+  const { track } = useTracking();
   const connection = useConnection();
   const keys = useKeys();
 
@@ -214,6 +216,12 @@ const BasicUnstake = () => {
             duration: 5000,
             isClosable: true,
           });
+          track({
+            event: "Unstake SOL Account",
+            category: "Account Staking",
+            action: "Unstake",
+            label: "Success",
+          });
         },
         (error) => {
           // eslint-disable-next-line no-console
@@ -232,6 +240,13 @@ const BasicUnstake = () => {
             title: t("appPage.something-went-wrong"),
             description,
             status: "warning",
+          });
+          track({
+            event: "Unstake SOL Account Error",
+            category: "Account Staking",
+            action: "Unstake",
+            label: "Error",
+            description,
           });
         }
       )

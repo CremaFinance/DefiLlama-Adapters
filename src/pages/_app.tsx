@@ -18,6 +18,7 @@ import { MaridropProvider } from "../contexts/MaridropContext";
 import { MarinadeProvider } from "../contexts/MarinadeContext";
 import { QuarryProvider } from "../contexts/QuaryContext";
 import { StatsProvider } from "../contexts/StatsContext";
+import { TrackingProvider } from "../contexts/TrackingContext";
 import { UserBalanceProvider } from "../contexts/UserBalanceContext";
 import Layout from "components/layout";
 import Agreement from "components/molecules/Aggrement.tsx";
@@ -58,30 +59,32 @@ const MyApp = ({
           />
         </Head>
         <DefaultSeo {...defaultSEOConfig} />
-        <QueryClientProvider client={queryClient}>
-          <AccountsContextProvider>
-            <BrowserWalletConnectionProvider>
-              <ConnectionProvider>
-                <Agreement />
-                <AnchorProvider>
-                  <MarinadeProvider>
-                    <QuarryProvider>
-                      <MaridropProvider>
-                        <StatsProvider>
-                          <UserBalanceProvider>
-                            <Layout>
-                              <Component {...pageProps} />
-                            </Layout>
-                          </UserBalanceProvider>
-                        </StatsProvider>
-                      </MaridropProvider>
-                    </QuarryProvider>
-                  </MarinadeProvider>
-                </AnchorProvider>
-              </ConnectionProvider>
-            </BrowserWalletConnectionProvider>
-          </AccountsContextProvider>
-        </QueryClientProvider>
+        <TrackingProvider>
+          <QueryClientProvider client={queryClient}>
+            <AccountsContextProvider>
+              <BrowserWalletConnectionProvider>
+                <ConnectionProvider>
+                  <Agreement />
+                  <AnchorProvider>
+                    <MarinadeProvider>
+                      <QuarryProvider>
+                        <MaridropProvider>
+                          <StatsProvider>
+                            <UserBalanceProvider>
+                              <Layout>
+                                <Component {...pageProps} />
+                              </Layout>
+                            </UserBalanceProvider>
+                          </StatsProvider>
+                        </MaridropProvider>
+                      </QuarryProvider>
+                    </MarinadeProvider>
+                  </AnchorProvider>
+                </ConnectionProvider>
+              </BrowserWalletConnectionProvider>
+            </AccountsContextProvider>
+          </QueryClientProvider>
+        </TrackingProvider>
       </ChakraProvider>
     </CacheProvider>
   );

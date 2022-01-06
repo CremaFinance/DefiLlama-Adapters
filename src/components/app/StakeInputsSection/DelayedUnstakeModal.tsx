@@ -28,6 +28,7 @@ import { DEFAULT_ENDPOINT } from "../../../utils/web3/endpoints";
 import Button from "../../atoms/Button";
 import Text from "../../atoms/Text";
 import TransactionLink from "components/molecules/TransactionLink";
+import { useTracking } from "hooks/useTracking";
 import colors from "styles/customTheme/colors";
 
 type DelayedUnstakeModalProps = {
@@ -43,7 +44,7 @@ const DelayedUnstakeModal = ({
 }: DelayedUnstakeModalProps) => {
   const { t } = useTranslation();
   const toast = useToast();
-
+  const { track } = useTracking();
   const [unstakeLoading, setUnstakeLoading] = useState(false);
   const state = useMarinadeState();
   const epochData = useEpochInfo()?.data;
@@ -120,6 +121,12 @@ const DelayedUnstakeModal = ({
             duration: 5000,
             isClosable: true,
           });
+          track({
+            event: "Delayed Unstake SOL Account",
+            category: "Account Staking",
+            action: "Unstake",
+            label: "Success",
+          });
         },
         (error) => {
           // eslint-disable-next-line no-console
@@ -131,6 +138,13 @@ const DelayedUnstakeModal = ({
             status: "warning",
             duration: 5000,
             isClosable: true,
+          });
+          track({
+            event: "Delayed Unstake SOL Account Error",
+            category: "Account Staking",
+            action: "Unstake",
+            label: "Error",
+            description: error.message,
           });
         }
       )

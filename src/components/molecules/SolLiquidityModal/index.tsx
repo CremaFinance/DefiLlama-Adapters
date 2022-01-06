@@ -31,6 +31,7 @@ import { format2Dec, format5Dec } from "../../../utils/number-to-short-version";
 import StakeInput, { StakeInputTypeEnum } from "../StakeInput";
 import SwitchButtons from "../SwitchButtons";
 import TransactionLink from "../TransactionLink";
+import { useTracking } from "hooks/useTracking";
 
 interface SolLiquidityModalProps {
   onClose: () => Promise<void> | void;
@@ -44,6 +45,7 @@ const SolLiquidityModal = ({
   const { t } = useTranslation();
   const toast = useToast();
 
+  const { track } = useTracking();
   const [isAddLiquidityActive, setAddLiquidityActive] = useState(true);
   const [loading, setLoading] = useState(false);
   const [amount, setAmount] = useState<string>("");
@@ -126,6 +128,13 @@ const SolLiquidityModal = ({
             ),
             status: "success",
           });
+
+          track({
+            event: "Add Liquidity",
+            category: "Liquidity",
+            action: "Remove",
+            label: "Success",
+          });
         },
         (error) => {
           // eslint-disable-next-line no-console
@@ -135,6 +144,14 @@ const SolLiquidityModal = ({
             title: t("appPage.something-went-wrong"),
             description: error.message,
             status: "warning",
+          });
+
+          track({
+            event: "Add Liquidity Error",
+            category: "Liquidity",
+            action: "Remove",
+            label: "Error",
+            description: error.message,
           });
         }
       )
