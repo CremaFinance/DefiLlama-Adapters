@@ -13,6 +13,6 @@ Default.args = {
   unstakeNowReceive: "0",
   delayedUnstakeReceive: "0",
   unstakeNowFee: "0",
-  mb: 2,
+  my: 2,
   handleSwitch: () => {},
 };

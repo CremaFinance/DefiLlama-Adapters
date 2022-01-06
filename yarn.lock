@@ -2953,10 +2953,10 @@
   dependencies:
     buffer "~6.0.3"
 
-"@solana/spl-token-registry@^0.2.1258":
-  version "0.2.1258"
-  resolved "https://registry.yarnpkg.com/@solana/spl-token-registry/-/spl-token-registry-0.2.1258.tgz#76064bef30bdc8042696b5929a6baa166751804a"
-  integrity sha512-kCyFQ4LU9DU/7MMuTksnVrAd0S5pPMeZVCNJP0jPX2xmUk4CqzcBxQj1kayTrshbOQs0B42jAT1AOm6G7VLzqw==
+"@solana/spl-token-registry@^0.2.1281":
+  version "0.2.1281"
+  resolved "https://registry.yarnpkg.com/@solana/spl-token-registry/-/spl-token-registry-0.2.1281.tgz#1249503686a6d588650eae79d6606f0260583ef1"
+  integrity sha512-O9ZHHa2p0DIS8dMFHNpXMoccQV6fOeQqiyWZZkSiir9g3iw+ZUOsZxA5B5WZKISJANXqTHXR9pQa7igJJalySw==
   dependencies:
     cross-fetch "3.0.6"
 
