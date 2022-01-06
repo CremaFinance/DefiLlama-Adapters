@@ -653,5 +653,9 @@
         ]
       }
     ]
+  },
+  "404Page": {
+    "page-not-cooked": "Oops! It seems like this page is not cooked.",
+    "go-to-homepage": "Go to homepage"
   }
 }
