@@ -4,6 +4,7 @@ import {
   Progress,
   Spinner,
   IconButton,
+  Image,
   useDisclosure,
   Modal,
   ModalOverlay,
@@ -223,6 +224,7 @@ const InfoBoxesSection = () => {
         <Flex
           bg={colors.white}
           flexDirection="column"
+          justifyContent="space-between"
           rounded="lg"
           width="207px"
           height="139px"
@@ -233,13 +235,9 @@ const InfoBoxesSection = () => {
           mt={8}
           mx={2}
         >
-          <Flex justifyContent="space-between" mb={3}>
+          <Flex justifyContent="space-between">
             <MText type="text-md">APY</MText>
-            <TooltipWithContent
-              tooltipText={t("appPage.info-apy-tooltip")}
-              link={t("appPage.info-apy-tooltip-link")}
-              linkText={t("appPage.info-apy-tooltip-link-text")}
-            >
+            <TooltipWithContent tooltipText={t("appPage.info-apy-tooltip")}>
               <IconButton
                 _focus={{ boxShadow: "none" }}
                 variant="link"
@@ -258,6 +256,19 @@ const InfoBoxesSection = () => {
               <Spinner size="md" mr={3} />
             </Flex>
           )}
+          <MLink
+            target="_blank"
+            font="text-lg"
+            href={t("appPage.info-apy-tooltip-link")}
+            rel="noreferrer noopener"
+            _focus={{ boxShadow: "none" }}
+            color={colors.marinadeGreen}
+            pb={2}
+            display="flex"
+          >
+            {t("appPage.info-apy-tooltip-link-text")}
+            <Image src="/icons/external-link-green.svg" width="1rem" ml={2} />
+          </MLink>
         </Flex>
         <Flex
           bg={colors.white}
