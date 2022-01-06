@@ -19,7 +19,7 @@ import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
 import { ConnectWallet } from "../../molecules/ConnectWallet";
-import DepositWithdrawMsolLpModal from "components/molecules/DepositWithdrawMsolLpModal/DepositWithdrawMsolLpModal";
+import MSolLpModal from "components/molecules/mSolLpModal";
 import TransactionLink from "components/molecules/TransactionLink";
 import { useChain } from "contexts/ConnectionProvider";
 import { useQuarryProvider } from "contexts/QuaryContext";
@@ -255,7 +255,7 @@ const MSolLPCard = () => {
         <ConnectWallet />
       )}
       {isOpen ? (
-        <DepositWithdrawMsolLpModal isOpenProp={isOpen} onCloseProp={onClose} />
+        <MSolLpModal isOpenProp={isOpen} onCloseProp={onClose} />
       ) : null}
     </Flex>
   );

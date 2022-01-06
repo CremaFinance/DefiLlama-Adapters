@@ -40,7 +40,7 @@ interface Props {
   isOpenProp: boolean;
 }
 
-const DepositWithdrawMsolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
+const MSolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
   const { t } = useTranslation();
   const toast = useToast();
 
@@ -251,7 +251,7 @@ const DepositWithdrawMsolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
             </Text>
             {isDepostActive ? (
               <StakeInput
-                stakeInputType={StakeInputTypeEnum.mSolSolLp}
+                stakeInputType={StakeInputTypeEnum.Liquidity}
                 onValueChange={setAmount}
                 tokenName="LP"
                 tokenIcon="/icons/mSOL-SOL LP.svg"
@@ -261,7 +261,7 @@ const DepositWithdrawMsolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
               />
             ) : (
               <StakeInput
-                stakeInputType={StakeInputTypeEnum.mSolSolLp}
+                stakeInputType={StakeInputTypeEnum.Liquidity}
                 onValueChange={setAmount}
                 tokenName="LP"
                 tokenIcon="/icons/mSOL-SOL LP.svg"
@@ -320,4 +320,4 @@ const DepositWithdrawMsolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
   );
 };
 
-export default DepositWithdrawMsolLpModal;
+export default MSolLpModal;
