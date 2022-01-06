@@ -95,7 +95,7 @@ const BasicUnstake = () => {
         maxUnstakeFee -
         ((maxUnstakeFee - minUnstakeFee) *
           ((liqPoolBalance || 0) - Number(stSolToUnstake) * LAMPORTS_PER_SOL)) /
-          state?.liq_pool?.lp_liquidity_target.toNumber();
+          (state?.liq_pool.lp_liquidity_target.toNumber() || 1);
     }
     return Math.min(3, Number(format2Dec(unstakefee)));
   };
