@@ -30,7 +30,6 @@ import MHeading from "../../atoms/Heading";
 import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
 import ValidatorsTable from "../ValidatorsSection";
-import InfoIconWithTooltip from "components/molecules/InfoIconWithTooltip";
 import TooltipWithContent from "components/molecules/TooltipWithContent";
 import { coinSymbols } from "services/domain/coinSymbols";
 import colors from "styles/customTheme/colors";
@@ -227,7 +226,7 @@ const InfoBoxesSection = () => {
           rounded="lg"
           width="207px"
           height="139px"
-          zIndex={5}
+          zIndex={6}
           py={5}
           pr={3}
           pl={6}
@@ -236,7 +235,19 @@ const InfoBoxesSection = () => {
         >
           <Flex justifyContent="space-between" mb={3}>
             <MText type="text-md">APY</MText>
-            <InfoIconWithTooltip tooltipText={t("appPage.info-apy-tooltip")} />
+            <TooltipWithContent
+              tooltipText={t("appPage.info-apy-tooltip")}
+              link={t("appPage.info-apy-tooltip-link")}
+              linkText={t("appPage.info-apy-tooltip-link-text")}
+            >
+              <IconButton
+                _focus={{ boxShadow: "none" }}
+                variant="link"
+                aria-label="Info APY"
+                size="sm"
+                icon={<MdInfoOutline />}
+              />
+            </TooltipWithContent>
           </Flex>
           {stakeAPYValue ? (
             <MHeading type="heading-2xsm">
@@ -367,7 +378,19 @@ const InfoBoxesSection = () => {
             ) : (
               <Spinner size="sm" mr={3} />
             )}
-            <InfoIconWithTooltip tooltipText={t("appPage.info-apy-tooltip")} />
+            <TooltipWithContent
+              tooltipText={t("appPage.info-apy-tooltip")}
+              link={t("appPage.info-apy-tooltip-link")}
+              linkText={t("appPage.info-apy-tooltip-link-text")}
+            >
+              <IconButton
+                _focus={{ boxShadow: "none" }}
+                variant="link"
+                aria-label="Info APY"
+                size="sm"
+                icon={<MdInfoOutline />}
+              />
+            </TooltipWithContent>
           </Flex>
         </Flex>
         <Flex justifyContent="space-between" alignItems="center">

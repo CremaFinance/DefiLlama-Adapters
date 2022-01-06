@@ -246,6 +246,8 @@
     "info-epoch-tooltip-docs-link": "https://docs.solana.com/terminology#epoch",
     "info-week-apy-tooltip": "This APY is based on the average APY of the last 7 days. See our stats for more details.",
     "info-apy-tooltip": "This APY is based on the average APY of last months. See our stats for more details.",
+    "info-apy-tooltip-link": "https://stats.marinade.finance/",
+    "info-apy-tooltip-link-text": "See stats",
     "info-validators-tooltip": "Stake is only delegated to validators that are not part of the security group to secure the network and help with its decentralization. Our algorithm evaluates all validators and selects the top-performers.",
     "info-validators-tooltip-docs-link": "https://docs.marinade.finance/marinade-protocol/validators",
 
