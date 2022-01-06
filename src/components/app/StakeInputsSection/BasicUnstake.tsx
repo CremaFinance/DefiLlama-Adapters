@@ -66,7 +66,7 @@ const BasicUnstake = () => {
   const marinadeState = marinade?.marinadeState;
 
   const stSolPrice: number = state?.st_sol_price
-    ? state?.st_sol_price.toNumber() / 0x1_0000_0000
+    ? state.st_sol_price.toNumber() / 0x1_0000_0000
     : 0;
   const liquidity = liqPoolBalance ? BigInt(liqPoolBalance) : BigInt(0);
   const receiveLamports = BigInt(
@@ -76,7 +76,7 @@ const BasicUnstake = () => {
   const minUnstakeFee = 0.3;
   const maxUnstakeFee = 3;
   const mSOLvsSOLParity = marinadeState?.state?.st_sol_price
-    ? marinadeState?.state?.st_sol_price?.toNumber() / 0x1_0000_0000
+    ? marinadeState.state.st_sol_price.toNumber() / 0x1_0000_0000
     : 0;
 
   const unstakeFeePercentage = () => {

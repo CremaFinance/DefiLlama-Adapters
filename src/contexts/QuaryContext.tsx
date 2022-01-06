@@ -384,31 +384,21 @@ export const QuarryProvider: FC<{ children: ReactNode }> = ({ children }) => {
     setSbrMSOLSOLFarm(undefined);
   }, [chainName, connected, sbrRewarder, setSbrMSOLSOLFarm]);
 
+  const farms = {};
+  if (mSOLFarm) Object.assign(farms, { mSOL: mSOLFarm });
+  if (mLPFarm) Object.assign(farms, { mLP: mLPFarm });
+  if (sbrMSOLSOLFarm) Object.assign(farms, { sbrMSOLSOL: sbrMSOLSOLFarm });
+
   return (
     <QuarryContext.Provider
-      value={
-        mSOLFarm && mLPFarm && sbrMSOLSOLFarm
-          ? {
-              sdk,
-              mndeRewarder,
-              sbrRewarder,
-              farms: {
-                mSOL: mSOLFarm,
-                mLP: mLPFarm,
-                sbrMSOLSOL: sbrMSOLSOLFarm,
-              },
-              mndeTokadapt,
-              mndeTokadaptState,
-            }
-          : {
-              sdk,
-              mndeRewarder,
-              sbrRewarder,
-              farms: {},
-              mndeTokadapt,
-              mndeTokadaptState,
-            }
-      }
+      value={{
+        sdk,
+        mndeRewarder,
+        sbrRewarder,
+        farms,
+        mndeTokadapt,
+        mndeTokadaptState,
+      }}
     >
       {children}
     </QuarryContext.Provider>

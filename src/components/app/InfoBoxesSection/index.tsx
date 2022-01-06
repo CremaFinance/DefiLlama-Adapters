@@ -76,7 +76,7 @@ const InfoBoxesSection = () => {
     : undefined;
 
   const mSOLvsSOLParity = marinadeState?.state?.st_sol_price
-    ? marinadeState?.state?.st_sol_price?.toNumber() / 0x1_0000_0000
+    ? marinadeState.state.st_sol_price.toNumber() / 0x1_0000_0000
     : 0;
 
   const solUSD = data ? data[coinSymbols.SOL]?.usd : 0;

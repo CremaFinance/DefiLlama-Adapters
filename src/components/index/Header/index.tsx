@@ -44,18 +44,20 @@ const Header = () => {
       transition="background 0.3s ease, box-shadow 0.3s ease"
       py={[2, 4]}
       zIndex={1000}
-      px={{ base: 4, md: "40px", lg: 160 }}
+      px={{ base: 4, md: 10, lg: 160 }}
     >
       <Link href="/" passHref>
         <Image
+          mt={1}
           cursor="pointer"
           src="./marinade-logo-black.svg"
           alt="Marinade Logo"
           width={[160, 200]}
+          height="40px"
         />
       </Link>
 
-      <Box mt={2} mr={2}>
+      <Box mr={2}>
         <Box display={["block", "block", "none"]}>
           <Sidebar />
         </Box>
