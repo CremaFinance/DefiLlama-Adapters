@@ -199,7 +199,7 @@ const MSolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
 
   return (
     <>
-      <Modal isOpen={isOpenProp} onClose={onCloseProp}>
+      <Modal isOpen={isOpenProp} onClose={onCloseProp} isCentered>
         <ModalOverlay />
         <ModalContent
           px={[4, 8]}
