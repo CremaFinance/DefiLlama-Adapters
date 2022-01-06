@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 import { Box, Flex, Image, useMediaQuery } from "@chakra-ui/react";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
@@ -7,7 +6,6 @@ import { useRouter } from "next/dist/client/router";
 import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
-import { useMarinade } from "contexts/MarinadeContext";
 import { useStats } from "contexts/StatsContext";
 import { usePrice } from "hooks/usePrice";
 import { coinSymbols } from "services/domain/coinSymbols";
@@ -19,7 +17,6 @@ const HeroSection = () => {
   const { t } = useTranslation();
   const [isTallerThan700] = useMediaQuery("(min-height: 700px)");
   const { totalValidatorsCount, totalStaked, liqPoolBalance } = useStats();
-  const { marinadeState } = useMarinade();
 
   const { data } = usePrice(coinSymbols.SOL);
   const solUSD = data ? data[coinSymbols.SOL]?.usd : 0;
@@ -27,16 +24,6 @@ const HeroSection = () => {
   const tvlUsd =
     liqPoolBalance && totalStaked && solUSD
       ? ((liqPoolBalance + totalStaked) / LAMPORTS_PER_SOL) * +solUSD
-      : 0;
-
-  const mSolPrice =
-    marinadeState?.state?.st_sol_price.toNumber() &&
-    marinadeState.state.st_sol_price.toNumber() / 0x1_0000_0000;
-  const mSolTotalSupply = marinadeState?.state?.st_sol_supply.toNumber();
-
-  const totalRewards =
-    mSolTotalSupply && mSolPrice
-      ? (mSolTotalSupply / LAMPORTS_PER_SOL) * (mSolPrice - 1) * (solUSD ?? 0)
       : 0;
 
   return (
@@ -152,20 +139,6 @@ const HeroSection = () => {
           </MHeading>{" "}
           <MHeading type="heading-xsm" mr={1}>
             {t(`indexPage.hero-section-stats.tvl.desc`)}
-          </MHeading>
-        </Box>
-        <Box
-          display="flex"
-          flexDirection="row"
-          mr={{ md: 4, lg: 8 }}
-          mt={{ base: 2, md: 0 }}
-          key="desktop-hstack-1"
-        >
-          <MHeading type="heading-xsm" color={colors.marinadeGreen} mr={1}>
-            ${numberToShortVersion(totalRewards)}
-          </MHeading>{" "}
-          <MHeading type="heading-xsm" mr={1}>
-            {t(`indexPage.hero-section-stats.accumulated.desc`)}
           </MHeading>
         </Box>
       </Box>
