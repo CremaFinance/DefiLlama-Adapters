@@ -31,7 +31,7 @@ const HeroSection = () => {
 
   const mSolPrice =
     marinadeState?.state?.st_sol_price.toNumber() &&
-    marinadeState?.state?.st_sol_price.toNumber() / 0x1_0000_0000;
+    marinadeState.state.st_sol_price.toNumber() / 0x1_0000_0000;
   const mSolTotalSupply = marinadeState?.state?.st_sol_supply.toNumber();
 
   const totalRewards =

@@ -51,7 +51,7 @@ const MSolLPCard = () => {
   const mSOLPrice =
     solPrice &&
     stats?.mSOLvsSOLParity !== null &&
-    solPrice * stats?.mSOLvsSOLParity;
+    solPrice * stats.mSOLvsSOLParity;
   const mndePrice = prices[coinSymbols.MNDE]?.usd;
 
   const totalDeposited = mLP?.quarry?.quarryData?.totalTokensDeposited;

@@ -141,7 +141,7 @@ const MSolStakeModal = ({
       return toast(checkBalanceErrors);
     }
 
-    if (Number(amount) > userStake?.toNumber() / LAMPORTS_PER_SOL) {
+    if (Number(amount) > userStake.toNumber() / LAMPORTS_PER_SOL) {
       return toast({
         title: t("mndePage.msol-stake-modal.insufficient-funds-to-withdraw"),
         description: t(
@@ -150,7 +150,7 @@ const MSolStakeModal = ({
           .replace("{{amount}}", amount)
           .replace(
             "{{mSOLBalance}}",
-            format2Dec(userStake?.toNumber(), LAMPORTS_PER_SOL)
+            format2Dec(userStake.toNumber(), LAMPORTS_PER_SOL)
           ),
         status: "warning",
       });
@@ -196,95 +196,93 @@ const MSolStakeModal = ({
   };
 
   return (
-    <>
-      <Modal isOpen={isOpenProp} onClose={onCloseProp} isCentered>
-        <ModalOverlay w="100vw" />
-        <ModalContent
-          px={[4, 8]}
-          pb={[4, 8]}
-          w={["90vw", "480px"]}
-          backgroundColor="white"
-          overflow="auto"
-        >
-          <ModalHeader mb={[2, 0]} />
-          <ModalCloseButton _focus={{ boxShadow: "none" }} />
-          <ModalBody p={0}>
-            <Flex display="flex" justifyContent="center">
-              <SwitchButtons
-                leftText={t("mndePage.msol-stake-modal.deposit-msol")}
-                rightText={t("mndePage.msol-stake-modal.withdraw-msol")}
-                height={40}
-                mb={8}
-                width={["254px", "322px"]}
-                buttonWidth={["121px", "155px"]}
-                active={isDepositActive}
-                font="text-lg"
-                display="flex"
-                handleSwitch={setDepositActive}
-              />
-            </Flex>
-            <StakeInput
-              stakeInputType={StakeInputTypeEnum.Source}
-              onValueChange={setAmount}
-              tokenName="mSOL"
-              tokenIcon="/icons/mSOL.svg"
-              tokenBalance={
-                isDepositActive
-                  ? stSOLBalance ?? 0
-                  : (userStake?.toNumber() ?? 0) / LAMPORTS_PER_SOL
-              }
-              value={amount}
-              mb={4}
+    <Modal isOpen={isOpenProp} onClose={onCloseProp} isCentered>
+      <ModalOverlay w="100vw" />
+      <ModalContent
+        px={[4, 8]}
+        pb={[4, 8]}
+        w={["90vw", "480px"]}
+        backgroundColor="white"
+        overflow="auto"
+      >
+        <ModalHeader mb={[2, 0]} />
+        <ModalCloseButton _focus={{ boxShadow: "none" }} />
+        <ModalBody p={0}>
+          <Flex display="flex" justifyContent="center">
+            <SwitchButtons
+              leftText={t("mndePage.msol-stake-modal.deposit-msol")}
+              rightText={t("mndePage.msol-stake-modal.withdraw-msol")}
+              height={40}
+              mb={8}
+              width={["254px", "322px"]}
+              buttonWidth={["121px", "155px"]}
+              active={isDepositActive}
+              font="text-lg"
+              display="flex"
+              handleSwitch={setDepositActive}
             />
-            <Flex justifyContent="center">
-              {isDepositActive ? (
-                <Button
-                  font="text-xl"
-                  bg={colors.marinadeGreen}
-                  isLoading={loading}
-                  _hover={{ bg: colors.green800 }}
-                  colorScheme={colors.marinadeGreen}
-                  rounded="md"
-                  height="48px"
-                  _focus={{ boxShadow: "none" }}
-                  my={8}
-                  onClick={
-                    stSOLBalance
-                      ? stakemSolHandler
-                      : () => router.push("/app/staking")
-                  }
-                >
-                  {stSOLBalance
-                    ? t("mndePage.msol-stake-modal.deposit-msol")
-                    : t("mndePage.msol-stake-modal.get-msol")}
-                </Button>
-              ) : (
-                <Button
-                  font="text-xl"
-                  bg={colors.marinadeGreen}
-                  isLoading={loading}
-                  _hover={{ bg: colors.green800 }}
-                  colorScheme={colors.marinadeGreen}
-                  rounded="md"
-                  height="48px"
-                  _focus={{ boxShadow: "none" }}
-                  my={8}
-                  onClick={
-                    userStake?.toNumber()
-                      ? unstakeMSolHandler
-                      : () => setDepositActive(true)
-                  }
-                >
-                  {userStake?.toNumber()
-                    ? t("mndePage.msol-stake-modal.withdraw-msol")
-                    : t("mndePage.msol-stake-modal.deposit-first-msol")}
-                </Button>
-              )}
-            </Flex>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
-    </>
+          </Flex>
+          <StakeInput
+            stakeInputType={StakeInputTypeEnum.Source}
+            onValueChange={setAmount}
+            tokenName="mSOL"
+            tokenIcon="/icons/mSOL.svg"
+            tokenBalance={
+              isDepositActive
+                ? stSOLBalance ?? 0
+                : (userStake?.toNumber() ?? 0) / LAMPORTS_PER_SOL
+            }
+            value={amount}
+            mb={4}
+          />
+          <Flex justifyContent="center">
+            {isDepositActive ? (
+              <Button
+                font="text-xl"
+                bg={colors.marinadeGreen}
+                isLoading={loading}
+                _hover={{ bg: colors.green800 }}
+                colorScheme={colors.marinadeGreen}
+                rounded="md"
+                height="48px"
+                _focus={{ boxShadow: "none" }}
+                my={8}
+                onClick={
+                  stSOLBalance
+                    ? stakemSolHandler
+                    : () => router.push("/app/staking")
+                }
+              >
+                {stSOLBalance
+                  ? t("mndePage.msol-stake-modal.deposit-msol")
+                  : t("mndePage.msol-stake-modal.get-msol")}
+              </Button>
+            ) : (
+              <Button
+                font="text-xl"
+                bg={colors.marinadeGreen}
+                isLoading={loading}
+                _hover={{ bg: colors.green800 }}
+                colorScheme={colors.marinadeGreen}
+                rounded="md"
+                height="48px"
+                _focus={{ boxShadow: "none" }}
+                my={8}
+                onClick={
+                  userStake?.toNumber()
+                    ? unstakeMSolHandler
+                    : () => setDepositActive(true)
+                }
+              >
+                {userStake?.toNumber()
+                  ? t("mndePage.msol-stake-modal.withdraw-msol")
+                  : t("mndePage.msol-stake-modal.deposit-first-msol")}
+              </Button>
+            )}
+          </Flex>
+        </ModalBody>
+      </ModalContent>
+    </Modal>
   );
 };
 
