@@ -253,7 +253,7 @@ const StakeInput = ({
 
                   {stakeAccounts.map((stakeAccount) => (
                     <MenuItem
-                      isDisabled={stakeAccount.isStakable}
+                      isDisabled={!stakeAccount.isStakable}
                       key={stakeAccount.address}
                       onClick={() => {
                         handleSelectedAccount(stakeAccount, true);

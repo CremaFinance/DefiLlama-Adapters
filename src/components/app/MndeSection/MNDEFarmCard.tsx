@@ -51,7 +51,7 @@ const MNDEFarmCard = () => {
     prices[coinSymbols.SOL]?.usd && Number(prices[coinSymbols.SOL]?.usd);
   const mSolUSD =
     solUSD && stats?.mSOLvsSOLParity !== null
-      ? solUSD * stats?.mSOLvsSOLParity
+      ? solUSD * stats.mSOLvsSOLParity
       : undefined;
   const mndeUSD =
     prices[coinSymbols.MNDE]?.usd && Number(prices[coinSymbols.MNDE]?.usd);

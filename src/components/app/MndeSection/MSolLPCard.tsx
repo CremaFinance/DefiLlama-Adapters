@@ -1,5 +1,13 @@
 /* eslint-disable complexity */
-import { Box, Flex, Icon, Image, Spinner, useToast } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Icon,
+  Image,
+  Spinner,
+  useDisclosure,
+  useToast,
+} from "@chakra-ui/react";
 import { BN } from "@project-serum/anchor";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
@@ -11,6 +19,7 @@ import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
 import { ConnectWallet } from "../../molecules/ConnectWallet";
+import MSolLpModal from "components/molecules/MSolLpModal";
 import TransactionLink from "components/molecules/TransactionLink";
 import { useChain } from "contexts/ConnectionProvider";
 import { useQuarryProvider } from "contexts/QuaryContext";
@@ -29,6 +38,7 @@ const MSolLPCard = () => {
   const toast = useToast();
   const { connected } = useWallet();
   const stats = useStats();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const {
     mndeTokadaptState,
@@ -41,7 +51,7 @@ const MSolLPCard = () => {
   const mSOLPrice =
     solPrice &&
     stats?.mSOLvsSOLParity !== null &&
-    solPrice * stats?.mSOLvsSOLParity;
+    solPrice * stats.mSOLvsSOLParity;
   const mndePrice = prices[coinSymbols.MNDE]?.usd;
 
   const totalDeposited = mLP?.quarry?.quarryData?.totalTokensDeposited;
@@ -198,7 +208,12 @@ const MSolLPCard = () => {
       </Box>
       {connected ? (
         <Flex flexDirection="column" alignItems="center">
-          <MButton variant="solid" width="142px" height="40px">
+          <MButton
+            variant="solid"
+            width="142px"
+            height="40px"
+            onClick={() => onOpen()}
+          >
             {t("mndePage.manage-deposit-action")}
           </MButton>
           <Flex
@@ -221,8 +236,9 @@ const MSolLPCard = () => {
               variant="outline"
               borderColor="gray"
               color="black"
+              _hover={{ bg: "gray.100" }}
               width={{ base: "70px", lg: "80px" }}
-              fontWeight="500"
+              fontWeight="600"
               fontSize="14.4px"
               onClick={() => claimHandler()}
               isLoading={isClaimProcessing}
@@ -239,6 +255,9 @@ const MSolLPCard = () => {
       ) : (
         <ConnectWallet />
       )}
+      {isOpen ? (
+        <MSolLpModal isOpenProp={isOpen} onCloseProp={onClose} />
+      ) : null}
     </Flex>
   );
 };
