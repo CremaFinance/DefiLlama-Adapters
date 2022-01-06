@@ -45,7 +45,7 @@ const BasicUnstake = () => {
   const [showModal, setShowModal] = useState(false);
   const { nativeSOLBalance, stSOLBalance } = useUserBalance();
   const { connected: walletConnected, publicKey: walletPubKey } = useWallet();
-  const { liqPoolBalance, unstakeFee } = useStats();
+  const { liqPoolBalance } = useStats();
 
   const unstakeButtonText = isUnstakeNowActive
     ? t("appPage.start-unstake-action")
@@ -105,7 +105,8 @@ const BasicUnstake = () => {
     const proportion: bigint = (range * liqAfter) / target;
     return state?.liq_pool?.lp_max_fee?.basis_points - Number(proportion);
   }
-  const minUnstakeFee = "0.3";
+  const minUnstakeFee = 0.3;
+  const maxUnstakeFee = 3;
   const mSOLvsSOLParity = marinadeState?.state?.st_sol_price
     ? marinadeState?.state?.st_sol_price?.toNumber() / 0x1_0000_0000
     : 0;
@@ -115,8 +116,26 @@ const BasicUnstake = () => {
     (receiveLamports * BigInt(getDiscountBasisPoints())) / BigInt(10000);
   const delayedUnstakeReceive = receiveLamports;
 
-  const feeBp = getDiscountBasisPoints() ? getDiscountBasisPoints() : 0;
-  const percentageFee = receiveLamports ? feeBp / 100 : 0;
+  const unstakeFeePercentage = () => {
+    let unstakefee = 0.3;
+    if (
+      state?.liq_pool?.lp_liquidity_target.toNumber() !== undefined &&
+      liqPoolBalance !== null
+    ) {
+      if (
+        Number(liquidity) - Number(stSolToUnstake) >
+        (state?.liq_pool?.lp_liquidity_target.toNumber() || 0)
+      ) {
+        return unstakefee;
+      }
+      unstakefee =
+        maxUnstakeFee -
+        ((maxUnstakeFee - minUnstakeFee) *
+          ((liqPoolBalance || 0) - Number(stSolToUnstake))) /
+          state?.liq_pool?.lp_liquidity_target.toNumber();
+    }
+    return Number(format2Dec(unstakefee));
+  };
 
   useEffect(() => {
     if (walletConnected) {
@@ -333,11 +352,7 @@ const BasicUnstake = () => {
           )}
           inputValue={stSolToUnstake}
           initialUnstakeNowFee={minUnstakeFee}
-          actualUnstakeNowFee={
-            unstakeFee && percentageFee
-              ? format2Dec(percentageFee)
-              : "from 0.3%"
-          }
+          actualUnstakeNowFee={unstakeFeePercentage}
           active={isUnstakeNowActive}
           my={6}
           handleSwitch={(val) => setUnstakeNowActive(val)}

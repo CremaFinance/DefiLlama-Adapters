@@ -9,8 +9,8 @@ type UnstakeOptionsProps = {
   active: boolean;
   unstakeNowReceive: string;
   delayedUnstakeReceive: string;
-  initialUnstakeNowFee: string;
-  actualUnstakeNowFee: string;
+  initialUnstakeNowFee: number;
+  actualUnstakeNowFee: () => number;
   inputValue: string;
   my: number;
   handleSwitch: (v: boolean) => void;
@@ -72,12 +72,12 @@ const UnstakeOptions = ({
               {t("appPage.stake-inputs-unstake-fee")}:
             </MText>
             {inputValue === "0" || inputValue === "" ? (
-              <MText color={colors.black} type="text-sm">
-                {initialUnstakeNowFee}%
+              <MText color={colors.black} type="text-sm" ml="2px">
+                {`${t("appPage.from-fee")} ${initialUnstakeNowFee}%`}
               </MText>
             ) : (
               <MText color={colors.black} type="text-sm">
-                {actualUnstakeNowFee}%
+                {actualUnstakeNowFee()}%
               </MText>
             )}
           </Flex>
