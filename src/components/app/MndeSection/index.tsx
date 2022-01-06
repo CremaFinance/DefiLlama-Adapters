@@ -30,6 +30,16 @@ const MndeSection = () => {
         <Text
           color={colors.black}
           textAlign="center"
+          fontWeight="bold"
+          fontSize={["22.5px", "43.95px"]}
+          maxWidth="670px"
+        >
+          {t("appPage.mnde.header")}
+        </Text>
+
+        <Text
+          color={colors.black}
+          textAlign="center"
           fontSize={{ base: "14px", md: "18px" }}
           lineHeight={{ base: "20px", md: "27px" }}
           maxWidth={{ base: "288px", md: "670px" }}

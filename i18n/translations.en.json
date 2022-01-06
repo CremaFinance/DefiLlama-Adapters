@@ -305,7 +305,8 @@
       "body-mobile": "Use mSOL and explore additional yield while still earning your staking rewards"
     },
     "mnde": {
-      "description": "MNDE is the governance token of Marinade finance that will give you voting power over the future of our DAO. It is currently only accessible through Liquidity Mining or on secondary markets. Please know that on-chain voting is being developed and will be added as soon as possible. You can learn more about it in our documentation.",
+      "header": "Participate in Marinade",
+      "description": "MNDE is the governance token of Marinade finance.",
       "docs-link": "https://docs.marinade.finance/marinade-dao/tokenomics"
     },
     "stake-inputs-time-to-unstake": "Time to unstake",
