@@ -44,7 +44,7 @@ const Header = () => {
       transition="background 0.3s ease, box-shadow 0.3s ease"
       py={[2, 4]}
       zIndex={1000}
-      px={{ base: 4, md: "40px", lg: 160 }}
+      px={{ base: 4, md: 10, lg: 160 }}
     >
       <Link href="/" passHref>
         <Image
