@@ -108,7 +108,6 @@
         "name": "Ian Macalinao",
         "company": "Co-founder at Saber",
         "explore-defi": "Explore DeFi"
-
       }
     ],
 
@@ -446,6 +445,30 @@
       "successfully-withdrew-msol": "You've successfully withdrew mSOL",
       "deposit-first-msol": "Deposit first",
       "get-msol": "Get mSOL"
+    },
+    "deposit-msol-sol-lp-modal": {
+      "deposit": "Deposit mSOL-SOL LP",
+      "withdraw": "Withdraw mSOL-SOL LP",
+      "action-button": {
+        "deposit": "Deposit",
+        "withdraw": "Withdraw"
+      },
+      "deposit-action": {
+        "title": "mLP deposit confirmed",
+        "success": "Youve successfully deposited mLP"
+      },
+      "withdraw-action": {
+        "title": "mLP withdraw confirmed",
+        "success": "Remove liquidity confirmed"
+      },
+      "insufficient-funds": {
+        "title": "Insufficient funds to deposit",
+        "description": "You requested to deposit {amount} mLP (have only {balance})"
+      },
+      "errors": {
+        "title": "Something went wrong",
+        "account-deactivated": "Your mSOL-SOL LP account is deactivated. Add any SOL liquidity to the LP to re-activate the account and try to withdraw LP again."
+      }
     }
   },
   "termsPage": {

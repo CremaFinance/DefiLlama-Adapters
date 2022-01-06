@@ -36,6 +36,7 @@ export enum StakeInputTypeEnum {
   Source = "source",
   Target = "target",
   Liquidity = "liquidity",
+  mSolSolLp = "msol-sol-lp",
 }
 
 export type StakeAccountType = {

@@ -1,5 +1,13 @@
 /* eslint-disable complexity */
-import { Box, Flex, Icon, Image, Spinner, useToast } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Icon,
+  Image,
+  Spinner,
+  useDisclosure,
+  useToast,
+} from "@chakra-ui/react";
 import { BN } from "@project-serum/anchor";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
@@ -11,6 +19,7 @@ import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
 import { ConnectWallet } from "../../molecules/ConnectWallet";
+import DepositWithdrawMsolLpModal from "components/molecules/DepositWithdrawMsolLpModal/DepositWithdrawMsolLpModal";
 import TransactionLink from "components/molecules/TransactionLink";
 import { useChain } from "contexts/ConnectionProvider";
 import { useQuarryProvider } from "contexts/QuaryContext";
@@ -29,6 +38,7 @@ const MSolLPCard = () => {
   const toast = useToast();
   const { connected } = useWallet();
   const stats = useStats();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const {
     mndeTokadaptState,
@@ -198,7 +208,12 @@ const MSolLPCard = () => {
       </Box>
       {connected ? (
         <Flex flexDirection="column" alignItems="center">
-          <MButton variant="solid" width="142px" height="40px">
+          <MButton
+            variant="solid"
+            width="142px"
+            height="40px"
+            onClick={() => onOpen()}
+          >
             {t("mndePage.manage-deposit-action")}
           </MButton>
           <Flex
@@ -239,6 +254,9 @@ const MSolLPCard = () => {
       ) : (
         <ConnectWallet />
       )}
+      {isOpen ? (
+        <DepositWithdrawMsolLpModal isOpenProp={isOpen} onCloseProp={onClose} />
+      ) : null}
     </Flex>
   );
 };
