@@ -62,7 +62,8 @@ const Header = ({ onValidatorsPage = false }: Props) => {
       align="center"
       justifyContent="space-between"
       transition="background 0.3s ease, box-shadow 0.3s ease"
-      py={[2, 4]}
+      py={[0, 4]}
+      pt="14px"
       zIndex={1000}
       px={{ base: 4, md: 10, lg: 160 }}
       flexWrap={isLargerThan430 ? "nowrap" : "wrap"}
@@ -81,7 +82,7 @@ const Header = ({ onValidatorsPage = false }: Props) => {
             cursor="pointer"
             src="../../marinade-icon-black.svg"
             alt="Marinade Logo"
-            width={38}
+            width="36px"
             display={["block", "none"]}
           />
         </Box>
