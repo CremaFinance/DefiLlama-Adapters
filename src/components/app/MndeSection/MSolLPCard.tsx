@@ -197,7 +197,7 @@ const MSolLPCard = () => {
               <MText>{t("mndePage.your-deposit")}:</MText>
               <MText>{`${numberToShortVersion(
                 userStake.toNumber() / LAMPORTS_PER_SOL
-              )} MSOL`}</MText>
+              )} LP`}</MText>
             </Flex>
           </>
         ) : (
