@@ -142,7 +142,7 @@ const MSolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
       return toast(checkBalanceErrors);
     }
 
-    if (Number(amount) > userStake?.toNumber() / LAMPORTS_PER_SOL) {
+    if (Number(amount) > userStake.toNumber() / LAMPORTS_PER_SOL) {
       toast({
         title: t("mndePage.deposit-msol-sol-lp-modal.insufficient-funds.title"),
         description: t(
@@ -151,7 +151,7 @@ const MSolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
           .replace("{amount}", amount)
           .replace(
             "{balance}",
-            format2Dec(userStake?.toNumber(), LAMPORTS_PER_SOL)
+            format2Dec(userStake.toNumber(), LAMPORTS_PER_SOL)
           ),
         status: "warning",
       });
@@ -198,125 +198,117 @@ const MSolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
   };
 
   return (
-    <>
-      <Modal isOpen={isOpenProp} onClose={onCloseProp} isCentered>
-        <ModalOverlay />
-        <ModalContent
-          px={[4, 8]}
-          pb={[4, 8]}
-          w={["90vw", "480px"]}
-          backgroundColor="white"
-          overflow="auto"
-        >
-          <ModalHeader mb={[2, 0]} />
+    <Modal isOpen={isOpenProp} onClose={onCloseProp} isCentered>
+      <ModalOverlay />
+      <ModalContent
+        px={[4, 8]}
+        pb={[4, 8]}
+        w={["90vw", "480px"]}
+        backgroundColor="white"
+        overflow="auto"
+      >
+        <ModalHeader mb={[2, 0]} />
 
-          <ModalCloseButton _focus={{ boxShadow: "none" }} />
-          <ModalBody p={0}>
-            <Flex display="flex" justifyContent="center">
-              <SwitchButtons
-                leftText={t("mndePage.deposit-msol-sol-lp-modal.deposit")}
-                rightText={t("mndePage.deposit-msol-sol-lp-modal.withdraw")}
-                height={40}
-                mb={8}
-                width={["254px", "322px"]}
-                buttonWidth={["121px", "155px"]}
-                active={isDepostActive}
-                font="text-sm"
-                display="flex"
-                handleSwitch={(prop) => {
-                  setDepositActive(prop);
-                  setAmount("");
-                }}
-              />
-            </Flex>
-            <Flex mb={2}>
-              <Image src="/icons/mSOL-SOL LP.svg" width="24px" height="24px" />
-              <Text marginLeft="8px" fontSize="14.4px">
-                {t("appPage.liquidity-modal.pool")}
-              </Text>
-            </Flex>
-            <Flex justifyContent="space-between">
-              <Text lineHeight="21.6px" fontSize="14.4px">
-                {t("appPage.liquidity-modal.balance")}
-              </Text>
-              <Text lineHeight="21.6px" fontSize="14.4px">
-                {format5Dec(liqSOLBalance ?? 0)}
-              </Text>
-            </Flex>
-            <Text align="end" lineHeight="21.6px" fontSize="14.4px">
-              {`= ${format5Dec(liquiditySOLPart ?? 0)} SOL`}
+        <ModalCloseButton _focus={{ boxShadow: "none" }} />
+        <ModalBody p={0}>
+          <Flex display="flex" justifyContent="center">
+            <SwitchButtons
+              leftText={t("mndePage.deposit-msol-sol-lp-modal.deposit")}
+              rightText={t("mndePage.deposit-msol-sol-lp-modal.withdraw")}
+              height={40}
+              mb={8}
+              width={["254px", "322px"]}
+              buttonWidth={["121px", "155px"]}
+              active={isDepostActive}
+              font="text-sm"
+              display="flex"
+              handleSwitch={(prop) => {
+                setDepositActive(prop);
+                setAmount("");
+              }}
+            />
+          </Flex>
+          <Flex mb={2}>
+            <Image src="/icons/mSOL-SOL LP.svg" width="24px" height="24px" />
+            <Text marginLeft="8px" fontSize="14.4px">
+              {t("appPage.liquidity-modal.pool")}
             </Text>
-            <Text align="end" mb={4} lineHeight="21.6px" fontSize="14.4px">
-              {`= $ ${format2Dec((liquiditySOLPart ?? 0) * (solUSD ?? 0))}`}
+          </Flex>
+          <Flex justifyContent="space-between">
+            <Text lineHeight="21.6px" fontSize="14.4px">
+              {t("appPage.liquidity-modal.balance")}
             </Text>
+            <Text lineHeight="21.6px" fontSize="14.4px">
+              {format5Dec(liqSOLBalance ?? 0)}
+            </Text>
+          </Flex>
+          <Text align="end" lineHeight="21.6px" fontSize="14.4px">
+            {`= ${format5Dec(liquiditySOLPart ?? 0)} SOL`}
+          </Text>
+          <Text align="end" mb={4} lineHeight="21.6px" fontSize="14.4px">
+            {`= $ ${format2Dec((liquiditySOLPart ?? 0) * (solUSD ?? 0))}`}
+          </Text>
+          {isDepostActive ? (
+            <StakeInput
+              stakeInputType={StakeInputTypeEnum.Liquidity}
+              onValueChange={setAmount}
+              tokenName="LP"
+              tokenIcon="/icons/mSOL-SOL LP.svg"
+              tokenBalance={liqSOLBalance || 0}
+              value={amount}
+              mb={4}
+            />
+          ) : (
+            <StakeInput
+              stakeInputType={StakeInputTypeEnum.Liquidity}
+              onValueChange={setAmount}
+              tokenName="LP"
+              tokenIcon="/icons/mSOL-SOL LP.svg"
+              tokenBalance={
+                parseFloat(
+                  numberToShortVersion(userStake.toNumber() / LAMPORTS_PER_SOL)
+                ) ?? 0
+              }
+              value={amount}
+              mb={4}
+            />
+          )}
+          <Flex justifyContent="center">
             {isDepostActive ? (
-              <StakeInput
-                stakeInputType={StakeInputTypeEnum.Liquidity}
-                onValueChange={setAmount}
-                tokenName="LP"
-                tokenIcon="/icons/mSOL-SOL LP.svg"
-                tokenBalance={liqSOLBalance || 0}
-                value={amount}
-                mb={4}
-              />
+              <Button
+                font="text-xl"
+                bg={colors.marinadeGreen}
+                isLoading={loading}
+                _hover={{ bg: colors.green800 }}
+                colorScheme={colors.marinadeGreen}
+                rounded="md"
+                height="48px"
+                _focus={{ boxShadow: "none" }}
+                my={8}
+                onClick={() => depositHandler()}
+              >
+                {t("mndePage.deposit-msol-sol-lp-modal.action-button.deposit")}
+              </Button>
             ) : (
-              <StakeInput
-                stakeInputType={StakeInputTypeEnum.Liquidity}
-                onValueChange={setAmount}
-                tokenName="LP"
-                tokenIcon="/icons/mSOL-SOL LP.svg"
-                tokenBalance={
-                  parseFloat(
-                    numberToShortVersion(
-                      userStake.toNumber() / LAMPORTS_PER_SOL
-                    )
-                  ) ?? 0
-                }
-                value={amount}
-                mb={4}
-              />
+              <Button
+                font="text-xl"
+                bg={colors.marinadeGreen}
+                isLoading={loading}
+                _hover={{ bg: colors.green800 }}
+                colorScheme={colors.marinadeGreen}
+                rounded="md"
+                height="48px"
+                _focus={{ boxShadow: "none" }}
+                my={8}
+                onClick={() => withdrawDepositHandler()}
+              >
+                {t("mndePage.deposit-msol-sol-lp-modal.action-button.withdraw")}
+              </Button>
             )}
-            <Flex justifyContent="center">
-              {isDepostActive ? (
-                <Button
-                  font="text-xl"
-                  bg={colors.marinadeGreen}
-                  isLoading={loading}
-                  _hover={{ bg: colors.green800 }}
-                  colorScheme={colors.marinadeGreen}
-                  rounded="md"
-                  height="48px"
-                  _focus={{ boxShadow: "none" }}
-                  my={8}
-                  onClick={() => depositHandler()}
-                >
-                  {t(
-                    "mndePage.deposit-msol-sol-lp-modal.action-button.deposit"
-                  )}
-                </Button>
-              ) : (
-                <Button
-                  font="text-xl"
-                  bg={colors.marinadeGreen}
-                  isLoading={loading}
-                  _hover={{ bg: colors.green800 }}
-                  colorScheme={colors.marinadeGreen}
-                  rounded="md"
-                  height="48px"
-                  _focus={{ boxShadow: "none" }}
-                  my={8}
-                  onClick={() => withdrawDepositHandler()}
-                >
-                  {t(
-                    "mndePage.deposit-msol-sol-lp-modal.action-button.withdraw"
-                  )}
-                </Button>
-              )}
-            </Flex>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
-    </>
+          </Flex>
+        </ModalBody>
+      </ModalContent>
+    </Modal>
   );
 };
 
