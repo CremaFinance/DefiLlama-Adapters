@@ -152,7 +152,6 @@ const SolLiquidityModal = ({
     }
 
     const fundsNeeded =
-      Number(amount) * LAMPORTS_PER_SOL +
       (marinadeState?.transactionFee ?? 0) * 4 +
       (marinadeState?.state.rent_exempt_for_token_acc.toNumber() ?? 0);
     const checkBalanceErrors = checkNativeSOLBalance(
