@@ -12,7 +12,7 @@ type UnstakeOptionsProps = {
   initialUnstakeNowFee: string;
   actualUnstakeNowFee: string;
   inputValue: string;
-  mb: number;
+  my: number;
   handleSwitch: (v: boolean) => void;
 };
 
@@ -23,7 +23,7 @@ const UnstakeOptions = ({
   initialUnstakeNowFee,
   actualUnstakeNowFee,
   inputValue,
-  mb,
+  my,
   handleSwitch,
 }: UnstakeOptionsProps) => {
   const { t } = useTranslation();
@@ -36,7 +36,7 @@ const UnstakeOptions = ({
       width="100%"
       justifyContent="space-between"
       alignItems="center"
-      mb={mb}
+      my={my}
     >
       <Flex
         bg={active ? colors.marinadeEvenLighterGreen : "gray.50"}

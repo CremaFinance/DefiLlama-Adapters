@@ -15,6 +15,6 @@ Default.args = {
   initialUnstakeNowFee: "0",
   actualUnstakeNowFee: "0",
   inputValue: "0",
-  mb: 2,
+  my: 2,
   handleSwitch: () => {},
 };

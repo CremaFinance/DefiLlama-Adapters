@@ -1,5 +1,5 @@
 /* eslint-disable complexity */
-import { Flex, IconButton, useToast } from "@chakra-ui/react";
+import { Flex, IconButton, useToast, Box } from "@chakra-ui/react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
@@ -9,6 +9,7 @@ import { MdInfoOutline } from "react-icons/md";
 import { useUserBalance } from "../../../contexts/UserBalanceContext";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
+import { ConnectWallet } from "../../molecules/ConnectWallet";
 import TooltipWithContent from "../../molecules/TooltipWithContent";
 import UnstakeTicketsSection from "../UnstakeTicketsSection";
 import StakeInput, {
@@ -320,7 +321,7 @@ const BasicUnstake = () => {
         tokenIcon="/icons/mSOL.svg"
         tokenBalance={stSOLBalance ?? 0}
         value={stSolToUnstake}
-        mb={6}
+        mb={2}
       />
       {walletConnected ? (
         <UnstakeOptions
@@ -338,26 +339,34 @@ const BasicUnstake = () => {
               : "from 0.3%"
           }
           active={isUnstakeNowActive}
-          mb={6}
+          my={6}
           handleSwitch={(val) => setUnstakeNowActive(val)}
         />
       ) : null}
 
-      <MButton
-        font="text-xl"
-        bg={colors.marinadeGreen}
-        isLoading={unstakeLoading}
-        _hover={{ bg: colors.green800 }}
-        colorScheme={colors.marinadeGreen}
-        rounded="md"
-        px={4}
-        height="48px"
-        mx={4}
-        mb={4}
-        onClick={isUnstakeNowActive ? unstakeHandler : () => setShowModal(true)}
-      >
-        {unstakeButtonText}
-      </MButton>
+      {walletConnected ? (
+        <MButton
+          font="text-xl"
+          bg={colors.marinadeGreen}
+          isLoading={unstakeLoading}
+          _hover={{ bg: colors.green800 }}
+          colorScheme={colors.marinadeGreen}
+          rounded="md"
+          px={4}
+          height="48px"
+          mx={4}
+          mb={4}
+          onClick={
+            isUnstakeNowActive ? unstakeHandler : () => setShowModal(true)
+          }
+        >
+          {unstakeButtonText}
+        </MButton>
+      ) : (
+        <Box my={4}>
+          <ConnectWallet />
+        </Box>
+      )}
 
       <Flex width={["256px", "400px"]} my={1} justifyContent="space-between">
         <Flex>
