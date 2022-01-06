@@ -19,7 +19,7 @@ import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
 import { ConnectWallet } from "../../molecules/ConnectWallet";
-import MSolLpModal from "components/molecules/mSolLpModal";
+import MSolLpModal from "components/molecules/MSolLpModal";
 import TransactionLink from "components/molecules/TransactionLink";
 import { useChain } from "contexts/ConnectionProvider";
 import { useQuarryProvider } from "contexts/QuaryContext";
