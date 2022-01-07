@@ -384,7 +384,7 @@
     "validators-table-apy": "APY",
     "validators-table-delegated": "Delegated",
     "validators-link": "https://marinade.finance/app/validators",
-    "validators-table-graph": "% Staked",
+    "validators-table-graph": "% of SOL allocated",
     "agreement": {
       "header": "Welcome to Marinade!",
       "body": [
