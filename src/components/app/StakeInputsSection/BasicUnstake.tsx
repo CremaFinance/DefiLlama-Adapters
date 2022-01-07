@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import { Flex, IconButton, useToast, Box } from "@chakra-ui/react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
@@ -25,7 +26,11 @@ import { TicketAccount } from "solana/domain/ticket-account";
 import colors from "styles/customTheme/colors";
 import { basicInputChecks } from "utils/basic-input-checks";
 import { checkNativeSOLBalance } from "utils/check-native-sol-balance";
-import { format5Dec, format9Dec } from "utils/number-to-short-version";
+import {
+  format2Dec,
+  format5Dec,
+  format9Dec,
+} from "utils/number-to-short-version";
 
 import DelayedUnstakeModal from "./DelayedUnstakeModal";
 
@@ -70,46 +75,46 @@ const BasicUnstake = () => {
     Math.round(Number(stSolToUnstake) * stSolPrice * LAMPORTS_PER_SOL)
   );
 
-  function getDiscountBasisPoints(): number {
-    if (
-      !state?.liq_pool?.lp_max_fee.basis_points ||
-      !state?.liq_pool?.lp_min_fee?.basis_points
-    ) {
-      return 0;
-    }
-
-    if (receiveLamports > liquidity) {
-      // more asked than available => max discount
-      return state?.liq_pool?.lp_max_fee.basis_points;
-    }
-
-    const target = BigInt(
-      state?.liq_pool?.lp_liquidity_target
-        ? state?.liq_pool?.lp_liquidity_target.toNumber()
-        : 0
-    );
-    const liqAfter = liquidity - receiveLamports;
-    if (liqAfter >= target) {
-      // still >= target after swap => min discount
-      return state?.liq_pool?.lp_min_fee?.basis_points;
-    }
-
-    const range = BigInt(
-      state.liq_pool.lp_max_fee.basis_points -
-        state.liq_pool.lp_min_fee.basis_points
-    );
-    // here 0<after<target, so 0<proportion<range
-    const proportion: bigint = (range * liqAfter) / target;
-    return state.liq_pool.lp_max_fee.basis_points - Number(proportion);
-  }
-  const minUnstakeFee = "0.3";
+  const minUnstakeFee = 0.3;
+  const maxUnstakeFee = 3;
   const mSOLvsSOLParity = marinadeState?.state?.st_sol_price
     ? marinadeState.state.st_sol_price.toNumber() / 0x1_0000_0000
     : 0;
 
+  const unstakeFeePercentage = () => {
+    let unstakefee = 0.3;
+    if (
+      state?.liq_pool?.lp_liquidity_target.toNumber() !== undefined &&
+      liqPoolBalance !== null
+    ) {
+      if (
+        Number(liquidity) -
+          Number(stSolToUnstake) * LAMPORTS_PER_SOL * mSOLvsSOLParity >
+        (state.liq_pool.lp_liquidity_target.toNumber() || 0)
+      ) {
+        return unstakefee;
+      }
+
+      const liqPoolBalanceSOL = liqPoolBalance / LAMPORTS_PER_SOL;
+      const SOLtoWithdraw = Number(stSolToUnstake) * mSOLvsSOLParity;
+      const remainingSOLinLiqPool = Math.max(
+        0,
+        liqPoolBalanceSOL - SOLtoWithdraw
+      );
+      const SOLliquidityTarget =
+        state.liq_pool.lp_liquidity_target.toNumber() / LAMPORTS_PER_SOL ?? 1;
+
+      unstakefee =
+        maxUnstakeFee -
+        ((maxUnstakeFee - minUnstakeFee) * remainingSOLinLiqPool) /
+          SOLliquidityTarget;
+    }
+    return Number(format2Dec(unstakefee));
+  };
+
   const unstakeNowReceive =
-    receiveLamports -
-    (receiveLamports * BigInt(getDiscountBasisPoints())) / BigInt(10000);
+    Number(receiveLamports) -
+    (Number(receiveLamports) * unstakeFeePercentage()) / 100;
   const delayedUnstakeReceive = receiveLamports;
 
   useEffect(() => {
@@ -351,7 +356,9 @@ const BasicUnstake = () => {
           delayedUnstakeReceive={format9Dec(
             Number(delayedUnstakeReceive) / LAMPORTS_PER_SOL
           )}
-          unstakeNowFee={minUnstakeFee}
+          inputValue={stSolToUnstake}
+          initialUnstakeNowFee={minUnstakeFee}
+          actualUnstakeNowFee={unstakeFeePercentage}
           active={isUnstakeNowActive}
           my={6}
           handleSwitch={(val) => setUnstakeNowActive(val)}

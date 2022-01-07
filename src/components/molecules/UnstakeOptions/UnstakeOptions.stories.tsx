@@ -12,7 +12,9 @@ Default.args = {
   active: true,
   unstakeNowReceive: "0",
   delayedUnstakeReceive: "0",
-  unstakeNowFee: "0",
+  initialUnstakeNowFee: 0,
+  actualUnstakeNowFee: () => 0.3,
+  inputValue: "0",
   my: 2,
   handleSwitch: () => {},
 };
