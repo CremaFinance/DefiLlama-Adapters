@@ -5,6 +5,7 @@ import { DefaultSeo } from "next-seo";
 import { AppProps } from "next/app";
 import dynamic from "next/dynamic";
 import Head from "next/head";
+import Script from "next/script";
 import "@fontsource/maven-pro/400.css";
 import "@fontsource/maven-pro/700.css";
 import { ReactNode } from "react";
@@ -41,15 +42,7 @@ const BrowserWalletConnectionProvider = dynamic<{ children: ReactNode }>(
   }
 );
 
-const BrowserTrackingProvider = dynamic<{ children: ReactNode }>(
-  () =>
-    import("../contexts/TrackingContext").then(
-      ({ TrackingProvider }) => TrackingProvider
-    ),
-  {
-    ssr: false,
-  }
-);
+const gtmId = "GTM-TTZLQF7";
 
 const MyApp = ({
   Component,
@@ -67,33 +60,44 @@ const MyApp = ({
             content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover"
           />
         </Head>
+        <Script
+          id="gtm"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','${gtmId}');
+          `,
+          }}
+        />
         <DefaultSeo {...defaultSEOConfig} />
-        <BrowserTrackingProvider>
-          <QueryClientProvider client={queryClient}>
-            <AccountsContextProvider>
-              <BrowserWalletConnectionProvider>
-                <ConnectionProvider>
-                  <Agreement />
-                  <AnchorProvider>
-                    <MarinadeProvider>
-                      <QuarryProvider>
-                        <MaridropProvider>
-                          <StatsProvider>
-                            <UserBalanceProvider>
-                              <Layout>
-                                <Component {...pageProps} />
-                              </Layout>
-                            </UserBalanceProvider>
-                          </StatsProvider>
-                        </MaridropProvider>
-                      </QuarryProvider>
-                    </MarinadeProvider>
-                  </AnchorProvider>
-                </ConnectionProvider>
-              </BrowserWalletConnectionProvider>
-            </AccountsContextProvider>
-          </QueryClientProvider>
-        </BrowserTrackingProvider>
+
+        <QueryClientProvider client={queryClient}>
+          <AccountsContextProvider>
+            <BrowserWalletConnectionProvider>
+              <ConnectionProvider>
+                <Agreement />
+                <AnchorProvider>
+                  <MarinadeProvider>
+                    <QuarryProvider>
+                      <MaridropProvider>
+                        <StatsProvider>
+                          <UserBalanceProvider>
+                            <Layout>
+                              <Component {...pageProps} />
+                            </Layout>
+                          </UserBalanceProvider>
+                        </StatsProvider>
+                      </MaridropProvider>
+                    </QuarryProvider>
+                  </MarinadeProvider>
+                </AnchorProvider>
+              </ConnectionProvider>
+            </BrowserWalletConnectionProvider>
+          </AccountsContextProvider>
+        </QueryClientProvider>
       </ChakraProvider>
     </CacheProvider>
   );
