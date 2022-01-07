@@ -168,7 +168,7 @@ const InfoBoxesSection = () => {
           rounded="lg"
           width="207px"
           height="139px"
-          zIndex={6}
+          zIndex={7}
           py={5}
           pr={3}
           pl={6}
