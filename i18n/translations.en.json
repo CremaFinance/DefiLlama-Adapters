@@ -245,6 +245,7 @@
     "info-epoch-tooltip": "Epochs have variable length on the Solana blockchain. They are tied to the number of slots produced by the blockchain.  Staking rewards are distributed at the end of each epoch.",
     "info-epoch-tooltip-docs-link": "https://docs.solana.com/terminology#epoch",
     "info-week-apy-tooltip": "This APY is based on the average APY of the last 7 days. See our stats for more details.",
+    "info-apy-tooltip": "This APY is based on the average APY of last months. See our stats for more details.",
     "info-validators-tooltip": "Stake is only delegated to validators that are not part of the security group to secure the network and help with its decentralization. Our algorithm evaluates all validators and selects the top-performers.",
     "info-validators-tooltip-docs-link": "https://docs.marinade.finance/marinade-protocol/validators",
 
@@ -256,14 +257,17 @@
     "stake-inputs-balance": "Balance",
     "stake-inputs-exchange-rate": "Exchange rate",
     "stake-inputs-unstake-fee": "Unstake fee",
+    "from-fee": "from",
     "stake-inputs-deposit-fee": "Deposit fee",
     "stake-action": "Stake",
     "stake-sol-action": "Stake SOL",
     "deposit-stake-account-action": "Deposit stake account",
     "unstake-action": "Unstake",
+    "delayed-unstake": "Unstake in ~3 days",
     "unstake-now-action": "Unstake now",
     "delayed-unstake-action": "Delayed unstake",
     "start-delayed-unstake-action": "Start delayed unstake",
+    "start-unstake-action": "Start unstake",
     "cancel-action": "Cancel",
     "balance": "Balance",
     "max": "Max",
@@ -313,7 +317,7 @@
     "copy-success-title": "Address copied",
     "copy-success-message": "Address copied success",
     "no-ticket-accounts-message": " You don't have any valid ticket accounts. Start delayed unstake first.",
-    "wallet-not-connected": "Wallet not connected",
+    "wallet-not-connected-ticket-accounts": "Connect your wallet to see your ticket accounts.",
     "claim-success-tooltip-title": "Claim of {{accountPubkey}} account confirmed",
     "claim-success-tooltip-body": "You've successfully claimed your ticket",
     "claim-error-tooltip-title": "Something went wrong",
@@ -427,7 +431,46 @@
     "modal-claim-success-subtitle-3": "Provide liquidity on Orca.so and Raydium.io",
     "modal-claim-success-discord": "mDAO Discord",
     "manage-deposit-action": "Manage deposit",
-    "here": "here"
+    "here": "here",
+    "msol-stake-modal": {
+      "deposit-msol": "Deposit mSOL",
+      "withdraw-msol": "Withdraw mSOL",
+      "insufficient-funds-to-deposit": "Insufficient funds to deposit",
+      "requested-deposit-not-enough-funds": "You requested to deposit {{amount}} mSOL (have only {{mSOLBalance}})",
+      "msol-deposit-confirmed": "mSOL deposit confirmed",
+      "successfully-deposited-msol": "You've successfully deposited mSOL",
+      "your-msol-account-is-deactivated": "Your mSOL account is deactivated. Stake any SOL amount to re-activate the account and try to withdraw mSOL again.",
+      "insufficient-funds-to-withdraw": "Insufficient funds to withdraw",
+      "requested-withdraw-not-enough-funds": "You requested to withdraw {{amount}} mSOL (have only {{mSOLBalance}})",
+      "msol-withdrew-confirmed": "mSOL withdrew confirmed",
+      "successfully-withdrew-msol": "You've successfully withdrew mSOL",
+      "deposit-first-msol": "Deposit first",
+      "get-msol": "Get mSOL"
+    },
+    "deposit-msol-sol-lp-modal": {
+      "deposit": "Deposit mSOL-SOL LP",
+      "withdraw": "Withdraw mSOL-SOL LP",
+      "action-button": {
+        "deposit": "Deposit",
+        "withdraw": "Withdraw"
+      },
+      "deposit-action": {
+        "title": "mLP deposit confirmed",
+        "success": "Youve successfully deposited mLP"
+      },
+      "withdraw-action": {
+        "title": "mLP withdraw confirmed",
+        "success": "Remove liquidity confirmed"
+      },
+      "insufficient-funds": {
+        "title": "Insufficient funds to deposit",
+        "description": "You requested to deposit {amount} mLP (have only {balance})"
+      },
+      "errors": {
+        "title": "Something went wrong",
+        "account-deactivated": "Your mSOL-SOL LP account is deactivated. Add any SOL liquidity to the LP to re-activate the account and try to withdraw LP again."
+      }
+    }
   },
   "termsPage": {
     "page-header": "TERMS OF USE",

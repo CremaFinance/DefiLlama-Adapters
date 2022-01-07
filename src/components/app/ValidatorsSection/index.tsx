@@ -1,5 +1,6 @@
 import {
   Flex,
+  IconButton,
   Table,
   Thead,
   Tbody,
@@ -9,7 +10,6 @@ import {
   Box,
   Spinner,
   useToast,
-  IconButton,
 } from "@chakra-ui/react";
 import {
   Chart as ChartJS,
@@ -311,7 +311,6 @@ const ValidatorTable = () => {
                   <Flex
                     alignItems="center"
                     _hover={{
-                      textDecoration: "underline",
                       cursor: "pointer",
                     }}
                     width="60px"

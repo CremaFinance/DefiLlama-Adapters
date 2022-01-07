@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
-import { millisecondsToDhms } from "../../../utils/ms-to-dmhs";
+import { millisecondsToDhms } from "../../../utils/ms-to-dhms";
 
-type CountdownProps = { initialTimeLeft: number };
+type CountdownProps = { initialTimeLeft: number; showSeconds: boolean };
 
-const Countdown = ({ initialTimeLeft }: CountdownProps) => {
+const Countdown = ({ initialTimeLeft, showSeconds = true }: CountdownProps) => {
   const [timeLeft, setTimeLeft] = useState(initialTimeLeft);
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -14,7 +14,7 @@ const Countdown = ({ initialTimeLeft }: CountdownProps) => {
     return () => clearTimeout(timer);
   }, [timeLeft]);
 
-  return <>{millisecondsToDhms(timeLeft)}</>;
+  return <>{millisecondsToDhms(timeLeft, showSeconds)}</>;
 };
 
 export default Countdown;
