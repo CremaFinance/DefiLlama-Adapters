@@ -4,6 +4,7 @@ import {
   Progress,
   Spinner,
   IconButton,
+  Image,
   useDisclosure,
   Modal,
   ModalOverlay,
@@ -30,7 +31,6 @@ import MHeading from "../../atoms/Heading";
 import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
 import ValidatorsTable from "../ValidatorsSection";
-import InfoIconWithTooltip from "components/molecules/InfoIconWithTooltip";
 import TooltipWithContent from "components/molecules/TooltipWithContent";
 import { coinSymbols } from "services/domain/coinSymbols";
 import colors from "styles/customTheme/colors";
@@ -224,19 +224,28 @@ const InfoBoxesSection = () => {
         <Flex
           bg={colors.white}
           flexDirection="column"
+          justifyContent="space-between"
           rounded="lg"
           width="207px"
           height="139px"
-          zIndex={5}
+          zIndex={6}
           py={5}
           pr={3}
           pl={6}
           mt={8}
           mx={2}
         >
-          <Flex justifyContent="space-between" mb={3}>
+          <Flex justifyContent="space-between">
             <MText type="text-md">APY</MText>
-            <InfoIconWithTooltip tooltipText={t("appPage.info-apy-tooltip")} />
+            <TooltipWithContent tooltipText={t("appPage.info-apy-tooltip")}>
+              <IconButton
+                _focus={{ boxShadow: "none" }}
+                variant="link"
+                aria-label="Info APY"
+                size="sm"
+                icon={<MdInfoOutline />}
+              />
+            </TooltipWithContent>
           </Flex>
           {stakeAPYValue ? (
             <MHeading type="heading-2xsm">
@@ -247,6 +256,19 @@ const InfoBoxesSection = () => {
               <Spinner size="md" mr={3} />
             </Flex>
           )}
+          <MLink
+            target="_blank"
+            font="text-lg"
+            href={t("appPage.info-apy-tooltip-link")}
+            rel="noreferrer noopener"
+            _focus={{ boxShadow: "none" }}
+            color={colors.marinadeGreen}
+            pb={2}
+            display="flex"
+          >
+            {t("appPage.info-apy-tooltip-link-text")}
+            <Image src="/icons/external-link-green.svg" width="1rem" ml={2} />
+          </MLink>
         </Flex>
         <Flex
           bg={colors.white}
@@ -367,7 +389,19 @@ const InfoBoxesSection = () => {
             ) : (
               <Spinner size="sm" mr={3} />
             )}
-            <InfoIconWithTooltip tooltipText={t("appPage.info-apy-tooltip")} />
+            <TooltipWithContent
+              tooltipText={t("appPage.info-apy-tooltip")}
+              link={t("appPage.info-apy-tooltip-link")}
+              linkText={t("appPage.info-apy-tooltip-link-text")}
+            >
+              <IconButton
+                _focus={{ boxShadow: "none" }}
+                variant="link"
+                aria-label="Info APY"
+                size="sm"
+                icon={<MdInfoOutline />}
+              />
+            </TooltipWithContent>
           </Flex>
         </Flex>
         <Flex justifyContent="space-between" alignItems="center">
