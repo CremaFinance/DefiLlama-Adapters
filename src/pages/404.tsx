@@ -1,53 +1,62 @@
-import {
-  Box,
-  Button,
-  Heading,
-  Image,
-  Text,
-  Link as ChakraLink,
-  useColorMode,
-} from "@chakra-ui/react";
-import Link from "next/link";
+import { Flex, Image } from "@chakra-ui/react";
+import { useTranslation } from "next-export-i18n";
+import { useRouter } from "next/dist/client/router";
 
+import MButton from "components/atoms/Button";
 import MotionBox from "components/atoms/MotionBox";
+import MText from "components/atoms/Text";
+import Header from "components/index/Header";
+import Footer from "components/layout/Footer";
+import colors from "styles/customTheme/colors";
 
 const Page404 = () => {
-  const { colorMode } = useColorMode();
+  const router = useRouter();
+  const { t } = useTranslation();
 
   return (
-    <>
-      <MotionBox
-        animate={{ y: 20 }}
-        transition={{ repeat: Infinity, duration: 2, repeatType: "reverse" }}
-        width={["100%", "70%", "60%", "60%"]}
-        margin="0 auto"
+    <Flex direction="column" bg={colors.greenLight} height="100vh">
+      <Header />
+      <Flex
+        flex={1}
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        width="100vw"
       >
-        <Image
-          src="/404 Error-pana.svg"
-          alt="Error 404 not found Illustration"
-        />
-      </MotionBox>
-      <Text textAlign="center" fontSize="xs">
-        <ChakraLink href="https://stories.freepik.com/web" isExternal>
-          Illustration by Freepik Stories
-        </ChakraLink>
-      </Text>
-
-      <Box marginY={4}>
-        <Heading textAlign="center">Page not Found.</Heading>
-
-        <Box textAlign="center" marginTop={4}>
-          <Text>It&apos;s Okay!</Text>
-          <Link href="/" passHref>
-            <Button
-              backgroundColor={colorMode === "light" ? "gray.300" : "teal.500"}
-            >
-              Let&apos;s Head Back
-            </Button>
-          </Link>
-        </Box>
-      </Box>
-    </>
+        <MotionBox
+          animate={{ y: 20 }}
+          transition={{ repeat: Infinity, duration: 2, repeatType: "reverse" }}
+          width="100vw"
+          display="flex"
+          mt={["5vh", "10vh"]}
+          pt={{ base: "120px", md: "40px", "2xl": "unset" }}
+          justifyContent="center"
+        >
+          <Image
+            width={["95%", "60%", "50%"]}
+            src="/404.svg"
+            alt="Error 404 not found Illustration"
+          />
+        </MotionBox>
+        <MText type="text-xl" color={colors.black} pt="48px" my="32px">
+          {t("404Page.page-not-cooked")}
+        </MText>
+        <MButton
+          bg={colors.marinadeGreen}
+          _hover={{ bg: colors.green800 }}
+          colorScheme={colors.marinadeGreen}
+          rounded="md"
+          width="200px"
+          height="48px"
+          font="text-xl"
+          mb={["40px", "80px"]}
+          onClick={() => router.push("/")}
+        >
+          {t("404Page.go-to-homepage")}
+        </MButton>
+      </Flex>
+      <Footer />
+    </Flex>
   );
 };
 
