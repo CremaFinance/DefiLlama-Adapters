@@ -18,7 +18,6 @@ import { MaridropProvider } from "../contexts/MaridropContext";
 import { MarinadeProvider } from "../contexts/MarinadeContext";
 import { QuarryProvider } from "../contexts/QuaryContext";
 import { StatsProvider } from "../contexts/StatsContext";
-import { TrackingProvider } from "../contexts/TrackingContext";
 import { UserBalanceProvider } from "../contexts/UserBalanceContext";
 import Layout from "components/layout";
 import Agreement from "components/molecules/Aggrement.tsx";
@@ -42,6 +41,16 @@ const BrowserWalletConnectionProvider = dynamic<{ children: ReactNode }>(
   }
 );
 
+const BrowserTrackingProvider = dynamic<{ children: ReactNode }>(
+  () =>
+    import("../contexts/TrackingContext").then(
+      ({ TrackingProvider }) => TrackingProvider
+    ),
+  {
+    ssr: false,
+  }
+);
+
 const MyApp = ({
   Component,
   pageProps,
@@ -59,7 +68,7 @@ const MyApp = ({
           />
         </Head>
         <DefaultSeo {...defaultSEOConfig} />
-        <TrackingProvider>
+        <BrowserTrackingProvider>
           <QueryClientProvider client={queryClient}>
             <AccountsContextProvider>
               <BrowserWalletConnectionProvider>
@@ -84,7 +93,7 @@ const MyApp = ({
               </BrowserWalletConnectionProvider>
             </AccountsContextProvider>
           </QueryClientProvider>
-        </TrackingProvider>
+        </BrowserTrackingProvider>
       </ChakraProvider>
     </CacheProvider>
   );

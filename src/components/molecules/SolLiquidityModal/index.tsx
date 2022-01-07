@@ -22,6 +22,7 @@ import { useMarinade } from "../../../contexts/MarinadeContext";
 import { useStats } from "../../../contexts/StatsContext";
 import { useUserBalance } from "../../../contexts/UserBalanceContext";
 import { usePrice } from "../../../hooks/usePrice";
+import { useTracking } from "../../../hooks/useTracking";
 import { useWallet } from "../../../hooks/useWallet";
 import { coinSymbols } from "../../../services/domain/coinSymbols";
 import colors from "../../../styles/customTheme/colors";
@@ -31,7 +32,6 @@ import { format2Dec, format5Dec } from "../../../utils/number-to-short-version";
 import StakeInput, { StakeInputTypeEnum } from "../StakeInput";
 import SwitchButtons from "../SwitchButtons";
 import TransactionLink from "../TransactionLink";
-import { useTracking } from "hooks/useTracking";
 
 interface SolLiquidityModalProps {
   onClose: () => Promise<void> | void;
