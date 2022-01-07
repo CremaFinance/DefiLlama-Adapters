@@ -35,7 +35,7 @@
     "testimonial-section-position": "CEO of Solana Labs",
     "blog-section-title": "Read stories from the kitchen",
     "blog-section-subtitle": "We’re sharing everything on our way—from the idea all the way to full democratization of liquid staking on Solana.",
-    "blog-section-blurb": "Forget about unstaking periods, keeping track of validators performance and",
+    "blog-section-blurb": "Forget about unstaking periods or keeping track of validators and",
     "blog-section-blurb-highlight": "let Marinade do the work.",
 
     "blog-section-primary-button": "Start staking SOL",
@@ -132,7 +132,7 @@
     "contributor-section-action": "Join the Marinade DAO",
 
     "security-section-title": "The most trusted liquid staking on Solana",
-    "security-section-subtitle": "Security is Marinade’s top priority. Everything has been designed to reduce the risks in the protocol, and we are now in the process of open sourcing our code. We are also working in close collaboration with our ecosystem partners to make it safer for everyone.",
+    "security-section-subtitle": "Security is Marinade’s top priority. Everything has been designed to reduce the risks in the protocol, and we are now in the process of open sourcing our code.",
     "security-section-action": "Read more about security",
     "security-section-items": [
       {
@@ -248,14 +248,14 @@
     "info-apy-tooltip": "This APY is based on the average APY of last months. See our stats for more details.",
     "info-apy-tooltip-link": "https://stats.marinade.finance/",
     "info-apy-tooltip-link-text": "See stats",
-    "info-validators-tooltip": "Stake is only delegated to validators that are not part of the security group to secure the network and help with its decentralization. Our algorithm evaluates all validators and selects the top-performers.",
+    "info-validators-tooltip": "Stake is only delegated to validators that are not part of the security group to secure the network and help with its decentralization. Marinade’s algorithm evaluates all validators and selects the top-performers.",
     "info-validators-tooltip-docs-link": "https://docs.marinade.finance/marinade-protocol/validators",
 
     "footer-join-us": "Join us",
     "footer-learn-more": "Learn more",
 
     "stake-inputs-title": "Stake Solana",
-    "stake-inputs-subtitle": "Stake SOL and use mSOL while staked",
+    "stake-inputs-subtitle": "Stake SOL and use mSOL while earning rewards",
     "stake-inputs-balance": "Balance",
     "stake-inputs-exchange-rate": "Exchange rate",
     "stake-inputs-unstake-fee": "Unstake fee",
@@ -331,8 +331,9 @@
     "faq-items": [
       {
         "question": "How do I get my staking rewards?",
-        "response-0": "Staking rewards are directly integrated into the price of mSOL. This means that each epoch, the price of mSOL increases against SOL at an annual rate of approximately 6.67%, our current APY. You do not have rewards to claim, but you will exchange your mSOL for more SOL in the future when you unstake.",
-        "response-1": "You can also monitor mSOL's price evolution ",
+        "response-0": "mSOL represents both your deposit and the rewards you earn on your SOL each epoch. There is no need to claim your rewards. Instead, mSOL acts as a share of the total pool of staked SOL in Marinade. Since this pool accumulates staking rewards, your share (represented by your mSOL) enables you to withdraw more SOL each epoch, at an APY of approximatively 6.25%.",
+        "response-1": "See ",
+        "link-text": "mSOL/SOL price",
         "link": "https://stats.marinade.finance/d/sqUQd1Onk/marinade-kpi-dashboard?from=now-90d&to=now&orgId=1&viewPanel=22"
       },
       {
@@ -345,7 +346,7 @@
       {
         "question": "Where can I use mSOL?",
         "response-0": {
-          "part-one": "mSOL has been integrated by many protocols in the Solana! You can find them on our ",
+          "part-one": "mSOL has been integrated by many protocols in the Solana ecosystem! You can find a non-exhaustive list on our ",
           "defi-page": "DeFi page",
           "defi-page-link": "/app/defi",
           "part-two": ". You can also track your mSOL on ",
@@ -414,8 +415,8 @@
         "secondary": "Leave the app"
       }
     },
-    "exchange-rate-tooltip": "The mSOL/SOL price increases with every epoch by accumulating staking rewards into mSOL price. That's why the rate is not 1:1.",
-    "deposit-fee-tooltip": "There is 0% fee for depositing SOL to stake and receiving mSOL.",
+    "exchange-rate-tooltip": "mSOL/SOL price increases every epoch because staking rewards are accumulated into the SOL staked pool. Therefore, the ratio is not 1:1. This ratio only goes up with time.",
+    "deposit-fee-tooltip": "There is 0% fee for staking your SOL and receiving mSOL.",
     "unstake-fee-tooltip": "The unstake fee varies between 0.3% and 3% depending on how much liquidity is in the pool and how big amount you're unstaking.",
     "amount-exceeds-current-liquidity-cap": "Amount entered exceeds the current Liquidity cap.",
     "liquidity-sol-confirmed": "Add liquidity confirmed",
