@@ -291,7 +291,7 @@ const ValidatorTable = () => {
             <Th {...cell} textAlign="left">
               {t("appPage.validators-table-staked")}
             </Th>
-            <Th {...cell} textAlign="left">
+            <Th {...cell} textAlign="left" position="relative" left="24px">
               {t("appPage.validators-table-graph")}
             </Th>
             <Th {...cell} textAlign="left">
