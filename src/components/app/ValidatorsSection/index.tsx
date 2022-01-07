@@ -196,7 +196,7 @@ const ValidatorTable = () => {
 
   const fetchData = async (): Promise<Query> => {
     const res = await fetch(
-      `https://marinade-dashboard-api-test.herokuapp.com/validators/?page=${pageNumber}`
+      `https://marinade-dashboard-api-temp.herokuapp.com/validators/?page=${pageNumber}`
     );
 
     if (!res.ok) {
