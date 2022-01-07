@@ -250,10 +250,12 @@ const BasicStake = () => {
       Number(solToStake) * LAMPORTS_PER_SOL +
       (marinadeState?.transactionFee ?? 0) * 4 +
       (state?.rent_exempt_for_token_acc?.toNumber() ?? 0);
+
     const checkBalanceErrors = checkNativeSOLBalance(
       nativeSOLBalance ?? 0,
       fundsNeeded
     );
+
     if (checkBalanceErrors) {
       return toast(checkBalanceErrors);
     }
@@ -312,7 +314,7 @@ const BasicStake = () => {
         onValueChange={setSolToStake}
         tokenName="SOL"
         tokenIcon="/icons/solana-dark.png"
-        tokenBalance={sourceTokenBalance}
+        tokenBalance={(nativeSOLBalance ?? 0) / LAMPORTS_PER_SOL}
         currentAccount={currentAccount}
         stakeAccounts={parseStakeAccounts()}
         value={solToStake}

@@ -32,6 +32,7 @@ interface MSolStakeModalProps {
   isOpen: boolean;
 }
 
+// eslint-disable-next-line complexity
 const MSolStakeModal = ({
   onClose: onCloseProp,
   isOpen: isOpenProp,
