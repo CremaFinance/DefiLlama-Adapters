@@ -25,6 +25,7 @@ import NumberFormat from "react-number-format";
 import { useMarinade } from "../../../contexts/MarinadeContext";
 import { useTranslation } from "../../../hooks/useTranslation";
 import { useWallet } from "../../../hooks/useWallet";
+import { coinSymbols } from "../../../services/domain/coinSymbols";
 import colors from "../../../styles/customTheme/colors";
 import {
   format5Dec,
@@ -91,7 +92,7 @@ const StakeInput = ({
   const marinadeState = marinade?.marinadeState;
 
   const BUFFER =
-    tokenName === "SOL"
+    tokenName === coinSymbols.SOL
       ? 0.01 +
         ((marinadeState?.transactionFee ?? 0) * 4 +
           (state?.rent_exempt_for_token_acc?.toNumber() ?? 0)) /
