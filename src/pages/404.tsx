@@ -28,16 +28,17 @@ const Page404 = () => {
           transition={{ repeat: Infinity, duration: 2, repeatType: "reverse" }}
           width="100vw"
           display="flex"
+          mt={["5vh", "10vh"]}
           pt={{ base: "120px", md: "40px", "2xl": "unset" }}
           justifyContent="center"
         >
           <Image
-            width={["100%", "60%", "50%"]}
+            width={["95%", "60%", "50%"]}
             src="/404.svg"
             alt="Error 404 not found Illustration"
           />
         </MotionBox>
-        <MText type="text-xl" color={colors.black} my={4}>
+        <MText type="text-xl" color={colors.black} pt="48px" my="32px">
           {t("404Page.page-not-cooked")}
         </MText>
         <MButton
@@ -48,7 +49,7 @@ const Page404 = () => {
           width="200px"
           height="48px"
           font="text-xl"
-          mb={{ base: "120px", md: "unset" }}
+          mb={["40px", "80px"]}
           onClick={() => router.push("/")}
         >
           {t("404Page.go-to-homepage")}
