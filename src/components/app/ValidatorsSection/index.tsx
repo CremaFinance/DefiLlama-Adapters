@@ -102,11 +102,15 @@ const options = {
 };
 
 const genEpochs = (validator: Validator) => {
-  return validator.epoch_stats.map((tuple) => tuple.epoch);
+  return validator.epoch_stats
+    .filter((tuple) => tuple.rank !== null)
+    .map((tuple) => tuple.epoch);
 };
 
-const genPctValues = (validator: Validator) => {
-  return validator.epoch_stats.map((tuple) => tuple.pct);
+const getRankValues = (validator: Validator) => {
+  return validator.epoch_stats
+    .map((tuple) => tuple.rank)
+    .filter((data) => data !== null);
 };
 
 const genGraph = (_epochs: number[], _pctValues: number[]) => {
@@ -279,21 +283,21 @@ const ValidatorTable = () => {
       <Table variant="unstyled" maxHeight="570px">
         <Thead>
           <Tr>
-            <Th {...cell} textAlign="left" position="relative" right="23px">
-              {t("appPage.validators-table-account")}
-            </Th>
+            <Th {...cell}>Rank</Th>
             <Th {...cell} textAlign="left" position="relative" right="14px">
               {t("appPage.validators-table-validator")}
             </Th>
-
             <Th {...cell} textAlign="left">
               {t("appPage.validators-table-staked")}
             </Th>
             <Th {...cell} textAlign="left">
               {t("appPage.validators-table-graph")}
             </Th>
-            <Th {...cell} textAlign="right" position="relative" left="10px">
+            <Th {...cell} textAlign="left">
               {t("appPage.validators-table-apy")}
+            </Th>
+            <Th {...cell} textAlign="right" position="relative" right="23px">
+              {t("appPage.validators-table-account")}
             </Th>
           </Tr>
         </Thead>
@@ -302,35 +306,15 @@ const ValidatorTable = () => {
             data.validators.map((tuple) => (
               <Tr key={tuple.validator_vote_address}>
                 <Td
-                  {...highlightedCell}
-                  textAlign="left"
+                  {...cell}
                   position="relative"
-                  right="10px"
-                  width="200px"
+                  left="14px"
+                  textAlign="left"
+                  width="150px"
+                  fontSize="16px"
+                  fontWeight="bold"
                 >
-                  <Flex
-                    alignItems="center"
-                    _hover={{
-                      cursor: "pointer",
-                    }}
-                    width="60px"
-                    onClick={() =>
-                      copyAddressToClipboard(
-                        tuple.validator_vote_address,
-                        toast,
-                        t
-                      )
-                    }
-                  >
-                    {shortenAddress(tuple.validator_vote_address)}
-                    <IconButton
-                      variant="link"
-                      aria-label="Copy address"
-                      size="sm"
-                      icon={<MdContentCopy />}
-                      _focus={{ boxShadow: "none" }}
-                    />
-                  </Flex>
+                  1
                 </Td>
                 <Td {...highlightedCell} width="200px">
                   <Flex alignItems="center" flexWrap="nowrap">
@@ -349,22 +333,46 @@ const ValidatorTable = () => {
                     SOL
                   </MText>
                 </Td>
-                <Td {...cell} width="200px">
+                <Td {...cell} width="300px">
                   <Box width="178px" height="30px">
                     <Line
                       options={options}
-                      data={genGraph(genEpochs(tuple), genPctValues(tuple))}
+                      data={genGraph(genEpochs(tuple), getRankValues(tuple))}
                     />
                   </Box>
                 </Td>
-                <Td
-                  {...cell}
-                  textAlign="right"
-                  position="relative"
-                  left="10px"
-                  width="128px"
-                >
+                <Td {...cell} width="128px">
                   {numberToShortVersion(tuple.most_recent_apy)}%
+                </Td>
+                <Td {...highlightedCell} textAlign="right" width="200px">
+                  <Flex
+                    alignItems="center"
+                    justifyContent="flex-end"
+                    width="100%"
+                  >
+                    <Flex
+                      _hover={{
+                        cursor: "pointer",
+                      }}
+                      // width="60px"
+                      onClick={() =>
+                        copyAddressToClipboard(
+                          tuple.validator_vote_address,
+                          toast,
+                          t
+                        )
+                      }
+                    >
+                      {shortenAddress(tuple.validator_vote_address)}
+                      <IconButton
+                        variant="link"
+                        aria-label="Copy address"
+                        size="sm"
+                        icon={<MdContentCopy />}
+                        _focus={{ boxShadow: "none" }}
+                      />
+                    </Flex>
+                  </Flex>
                 </Td>
               </Tr>
             ))}
