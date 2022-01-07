@@ -88,7 +88,7 @@ const BasicUnstake = () => {
       if (
         Number(liquidity) -
           Number(stSolToUnstake) * LAMPORTS_PER_SOL * mSOLvsSOLParity >
-        (state?.liq_pool?.lp_liquidity_target.toNumber() || 0)
+        (state.liq_pool.lp_liquidity_target.toNumber() || 0)
       ) {
         return unstakefee;
       }
@@ -100,7 +100,7 @@ const BasicUnstake = () => {
         liqPoolBalanceSOL - SOLtoWithdraw
       );
       const SOLliquidityTarget =
-        state?.liq_pool?.lp_liquidity_target.toNumber() / LAMPORTS_PER_SOL ?? 1;
+        state.liq_pool.lp_liquidity_target.toNumber() / LAMPORTS_PER_SOL ?? 1;
 
       unstakefee =
         maxUnstakeFee -
