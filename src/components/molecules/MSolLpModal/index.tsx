@@ -25,6 +25,7 @@ import { useMarinade } from "contexts/MarinadeContext";
 import { useQuarryProvider } from "contexts/QuaryContext";
 import { useUserBalance } from "contexts/UserBalanceContext";
 import { usePrice } from "hooks/usePrice";
+import { useTracking } from "hooks/useTracking";
 import { coinSymbols } from "services/domain/coinSymbols";
 import colors from "styles/customTheme/colors";
 import { basicInputChecks } from "utils/basic-input-checks";
@@ -40,7 +41,8 @@ interface Props {
 const MSolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
   const { t } = useTranslation();
   const toast = useToast();
-
+  const { track } = useTracking();
+  const trackCategory = "MSOL-SOL LP Farm";
   const [isDepostActive, setDepositActive] = useState(true);
   const [loading, setLoading] = useState(false);
   const [amount, setAmount] = useState<string>("");
@@ -104,12 +106,25 @@ const MSolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
             ),
             status: "success",
           });
+          track({
+            event: "Deposit MSOL-SOL LP Farm",
+            category: trackCategory,
+            action: "Add",
+            label: "Success",
+          });
         },
         (error) => {
           toast({
             title: t("mndePage.deposit-msol-sol-lp-modal.errors.title"),
             description: error.message,
             status: "warning",
+          });
+          track({
+            event: "Deposit MSOL-SOL LP Farm Error",
+            category: trackCategory,
+            action: "Add",
+            label: "Error",
+            description: error.message,
           });
         }
       )
@@ -178,6 +193,12 @@ const MSolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
             ),
             status: "success",
           });
+          track({
+            event: "Withdraw MSOL-SOL LP Farm",
+            category: trackCategory,
+            action: "Remove",
+            label: "Success",
+          });
         },
         (error) => {
           toast({
@@ -188,6 +209,12 @@ const MSolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
                 )
               : error.message,
             status: "warning",
+          });
+          track({
+            event: "Withdraw MSOL-SOL LP Farm Error",
+            category: trackCategory,
+            action: "Remove",
+            label: "Error",
           });
         }
       )

@@ -24,6 +24,7 @@ import { ConnectWallet } from "../../molecules/ConnectWallet";
 import MTooltip from "../../molecules/InfoIconWithTooltip";
 import TransactionLink from "components/molecules/TransactionLink";
 import { useMaridrop } from "contexts/MaridropContext";
+import { useTracking } from "hooks/useTracking";
 import colors from "styles/customTheme/colors";
 import { checkNativeSOLBalance } from "utils/check-native-sol-balance";
 import { format5Dec } from "utils/number-to-short-version";
@@ -34,6 +35,7 @@ const RetroMnde = () => {
   const { t } = useTranslation();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
+  const { track } = useTracking();
 
   const [isClaimProcessing, setIsClaimProcessing] = useState(false);
 
@@ -90,6 +92,13 @@ const RetroMnde = () => {
             ),
             status: "success",
           });
+
+          track({
+            event: "Claim MNDE",
+            category: "Retro MNDE CLaim",
+            action: "Claim",
+            label: "Success",
+          });
         },
         (error: unknown) => {
           // eslint-disable-next-line no-console
@@ -99,6 +108,12 @@ const RetroMnde = () => {
             title: t("mndePage.something-went-wrong"),
             description: t("mndePage.error-processing-transaction"),
             status: "warning",
+          });
+          track({
+            event: "Claim MNDE Error",
+            category: "Retro MNDE CLaim",
+            action: "Claim",
+            label: "Error",
           });
         }
       )
@@ -112,6 +127,7 @@ const RetroMnde = () => {
     state?.rent_exempt_for_token_acc,
     t,
     toast,
+    track,
   ]);
 
   const RETRO_DATES = [

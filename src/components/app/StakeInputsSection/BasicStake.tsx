@@ -27,6 +27,7 @@ import TransactionLink from "components/molecules/TransactionLink";
 import { AccountsContext } from "contexts/AccountsContext";
 import { useStats } from "contexts/StatsContext";
 import { useEpochInfo } from "hooks/useEpochInfo";
+import { useTracking } from "hooks/useTracking";
 import { useWallet } from "hooks/useWallet";
 import { StakeAccount } from "solana/domain/stake-account";
 import colors from "styles/customTheme/colors";
@@ -38,6 +39,8 @@ import { shortenAddress } from "utils/shorten-address";
 const BasicStake = () => {
   const { t } = useTranslation();
   const toast = useToast();
+
+  const { track } = useTracking();
 
   const connection = useConnection();
   const [stakeText, setStakeText] = useState(t("appPage.stake-sol-action"));
@@ -188,6 +191,12 @@ const BasicStake = () => {
           ),
           status: "success",
         });
+        track({
+          event: "Stake SOL Account",
+          category: "Account Staking",
+          action: "Stake",
+          label: "Success",
+        });
       } catch (error) {
         const errors = {
           mainnetFull: "0xec6",
@@ -215,6 +224,13 @@ const BasicStake = () => {
           title: t("appPage.something-went-wrong"),
           description,
           status: "warning",
+        });
+        track({
+          event: "Stake SOL Account Error",
+          category: "Account Staking",
+          action: "Stake",
+          label: "Error",
+          description,
         });
       }
     }
@@ -280,6 +296,12 @@ const BasicStake = () => {
             ),
             status: "success",
           });
+          track({
+            event: "Stake SOL",
+            category: "Basic Staking",
+            action: "Stake",
+            label: "Success",
+          });
         },
         (error) => {
           // eslint-disable-next-line no-console
@@ -300,6 +322,14 @@ const BasicStake = () => {
             title: t("appPage.something-went-wrong"),
             description,
             status: "warning",
+          });
+
+          track({
+            event: "Stake SOL Error",
+            category: "Basic Staking",
+            action: "Stake",
+            label: "Error",
+            description,
           });
         }
       )

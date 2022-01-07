@@ -18,6 +18,7 @@ import { useChain } from "../../../contexts/ConnectionProvider";
 import { useMarinade } from "../../../contexts/MarinadeContext";
 import { useQuarryProvider } from "../../../contexts/QuaryContext";
 import { useUserBalance } from "../../../contexts/UserBalanceContext";
+import { useTracking } from "../../../hooks/useTracking";
 import { useWallet } from "../../../hooks/useWallet";
 import colors from "../../../styles/customTheme/colors";
 import { basicInputChecks } from "../../../utils/basic-input-checks";
@@ -39,6 +40,7 @@ const MSolStakeModal = ({
 }: MSolStakeModalProps) => {
   const { t } = useTranslation();
   const toast = useToast();
+  const { track } = useTracking();
   const router = useRouter();
 
   const [isDepositActive, setDepositActive] = useState(true);
@@ -104,6 +106,12 @@ const MSolStakeModal = ({
             ),
             status: "success",
           });
+          track({
+            event: "Deposit mSOL Farm",
+            category: "mSOL Farm",
+            action: "Add",
+            label: "Success",
+          });
         },
         (error) => {
           // eslint-disable-next-line no-console
@@ -115,6 +123,13 @@ const MSolStakeModal = ({
               ? t("mndePage.msol-stake-modal.your-msol-account-is-deactivated")
               : error.message,
             status: "warning",
+          });
+          track({
+            event: "Deposit mSOL Farm Error",
+            category: "mSOL Farm",
+            action: "Add",
+            label: "Error",
+            description: error.message,
           });
         }
       )
@@ -178,6 +193,12 @@ const MSolStakeModal = ({
             ),
             status: "success",
           });
+          track({
+            event: "Withdraw mSOL Farm",
+            category: "mSOL Farm",
+            action: "Remove",
+            label: "Success",
+          });
         },
         // eslint-disable-next-line sonarjs/no-identical-functions
         (error) => {
@@ -190,6 +211,13 @@ const MSolStakeModal = ({
               ? t("mndePage.msol-stake-modal.your-msol-account-is-deactivated")
               : error.message,
             status: "warning",
+          });
+          track({
+            event: "Withdraw mSOL Farm Error",
+            category: "mSOL Farm",
+            action: "Remove",
+            label: "Error",
+            description: error.message,
           });
         }
       )

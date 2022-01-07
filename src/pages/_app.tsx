@@ -41,6 +41,16 @@ const BrowserWalletConnectionProvider = dynamic<{ children: ReactNode }>(
   }
 );
 
+const BrowserTrackingProvider = dynamic<{ children: ReactNode }>(
+  () =>
+    import("../contexts/TrackingContext").then(
+      ({ TrackingProvider }) => TrackingProvider
+    ),
+  {
+    ssr: false,
+  }
+);
+
 const MyApp = ({
   Component,
   pageProps,
@@ -58,30 +68,32 @@ const MyApp = ({
           />
         </Head>
         <DefaultSeo {...defaultSEOConfig} />
-        <QueryClientProvider client={queryClient}>
-          <AccountsContextProvider>
-            <BrowserWalletConnectionProvider>
-              <ConnectionProvider>
-                <Agreement />
-                <AnchorProvider>
-                  <MarinadeProvider>
-                    <QuarryProvider>
-                      <MaridropProvider>
-                        <StatsProvider>
-                          <UserBalanceProvider>
-                            <Layout>
-                              <Component {...pageProps} />
-                            </Layout>
-                          </UserBalanceProvider>
-                        </StatsProvider>
-                      </MaridropProvider>
-                    </QuarryProvider>
-                  </MarinadeProvider>
-                </AnchorProvider>
-              </ConnectionProvider>
-            </BrowserWalletConnectionProvider>
-          </AccountsContextProvider>
-        </QueryClientProvider>
+        <BrowserTrackingProvider>
+          <QueryClientProvider client={queryClient}>
+            <AccountsContextProvider>
+              <BrowserWalletConnectionProvider>
+                <ConnectionProvider>
+                  <Agreement />
+                  <AnchorProvider>
+                    <MarinadeProvider>
+                      <QuarryProvider>
+                        <MaridropProvider>
+                          <StatsProvider>
+                            <UserBalanceProvider>
+                              <Layout>
+                                <Component {...pageProps} />
+                              </Layout>
+                            </UserBalanceProvider>
+                          </StatsProvider>
+                        </MaridropProvider>
+                      </QuarryProvider>
+                    </MarinadeProvider>
+                  </AnchorProvider>
+                </ConnectionProvider>
+              </BrowserWalletConnectionProvider>
+            </AccountsContextProvider>
+          </QueryClientProvider>
+        </BrowserTrackingProvider>
       </ChakraProvider>
     </CacheProvider>
   );

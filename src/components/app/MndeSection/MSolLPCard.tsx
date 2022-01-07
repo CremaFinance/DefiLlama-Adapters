@@ -25,6 +25,7 @@ import { useChain } from "contexts/ConnectionProvider";
 import { useQuarryProvider } from "contexts/QuaryContext";
 import { useStats } from "contexts/StatsContext";
 import { usePrices } from "hooks/usePrices";
+import { useTracking } from "hooks/useTracking";
 import { coinSymbols } from "services/domain/coinSymbols";
 import colors from "styles/customTheme/colors";
 import {
@@ -36,6 +37,7 @@ import {
 const MSolLPCard = () => {
   const { t } = useTranslation();
   const toast = useToast();
+  const { track } = useTracking();
   const { connected } = useWallet();
   const stats = useStats();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -122,6 +124,12 @@ const MSolLPCard = () => {
             ),
             status: "success",
           });
+          track({
+            event: "Claim mSOL Farm",
+            category: "mSOL Farm",
+            action: "Claim",
+            label: "Success",
+          });
         },
         (error) => {
           // eslint-disable-next-line no-console
@@ -132,12 +140,19 @@ const MSolLPCard = () => {
             description: t("mndePage.error-processing-transaction"),
             status: "warning",
           });
+          track({
+            event: "Claim mSOL Farm Error",
+            category: "mSOL Farm",
+            action: "Claim",
+            label: "Error",
+            description: error.message as string,
+          });
         }
       )
       .finally(() => {
         setIsClaimProcessing(false);
       });
-  }, [chain.name, mLP, t, toast]);
+  }, [chain.name, mLP, t, toast, track]);
 
   return (
     <Flex

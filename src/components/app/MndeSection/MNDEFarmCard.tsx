@@ -25,6 +25,7 @@ import { useChain } from "contexts/ConnectionProvider";
 import { useQuarryProvider } from "contexts/QuaryContext";
 import { useStats } from "contexts/StatsContext";
 import { usePrices } from "hooks/usePrices";
+import { useTracking } from "hooks/useTracking";
 import { coinSymbols } from "services/domain/coinSymbols";
 import colors from "styles/customTheme/colors";
 import { addCommas } from "utils/add-commas";
@@ -37,6 +38,7 @@ import {
 const MNDEFarmCard = () => {
   const { t } = useTranslation();
   const toast = useToast();
+  const { track } = useTracking();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { connected } = useWallet();
   const {
@@ -121,6 +123,12 @@ const MNDEFarmCard = () => {
             ),
             status: "success",
           });
+          track({
+            event: "Claim MNDE",
+            category: "mSOL Farm",
+            action: "Claim",
+            label: "Success",
+          });
         },
         (error) => {
           // eslint-disable-next-line no-console
@@ -131,12 +139,19 @@ const MNDEFarmCard = () => {
             description: t("mndePage.error-processing-transaction"),
             status: "warning",
           });
+          track({
+            event: "Claim MNDE Error",
+            category: "mSOL Farm",
+            action: "Claim",
+            label: "Error",
+            description: error.message as string,
+          });
         }
       )
       .finally(() => {
         setIsClaimProcessing(false);
       });
-  }, [chain.name, mSOL, t, toast]);
+  }, [chain.name, mSOL, t, toast, track]);
 
   return (
     <>

@@ -22,6 +22,7 @@ import { useMarinade } from "../../../contexts/MarinadeContext";
 import { useStats } from "../../../contexts/StatsContext";
 import { useUserBalance } from "../../../contexts/UserBalanceContext";
 import { usePrice } from "../../../hooks/usePrice";
+import { useTracking } from "../../../hooks/useTracking";
 import { useWallet } from "../../../hooks/useWallet";
 import { coinSymbols } from "../../../services/domain/coinSymbols";
 import colors from "../../../styles/customTheme/colors";
@@ -44,6 +45,7 @@ const SolLiquidityModal = ({
   const { t } = useTranslation();
   const toast = useToast();
 
+  const { track } = useTracking();
   const [isAddLiquidityActive, setAddLiquidityActive] = useState(true);
   const [loading, setLoading] = useState(false);
   const [amount, setAmount] = useState<string>("");
@@ -126,6 +128,13 @@ const SolLiquidityModal = ({
             ),
             status: "success",
           });
+
+          track({
+            event: "Add Liquidity",
+            category: "Liquidity",
+            action: "Add",
+            label: "Success",
+          });
         },
         (error) => {
           // eslint-disable-next-line no-console
@@ -135,6 +144,14 @@ const SolLiquidityModal = ({
             title: t("appPage.something-went-wrong"),
             description: error.message,
             status: "warning",
+          });
+
+          track({
+            event: "Add Liquidity Error",
+            category: "Liquidity",
+            action: "Add",
+            label: "Error",
+            description: error.message,
           });
         }
       )
@@ -191,6 +208,12 @@ const SolLiquidityModal = ({
             ),
             status: "success",
           });
+          track({
+            event: "Remove Liquidity",
+            category: "Liquidity",
+            action: "Remove",
+            label: "Success",
+          });
         },
         (error) => {
           // eslint-disable-next-line no-console
@@ -202,6 +225,13 @@ const SolLiquidityModal = ({
               ? t("appPage.your-lp-account-is-deactivated")
               : error.message,
             status: "warning",
+          });
+          track({
+            event: "Remove Liquidity Error",
+            category: "Liquidity",
+            action: "Remove",
+            label: "Success",
+            description: error.message,
           });
         }
       )
