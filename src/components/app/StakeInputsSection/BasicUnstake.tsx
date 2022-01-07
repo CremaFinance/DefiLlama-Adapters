@@ -287,6 +287,12 @@ const BasicUnstake = () => {
             ),
             status: "success",
           });
+          track({
+            event: "Claim SOL",
+            category: "Basic Staking",
+            action: "Claim",
+            label: "Success",
+          });
         },
         (error) => {
           let errorMessage;
@@ -305,6 +311,13 @@ const BasicUnstake = () => {
             title: t("appPage.claim-error-tooltip-title"),
             description: errorMessage,
             status: "warning",
+          });
+          track({
+            event: "Claim SOL Error",
+            category: "Basic Staking",
+            action: "Claim",
+            label: "Error",
+            description: errorMessage,
           });
         }
       )

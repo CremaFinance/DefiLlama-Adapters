@@ -132,7 +132,7 @@ const SolLiquidityModal = ({
           track({
             event: "Add Liquidity",
             category: "Liquidity",
-            action: "Remove",
+            action: "Add",
             label: "Success",
           });
         },
@@ -149,7 +149,7 @@ const SolLiquidityModal = ({
           track({
             event: "Add Liquidity Error",
             category: "Liquidity",
-            action: "Remove",
+            action: "Add",
             label: "Error",
             description: error.message,
           });
@@ -209,6 +209,12 @@ const SolLiquidityModal = ({
             ),
             status: "success",
           });
+          track({
+            event: "Remove Liquidity",
+            category: "Liquidity",
+            action: "Remove",
+            label: "Success",
+          });
         },
         (error) => {
           // eslint-disable-next-line no-console
@@ -220,6 +226,13 @@ const SolLiquidityModal = ({
               ? t("appPage.your-lp-account-is-deactivated")
               : error.message,
             status: "warning",
+          });
+          track({
+            event: "Remove Liquidity Error",
+            category: "Liquidity",
+            action: "Remove",
+            label: "Success",
+            description: error.message,
           });
         }
       )

@@ -5,7 +5,13 @@ declare const dataLayer: Record<string, unknown>[];
 type TrackEvent = {
   // todo better event types
   event: string;
-  category: "Account Staking" | "Basic Staking" | "Liquidity" | "mSOL Farm";
+  category:
+    | "Account Staking"
+    | "Basic Staking"
+    | "Liquidity"
+    | "mSOL Farm"
+    | "MSOL-SOL LP Farm"
+    | "Retro MNDE CLaim";
   action: string;
   label: "Success" | "Error";
   description?: string;
