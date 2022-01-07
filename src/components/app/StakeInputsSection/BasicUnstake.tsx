@@ -86,18 +86,28 @@ const BasicUnstake = () => {
       liqPoolBalance !== null
     ) {
       if (
-        Number(liquidity) - Number(stSolToUnstake) * LAMPORTS_PER_SOL >
+        Number(liquidity) -
+          Number(stSolToUnstake) * LAMPORTS_PER_SOL * mSOLvsSOLParity >
         (state?.liq_pool?.lp_liquidity_target.toNumber() || 0)
       ) {
         return unstakefee;
       }
+
+      const liqPoolBalanceSOL = liqPoolBalance / LAMPORTS_PER_SOL;
+      const SOLtoWithdraw = Number(stSolToUnstake) * mSOLvsSOLParity;
+      const remainingSOLinLiqPool = Math.max(
+        0,
+        liqPoolBalanceSOL - SOLtoWithdraw
+      );
+      const SOLliquidityTarget =
+        state?.liq_pool?.lp_liquidity_target.toNumber() / LAMPORTS_PER_SOL ?? 1;
+
       unstakefee =
         maxUnstakeFee -
-        ((maxUnstakeFee - minUnstakeFee) *
-          ((liqPoolBalance || 0) - Number(stSolToUnstake) * LAMPORTS_PER_SOL)) /
-          state.liq_pool.lp_liquidity_target.toNumber();
+        ((maxUnstakeFee - minUnstakeFee) * remainingSOLinLiqPool) /
+          SOLliquidityTarget;
     }
-    return Math.min(3, Number(format2Dec(unstakefee)));
+    return Number(format2Dec(unstakefee));
   };
 
   const unstakeNowReceive =
