@@ -220,7 +220,7 @@ export function StatsProvider({ children }: StatsProviderProps) {
     count: number;
   }> => {
     const res = await fetch(
-      `https://marinade-dashboard-api.herokuapp.com/validators/count`,
+      `https://marinade-dashboard-api-test.herokuapp.com/validators/count`,
       {
         method: "GET",
         mode: "cors",
