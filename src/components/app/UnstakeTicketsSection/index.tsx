@@ -114,7 +114,7 @@ const UnstakeTicketsSection = ({
 
   const noTicketAccountsMessage = isWalletConnected
     ? t("appPage.no-ticket-accounts-message")
-    : t("appPage.wallet-not-connected");
+    : t("appPage.wallet-not-connected-ticket-accounts");
 
   return (
     <Flex width="100%" pt={12}>

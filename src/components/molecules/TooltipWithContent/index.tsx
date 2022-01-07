@@ -17,11 +17,13 @@ import Text from "../../atoms/Text";
 type TooltipWithContentpProps = PropsWithChildren<{
   tooltipText: string;
   link?: string;
+  linkText?: string;
 }>;
 
 const TooltipWithContent: FunctionComponent<TooltipWithContentpProps> = ({
   tooltipText,
   link,
+  linkText,
   children,
 }) => {
   const { t } = useTranslation();
@@ -57,11 +59,13 @@ const TooltipWithContent: FunctionComponent<TooltipWithContentpProps> = ({
                 color={colors.marinadeGreen}
                 href={link}
                 target="_blank"
+                _hover={{ textDecoration: "none" }}
                 rel="noreferrer noopener"
+                _focus={{ boxShadow: "none" }}
                 display="flex"
                 alignItems="center"
               >
-                {t("appPage.tooltip-time-to-unstake-read-more")}
+                {linkText ?? t("appPage.tooltip-time-to-unstake-read-more")}
                 <Image
                   src="/icons/external-link-green.svg"
                   width="1rem"

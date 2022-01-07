@@ -16,15 +16,22 @@ import {
   Box,
   useToast,
 } from "@chakra-ui/react";
+import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useState } from "react";
 import { AiOutlineCheck } from "react-icons/ai";
 import { MdContentCopy } from "react-icons/md";
 import NumberFormat from "react-number-format";
 
+import { useMarinade } from "../../../contexts/MarinadeContext";
 import { useTranslation } from "../../../hooks/useTranslation";
 import { useWallet } from "../../../hooks/useWallet";
+import { coinSymbols } from "../../../services/domain/coinSymbols";
 import colors from "../../../styles/customTheme/colors";
-import { format5Dec, format2Dec } from "../../../utils/number-to-short-version";
+import {
+  format5Dec,
+  format2Dec,
+  numberToShortVersion,
+} from "../../../utils/number-to-short-version";
 import {
   shortenAddress,
   shortenAddressForMobile,
@@ -80,6 +87,17 @@ const StakeInput = ({
   const [selectedAccount, setSelectedAccount] = useState(currentAccount);
   const [isStakeAccountSelected, setIsStakeAccountSelected] = useState(false);
   const { connected: isWalletConnected } = useWallet();
+  const marinade = useMarinade();
+  const state = marinade?.marinadeState?.state;
+  const marinadeState = marinade?.marinadeState;
+
+  const BUFFER =
+    tokenName === coinSymbols.SOL
+      ? 0.01 +
+        ((marinadeState?.transactionFee ?? 0) * 4 +
+          (state?.rent_exempt_for_token_acc?.toNumber() ?? 0)) /
+          LAMPORTS_PER_SOL
+      : 0;
 
   const handleSelectedAccount = (
     account: StakeAccountType,
@@ -242,7 +260,7 @@ const StakeInput = ({
 
                   {stakeAccounts.map((stakeAccount) => (
                     <MenuItem
-                      isDisabled={stakeAccount.isStakable}
+                      isDisabled={!stakeAccount.isStakable}
                       key={stakeAccount.address}
                       onClick={() => {
                         handleSelectedAccount(stakeAccount, true);
@@ -353,7 +371,9 @@ const StakeInput = ({
         />
       </Flex>
       <Flex alignItems="center" justifyContent="flex-start" mb={2}>
-        <MText type="text-sm">{`${balanceLabel}: ${tokenBalance.toLocaleString()} ${tokenName}`}</MText>
+        <MText type="text-sm">{`${balanceLabel}: ${numberToShortVersion(
+          tokenBalance
+        )} ${tokenName}`}</MText>
         {tokenBalance &&
         !isStakeAccountSelected &&
         stakeInputType !== StakeInputTypeEnum.Target ? (
@@ -363,7 +383,9 @@ const StakeInput = ({
             color={colors.marinadeGreen}
             fontWeight="bold"
             onClick={() =>
-              onValueChange ? onValueChange(tokenBalance.toString()) : {}
+              onValueChange
+                ? onValueChange((tokenBalance - BUFFER).toString())
+                : {}
             }
             pb="1px"
             pl="4px"

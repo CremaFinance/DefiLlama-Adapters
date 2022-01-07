@@ -40,64 +40,62 @@ const SuccessStakeModal = ({
   );
 
   return (
-    <>
-      <Modal isOpen={isOpenProp} onClose={onCloseProp} size="lg">
-        <ModalOverlay />
-        <ModalContent maxW="480px">
-          <ModalCloseButton />
-          <ModalBody display="flex" justifyContent="center">
-            <Flex flexDir="column" height="100%" alignItems="center" margin="0">
-              <Image
-                marginTop="38px"
-                width="219.03px"
-                height="166.64px"
-                src="/ilustrations/success-stake.png"
-              />
-              <Text
-                marginTop="18px"
-                fontSize="22.5px"
-                fontWeight="bold"
-                lineHeight="33.75px"
-              >
-                {t("appPage.success-stake.title")}
+    <Modal isOpen={isOpenProp} onClose={onCloseProp} size="lg" isCentered>
+      <ModalOverlay />
+      <ModalContent maxW="480px">
+        <ModalCloseButton _focus={{ boxShadow: "none" }} />
+        <ModalBody display="flex" justifyContent="center">
+          <Flex flexDir="column" height="100%" alignItems="center" margin="0">
+            <Image
+              marginTop="38px"
+              width="219.03px"
+              height="166.64px"
+              src="/ilustrations/success-stake.png"
+            />
+            <Text
+              marginTop="18px"
+              fontSize="22.5px"
+              fontWeight="bold"
+              lineHeight="33.75px"
+            >
+              {t("appPage.success-stake.title")}
+            </Text>
+            <Text
+              marginTop="9px"
+              fontSize="18px"
+              lineHeight="25.2px"
+              textAlign="center"
+            >
+              {bodyLine1}
+            </Text>
+            <Text fontSize="18px" lineHeight="150%" textAlign="center">
+              {bodyBeforeLine2}
+              <Text as="span" color={colors.black} fontWeight="bold">
+                {stakedAmount}
+              </Text>{" "}
+              <Text as="span" color={colors.marinadeGreen} fontWeight="bold">
+                {stakedCurrency}
               </Text>
-              <Text
-                marginTop="9px"
+              {bodyAfterLine2}
+            </Text>
+            <Flex marginTop="24px" marginBottom="31px">
+              <MButton
+                variant="big-solid"
                 fontSize="18px"
                 lineHeight="25.2px"
-                textAlign="center"
+                fontWeight="bold"
+                paddingX="44px"
+                onClick={() => {
+                  router.push("/app/defi").finally(onCloseProp);
+                }}
               >
-                {bodyLine1}
-              </Text>
-              <Text fontSize="18px" lineHeight="150%" textAlign="center">
-                {bodyBeforeLine2}
-                <Text as="span" color={colors.black} fontWeight="bold">
-                  {stakedAmount}
-                </Text>{" "}
-                <Text as="span" color={colors.marinadeGreen} fontWeight="bold">
-                  {stakedCurrency}
-                </Text>
-                {bodyAfterLine2}
-              </Text>
-              <Flex marginTop="24px" marginBottom="31px">
-                <MButton
-                  variant="big-solid"
-                  fontSize="18px"
-                  lineHeight="25.2px"
-                  fontWeight="bold"
-                  paddingX="44px"
-                  onClick={() => {
-                    router.push("/app/defi").finally(onCloseProp);
-                  }}
-                >
-                  {buttonText}
-                </MButton>
-              </Flex>
+                {buttonText}
+              </MButton>
             </Flex>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
-    </>
+          </Flex>
+        </ModalBody>
+      </ModalContent>
+    </Modal>
   );
 };
 

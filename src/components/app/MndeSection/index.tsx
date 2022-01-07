@@ -18,7 +18,7 @@ const MndeSection = () => {
       aria-label="mnde-section"
       position="relative"
       flexDirection="column"
-      alignItems="stretch"
+      width="100vw"
     >
       <Flex
         marginTop={{ base: "24px", lg: "40px" }}
@@ -27,6 +27,16 @@ const MndeSection = () => {
         alignItems="center"
         flexDirection="column"
       >
+        <Text
+          color={colors.black}
+          textAlign="center"
+          fontWeight="bold"
+          fontSize={["22.5px", "43.95px"]}
+          maxWidth="670px"
+        >
+          {t("appPage.mnde.header")}
+        </Text>
+
         <Text
           color={colors.black}
           textAlign="center"

@@ -1,8 +1,10 @@
+/* eslint-disable complexity */
 import {
   Flex,
   Progress,
   Spinner,
   IconButton,
+  Image,
   useDisclosure,
   Modal,
   ModalOverlay,
@@ -29,7 +31,6 @@ import MHeading from "../../atoms/Heading";
 import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
 import ValidatorsTable from "../ValidatorsSection";
-import InfoIconWithTooltip from "components/molecules/InfoIconWithTooltip";
 import TooltipWithContent from "components/molecules/TooltipWithContent";
 import { coinSymbols } from "services/domain/coinSymbols";
 import colors from "styles/customTheme/colors";
@@ -64,7 +65,7 @@ const InfoBoxesSection = () => {
 
   const epochData = useEpochInfo()?.data;
 
-  const { totalStaked, totalValidatorsCount } = useStats();
+  const { totalStaked, totalValidatorsCount, stakeAPY } = useStats();
 
   const { marinadeState } = useMarinade();
 
@@ -75,15 +76,13 @@ const InfoBoxesSection = () => {
     : undefined;
 
   const mSOLvsSOLParity = marinadeState?.state?.st_sol_price
-    ? marinadeState?.state?.st_sol_price?.toNumber() / 0x1_0000_0000
+    ? marinadeState.state.st_sol_price.toNumber() / 0x1_0000_0000
     : 0;
 
   const solUSD = data ? data[coinSymbols.SOL]?.usd : 0;
 
   const mSolUSD = Number(format2Dec(solUSD ?? 0 * mSOLvsSOLParity));
-
-  // TODO: Use actual values from services
-  const weekAPY = 7.16;
+  const stakeAPYValue = (stakeAPY ?? 0) * 100;
 
   return (
     <>
@@ -209,7 +208,11 @@ const InfoBoxesSection = () => {
                 />
               </Flex>
               <MText type="text-md" pb={2}>
-                ETA: <Countdown initialTimeLeft={epochData.msUntilEpochEnd} />
+                ETA:{" "}
+                <Countdown
+                  initialTimeLeft={epochData.msUntilEpochEnd}
+                  showSeconds={false}
+                />
               </MText>
             </>
           ) : (
@@ -221,23 +224,51 @@ const InfoBoxesSection = () => {
         <Flex
           bg={colors.white}
           flexDirection="column"
+          justifyContent="space-between"
           rounded="lg"
           width="207px"
           height="139px"
-          zIndex={5}
+          zIndex={6}
           py={5}
           pr={3}
           pl={6}
           mt={8}
           mx={2}
         >
-          <Flex justifyContent="space-between" mb={3}>
-            <MText type="text-md">{t("appPage.info-week-apy")}</MText>
-            <InfoIconWithTooltip
-              tooltipText={t("appPage.info-week-apy-tooltip")}
-            />
+          <Flex justifyContent="space-between">
+            <MText type="text-md">APY</MText>
+            <TooltipWithContent tooltipText={t("appPage.info-apy-tooltip")}>
+              <IconButton
+                _focus={{ boxShadow: "none" }}
+                variant="link"
+                aria-label="Info APY"
+                size="sm"
+                icon={<MdInfoOutline />}
+              />
+            </TooltipWithContent>
           </Flex>
-          <MHeading type="heading-2xsm">{weekAPY}%</MHeading>
+          {stakeAPYValue ? (
+            <MHeading type="heading-2xsm">
+              {format2Dec(stakeAPYValue)}%
+            </MHeading>
+          ) : (
+            <Flex flex={1} alignItems="center" justifyContent="center">
+              <Spinner size="md" mr={3} />
+            </Flex>
+          )}
+          <MLink
+            target="_blank"
+            font="text-lg"
+            href={t("appPage.info-apy-tooltip-link")}
+            rel="noreferrer noopener"
+            _focus={{ boxShadow: "none" }}
+            color={colors.marinadeGreen}
+            pb={2}
+            display="flex"
+          >
+            {t("appPage.info-apy-tooltip-link-text")}
+            <Image src="/icons/external-link-green.svg" width="1rem" ml={2} />
+          </MLink>
         </Flex>
         <Flex
           bg={colors.white}
@@ -348,13 +379,29 @@ const InfoBoxesSection = () => {
         </Flex>
         <Flex justifyContent="space-between" alignItems="center">
           <MLink font="text-lg" color={colors.marinadeGreen}>
-            {t("appPage.info-week-apy")}
+            APY
           </MLink>
           <Flex>
-            <MHeading type="heading-2xsm">{weekAPY}%</MHeading>
-            <InfoIconWithTooltip
-              tooltipText={t("appPage.info-week-apy-tooltip")}
-            />
+            {stakeAPYValue ? (
+              <MHeading type="heading-2xsm">
+                {format2Dec(stakeAPYValue)}%
+              </MHeading>
+            ) : (
+              <Spinner size="sm" mr={3} />
+            )}
+            <TooltipWithContent
+              tooltipText={t("appPage.info-apy-tooltip")}
+              link={t("appPage.info-apy-tooltip-link")}
+              linkText={t("appPage.info-apy-tooltip-link-text")}
+            >
+              <IconButton
+                _focus={{ boxShadow: "none" }}
+                variant="link"
+                aria-label="Info APY"
+                size="sm"
+                icon={<MdInfoOutline />}
+              />
+            </TooltipWithContent>
           </Flex>
         </Flex>
         <Flex justifyContent="space-between" alignItems="center">

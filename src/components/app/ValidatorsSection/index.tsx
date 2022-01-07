@@ -1,5 +1,6 @@
 import {
   Flex,
+  IconButton,
   Table,
   Thead,
   Tbody,
@@ -9,6 +10,7 @@ import {
   Box,
   Spinner,
   Image,
+  useToast,
 } from "@chakra-ui/react";
 import {
   Chart as ChartJS,
@@ -23,11 +25,12 @@ import {
 import { useTranslation } from "next-export-i18n";
 import { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
-import { MdOutlineContentCopy } from "react-icons/md";
+import { MdContentCopy } from "react-icons/md";
 import { useQuery, UseQueryResult } from "react-query";
 
 import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
+import { copyAddressToClipboard } from "utils/copy-to-clipboard";
 import { numberToShortVersion } from "utils/number-to-short-version";
 import { shortenAddress } from "utils/shorten-address";
 
@@ -179,6 +182,8 @@ const formatValidatorName = (name: string): string => {
 
 const ValidatorTable = () => {
   const { t } = useTranslation();
+  const toast = useToast();
+
   const [pageNumber, setPageNumber] = useState(1);
   const [pages, setPages] = useState<(string | number)[]>([1, 2, 3, 4, 5]);
 
@@ -313,9 +318,16 @@ const ValidatorTable = () => {
                 >
                   <Flex alignItems="center">
                     {shortenAddress(tuple.pubkey.address)}
-                    <Box ml="7px">
-                      <MdOutlineContentCopy fontSize="14px" color="#171923" />
-                    </Box>
+                    <IconButton
+                      variant="link"
+                      aria-label="Copy address"
+                      size="sm"
+                      icon={<MdContentCopy />}
+                      _focus={{ boxShadow: "none" }}
+                      onClick={() =>
+                        copyAddressToClipboard(tuple.pubkey.address, toast, t)
+                      }
+                    />
                   </Flex>
                 </Td>
                 <Td {...cell} width="100px">

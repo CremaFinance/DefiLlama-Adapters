@@ -90,7 +90,9 @@ const Agreement = () => {
                   setTermsAgreement(true);
                   onClose();
                 }}
-                colorScheme="green"
+                bg={colors.marinadeGreen}
+                _hover={{ bg: colors.green800 }}
+                colorScheme={colors.marinadeGreen}
                 borderRadius="6px"
                 _focus={{ boxShadow: "none" }}
               >

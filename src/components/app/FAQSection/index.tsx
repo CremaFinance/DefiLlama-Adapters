@@ -119,7 +119,42 @@ const FAQSection = () => {
               pr={[4, 6]}
             >
               <MText type="text-md" lineHeight="170%">
-                {t(`appPage.faq-items.2.response-0`)}
+                {t(`appPage.faq-items.2.response-0.part-one`)}
+                <Link
+                  href={t("appPage.faq-items.2.response-0.defi-page-link")}
+                  _hover={{ textDecoration: "none" }}
+                  rel="noreferrer noopener"
+                  _focus={{ boxShadow: "none" }}
+                  color={colors.marinadeGreen}
+                  fontWeight="700"
+                >
+                  {t("appPage.faq-items.2.response-0.defi-page")}
+                </Link>
+                {t("appPage.faq-items.2.response-0.part-two")}
+                <Link
+                  target="_blank"
+                  href={t("appPage.faq-items.2.response-0.sonar-watch-link")}
+                  _hover={{ textDecoration: "none" }}
+                  rel="noreferrer noopener"
+                  _focus={{ boxShadow: "none" }}
+                  color={colors.marinadeGreen}
+                  fontWeight="700"
+                >
+                  {t("appPage.faq-items.2.response-0.sonar-watch")}
+                </Link>
+                {t("appPage.faq-items.2.response-0.connection")}
+                <Link
+                  target="_blank"
+                  href={t("appPage.faq-items.2.response-0.step-finance-link")}
+                  _hover={{ textDecoration: "none" }}
+                  rel="noreferrer noopener"
+                  _focus={{ boxShadow: "none" }}
+                  color={colors.marinadeGreen}
+                  fontWeight="700"
+                >
+                  {t("appPage.faq-items.2.response-0.step-finance")}
+                </Link>
+                .
               </MText>
               <MText type="text-md" lineHeight="170%" mt="16px">
                 {t(`appPage.faq-items.2.response-1`)}

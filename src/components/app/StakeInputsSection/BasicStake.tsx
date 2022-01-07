@@ -1,4 +1,10 @@
-import { Flex, IconButton, useDisclosure, useToast } from "@chakra-ui/react";
+import {
+  Flex,
+  IconButton,
+  useDisclosure,
+  useToast,
+  Box,
+} from "@chakra-ui/react";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import BN from "bn.js";
 import { useTranslation } from "next-export-i18n";
@@ -10,6 +16,7 @@ import { useMarinade } from "../../../contexts/MarinadeContext";
 import { useUserBalance } from "../../../contexts/UserBalanceContext";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
+import { ConnectWallet } from "../../molecules/ConnectWallet";
 import TooltipWithContent from "../../molecules/TooltipWithContent";
 import StakeInput, {
   StakeAccountType,
@@ -84,7 +91,7 @@ const BasicStake = () => {
   }, [isWalletConnected, stakeLoading]);
 
   const mSOLvsSOLParity = marinadeState?.state?.st_sol_price
-    ? marinadeState?.state?.st_sol_price?.toNumber() / 0x1_0000_0000
+    ? marinadeState.state.st_sol_price.toNumber() / 0x1_0000_0000
     : 0;
   const sourceTokenBalance = nativeSOLBalance
     ? nativeSOLBalance / LAMPORTS_PER_SOL - 0.001
@@ -243,10 +250,12 @@ const BasicStake = () => {
       Number(solToStake) * LAMPORTS_PER_SOL +
       (marinadeState?.transactionFee ?? 0) * 4 +
       (state?.rent_exempt_for_token_acc?.toNumber() ?? 0);
+
     const checkBalanceErrors = checkNativeSOLBalance(
       nativeSOLBalance ?? 0,
       fundsNeeded
     );
+
     if (checkBalanceErrors) {
       return toast(checkBalanceErrors);
     }
@@ -305,27 +314,33 @@ const BasicStake = () => {
         onValueChange={setSolToStake}
         tokenName="SOL"
         tokenIcon="/icons/solana-dark.png"
-        tokenBalance={sourceTokenBalance}
+        tokenBalance={(nativeSOLBalance ?? 0) / LAMPORTS_PER_SOL}
         currentAccount={currentAccount}
         stakeAccounts={parseStakeAccounts()}
         value={solToStake}
         mb={2}
       />
-      <MButton
-        font="text-xl"
-        bg={colors.marinadeGreen}
-        isLoading={stakeLoading}
-        _hover={{ bg: colors.green800 }}
-        colorScheme={colors.marinadeGreen}
-        rounded="md"
-        px={4}
-        height="48px"
-        mx={4}
-        my={4}
-        onClick={stakeHandler}
-      >
-        {stakeText}
-      </MButton>
+      {isWalletConnected ? (
+        <MButton
+          font="text-xl"
+          bg={colors.marinadeGreen}
+          isLoading={stakeLoading}
+          _hover={{ bg: colors.green800 }}
+          colorScheme={colors.marinadeGreen}
+          rounded="md"
+          px={4}
+          height="48px"
+          mx={4}
+          my={4}
+          onClick={stakeHandler}
+        >
+          {stakeText}
+        </MButton>
+      ) : (
+        <Box my={4}>
+          <ConnectWallet />
+        </Box>
+      )}
 
       <Flex width="100%" my={1} justifyContent="space-between">
         <MText type="text-md">{t("appPage.conversion-explained")}</MText>
