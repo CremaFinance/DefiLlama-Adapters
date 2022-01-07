@@ -355,7 +355,6 @@ const ValidatorTable = () => {
                       _hover={{
                         cursor: "pointer",
                       }}
-                      // width="60px"
                       onClick={() =>
                         copyAddressToClipboard(
                           tuple.validator_vote_address,
