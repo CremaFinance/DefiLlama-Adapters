@@ -123,15 +123,7 @@ const BasicUnstake = () => {
           walletConnected,
           connection,
           walletPubKey as PublicKey,
-          fetchTicketsLoading
-        );
-      } else {
-        getTicketAccountsAction(
-          keys,
-          walletConnected,
-          connection,
-          walletPubKey as PublicKey,
-          true
+          !fetchTicketsLoading || !unstakeLoading
         );
       }
     } else {
@@ -139,12 +131,11 @@ const BasicUnstake = () => {
       fetchTicketsLoadingAction(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [walletConnected]);
+  }, [walletConnected, unstakeLoading, showModal]);
 
   const resetInputs = () => {
     setUnstakeLoading(false);
     setStSolToUnstake("");
-
     if (!isUnstakeNowActive) {
       setShowModal(false);
     }
@@ -243,7 +234,6 @@ const BasicUnstake = () => {
       )
       .then(() => setStSolToUnstake(""))
       .finally(() => {
-        setUnstakeLoading(false);
         getTicketAccountsAction(
           keys,
           walletConnected,
@@ -253,6 +243,7 @@ const BasicUnstake = () => {
         );
         setStSolToUnstake("");
         resetInputs();
+        setUnstakeLoading(false);
       });
   };
 
