@@ -43,6 +43,7 @@ interface Validator {
   validator_description: string;
   most_recent_apy: number;
   most_recent_marinade_staked: number;
+  most_recent_rank: number;
   epoch_stats: Stat[];
 }
 
@@ -283,7 +284,7 @@ const ValidatorTable = () => {
       <Table variant="unstyled" maxHeight="570px">
         <Thead>
           <Tr>
-            <Th {...cell}>Rank</Th>
+            <Th {...cell}>{t("appPage.validators-table-rank")}</Th>
             <Th {...cell} textAlign="left" position="relative" right="14px">
               {t("appPage.validators-table-validator")}
             </Th>
@@ -314,7 +315,7 @@ const ValidatorTable = () => {
                   fontSize="16px"
                   fontWeight="bold"
                 >
-                  1
+                  {tuple.most_recent_rank}
                 </Td>
                 <Td {...highlightedCell} width="200px">
                   <Flex alignItems="center" flexWrap="nowrap">

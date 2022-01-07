@@ -386,12 +386,7 @@
     "successfully-staked-your-sol": "You've successfully staked your SOL",
     "try-using-max-button": "Try using the MAX button to stake the maximum allowed amount.",
 
-    "validators-menu-transactions": "Transactions",
-    "validators-menu-stakes": "Stakes",
-    "validators-menu-portfolio": "Portfolio",
-    "validators-menu-spl-token-txs": "SPL Token TXs",
-    "validators-menu-dex-orders": "DEXOrders",
-    "validators-button-basic": "Basic",
+    "validators-table-rank": "Rank",
     "validators-table-account": "Account",
     "validators-table-staked": "Balance",
     "validators-table-validator": "Validator",
