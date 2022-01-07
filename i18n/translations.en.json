@@ -392,11 +392,12 @@
     "validators-menu-dex-orders": "DEXOrders",
     "validators-button-basic": "Basic",
     "validators-table-account": "Account",
-    "validators-table-balance": "Balance",
+    "validators-table-staked": "Balance",
     "validators-table-validator": "Validator",
-    "validators-table-state": "State",
+    "validators-table-apy": "APY",
     "validators-table-delegated": "Delegated",
     "validators-link": "https://marinade.finance/app/validators",
+    "validators-table-graph": "% of SOL allocated",
     "agreement": {
       "header": "Welcome to Marinade!",
       "body": [

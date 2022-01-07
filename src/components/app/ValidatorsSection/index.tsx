@@ -9,7 +9,6 @@ import {
   Td,
   Box,
   Spinner,
-  Image,
   useToast,
 } from "@chakra-ui/react";
 import {
@@ -36,27 +35,29 @@ import { shortenAddress } from "utils/shorten-address";
 
 interface Query {
   totalPages: number;
-  data: Validator[];
+  validators: Validator[];
 }
 
 interface Validator {
-  pubkey: {
-    address: string;
-  };
-  lamports: number;
-  data: {
-    stake: {
-      delegation: {
-        validatorInfo: {
-          name: string;
-          image: string;
-        };
-        voter_pubkey: {
-          address: string;
-        };
-      };
-    };
-  };
+  validator_vote_address: string;
+  validator_description: string;
+  most_recent_apy: number;
+  most_recent_marinade_staked: number;
+  epoch_stats: Stat[];
+}
+
+interface Stat {
+  epoch: number;
+  score: number;
+  rank: number;
+  vote_address: string;
+  commission: number;
+  data_center_concentration: number;
+  apy: number;
+  delinquent: string;
+  pct: number;
+  marinade_staked: number;
+  should_have: number;
 }
 
 ChartJS.register(
@@ -69,23 +70,12 @@ ChartJS.register(
   Legend
 );
 
-const epochs = [
-  220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234,
-  235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249,
-];
-const activeStakes = [
-  4072763.161070507, 4051075.066551863, 4052054.858973112, 5484387.030233282,
-  5684468.243501075, 5708780.209760917, 5741928.247340158, 5867284.539062156,
-  5903796.859640622, 5907522.166588127, 5892550.851038137, 5380652.535657598,
-  5345727.220581916, 5292535.108541975, 5271852.135467568, 5379139.069056723,
-  5386798.789321935, 5388546.43043774, 5401648.792333718, 5437185.096764735,
-  5462996.963574909, 5400193.764581964, 5411662.977977125, 5400563.433956664,
-  5223744.103347798, 5216777.860529208, 5232571.293974561, 5238363.018035473,
-  5241898.45501964, 5320538.49202316,
-];
 const options = {
   responsive: true,
   plugins: {
+    tooltip: {
+      enabled: false,
+    },
     legend: {
       position: "top" as const,
       display: false,
@@ -94,6 +84,7 @@ const options = {
       display: false,
     },
   },
+  tension: 0.3,
   scales: {
     x: {
       display: false,
@@ -110,16 +101,26 @@ const options = {
   maintainAspectRatio: false,
 };
 
-const graphData = {
-  labels: epochs,
-  datasets: [
-    {
-      label: "Active Stakes",
-      data: activeStakes,
-      borderColor: colors.marinadeGreen,
-      backgroundColor: colors.marinadeGreen,
-    },
-  ],
+const genEpochs = (validator: Validator) => {
+  return validator.epoch_stats.map((tuple) => tuple.epoch);
+};
+
+const genPctValues = (validator: Validator) => {
+  return validator.epoch_stats.map((tuple) => tuple.pct);
+};
+
+const genGraph = (_epochs: number[], _pctValues: number[]) => {
+  return {
+    labels: _epochs,
+    datasets: [
+      {
+        label: "Historical Marinade % SOL allocation",
+        data: _pctValues,
+        borderColor: colors.marinadeGreen,
+        backgroundColor: colors.marinadeGreen,
+      },
+    ],
+  };
 };
 
 const cell = {
@@ -137,10 +138,6 @@ const highlightedCell = {
   borderBottom: "1px solid #edf2f7",
   px: "10px",
   py: "0px",
-  _hover: {
-    textDecoration: "underline",
-    cursor: "pointer",
-  },
 };
 
 const currentPageStyle = {
@@ -183,7 +180,6 @@ const formatValidatorName = (name: string): string => {
 const ValidatorTable = () => {
   const { t } = useTranslation();
   const toast = useToast();
-
   const [pageNumber, setPageNumber] = useState(1);
   const [pages, setPages] = useState<(string | number)[]>([1, 2, 3, 4, 5]);
 
@@ -200,13 +196,7 @@ const ValidatorTable = () => {
 
   const fetchData = async (): Promise<Query> => {
     const res = await fetch(
-      `https://prod-api.solana.surf/v1/account/4bZ6o3eUUNXhKuqjdCnCoPAoLgWiuLYixKaxoa8PpiKk/stakes?limit=10&offset=${
-        10 * (pageNumber - 1)
-      }`,
-      {
-        method: "GET",
-        mode: "cors",
-      }
+      `https://marinade-dashboard-api-temp.herokuapp.com/validators/?page=${pageNumber}`
     );
 
     if (!res.ok) {
@@ -259,8 +249,9 @@ const ValidatorTable = () => {
   if (isLoading && data === undefined) {
     return (
       <Box
-        height="710px"
-        width="100%"
+        height="570px"
+        width="95%"
+        maxWidth="1360px"
         display="flex"
         flexDirection="column-reverse"
         justifyContent="flex-start"
@@ -291,72 +282,80 @@ const ValidatorTable = () => {
             <Th {...cell} textAlign="left" position="relative" right="23px">
               {t("appPage.validators-table-account")}
             </Th>
-            <Th {...cell} textAlign="left">
-              {t("appPage.validators-table-balance")}
-            </Th>
-            <Th {...cell} textAlign="left">
-              Graph
-            </Th>
             <Th {...cell} textAlign="left" position="relative" right="14px">
               {t("appPage.validators-table-validator")}
             </Th>
-            <Th {...cell} textAlign="right" position="relative" right="10px">
-              {t("appPage.validators-table-state")}
+
+            <Th {...cell} textAlign="left">
+              {t("appPage.validators-table-staked")}
+            </Th>
+            <Th {...cell} textAlign="left">
+              {t("appPage.validators-table-graph")}
+            </Th>
+            <Th {...cell} textAlign="right" position="relative" left="10px">
+              {t("appPage.validators-table-apy")}
             </Th>
           </Tr>
         </Thead>
         <Tbody>
           {data !== undefined &&
-            data.data.map((tuple) => (
-              <Tr key={tuple.pubkey.address}>
+            data.validators.map((tuple) => (
+              <Tr key={tuple.validator_vote_address}>
                 <Td
                   {...highlightedCell}
                   textAlign="left"
                   position="relative"
                   right="10px"
-                  width="100px"
+                  width="200px"
                 >
-                  <Flex alignItems="center">
-                    {shortenAddress(tuple.pubkey.address)}
+                  <Flex
+                    alignItems="center"
+                    _hover={{
+                      cursor: "pointer",
+                    }}
+                    width="60px"
+                    onClick={() =>
+                      copyAddressToClipboard(
+                        tuple.validator_vote_address,
+                        toast,
+                        t
+                      )
+                    }
+                  >
+                    {shortenAddress(tuple.validator_vote_address)}
                     <IconButton
                       variant="link"
                       aria-label="Copy address"
                       size="sm"
                       icon={<MdContentCopy />}
                       _focus={{ boxShadow: "none" }}
-                      onClick={() =>
-                        copyAddressToClipboard(tuple.pubkey.address, toast, t)
-                      }
                     />
                   </Flex>
                 </Td>
-                <Td {...cell} width="100px">
-                  <MText>
-                    {numberToShortVersion(tuple.lamports / 1e9)} SOL
-                  </MText>
-                </Td>
-                <Td {...cell} width="100px">
-                  <Box width="150px" height="40px">
-                    <Line options={options} data={graphData} />
-                  </Box>
-                </Td>
-                <Td {...highlightedCell} width="50px">
+                <Td {...highlightedCell} width="200px">
                   <Flex alignItems="center" flexWrap="nowrap">
-                    {tuple.data.stake.delegation.validatorInfo.image && (
-                      <Image
-                        src={tuple.data.stake.delegation.validatorInfo.image}
-                        alt="?"
-                        boxSize="12px"
-                      />
-                    )}
-
                     <MText pl="4px">
                       {formatValidatorName(
-                        tuple.data.stake.delegation.validatorInfo.name ||
-                          tuple.data.stake.delegation.voter_pubkey.address
+                        tuple.validator_description ||
+                          tuple.validator_vote_address
                       )}
                     </MText>
                   </Flex>
+                </Td>
+
+                <Td {...cell} width="200px">
+                  <MText>
+                    {numberToShortVersion(tuple.most_recent_marinade_staked)}{" "}
+                    SOL
+                  </MText>
+                </Td>
+                <Td {...cell} width="200px">
+                  <Box width="178px" height="30px">
+                    <Line
+                      options={options}
+                      data={genGraph(genEpochs(tuple), genPctValues(tuple))}
+                    />
+                  </Box>
                 </Td>
                 <Td
                   {...cell}
@@ -365,7 +364,7 @@ const ValidatorTable = () => {
                   left="10px"
                   width="128px"
                 >
-                  {t("appPage.validators-table-delegated")}
+                  {numberToShortVersion(tuple.most_recent_apy)}%
                 </Td>
               </Tr>
             ))}

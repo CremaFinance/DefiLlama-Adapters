@@ -71,4 +71,4 @@ export const ENDPOINTS = [
 // TODO get from env var on build?
 // TODO change to 1=mainnet for production
 /// 0=devnet, 1=mainnet, 2=testnet
-export const DEFAULT_ENDPOINT = ENDPOINTS[0];
+export const DEFAULT_ENDPOINT = ENDPOINTS[1];
