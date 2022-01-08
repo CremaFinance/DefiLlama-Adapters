@@ -384,7 +384,7 @@ const StakeInput = ({
             fontWeight="bold"
             onClick={() =>
               onValueChange
-                ? onValueChange((tokenBalance - BUFFER).toString())
+                ? onValueChange(Math.max(0, tokenBalance - BUFFER).toString())
                 : {}
             }
             pb="1px"
