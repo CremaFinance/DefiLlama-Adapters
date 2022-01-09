@@ -176,8 +176,8 @@ const DelayedUnstakeModal = ({
                         marinade?.marinadeState?.state.stake_system
                           ?.last_stake_delta_epoch
                       ) === epochData?.epoch
-                        ? 2
-                        : 1) +
+                        ? 1
+                        : 0) +
                     EXTRA_WAIT_MILLISECONDS
                 )
               ).format(" MMMM D YYYY, h:mm a")}
