@@ -12,7 +12,6 @@ const Mnde = () => {
       overflow="hidden"
       bg={colors.greenLight}
       flexDirection="column"
-      height={{ base: "unset", "2xl": "100vh" }}
     >
       <Flex width="100vw" justifyContent="flex-end">
         <Image
