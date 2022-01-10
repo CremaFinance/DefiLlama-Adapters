@@ -5,6 +5,7 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 
@@ -42,6 +43,8 @@ export function UserBalanceProvider({ children }: UserBalanceProviderProps) {
   const [stSOLBalance, setStSOLBalance] = useState<number | null>(null);
   const [liqSOLBalance, setLiqSOLBalance] = useState<number | null>(null);
 
+  const nativeAccSubRef = useRef<undefined | number>();
+
   useEffect(() => {
     setNativeSOLBalance(0);
     if (walletConnected) {
@@ -50,8 +53,18 @@ export function UserBalanceProvider({ children }: UserBalanceProviderProps) {
         setNativeSOLBalance(balance);
       };
       fetchBalance();
+      if (!nativeAccSubRef.current) {
+        nativeAccSubRef.current = connection.onAccountChange(
+          walletPubKey as PublicKey,
+          (acc) => {
+            setNativeSOLBalance(acc.lamports);
+          }
+        );
+      }
     }
   }, [walletConnected, connection, walletPubKey]);
+
+  const stSolSubscriptionRef = useRef<undefined | number>();
 
   useEffect(() => {
     setStSOLBalance(0);
@@ -69,8 +82,18 @@ export function UserBalanceProvider({ children }: UserBalanceProviderProps) {
         }
       };
       fetchBalance();
+      if (!stSolSubscriptionRef.current) {
+        nativeAccSubRef.current = connection.onAccountChange(
+          userStSOLAccountAddress,
+          () => {
+            fetchBalance();
+          }
+        );
+      }
     }
   }, [connection, userStSOLAccountAddress, walletConnected]);
+
+  const liqSOLSubscriptionRef = useRef<undefined | number>();
 
   useEffect(() => {
     setLiqSOLBalance(0);
@@ -88,6 +111,14 @@ export function UserBalanceProvider({ children }: UserBalanceProviderProps) {
         }
       };
       fetchBalance();
+      if (!liqSOLSubscriptionRef.current) {
+        nativeAccSubRef.current = connection.onAccountChange(
+          userLiqSOLAccountAddress,
+          () => {
+            fetchBalance();
+          }
+        );
+      }
     }
   }, [connection, userLiqSOLAccountAddress, walletConnected]);
 
