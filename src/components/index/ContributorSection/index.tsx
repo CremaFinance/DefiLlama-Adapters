@@ -92,9 +92,10 @@ const ContributorSection = () => {
 
       <Image
         src="/ilustrations/chefs.svg"
-        width={{ base: "88vw", lg: "504px" }}
-        height={{ base: "320px", lg: 480 }}
+        height={{ base: "320px", sm: "350px", md: "400px", lg: "480px" }}
         mb={8}
+        px={6}
+        objectFit="contain"
       />
     </Flex>
   );
