@@ -80,11 +80,7 @@ const UnstakeTicketsSection = ({
         accounts.push({
           ...account,
           ticketDue: false,
-          ticketDueDateTime: new Date(
-            epochEnds +
-              epochInfo.slotsInEpoch * SLOT_DURATION_MILLISECONDS +
-              EXTRA_WAIT_MILLISECONDS
-          ),
+          ticketDueDateTime: new Date(epochEnds + EXTRA_WAIT_MILLISECONDS),
         });
       }
       return accounts.sort((a: TicketAccount, b: TicketAccount) => {
