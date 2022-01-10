@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/cognitive-complexity */
 import { PublicKey } from "@solana/web3.js";
 import {
   createContext,
@@ -33,6 +34,7 @@ const UserBalanceContext = createContext<UserBalance>({
 });
 
 type UserBalanceProviderProps = { children: ReactNode };
+type ConnectionSubscription = { key: PublicKey; subscription: number };
 export function UserBalanceProvider({ children }: UserBalanceProviderProps) {
   const connection = useConnection();
   const { publicKey: walletPubKey, connected: walletConnected } = useWallet();
@@ -43,28 +45,36 @@ export function UserBalanceProvider({ children }: UserBalanceProviderProps) {
   const [stSOLBalance, setStSOLBalance] = useState<number | null>(null);
   const [liqSOLBalance, setLiqSOLBalance] = useState<number | null>(null);
 
-  const nativeAccSubRef = useRef<undefined | number>();
+  const nativeAccSubRef = useRef<undefined | ConnectionSubscription>();
 
   useEffect(() => {
     setNativeSOLBalance(0);
-    if (walletConnected) {
+    if (walletConnected && walletPubKey) {
       const fetchBalance = async () => {
         const balance = await connection.getBalance(walletPubKey as PublicKey);
         setNativeSOLBalance(balance);
       };
       fetchBalance();
-      if (!nativeAccSubRef.current) {
-        nativeAccSubRef.current = connection.onAccountChange(
-          walletPubKey as PublicKey,
-          (acc) => {
+      if (
+        !nativeAccSubRef.current ||
+        nativeAccSubRef.current.key !== walletPubKey
+      ) {
+        if (nativeAccSubRef.current?.subscription) {
+          connection.removeAccountChangeListener(
+            nativeAccSubRef.current.subscription
+          );
+        }
+        nativeAccSubRef.current = {
+          key: walletPubKey,
+          subscription: connection.onAccountChange(walletPubKey, (acc) => {
             setNativeSOLBalance(acc.lamports);
-          }
-        );
+          }),
+        };
       }
     }
   }, [walletConnected, connection, walletPubKey]);
 
-  const stSolSubscriptionRef = useRef<undefined | number>();
+  const stSolSubscriptionRef = useRef<undefined | ConnectionSubscription>();
 
   useEffect(() => {
     setStSOLBalance(0);
@@ -82,18 +92,29 @@ export function UserBalanceProvider({ children }: UserBalanceProviderProps) {
         }
       };
       fetchBalance();
-      if (!stSolSubscriptionRef.current) {
-        nativeAccSubRef.current = connection.onAccountChange(
-          userStSOLAccountAddress,
-          () => {
-            fetchBalance();
-          }
-        );
+      if (
+        !stSolSubscriptionRef.current ||
+        stSolSubscriptionRef.current.key !== userStSOLAccountAddress
+      ) {
+        if (stSolSubscriptionRef.current?.subscription) {
+          connection.removeAccountChangeListener(
+            stSolSubscriptionRef.current.subscription
+          );
+        }
+        stSolSubscriptionRef.current = {
+          key: userStSOLAccountAddress,
+          subscription: connection.onAccountChange(
+            userStSOLAccountAddress,
+            () => {
+              fetchBalance();
+            }
+          ),
+        };
       }
     }
   }, [connection, userStSOLAccountAddress, walletConnected]);
 
-  const liqSOLSubscriptionRef = useRef<undefined | number>();
+  const liqSOLSubscriptionRef = useRef<undefined | ConnectionSubscription>();
 
   useEffect(() => {
     setLiqSOLBalance(0);
@@ -111,13 +132,24 @@ export function UserBalanceProvider({ children }: UserBalanceProviderProps) {
         }
       };
       fetchBalance();
-      if (!liqSOLSubscriptionRef.current) {
-        nativeAccSubRef.current = connection.onAccountChange(
-          userLiqSOLAccountAddress,
-          () => {
-            fetchBalance();
-          }
-        );
+      if (
+        !liqSOLSubscriptionRef.current ||
+        liqSOLSubscriptionRef.current.key !== userLiqSOLAccountAddress
+      ) {
+        if (liqSOLSubscriptionRef.current?.subscription) {
+          connection.removeAccountChangeListener(
+            liqSOLSubscriptionRef.current.subscription
+          );
+        }
+        liqSOLSubscriptionRef.current = {
+          key: userLiqSOLAccountAddress,
+          subscription: connection.onAccountChange(
+            userLiqSOLAccountAddress,
+            () => {
+              fetchBalance();
+            }
+          ),
+        };
       }
     }
   }, [connection, userLiqSOLAccountAddress, walletConnected]);
