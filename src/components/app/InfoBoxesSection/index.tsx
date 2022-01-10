@@ -16,6 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
+import { useRouter } from "next/router";
 import { MdInfoOutline } from "react-icons/md";
 
 import { useMarinade } from "../../../contexts/MarinadeContext";
@@ -70,6 +71,18 @@ const InfoBoxesSection = () => {
   const { marinadeState } = useMarinade();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const router = useRouter();
+
+  const openValidatorModal = router.query.showModal;
+
+  function openModal(): void {
+    if (openValidatorModal) {
+      openModal();
+    }
+  }
+
+  openModal();
 
   const totalSOLStaked = totalStaked
     ? Number(format2Dec(totalStaked, LAMPORTS_PER_SOL))

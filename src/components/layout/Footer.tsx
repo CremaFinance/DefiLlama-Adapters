@@ -1,7 +1,7 @@
 import { Box, Flex, Image, Link, Icon } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
-import { useRouter } from "next/dist/client/router";
 import NextLink from "next/link";
+import { useRouter } from "next/router";
 import { FiExternalLink } from "react-icons/fi";
 
 import MButton from "../atoms/Button";
@@ -116,9 +116,24 @@ const Footer = () => {
             {t("indexPage.footer-stake-sol")}
           </MButton>
 
-          <MText type="text-xl" color={colors.white} mb={2}>
-            <Link href="/">{t("indexPage.footer-validators")}</Link>
-          </MText>
+          <MButton
+            font="text-xl"
+            fontWeight={500}
+            variant="link"
+            color={colors.white}
+            bg="none"
+            _hover={{ textDecoration: "underline" }}
+            width="fit-content"
+            mb={2}
+            onClick={() =>
+              router.push({
+                pathname: "/app/staking",
+                query: { showModal: true },
+              })
+            }
+          >
+            {t("indexPage.footer-validators")}
+          </MButton>
 
           <MButton
             font="text-xl"
