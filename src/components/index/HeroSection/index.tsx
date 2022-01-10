@@ -83,12 +83,32 @@ const HeroSection = () => {
 
       <Flex justifyContent="flex-end">
         <Image
-          src="./ilustrations/clouds-and-leaves.svg"
-          width={{ base: 0, md: "64vw", lg: "40vw", "2xl": "32vw" }}
+          src="./ilustrations/white-clouds.svg"
+          width={{ base: 0, md: "64vw", lg: "50vw" }}
           alt="Clouds and Leaves"
           position="absolute"
-          top={-8}
+          top={5}
           zIndex={3}
+        />
+
+        <Image
+          src="../../ilustrations/left-leaf.svg"
+          width={{ base: 0, md: "24vw", lg: "16vw" }}
+          alt="Left Leaf"
+          position="absolute"
+          right={-10}
+          top={0}
+          zIndex={5}
+        />
+
+        <Image
+          src="../../ilustrations/right-leaf.svg"
+          width={{ base: 0, md: "22vw", lg: "14vw" }}
+          alt="Right Leaf"
+          position="absolute"
+          right={-14}
+          top={0}
+          zIndex={5}
         />
 
         <Image

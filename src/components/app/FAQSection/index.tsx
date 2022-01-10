@@ -63,7 +63,7 @@ const FAQSection = () => {
                   color={colors.marinadeGreen}
                   fontWeight="700"
                 >
-                  {t("here")}
+                  {t("appPage.faq-items.0.link-text")}
                 </Link>
                 .
               </MText>
