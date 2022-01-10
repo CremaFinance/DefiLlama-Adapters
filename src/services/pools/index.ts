@@ -1,5 +1,6 @@
 import { Providers } from "../domain/providers";
 
+import { aldrin } from "./aldrin";
 import { atrix } from "./atrix";
 import { francium } from "./francium";
 import { larix } from "./larix";
@@ -16,6 +17,7 @@ export const providerKeys = {
   ATRIX: "atrix",
   FRANCIUM: "francium",
   MNDE: "marinade",
+  ALDRIN: "aldrin",
 } as const;
 export type ProviderKeys = typeof providerKeys[keyof typeof providerKeys];
 
@@ -27,6 +29,7 @@ export const providers: Providers<ProviderKeys> = {
   [providerKeys.ATRIX]: atrix,
   [providerKeys.FRANCIUM]: francium,
   [providerKeys.MNDE]: marinade,
+  [providerKeys.ALDRIN]: aldrin,
 };
 
 export type ProviderOptions = Record<string, Record<string, unknown>>;

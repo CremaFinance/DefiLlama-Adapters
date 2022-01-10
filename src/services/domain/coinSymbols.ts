@@ -15,6 +15,8 @@ export const coinSymbols: { [key: string]: string } = {
   LARIX: "LARIX",
   ATRIX: "ATRIX",
   FRANCIUM: "FRANCIUM",
+  ALDRIN: "RIN",
+  MNGO: "MNGO",
 } as const;
 
 export type CoinSymbols = typeof coinSymbols[keyof typeof coinSymbols];
