@@ -366,6 +366,7 @@ const BasicUnstake = () => {
           rounded="md"
           px={4}
           height="48px"
+          width="100%"
           mx={4}
           mb={4}
           onClick={

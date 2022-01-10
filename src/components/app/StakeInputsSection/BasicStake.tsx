@@ -360,6 +360,7 @@ const BasicStake = () => {
           rounded="md"
           px={4}
           height="48px"
+          width="100%"
           mx={4}
           my={4}
           onClick={stakeHandler}
