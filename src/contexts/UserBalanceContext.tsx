@@ -72,6 +72,13 @@ export function UserBalanceProvider({ children }: UserBalanceProviderProps) {
         };
       }
     }
+    return () => {
+      if (nativeAccSubRef.current) {
+        connection.removeAccountChangeListener(
+          nativeAccSubRef.current.subscription
+        );
+      }
+    };
   }, [walletConnected, connection, walletPubKey]);
 
   const stSolSubscriptionRef = useRef<undefined | ConnectionSubscription>();
@@ -112,6 +119,13 @@ export function UserBalanceProvider({ children }: UserBalanceProviderProps) {
         };
       }
     }
+    return () => {
+      if (stSolSubscriptionRef.current) {
+        connection.removeAccountChangeListener(
+          stSolSubscriptionRef.current.subscription
+        );
+      }
+    };
   }, [connection, userStSOLAccountAddress, walletConnected]);
 
   const liqSOLSubscriptionRef = useRef<undefined | ConnectionSubscription>();
@@ -152,6 +166,13 @@ export function UserBalanceProvider({ children }: UserBalanceProviderProps) {
         };
       }
     }
+    return () => {
+      if (liqSOLSubscriptionRef.current) {
+        connection.removeAccountChangeListener(
+          liqSOLSubscriptionRef.current.subscription
+        );
+      }
+    };
   }, [connection, userLiqSOLAccountAddress, walletConnected]);
 
   const liquiditySOLPart = useMemo(() => {
