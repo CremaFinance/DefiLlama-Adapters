@@ -15,6 +15,7 @@ import { useTranslation } from "next-export-i18n";
 import { MdContentCopy } from "react-icons/md";
 
 import MButton from "../../atoms/Button";
+import Countdown from "../../atoms/Countdown";
 import MText from "../../atoms/Text";
 import { useEpochInfo } from "hooks/useEpochInfo";
 import { useWallet } from "hooks/useWallet";
@@ -57,17 +58,17 @@ const UnstakeTicketsSection = ({
   ticketAccounts?.forEach((account: TicketAccount) => {
     const createdEpoch = Number(account.data.created_epoch);
     if (epochInfo) {
-      if (epochInfo?.epoch > createdEpoch + 2) {
+      if (epochInfo?.epoch > createdEpoch + 1) {
         accounts.push({
           ...account,
           ticketDue: true,
           ticketDueDateTime: new Date(
             epochStarted +
               EXTRA_WAIT_MILLISECONDS -
-              SLOT_DURATION_MILLISECONDS * (epochInfo.epoch - createdEpoch - 2)
+              SLOT_DURATION_MILLISECONDS * (epochInfo.epoch - createdEpoch - 1)
           ),
         });
-      } else if (epochInfo.epoch === createdEpoch + 2) {
+      } else if (epochInfo.epoch === createdEpoch + 1) {
         const millisecondsElapsed =
           epochInfo.slotIndex * SLOT_DURATION_MILLISECONDS;
         accounts.push({
@@ -75,31 +76,11 @@ const UnstakeTicketsSection = ({
           ticketDue: millisecondsElapsed > EXTRA_WAIT_MILLISECONDS,
           ticketDueDateTime: new Date(epochStarted + EXTRA_WAIT_MILLISECONDS),
         });
-      } else if (epochInfo.epoch === createdEpoch + 1) {
-        accounts.push({
-          ...account,
-          ticketDue: false,
-          ticketDueDateTime: new Date(epochEnds + EXTRA_WAIT_MILLISECONDS),
-        });
-      } else if (epochInfo.epoch < createdEpoch) {
-        accounts.push({
-          ...account,
-          ticketDue: false,
-          ticketDueDateTime: new Date(
-            epochEnds +
-              2 * epochInfo.slotsInEpoch * SLOT_DURATION_MILLISECONDS +
-              EXTRA_WAIT_MILLISECONDS
-          ),
-        });
       } else {
         accounts.push({
           ...account,
           ticketDue: false,
-          ticketDueDateTime: new Date(
-            epochEnds +
-              epochInfo.slotsInEpoch * SLOT_DURATION_MILLISECONDS +
-              EXTRA_WAIT_MILLISECONDS
-          ),
+          ticketDueDateTime: new Date(epochEnds + EXTRA_WAIT_MILLISECONDS),
         });
       }
       return accounts.sort((a: TicketAccount, b: TicketAccount) => {
@@ -175,24 +156,35 @@ const UnstakeTicketsSection = ({
                   </MText>
                 </Td>
                 <Td height="60px" pr={0} py={0} pl={[2, 6]} textAlign="end">
-                  <MButton
-                    isDisabled={!account.ticketDue}
-                    font="text-md"
-                    colorScheme="gray"
-                    _hover={{ bg: "gray.100" }}
-                    border="1px"
-                    borderColor="gray.500"
-                    textColor={colors.black}
-                    rounded="md"
-                    px={[4, 4]}
-                    height="32px"
-                    bg={colors.white}
-                    onClick={() => {
-                      runClaimHandler(new PublicKey(account.key));
-                    }}
-                  >
-                    {t("appPage.claim-action")}
-                  </MButton>
+                  {account.ticketDue && (
+                    <MButton
+                      isDisabled={!account.ticketDue}
+                      font="text-md"
+                      colorScheme="gray"
+                      _hover={{ bg: "gray.100" }}
+                      border="1px"
+                      borderColor="gray.500"
+                      textColor={colors.black}
+                      rounded="md"
+                      px={[4, 4]}
+                      height="32px"
+                      bg={colors.white}
+                      onClick={() => {
+                        runClaimHandler(new PublicKey(account.key));
+                      }}
+                    >
+                      {t("appPage.claim-action")}
+                    </MButton>
+                  )}
+                  {!account.ticketDue && account.ticketDueDateTime && (
+                    <Countdown
+                      initialTimeLeft={
+                        account.ticketDueDateTime.getTime() -
+                        new Date().getTime()
+                      }
+                      showSeconds={false}
+                    />
+                  )}
                 </Td>
               </Tr>
             ))}
