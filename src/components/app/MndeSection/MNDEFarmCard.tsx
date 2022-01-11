@@ -230,8 +230,8 @@ const MNDEFarmCard = () => {
           <Flex flexDirection="column" alignItems="center">
             <MButton
               variant="solid"
-              width="142px"
-              height="40px"
+              width="100%"
+              height="48px"
               onClick={() => onOpen()}
             >
               {t("mndePage.manage-deposit-action")}
