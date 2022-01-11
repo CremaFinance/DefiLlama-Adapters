@@ -303,6 +303,7 @@ const MSolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
                 colorScheme={colors.marinadeGreen}
                 rounded="md"
                 height="48px"
+                width="100%"
                 _focus={{ boxShadow: "none" }}
                 my={8}
                 onClick={() => depositHandler()}
@@ -318,6 +319,7 @@ const MSolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
                 colorScheme={colors.marinadeGreen}
                 rounded="md"
                 height="48px"
+                width="100%"
                 _focus={{ boxShadow: "none" }}
                 my={8}
                 onClick={() => withdrawDepositHandler()}
