@@ -211,4 +211,40 @@ export const coinTokens: TokenRecord<CoinSymbols> = {
     logoURI: "",
     tags: [],
   },
+  [coinSymbols.ALDRIN]: {
+    chainId: 101,
+    address: "E5ndSkaB17Dm7CsD22dvcjfrYSDLCxFcMd6z8ddCk5wp",
+    symbol: "RIN",
+    name: "Aldrin",
+    decimals: 9,
+    logoURI:
+      "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/E5ndSkaB17Dm7CsD22dvcjfrYSDLCxFcMd6z8ddCk5wp/logo.png",
+    tags: [],
+    extensions: {
+      coingeckoId: "aldrin",
+      website: "https://aldrin.com",
+      twitter: "https://twitter.com/Aldrin_Exchange",
+      discord: "https://discord.gg/4VZyNxT2WU",
+      medium: "https://blog.aldrin.com",
+      telegram: "https://t.me/Aldrin_Exchange",
+      github: "https://github.com/aldrin-exchange",
+      serumV3Usdc: "7gZNLDbWE73ueAoHuAeFoSu7JqmorwCLpNTBXHtYSFTa",
+    },
+  },
+  [coinSymbols.MNGO]: {
+    chainId: 101,
+    address: "MangoCzJ36AjZyKwVj3VnYU4GTonjfVEnJmvvWaxLac",
+    symbol: "MNGO",
+    name: "Mango",
+    decimals: 6,
+    logoURI:
+      "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/MangoCzJ36AjZyKwVj3VnYU4GTonjfVEnJmvvWaxLac/token.png",
+    extensions: {
+      coingeckoId: "mango-markets",
+      discord: "https://discord.gg/67jySBhxrg",
+      serumV3Usdc: "3d4rzwpy9iGdCZvgxcu7B1YocYffVLsQXPXkBZKt2zLc",
+      twitter: "https://twitter.com/mangomarkets",
+      website: "https://mango.markets/",
+    },
+  },
 };
