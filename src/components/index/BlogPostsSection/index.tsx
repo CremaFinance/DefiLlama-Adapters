@@ -73,7 +73,7 @@ export default function BlogPosts() {
       alignItems="center"
     >
       <Image
-        src="/octo-chef.svg"
+        src="/ilustrations/octopus.svg"
         width={["90%", 390, 430]}
         display="block"
         margin="0 auto"
