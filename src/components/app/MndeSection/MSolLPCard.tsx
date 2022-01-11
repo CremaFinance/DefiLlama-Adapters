@@ -98,7 +98,7 @@ const MSolLPCard = () => {
   useEffect(() => {
     const clock = setInterval(() => {
       setTimestamp(new BN(Math.round(new Date().getTime() / 1000)));
-    }, 1000);
+    }, 1000 * 60);
     return () => clearTimeout(clock);
   }, []);
 

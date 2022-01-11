@@ -152,7 +152,7 @@ const HeroSection = () => {
           flexDirection="row"
           mr={{ md: 4, lg: 8 }}
           mt={{ base: 2, md: 0 }}
-          key="desktop-hstack-1"
+          key="desktop-hstack-2"
         >
           <MHeading type="heading-xsm" color={colors.marinadeGreen} mr={1}>
             ${numberToShortVersion(tvlUsd)}

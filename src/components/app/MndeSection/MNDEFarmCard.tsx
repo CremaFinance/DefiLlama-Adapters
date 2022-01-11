@@ -97,7 +97,7 @@ const MNDEFarmCard = () => {
   useEffect(() => {
     const clock = setInterval(() => {
       setTimestamp(new BN(Math.round(new Date().getTime() / 1000)));
-    }, 1000);
+    }, 1000 * 60);
     return () => clearTimeout(clock);
   }, []);
 
@@ -277,7 +277,7 @@ const MNDEFarmCard = () => {
           <ConnectWallet />
         )}
       </Flex>
-      <MSolStakeModal isOpen={isOpen} onClose={onClose} />
+      {isOpen && <MSolStakeModal isOpen={isOpen} onClose={onClose} />}
     </>
   );
 };

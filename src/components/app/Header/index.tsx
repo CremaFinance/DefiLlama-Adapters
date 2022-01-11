@@ -2,7 +2,6 @@ import { Box, Flex, Image, useMediaQuery } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
-import { useState, useEffect, useCallback } from "react";
 
 import MButton from "../../atoms/Button";
 import { ConnectWallet } from "../../molecules/ConnectWallet";
@@ -15,26 +14,7 @@ interface Props {
 const Header = ({ onValidatorsPage = false }: Props) => {
   const { t } = useTranslation();
 
-  const [onTop, setOnTop] = useState(true);
-  const [first, setFirst] = useState(true);
-
-  const checkTop = useCallback(() => {
-    if (window.scrollY >= 10 && onTop) {
-      setOnTop(false);
-    } else if (window.scrollY < 10) {
-      setOnTop(true);
-    }
-  }, [onTop]);
-
-  useEffect(() => {
-    if (first) {
-      window.addEventListener("scroll", checkTop);
-      checkTop();
-      setFirst(false);
-    }
-  }, [first, checkTop]);
-
-  const headerBackground = onTop ? colors.transparent : colors.greenLight;
+  const headerBackground = colors.greenLight;
 
   const activeMenu = {
     display: "inline-block",
