@@ -128,7 +128,7 @@ const Footer = () => {
             onClick={() =>
               router.push({
                 pathname: "/app/staking",
-                query: { showModal: true },
+                query: { showValidatorsModal: true },
               })
             }
           >

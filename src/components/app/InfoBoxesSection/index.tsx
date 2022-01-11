@@ -74,15 +74,15 @@ const InfoBoxesSection = () => {
 
   const router = useRouter();
 
-  const openValidatorModal = router.query.showModal;
+  const openValidatorModal = !!router.query.showValidatorsModal;
 
-  function openModal(): void {
+  function extendedOnClose(): void {
     if (openValidatorModal) {
-      openModal();
+      router.push("/app/staking");
     }
-  }
 
-  openModal();
+    onClose();
+  }
 
   const totalSOLStaked = totalStaked
     ? Number(format2Dec(totalStaked, LAMPORTS_PER_SOL))
@@ -99,7 +99,10 @@ const InfoBoxesSection = () => {
 
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal
+        isOpen={isOpen || openValidatorModal}
+        onClose={() => extendedOnClose()}
+      >
         <ModalOverlay w="100vw" />
         <ModalContent
           maxW="min(95vw, 1300px)"
