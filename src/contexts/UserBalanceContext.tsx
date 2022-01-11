@@ -48,22 +48,15 @@ export function UserBalanceProvider({ children }: UserBalanceProviderProps) {
   const nativeAccSubRef = useRef<undefined | ConnectionSubscription>();
 
   useEffect(() => {
-    setNativeSOLBalance(0);
     if (walletConnected && walletPubKey) {
       const fetchBalance = async () => {
         const balance = await connection.getBalance(walletPubKey as PublicKey);
-        setNativeSOLBalance(balance);
+        if (nativeAccSubRef.current) {
+          setNativeSOLBalance(balance);
+        }
       };
       fetchBalance();
-      if (
-        !nativeAccSubRef.current ||
-        nativeAccSubRef.current.key !== walletPubKey
-      ) {
-        if (nativeAccSubRef.current?.subscription) {
-          connection.removeAccountChangeListener(
-            nativeAccSubRef.current.subscription
-          );
-        }
+      if (!nativeAccSubRef.current) {
         nativeAccSubRef.current = {
           key: walletPubKey,
           subscription: connection.onAccountChange(walletPubKey, (acc) => {
@@ -77,21 +70,23 @@ export function UserBalanceProvider({ children }: UserBalanceProviderProps) {
         connection.removeAccountChangeListener(
           nativeAccSubRef.current.subscription
         );
+        nativeAccSubRef.current = undefined;
       }
     };
-  }, [walletConnected, connection, walletPubKey]);
+  }, [walletConnected, connection, walletPubKey, liqSOLBalance, stSOLBalance]);
 
   const stSolSubscriptionRef = useRef<undefined | ConnectionSubscription>();
 
   useEffect(() => {
-    setStSOLBalance(0);
     if (walletConnected && userStSOLAccountAddress) {
       const fetchBalance = async () => {
         try {
           const balance = await connection.getTokenAccountBalance(
             userStSOLAccountAddress
           );
-          setStSOLBalance(balance.value.uiAmount);
+          if (stSolSubscriptionRef.current) {
+            setStSOLBalance(balance.value.uiAmount);
+          }
         } catch (e) {
           if (isError(e) && e.message.endsWith("could not find account")) {
             setStSOLBalance(0);
@@ -99,15 +94,7 @@ export function UserBalanceProvider({ children }: UserBalanceProviderProps) {
         }
       };
       fetchBalance();
-      if (
-        !stSolSubscriptionRef.current ||
-        stSolSubscriptionRef.current.key !== userStSOLAccountAddress
-      ) {
-        if (stSolSubscriptionRef.current?.subscription) {
-          connection.removeAccountChangeListener(
-            stSolSubscriptionRef.current.subscription
-          );
-        }
+      if (!stSolSubscriptionRef.current) {
         stSolSubscriptionRef.current = {
           key: userStSOLAccountAddress,
           subscription: connection.onAccountChange(
@@ -124,21 +111,23 @@ export function UserBalanceProvider({ children }: UserBalanceProviderProps) {
         connection.removeAccountChangeListener(
           stSolSubscriptionRef.current.subscription
         );
+        stSolSubscriptionRef.current = undefined;
       }
     };
-  }, [connection, userStSOLAccountAddress, walletConnected]);
+  }, [connection, userStSOLAccountAddress, walletConnected, nativeSOLBalance]);
 
   const liqSOLSubscriptionRef = useRef<undefined | ConnectionSubscription>();
 
   useEffect(() => {
-    setLiqSOLBalance(0);
     if (walletConnected && userLiqSOLAccountAddress) {
       const fetchBalance = async () => {
         try {
           const balance = await connection.getTokenAccountBalance(
             userLiqSOLAccountAddress
           );
-          setLiqSOLBalance(balance.value.uiAmount);
+          if (liqSOLSubscriptionRef.current) {
+            setLiqSOLBalance(balance.value.uiAmount);
+          }
         } catch (e) {
           if (isError(e) && e.message.endsWith("could not find account")) {
             setLiqSOLBalance(0);
@@ -146,15 +135,7 @@ export function UserBalanceProvider({ children }: UserBalanceProviderProps) {
         }
       };
       fetchBalance();
-      if (
-        !liqSOLSubscriptionRef.current ||
-        liqSOLSubscriptionRef.current.key !== userLiqSOLAccountAddress
-      ) {
-        if (liqSOLSubscriptionRef.current?.subscription) {
-          connection.removeAccountChangeListener(
-            liqSOLSubscriptionRef.current.subscription
-          );
-        }
+      if (!liqSOLSubscriptionRef.current) {
         liqSOLSubscriptionRef.current = {
           key: userLiqSOLAccountAddress,
           subscription: connection.onAccountChange(
@@ -171,9 +152,10 @@ export function UserBalanceProvider({ children }: UserBalanceProviderProps) {
         connection.removeAccountChangeListener(
           liqSOLSubscriptionRef.current.subscription
         );
+        liqSOLSubscriptionRef.current = undefined;
       }
     };
-  }, [connection, userLiqSOLAccountAddress, walletConnected]);
+  }, [connection, userLiqSOLAccountAddress, walletConnected, stSOLBalance]);
 
   const liquiditySOLPart = useMemo(() => {
     if (lpTokenSupply === 0) {
