@@ -12,6 +12,8 @@ const Footer = () => {
   const { t } = useTranslation();
   const router = useRouter();
 
+  const stakingPath = "/app/staking";
+
   return (
     <Flex
       bg={colors.blackMate}
@@ -111,7 +113,7 @@ const Footer = () => {
             _hover={{ textDecoration: "underline" }}
             width="fit-content"
             mb={2}
-            onClick={() => router.push("/app/staking")}
+            onClick={() => router.push(stakingPath)}
           >
             {t("indexPage.footer-stake-sol")}
           </MButton>
@@ -126,10 +128,13 @@ const Footer = () => {
             width="fit-content"
             mb={2}
             onClick={() =>
-              router.push({
-                pathname: "/app/staking",
-                query: { showValidatorsModal: true },
-              })
+              router.push(
+                {
+                  pathname: stakingPath,
+                  query: { showValidatorsModal: true },
+                },
+                stakingPath
+              )
             }
           >
             {t("indexPage.footer-validators")}
