@@ -9,8 +9,9 @@ const Mnde = () => {
   return (
     <Flex
       position="relative"
-      overflow="hidden"
+      overflowX="hidden"
       bg={colors.greenLight}
+      height={{ base: "unset", "2xl": "100vh" }}
       flexDirection="column"
     >
       <Flex width="100vw" justifyContent="flex-end">
