@@ -38,7 +38,8 @@ export const WalletConnectionProvider: FC<{ children: ReactNode }> = ({
     (error: WalletError) => {
       if (
         error.name !== "WalletNotFoundError" &&
-        error.name !== "WalletNotReadyError"
+        error.name !== "WalletNotReadyError" &&
+        error.name !== "WalletSignTransactionError"
       ) {
         toast({
           title: error.name,
