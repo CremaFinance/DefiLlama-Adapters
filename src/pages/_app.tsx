@@ -8,7 +8,7 @@ import Head from "next/head";
 import Script from "next/script";
 import "@fontsource/maven-pro/400.css";
 import "@fontsource/maven-pro/700.css";
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 
 import defaultSEOConfig from "../../next-seo.config";
@@ -49,6 +49,10 @@ const MyApp = ({
   pageProps,
   emotionCache = clientSideEmotionCache,
 }: MyAppProps) => {
+  useEffect(() => {
+    localStorage.removeItem("chakra-ui-color-mode");
+  }, []);
+
   const queryClient = new QueryClient();
 
   return (
