@@ -34,6 +34,7 @@ const HeroSection = () => {
       aria-label="hero-section"
       position="relative"
       height="100vh"
+      overflow="hidden"
     >
       <Box
         pt={[4, "8vh"]}
