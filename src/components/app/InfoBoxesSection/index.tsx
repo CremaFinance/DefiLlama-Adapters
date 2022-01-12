@@ -16,6 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
+import { useRouter } from "next/router";
 import { MdInfoOutline } from "react-icons/md";
 
 import { useMarinade } from "../../../contexts/MarinadeContext";
@@ -71,6 +72,18 @@ const InfoBoxesSection = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const router = useRouter();
+
+  const openValidatorModal = !!router.query.showValidatorsModal;
+
+  function extendedOnClose(): void {
+    if (openValidatorModal) {
+      router.push("/app/staking");
+    }
+
+    onClose();
+  }
+
   const totalSOLStaked = totalStaked
     ? Number(format2Dec(totalStaked, LAMPORTS_PER_SOL))
     : undefined;
@@ -86,7 +99,10 @@ const InfoBoxesSection = () => {
 
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal
+        isOpen={isOpen || openValidatorModal}
+        onClose={() => extendedOnClose()}
+      >
         <ModalOverlay w="100vw" />
         <ModalContent
           maxW="min(95vw, 1300px)"

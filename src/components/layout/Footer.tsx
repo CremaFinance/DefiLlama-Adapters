@@ -1,7 +1,7 @@
 import { Box, Flex, Image, Link, Icon } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
-import { useRouter } from "next/dist/client/router";
 import NextLink from "next/link";
+import { useRouter } from "next/router";
 import { FiExternalLink } from "react-icons/fi";
 
 import MButton from "../atoms/Button";
@@ -11,6 +11,8 @@ import colors from "styles/customTheme/colors";
 const Footer = () => {
   const { t } = useTranslation();
   const router = useRouter();
+
+  const stakingPath = "/app/staking";
 
   return (
     <Flex
@@ -111,14 +113,32 @@ const Footer = () => {
             _hover={{ textDecoration: "underline" }}
             width="fit-content"
             mb={2}
-            onClick={() => router.push("/app/staking")}
+            onClick={() => router.push(stakingPath)}
           >
             {t("indexPage.footer-stake-sol")}
           </MButton>
 
-          <MText type="text-xl" color={colors.white} mb={2}>
-            <Link href="/">{t("indexPage.footer-validators")}</Link>
-          </MText>
+          <MButton
+            font="text-xl"
+            fontWeight={500}
+            variant="link"
+            color={colors.white}
+            bg="none"
+            _hover={{ textDecoration: "underline" }}
+            width="fit-content"
+            mb={2}
+            onClick={() =>
+              router.push(
+                {
+                  pathname: stakingPath,
+                  query: { showValidatorsModal: true },
+                },
+                stakingPath
+              )
+            }
+          >
+            {t("indexPage.footer-validators")}
+          </MButton>
 
           <MButton
             font="text-xl"
