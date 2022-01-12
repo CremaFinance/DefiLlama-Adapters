@@ -106,8 +106,10 @@ const StakeInput = ({
     if (onValueChange) {
       if (stakeAccountSelected) {
         onValueChange(account.balance.toString());
+      } else if (tokenBalance - BUFFER < 0.0001) {
+        onValueChange("0");
       } else {
-        onValueChange(format5Dec(tokenBalance - BUFFER).toString());
+        onValueChange((tokenBalance - BUFFER).toString());
       }
     }
     setSelectedAccount(account);
@@ -388,9 +390,7 @@ const StakeInput = ({
             fontWeight="bold"
             onClick={() =>
               onValueChange
-                ? onValueChange(
-                    format5Dec(Math.max(0, tokenBalance - BUFFER)).toString()
-                  )
+                ? onValueChange(Math.max(0, tokenBalance - BUFFER).toString())
                 : {}
             }
             pb="1px"
