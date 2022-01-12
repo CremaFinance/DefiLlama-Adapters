@@ -223,6 +223,9 @@ const BasicUnstake = () => {
         (error) => {
           // eslint-disable-next-line no-console
           console.error(error);
+          if (error.toString().indexOf("Wallet") === 0) {
+            return;
+          }
 
           let description = error.message;
           if (error.toString().includes("0x1199")) {
