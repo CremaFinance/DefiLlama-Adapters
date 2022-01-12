@@ -104,7 +104,11 @@ const StakeInput = ({
     stakeAccountSelected: boolean
   ) => {
     if (onValueChange) {
-      onValueChange(account.balance.toString());
+      if (stakeAccountSelected) {
+        onValueChange(account.balance.toString());
+      } else {
+        onValueChange((tokenBalance - BUFFER).toString());
+      }
     }
     setSelectedAccount(account);
     setIsStakeAccountSelected(stakeAccountSelected);
