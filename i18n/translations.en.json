@@ -152,17 +152,17 @@
     "security-section-audit-neodyme": {
       "title": "Neodyme team",
       "subtitle": "Neodyme is an audit firm specializing in security that recently published a full article on Solana smart contract security. Their expertise in blockchain and their familiarity with Solana made them a perfect fit to audit our protocol.",
-      "external-url": "https://marinade.finance/Neodyme.pdf"
+      "external-url": "/docs/Neodyme.pdf"
     },
     "security-section-audit-ackee": {
       "title": "Ackee Blockchain",
       "subtitle": "Ackee Blockchain specializes in audits and security assessments and has worked on the security of major blockchains such as Ethereum, Tezos, and Celo. Their audit has allowed us to further improve the security standard of our protocol.",
-      "external-url": "https://marinade.finance/AckeeBlockchain.pdf"
+      "external-url": "/docs/AckeeBlockchain.pdf"
     },
     "security-section-audit-kudelski": {
       "title": "Kudelski security",
       "subtitle": "To become the next unit of account on the Solana network, we had to make sure that our protocol was as safe as Solana itself. Therefore, we got audited by Kudelski Security, a reputable audit firm that was chosen by Solana Labs to audit Solana.",
-      "external-url": "https://marinade.finance/KudelskiSecurity.pdf"
+      "external-url": "/docs/KudelskiSecurity.pdf"
     },
     "footer-description": "Marinade.Finance is a non-custodial liquid staking protocol built on the Solana blockchain.",
     "security-section-bug-bounty-action": "Bug bounty program",
