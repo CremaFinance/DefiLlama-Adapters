@@ -36,6 +36,11 @@ export const ConnectWallet = () => {
     String(wallet?.name)
   );
 
+  const sortedWallets = [
+    ...wallets.filter((w) => w.name === "Phantom"),
+    ...wallets.filter((w) => w.name !== "Phantom"),
+  ];
+
   const [requestConnect, setRequestConnect] = useState(false);
 
   const showToast = useCallback(() => {
@@ -106,7 +111,7 @@ export const ConnectWallet = () => {
             <MText type="text-lg">{t("appPage.disconnect-wallet")}</MText>
           </MenuItem>
         ) : (
-          wallets.map((walletItem) => (
+          sortedWallets.map((walletItem) => (
             <MenuItem
               key={walletItem.name}
               icon={<Image src={walletItem.icon} width="0.8rem" />}
