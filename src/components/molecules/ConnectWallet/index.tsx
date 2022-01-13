@@ -16,7 +16,11 @@ import { shortenAddress } from "../../../utils/shorten-address";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 
-export const ConnectWallet = () => {
+interface ConnectWalletProps {
+  shortText?: boolean;
+}
+
+export const ConnectWallet = ({ shortText = false }: ConnectWalletProps) => {
   const {
     wallets,
     select,
@@ -37,6 +41,10 @@ export const ConnectWallet = () => {
   );
 
   const [requestConnect, setRequestConnect] = useState(false);
+
+  const buttonText = shortText
+    ? t("appPage.connect-wallet-short")
+    : t("appPage.connect-wallet");
 
   const showToast = useCallback(() => {
     toast({
@@ -98,7 +106,7 @@ export const ConnectWallet = () => {
       >
         {connected && publicKey
           ? shortenAddress(publicKey.toString())
-          : t("appPage.connect-wallet")}
+          : buttonText}
       </MenuButton>
       <MenuList zIndex={10} border="none" rounded="md" shadow="none">
         {connected ? (

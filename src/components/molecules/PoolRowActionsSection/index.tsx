@@ -1,19 +1,10 @@
-import {
-  Flex,
-  Image,
-  useDisclosure,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-} from "@chakra-ui/react";
-import { useTranslation } from "next-export-i18n";
+import { Flex, Image, useDisclosure } from "@chakra-ui/react";
 import { FunctionComponent } from "react";
 
 import { useWallet } from "../../../hooks/useWallet";
 import { Action } from "../../../services/domain/pool";
 import Button from "../../atoms/Button";
-import MText from "../../atoms/Text";
+import { ConnectWallet } from "../ConnectWallet";
 import SolLiquidityModal from "../SolLiquidityModal";
 
 type PoolRowActionsSectionProps = {
@@ -23,9 +14,8 @@ type PoolRowActionsSectionProps = {
 const PoolRowActionsSection: FunctionComponent<PoolRowActionsSectionProps> = ({
   actions,
 }) => {
-  const { t } = useTranslation();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { connected: isWalletConnected, wallets, select } = useWallet();
+  const { connected: isWalletConnected } = useWallet();
 
   return (
     <>
@@ -85,32 +75,7 @@ const PoolRowActionsSection: FunctionComponent<PoolRowActionsSectionProps> = ({
                 width={{ base: "100%", lg: undefined }}
                 justifyContent={{ base: "center", lg: undefined }}
               >
-                <Menu>
-                  <MenuButton
-                    as={Button}
-                    variant="solid"
-                    height="32px"
-                    leftIcon={<Image src="/icons/wallet.svg" width="0.8rem" />}
-                    rightIcon={
-                      <Image src="/icons/expand-more.svg" width="0.5rem" />
-                    }
-                  >
-                    {t("appPage.connect")}
-                  </MenuButton>
-                  <MenuList border="none" rounded="md" shadow="none">
-                    {wallets.map((walletItem) => (
-                      <MenuItem
-                        key={walletItem.name}
-                        icon={<Image src={walletItem.icon} width="0.8rem" />}
-                        onClick={() => {
-                          select(walletItem.name);
-                        }}
-                      >
-                        <MText type="text-lg">{walletItem.name}</MText>
-                      </MenuItem>
-                    ))}
-                  </MenuList>
-                </Menu>
+                <ConnectWallet shortText />
               </Flex>
             )}
           </Flex>
