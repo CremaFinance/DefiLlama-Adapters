@@ -134,7 +134,10 @@ const Footer = () => {
 
       <Box width="100%" mt={4}>
         <MText type="text-md" color={colors.white800}>
-          {t("indexPage.footer-copyright")}
+          {t("indexPage.footer-copyright").replace(
+            "{{year}}",
+            new Date().getFullYear()
+          )}
         </MText>
       </Box>
     </Flex>

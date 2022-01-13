@@ -177,7 +177,7 @@
     "footer-security": "Security",
     "footer-about-us": "About us",
     "footer-roadmap": "Roadmap",
-    "footer-copyright": "© Copyright 2021 Marinade.finance. All rights reserved.",
+    "footer-copyright": "© Copyright {{year}} Marinade.finance. All rights reserved.",
     "read-more": "Read more"
   },
   "appPage": {
