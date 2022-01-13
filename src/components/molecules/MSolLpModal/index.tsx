@@ -60,6 +60,13 @@ const MSolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
   const solUSD = data ? data[coinSymbols.SOL]?.usd : 0;
 
   const depositHandler = () => {
+    const basicInputChecksErrors = basicInputChecks(
+      Number(amount),
+      isWalletConnected
+    );
+    if (basicInputChecksErrors) {
+      return toast(basicInputChecksErrors);
+    }
     const fundsNeeded =
       (marinade?.marinadeState?.transactionFee ?? 0) * 4 +
       4 *
@@ -69,7 +76,6 @@ const MSolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
       nativeSOLBalance ?? 0,
       fundsNeeded
     );
-
     if (checkBalanceErrors) {
       return toast(checkBalanceErrors);
     }
