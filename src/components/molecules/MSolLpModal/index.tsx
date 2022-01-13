@@ -252,8 +252,8 @@ const MSolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
               active={isDepostActive}
               font="text-sm"
               display="flex"
-              handleSwitch={(prop) => {
-                setDepositActive(prop);
+              handleSwitch={(switchValue) => {
+                setDepositActive(switchValue);
                 setAmount("");
               }}
             />

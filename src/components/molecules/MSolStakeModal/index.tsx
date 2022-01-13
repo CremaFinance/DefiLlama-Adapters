@@ -248,7 +248,10 @@ const MSolStakeModal = ({
               active={isDepositActive}
               font="text-lg"
               display="flex"
-              handleSwitch={setDepositActive}
+              handleSwitch={(switchValue) => {
+                setDepositActive(switchValue);
+                setAmount("");
+              }}
             />
           </Flex>
           <StakeInput
