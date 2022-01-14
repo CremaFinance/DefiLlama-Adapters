@@ -21,9 +21,9 @@ export const WalletConnectionProvider: FC<{ children: ReactNode }> = ({
 
   const wallets = useMemo(
     () => [
+      getPhantomWallet(),
       getSolletWallet({ network }),
       getSolletExtensionWallet({ network }),
-      getPhantomWallet(),
       getSolflareWallet(),
       getSolflareWebWallet(),
       getCoin98Wallet(),
