@@ -46,6 +46,7 @@ const BasicStake = () => {
   const [stakeText, setStakeText] = useState(t("appPage.stake-sol-action"));
   const [stakeLoading, setStakeLoading] = useState(false);
   const [solToStake, setSolToStake] = useState<string>("");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [stakeAccount, setStakeAccount] = useState<StakeAccountType | null>(
     null
   );
@@ -90,6 +91,7 @@ const BasicStake = () => {
     } else {
       getStakeAccountsAction(isWalletConnected, connection, walletPubKey, true);
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isWalletConnected, stakeLoading]);
 
@@ -102,6 +104,7 @@ const BasicStake = () => {
 
   const handleSelectAccountCallback = (
     value: boolean,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     account: StakeAccountType
   ) => {
     setStakeText(
@@ -109,7 +112,9 @@ const BasicStake = () => {
         ? t("appPage.deposit-stake-account-action")
         : t("appPage.stake-sol-action")
     );
-    setStakeAccount(value ? account : null);
+
+    // next line causes infinite re-renders:
+    // setStakeAccount(value ? account : null);
   };
 
   const currentAccount: StakeAccountType = {

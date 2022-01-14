@@ -17,7 +17,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AiOutlineCheck } from "react-icons/ai";
 import { MdContentCopy } from "react-icons/md";
 import NumberFormat from "react-number-format";
@@ -38,6 +38,7 @@ import {
 } from "../../../utils/shorten-address";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
+import { useUserBalance } from "contexts/UserBalanceContext";
 
 export enum StakeInputTypeEnum {
   Source = "source",
@@ -90,6 +91,7 @@ const StakeInput = ({
   const marinade = useMarinade();
   const state = marinade?.marinadeState?.state;
   const marinadeState = marinade?.marinadeState;
+  const { nativeSOLBalance } = useUserBalance();
 
   const BUFFER =
     tokenName === coinSymbols.SOL
@@ -116,6 +118,46 @@ const StakeInput = ({
       selectAccountCallback(stakeAccountSelected, account);
     }
   };
+
+  useEffect(() => {
+    if (
+      !isWalletConnected ||
+      stakeAccounts === undefined ||
+      stakeAccounts === null ||
+      stakeAccounts.length === 0
+    ) {
+      return;
+    }
+
+    let largestStakeAccount = stakeAccounts[0];
+
+    // eslint-disable-next-line no-restricted-syntax
+    for (const stakeAccount of stakeAccounts) {
+      if (stakeAccount.balance > largestStakeAccount.balance) {
+        largestStakeAccount = stakeAccount;
+      }
+    }
+
+    const maxWalletSOL = Math.max(
+      0,
+      (nativeSOLBalance ?? 0) -
+        (marinadeState?.transactionFee ?? 0) * 4 -
+        (state?.rent_exempt_for_token_acc?.toNumber() ?? 0) -
+        BUFFER
+    );
+
+    if (largestStakeAccount.balance * LAMPORTS_PER_SOL > maxWalletSOL) {
+      handleSelectedAccount(largestStakeAccount, true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    BUFFER,
+    isWalletConnected,
+    marinadeState?.transactionFee,
+    nativeSOLBalance,
+    stakeAccounts,
+    state?.rent_exempt_for_token_acc,
+  ]);
 
   const copyToClipBoard = (v: string) => {
     try {
