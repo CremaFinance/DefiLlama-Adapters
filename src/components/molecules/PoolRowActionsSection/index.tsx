@@ -75,7 +75,7 @@ const PoolRowActionsSection: FunctionComponent<PoolRowActionsSectionProps> = ({
                 width={{ base: "100%", lg: undefined }}
                 justifyContent={{ base: "center", lg: undefined }}
               >
-                <ConnectWallet size="small" />
+                <ConnectWallet size="small" props={{ width: "145px" }} />
               </Flex>
             )}
           </Flex>
