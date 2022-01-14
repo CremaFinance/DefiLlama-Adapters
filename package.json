@@ -34,7 +34,7 @@
     "@quarryprotocol/quarry-sdk": "^1.11.0",
     "@saberhq/anchor-contrib": "^1.12.26",
     "@saberhq/solana-contrib": "^1.12.4",
-    "@saberhq/token-utils": "^1.12.20",
+    "@saberhq/token-utils": "^1.12.27",
     "@solana/spl-token": "^0.1.8",
     "@solana/spl-token-registry": "^0.2.1306",
     "@solana/wallet-adapter-base": "^0.8.1",
@@ -93,7 +93,7 @@
     "prettier": "^2.5.1",
     "standard-version": "^9.3.2",
     "typedoc": "^0.22.10",
-    "typedoc-plugin-markdown": "^3.11.9",
+    "typedoc-plugin-markdown": "^3.11.11",
     "typescript": "^4.5.4",
     "@types/react-gtm-module": "^2.0.1"
   },
