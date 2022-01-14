@@ -262,7 +262,10 @@ const SolLiquidityModal = ({
               active={isAddLiquidityActive}
               font="text-lg"
               display="flex"
-              handleSwitch={setAddLiquidityActive}
+              handleSwitch={(switchValue) => {
+                setAddLiquidityActive(switchValue);
+                setAmount("");
+              }}
             />
           </Flex>
           <Flex mb={2}>
