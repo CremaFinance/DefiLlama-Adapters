@@ -109,7 +109,7 @@ const StakeInput = ({
       if (stakeAccountSelected) {
         onValueChange(account.balance.toString());
       } else {
-        onValueChange((tokenBalance - BUFFER).toString());
+        onValueChange(format5Dec(tokenBalance - BUFFER).toString());
       }
     }
     setSelectedAccount(account);
