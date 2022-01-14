@@ -307,10 +307,6 @@ const BasicStake = () => {
           // eslint-disable-next-line no-console
           console.error(error);
 
-          if (error.toString().indexOf("Wallet") === 0) {
-            return;
-          }
-
           let description = error.message;
           if (error.toString().includes("0xec6")) {
             description = t("appPage.capped-tvl-is-full");
