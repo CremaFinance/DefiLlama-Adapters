@@ -8,7 +8,7 @@ import {
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import BN from "bn.js";
 import { useTranslation } from "next-export-i18n";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useMemo } from "react";
 import { MdInfoOutline } from "react-icons/md";
 
 import { useChain, useConnection } from "../../../contexts/ConnectionProvider";
@@ -113,8 +113,7 @@ const BasicStake = () => {
         : t("appPage.stake-sol-action")
     );
 
-    // next line causes infinite re-renders:
-    // setStakeAccount(value ? account : null);
+    setStakeAccount(value ? account : null);
   };
 
   const currentAccount: StakeAccountType = {
@@ -341,6 +340,11 @@ const BasicStake = () => {
       .finally(() => setStakeLoading(false));
   };
 
+  const parsedStakeAccounts = useMemo(() => {
+    return parseStakeAccounts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stakeAccounts]);
+
   return (
     <>
       <StakeInput
@@ -351,7 +355,7 @@ const BasicStake = () => {
         tokenIcon="/icons/solana-dark.png"
         tokenBalance={(nativeSOLBalance ?? 0) / LAMPORTS_PER_SOL}
         currentAccount={currentAccount}
-        stakeAccounts={parseStakeAccounts()}
+        stakeAccounts={parsedStakeAccounts}
         value={solToStake}
         mb={2}
       />
