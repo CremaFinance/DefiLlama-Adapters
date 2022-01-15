@@ -53,9 +53,7 @@ export const ConnectWallet = ({
   };
 
   const buttonText =
-    size === "large"
-      ? t("appPage.connect-wallet")
-      : t("appPage.connect-wallet-short");
+    size === "large" ? t("appPage.connect-wallet") : t("appPage.connect");
 
   const showToast = useCallback(() => {
     toast({
