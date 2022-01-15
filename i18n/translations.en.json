@@ -185,7 +185,6 @@
     "defi-menu-item": "DeFi",
     "mnde-menu-item": "MNDE",
     "connect-wallet": "Connect wallet",
-    "connect-wallet-short": "Connect",
     "connect": "Connect",
     "wallet-missing": "Please click here to install official {{wallet}} extension",
     "disconnect-wallet": "Disconnect",
