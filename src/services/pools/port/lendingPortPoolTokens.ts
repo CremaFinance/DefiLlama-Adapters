@@ -12,7 +12,7 @@ export const lendingPortPoolTokens: Record<LendingPortPoolAddress, Token> = {
     symbol: "mSOL",
     name: "Port mSol",
     decimals: 6,
-    logoURI: "/pools/PORT.svg",
+    logoURI: "/pools/port.svg",
     extensions: {},
   },
 };
