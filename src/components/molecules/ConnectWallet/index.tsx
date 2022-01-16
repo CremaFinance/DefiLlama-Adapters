@@ -16,7 +16,15 @@ import { shortenAddress } from "../../../utils/shorten-address";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 
-export const ConnectWallet = () => {
+interface ConnectWalletProps {
+  size?: "small" | "large";
+  props?: { width?: string } | Record<string, never>;
+}
+
+export const ConnectWallet = ({
+  size = "large",
+  props = {},
+}: ConnectWalletProps) => {
   const {
     wallets,
     select,
@@ -37,6 +45,15 @@ export const ConnectWallet = () => {
   );
 
   const [requestConnect, setRequestConnect] = useState(false);
+
+  const buttonProps = {
+    height: size === "large" ? "40px" : "32px",
+    font: size === "large" ? "text-lg" : "",
+    ...props,
+  };
+
+  const buttonText =
+    size === "large" ? t("appPage.connect-wallet") : t("appPage.connect");
 
   const showToast = useCallback(() => {
     toast({
@@ -91,14 +108,13 @@ export const ConnectWallet = () => {
       <MenuButton
         as={MButton}
         variant="solid"
-        font="text-lg"
-        height="40px"
         leftIcon={<Image src="/icons/wallet.svg" width="0.8rem" />}
         rightIcon={<Image src="/icons/expand-more.svg" width="0.5rem" />}
+        {...buttonProps}
       >
         {connected && publicKey
           ? shortenAddress(publicKey.toString())
-          : t("appPage.connect-wallet")}
+          : buttonText}
       </MenuButton>
       <MenuList zIndex={10} border="none" rounded="md" shadow="none">
         {connected ? (
