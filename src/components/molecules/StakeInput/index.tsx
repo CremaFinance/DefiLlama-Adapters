@@ -356,6 +356,10 @@ const StakeInput = ({
           fontWeight="bold"
           value={value}
           onValueChange={(values: { value: string }) => {
+            if (Number.isNaN(values.value) || values.value === ".") {
+              return;
+            }
+
             if (onValueChange) {
               onValueChange(values.value);
             }
