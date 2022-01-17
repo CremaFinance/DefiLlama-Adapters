@@ -23,6 +23,7 @@ import { MdContentCopy } from "react-icons/md";
 import NumberFormat from "react-number-format";
 
 import { useMarinade } from "../../../contexts/MarinadeContext";
+import { useUserBalance } from "../../../contexts/UserBalanceContext";
 import { useTranslation } from "../../../hooks/useTranslation";
 import { useWallet } from "../../../hooks/useWallet";
 import { coinSymbols } from "../../../services/domain/coinSymbols";
@@ -38,7 +39,6 @@ import {
 } from "../../../utils/shorten-address";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
-import { useUserBalance } from "contexts/UserBalanceContext";
 
 export enum StakeInputTypeEnum {
   Source = "source",
