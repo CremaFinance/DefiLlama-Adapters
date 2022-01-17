@@ -39,8 +39,10 @@ export const atrixPools: Record<LiquidityAtrixPoolAddress, PoolConfig> = {
       tokenA: coinSymbols.mSOL,
       tokenB: coinSymbols.USDC,
       rewards: {
-        // [coinSymbols.RAYDIUM]: undefined,
-        // [coinSymbols.MNDE]: undefined,
+        [coinSymbols.MNDE]: {
+          aprDescription: "daily MNDE",
+          dailyRate: 68821.54882 / 7,
+        },
       },
       actions,
     },
@@ -54,8 +56,10 @@ export const atrixPools: Record<LiquidityAtrixPoolAddress, PoolConfig> = {
       tokenA: coinSymbols.mSOL,
       tokenB: coinSymbols.USDT,
       rewards: {
-        // [coinSymbols.RAYDIUM]: undefined,
-        // [coinSymbols.MNDE]: undefined,
+        [coinSymbols.MNDE]: {
+          aprDescription: "daily MNDE",
+          dailyRate: 34410.77441 / 7,
+        },
       },
       actions,
     },

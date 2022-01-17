@@ -35,7 +35,10 @@ export const portPools: Record<LendingPortPoolAddress, PoolConfig> = {
       providerId: lendingPortPoolIds.PORT_mSOL,
       tokenA: coinSymbols.mSOL,
       rewards: {
-        [coinSymbols.MNDE]: { aprDescription: "Emission", dailyRate: 13736 },
+        [coinSymbols.MNDE]: {
+          aprDescription: "Emission",
+          dailyRate: 57692 / 7,
+        },
         [coinSymbols.PORT]: { aprDescription: "Double Dip", dailyRate: 1000 },
       },
       actions,

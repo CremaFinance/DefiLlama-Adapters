@@ -39,8 +39,10 @@ export const marinadePools: Record<LiquidityMarinadePoolAddress, PoolConfig> = {
       tokenA: coinSymbols.mSOL,
       tokenB: coinSymbols.SOL,
       rewards: {
-        // [coinSymbols.RAYDIUM]: undefined,
-        // [coinSymbols.MNDE]: undefined,
+        [coinSymbols.MNDE]: {
+          aprDescription: "daily MNDE",
+          dailyRate: 51616.16162 / 7,
+        },
       },
       actions,
     },
