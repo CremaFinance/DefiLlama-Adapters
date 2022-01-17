@@ -123,7 +123,7 @@ const InfoBoxesSection = () => {
       <Flex
         display={["none", "flex"]}
         aria-label="info-boxes-section"
-        px={{ base: 4, md: "11vw" }}
+        px={{ base: 4 }}
         justifyContent="center"
         flexWrap="wrap"
       >
