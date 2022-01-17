@@ -29,6 +29,8 @@ const actions = [
 
 export type RaydiumPoolsResponse = Record<LiquidityPoolRaydiumIds, RaydiumPool>;
 
+const mndeReward = "daily MNDE";
+
 export const raydiumPools: Record<LiquidityRaydiumPoolAddress, PoolConfig> = {
   [liquidityRaydiumPoolAddress.RAYDIUM_mSOL_SOL]: {
     ...liquidityPoolTokensRaydium[liquidityRaydiumPoolAddress.RAYDIUM_mSOL_SOL],
@@ -56,8 +58,10 @@ export const raydiumPools: Record<LiquidityRaydiumPoolAddress, PoolConfig> = {
       tokenA: coinSymbols.mSOL,
       tokenB: coinSymbols.USDC,
       rewards: {
-        // [coinSymbols.RAYDIUM]: undefined,
-        // [coinSymbols.MNDE]: undefined,
+        [coinSymbols.MNDE]: {
+          aprDescription: mndeReward,
+          dailyRate: 120437.7104 / 7,
+        },
       },
       actions,
     },
@@ -73,8 +77,10 @@ export const raydiumPools: Record<LiquidityRaydiumPoolAddress, PoolConfig> = {
       tokenA: coinSymbols.mSOL,
       tokenB: coinSymbols.USDT,
       rewards: {
-        // [coinSymbols.RAYDIUM]: undefined,
-        // [coinSymbols.MNDE]: undefined,
+        [coinSymbols.MNDE]: {
+          aprDescription: mndeReward,
+          dailyRate: 51616.16162 / 7,
+        },
       },
       actions,
     },
@@ -88,8 +94,10 @@ export const raydiumPools: Record<LiquidityRaydiumPoolAddress, PoolConfig> = {
       tokenA: coinSymbols.ETH,
       tokenB: coinSymbols.mSOL,
       rewards: {
-        // [coinSymbols.RAYDIUM]: undefined,
-        // [coinSymbols.MNDE]: undefined,
+        [coinSymbols.MNDE]: {
+          aprDescription: mndeReward,
+          dailyRate: 34410.77441 / 7,
+        },
       },
       actions,
     },
@@ -103,8 +111,10 @@ export const raydiumPools: Record<LiquidityRaydiumPoolAddress, PoolConfig> = {
       tokenA: coinSymbols.BTC,
       tokenB: coinSymbols.mSOL,
       rewards: {
-        // [coinSymbols.RAYDIUM]: undefined,
-        // [coinSymbols.MNDE]: undefined,
+        [coinSymbols.MNDE]: {
+          aprDescription: mndeReward,
+          dailyRate: 34410.77441 / 7,
+        },
       },
       actions,
     },

@@ -30,7 +30,10 @@ export const larixPools: Record<LendingLarixPoolAddress, PoolConfig> = {
       providerId: lendingLarixPoolIds.LARIX_mSOL,
       tokenA: coinSymbols.mSOL,
       rewards: {
-        [coinSymbols.MNDE]: { aprDescription: "Emission", dailyRate: 13736 },
+        [coinSymbols.MNDE]: {
+          aprDescription: "Emission",
+          dailyRate: 57692 / 7,
+        },
       },
       actions,
     },
