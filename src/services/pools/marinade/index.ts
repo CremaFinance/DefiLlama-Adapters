@@ -29,7 +29,6 @@ export const mapMarinadePoolsResponse = (
         if (result) {
           const { value } = result;
 
-          pool.liq = Number.isNaN(value) ? undefined : value;
           if (options && options?.tvl && pool.tokenB) {
             const price = prices[pool.tokenB]?.usd;
             pool.totalLockedValue = price
