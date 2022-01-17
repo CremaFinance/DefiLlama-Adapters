@@ -12,8 +12,7 @@ export const lendingPortPoolTokens: Record<LendingPortPoolAddress, Token> = {
     symbol: "mSOL",
     name: "Port mSol",
     decimals: 6,
-    logoURI:
-      "https://marinade.finance/static/eac2cd9ccef341c9bc12484fc94682f6/08f35/port.avif",
+    logoURI: "/pools/port.svg",
     extensions: {},
   },
 };
