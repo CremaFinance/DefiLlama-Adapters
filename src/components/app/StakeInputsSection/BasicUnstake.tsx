@@ -405,12 +405,12 @@ const BasicUnstake = () => {
         isOpen={showModal}
         onClose={resetInputs}
       />
-      {!isUnstakeNowActive ? (
+      {ticketAccounts.length > 0 && (
         <UnstakeTicketsSection
           ticketAccounts={ticketAccounts}
           runClaimHandler={runClaimHandler}
         />
-      ) : null}
+      )}
     </>
   );
 };
