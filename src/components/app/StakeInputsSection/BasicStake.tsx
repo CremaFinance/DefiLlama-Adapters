@@ -172,6 +172,8 @@ const BasicStake = () => {
     );
     if (selectedStakeAccount !== null) {
       try {
+        setStakeLoading(true);
+
         const accountAddress = shortenAddress(stakeAccount?.address || "");
 
         const transactionSignature = await marinade.runDepositStakeAccount(
@@ -232,6 +234,8 @@ const BasicStake = () => {
           label: "Error",
           description,
         });
+      } finally {
+        setStakeLoading(false);
       }
     }
   };
