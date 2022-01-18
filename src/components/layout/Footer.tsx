@@ -35,7 +35,7 @@ const Footer = () => {
           <NextLink href="/">
             <Image
               cursor="pointer"
-              src="./marinade-logo-white.svg"
+              src="/marinade-logo-white.svg"
               alt="Marinade Logo"
               width={200}
             />
@@ -51,7 +51,7 @@ const Footer = () => {
             >
               <Image
                 cursor="pointer"
-                src="./discord.svg"
+                src="/discord.svg"
                 alt="Discord Logo"
                 width={30}
               />
@@ -65,7 +65,7 @@ const Footer = () => {
             >
               <Image
                 cursor="pointer"
-                src="./medium.svg"
+                src="/medium.svg"
                 alt="Medium Logo"
                 width={30}
               />
@@ -77,7 +77,7 @@ const Footer = () => {
             >
               <Image
                 cursor="pointer"
-                src="./twitter.svg"
+                src="/twitter.svg"
                 alt="Twitter Logo"
                 width={30}
               />
