@@ -38,6 +38,7 @@ export const mapMarinadePoolsResponse = (
               : undefined;
           }
 
+          pool.liq = pool.totalLockedValue;
           pool.tradingApy = Number(value) * 100;
           pool.apy = pool.tradingApy;
           pool = updatePoolRewards(pool as Pool, prices);
