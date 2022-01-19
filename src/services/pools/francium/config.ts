@@ -156,9 +156,6 @@ export const franciumLendingPools: Record<LendingPoolAddress, PoolConfig> = {
       marketType: marketTypes.Lending,
       providerId: lendingPoolIds.FRANCIUM_mSOL,
       tokenA: coinSymbols.mSOL,
-      rewards: {
-        [coinSymbols.MNDE]: { aprDescription: "Emission", dailyRate: 13736 },
-      },
       actions: lendActions,
     },
   },
