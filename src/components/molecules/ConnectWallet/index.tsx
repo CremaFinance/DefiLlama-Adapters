@@ -109,7 +109,6 @@ export const ConnectWallet = ({
         as={MButton}
         variant="solid"
         leftIcon={<Image src="/icons/wallet.svg" width="0.8rem" />}
-        rightIcon={<Image src="/icons/expand-more.svg" width="0.5rem" />}
         {...buttonProps}
       >
         {connected && publicKey
