@@ -33,7 +33,7 @@ const HeroSection = () => {
       bg={colors.greenLight}
       aria-label="hero-section"
       position="relative"
-      height="100vh"
+      height={{ base: "85vh", md: "100vh" }}
       overflow="hidden"
     >
       <Box
