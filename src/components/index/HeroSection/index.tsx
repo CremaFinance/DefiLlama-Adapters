@@ -26,6 +26,8 @@ const HeroSection = () => {
       ? ((liqPoolBalance + totalStaked) / LAMPORTS_PER_SOL) * +solUSD
       : 0;
 
+  const { innerHeight: height } = window;
+
   return (
     <Box
       py="72px"
@@ -33,7 +35,7 @@ const HeroSection = () => {
       bg={colors.greenLight}
       aria-label="hero-section"
       position="relative"
-      height="100vh"
+      height={{ base: height, md: "100vh" }}
       overflow="hidden"
     >
       <Box
