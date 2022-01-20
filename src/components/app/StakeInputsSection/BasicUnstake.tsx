@@ -365,7 +365,7 @@ const BasicUnstake = () => {
           colorScheme={colors.marinadeGreen}
           rounded="md"
           px={4}
-          height="48px"
+          height="40px"
           width="100%"
           mx={4}
           mb={4}
@@ -376,8 +376,8 @@ const BasicUnstake = () => {
           {unstakeButtonText}
         </MButton>
       ) : (
-        <Box my={4}>
-          <ConnectWallet />
+        <Box my={4} width="100%">
+          <ConnectWallet props={{ width: "100%" }} />
         </Box>
       )}
 
