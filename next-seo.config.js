@@ -10,7 +10,7 @@ const defaultSEOConfig = {
     title: "marinade.finance",
     images: [
       {
-        url: "https://marinade-web.pages.dev/marinade-meta.png",
+        url: "https://marinade.finance/marinade-meta.png",
         alt: "marinade.finance og-image",
       },
     ],

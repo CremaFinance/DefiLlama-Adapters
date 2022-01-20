@@ -17,7 +17,7 @@ const provider = "Marinade";
 const actions = [
   {
     text: "Manage deposit",
-    url: "https://marinade-web.pages.dev",
+    url: "https://marinade.finance",
     isExternal: false,
   },
 ];
