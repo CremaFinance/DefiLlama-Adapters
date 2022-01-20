@@ -358,7 +358,7 @@ const BasicUnstake = () => {
 
       {walletConnected ? (
         <MButton
-          font="text-xl"
+          font="text-lg"
           bg={colors.marinadeGreen}
           isLoading={unstakeLoading}
           _hover={{ bg: colors.green800 }}

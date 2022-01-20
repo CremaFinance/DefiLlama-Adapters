@@ -352,7 +352,7 @@ const BasicStake = () => {
       />
       {isWalletConnected ? (
         <MButton
-          font="text-xl"
+          font="text-lg"
           bg={colors.marinadeGreen}
           isLoading={stakeLoading}
           _hover={{ bg: colors.green800 }}
