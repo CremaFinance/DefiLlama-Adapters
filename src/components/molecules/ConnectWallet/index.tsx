@@ -52,9 +52,6 @@ export const ConnectWallet = ({
     ...props,
   };
 
-  const buttonText =
-    size === "large" ? t("appPage.connect-wallet") : t("appPage.connect");
-
   const showToast = useCallback(() => {
     toast({
       title: "Wallet extension not detected",
@@ -109,12 +106,11 @@ export const ConnectWallet = ({
         as={MButton}
         variant="solid"
         leftIcon={<Image src="/icons/wallet.svg" width="0.8rem" />}
-        rightIcon={<Image src="/icons/expand-more.svg" width="0.5rem" />}
         {...buttonProps}
       >
         {connected && publicKey
           ? shortenAddress(publicKey.toString())
-          : buttonText}
+          : t("appPage.connect-wallet")}
       </MenuButton>
       <MenuList zIndex={10} border="none" rounded="md" shadow="none">
         {connected ? (
