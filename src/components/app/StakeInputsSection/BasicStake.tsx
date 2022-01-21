@@ -139,13 +139,15 @@ const BasicStake = () => {
         );
         const currentEpoch = epochInfo?.epoch;
         if (
-          currentEpoch &&
-          marinade?.marinadeState?.state?.stake_system?.min_stake !==
-            undefined &&
-          stakeStart > currentEpoch - 2 &&
+          (currentEpoch &&
+            marinade?.marinadeState?.state?.stake_system?.min_stake !==
+              undefined &&
+            stakeStart > currentEpoch - 2) ||
           new BN(
             account?.account?.data?.parsed?.info?.stake?.delegation?.stake
-          ).lt(marinade?.marinadeState?.state?.stake_system?.min_stake)
+          ).lt(
+            marinade?.marinadeState?.state?.stake_system?.min_stake ?? new BN(0)
+          )
         ) {
           return { ...account, isStakable: false };
         }
