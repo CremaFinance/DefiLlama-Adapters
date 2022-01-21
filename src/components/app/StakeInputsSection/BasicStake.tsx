@@ -55,7 +55,9 @@ const BasicStake = () => {
   const epochInfo = useEpochInfo()?.data;
   const { isOpen, onOpen, onClose } = useDisclosure({
     onClose: () => {
-      setSolToStake("");
+      if (stakeAccount === null) {
+        setSolToStake("");
+      }
     },
   });
   const { totalStaked } = useStats();

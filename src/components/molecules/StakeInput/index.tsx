@@ -66,7 +66,7 @@ type StakeInputProps = {
   ) => void;
   onValueChange?: (value: string) => void;
   value?: string;
-  isLoading: boolean;
+  isLoading?: boolean;
 };
 
 const StakeInput = ({
