@@ -46,6 +46,7 @@ const BasicStake = () => {
   const [stakeText, setStakeText] = useState(t("appPage.stake-sol-action"));
   const [stakeLoading, setStakeLoading] = useState(false);
   const [solToStake, setSolToStake] = useState<string>("");
+  const [solStaked, setSolStaked] = useState("");
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [stakeAccount, setStakeAccount] = useState<StakeAccountType | null>(
     null
@@ -203,6 +204,8 @@ const BasicStake = () => {
           action: "Stake",
           label: "Success",
         });
+
+        setSolStaked(solToStake);
       } catch (error) {
         const errors = {
           mainnetFull: "0xec6",
@@ -308,6 +311,8 @@ const BasicStake = () => {
             action: "Stake",
             label: "Success",
           });
+
+          setSolStaked(solToStake);
         },
         (error) => {
           // eslint-disable-next-line no-console
@@ -428,7 +433,7 @@ const BasicStake = () => {
       <SuccessStakeModal
         isOpen={isOpen}
         onClose={onClose}
-        stakedAmount={solToStake}
+        stakedAmount={solStaked}
         stakedCurrency="mSOL"
       />
     </>
