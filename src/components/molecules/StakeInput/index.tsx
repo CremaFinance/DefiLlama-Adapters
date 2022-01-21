@@ -66,6 +66,7 @@ type StakeInputProps = {
   ) => void;
   onValueChange?: (value: string) => void;
   value?: string;
+  isLoading: boolean;
 };
 
 const StakeInput = ({
@@ -79,6 +80,7 @@ const StakeInput = ({
   selectAccountCallback,
   onValueChange,
   value = undefined,
+  isLoading,
 }: StakeInputProps) => {
   const { t } = useTranslation();
   const toast = useToast();
@@ -124,7 +126,8 @@ const StakeInput = ({
       !isWalletConnected ||
       stakeAccounts === undefined ||
       stakeAccounts === null ||
-      stakeAccounts.length === 0
+      stakeAccounts.length === 0 ||
+      isLoading
     ) {
       return;
     }
@@ -148,6 +151,9 @@ const StakeInput = ({
 
     if (largestStakeAccount.balance * LAMPORTS_PER_SOL > maxWalletSOL) {
       handleSelectedAccount(largestStakeAccount, true);
+    } else if (onValueChange && selectAccountCallback && currentAccount) {
+      onValueChange("");
+      selectAccountCallback(false, currentAccount);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [

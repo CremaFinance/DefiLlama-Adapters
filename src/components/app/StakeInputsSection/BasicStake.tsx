@@ -358,6 +358,7 @@ const BasicStake = () => {
         stakeAccounts={parsedStakeAccounts}
         value={solToStake}
         mb={2}
+        isLoading={stakeLoading}
       />
       {isWalletConnected ? (
         <MButton
