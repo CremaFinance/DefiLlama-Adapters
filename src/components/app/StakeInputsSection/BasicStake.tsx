@@ -146,7 +146,8 @@ const BasicStake = () => {
           new BN(
             account?.account?.data?.parsed?.info?.stake?.delegation?.stake
           ).lt(
-            marinade?.marinadeState?.state?.stake_system?.min_stake ?? new BN(0)
+            marinade?.marinadeState?.state?.stake_system?.min_stake ??
+              new BN(LAMPORTS_PER_SOL)
           )
         ) {
           return { ...account, isStakable: false };
