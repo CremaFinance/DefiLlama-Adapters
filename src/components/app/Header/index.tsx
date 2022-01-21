@@ -124,7 +124,7 @@ const Header = ({ onValidatorsPage = false }: Props) => {
       {!onValidatorsPage && (
         <Flex
           pt={[2, 0]}
-          width={isLargerThan430 ? "160px" : "100%"}
+          width={isLargerThan430 ? 200 : "100%"}
           justifyContent="flex-end"
           pb="8px"
         >
