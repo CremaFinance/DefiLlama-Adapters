@@ -47,7 +47,6 @@ const BasicStake = () => {
   const [stakeLoading, setStakeLoading] = useState(false);
   const [solToStake, setSolToStake] = useState<string>("");
   const [solStaked, setSolStaked] = useState("");
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [stakeAccount, setStakeAccount] = useState<StakeAccountType | null>(
     null
   );
@@ -107,7 +106,6 @@ const BasicStake = () => {
 
   const handleSelectAccountCallback = (
     value: boolean,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     account: StakeAccountType
   ) => {
     setStakeText(

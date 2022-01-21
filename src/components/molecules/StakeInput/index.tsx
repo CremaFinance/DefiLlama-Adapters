@@ -132,14 +132,9 @@ const StakeInput = ({
       return;
     }
 
-    let largestStakeAccount = stakeAccounts[0];
-
-    // eslint-disable-next-line no-restricted-syntax
-    for (const stakeAccount of stakeAccounts) {
-      if (stakeAccount.balance > largestStakeAccount.balance) {
-        largestStakeAccount = stakeAccount;
-      }
-    }
+    const largestStakeAccount = stakeAccounts.reduce((a, b) =>
+      a.balance > b.balance ? a : b
+    );
 
     const maxWalletSOL = Math.max(
       0,
