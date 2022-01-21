@@ -134,7 +134,11 @@ const StakeInput = ({
 
     const largestStakeAccount = stakeAccounts
       .filter((a) => a.isStakable)
-      .reduce((a, b) => (a.balance > b.balance ? a : b), []);
+      .reduce(
+        (a: StakeAccountType, b: StakeAccountType) =>
+          a.balance > b.balance ? a : b,
+        []
+      );
 
     const maxWalletSOL = Math.max(
       0,
