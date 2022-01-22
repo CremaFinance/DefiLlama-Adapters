@@ -132,12 +132,17 @@ const StakeInput = ({
       return;
     }
 
+    const dummyAccount: StakeAccountType = {
+      address: "",
+      balance: -LAMPORTS_PER_SOL,
+    };
+
     const largestStakeAccount = stakeAccounts
       .filter((a) => a.isStakable)
       .reduce(
         (a: StakeAccountType, b: StakeAccountType) =>
           a.balance > b.balance ? a : b,
-        []
+        dummyAccount
       );
 
     const maxWalletSOL = Math.max(
