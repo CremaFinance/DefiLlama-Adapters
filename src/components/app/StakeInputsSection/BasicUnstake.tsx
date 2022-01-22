@@ -59,7 +59,6 @@ const BasicUnstake = () => {
     ticketAccounts,
     fetchTicketsLoading,
     fetchTicketsLoadingAction,
-    walletPubKeyContext,
     resetAccountsAction,
   } = useContext(AccountsContext);
 
@@ -119,15 +118,13 @@ const BasicUnstake = () => {
 
   useEffect(() => {
     if (walletConnected) {
-      if (walletPubKey?.toBase58() === walletPubKeyContext?.toBase58()) {
-        getTicketAccountsAction(
-          keys,
-          walletConnected,
-          connection,
-          walletPubKey as PublicKey,
-          !fetchTicketsLoading || !unstakeLoading
-        );
-      }
+      getTicketAccountsAction(
+        keys,
+        walletConnected,
+        connection,
+        walletPubKey as PublicKey,
+        !fetchTicketsLoading || !unstakeLoading
+      );
     } else {
       resetAccountsAction();
       fetchTicketsLoadingAction(false);
