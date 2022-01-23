@@ -5,9 +5,7 @@ import {
   Image,
   Input,
   Menu,
-  MenuButton,
   MenuList,
-  Button,
   useMediaQuery,
   Box,
   useDisclosure,
@@ -35,6 +33,7 @@ import {
 } from "../../../utils/shorten-address";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
+import StakeInputButton from "../StakeInputButton";
 import StakeInputMenuItem from "../StakeInputMenuItem";
 
 export enum StakeInputTypeEnum {
@@ -190,19 +189,9 @@ const StakeInput = ({
     >
       <Flex justifyContent="space-between">
         {!isWalletConnected ? (
-          <Button
-            boxShadow="md"
-            rounded="md"
-            bg="white"
-            _focus={{ boxShadow: "none" }}
-            variant="solid"
-            font="text-lg"
-            height="44px"
-            px={2}
-            leftIcon={<Image src={tokenIcon} mr={1} width={["24px", "30px"]} />}
-          >
+          <StakeInputButton component="Button" tokenIcon={tokenIcon}>
             <MText fontWeight="400">{solTranslation}</MText>
-          </Button>
+          </StakeInputButton>
         ) : null}
         {isWalletConnected && !isInputWithStakeAccounts ? (
           <Flex
@@ -226,29 +215,17 @@ const StakeInput = ({
 
         {isWalletConnected && isInputWithStakeAccounts && isWiderThan768 ? (
           <Menu>
-            <MenuButton
-              boxShadow="md"
-              as={Button}
-              rounded="md"
-              bg="white"
-              _focus={{ boxShadow: "none" }}
-              variant="solid"
-              font="text-lg"
-              height="44px"
-              px={2}
-              leftIcon={
-                <Image src={tokenIcon} mr={1} width={["24px", "30px"]} />
-              }
-              rightIcon={
-                <Image src="/icons/expand-more-black.svg" width="1.5rem" />
-              }
+            <StakeInputButton
+              component="MenuButton"
+              tokenIcon={tokenIcon}
+              rightIcon="/icons/expand-more-black.svg"
             >
               <MText fontWeight="400">
                 {isWiderThan768
                   ? shortenAddress(`${selectedAccount.address}`)
                   : shortenAddressForMobile(`${selectedAccount.address}`)}
               </MText>
-            </MenuButton>
+            </StakeInputButton>
 
             <MenuList
               width="320px"
@@ -305,28 +282,16 @@ const StakeInput = ({
 
         {isWalletConnected && isInputWithStakeAccounts && !isWiderThan768 ? (
           <>
-            <Button
-              boxShadow="md"
-              as={Button}
-              rounded="md"
-              bg="white"
-              _focus={{ boxShadow: "none" }}
-              variant="solid"
-              font="text-lg"
-              height="44px"
-              px={2}
-              leftIcon={
-                <Image src={tokenIcon} mr={1} width={["24px", "30px"]} />
-              }
-              rightIcon={
-                <Image src="/icons/expand-more-black.svg" width="1.5rem" />
-              }
+            <StakeInputButton
+              component="Button"
+              tokenIcon={tokenIcon}
+              rightIcon="/icons/expand-more-black.svg"
               onClick={onOpen}
             >
               <MText fontWeight="400">
                 {shortenAddressForMobile(`${selectedAccount.address}`)}
               </MText>
-            </Button>
+            </StakeInputButton>
 
             <Modal
               isOpen={isOpen}
@@ -360,7 +325,7 @@ const StakeInput = ({
                       }}
                       icon={tokenIcon}
                       balance={stakeAccount.balance}
-                      title="SOL (stake account)"
+                      title={t("appPage.sol-stake-account")}
                       subTitle={stakeAccount.address}
                       shortenSubtitle
                     />
