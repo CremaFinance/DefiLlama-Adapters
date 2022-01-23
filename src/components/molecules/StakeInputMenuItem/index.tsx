@@ -1,9 +1,9 @@
 import { Flex, Image, useMediaQuery, MenuItem, Box } from "@chakra-ui/react";
 import { FC } from "react";
 
+import { format2Dec, format5Dec } from "../../../utils/number-to-short-version";
 import { shortenAddress } from "../../../utils/shorten-address";
 import MText from "../../atoms/Text";
-import { format2Dec, format5Dec } from "utils/number-to-short-version";
 
 interface StakeInputMenuItemProps {
   icon: string;
