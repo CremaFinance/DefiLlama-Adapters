@@ -319,7 +319,7 @@
     "claim-action": "Claim",
     "copy-success-title": "Address copied",
     "copy-success-message": "Address copied success",
-    "no-ticket-accounts-message": " You don't have any valid ticket accounts. Start delayed unstake first.",
+    "no-ticket-accounts-message": "If you use the delayed unstake function, your ticket accounts will be displayed here.",
     "wallet-not-connected-ticket-accounts": "Connect your wallet to see your ticket accounts.",
     "claim-success-tooltip-title": "Claim of {{accountPubkey}} account confirmed",
     "claim-success-tooltip-body": "You've successfully claimed your ticket",
