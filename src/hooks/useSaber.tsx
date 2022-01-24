@@ -10,14 +10,14 @@ export const useSaber = () => {
   const [saber, setSaber] = useState<undefined | SaberPoolResponse>();
 
   useEffect(() => {
+    // todo get from config + devnet keys
+    const saberMSolKey = new anchor.web3.PublicKey(
+      "9DgFSWkPDGijNKcLGbr3p5xoJbHsPgXUTr6QvGBJ5vGN"
+    );
+    const saberSolKey = new anchor.web3.PublicKey(
+      "2hNHZg7XBhuhHVZ3JDEi4buq2fPQwuWBdQ9xkH7t1GQX"
+    );
     const getBalances = async () => {
-      // todo get from config + devnet keys
-      const saberMSolKey = new anchor.web3.PublicKey(
-        "9DgFSWkPDGijNKcLGbr3p5xoJbHsPgXUTr6QvGBJ5vGN"
-      );
-      const saberSolKey = new anchor.web3.PublicKey(
-        "2hNHZg7XBhuhHVZ3JDEi4buq2fPQwuWBdQ9xkH7t1GQX"
-      );
       const fetchMSol = connection.getTokenAccountBalance(saberMSolKey);
       const fetchSol = connection.getTokenAccountBalance(saberSolKey);
 
