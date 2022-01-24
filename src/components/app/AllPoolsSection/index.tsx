@@ -6,6 +6,7 @@ import { Pool, PoolConfig } from "../../../services/domain/pool";
 import { providerKeys } from "../../../services/pools/index";
 import PoolRow from "components/molecules/PoolRow";
 import { usePools } from "hooks/usePools";
+import { useSaber } from "hooks/useSaber";
 
 import { COLUMNS, COLUMNS_SORTER, SortingState } from "./constants";
 import DesktopDataHeader from "./DesktopDataHeader";
@@ -17,9 +18,12 @@ const AllPoolsSection = () => {
     isInverted: false,
   });
 
+  const saberData = useSaber();
+
   const { liqPoolBalance } = useStats();
   const results = usePools({
     [providerKeys.MNDE]: { tvl: liqPoolBalance },
+    [providerKeys.SABER]: { saberData },
   });
 
   const sortedPools = useMemo(
