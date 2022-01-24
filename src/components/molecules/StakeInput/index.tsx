@@ -218,7 +218,9 @@ const StakeInput = ({
             <StakeInputButton
               component="MenuButton"
               tokenIcon={tokenIcon}
-              rightIcon="/icons/expand-more-black.svg"
+              rightIcon={
+                stakeAccounts.length ? "/icons/expand-more-black.svg" : ""
+              }
             >
               <MText fontWeight="400">
                 {isWiderThan768
