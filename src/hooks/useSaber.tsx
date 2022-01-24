@@ -13,28 +13,33 @@ export const useSaber = () => {
 
   useEffect(() => {
     const getBalances = async () => {
-      const fetchMsol = connection.getTokenAccountBalance(
-        new anchor.web3.PublicKey(
-          "9DgFSWkPDGijNKcLGbr3p5xoJbHsPgXUTr6QvGBJ5vGN"
-        )
+      // todo get from config + devnet keys
+      const saberMSolKey = new anchor.web3.PublicKey(
+        "9DgFSWkPDGijNKcLGbr3p5xoJbHsPgXUTr6QvGBJ5vGN"
       );
-      const fetchSol = connection.getTokenAccountBalance(
-        new anchor.web3.PublicKey(
-          "2hNHZg7XBhuhHVZ3JDEi4buq2fPQwuWBdQ9xkH7t1GQX"
-        )
+      const saberSolKey = new anchor.web3.PublicKey(
+        "2hNHZg7XBhuhHVZ3JDEi4buq2fPQwuWBdQ9xkH7t1GQX"
       );
-      const [mSolBalance, solBalance] = await Promise.all([
-        fetchMsol,
-        fetchSol,
-      ]);
+      const fetchMSol = connection.getTokenAccountBalance(saberMSolKey);
+      const fetchSol = connection.getTokenAccountBalance(saberSolKey);
 
-      if (mSolBalance.value.uiAmount && solBalance.value.uiAmount) {
-        setSaber({
-          mSolBalance: mSolBalance.value.uiAmount,
-          solBalance: solBalance.value.uiAmount,
-        });
+      try {
+        const [mSolBalance, solBalance] = await Promise.all([
+          fetchMSol,
+          fetchSol,
+        ]);
+
+        if (mSolBalance.value.uiAmount && solBalance.value.uiAmount) {
+          setSaber({
+            mSolBalance: mSolBalance.value.uiAmount,
+            solBalance: solBalance.value.uiAmount,
+          });
+        }
+      } catch {
+        // probably on devnet
       }
     };
+
     getBalances();
   }, [connection, state]);
   return saber;
