@@ -5,11 +5,7 @@ import { useRouter } from "next/dist/client/router";
 import MButton from "../../atoms/Button";
 import colors from "styles/customTheme/colors";
 
-interface Props {
-  onValidatorsPage?: boolean;
-}
-
-const MobileMenu = ({ onValidatorsPage = false }: Props) => {
+const MobileMenu = () => {
   const { t } = useTranslation();
 
   const activeMenu = {
@@ -23,10 +19,9 @@ const MobileMenu = ({ onValidatorsPage = false }: Props) => {
   };
 
   const router = useRouter();
-  const isStakingActive =
-    !onValidatorsPage && router.pathname.includes("staking");
-  const isDefiActive = !onValidatorsPage && router.pathname.includes("defi");
-  const isMndeActive = !onValidatorsPage && router.pathname.includes("mnde");
+  const isStakingActive = router.pathname.includes("staking");
+  const isDefiActive = router.pathname.includes("defi");
+  const isMndeActive = router.pathname.includes("mnde");
 
   return (
     <Flex
