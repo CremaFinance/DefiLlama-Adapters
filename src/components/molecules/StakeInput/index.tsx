@@ -80,7 +80,6 @@ const StakeInput = ({
 }: StakeInputProps) => {
   const { t } = useTranslation();
   const balanceLabel = t("appPage.balance");
-
   const [isWiderThan768] = useMediaQuery("(min-width: 768px)");
   const [selectedAccount, setSelectedAccount] = useState(currentAccount);
   const [isStakeAccountSelected, setIsStakeAccountSelected] = useState(false);
@@ -94,7 +93,8 @@ const StakeInput = ({
     stakeInputType === StakeInputTypeEnum.Source &&
     currentAccount !== undefined &&
     selectedAccount !== undefined &&
-    stakeAccounts !== undefined;
+    stakeAccounts !== undefined &&
+    stakeAccounts.length;
   const { isOpen, onOpen, onClose } = useDisclosure();
   const solTranslation = t("appPage.sol");
   const BUFFER =
