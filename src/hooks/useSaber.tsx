@@ -2,11 +2,9 @@ import * as anchor from "@project-serum/anchor";
 import { useEffect, useState } from "react";
 
 import { useConnection } from "../contexts/ConnectionProvider";
-import { useMarinadeState } from "../contexts/MarinadeContext";
 import { SaberPoolResponse } from "../services/pools/saber/config";
 
 export const useSaber = () => {
-  const state = useMarinadeState();
   const connection = useConnection();
 
   const [saber, setSaber] = useState<undefined | SaberPoolResponse>();
@@ -41,6 +39,6 @@ export const useSaber = () => {
     };
 
     getBalances();
-  }, [connection, state]);
+  }, [connection]);
   return saber;
 };
