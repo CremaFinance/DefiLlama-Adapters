@@ -11,7 +11,7 @@ export const mapSaberPoolsResponse = (
 ) => {
   let pool = { ...saberPools[farmPoolAddress.saber_mSOL_SOL] };
   const tokenAPrice = prices[pool.tokenA]?.usd;
-  const tokenBPrice = prices[pool.tokenA]?.usd;
+  const tokenBPrice = pool.tokenB ? prices[pool.tokenB]?.usd : undefined;
   if (saberData && tokenAPrice && tokenBPrice) {
     pool.liq =
       saberData.mSolBalance * tokenAPrice + saberData.solBalance * tokenBPrice;
