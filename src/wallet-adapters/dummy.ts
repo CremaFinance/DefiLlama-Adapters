@@ -5,19 +5,29 @@ import {
   SendTransactionOptions,
   WalletAdapter,
   WalletAdapterEvents,
+  WalletName,
+  WalletReadyState,
 } from "@solana/wallet-adapter-base";
 import { Connection, PublicKey, Transaction } from "@solana/web3.js";
 
 import { DEFAULT_PUBLIC_KEY } from "../utils/web3/ids";
 
 export class DummyWalletAdapter extends EventEmitter implements WalletAdapter {
-  ready = () => {
-    return Promise.resolve(false);
-  };
+  icon = "";
+
+  name = "" as WalletName;
+
+  url = "";
+
+  readyState = WalletReadyState.Unsupported;
 
   connecting = false;
 
   connected = false;
+
+  ready = () => {
+    return Promise.resolve(false);
+  };
 
   sendTransaction(
     transaction: Transaction,

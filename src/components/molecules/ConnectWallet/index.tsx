@@ -31,7 +31,6 @@ export const ConnectWallet = ({
     disconnect,
     connected,
     wallet,
-    adapter,
     connecting,
     publicKey,
   } = useWallet();
@@ -41,7 +40,7 @@ export const ConnectWallet = ({
 
   const msg = t("appPage.wallet-missing")?.replace(
     "{{wallet}}",
-    String(wallet?.name)
+    String(wallet?.adapter.name)
   );
 
   const [requestConnect, setRequestConnect] = useState(false);
@@ -57,20 +56,24 @@ export const ConnectWallet = ({
       title: "Wallet extension not detected",
       status: "error",
       description: (
-        <Link target="_blank" rel="noreferrer noopener" href={wallet?.url}>
+        <Link
+          target="_blank"
+          rel="noreferrer noopener"
+          href={wallet?.adapter.url}
+        >
           {msg}
         </Link>
       ),
       variant: "subtle",
       isClosable: true,
     });
-  }, [msg, toast, wallet?.url]);
+  }, [msg, toast, wallet?.adapter.url]);
 
   const tryConnect = useCallback(async () => {
-    if (adapter) {
+    if (wallet?.adapter) {
       try {
         // try to force connection to access adapter errors if not installed
-        await adapter.connect();
+        await wallet.adapter.connect();
       } catch (e) {
         const error = e as WalletError;
         if (
@@ -81,13 +84,26 @@ export const ConnectWallet = ({
         }
       }
     }
-  }, [adapter, showToast]);
+  }, [wallet?.adapter, showToast]);
 
   useEffect(() => {
-    if (adapter && wallet && !connected && !connecting && requestConnect) {
+    if (
+      wallet?.adapter &&
+      wallet &&
+      !connected &&
+      !connecting &&
+      requestConnect
+    ) {
       tryConnect();
     }
-  }, [tryConnect, adapter, wallet, connected, connecting, requestConnect]);
+  }, [
+    tryConnect,
+    wallet?.adapter,
+    wallet,
+    connected,
+    connecting,
+    requestConnect,
+  ]);
 
   const tryDisconnect = useCallback(async () => {
     await disconnect();
@@ -120,14 +136,14 @@ export const ConnectWallet = ({
         ) : (
           wallets.map((walletItem) => (
             <MenuItem
-              key={walletItem.name}
-              icon={<Image src={walletItem.icon} width="0.8rem" />}
+              key={walletItem.adapter.name}
+              icon={<Image src={walletItem.adapter.icon} width="0.8rem" />}
               onClick={() => {
-                select(walletItem.name);
+                select(walletItem.adapter.name);
                 setRequestConnect(true);
               }}
             >
-              <MText type="text-lg">{walletItem.name}</MText>
+              <MText type="text-lg">{walletItem.adapter.name}</MText>
             </MenuItem>
           ))
         )}
