@@ -34,7 +34,7 @@
     "@quarryprotocol/quarry-sdk": "^1.11.0",
     "@saberhq/anchor-contrib": "^1.12.32",
     "@saberhq/solana-contrib": "^1.12.4",
-    "@saberhq/token-utils": "^1.12.27",
+    "@saberhq/token-utils": "^1.12.35",
     "@solana/spl-token": "^0.1.8",
     "@solana/spl-token-registry": "^0.2.1281",
     "@solana/wallet-adapter-base": "^0.9.2",
