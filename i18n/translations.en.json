@@ -45,21 +45,21 @@
       {
         "date": "30 SEPT 2021",
         "title": "MNDE Launch: Serving the Tastiest Token",
-        "subtitle": “What you need to know about the launch of Marinade’s token”,
+        "subtitle": "What you need to know about the launch of Marinade’s token",
         "link": "https://medium.com/marinade-finance/mnde-launch-serving-the-tastiest-token-f9c5b41c49e4"
       },
 
       {
         "date": "16 SEPT 2021",
         "title": "Why We Take it Slow — Security First",
-        "subtitle": “Why “Marinade launched with a cap on staking”,
+        "subtitle": "Why Marinade launched with a cap on staking",
         "link": "https://medium.com/marinade-finance/why-we-take-it-slow-security-first-ed9a2e17e3ac"
       },
 
       {
         "date": "06 SEPT 2021",
         "title": "Introducing MNDE — Marinade’s secret sauce",
-        "subtitle": “Marinade is launching a MNDE governance token with incentives that align with the community,”
+        "subtitle": "Marinade is launching a MNDE governance token with incentives that align with the community",
         "link": "https://medium.com/marinade-finance/introducing-mnde-marinades-secret-sauce-4bf5670463fc"
       }
     ],
@@ -295,7 +295,7 @@
     "success-stake": {
       "title": "Well done!",
       "body-line1": "You’re now staking with Marinade!",
-      "body-line2-before": "Click the button to explore what you can do with mSOL”,
+      "body-line2-before": "Click the button to explore what you can do with mSOL",
       "body-line2-after": " you just received.",
       "button": "Use your {{stakedCurrency}}"
     },
@@ -339,7 +339,7 @@
       {
         "question": "Can I unstake at any time?",
         "response-0": "Yes. Marinade allows you to directly swap your mSOL back to SOL by using our ‘Unstake now’ option.",
-        "response-1": "If there is enough liquidity left after you unstake, the fee will be 0.3%. You can learn more about our fee structure in “our docs.
+        "response-1": "If there is enough liquidity left after you unstake, the fee will be 0.3%. You can learn more about our fee structure in our docs.",
         "response-2": "You can also unstake without any fee by using our ‘Delayed unstake’ option.",
         "link": "https://docs.marinade.finance/faq/faq#what-fees-does-marinade-charge"
       },
@@ -357,7 +357,7 @@
           "step-finance-link": "https://step.finance/"
         },
         "response-1": "mSOL opens up new opportunities for you to cook your own DeFi recipes, adapted to your own needs and risk appetite. From single staking your mSOL without any added risk to adventurous degen strategies, mSOL can be marinated in all your DeFi recipes.",
-        "response-2": "Also keep in mind that mSOL can be traded at its current value in exchange for any other cryptocurrency on a decentralized exchange without the need to unstake first.”
+        "response-2": "Also keep in mind that mSOL can be traded at its current value in exchange for any other cryptocurrency on a decentralized exchange without the need to unstake first."
       }
     ],
 
@@ -557,7 +557,7 @@
       {
         "header": "Termination",
         "text": [
-          "Marinade Finance may terminate, suspend, or modify your access to Website and/or the Services, or any portion thereof, immediately and at any point, at its sole discretion. Marinade Finance will not be liable to you or to any third party for any termination, suspension, or modification of your access to the Services. Upon termination of your access to the Services, these Terms shall terminate, except for those clauses that expressly or are intended to survive termination or expire.”
+          "Marinade Finance may terminate, suspend, or modify your access to Website and/or the Services, or any portion thereof, immediately and at any point, at its sole discretion. Marinade Finance will not be liable to you or to any third party for any termination, suspension, or modification of your access to the Services. Upon termination of your access to the Services, these Terms shall terminate, except for those clauses that expressly or are intended to survive termination or expire."
         ]
       },
       {
