@@ -34,7 +34,7 @@
     "testimonial-section-name": "Anatoly Yakovenko",
     "testimonial-section-position": "CEO of Solana Labs",
     "blog-section-title": "Read stories from the kitchen",
-    "blog-section-subtitle": "We’re sharing everything on our way—from the idea all the way to full democratization of liquid staking on Solana.",
+    "blog-section-subtitle": "We’re on a quest to decentralize Solana and unlock the power of DeFi for all: Read all about how we’re getting there.",
     "blog-section-blurb": "Forget about unstaking periods or keeping track of validators and",
     "blog-section-blurb-highlight": "let Marinade do the work.",
 
@@ -45,21 +45,21 @@
       {
         "date": "30 SEPT 2021",
         "title": "MNDE Launch: Serving the Tastiest Token",
-        "subtitle": "Liquid lorem ipsum dolor sit ametity consectetur",
+        "subtitle": "What you need to know about the launch of Marinade’s token",
         "link": "https://medium.com/marinade-finance/mnde-launch-serving-the-tastiest-token-f9c5b41c49e4"
       },
 
       {
         "date": "16 SEPT 2021",
         "title": "Why We Take it Slow — Security First",
-        "subtitle": "Liquid lorem ipsum dolor sit ametity consectetur",
+        "subtitle": "Why Marinade launched with a cap on staking",
         "link": "https://medium.com/marinade-finance/why-we-take-it-slow-security-first-ed9a2e17e3ac"
       },
 
       {
         "date": "06 SEPT 2021",
         "title": "Introducing MNDE — Marinade’s secret sauce",
-        "subtitle": "Liquid lorem ipsum dolor sit ametity consectetur",
+        "subtitle": "Marinade is launching a MNDE governance token with incentives that align with the community",
         "link": "https://medium.com/marinade-finance/introducing-mnde-marinades-secret-sauce-4bf5670463fc"
       }
     ],
@@ -92,7 +92,7 @@
       },
       {
         "emphasis": "Stake with our strategy",
-        "heading": "and delegate to 400+ top-validators",
+        "heading": "and delegate to 400+ top validators",
         "desc": "Our algorithmic strategy delegates to hundreds of validators to make the Solana blockchain more robust, secure, and decentralized.",
         "link": "#",
         "quote": "Marinade's staking strategy makes it easy for users to help make Solana ever more decentralized and censorship resistant.",
@@ -128,7 +128,7 @@
     ],
 
     "contributor-section-title": "Become a contributor to Marinade",
-    "contributor-section-subtitle": "Marinade is a community-driven project built without any VC money or token sales. Join the Marinade DAO and come build together with us.",
+    "contributor-section-subtitle": "Marinade is a community-driven project built without any VC money or token sales. Join the Marinade DAO and let's build together.",
     "contributor-section-action": "Join the Marinade DAO",
 
     "security-section-title": "The most trusted liquid staking on Solana",
@@ -161,7 +161,7 @@
     },
     "security-section-audit-kudelski": {
       "title": "Kudelski security",
-      "subtitle": "To become the next unit of account on the Solana network, we had to make sure that our protocol was as safe as Solana itself. Therefore, we got audited by Kudelski Security, a reputable audit firm that was chosen by Solana Labs to audit Solana.",
+      "subtitle": "To become the next unit of account on the Solana network, we had to make sure that our protocol was as safe as Solana itself. Therefore, we were audited by Kudelski Security, a reputable audit firm that was chosen by Solana Labs to audit Solana.",
       "external-url": "/docs/KudelskiSecurity.pdf"
     },
     "footer-description": "Marinade.Finance is a non-custodial liquid staking protocol built on the Solana blockchain.",
@@ -295,13 +295,13 @@
     "success-stake": {
       "title": "Well done!",
       "body-line1": "You’re now staking with Marinade!",
-      "body-line2-before": "Click the button to explore what you can do with the ",
+      "body-line2-before": "Click the button to explore what you can do with ",
       "body-line2-after": " you just received.",
       "button": "Use your {{stakedCurrency}}"
     },
     "defi-subtitle": {
       "header": "Participate in DeFi",
-      "body-desktop": "Now it’s your time to cook! mSOL has been integrated in many DeFi protocols where you’ll be able to explore additional yield while still earning your staking rewards. Please keep in mind that selling all your mSOL will also mean selling your rewards accumulated until this point.",
+      "body-desktop": "Now it’s your time to cook! mSOL has been integrated in many DeFi protocols where you can explore additional yield strategies while still earning your staking rewards. Please keep in mind that selling all your mSOL will also mean selling your rewards accumulated until this point.",
       "body-mobile": "Use mSOL and explore additional yield while still earning your staking rewards"
     },
     "mnde": {
@@ -310,7 +310,7 @@
       "docs-link": "https://docs.marinade.finance/marinade-dao/tokenomics"
     },
     "stake-inputs-time-to-unstake": "Time to unstake",
-    "tooltip-time-to-unstake-text": "Unstaking will take 1 to 2 epochs. This time is an estimation; please refer to the docs to learn more.",
+    "tooltip-time-to-unstake-text": "Unstaking will take 1-2 epochs. This time is an estimation; please refer to the docs to learn more.",
     "tooltip-time-to-unstake-read-more": "See docs",
     "tooltip-time-to-unstake-docs-link": "https://docs.marinade.finance/marinade-protocol/system-overview#delayed-unstaked",
 
@@ -325,7 +325,7 @@
     "claim-success-tooltip-body": "You've successfully claimed your ticket",
     "claim-error-tooltip-title": "Something went wrong",
     "claim-error-tooltip-body-not-ready-yet": "Your ticket is not ready yet. Wait a few hours and try again (0x1104)",
-    "claim-error-tooltip-body-not-enough-sol-balance": "You need some SOL balance on your wallet to cover the transaction fees.",
+    "claim-error-tooltip-body-not-enough-sol-balance": "You need SOL balance in your wallet to cover the transaction fees.",
 
     "faq-title": "FAQ",
     "faq-items": [
@@ -357,7 +357,7 @@
           "step-finance-link": "https://step.finance/"
         },
         "response-1": "mSOL opens up new opportunities for you to cook your own DeFi recipes, adapted to your own needs and risk appetite. From single staking your mSOL without any added risk to adventurous degen strategies, mSOL can be marinated in all your DeFi recipes.",
-        "response-2": "Also keep in mind that mSOL can be traded at its current value in exchange for any other cryptocurrency on a decentralized exchange without the need to unstake."
+        "response-2": "Also keep in mind that mSOL can be traded at its current value in exchange for any other cryptocurrency on a decentralized exchange without the need to unstake first."
       }
     ],
 
@@ -465,7 +465,7 @@
       },
       "deposit-action": {
         "title": "mLP deposit confirmed",
-        "success": "Youve successfully deposited mLP"
+        "success": "You've successfully deposited mLP"
       },
       "withdraw-action": {
         "title": "mLP withdraw confirmed",
@@ -549,7 +549,7 @@
         "text": [
           "We provide a staking or deposit service in which Users can deposit their SOL to receive the mSOL derivative token representing a share of a stake pool on the Marinade Finance platform. Users are required to input the amount of SOL to be staked on the platform by connecting our Website with your Solana Wallet (i.e Sollet, Solong, Solflare and/or Phantom wallet). Once the staking instructions are confirmed, the system will record such instructions and mint mSOL for the User according to the mSOL/SOL ratio.",
           "You acknowledge that we cannot promise or guarantee the certain amount of the reward receiving from staking your SOL tokens.",
-          "You further acknowledge and agree that we have sole discretion to reject your participation in staking, in the event that you are unable to fulfil your identity verification requirements or for any other suspicious activity detected while participating on our Website and in our Services.",
+          "You further acknowledge and agree that we have sole discretion to reject your participation in staking, in the event that you are unable to fulfill your identity verification requirements or for any other suspicious activity detected while participating on our Website and in our Services.",
           "In the event that you wish to unstake or withdraw your mSOL to SOL and receive the rewards, you will provide unstaking instructions through our Website whereby we perform a mSOL to SOL swap using the liquidity pool. Following this swap, you will receive the equivalent SOL according to the mSOL that the user instructs to convert minus a swap fee transaction. You acknowledge and agree that when you unstake mSOL into SOL, the delivery time of such SOL into your wallet may vary based on time of day of the request and execution. We will also levy a withdrawing fee or minimum transaction amount, which will vary and be subject to the amendment only at our sole discretion periodically.",
           "You acknowledge and agree that we reserve the right to amend any terms related to any specific staking protocol implemented by us at any time in our sole discretion. We shall not be liable for any losses due to your misunderstanding of the terms and conditions of our staking protocol terms and changes to such terms."
         ]
@@ -557,7 +557,7 @@
       {
         "header": "Termination",
         "text": [
-          "Marinade Finance may terminate, suspend, or modify your access to Website and/or the Services, or any portion thereof, immediately and at any point, at its sole discretion. Marinade Finance will not be liable to you or to any third party for any termination, suspension, or modification of your access to the Services. Upon termination of your access to the Services, these Terms shall terminate, except for those clauses that expressly or are intendedto survive termination or expiry."
+          "Marinade Finance may terminate, suspend, or modify your access to Website and/or the Services, or any portion thereof, immediately and at any point, at its sole discretion. Marinade Finance will not be liable to you or to any third party for any termination, suspension, or modification of your access to the Services. Upon termination of your access to the Services, these Terms shall terminate, except for those clauses that expressly or are intended to survive termination or expire."
         ]
       },
       {
@@ -659,7 +659,7 @@
         "header": "Third Party Website Disclaimer",
         "text": [
           "Any links to third party websites from our Services does not imply endorsement by us of any product, service, information or disclaimer presented therein, nor do we guarantee the accuracy of the information contained on them. If you suffer loss from using such third party product and service, we will not be liable for such loss. In addition, since we have no control over the terms of use or privacy policies of third-party websites, you should carefully read and understand those policies.",
-          "BY MAKING USE OF OUR SERVICES, YOU ACKNOWLEDGE AND AGREE THAT: (A) YOU ARE AWARE OF THE RISKS ASSOCIATED WITH TRANSACTIONS OF ENCRYPTED OR DIGITAL TOKENS OR CRYPTOCURRENCIES WITH A CERTAIN VALUE THAT ARE BASED ON BLOCKCHAIN AND CRYPTOGRAPHY TECHNOLOGIES AND ARE ISSUED AND MANAGED IN A DECENTRALIZED FORM (“DIGITIAL CURRENCIES”); (B) YOU SHALL ASSUME ALL RISKS RELATED TO THE USE OF THE SERVICES AND TRANSACTIONS OF DIGITAL CURRENCIES; AND (C) MARINADE FINANCE SHALL NOT BE LIABLE FOR ANY SUCH RISKS OR ADVERSE OUTCOMES. AS WITH ANY ASSET, THE VALUES OF DIGITAL CURRENCIES ARE VOLATILE AND MAY FLUCTUATE SIGNIFICANTLY AND THERE IS A SUBSTANTIAL RISK OF ECONOMIC LOSS WHEN PURCHASING, HOLDING OR INVESTING IN DIGITAL CURRENCIES."
+          "BY MAKING USE OF OUR SERVICES, YOU ACKNOWLEDGE AND AGREE THAT: (A) YOU ARE AWARE OF THE RISKS ASSOCIATED WITH TRANSACTIONS OF ENCRYPTED OR DIGITAL TOKENS OR CRYPTOCURRENCIES WITH A CERTAIN VALUE THAT ARE BASED ON BLOCKCHAIN AND CRYPTOGRAPHY TECHNOLOGIES AND ARE ISSUED AND MANAGED IN A DECENTRALIZED FORM (“DIGITAL CURRENCIES”); (B) YOU SHALL ASSUME ALL RISKS RELATED TO THE USE OF THE SERVICES AND TRANSACTIONS OF DIGITAL CURRENCIES; AND (C) MARINADE FINANCE SHALL NOT BE LIABLE FOR ANY SUCH RISKS OR ADVERSE OUTCOMES. AS WITH ANY ASSET, THE VALUES OF DIGITAL CURRENCIES ARE VOLATILE AND MAY FLUCTUATE SIGNIFICANTLY AND THERE IS A SUBSTANTIAL RISK OF ECONOMIC LOSS WHEN PURCHASING, HOLDING OR INVESTING IN DIGITAL CURRENCIES."
         ]
       }
     ]
