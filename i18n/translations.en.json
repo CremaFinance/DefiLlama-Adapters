@@ -92,7 +92,7 @@
       },
       {
         "emphasis": "Stake with our strategy",
-        "heading": "and delegate to 400+ top-validators",
+        "heading": "and delegate to 400+ top validators",
         "desc": "Our algorithmic strategy delegates to hundreds of validators to make the Solana blockchain more robust, secure, and decentralized.",
         "link": "#",
         "quote": "Marinade's staking strategy makes it easy for users to help make Solana ever more decentralized and censorship resistant.",
@@ -128,7 +128,7 @@
     ],
 
     "contributor-section-title": "Become a contributor to Marinade",
-    "contributor-section-subtitle": "Marinade is a community-driven project built without any VC money or token sales. Join the Marinade DAO and come build together with us.",
+    "contributor-section-subtitle": "Marinade is a community-driven project built without any VC money or token sales. Join the Marinade DAO and let's build together.",
     "contributor-section-action": "Join the Marinade DAO",
 
     "security-section-title": "The most trusted liquid staking on Solana",
