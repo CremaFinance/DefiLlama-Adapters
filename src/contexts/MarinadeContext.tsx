@@ -310,7 +310,7 @@ export function MarinadeProvider({ children }: MarinadeProviderProps) {
 
       // Anchor will parse the accounts we pass as parameters and compose the tx
       tx.add(
-        program?.instruction.deposit(new BN(amountLamports), {
+        program?.instruction.deposit(new anchor.BN(amountLamports), {
           accounts: {
             state: keys.marinadeStateId,
             stSolMint: marinadeState?.state.st_sol_mint.value as Address,
