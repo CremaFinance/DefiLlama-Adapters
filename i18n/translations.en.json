@@ -137,7 +137,7 @@
     "security-section-items": [
       {
         "title": "Absolutely non-custodial",
-        "subtitle": "The Marinade program is completely permissionless so that anybody can run the bot and “turn the crank.”"
+        "subtitle": "The Marinade program is completely permissionless so that anybody can run the bot and “turn the crank”."
       },
       {
         "title": "Ecosystem governance",
@@ -295,7 +295,7 @@
     "success-stake": {
       "title": "Well done!",
       "body-line1": "You’re now staking with Marinade!",
-      "body-line2-before": "Click the button to explore what you can do with mSOL",
+      "body-line2-before": "Click the button to explore what you can do with ",
       "body-line2-after": " you just received.",
       "button": "Use your {{stakedCurrency}}"
     },
@@ -339,7 +339,7 @@
       {
         "question": "Can I unstake at any time?",
         "response-0": "Yes. Marinade allows you to directly swap your mSOL back to SOL by using our ‘Unstake now’ option.",
-        "response-1": "If there is enough liquidity left after you unstake, the fee will be 0.3%. You can learn more about our fee structure in our docs.",
+        "response-1": "If there is enough liquidity left after you unstake, the fee will be 0.3%. You can learn more about our fee structure ",
         "response-2": "You can also unstake without any fee by using our ‘Delayed unstake’ option.",
         "link": "https://docs.marinade.finance/faq/faq#what-fees-does-marinade-charge"
       },
