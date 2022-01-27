@@ -17,16 +17,21 @@ import {
   ModalBody,
 } from "@chakra-ui/react";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import NumberFormat from "react-number-format";
 
 import { useMarinade } from "../../../contexts/MarinadeContext";
+import { useStats } from "../../../contexts/StatsContext";
 import { useUserBalance } from "../../../contexts/UserBalanceContext";
+import { usePrices } from "../../../hooks/usePrices";
 import { useTranslation } from "../../../hooks/useTranslation";
 import { useWallet } from "../../../hooks/useWallet";
 import { coinSymbols } from "../../../services/domain/coinSymbols";
 import colors from "../../../styles/customTheme/colors";
-import { numberToShortVersion } from "../../../utils/number-to-short-version";
+import {
+  format3Dec,
+  numberToShortVersion,
+} from "../../../utils/number-to-short-version";
 import {
   shortenAddress,
   shortenAddressForMobile,
@@ -79,7 +84,19 @@ const StakeInput = ({
   isLoading,
 }: StakeInputProps) => {
   const { t } = useTranslation();
+  const prices = usePrices([coinSymbols.SOL, coinSymbols.mSOL]);
+  const stats = useStats();
+
   const balanceLabel = t("appPage.balance");
+  const solUSD =
+    prices[coinSymbols.SOL]?.usd && Number(prices[coinSymbols.SOL]?.usd);
+  const tokenPrices = {
+    [coinSymbols.SOL]: solUSD,
+    [coinSymbols.mSOL]:
+      solUSD && stats?.mSOLvsSOLParity !== null
+        ? solUSD * stats.mSOLvsSOLParity
+        : undefined,
+  };
   const [isWiderThan768] = useMediaQuery("(min-width: 768px)");
   const [selectedAccount, setSelectedAccount] = useState(currentAccount);
   const [isStakeAccountSelected, setIsStakeAccountSelected] = useState(false);
@@ -372,36 +389,43 @@ const StakeInput = ({
           }
         />
       </Flex>
-      <Flex alignItems="center" justifyContent="flex-start" mb={2}>
-        <MText type="text-sm">
-          {!isStakeAccountSelected
-            ? `${balanceLabel}: ${numberToShortVersion(
-                tokenBalance
-              )} ${tokenName}`
-            : `${t("appPage.stake-account-singular")} ${shortenAddress(
-                currentAccount?.address || ""
-              )}`}
-        </MText>
-        {tokenBalance &&
-        !isStakeAccountSelected &&
-        stakeInputType !== StakeInputTypeEnum.Target ? (
-          <MButton
-            variant="link"
-            font="text-sm"
-            color={colors.marinadeGreen}
-            fontWeight="bold"
-            onClick={() =>
-              onValueChange
-                ? onValueChange(Math.max(0, tokenBalance - BUFFER).toString())
-                : {}
-            }
-            pb="1px"
-            pl="4px"
-            _hover={{}}
-          >
-            ({t("appPage.max")})
-          </MButton>
-        ) : undefined}
+      <Flex alignItems="center" justifyContent="space-between" mb={2}>
+        <Flex>
+          <MText type="text-sm">
+            {!isStakeAccountSelected
+              ? `${balanceLabel}: ${numberToShortVersion(
+                  tokenBalance
+                )} ${tokenName}`
+              : `${t("appPage.stake-account-singular")} ${shortenAddress(
+                  currentAccount?.address || ""
+                )}`}
+          </MText>
+          {tokenBalance &&
+          !isStakeAccountSelected &&
+          stakeInputType !== StakeInputTypeEnum.Target ? (
+            <MButton
+              variant="link"
+              font="text-sm"
+              color={colors.marinadeGreen}
+              fontWeight="bold"
+              onClick={() =>
+                onValueChange
+                  ? onValueChange(Math.max(0, tokenBalance - BUFFER).toString())
+                  : {}
+              }
+              pb="1px"
+              pl="4px"
+              _hover={{}}
+            >
+              ({t("appPage.max")})
+            </MButton>
+          ) : undefined}
+        </Flex>
+        {isWalletConnected ? (
+          <MText type="text-sm">{`-$ ${format3Dec(
+            tokenBalance * (tokenPrices[tokenName] || 0)
+          )}`}</MText>
+        ) : null}
       </Flex>
     </Flex>
   );
