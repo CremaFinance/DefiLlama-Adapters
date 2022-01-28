@@ -40,7 +40,7 @@
 
     "blog-section-primary-button": "Start staking SOL",
     "blog-section-secondary-button": "Learn more",
-    "logo-strip-section-title": "Use mSOL across all the ecosystem",
+    "logo-strip-section-title": "Use mSOL across the ecosystem",
     "blog-section-items": [
       {
         "date": "30 SEPT 2021",
@@ -119,7 +119,7 @@
       },
       {
         "title": "Decentralization",
-        "subtitle": "Improve the network security by staking to +400 validators."
+        "subtitle": "Improve the network security by staking to 400+ validators."
       },
       {
         "title": "Unlocked liquidity",
@@ -233,6 +233,11 @@
         "tlv-asc": "TVL (asc)",
         "tlv-dsc": "TVL (dsc)"
       }
+    },
+    "cta-section": {
+      "missing-integration": "Suggest a missing integration",
+      "list-your-integration": "List your integration",
+      "integrate-with-marinade": "Integrate with Marinade"
     },
     "info-msol-sol-price": "MSOL/SOL price",
     "info-total-sol-staked": "Total SOL staked",
