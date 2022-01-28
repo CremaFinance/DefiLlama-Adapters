@@ -97,12 +97,10 @@ const BasicStake = () => {
     return {
       duration,
       mSOL: "1 mSOL",
-      SOL: `${format2Dec(newmSOLvsSOL)} SOL`,
+      SOL: `${format5Dec(newmSOLvsSOL)} SOL`,
       value: `$${format2Dec(solPrice * newmSOLvsSOL)}`,
     };
   };
-
-  generateEntry("dur", 800);
 
   const tableData = useMemo(() => {
     return [
@@ -473,6 +471,24 @@ const BasicStake = () => {
         <MText type="text-md">0%</MText>
       </Flex>
 
+      <Flex width="100%" mt={1} mb={1} justifyContent="space-between">
+        <Flex>
+          <MText type="text-md">
+            {t("appPage.stake-inputs-projected-apy")}
+          </MText>
+          <TooltipWithContent tooltipText={t("appPage.projected-apy-tooltip")}>
+            <IconButton
+              variant="link"
+              aria-label="Info stake fee"
+              size="sm"
+              _focus={{ boxShadow: "none" }}
+              icon={<MdInfoOutline />}
+            />
+          </TooltipWithContent>
+        </Flex>
+        <MText type="text-md">{format5Dec(APY_PCT)}</MText>
+      </Flex>
+
       <Flex width="100%" mt={1} mb={1} justifyContent="flex-start">
         <MText
           type="text-md"
@@ -493,7 +509,7 @@ const BasicStake = () => {
               <Td />
             </Tr>
             {tableData.map((tuple) => (
-              <Tr key={tuple.duration}>
+              <Tr key={tuple.duration} height="60px" fontSize="14.4px">
                 <Td px={1}>{tuple.duration}</Td>
                 <Td px={1} textAlign="center">
                   {tuple.mSOL}
