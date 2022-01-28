@@ -31,13 +31,15 @@ import TransactionLink from "components/molecules/TransactionLink";
 import { AccountsContext } from "contexts/AccountsContext";
 import { useStats } from "contexts/StatsContext";
 import { useEpochInfo } from "hooks/useEpochInfo";
+import { usePrices } from "hooks/usePrices";
 import { useTracking } from "hooks/useTracking";
 import { useWallet } from "hooks/useWallet";
+import { coinSymbols } from "services/domain/coinSymbols";
 import { StakeAccount } from "solana/domain/stake-account";
 import colors from "styles/customTheme/colors";
 import { basicInputChecks } from "utils/basic-input-checks";
 import { checkNativeSOLBalance } from "utils/check-native-sol-balance";
-import { format5Dec } from "utils/number-to-short-version";
+import { format2Dec, format5Dec } from "utils/number-to-short-version";
 import { shortenAddress } from "utils/shorten-address";
 
 const BasicStake = () => {
@@ -54,6 +56,9 @@ const BasicStake = () => {
   const [stakeAccount, setStakeAccount] = useState<StakeAccountType | null>(
     null
   );
+  const prices = usePrices([coinSymbols.SOL]);
+  const solPrice = prices[coinSymbols.SOL]?.usd ?? 0;
+
   const [showEstimation, setShowEstimation] = useState(false);
   const { nativeSOLBalance } = useUserBalance();
   const { connected: isWalletConnected, publicKey: walletPubKey } = useWallet();
@@ -72,10 +77,43 @@ const BasicStake = () => {
   const state = marinade?.marinadeState?.state;
   const marinadeState = marinade?.marinadeState;
 
+  const mSOLvsSOLParity = marinadeState?.state?.st_sol_price
+    ? marinadeState.state.st_sol_price.toNumber() / 0x1_0000_0000
+    : 0;
+  const sourceTokenBalance = nativeSOLBalance
+    ? nativeSOLBalance / LAMPORTS_PER_SOL - 0.001
+    : 0;
+
   const APY = stakeAPY ?? 0;
   const APY_PCT = APY * 100;
   const PERIODS = 365;
   const APR = PERIODS * ((APY + 1) ** (1 / PERIODS) - 1);
+  const DPR = APR / PERIODS;
+
+  const generateEntry = (duration: string, days: number) => {
+    const ratio = (1 + DPR) ** days;
+    const newmSOLvsSOL = mSOLvsSOLParity * ratio;
+
+    return {
+      duration,
+      mSOL: "1 mSOL",
+      SOL: `${format2Dec(newmSOLvsSOL)} SOL`,
+      value: `$${format2Dec(solPrice * newmSOLvsSOL)}`,
+    };
+  };
+
+  generateEntry("dur", 800);
+
+  const tableData = useMemo(() => {
+    return [
+      generateEntry("Now", 0),
+      generateEntry("1m", 30),
+      generateEntry("3m", 90),
+      generateEntry("6m", 180),
+      generateEntry("1y", 365),
+    ];
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mSOLvsSOLParity, solPrice]);
 
   const {
     getStakeAccountsAction,
@@ -106,13 +144,6 @@ const BasicStake = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isWalletConnected, stakeLoading]);
-
-  const mSOLvsSOLParity = marinadeState?.state?.st_sol_price
-    ? marinadeState.state.st_sol_price.toNumber() / 0x1_0000_0000
-    : 0;
-  const sourceTokenBalance = nativeSOLBalance
-    ? nativeSOLBalance / LAMPORTS_PER_SOL - 0.001
-    : 0;
 
   const handleSelectAccountCallback = (
     value: boolean,
@@ -452,9 +483,7 @@ const BasicStake = () => {
           Estimated results
         </MText>
       </Flex>
-      {showEstimation ? (
-        <Flex>show</Flex>
-      ) : (
+      {showEstimation && (
         <Table width="100%">
           <Tbody>
             <Tr>
@@ -463,18 +492,20 @@ const BasicStake = () => {
               <Td />
               <Td />
             </Tr>
-            <Tr>
-              <Td px={1}>Now</Td>
-              <Td px={0} textAlign="center">
-                1 mSOL
-              </Td>
-              <Td px={0} textAlign="center">
-                1.1 SOL
-              </Td>
-              <Td px={1} textAlign="right">
-                $160
-              </Td>
-            </Tr>
+            {tableData.map((tuple) => (
+              <Tr key={tuple.duration}>
+                <Td px={1}>{tuple.duration}</Td>
+                <Td px={1} textAlign="center">
+                  {tuple.mSOL}
+                </Td>
+                <Td px={1} textAlign="center">
+                  {tuple.SOL}
+                </Td>
+                <Td px={1} textAlign="right">
+                  {tuple.value}
+                </Td>
+              </Tr>
+            ))}
           </Tbody>
         </Table>
       )}
