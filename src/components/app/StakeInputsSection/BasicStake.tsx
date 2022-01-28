@@ -4,6 +4,10 @@ import {
   useDisclosure,
   useToast,
   Box,
+  Table,
+  Tbody,
+  Tr,
+  Td,
 } from "@chakra-ui/react";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import BN from "bn.js";
@@ -50,6 +54,7 @@ const BasicStake = () => {
   const [stakeAccount, setStakeAccount] = useState<StakeAccountType | null>(
     null
   );
+  const [showEstimation, setShowEstimation] = useState(false);
   const { nativeSOLBalance } = useUserBalance();
   const { connected: isWalletConnected, publicKey: walletPubKey } = useWallet();
   const epochInfo = useEpochInfo()?.data;
@@ -60,12 +65,17 @@ const BasicStake = () => {
       }
     },
   });
-  const { totalStaked } = useStats();
+  const { totalStaked, stakeAPY } = useStats();
   const chain = useChain();
 
   const marinade = useMarinade();
   const state = marinade?.marinadeState?.state;
   const marinadeState = marinade?.marinadeState;
+
+  const APY = stakeAPY ?? 0;
+  const APY_PCT = APY * 100;
+  const PERIODS = 365;
+  const APR = PERIODS * ((APY + 1) ** (1 / PERIODS) - 1);
 
   const {
     getStakeAccountsAction,
@@ -431,6 +441,43 @@ const BasicStake = () => {
         </Flex>
         <MText type="text-md">0%</MText>
       </Flex>
+
+      <Flex width="100%" mt={1} mb={1} justifyContent="flex-start">
+        <MText
+          type="text-md"
+          color={colors.marinadeGreen}
+          fontWeight="700"
+          onClick={() => setShowEstimation((v) => !v)}
+        >
+          Estimated results
+        </MText>
+      </Flex>
+      {showEstimation ? (
+        <Flex>show</Flex>
+      ) : (
+        <Table width="100%">
+          <Tbody>
+            <Tr>
+              <Td />
+              <Td />
+              <Td />
+              <Td />
+            </Tr>
+            <Tr>
+              <Td px={1}>Now</Td>
+              <Td px={0} textAlign="center">
+                1 mSOL
+              </Td>
+              <Td px={0} textAlign="center">
+                1.1 SOL
+              </Td>
+              <Td px={1} textAlign="right">
+                $160
+              </Td>
+            </Tr>
+          </Tbody>
+        </Table>
+      )}
       <SuccessStakeModal
         isOpen={isOpen}
         onClose={onClose}
