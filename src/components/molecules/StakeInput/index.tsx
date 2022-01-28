@@ -421,9 +421,9 @@ const StakeInput = ({
             </MButton>
           ) : undefined}
         </Flex>
-        {isWalletConnected ? (
+        {isWalletConnected && parseFloat(value || "") ? (
           <MText type="text-sm">{`-$ ${format3Dec(
-            tokenBalance * (tokenPrices[tokenName] || 0)
+            parseFloat(value || "") * (tokenPrices[tokenName] || 0)
           )}`}</MText>
         ) : null}
       </Flex>
