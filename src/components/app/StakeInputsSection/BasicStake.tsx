@@ -8,7 +8,7 @@ import {
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import BN from "bn.js";
 import { useTranslation } from "next-export-i18n";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useMemo } from "react";
 import { MdInfoOutline } from "react-icons/md";
 
 import { useChain, useConnection } from "../../../contexts/ConnectionProvider";
@@ -46,6 +46,7 @@ const BasicStake = () => {
   const [stakeText, setStakeText] = useState(t("appPage.stake-sol-action"));
   const [stakeLoading, setStakeLoading] = useState(false);
   const [solToStake, setSolToStake] = useState<string>("");
+  const [solStaked, setSolStaked] = useState("");
   const [stakeAccount, setStakeAccount] = useState<StakeAccountType | null>(
     null
   );
@@ -54,7 +55,9 @@ const BasicStake = () => {
   const epochInfo = useEpochInfo()?.data;
   const { isOpen, onOpen, onClose } = useDisclosure({
     onClose: () => {
-      setSolToStake("");
+      if (stakeAccount === null) {
+        setSolToStake("");
+      }
     },
   });
   const { totalStaked } = useStats();
@@ -90,6 +93,7 @@ const BasicStake = () => {
     } else {
       getStakeAccountsAction(isWalletConnected, connection, walletPubKey, true);
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isWalletConnected, stakeLoading]);
 
@@ -109,6 +113,7 @@ const BasicStake = () => {
         ? t("appPage.deposit-stake-account-action")
         : t("appPage.stake-sol-action")
     );
+
     setStakeAccount(value ? account : null);
   };
 
@@ -134,13 +139,16 @@ const BasicStake = () => {
         );
         const currentEpoch = epochInfo?.epoch;
         if (
-          currentEpoch &&
-          marinade?.marinadeState?.state?.stake_system?.min_stake !==
-            undefined &&
-          stakeStart > currentEpoch - 2 &&
+          (currentEpoch &&
+            marinade?.marinadeState?.state?.stake_system?.min_stake !==
+              undefined &&
+            stakeStart > currentEpoch - 2) ||
           new BN(
             account?.account?.data?.parsed?.info?.stake?.delegation?.stake
-          ).lt(marinade?.marinadeState?.state?.stake_system?.min_stake)
+          ).lt(
+            marinade?.marinadeState?.state?.stake_system?.min_stake ??
+              new BN(LAMPORTS_PER_SOL)
+          )
         ) {
           return { ...account, isStakable: false };
         }
@@ -199,6 +207,8 @@ const BasicStake = () => {
           action: "Stake",
           label: "Success",
         });
+
+        setSolStaked(solToStake);
       } catch (error) {
         const errors = {
           mainnetFull: "0xec6",
@@ -306,6 +316,8 @@ const BasicStake = () => {
             action: "Stake",
             label: "Success",
           });
+
+          setSolStaked(solToStake);
         },
         (error) => {
           // eslint-disable-next-line no-console
@@ -336,6 +348,11 @@ const BasicStake = () => {
       .finally(() => setStakeLoading(false));
   };
 
+  const parsedStakeAccounts = useMemo(() => {
+    return parseStakeAccounts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stakeAccounts]);
+
   return (
     <>
       <StakeInput
@@ -346,9 +363,10 @@ const BasicStake = () => {
         tokenIcon="/icons/solana-dark.png"
         tokenBalance={(nativeSOLBalance ?? 0) / LAMPORTS_PER_SOL}
         currentAccount={currentAccount}
-        stakeAccounts={parseStakeAccounts()}
+        stakeAccounts={parsedStakeAccounts}
         value={solToStake}
         mb={2}
+        isLoading={stakeLoading}
       />
       {isWalletConnected ? (
         <MButton
@@ -416,7 +434,7 @@ const BasicStake = () => {
       <SuccessStakeModal
         isOpen={isOpen}
         onClose={onClose}
-        stakedAmount={solToStake}
+        stakedAmount={solStaked}
         stakedCurrency="mSOL"
       />
     </>

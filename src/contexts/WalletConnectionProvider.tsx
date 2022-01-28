@@ -2,13 +2,13 @@ import { useToast } from "@chakra-ui/react";
 import { WalletAdapterNetwork, WalletError } from "@solana/wallet-adapter-base";
 import { WalletProvider } from "@solana/wallet-adapter-react";
 import {
-  getPhantomWallet,
-  getSolletWallet,
-  getSolletExtensionWallet,
-  getSolflareWallet,
-  getSolflareWebWallet,
-  getCoin98Wallet,
-  getSlopeWallet,
+  PhantomWalletAdapter,
+  SolletWalletAdapter,
+  SolletExtensionWalletAdapter,
+  SolflareWalletAdapter,
+  SolflareWebWalletAdapter,
+  Coin98WalletAdapter,
+  SlopeWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
 import { FC, ReactNode, useCallback, useMemo } from "react";
 
@@ -21,13 +21,13 @@ export const WalletConnectionProvider: FC<{ children: ReactNode }> = ({
 
   const wallets = useMemo(
     () => [
-      getPhantomWallet(),
-      getSolletWallet({ network }),
-      getSolletExtensionWallet({ network }),
-      getSolflareWallet(),
-      getSolflareWebWallet(),
-      getCoin98Wallet(),
-      getSlopeWallet(),
+      new PhantomWalletAdapter(),
+      new SolletWalletAdapter({ network }),
+      new SolletExtensionWalletAdapter({ network }),
+      new SolflareWalletAdapter(),
+      new SolflareWebWalletAdapter(),
+      new Coin98WalletAdapter(),
+      new SlopeWalletAdapter(),
     ],
     [network]
   );

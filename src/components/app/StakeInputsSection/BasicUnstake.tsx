@@ -402,12 +402,10 @@ const BasicUnstake = () => {
         isOpen={showModal}
         onClose={resetInputs}
       />
-      {ticketAccounts.length > 0 && (
-        <UnstakeTicketsSection
-          ticketAccounts={ticketAccounts}
-          runClaimHandler={runClaimHandler}
-        />
-      )}
+      <UnstakeTicketsSection
+        ticketAccounts={ticketAccounts}
+        runClaimHandler={runClaimHandler}
+      />
     </>
   );
 };

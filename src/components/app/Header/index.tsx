@@ -46,7 +46,6 @@ const Header = ({ onValidatorsPage = false }: Props) => {
       pt="14px"
       zIndex={1000}
       px={{ base: 4, md: 10, lg: 160 }}
-      flexWrap={isLargerThan430 ? "nowrap" : "wrap"}
     >
       <Link href="/" passHref>
         <Box>
@@ -68,7 +67,11 @@ const Header = ({ onValidatorsPage = false }: Props) => {
         </Box>
       </Link>
 
-      <Flex flexDirection="row" alignContent="center">
+      <Flex
+        flexDirection="row"
+        alignContent="center"
+        display={["none", "flex"]}
+      >
         <MButton
           variant="link"
           color={colors.black}

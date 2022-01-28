@@ -3,6 +3,7 @@ import { Flex, Image } from "@chakra-ui/react";
 import Footer from "components/app/Footer";
 import Header from "components/app/Header";
 import MndeSection from "components/app/MndeSection";
+import MobileMenu from "components/app/MobileMenu";
 import colors from "styles/customTheme/colors";
 
 const Mnde = () => {
@@ -40,6 +41,7 @@ const Mnde = () => {
         <MndeSection />
       </Flex>
       <Footer />
+      <MobileMenu />
     </Flex>
   );
 };
