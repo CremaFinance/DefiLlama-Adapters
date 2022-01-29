@@ -89,6 +89,8 @@ const BasicStake = () => {
     ? nativeSOLBalance / LAMPORTS_PER_SOL - 0.001
     : 0;
 
+  const mSOLReceived = format5Dec(Number(solStaked) / mSOLvsSOLParity);
+
   const APY = stakeAPY ?? 0;
   const APY_PCT = APY * 100;
   const PERIODS = 365;
@@ -555,7 +557,7 @@ const BasicStake = () => {
       <SuccessStakeModal
         isOpen={isOpen}
         onClose={onClose}
-        stakedAmount={solStaked}
+        stakedAmount={mSOLReceived}
         stakedCurrency="mSOL"
       />
     </>
