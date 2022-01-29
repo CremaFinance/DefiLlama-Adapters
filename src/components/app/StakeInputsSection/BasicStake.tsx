@@ -13,6 +13,7 @@ import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import BN from "bn.js";
 import { useTranslation } from "next-export-i18n";
 import { useContext, useEffect, useState, useMemo } from "react";
+import { BiChevronDown, BiChevronUp } from "react-icons/bi";
 import { MdInfoOutline } from "react-icons/md";
 
 import { useChain, useConnection } from "../../../contexts/ConnectionProvider";
@@ -97,7 +98,7 @@ const BasicStake = () => {
     return {
       duration,
       mSOL: "1 mSOL",
-      SOL: `${format5Dec(newmSOLvsSOL)} SOL`,
+      SOL: `${format2Dec(newmSOLvsSOL)} SOL`,
       value: `$${format2Dec(solPrice * newmSOLvsSOL)}`,
     };
   };
@@ -489,18 +490,36 @@ const BasicStake = () => {
         <MText type="text-md">{format5Dec(APY_PCT)}</MText>
       </Flex>
 
-      <Flex width="100%" mt={1} mb={1} justifyContent="flex-start">
+      <Flex
+        width="100%"
+        mt={1}
+        mb={1}
+        justifyContent="flex-start"
+        alignItems="center"
+      >
         <MText
           type="text-md"
           color={colors.marinadeGreen}
           fontWeight="700"
           onClick={() => setShowEstimation((v) => !v)}
+          cursor="pointer"
         >
-          Estimated results
+          Estimated results{" "}
         </MText>
+        <IconButton
+          position="relative"
+          right="10px"
+          variant="link"
+          aria-label="dropdown results"
+          size="lg"
+          onClick={() => setShowEstimation((v) => !v)}
+          _focus={{ boxShadow: "none" }}
+          icon={showEstimation ? <BiChevronUp /> : <BiChevronDown />}
+          color={colors.marinadeGreen}
+        />
       </Flex>
       {showEstimation && (
-        <Table width="100%">
+        <Table width="100%" position="relative" bottom="10px" mb="-10px">
           <Tbody>
             <Tr>
               <Td />
