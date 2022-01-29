@@ -24,6 +24,12 @@ export function format2Dec(balance: number, divisor?: number): string {
     : (Math.round((balance / (divisor || 1)) * 1e2) / 1e2).toString();
 }
 
+export function format3Dec(balance: number, divisor?: number): string {
+  return balance == null
+    ? "0"
+    : (Math.round((balance / (divisor || 1)) * 1e3) / 1e3).toString();
+}
+
 export function format9Dec(balance: number, divisor?: number): string {
   return balance == null
     ? "0"
