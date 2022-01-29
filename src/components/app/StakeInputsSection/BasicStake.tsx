@@ -40,7 +40,11 @@ import { StakeAccount } from "solana/domain/stake-account";
 import colors from "styles/customTheme/colors";
 import { basicInputChecks } from "utils/basic-input-checks";
 import { checkNativeSOLBalance } from "utils/check-native-sol-balance";
-import { format2Dec, format5Dec } from "utils/number-to-short-version";
+import {
+  format2Dec,
+  format3Dec,
+  format5Dec,
+} from "utils/number-to-short-version";
 import { shortenAddress } from "utils/shorten-address";
 
 const BasicStake = () => {
@@ -98,7 +102,7 @@ const BasicStake = () => {
     return {
       duration,
       mSOL: "1 mSOL",
-      SOL: `${format2Dec(newmSOLvsSOL)} SOL`,
+      SOL: `${format3Dec(newmSOLvsSOL)} SOL`,
       value: `$${format2Dec(solPrice * newmSOLvsSOL)}`,
     };
   };
@@ -508,7 +512,7 @@ const BasicStake = () => {
         </MText>
         <IconButton
           position="relative"
-          right="10px"
+          right="6px"
           variant="link"
           aria-label="dropdown results"
           size="lg"
@@ -528,7 +532,11 @@ const BasicStake = () => {
               <Td />
             </Tr>
             {tableData.map((tuple) => (
-              <Tr key={tuple.duration} height="60px" fontSize="14.4px">
+              <Tr
+                key={tuple.duration}
+                height="60px"
+                fontSize={{ base: "13px", sm: "14.4px" }}
+              >
                 <Td px={1}>{tuple.duration}</Td>
                 <Td px={1} textAlign="center">
                   {tuple.mSOL}
