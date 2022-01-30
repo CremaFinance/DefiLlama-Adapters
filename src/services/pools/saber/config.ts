@@ -1,6 +1,7 @@
 import { coinSymbols } from "../../domain/coinSymbols";
 import { marketTypes } from "../../domain/marketTypes";
 import { PoolConfig } from "../../domain/pool";
+import { Token } from "../../domain/token";
 
 import { farmPoolAddress, FarmPoolAddress } from "./PoolAddress";
 import { farmPoolTokens } from "./PoolTokens";
@@ -12,11 +13,30 @@ export type SaberPoolResponse =
     }
   | undefined;
 
+interface PoolStats {
+  ammId: string;
+  coin: Token;
+  lp: Token;
+  pc: Token;
+  stats: {
+    price: number | null;
+    tvl_coin: number | null;
+    tvl_pc: number | null;
+    vol24h: number | null;
+  };
+}
+export type SaberPoolsResponse = { pools: PoolStats[] };
+
 const provider = "Saber";
 const actions = [
   {
-    text: "Manage deposit",
+    text: "Deposit",
     url: "https://app.saber.so/#/pools/msol_sol/deposit",
+    isExternal: true,
+  },
+  {
+    text: "Withdraw",
+    url: "https://app.saber.so/#/pools/msol_sol/withdraw",
     isExternal: true,
   },
 ];
@@ -27,7 +47,7 @@ export const saberPools: Record<FarmPoolAddress, PoolConfig> = {
     ...{
       provider,
       marketType: marketTypes.LP,
-      providerId: farmPoolAddress.saber_mSOL_SOL,
+      providerId: "Lee1XZJfJ9Hm2K1qTyeCz1LXNc1YBZaKZszvNY4KCDw",
       tokenA: coinSymbols.mSOL,
       tokenB: coinSymbols.SOL,
       rewards: {
