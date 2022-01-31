@@ -1,4 +1,5 @@
 import { Box, Flex, Image } from "@chakra-ui/react";
+import { useEffect } from "react";
 
 import FAQSection from "components/app/FAQSection";
 import Footer from "components/app/Footer";
@@ -6,9 +7,21 @@ import Header from "components/app/Header";
 import MobileMenu from "components/app/MobileMenu";
 import StakeInputsSection from "components/app/StakeInputsSection";
 import StakingSection from "components/app/StakingSection";
+import { useTracking } from "hooks/useTracking";
 import colors from "styles/customTheme/colors";
 
 const Staking = () => {
+  const { track } = useTracking();
+
+  useEffect(() => {
+    track({
+      event: "Init Stake Page",
+      category: "Page Inits",
+      action: "Load",
+      label: "Success",
+    });
+  }, [track]);
+
   return (
     <Box position="relative" overflow="hidden" bg={colors.greenLight}>
       <Flex width="100vw" justifyContent="flex-end">
