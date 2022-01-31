@@ -5,32 +5,31 @@ import {
   Image,
   Input,
   Menu,
-  MenuButton,
   MenuList,
-  MenuItem,
-  Button,
   useMediaQuery,
-  Divider,
-  Icon,
-  IconButton,
   Box,
-  useToast,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
 } from "@chakra-ui/react";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useState, useEffect } from "react";
-import { AiOutlineCheck } from "react-icons/ai";
-import { MdContentCopy } from "react-icons/md";
 import NumberFormat from "react-number-format";
 
 import { useMarinade } from "../../../contexts/MarinadeContext";
+import { useStats } from "../../../contexts/StatsContext";
 import { useUserBalance } from "../../../contexts/UserBalanceContext";
+import { usePrices } from "../../../hooks/usePrices";
 import { useTranslation } from "../../../hooks/useTranslation";
 import { useWallet } from "../../../hooks/useWallet";
 import { coinSymbols } from "../../../services/domain/coinSymbols";
 import colors from "../../../styles/customTheme/colors";
 import {
-  format5Dec,
-  format2Dec,
+  format3Dec,
   numberToShortVersion,
 } from "../../../utils/number-to-short-version";
 import {
@@ -39,6 +38,8 @@ import {
 } from "../../../utils/shorten-address";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
+import StakeInputButton from "../StakeInputButton";
+import StakeInputMenuItem from "../StakeInputMenuItem";
 
 export enum StakeInputTypeEnum {
   Source = "source",
@@ -83,9 +84,19 @@ const StakeInput = ({
   isLoading,
 }: StakeInputProps) => {
   const { t } = useTranslation();
-  const toast = useToast();
-  const balanceLabel = t("appPage.balance");
+  const prices = usePrices([coinSymbols.SOL, coinSymbols.mSOL]);
+  const stats = useStats();
 
+  const balanceLabel = t("appPage.balance");
+  const solUSD =
+    prices[coinSymbols.SOL]?.usd && Number(prices[coinSymbols.SOL]?.usd);
+  const tokenPrices = {
+    [coinSymbols.SOL]: solUSD,
+    [coinSymbols.mSOL]:
+      solUSD && stats?.mSOLvsSOLParity !== null
+        ? solUSD * stats.mSOLvsSOLParity
+        : undefined,
+  };
   const [isWiderThan768] = useMediaQuery("(min-width: 768px)");
   const [selectedAccount, setSelectedAccount] = useState(currentAccount);
   const [isStakeAccountSelected, setIsStakeAccountSelected] = useState(false);
@@ -95,6 +106,14 @@ const StakeInput = ({
   const marinadeState = marinade?.marinadeState;
   const { nativeSOLBalance } = useUserBalance();
 
+  const isInputWithStakeAccounts =
+    stakeInputType === StakeInputTypeEnum.Source &&
+    currentAccount !== undefined &&
+    selectedAccount !== undefined &&
+    stakeAccounts !== undefined &&
+    stakeAccounts.length;
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const solTranslation = t("appPage.sol");
   const BUFFER =
     tokenName === coinSymbols.SOL
       ? 0.01 +
@@ -171,27 +190,6 @@ const StakeInput = ({
     state?.rent_exempt_for_token_acc,
   ]);
 
-  const copyToClipBoard = (v: string) => {
-    try {
-      navigator.clipboard.writeText(v);
-      toast({
-        title: t("appPage.stake-dropdown-toast.successTitle"),
-        description: t("appPage.stake-dropdown-toast.successBody"),
-        status: "success",
-        variant: "subtle",
-        isClosable: true,
-      });
-    } catch (err) {
-      toast({
-        title: t("appPage.stake-dropdown-toast.errorTitle"),
-        description: t("appPage.stake-dropdown-toast.errorTitle"),
-        status: "success",
-        variant: "subtle",
-        isClosable: true,
-      });
-    }
-  };
-
   return (
     <Flex
       height="104px"
@@ -207,27 +205,38 @@ const StakeInput = ({
       justifyContent="space-between"
     >
       <Flex justifyContent="space-between">
-        {isWalletConnected &&
-        stakeInputType === StakeInputTypeEnum.Source &&
-        currentAccount !== undefined &&
-        selectedAccount !== undefined &&
-        stakeAccounts !== undefined ? (
+        {!isWalletConnected ? (
+          <StakeInputButton component="Button" tokenIcon={tokenIcon}>
+            <MText fontWeight="400">{solTranslation}</MText>
+          </StakeInputButton>
+        ) : null}
+        {isWalletConnected && !isInputWithStakeAccounts ? (
+          <Flex
+            boxShadow="md"
+            rounded="md"
+            justifyContent="space-around"
+            alignItems="center"
+            height="44px"
+            px={2}
+            bg="white"
+          >
+            <Image
+              src={tokenIcon}
+              alt="Source Token Logo"
+              width={["24px", "30px"]}
+              mr={2}
+            />
+            <MText type="text-xl">{tokenName}</MText>
+          </Flex>
+        ) : null}
+
+        {isWalletConnected && isInputWithStakeAccounts && isWiderThan768 ? (
           <Menu>
-            <MenuButton
-              boxShadow="md"
-              as={Button}
-              rounded="md"
-              bg="white"
-              _focus={{ boxShadow: "none" }}
-              variant="solid"
-              font="text-lg"
-              height="44px"
-              px={2}
-              leftIcon={
-                <Image src={tokenIcon} mr={1} width={["24px", "30px"]} />
-              }
+            <StakeInputButton
+              component="MenuButton"
+              tokenIcon={tokenIcon}
               rightIcon={
-                <Image src="/icons/expand-more-black.svg" width="1.5rem" />
+                stakeAccounts.length ? "/icons/expand-more-black.svg" : ""
               }
             >
               <MText fontWeight="400">
@@ -235,7 +244,7 @@ const StakeInput = ({
                   ? shortenAddress(`${selectedAccount.address}`)
                   : shortenAddressForMobile(`${selectedAccount.address}`)}
               </MText>
-            </MenuButton>
+            </StakeInputButton>
 
             <MenuList
               width="320px"
@@ -246,121 +255,30 @@ const StakeInput = ({
             >
               {isWalletConnected && (
                 <Box>
-                  <MenuItem>
-                    <MText fontWeight="bold" type="text-lg">
-                      {t("appPage.stake-dropdown-wallet-balance")}
-                    </MText>
-                  </MenuItem>
-                  <MenuItem
-                    px={4}
+                  <StakeInputMenuItem
+                    key={currentAccount.address}
+                    icon={tokenIcon}
+                    balance={currentAccount.balance}
+                    title={solTranslation}
+                    subTitle={t("appPage.wrapped-sol")}
                     onClick={() => {
                       handleSelectedAccount(currentAccount, false);
                     }}
-                  >
-                    <Flex justifyContent="space-between" width="100%">
-                      <Flex alignItems="center">
-                        {selectedAccount.address === currentAccount.address ? (
-                          <Icon
-                            as={AiOutlineCheck}
-                            width="16px"
-                            height="16px"
-                            color={colors.black}
-                            mr={2}
-                          />
-                        ) : (
-                          <Box width={6} />
-                        )}
-
-                        <MText width="100px" mr={2} type="text-lg">
-                          {shortenAddress(`${currentAccount.address}`)}
-                        </MText>
-                        <IconButton
-                          variant="link"
-                          aria-label="Copy address"
-                          size="sm"
-                          icon={<MdContentCopy />}
-                          _focus={{ boxShadow: "none" }}
-                          onClick={(event) => {
-                            event.stopPropagation();
-                            copyToClipBoard(currentAccount.address);
-                          }}
-                        />
-                      </Flex>
-
-                      <MText type="text-lg">
-                        {isWiderThan768
-                          ? format5Dec(currentAccount.balance)
-                          : format2Dec(currentAccount.balance)}
-                      </MText>
-                    </Flex>
-                  </MenuItem>
-                  <Divider orientation="horizontal" color="gray.100" />
-                  <MenuItem>
-                    <MText fontWeight="bold" type="text-lg">
-                      {t("appPage.stake-dropdown-stake-accounts")}
-                    </MText>
-                  </MenuItem>
-                  {!stakeAccounts.length && (
-                    <Flex
-                      justifyContent="center"
-                      alignItems="center"
-                      width="100%"
-                      direction="column"
-                    >
-                      <MText type="text-md">
-                        {t("appPage.no-stake-accounts.line-1")}
-                      </MText>
-                      <MText type="text-md">
-                        {t("appPage.no-stake-accounts.line-2")}
-                      </MText>
-                    </Flex>
-                  )}
+                  />
 
                   {stakeAccounts.map((stakeAccount) => (
-                    <MenuItem
-                      isDisabled={!stakeAccount.isStakable}
+                    <StakeInputMenuItem
                       key={stakeAccount.address}
+                      isDisabled={!stakeAccount.isStakable}
                       onClick={() => {
                         handleSelectedAccount(stakeAccount, true);
                       }}
-                      px={4}
-                    >
-                      <Flex justifyContent="space-between" width="100%">
-                        <Flex alignItems="center">
-                          {selectedAccount.address === stakeAccount.address ? (
-                            <Icon
-                              as={AiOutlineCheck}
-                              width="16px"
-                              height="16px"
-                              color={colors.black}
-                              mr={2}
-                            />
-                          ) : (
-                            <Box width={6} />
-                          )}
-                          <MText width="100px" mr={2} type="text-lg">
-                            {shortenAddress(`${stakeAccount.address}`)}
-                          </MText>
-                          <IconButton
-                            variant="link"
-                            aria-label="Copy address"
-                            size="sm"
-                            icon={<MdContentCopy />}
-                            _focus={{ boxShadow: "none" }}
-                            onClick={(event) => {
-                              event.stopPropagation();
-                              copyToClipBoard(stakeAccount.address);
-                            }}
-                          />
-                        </Flex>
-
-                        <MText type="text-lg">
-                          {isWiderThan768
-                            ? format5Dec(stakeAccount.balance)
-                            : format2Dec(stakeAccount.balance)}
-                        </MText>
-                      </Flex>
-                    </MenuItem>
+                      icon={tokenIcon}
+                      balance={stakeAccount.balance}
+                      title={t("appPage.sol-stake-account")}
+                      subTitle={stakeAccount.address}
+                      shortenSubtitle
+                    />
                   ))}
                 </Box>
               )}
@@ -379,25 +297,64 @@ const StakeInput = ({
               )}
             </MenuList>
           </Menu>
-        ) : (
-          <Flex
-            boxShadow="md"
-            rounded="md"
-            justifyContent="space-around"
-            alignItems="center"
-            height="44px"
-            px={2}
-            bg="white"
-          >
-            <Image
-              src={tokenIcon}
-              alt="Source Token Logo"
-              width={["24px", "30px"]}
-              mr={2}
-            />
-            <MText type="text-xl">{tokenName}</MText>
-          </Flex>
-        )}
+        ) : null}
+
+        {isWalletConnected && isInputWithStakeAccounts && !isWiderThan768 ? (
+          <>
+            <StakeInputButton
+              component="Button"
+              tokenIcon={tokenIcon}
+              rightIcon="/icons/expand-more-black.svg"
+              onClick={onOpen}
+            >
+              <MText fontWeight="400">
+                {shortenAddressForMobile(`${selectedAccount.address}`)}
+              </MText>
+            </StakeInputButton>
+
+            <Modal
+              isOpen={isOpen}
+              onClose={onClose}
+              blockScrollOnMount
+              size="full"
+            >
+              <ModalOverlay />
+              <ModalContent>
+                <ModalHeader>{t("appPage.stake-accounts")}</ModalHeader>
+                <ModalCloseButton />
+                <ModalBody>
+                  <StakeInputMenuItem
+                    key={currentAccount.address}
+                    icon={tokenIcon}
+                    balance={currentAccount.balance}
+                    title={solTranslation}
+                    subTitle={t("appPage.wrapped-sol")}
+                    onClick={() => {
+                      handleSelectedAccount(currentAccount, false);
+                      onClose();
+                    }}
+                  />
+                  {stakeAccounts.map((stakeAccount) => (
+                    <StakeInputMenuItem
+                      key={stakeAccount.address}
+                      isDisabled={!stakeAccount.isStakable}
+                      onClick={() => {
+                        handleSelectedAccount(stakeAccount, true);
+                        onClose();
+                      }}
+                      icon={tokenIcon}
+                      balance={stakeAccount.balance}
+                      title={t("appPage.sol-stake-account")}
+                      subTitle={stakeAccount.address}
+                      shortenSubtitle
+                    />
+                  ))}
+                </ModalBody>
+              </ModalContent>
+            </Modal>
+          </>
+        ) : null}
+
         <NumberFormat
           customInput={Input}
           variant="unstyled"
@@ -432,30 +389,43 @@ const StakeInput = ({
           }
         />
       </Flex>
-      <Flex alignItems="center" justifyContent="flex-start" mb={2}>
-        <MText type="text-sm">{`${balanceLabel}: ${numberToShortVersion(
-          tokenBalance
-        )} ${tokenName}`}</MText>
-        {tokenBalance &&
-        !isStakeAccountSelected &&
-        stakeInputType !== StakeInputTypeEnum.Target ? (
-          <MButton
-            variant="link"
-            font="text-sm"
-            color={colors.marinadeGreen}
-            fontWeight="bold"
-            onClick={() =>
-              onValueChange
-                ? onValueChange(Math.max(0, tokenBalance - BUFFER).toString())
-                : {}
-            }
-            pb="1px"
-            pl="4px"
-            _hover={{}}
-          >
-            ({t("appPage.max")})
-          </MButton>
-        ) : undefined}
+      <Flex alignItems="center" justifyContent="space-between" mb={2}>
+        <Flex>
+          <MText type="text-sm">
+            {!isStakeAccountSelected
+              ? `${balanceLabel}: ${numberToShortVersion(
+                  tokenBalance
+                )} ${tokenName}`
+              : `${t("appPage.stake-account-singular")} ${shortenAddress(
+                  currentAccount?.address || ""
+                )}`}
+          </MText>
+          {tokenBalance &&
+          !isStakeAccountSelected &&
+          stakeInputType !== StakeInputTypeEnum.Target ? (
+            <MButton
+              variant="link"
+              font="text-sm"
+              color={colors.marinadeGreen}
+              fontWeight="bold"
+              onClick={() =>
+                onValueChange
+                  ? onValueChange(Math.max(0, tokenBalance - BUFFER).toString())
+                  : {}
+              }
+              pb="1px"
+              pl="4px"
+              _hover={{}}
+            >
+              ({t("appPage.max")})
+            </MButton>
+          ) : undefined}
+        </Flex>
+        {isWalletConnected && parseFloat(value || "") ? (
+          <MText type="text-sm">{`-$ ${format3Dec(
+            parseFloat(value || "") * (tokenPrices[tokenName] || 0)
+          )}`}</MText>
+        ) : null}
       </Flex>
     </Flex>
   );

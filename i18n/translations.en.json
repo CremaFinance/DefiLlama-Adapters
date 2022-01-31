@@ -281,7 +281,8 @@
     "successfully-unstake-mSOL": "You've successfully unstaked your mSOL",
     "unstake-mSOL-confirmed": "Unstake mSOL confirmed",
     "stake-dropdown-wallet-balance": "Wallet balance",
-    "stake-dropdown-stake-accounts": "Stake accounts",
+    "stake-accounts": "Stake Accounts",
+    "stake-account-singular": "Stake account",
     "insufficient-funds-to-unstake": "Insufficient funds to unstake",
     "you-requested-to-unstake": "You requested to unstake {{requestedAmount}} mSOL (have only {{actualAmount}})",
     "insufficient-liquidity-in-the-liquidity-pool": "Insufficient Liquidity in the Liquidity Pool. Please use Delayed Unstake",
@@ -316,6 +317,8 @@
 
     "tickets-accounts": "Ticket accounts",
     "sol": "SOL",
+    "sol-stake-account": "SOL (stake account)",
+    "wrapped-sol": "Wrapped SOL",
     "claim-action": "Claim",
     "copy-success-title": "Address copied",
     "copy-success-message": "Address copied success",
