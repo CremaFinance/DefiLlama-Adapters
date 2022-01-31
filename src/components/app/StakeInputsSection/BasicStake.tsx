@@ -99,10 +99,12 @@ const BasicStake = () => {
 
   const mSOLvsSOLParity = marinadeState?.state?.st_sol_price
     ? marinadeState.state.st_sol_price.toNumber() / 0x1_0000_0000
-    : 0;
+    : 1;
   const sourceTokenBalance = nativeSOLBalance
     ? nativeSOLBalance / LAMPORTS_PER_SOL - 0.001
     : 0;
+
+  const mSOLReceived = format5Dec(Number(solStaked) / mSOLvsSOLParity);
 
   const handleSelectAccountCallback = (
     value: boolean,
@@ -434,7 +436,7 @@ const BasicStake = () => {
       <SuccessStakeModal
         isOpen={isOpen}
         onClose={onClose}
-        stakedAmount={solStaked}
+        stakedAmount={mSOLReceived}
         stakedCurrency="mSOL"
       />
     </>
