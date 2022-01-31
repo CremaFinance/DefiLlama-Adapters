@@ -5,11 +5,11 @@ import { synthetifyPoolAddress, SynthetifyPoolAddress } from "./poolAddress";
 export const synthetifyPoolTokens: TokenRecord<SynthetifyPoolAddress> = {
   [synthetifyPoolAddress.SNY_mSOL]: {
     chainId: 101,
-    address: "mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So",
+    address: "13SZwwdsUoU8tkYn2PnCkaB689dB8ZK7RMStFcG3Rgoj",
     symbol: "mSOL",
     name: "Synthetify mSol",
     decimals: 6,
-    logoURI: "/pools/sny.png",
+    logoURI: "/pools/synthetify.png",
     extensions: {},
   },
 };

@@ -1,5 +1,5 @@
 export const synthetifyPoolAddress = {
-  SNY_mSOL: "mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So",
+  SNY_mSOL: "13SZwwdsUoU8tkYn2PnCkaB689dB8ZK7RMStFcG3Rgoj",
 } as const;
 
 export type SynthetifyPoolAddress =

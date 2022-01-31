@@ -25,13 +25,9 @@ export const synthetifyPools: Record<SynthetifyPoolAddress, PoolConfig> = {
       providerId: synthetifyPoolIds.SNY_mSOL,
       tokenA: coinSymbols.mSOL,
       rewards: {
-        [coinSymbols.SNY]: {
-          aprDescription: "SNY rewards",
-          dailyRate: 10000 / 7,
-        },
         [coinSymbols.MNDE]: {
           aprDescription: "MNDE rewards",
-          dailyRate: 20000 / 7,
+          dailyRate: 9700 / 7,
         },
       },
       actions,
