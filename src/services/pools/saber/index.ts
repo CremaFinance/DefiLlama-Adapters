@@ -4,14 +4,15 @@ import { request, gql } from "graphql-request";
 
 import { APYFromAPR } from "../../../utils/apy-from-apr";
 import { updatePoolRewards } from "../../../utils/update-pool-rewards";
-import { ENDPOINTS } from "../../../utils/web3/endpoints";
+import { DEFAULT_ENDPOINT } from "../../../utils/web3/endpoints";
 import { Prices } from "../../domain/coinSymbols";
 import { FetchPools, Pool } from "../../domain/pool";
 
 import { saberPools, SaberPoolsResponse } from "./config";
 import { farmPoolAddress } from "./PoolAddress";
 
-const connection = new Connection(ENDPOINTS[1].endpoint, "recent");
+// note: only works on mainnet
+const connection = new Connection(DEFAULT_ENDPOINT.endpoint, "recent");
 
 const STATS_QUERY = gql`
   query AllPoolStats {
@@ -56,7 +57,6 @@ export async function fetchPools(): Promise<{
   saberData: SaberPoolsResponse;
   apr: number | undefined;
 }> {
-  // new po.StableSwap({ connection });
   const saberData = await request<SaberPoolsResponse>(
     "https://saberqltest.aleph.cloud/",
     STATS_QUERY
@@ -110,7 +110,6 @@ export const mapSaberPoolsResponse = (
 
 export const getSaber: FetchPools = async (prices) => {
   const { saberData, apr } = await fetchPools();
-  // const saberData = options?.saberData as SaberPoolResponse;
   return mapSaberPoolsResponse(saberData, prices, apr);
 };
 
