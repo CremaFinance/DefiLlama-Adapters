@@ -14,7 +14,7 @@ import MobileDataHeader from "./MobileDataHeader";
 const AllPoolsSection = () => {
   const [sorting, setSorting] = useState<SortingState>({
     column: COLUMNS.PROVIDER,
-    isInverted: false,
+    isInverted: true,
   });
 
   const { liqPoolBalance } = useStats();
