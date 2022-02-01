@@ -6,7 +6,6 @@ import colors from "styles/customTheme/colors";
 
 import MNDEFarmCard from "./MNDEFarmCard";
 import MSolLPCard from "./MSolLPCard";
-import RetroMnde from "./RetroMnde";
 
 const MndeSection = () => {
   const { t } = useTranslation();
@@ -73,7 +72,6 @@ const MndeSection = () => {
         <>
           <MNDEFarmCard />
           <MSolLPCard />
-          <RetroMnde />
         </>
       </Flex>
     </Flex>
