@@ -3,7 +3,6 @@ import { Connection, PublicKey } from "@solana/web3.js";
 import { FetchPools, Pool } from "../../domain/pool";
 import { Provider } from "../../domain/providers";
 import { coinSymbols, Prices } from "services/domain/coinSymbols";
-import { fetchCoinGeckoPriceBySymbol } from "services/markets/coinGeckoPrice";
 import { DEFAULT_ENDPOINT } from "utils/web3/endpoints";
 
 import { synthetifyPools } from "./config";
@@ -27,30 +26,28 @@ const getSynthetifyApiData = async (): Promise<SynthetifyStatsResponse[]> => {
 };
 
 export const getSynthetifyData: FetchPools = async (prices: Prices) => {
+  const apiData = await getSynthetifyApiData();
+
+  const lastApiSnapshot = apiData.at(-1);
+  const debt = lastApiSnapshot?.debtPoolUSD ?? 0;
+
+  const snyApr =
+    debt === 0 ? 0 : (((10000 * (prices?.SNY?.usd ?? 0)) / debt) * 52) / 100;
+
+  const snyApy = ((snyApr / 52 + 1) ** 52 - 1) * 10000;
+
   if (DEFAULT_ENDPOINT.name !== "mainnet-beta") {
     return {
       [synthetifyPoolAddress.SNY_mSOL]: {
         ...synthetifyPools[synthetifyPoolAddress.SNY_mSOL],
-        totalLockedValue: 0,
-        liq: 0,
-        apy: 0,
-        tradingApy: 0,
+        totalLockedValue: lastApiSnapshot?.collateralAll ?? 0,
+        liq: lastApiSnapshot?.collateralAll ?? 0,
+        apy: snyApy,
+        tradingApy: snyApy,
+        rewards: {},
       } as Pool,
     };
   }
-  const apiData = await getSynthetifyApiData();
-
-  const lastApiSnapshot = apiData.at(-1);
-  const debt = lastApiSnapshot?.synthetic ?? 0;
-
-  const snyPriceData = await fetchCoinGeckoPriceBySymbol(coinSymbols.SNY);
-
-  const snyApr =
-    debt === 0
-      ? 0
-      : (((10000 * (snyPriceData?.SNY?.usd ?? 0)) / debt) * 52) / 100;
-
-  const snyApy = ((snyApr / 52 + 1) ** 52 - 1) * 10000;
 
   const rawMSOLBalance = await connection.getTokenAccountBalance(
     new PublicKey(synthetifyPoolAddress.SNY_mSOL)

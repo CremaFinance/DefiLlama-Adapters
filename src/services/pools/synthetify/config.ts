@@ -29,6 +29,11 @@ export const synthetifyPools: Record<SynthetifyPoolAddress, PoolConfig> = {
           aprDescription: "MNDE rewards",
           dailyRate: 9700 / 7,
         },
+        [coinSymbols.SNY]: {
+          // added only to make app fetch SNY price, it's basicly trading apy
+          aprDescription: "SNY rewards",
+          dailyRate: 10000 / 7,
+        },
       },
       actions,
     },
