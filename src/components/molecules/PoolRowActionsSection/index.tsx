@@ -3,10 +3,10 @@ import { FunctionComponent } from "react";
 
 import { useWallet } from "../../../hooks/useWallet";
 import { Action } from "../../../services/domain/pool";
+import colors from "../../../styles/customTheme/colors";
 import Button from "../../atoms/Button";
 import { ConnectWallet } from "../ConnectWallet";
 import SolLiquidityModal from "../SolLiquidityModal";
-import colors from "styles/customTheme/colors";
 
 type PoolRowActionsSectionProps = {
   actions: Action[];
