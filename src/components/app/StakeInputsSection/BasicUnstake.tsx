@@ -38,6 +38,7 @@ const BasicUnstake = () => {
   const { t } = useTranslation();
   const toast = useToast();
   const { track } = useTracking();
+  const trackingCategoryBasicStaking = "Basic Staking";
   const connection = useConnection();
   const keys = useKeys();
 
@@ -211,8 +212,8 @@ const BasicUnstake = () => {
             isClosable: true,
           });
           track({
-            event: "Unstake SOL Account",
-            category: "Account Staking",
+            event: "Unstake SOL",
+            category: trackingCategoryBasicStaking,
             action: "Unstake",
             label: "Success",
           });
@@ -282,7 +283,7 @@ const BasicUnstake = () => {
           });
           track({
             event: "Claim SOL",
-            category: "Basic Staking",
+            category: trackingCategoryBasicStaking,
             action: "Claim",
             label: "Success",
           });
@@ -307,7 +308,7 @@ const BasicUnstake = () => {
           });
           track({
             event: "Claim SOL Error",
-            category: "Basic Staking",
+            category: trackingCategoryBasicStaking,
             action: "Claim",
             label: "Error",
             description: errorMessage,

@@ -122,7 +122,7 @@ const DelayedUnstakeModal = ({
             isClosable: true,
           });
           track({
-            event: "Delayed Unstake SOL Account",
+            event: "Unstake SOL Account",
             category: "Account Staking",
             action: "Unstake",
             label: "Success",
