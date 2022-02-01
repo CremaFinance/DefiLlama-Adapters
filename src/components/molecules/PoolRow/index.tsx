@@ -66,18 +66,18 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
         maxWidth={{ base: undefined, lg: "208px" }}
         justifyContent={{ base: "space-between", lg: "flex-start" }}
       >
-        <Flex>
+        <Flex alignItems="center">
           <Image
             src={`/pools/${tokenA.toLowerCase()}.png`}
-            width="24px"
-            height="24px"
+            width="40px"
+            height="40px"
           />
           {tokenB && (
             <Image
               src={tokenB ? `/pools/${tokenB.toLowerCase()}.png` : ""}
-              width="24px"
-              height="24px"
-              marginLeft="4px"
+              width="40px"
+              height="40px"
+              marginLeft="-8px"
             />
           )}
           <Text marginLeft="8px" lineHeight="21.6px" fontSize="14.4px">
@@ -159,8 +159,8 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
           <Image
             src={logoURI}
             marginRight={{ base: "0", xl: "1rem" }}
-            width={{ base: "2.5rem", lg: "4rem" }}
-            height={{ base: "2.5rem", lg: "4rem" }}
+            width="40px"
+            height="40px"
           />
         </Tooltip>
       </Flex>

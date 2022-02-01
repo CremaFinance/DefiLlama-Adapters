@@ -6,6 +6,7 @@ import { Action } from "../../../services/domain/pool";
 import Button from "../../atoms/Button";
 import { ConnectWallet } from "../ConnectWallet";
 import SolLiquidityModal from "../SolLiquidityModal";
+import colors from "styles/customTheme/colors";
 
 type PoolRowActionsSectionProps = {
   actions: Action[];
@@ -46,11 +47,16 @@ const PoolRowActionsSection: FunctionComponent<PoolRowActionsSectionProps> = ({
             >
               <Button
                 variant="outline"
+                colorScheme="gray"
                 _hover={{ bg: "gray.100" }}
+                border="1px"
+                borderColor="gray.500"
+                textColor={colors.black}
+                rounded="md"
                 onClick={() => window.open(actions[1].url, "_blank")}
                 flex={1}
                 rightIcon={
-                  <Image src="/icons/external-link-green.svg" width="0.8rem" />
+                  <Image src="/icons/external-link-black.svg" width="0.8rem" />
                 }
               >
                 {actions[1].text}
