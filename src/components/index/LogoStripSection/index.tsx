@@ -1,4 +1,4 @@
-import { Flex, Image, Link } from "@chakra-ui/react";
+import { Flex, Image, Link, Tooltip } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 
 import MText from "../../atoms/Text";
@@ -87,18 +87,25 @@ const LogoStripSection = () => {
       >
         {ecosystem.map((el) => {
           return (
-            <Link href={el.href} key={`ecosystem-${el.title}`} isExternal>
-              <Image
-                cursor="pointer"
-                src={el.image}
-                alt={el.title}
-                _hover={{ opacity: "1" }}
-                opacity="0.6"
-                height={["38px", "56px"]}
-                marginX="20px"
-                mb={{ base: 4, lg: 0 }}
-              />
-            </Link>
+            <Tooltip
+              hasArrow
+              label={el.title}
+              bg={colors.marinadeEvenLighterGreen}
+              color="black"
+            >
+              <Link href={el.href} key={`ecosystem-${el.title}`} isExternal>
+                <Image
+                  cursor="pointer"
+                  src={el.image}
+                  alt={el.title}
+                  _hover={{ opacity: "1" }}
+                  opacity="0.6"
+                  height={["38px", "56px"]}
+                  marginX="20px"
+                  mb={{ base: 4, lg: 0 }}
+                />
+              </Link>
+            </Tooltip>
           );
         })}
       </Flex>

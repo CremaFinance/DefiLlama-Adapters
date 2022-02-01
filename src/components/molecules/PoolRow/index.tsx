@@ -1,9 +1,10 @@
-import { Flex, Image, Icon, Spinner } from "@chakra-ui/react";
+import { Flex, Image, Icon, Spinner, Tooltip } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { FunctionComponent } from "react";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 
 import { Pool, PoolConfig } from "../../../services/domain/pool";
+import colors from "../../../styles/customTheme/colors";
 import { numberToShortVersion } from "../../../utils/number-to-short-version";
 import Button from "../../atoms/Button";
 import Heading from "../../atoms/Heading";
@@ -25,6 +26,7 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
     logoURI,
     rewards,
     actions,
+    provider,
     leverage,
   } = pool;
   const { t } = useTranslation();
@@ -148,12 +150,19 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
         maxWidth="193px"
         display={{ base: "none", lg: "flex" }}
       >
-        <Image
-          src={logoURI}
-          marginRight={{ base: "0", xl: "1rem" }}
-          width={{ base: "2.5rem", lg: "4rem" }}
-          height={{ base: "2.5rem", lg: "4rem" }}
-        />
+        <Tooltip
+          hasArrow
+          label={provider}
+          bg={colors.marinadeEvenLighterGreen}
+          color="black"
+        >
+          <Image
+            src={logoURI}
+            marginRight={{ base: "0", xl: "1rem" }}
+            width={{ base: "2.5rem", lg: "4rem" }}
+            height={{ base: "2.5rem", lg: "4rem" }}
+          />
+        </Tooltip>
       </Flex>
       <Flex
         justifyContent={{ base: "stretch", lg: "flex-end" }}
