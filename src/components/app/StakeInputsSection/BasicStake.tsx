@@ -493,7 +493,7 @@ const BasicStake = () => {
             />
           </TooltipWithContent>
         </Flex>
-        <MText type="text-md">{format5Dec(APY_PCT)}</MText>
+        <MText type="text-md">{format2Dec(APY_PCT)}%</MText>
       </Flex>
 
       <Flex
@@ -524,7 +524,7 @@ const BasicStake = () => {
           color={colors.marinadeGreen}
         />
       </Flex>
-      {showEstimation && (
+      {showEstimation && Number(solToStake) !== 0 && (
         <Table width="100%" position="relative" bottom="10px" mb="-10px">
           <Tbody>
             <Tr>
