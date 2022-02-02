@@ -1,7 +1,7 @@
 import { Flex, Icon } from "@chakra-ui/react";
-import { useTranslation } from "next-export-i18n";
 import { IoCheckmarkCircle } from "react-icons/io5";
 
+import { useTranslation } from "../../../hooks/useTranslation";
 import colors from "../../../styles/customTheme/colors";
 import MText from "../../atoms/Text";
 
