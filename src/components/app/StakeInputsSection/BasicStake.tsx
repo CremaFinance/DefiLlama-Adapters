@@ -42,8 +42,8 @@ import { basicInputChecks } from "utils/basic-input-checks";
 import { checkNativeSOLBalance } from "utils/check-native-sol-balance";
 import {
   format2Dec,
-  format3Dec,
   format5Dec,
+  numberToShortVersion,
 } from "utils/number-to-short-version";
 import { shortenAddress } from "utils/shorten-address";
 
@@ -100,12 +100,15 @@ const BasicStake = () => {
   const generateEntry = (duration: string, days: number) => {
     const ratio = (1 + DPR) ** days;
     const newmSOLvsSOL = mSOLvsSOLParity * ratio;
+    const mSOLToReceive = Number(solToStake) / mSOLvsSOLParity;
 
     return {
       duration,
-      mSOL: "1 mSOL",
-      SOL: `${format3Dec(newmSOLvsSOL)} SOL`,
-      value: `$${format2Dec(solPrice * newmSOLvsSOL)}`,
+      mSOL: `${numberToShortVersion(mSOLToReceive)} mSOL`,
+      SOL: `${numberToShortVersion(mSOLToReceive * newmSOLvsSOL)} SOL`,
+      value: `$${numberToShortVersion(
+        mSOLToReceive * newmSOLvsSOL * solPrice
+      )}`,
     };
   };
 
@@ -118,7 +121,7 @@ const BasicStake = () => {
       generateEntry("1y", 365),
     ];
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mSOLvsSOLParity, solPrice]);
+  }, [mSOLReceived, mSOLvsSOLParity, solPrice, Number(solToStake)]);
 
   const {
     getStakeAccountsAction,
