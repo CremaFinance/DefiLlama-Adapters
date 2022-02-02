@@ -260,7 +260,11 @@ const BasicUnstake = () => {
       });
   };
 
-  const runClaimHandler = (accountPubkey: TicketAccount["key"]) => {
+  const runClaimHandler = (
+    accountPubkey: TicketAccount["key"],
+    setLodaerState: (state: boolean) => void
+  ) => {
+    setLodaerState(true);
     marinade
       .runClaim(accountPubkey)
       .then(
@@ -323,7 +327,8 @@ const BasicUnstake = () => {
           walletPubKey as PublicKey,
           true
         )
-      );
+      )
+      .finally(() => setLodaerState(false));
   };
 
   return (
