@@ -8,14 +8,12 @@ const CallToActionSection = () => {
 
   return (
     <Flex
-      flexDirection={["column", "row"]}
+      flexDirection={{ base: "column", lg: "row" }}
       aria-label="call-to-action-section"
       justifyContent={["center", "space-between"]}
       alignContent="center"
-      mx={{ base: "65px", xl: "170px" }}
+      mx={{ base: "14vw", md: "170px" }}
       mt="12px"
-      minWidth={{ base: "288px", lg: "900px" }}
-      maxWidth={{ base: "unset", lg: "1100px" }}
     >
       <Button
         variant="solid"
@@ -50,7 +48,7 @@ const CallToActionSection = () => {
         borderColor="black"
         color="black"
         _hover={{}}
-        my={{ base: "24px", lg: "16px" }}
+        my={{ base: "24px", lg: 0 }}
         rightIcon={<Image fill="black" src="/github.svg" width="24px" />}
       >
         <Link
