@@ -539,14 +539,16 @@ const BasicStake = () => {
                 height="60px"
                 fontSize={{ base: "13px", sm: "14.4px" }}
               >
-                <Td px={1}>{tuple.duration}</Td>
-                <Td px={1} textAlign="center">
+                <Td px={1} width="50px">
+                  {tuple.duration}
+                </Td>
+                <Td px={1} width="100px" textAlign="right">
                   {tuple.mSOL}
                 </Td>
-                <Td px={1} textAlign="center">
+                <Td px={1} width="100px" textAlign="right">
                   {tuple.SOL}
                 </Td>
-                <Td px={1} textAlign="right">
+                <Td px={1} width="100px" textAlign="right">
                   {tuple.value}
                 </Td>
               </Tr>
