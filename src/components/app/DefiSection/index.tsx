@@ -1,7 +1,6 @@
 import { Flex } from "@chakra-ui/react";
 
 import AllPoolsSection from "../AllPoolsSection";
-import CallToActionSection from "../CallToActionSection";
 import DefiSubtitleSection from "../DefiSubtitleSection";
 
 const DefiSection = () => {
@@ -16,7 +15,6 @@ const DefiSection = () => {
     >
       <DefiSubtitleSection />
       <AllPoolsSection />
-      <CallToActionSection />
     </Flex>
   );
 };

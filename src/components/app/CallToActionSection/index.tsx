@@ -7,20 +7,19 @@ const CallToActionSection = () => {
   const { t } = useTranslation();
 
   return (
-    <Flex flex={1} justifyContent="center">
-      <Flex
-        flexDirection={{ base: "column", lg: "row" }}
-        flexWrap="wrap"
-        aria-label="call-to-action-section"
-        justifyContent="center"
-        alignContent="center"
-        minWidth={{ base: "288px", lg: "900px" }}
-        maxWidth={{ base: "320px", lg: "1100px" }}
-        mt="12px"
-      >
+    <Flex
+      flexDirection={{ base: "column", lg: "row" }}
+      flexWrap="wrap"
+      aria-label="call-to-action-section"
+      justifyContent="center"
+      alignContent="center"
+      mt="12px"
+      width="100%"
+    >
+      <Flex flex={1}>
         <Button
           variant="solid"
-          width={["300px", "350px"]}
+          width="100%"
           height="48px"
           fontSize="text-xl"
           backgroundColor="transparent"
@@ -43,9 +42,12 @@ const CallToActionSection = () => {
             {t("appPage.cta-section.missing-integration")}
           </Link>
         </Button>
+      </Flex>
+
+      <Flex flex={1}>
         <Button
           variant="solid"
-          width={["300px", "350px"]}
+          width="100%"
           height="48px"
           fontSize="text-xl"
           backgroundColor="transparent"
@@ -68,9 +70,12 @@ const CallToActionSection = () => {
             {t("appPage.cta-section.list-your-integration")}
           </Link>
         </Button>
+      </Flex>
+
+      <Flex flex={1}>
         <Button
           variant="solid"
-          width={["300px", "350px"]}
+          width="100%"
           height="48px"
           fontSize="text-xl"
           backgroundColor="transparent"
