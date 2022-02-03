@@ -27,7 +27,7 @@ const CallToActionSection = () => {
           border="1px"
           borderColor="black"
           color="black"
-          mx={5}
+          mx="4px"
           _hover={{}}
           my={{ base: 0, lg: "8px" }}
           rightIcon={<Image src="/discord-black.svg" width="24px" />}
@@ -52,7 +52,7 @@ const CallToActionSection = () => {
           border="1px"
           borderColor="black"
           color="black"
-          mx={5}
+          mx="4px"
           _hover={{}}
           my={{ base: "24px", lg: "8px" }}
           rightIcon={<Image src="/github.svg" width="24px" />}
@@ -77,7 +77,7 @@ const CallToActionSection = () => {
           border="1px"
           borderColor="black"
           color="black"
-          mx={5}
+          mx="4px"
           _hover={{}}
           my={{ base: 0, lg: "8px" }}
           rightIcon={<Image src="/sdk.svg" width="24px" />}
