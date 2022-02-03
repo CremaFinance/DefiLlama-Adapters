@@ -125,7 +125,7 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
               as={HiOutlineInformationCircle}
               width="16px"
               height="16px"
-              color="green800"
+              color="gray.500"
             />
           </Button>
         </ApyAndRewardTooltip>
