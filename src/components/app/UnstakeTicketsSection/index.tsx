@@ -34,11 +34,13 @@ type UnstakeTicketsSectionProps = {
     accountPubkey: TicketAccount["key"],
     setLoaderStateCallback: (state: boolean) => void
   ) => void;
+  refreshTicketAccounts: () => void;
 };
 
 const UnstakeTicketsSection = ({
   ticketAccounts,
   runClaimHandler,
+  refreshTicketAccounts,
 }: UnstakeTicketsSectionProps) => {
   const { t } = useTranslation();
   const toast = useToast();
@@ -194,6 +196,7 @@ const UnstakeTicketsSection = ({
                         new Date().getTime()
                       }
                       showSeconds={false}
+                      onTimerFinished={() => refreshTicketAccounts()}
                     />
                   )}
                 </Td>
