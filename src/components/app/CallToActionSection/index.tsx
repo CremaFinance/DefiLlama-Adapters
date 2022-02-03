@@ -35,7 +35,7 @@ const CallToActionSection = () => {
           <Link
             as={Link}
             target="_blank"
-            href="https://docs.marinade.finance/partnerships/list-on-marinades-defi-page"
+            href="https://discord.com/invite/6EtUf4Euu6"
             _hover={{ textDecoration: "none" }}
             rel="noreferrer noopener"
             _focus={{ boxShadow: "none" }}
@@ -85,7 +85,7 @@ const CallToActionSection = () => {
           <Link
             as={Link}
             target="_blank"
-            href="https://docs.marinade.finance/partnerships/list-on-marinades-defi-page"
+            href="https://docs.marinade.finance/partnerships/become-our-partner"
             _hover={{ textDecoration: "none" }}
             rel="noreferrer noopener"
             _focus={{ boxShadow: "none" }}
