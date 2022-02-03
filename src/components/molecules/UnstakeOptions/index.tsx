@@ -64,7 +64,12 @@ const UnstakeOptions = ({
               />
             ) : null}
           </Flex>
-          <MText color={colors.black} type="text-xl" fontWeight="bold">
+          <MText
+            noOfLines={1}
+            color={colors.black}
+            type="text-lg"
+            fontWeight="bold"
+          >
             {unstakeNowReceive} SOL
           </MText>
           <Flex>
@@ -109,7 +114,12 @@ const UnstakeOptions = ({
               />
             ) : null}
           </Flex>
-          <MText color={colors.black} type="text-xl" fontWeight="bold">
+          <MText
+            noOfLines={1}
+            color={colors.black}
+            type="text-lg"
+            fontWeight="bold"
+          >
             {delayedUnstakeReceive} SOL
           </MText>
           <MText color={colors.black} type="text-sm">
