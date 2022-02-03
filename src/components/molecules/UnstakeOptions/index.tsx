@@ -52,7 +52,12 @@ const UnstakeOptions = ({
       >
         <Flex width="100%" flexDirection="column">
           <Flex alignItems="center" justifyContent="space-between" pb={2}>
-            <MText color="gray.500" fontWeight="bold" type="text-md">
+            <MText
+              textTransform="uppercase"
+              color="gray.500"
+              fontWeight="bold"
+              type="text-sm"
+            >
               {t("appPage.unstake-now-action")}
             </MText>
             {active ? (
@@ -97,7 +102,12 @@ const UnstakeOptions = ({
       >
         <Flex width="100%" flexDirection="column">
           <Flex alignItems="center" justifyContent="space-between" pb={2}>
-            <MText color="gray.500" fontWeight="bold" type="text-md">
+            <MText
+              textTransform="uppercase"
+              color="gray.500"
+              fontWeight="bold"
+              type="text-sm"
+            >
               {t("appPage.delayed-unstake")}
             </MText>
             {!active ? (
