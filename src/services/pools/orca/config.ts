@@ -18,7 +18,6 @@ const orcaReward = "Emission";
 const mndeReward = "Double Dip";
 const actions = [
   { text: "Add Liquidity", url: "https://www.orca.so/pools", isExternal: true },
-  { text: "Swap", url: "https://www.orca.so/pools", isExternal: true },
 ];
 
 export type OrcaPoolsResponse = Record<LiquidityOrcaPoolIds, OrcaPool>;
