@@ -8,6 +8,8 @@ import {
   Tbody,
   Tr,
   Td,
+  Thead,
+  Th,
 } from "@chakra-ui/react";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import BN from "bn.js";
@@ -104,8 +106,8 @@ const BasicStake = () => {
 
     return {
       duration,
-      mSOL: `${numberToShortVersion(mSOLToReceive)} mSOL`,
-      SOL: `${numberToShortVersion(mSOLToReceive * newmSOLvsSOL)} SOL`,
+      mSOL: numberToShortVersion(mSOLToReceive),
+      SOL: numberToShortVersion(mSOLToReceive * newmSOLvsSOL),
       value: `$${numberToShortVersion(
         mSOLToReceive * newmSOLvsSOL * solPrice
       )}`,
@@ -499,59 +501,71 @@ const BasicStake = () => {
         <MText type="text-md">{format2Dec(APY_PCT)}%</MText>
       </Flex>
 
-      <Flex
-        width="100%"
-        mt={1}
-        mb={1}
-        justifyContent="flex-start"
-        alignItems="center"
-      >
-        <MText
-          type="text-md"
-          color={colors.marinadeGreen}
-          fontWeight="700"
-          onClick={() => setShowEstimation((v) => !v)}
-          cursor="pointer"
+      {Number(solToStake) >= 0.1 && (
+        <Flex
+          width="100%"
+          mt={1}
+          mb={1}
+          justifyContent="flex-start"
+          alignItems="center"
         >
-          Estimated results{" "}
-        </MText>
-        <IconButton
-          position="relative"
-          right="6px"
-          variant="link"
-          aria-label="dropdown results"
-          size="lg"
-          onClick={() => setShowEstimation((v) => !v)}
-          _focus={{ boxShadow: "none" }}
-          icon={showEstimation ? <BiChevronUp /> : <BiChevronDown />}
-          color={colors.marinadeGreen}
-        />
-      </Flex>
-      {showEstimation && Number(solToStake) !== 0 && (
-        <Table width="100%" position="relative" bottom="10px" mb="-10px">
-          <Tbody>
-            <Tr>
-              <Td />
-              <Td />
-              <Td />
-              <Td />
+          <MText
+            type="text-md"
+            color={colors.marinadeGreen}
+            fontWeight="700"
+            onClick={() => setShowEstimation((v) => !v)}
+            cursor="pointer"
+          >
+            Estimated results{" "}
+          </MText>
+          <IconButton
+            position="relative"
+            right="6px"
+            variant="link"
+            aria-label="dropdown results"
+            size="lg"
+            onClick={() => setShowEstimation((v) => !v)}
+            _focus={{ boxShadow: "none" }}
+            icon={showEstimation ? <BiChevronUp /> : <BiChevronDown />}
+            color={colors.marinadeGreen}
+          />
+        </Flex>
+      )}
+      {showEstimation && Number(solToStake) >= 0.1 && (
+        <Table width="100%" mt="15px">
+          <Thead>
+            <Tr height="60px" borderTop="1px solid #edf2f7">
+              <Th px={1} width="10px">
+                Period
+              </Th>
+              <Th px={1} width="500px" textAlign="right">
+                mSOL
+              </Th>
+              <Th px={1} width="500px" textAlign="right">
+                SOL
+              </Th>
+              <Th px={1} width="500px" textAlign="right">
+                $ value
+              </Th>
             </Tr>
+          </Thead>
+          <Tbody>
             {tableData.map((tuple) => (
               <Tr
                 key={tuple.duration}
                 height="60px"
                 fontSize={{ base: "13px", sm: "14.4px" }}
               >
-                <Td px={1} width="50px">
+                <Td px={1} width="10px">
                   {tuple.duration}
                 </Td>
-                <Td px={1} width="100px" textAlign="right">
+                <Td px={1} width="500px" textAlign="right">
                   {tuple.mSOL}
                 </Td>
-                <Td px={1} width="100px" textAlign="right">
+                <Td px={1} width="500px" textAlign="right">
                   {tuple.SOL}
                 </Td>
-                <Td px={1} width="100px" textAlign="right">
+                <Td px={1} width="500px" textAlign="right">
                   {tuple.value}
                 </Td>
               </Tr>
