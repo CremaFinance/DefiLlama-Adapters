@@ -89,10 +89,10 @@ function Sidebar() {
               </MLink>
 
               <MLink
-                href="https://docs.marinade.finance/marinade-protocol/system-overview/msol-token"
                 font="text-xl"
                 fontWeight="normal"
                 mb={2}
+                onClick={() => router.push(stakingPath)}
               >
                 {t("indexPage.receive-msol-menu-item")}
               </MLink>
