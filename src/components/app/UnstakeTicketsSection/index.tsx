@@ -32,7 +32,7 @@ type UnstakeTicketsSectionProps = {
   ticketAccounts: TicketAccount[];
   runClaimHandler: (
     accountPubkey: TicketAccount["key"],
-    setLoaderState: (state: boolean) => void
+    setLoaderStateCallback: (state: boolean) => void
   ) => void;
 };
 
@@ -179,7 +179,8 @@ const UnstakeTicketsSection = ({
                       onClick={() => {
                         runClaimHandler(
                           new PublicKey(account.key),
-                          setIsClaimProcessing
+                          (isLoading: boolean) =>
+                            setIsClaimProcessing(isLoading)
                         );
                       }}
                     >

@@ -262,11 +262,11 @@ const BasicUnstake = () => {
 
   const runClaimHandler = (
     accountPubkey: TicketAccount["key"],
-    setLodaerState: (state: boolean) => void
+    setLodaerStateCallback: (state: boolean) => void
   ) => {
-    setLodaerState(true);
+    setLodaerStateCallback(true);
     marinade
-      .runClaim(accountPubkey)
+      .runClaim(1)
       .then(
         (transactionSignature) => {
           const successTitleMessage = t(
@@ -328,7 +328,7 @@ const BasicUnstake = () => {
           true
         )
       )
-      .finally(() => setLodaerState(false));
+      .finally(() => setLodaerStateCallback(false));
   };
 
   return (
