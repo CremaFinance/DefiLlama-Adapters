@@ -266,7 +266,7 @@ const BasicUnstake = () => {
   ) => {
     setLodaerStateCallback(true);
     marinade
-      .runClaim(1)
+      .runClaim(accountPubkey)
       .then(
         (transactionSignature) => {
           const successTitleMessage = t(
