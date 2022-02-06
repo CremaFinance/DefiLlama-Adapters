@@ -5,7 +5,7 @@ import {
 import { Transaction } from "@solana/web3.js";
 import { useContext } from "react";
 
-import { AccountsContext } from "contexts/AccountsContext";
+import { AccountsContext } from "../contexts/AccountsContext";
 
 export const useWallet = () => {
   const anchorWalletContext = useAnchorWallet();
@@ -14,13 +14,15 @@ export const useWallet = () => {
   return {
     ...walletContext,
     ...anchorWalletContext,
-    signTransaction: (transaction: Transaction) => {
-      return anchorWalletContext
-        ?.signTransaction(transaction)
-        .then((signature) => {
-          transactionSignedAction(true);
-          return signature;
-        });
-    },
+    signTransaction: anchorWalletContext
+      ? (transaction: Transaction) => {
+          return anchorWalletContext
+            ?.signTransaction(transaction)
+            .then((signature) => {
+              transactionSignedAction(true);
+              return signature;
+            });
+        }
+      : undefined,
   };
 };
