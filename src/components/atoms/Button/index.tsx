@@ -33,6 +33,7 @@ const selectVariant = (variant = "") =>
 const selectFontSize = (font = "") => {
   const fontSize =
     {
+      "text-2xl": ["18px", "22.5px"],
       "text-xl": ["16px", "18px"],
       "text-lg": ["14px", "16px"],
       "text-md": ["12px", "14px"],
