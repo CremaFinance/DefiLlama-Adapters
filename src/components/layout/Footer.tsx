@@ -213,6 +213,66 @@ const Footer = () => {
           >
             {t("indexPage.footer-defi-integration")}
           </MButton>
+
+          <MButton
+            font="text-xl"
+            fontWeight={500}
+            variant="link"
+            color={colors.white}
+            bg="none"
+            _hover={{ textDecoration: "underline" }}
+            width="fit-content"
+            mb={2}
+            rightIcon={
+              <Icon
+                as={FiExternalLink}
+                width="16px"
+                height="16px"
+                cursor="pointer"
+              />
+            }
+          >
+            <Link
+              as={Link}
+              target="_blank"
+              href="https://www.coingecko.com/en/coins/marinade"
+              _hover={{ textDecoration: "none" }}
+              rel="noreferrer noopener"
+              _focus={{ boxShadow: "none" }}
+            >
+              {t("indexPage.footer-mnde-stats")}
+            </Link>
+          </MButton>
+
+          <MButton
+            font="text-xl"
+            fontWeight={500}
+            variant="link"
+            color={colors.white}
+            bg="none"
+            _hover={{ textDecoration: "underline" }}
+            width="fit-content"
+            mb={2}
+            rightIcon={
+              <Icon
+                as={FiExternalLink}
+                width="16px"
+                height="16px"
+                cursor="pointer"
+              />
+            }
+          >
+            <Link
+              as={Link}
+              target="_blank"
+              href="https://www.coingecko.com/en/coins/marinade-staked-sol"
+              _hover={{ textDecoration: "none" }}
+              rel="noreferrer noopener"
+              _focus={{ boxShadow: "none" }}
+            >
+              {t("indexPage.footer-msol-stats")}
+            </Link>
+          </MButton>
         </Box>
         <Box py={8} display="flex" flex="0.25" flexDirection="column">
           <MText
