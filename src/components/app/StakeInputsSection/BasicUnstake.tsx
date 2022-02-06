@@ -1,5 +1,11 @@
 /* eslint-disable complexity */
-import { Flex, IconButton, useToast, Box } from "@chakra-ui/react";
+import {
+  Flex,
+  IconButton,
+  useToast,
+  Box,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import type { PublicKey } from "@solana/web3.js";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
@@ -13,6 +19,7 @@ import MText from "../../atoms/Text";
 import { ConnectWallet } from "../../molecules/ConnectWallet";
 import TooltipWithContent from "../../molecules/TooltipWithContent";
 import UnstakeTicketsSection from "../UnstakeTicketsSection";
+import PendingStakeModal from "components/molecules/PendingStakeModal";
 import StakeInput, {
   StakeInputTypeEnum,
 } from "components/molecules/StakeInput";
@@ -60,9 +67,17 @@ const BasicUnstake = () => {
     getTicketAccountsAction,
     ticketAccounts,
     fetchTicketsLoading,
+    transactionSigned,
+    transactionSignedAction,
     fetchTicketsLoadingAction,
     resetAccountsAction,
   } = useContext(AccountsContext);
+
+  const { onClose } = useDisclosure({
+    onClose: () => {
+      transactionSignedAction(false);
+    },
+  });
 
   const marinade = useMarinade();
   const state = marinade?.marinadeState?.state;
@@ -133,6 +148,14 @@ const BasicUnstake = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [walletConnected, unstakeLoading, showModal]);
+
+  const triggerTransactionModal = (value: boolean) => {
+    setUnstakeLoading(value);
+
+    if (!value) {
+      transactionSignedAction(false);
+    }
+  };
 
   const resetInputs = () => {
     setUnstakeLoading(false);
@@ -258,6 +281,7 @@ const BasicUnstake = () => {
         setStSolToUnstake("");
         resetInputs();
         setUnstakeLoading(false);
+        transactionSignedAction(false);
       });
   };
 
@@ -407,6 +431,12 @@ const BasicUnstake = () => {
         stSolToUnstake={Number(stSolToUnstake)}
         isOpen={showModal}
         onClose={resetInputs}
+        triggerTransactionModal={triggerTransactionModal}
+      />
+      <PendingStakeModal
+        isTransactionSigned={transactionSigned}
+        isOpen={unstakeLoading}
+        onClose={onClose}
       />
       <UnstakeTicketsSection
         ticketAccounts={ticketAccounts}

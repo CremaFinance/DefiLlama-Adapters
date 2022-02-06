@@ -303,6 +303,12 @@
       "body-line2-after": " received",
       "button": "Use {{stakedCurrency}} in DeFi"
     },
+    "pending-stake": {
+      "title1":"Approve your transaction",
+      "body-line1":"Please confirm the transaction (you initiated) directly in your wallet.",
+      "title2":"Transaction sent",
+      "body-line2":"Please wait for confirmation from blockchain."
+    },
     "defi-subtitle": {
       "header": "Participate in DeFi",
       "body-desktop": "Now it’s your time to cook! mSOL has been integrated in many DeFi protocols where you can explore additional yield strategies while still earning your staking rewards. Please keep in mind that selling all your mSOL will also mean selling your rewards accumulated until this point.",
