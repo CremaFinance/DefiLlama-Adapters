@@ -21,82 +21,135 @@ const Footer = () => {
       flexDirection="column"
     >
       <Flex flexDirection={["column", "row"]}>
-        <Flex
-          minWidth="300"
-          pt={6}
-          display="flex"
-          flex={{ base: 0.33, lg: 0.56 }}
-          flexDirection="column"
-        >
-          <NextLink href="/">
-            <Image
-              cursor="pointer"
-              src="../../marinade-logo-white.svg"
-              alt="Marinade Logo"
-              width={200}
-            />
-          </NextLink>
-          <MText
-            py={6}
-            type="text-xl"
-            color={colors.white800}
-            maxWidth={{ base: "360", md: "30vw", lg: "25vw" }}
-          >
-            {t("indexPage.footer-description")}
-          </MText>
-        </Flex>
+        <Flex flexDirection="column" flex={{ base: 0.33, lg: 0.56 }}>
+          <Flex minWidth="300" pt={6} display="flex" flexDirection="column">
+            <NextLink href="/">
+              <Image
+                cursor="pointer"
+                src="../../marinade-logo-white.svg"
+                alt="Marinade Logo"
+                width={200}
+              />
+            </NextLink>
+            <MText
+              py={6}
+              type="text-xl"
+              color={colors.white800}
+              maxWidth={{ base: "360", md: "30vw", lg: "25vw" }}
+            >
+              {t("indexPage.footer-description")}
+            </MText>
+          </Flex>
 
-        <Flex
-          pt={6}
-          pb={[8, 0]}
-          flex={{ base: 0.33, lg: 0.24 }}
-          flexDirection="column"
-        >
-          <MText pb={2} type="text-2xl" color={colors.white} fontWeight="800">
-            {t("appPage.footer-join-us")}
-          </MText>
-
-          <Flex flexDirection="row" pt={2}>
-            <Link
-              target="_blank"
-              rel="noreferrer noopener"
-              href="https://discord.com/invite/6EtUf4Euu6"
-            >
-              <Image
-                cursor="pointer"
-                src="../../discord.svg"
-                alt="Discord Logo"
-                width={[50, 30]}
-              />
-            </Link>
-            <Link
-              target="_blank"
-              rel="noreferrer noopener"
-              marginLeft={[16, 4]}
-              marginRight={[16, 4]}
-              href="https://medium.com/marinade-finance"
-            >
-              <Image
-                cursor="pointer"
-                src="../../medium.svg"
-                alt="Medium Logo"
-                width={[50, 30]}
-              />
-            </Link>
-            <Link
-              target="_blank"
-              rel="noreferrer noopener"
-              href="https://twitter.com/MarinadeFinance"
-            >
-              <Image
-                cursor="pointer"
-                src="../../twitter.svg"
-                alt="Twitter Logo"
-                width={[50, 30]}
-              />
-            </Link>
+          <Flex pb={8} flex={{ base: 0.33, lg: 0.24 }} flexDirection="column">
+            <Flex flexDirection="row">
+              <Link
+                target="_blank"
+                rel="noreferrer noopener"
+                href="https://discord.com/invite/6EtUf4Euu6"
+              >
+                <Image
+                  cursor="pointer"
+                  src="../../discord.svg"
+                  alt="Discord Logo"
+                  width={[50, 30]}
+                />
+              </Link>
+              <Link
+                target="_blank"
+                rel="noreferrer noopener"
+                marginLeft={[16, 4]}
+                marginRight={[16, 4]}
+                href="https://medium.com/marinade-finance"
+              >
+                <Image
+                  cursor="pointer"
+                  src="../../medium.svg"
+                  alt="Medium Logo"
+                  width={[50, 30]}
+                />
+              </Link>
+              <Link
+                target="_blank"
+                rel="noreferrer noopener"
+                href="https://twitter.com/MarinadeFinance"
+              >
+                <Image
+                  cursor="pointer"
+                  src="../../twitter.svg"
+                  alt="Twitter Logo"
+                  width={[50, 30]}
+                />
+              </Link>
+            </Flex>
           </Flex>
         </Flex>
+
+        <Flex py={6} flex={{ base: 0.33, lg: 0.2 }} flexDirection="column">
+          <MText pb={2} type="text-2xl" color={colors.white} fontWeight="800">
+            {t("indexPage.footer-product")}
+          </MText>
+          <MButton
+            font="text-xl"
+            fontWeight={500}
+            variant="link"
+            color={colors.white}
+            bg="none"
+            _hover={{ textDecoration: "underline" }}
+            width="fit-content"
+            mb={2}
+            rightIcon={
+              <Icon
+                as={FiExternalLink}
+                width="16px"
+                height="16px"
+                cursor="pointer"
+              />
+            }
+          >
+            <Link
+              as={Link}
+              target="_blank"
+              href="https://www.coingecko.com/en/coins/marinade"
+              _hover={{ textDecoration: "none" }}
+              rel="noreferrer noopener"
+              _focus={{ boxShadow: "none" }}
+            >
+              {t("indexPage.footer-mnde-stats")}
+            </Link>
+          </MButton>
+
+          <MButton
+            font="text-xl"
+            fontWeight={500}
+            variant="link"
+            color={colors.white}
+            bg="none"
+            _hover={{ textDecoration: "underline" }}
+            width="fit-content"
+            mb={2}
+            rightIcon={
+              <Icon
+                as={FiExternalLink}
+                width="16px"
+                height="16px"
+                cursor="pointer"
+              />
+            }
+          >
+            <Link
+              as={Link}
+              target="_blank"
+              href="https://www.coingecko.com/en/coins/marinade-staked-sol"
+              _hover={{ textDecoration: "none" }}
+              rel="noreferrer noopener"
+              _focus={{ boxShadow: "none" }}
+            >
+              {t("indexPage.footer-msol-stats")}
+            </Link>
+          </MButton>
+        </Flex>
+
         <Flex py={6} flex={{ base: 0.33, lg: 0.2 }} flexDirection="column">
           <MText pb={2} type="text-2xl" color={colors.white} fontWeight="800">
             {t("appPage.footer-learn-more")}
