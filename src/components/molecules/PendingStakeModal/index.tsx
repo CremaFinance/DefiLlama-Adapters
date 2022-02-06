@@ -23,10 +23,14 @@ const PendingStakeModal = ({
 }: PendingStakeModalProps) => {
   const { t } = useTranslation();
 
-  const title1 = t("appPage.pending-stake.title1");
-  const bodyLine1 = t("appPage.pending-stake.body-line1");
-  const title2 = t("appPage.pending-stake.title2");
-  const bodyLine2 = t("appPage.pending-stake.body-line2");
+  const approvalTitle = t("appPage.awaiting-transaction-approval.title");
+  const approvalBodyLine = t("appPage.awaiting-transaction-approval.body-line");
+  const confirmationTitle = t(
+    "appPage.awaiting-transaction-confirmation.title"
+  );
+  const confirmationBodyLine = t(
+    "appPage.awaiting-transaction-confirmation.body-line"
+  );
   return (
     <Modal isOpen={isOpenProp} onClose={onCloseProp} size="lg" isCentered>
       <ModalOverlay />
@@ -41,7 +45,7 @@ const PendingStakeModal = ({
               mb={3}
               display={!isTransactionSignedProp ? "flex" : "none"}
             >
-              {title1}
+              {approvalTitle}
             </Text>
             <Text
               fontSize="28.13px"
@@ -50,7 +54,7 @@ const PendingStakeModal = ({
               mb={3}
               display={isTransactionSignedProp ? "flex" : "none"}
             >
-              {title2}
+              {confirmationTitle}
             </Text>
             <Text
               marginTop="9px"
@@ -59,7 +63,7 @@ const PendingStakeModal = ({
               textAlign="center"
               display={!isTransactionSignedProp ? "flex" : "none"}
             >
-              {bodyLine1}
+              {approvalBodyLine}
             </Text>
             <Text
               marginTop="9px"
@@ -68,7 +72,7 @@ const PendingStakeModal = ({
               textAlign="center"
               display={isTransactionSignedProp ? "flex" : "none"}
             >
-              {bodyLine2}
+              {confirmationBodyLine}
             </Text>
           </Center>
         </ModalBody>
