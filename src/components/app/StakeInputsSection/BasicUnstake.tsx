@@ -340,7 +340,6 @@ const BasicUnstake = () => {
         tokenIcon="/icons/mSOL.svg"
         tokenBalance={stSOLBalance ?? 0}
         value={stSolToUnstake}
-        mb={2}
       />
       {walletConnected ? (
         <UnstakeOptions
