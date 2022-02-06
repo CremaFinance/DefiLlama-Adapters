@@ -25,6 +25,7 @@ function Sidebar() {
   const router = useRouter();
   const { t } = useTranslation();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const stakingPath = "/app/staking";
 
   return (
     <>
@@ -61,23 +62,60 @@ function Sidebar() {
             </MHeading>
 
             <Flex flexDirection="column" mb={5}>
-              <MLink href="/" font="text-xl" fontWeight="normal" mb={2}>
+              <MLink
+                font="text-xl"
+                fontWeight="normal"
+                mb={2}
+                onClick={() => router.push(stakingPath)}
+              >
                 {t("indexPage.stake-sol-menu-item")}
               </MLink>
 
-              <MLink href="/" font="text-xl" fontWeight="normal" mb={2}>
+              <MLink
+                font="text-xl"
+                fontWeight="normal"
+                mb={2}
+                _focus={{ boxShadow: "none" }}
+                onClick={() =>
+                  router.push(
+                    {
+                      pathname: stakingPath,
+                      query: { showValidatorsModal: true },
+                    },
+                    stakingPath
+                  )
+                }
+              >
                 {t("indexPage.validators-menu-item")}
               </MLink>
 
-              <MLink href="/" font="text-xl" fontWeight="normal" mb={2}>
+              <MLink
+                font="text-xl"
+                fontWeight="normal"
+                mb={2}
+                _focus={{ boxShadow: "none" }}
+                onClick={() => router.push(stakingPath)}
+              >
                 {t("indexPage.receive-msol-menu-item")}
               </MLink>
 
-              <MLink href="/" font="text-xl" fontWeight="normal" mb={2}>
+              <MLink
+                href="https://docs.marinade.finance/marinade-dao"
+                font="text-xl"
+                fontWeight="normal"
+                mb={2}
+                _focus={{ boxShadow: "none" }}
+              >
                 {t("indexPage.marinade-dao-menu-item")}
               </MLink>
 
-              <MLink href="/" font="text-xl" fontWeight="normal" mb={2}>
+              <MLink
+                font="text-xl"
+                fontWeight="normal"
+                mb={2}
+                _focus={{ boxShadow: "none" }}
+                onClick={() => router.push("/app/defi")}
+              >
                 {t("indexPage.defi-recipes-menu-item")}
               </MLink>
             </Flex>
@@ -87,19 +125,43 @@ function Sidebar() {
             </MHeading>
 
             <Flex flexDirection="column" mb={5}>
-              <MLink href="/" font="text-xl" fontWeight="normal" mb={2}>
+              <MLink
+                href="https://docs.marinade.finance/"
+                font="text-xl"
+                fontWeight="normal"
+                _focus={{ boxShadow: "none" }}
+                mb={2}
+              >
                 {t("indexPage.docs-menu-item")}
               </MLink>
 
-              <MLink href="/" font="text-xl" fontWeight="normal" mb={2}>
+              <MLink
+                href="https://docs.marinade.finance/marinade-protocol/security"
+                font="text-xl"
+                fontWeight="normal"
+                _focus={{ boxShadow: "none" }}
+                mb={2}
+              >
                 {t("indexPage.security-menu-item")}
               </MLink>
 
-              <MLink href="/" font="text-xl" fontWeight="normal" mb={2}>
+              <MLink
+                href="https://docs.marinade.finance/#what-is-marinade"
+                font="text-xl"
+                fontWeight="normal"
+                _focus={{ boxShadow: "none" }}
+                mb={2}
+              >
                 {t("indexPage.about-us-menu-item")}
               </MLink>
 
-              <MLink href="/" font="text-xl" fontWeight="normal" mb={2}>
+              <MLink
+                href="https://docs.marinade.finance/marinade-dao/roadmap"
+                font="text-xl"
+                fontWeight="normal"
+                _focus={{ boxShadow: "none" }}
+                mb={2}
+              >
                 {t("indexPage.roadmap-menu-item")}
               </MLink>
             </Flex>
@@ -113,7 +175,7 @@ function Sidebar() {
               colorScheme={colors.marinadeGreen}
               color={colors.white}
               rightIcon={<IoMdArrowRoundForward />}
-              onClick={() => router.push("/app/staking")}
+              onClick={() => router.push(stakingPath)}
             >
               {t("indexPage.go-to-app-action")}
             </MButton>
