@@ -27,6 +27,7 @@ const MobileMenu = () => {
     <Flex
       position="fixed"
       width="100vw"
+      height="56px"
       bottom="0"
       bg="white"
       display={["flex", "none"]}
