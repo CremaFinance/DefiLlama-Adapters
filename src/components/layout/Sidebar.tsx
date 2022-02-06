@@ -75,6 +75,7 @@ function Sidebar() {
                 font="text-xl"
                 fontWeight="normal"
                 mb={2}
+                _focus={{ boxShadow: "none" }}
                 onClick={() =>
                   router.push(
                     {
@@ -92,6 +93,7 @@ function Sidebar() {
                 font="text-xl"
                 fontWeight="normal"
                 mb={2}
+                _focus={{ boxShadow: "none" }}
                 onClick={() => router.push(stakingPath)}
               >
                 {t("indexPage.receive-msol-menu-item")}
@@ -102,6 +104,7 @@ function Sidebar() {
                 font="text-xl"
                 fontWeight="normal"
                 mb={2}
+                _focus={{ boxShadow: "none" }}
               >
                 {t("indexPage.marinade-dao-menu-item")}
               </MLink>
@@ -110,6 +113,7 @@ function Sidebar() {
                 font="text-xl"
                 fontWeight="normal"
                 mb={2}
+                _focus={{ boxShadow: "none" }}
                 onClick={() => router.push("/app/defi")}
               >
                 {t("indexPage.defi-recipes-menu-item")}
@@ -125,6 +129,7 @@ function Sidebar() {
                 href="https://docs.marinade.finance/"
                 font="text-xl"
                 fontWeight="normal"
+                _focus={{ boxShadow: "none" }}
                 mb={2}
               >
                 {t("indexPage.docs-menu-item")}
@@ -134,6 +139,7 @@ function Sidebar() {
                 href="https://docs.marinade.finance/marinade-protocol/security"
                 font="text-xl"
                 fontWeight="normal"
+                _focus={{ boxShadow: "none" }}
                 mb={2}
               >
                 {t("indexPage.security-menu-item")}
@@ -143,6 +149,7 @@ function Sidebar() {
                 href="https://docs.marinade.finance/#what-is-marinade"
                 font="text-xl"
                 fontWeight="normal"
+                _focus={{ boxShadow: "none" }}
                 mb={2}
               >
                 {t("indexPage.about-us-menu-item")}
@@ -152,6 +159,7 @@ function Sidebar() {
                 href="https://docs.marinade.finance/marinade-dao/roadmap"
                 font="text-xl"
                 fontWeight="normal"
+                _focus={{ boxShadow: "none" }}
                 mb={2}
               >
                 {t("indexPage.roadmap-menu-item")}
