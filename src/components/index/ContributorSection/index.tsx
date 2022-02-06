@@ -64,12 +64,13 @@ const ContributorSection = () => {
           <Link
             target="_blank"
             rel="noreferrer noopener"
+            _focus={{ boxShadow: "none" }}
             mr={4}
             href="https://discord.com/invite/6EtUf4Euu6"
           >
             <Image
               cursor="pointer"
-              src="/icons/discord-drawn.svg"
+              src="/icons/discord-drawn-round.svg"
               alt="Discord Logo"
               width="48px"
             />
@@ -77,14 +78,45 @@ const ContributorSection = () => {
           <Link
             target="_blank"
             rel="noreferrer noopener"
+            _focus={{ boxShadow: "none" }}
+            mr={4}
             ml={2}
             href="https://twitter.com/MarinadeFinance"
           >
             <Image
               cursor="pointer"
-              src="/icons/twitter-drawn.svg"
+              src="/icons/twitter-drawn-round.svg"
               alt="Twitter Logo"
-              width="56px"
+              width="48px"
+            />
+          </Link>
+          <Link
+            target="_blank"
+            rel="noreferrer noopener"
+            _focus={{ boxShadow: "none" }}
+            ml={2}
+            mr={4}
+            href="https://medium.com/marinade-finance"
+          >
+            <Image
+              cursor="pointer"
+              src="/icons/medium-drawn.svg"
+              alt="Medium Logo"
+              width="48px"
+            />
+          </Link>
+          <Link
+            target="_blank"
+            rel="noreferrer noopener"
+            _focus={{ boxShadow: "none" }}
+            ml={2}
+            href="https://github.com/marinade-finance"
+          >
+            <Image
+              cursor="pointer"
+              src="/icons/github-drawn.svg"
+              alt="GitHub Logo"
+              width="48px"
             />
           </Link>
         </Flex>
