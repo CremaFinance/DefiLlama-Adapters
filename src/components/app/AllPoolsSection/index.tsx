@@ -59,7 +59,12 @@ const AllPoolsSection = () => {
         zIndex={6}
       >
         {sortedPools?.map((pool) => (
-          <Flex flexDirection="row" key={`${pool.id}`} justifyContent="center">
+          <Flex
+            flexDirection="row"
+            key={`${pool.id}`}
+            justifyContent="center"
+            width="100%"
+          >
             <PoolRow pool={pool.pool} />
           </Flex>
         ))}
