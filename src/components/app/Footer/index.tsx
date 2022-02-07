@@ -1,6 +1,7 @@
 import { Box, Flex, Image, Link, Icon } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import NextLink from "next/link";
+import { useRouter } from "next/router";
 import { FiExternalLink } from "react-icons/fi";
 
 import MButton from "../../atoms/Button";
@@ -9,6 +10,9 @@ import colors from "styles/customTheme/colors";
 
 const Footer = () => {
   const { t } = useTranslation();
+  const router = useRouter();
+
+  const stakingPath = "/app/staking";
 
   return (
     <Flex
@@ -89,6 +93,112 @@ const Footer = () => {
           <MText pb={2} type="text-2xl" color={colors.white} fontWeight="800">
             {t("indexPage.footer-product")}
           </MText>
+          <MButton
+            font="text-xl"
+            fontWeight={500}
+            variant="link"
+            color={colors.white}
+            bg="none"
+            _hover={{ textDecoration: "underline" }}
+            width="fit-content"
+            mb={2}
+            onClick={() => router.push(stakingPath)}
+          >
+            {t("indexPage.footer-stake-sol")}
+          </MButton>
+          <MButton
+            font="text-xl"
+            fontWeight={500}
+            variant="link"
+            color={colors.white}
+            bg="none"
+            _hover={{ textDecoration: "underline" }}
+            width="fit-content"
+            mb={2}
+            onClick={() =>
+              router.push(
+                {
+                  pathname: stakingPath,
+                  query: { showValidatorsModal: true },
+                },
+                stakingPath
+              )
+            }
+          >
+            {t("indexPage.footer-validators")}
+          </MButton>
+          <MButton
+            font="text-xl"
+            fontWeight={500}
+            variant="link"
+            color={colors.white}
+            bg="none"
+            _hover={{ textDecoration: "underline" }}
+            width="fit-content"
+            mb={2}
+            rightIcon={
+              <Icon
+                as={FiExternalLink}
+                width="16px"
+                height="16px"
+                cursor="pointer"
+              />
+            }
+          >
+            <Link
+              as={Link}
+              target="_blank"
+              href="https://docs.marinade.finance/marinade-protocol/system-overview/msol-token"
+              _hover={{ textDecoration: "none" }}
+              rel="noreferrer noopener"
+              _focus={{ boxShadow: "none" }}
+            >
+              {t("indexPage.footer-msol")}
+            </Link>
+          </MButton>
+          <MButton
+            font="text-xl"
+            fontWeight={500}
+            variant="link"
+            color={colors.white}
+            bg="none"
+            _hover={{ textDecoration: "underline" }}
+            width="fit-content"
+            mb={2}
+            rightIcon={
+              <Icon
+                as={FiExternalLink}
+                width="16px"
+                height="16px"
+                cursor="pointer"
+              />
+            }
+          >
+            <Link
+              as={Link}
+              target="_blank"
+              href="https://docs.marinade.finance/marinade-dao"
+              _hover={{ textDecoration: "none" }}
+              rel="noreferrer noopener"
+              _focus={{ boxShadow: "none" }}
+            >
+              {t("indexPage.footer-marinde-dao")}
+            </Link>
+          </MButton>
+
+          <MButton
+            font="text-xl"
+            fontWeight={500}
+            variant="link"
+            color={colors.white}
+            bg="none"
+            _hover={{ textDecoration: "underline" }}
+            width="fit-content"
+            mb={2}
+            onClick={() => router.push("/app/defi")}
+          >
+            {t("indexPage.footer-defi-integration")}
+          </MButton>
           <MButton
             font="text-xl"
             fontWeight={500}
@@ -183,7 +293,95 @@ const Footer = () => {
               {t("indexPage.footer-docs")}
             </Link>
           </MButton>
+          <MButton
+            font="text-xl"
+            fontWeight={500}
+            variant="link"
+            color={colors.white}
+            bg="none"
+            _hover={{ textDecoration: "underline" }}
+            width="fit-content"
+            mb={2}
+            rightIcon={
+              <Icon
+                as={FiExternalLink}
+                width="16px"
+                height="16px"
+                cursor="pointer"
+              />
+            }
+          >
+            <Link
+              as={Link}
+              target="_blank"
+              href="https://docs.marinade.finance/marinade-protocol/security"
+              _hover={{ textDecoration: "none" }}
+              rel="noreferrer noopener"
+              _focus={{ boxShadow: "none" }}
+            >
+              {t("indexPage.footer-security")}
+            </Link>
+          </MButton>
 
+          <MButton
+            font="text-xl"
+            fontWeight={500}
+            variant="link"
+            color={colors.white}
+            bg="none"
+            _hover={{ textDecoration: "underline" }}
+            width="fit-content"
+            mb={2}
+            rightIcon={
+              <Icon
+                as={FiExternalLink}
+                width="16px"
+                height="16px"
+                cursor="pointer"
+              />
+            }
+          >
+            <Link
+              as={Link}
+              target="_blank"
+              href="https://docs.marinade.finance/#what-is-marinade"
+              _hover={{ textDecoration: "none" }}
+              rel="noreferrer noopener"
+              _focus={{ boxShadow: "none" }}
+            >
+              {t("indexPage.footer-about-us")}
+            </Link>
+          </MButton>
+
+          <MButton
+            font="text-xl"
+            fontWeight={500}
+            variant="link"
+            color={colors.white}
+            bg="none"
+            _hover={{ textDecoration: "underline" }}
+            width="fit-content"
+            mb={2}
+            rightIcon={
+              <Icon
+                as={FiExternalLink}
+                width="16px"
+                height="16px"
+                cursor="pointer"
+              />
+            }
+          >
+            <Link
+              as={Link}
+              target="_blank"
+              href="https://docs.marinade.finance/marinade-dao/roadmap"
+              _hover={{ textDecoration: "none" }}
+              rel="noreferrer noopener"
+              _focus={{ boxShadow: "none" }}
+            >
+              {t("indexPage.footer-roadmap")}
+            </Link>
+          </MButton>
           <MButton
             font="text-xl"
             fontWeight={500}
