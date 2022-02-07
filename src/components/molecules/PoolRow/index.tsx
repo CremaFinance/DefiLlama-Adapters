@@ -58,6 +58,7 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
       maxWidth={{ base: "320px", lg: "1100px" }}
       marginBottom={{ base: "15px", lg: "14px" }}
       flex={1}
+      minHeight="104.39px"
       flexDirection={{ base: "column", lg: "row" }}
       marginX={{ base: "0", sm: "16px", lg: "0" }}
     >
