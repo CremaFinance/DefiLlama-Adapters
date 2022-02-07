@@ -31,8 +31,6 @@ const SuccessStakeModal = ({
   const { t } = useTranslation();
 
   const bodyLine1 = t("appPage.success-stake.body-line1");
-  const bodyBeforeLine2 = t("appPage.success-stake.body-line2-before");
-  const bodyAfterLine2 = t("appPage.success-stake.body-line2-after");
 
   const buttonText = t("appPage.success-stake.button")?.replace(
     "{{stakedCurrency}}",
@@ -47,18 +45,30 @@ const SuccessStakeModal = ({
         <ModalBody display="flex" justifyContent="center">
           <Flex flexDir="column" height="100%" alignItems="center" margin="0">
             <Image
-              marginTop="38px"
+              marginTop="59px"
               width="219.03px"
               height="166.64px"
               src="/ilustrations/success-stake.svg"
             />
             <Text
-              marginTop="18px"
+              marginTop="24px"
               fontSize="22.5px"
               fontWeight="bold"
               lineHeight="33.75px"
             >
               {t("appPage.success-stake.title")}
+            </Text>
+            <Text
+              as="span"
+              color={colors.marinadeGreen}
+              marginTop="24px"
+              marginBottom="18px"
+              fontSize="22.5px"
+              fontWeight="bold"
+              lineHeight="33.75px"
+            >
+              +{stakedAmount} {stakedCurrency}{" "}
+              {t("appPage.success-stake.body-line2-after")}
             </Text>
             <Text
               marginTop="9px"
@@ -68,20 +78,12 @@ const SuccessStakeModal = ({
             >
               {bodyLine1}
             </Text>
-            <Text fontSize="18px" lineHeight="150%" textAlign="center">
-              {bodyBeforeLine2}
-              <Text as="span" color={colors.black} fontWeight="bold">
-                {stakedAmount}
-              </Text>{" "}
-              <Text as="span" color={colors.marinadeGreen} fontWeight="bold">
-                {stakedCurrency}
-              </Text>
-              {bodyAfterLine2}
-            </Text>
-            <Flex marginTop="24px" marginBottom="31px">
+            <Flex marginTop="24px" marginBottom="16px" width="100%">
               <MButton
+                width="100%"
+                height="40px"
                 variant="big-solid"
-                fontSize="18px"
+                fontSize="16px"
                 lineHeight="25.2px"
                 fontWeight="bold"
                 paddingX="44px"
