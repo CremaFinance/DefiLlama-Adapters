@@ -3,7 +3,7 @@ import { Connection, PublicKey } from "@solana/web3.js";
 import { request, gql } from "graphql-request";
 
 import { APYFromAPR } from "../../../utils/apy-from-apr";
-import { updatePoolRewards } from "../../../utils/update-pool-rewards";
+import { updatePoolQuarryRewards } from "../../../utils/update-pool-quarry-rewards";
 import { DEFAULT_ENDPOINT } from "../../../utils/web3/endpoints";
 import { Prices } from "../../domain/coinSymbols";
 import { FetchPools, Pool } from "../../domain/pool";
@@ -74,7 +74,7 @@ export async function fetchPools(): Promise<{
   return { saberData, apr: swap?.state.fees.trade.asFraction.asNumber };
 }
 
-export const mapSaberPoolsResponse = (
+export const mapSaberPoolsResponse = async (
   saberData: SaberPoolsResponse,
   prices: Prices,
   apr?: number
@@ -102,7 +102,7 @@ export const mapSaberPoolsResponse = (
     const fees24HUSD = apr ? vol24HUSD * apr : 0;
     pool.tradingApy = APYFromAPR(fees24HUSD / pool.liq);
     pool.apy = pool.tradingApy;
-    pool = updatePoolRewards(pool as Pool, prices);
+    pool = await updatePoolQuarryRewards(pool as Pool, prices);
   }
 
   return { [farmPoolAddress.saber_mSOL_SOL]: pool as Pool };
@@ -110,7 +110,8 @@ export const mapSaberPoolsResponse = (
 
 export const getSaber: FetchPools = async (prices) => {
   const { saberData, apr } = await fetchPools();
-  return mapSaberPoolsResponse(saberData, prices, apr);
+  // eslint-disable-next-line @typescript-eslint/return-await
+  return await mapSaberPoolsResponse(saberData, prices, apr);
 };
 
 export const saber = {

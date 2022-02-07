@@ -7,6 +7,8 @@ export type RewardConfig = {
   aprDescription: string;
   /** calculated when mapped */
   apy?: number;
+  /** optional key for quarry rewards */
+  quarry?: string;
 };
 
 export type Reward = RewardConfig & {

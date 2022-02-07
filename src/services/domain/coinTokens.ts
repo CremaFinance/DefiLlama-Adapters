@@ -247,4 +247,21 @@ export const coinTokens: TokenRecord<CoinSymbols> = {
       website: "https://mango.markets/",
     },
   },
+  [coinSymbols.SABER]: {
+    chainId: 101,
+    address: "Saber2gLauYim4Mvftnrasomsv6NvAuncvMEZwcLpD1",
+    symbol: "SBR",
+    name: "Saber Protocol Token",
+    decimals: 6,
+    logoURI:
+      "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/Saber2gLauYim4Mvftnrasomsv6NvAuncvMEZwcLpD1/logo.svg",
+    extensions: {
+      coingeckoId: "saber",
+      discord: "https://chat.saber.so",
+      github: "https://github.com/saber-hq",
+      medium: "https://blog.saber.so",
+      serumV3Usdc: "HXBi8YBwbh4TXF6PjVw81m8Z3Cc4WBofvauj5SBFdgUs",
+      website: "https://saber.so",
+    },
+  },
 };
