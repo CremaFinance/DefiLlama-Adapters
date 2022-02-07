@@ -302,11 +302,10 @@
       "errorBody": "Address was not copied"
     },
     "success-stake": {
-      "title": "Well done!",
-      "body-line1": "You’re now staking with Marinade!",
-      "body-line2-before": "Click the button to explore what you can do with ",
-      "body-line2-after": " you just received.",
-      "button": "Use your {{stakedCurrency}}"
+      "title": "Liquid Staking Confirmed",
+      "body-line1": "Ready to keep going? Explore ways to earn even more with your new mSOL!",
+      "body-line2-after": " received",
+      "button": "Use {{stakedCurrency}} in DeFi"
     },
     "defi-subtitle": {
       "header": "Participate in DeFi",
