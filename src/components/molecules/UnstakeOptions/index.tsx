@@ -52,7 +52,12 @@ const UnstakeOptions = ({
       >
         <Flex width="100%" flexDirection="column">
           <Flex alignItems="center" justifyContent="space-between" pb={2}>
-            <MText color="gray.500" fontWeight="bold" type="text-md">
+            <MText
+              textTransform="uppercase"
+              color="gray.500"
+              fontWeight="bold"
+              type="text-sm"
+            >
               {t("appPage.unstake-now-action")}
             </MText>
             {active ? (
@@ -64,7 +69,12 @@ const UnstakeOptions = ({
               />
             ) : null}
           </Flex>
-          <MText color={colors.black} type="text-xl" fontWeight="bold">
+          <MText
+            noOfLines={1}
+            color={colors.black}
+            type="text-lg"
+            fontWeight="bold"
+          >
             {unstakeNowReceive} SOL
           </MText>
           <Flex>
@@ -97,7 +107,12 @@ const UnstakeOptions = ({
       >
         <Flex width="100%" flexDirection="column">
           <Flex alignItems="center" justifyContent="space-between" pb={2}>
-            <MText color="gray.500" fontWeight="bold" type="text-md">
+            <MText
+              textTransform="uppercase"
+              color="gray.500"
+              fontWeight="bold"
+              type="text-sm"
+            >
               {t("appPage.delayed-unstake")}
             </MText>
             {!active ? (
@@ -109,7 +124,12 @@ const UnstakeOptions = ({
               />
             ) : null}
           </Flex>
-          <MText color={colors.black} type="text-xl" fontWeight="bold">
+          <MText
+            noOfLines={1}
+            color={colors.black}
+            type="text-lg"
+            fontWeight="bold"
+          >
             {delayedUnstakeReceive} SOL
           </MText>
           <MText color={colors.black} type="text-sm">

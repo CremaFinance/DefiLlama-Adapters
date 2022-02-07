@@ -40,7 +40,7 @@
 
     "blog-section-primary-button": "Start staking SOL",
     "blog-section-secondary-button": "Learn more",
-    "logo-strip-section-title": "Use mSOL across all the ecosystem",
+    "logo-strip-section-title": "Use mSOL across the ecosystem",
     "blog-section-items": [
       {
         "date": "30 SEPT 2021",
@@ -119,7 +119,7 @@
       },
       {
         "title": "Decentralization",
-        "subtitle": "Improve the network security by staking to +400 validators."
+        "subtitle": "Improve the network security by staking to 400+ validators."
       },
       {
         "title": "Unlocked liquidity",
@@ -179,6 +179,8 @@
     "footer-roadmap": "Roadmap",
     "footer-copyright": "© Copyright {{year}} Marinade.finance. All rights reserved.",
     "footer-terms": "Terms of use",
+    "footer-mnde-stats": "MNDE stats",
+    "footer-msol-stats": "mSOL stats",
     "read-more": "Read more"
   },
   "appPage": {
@@ -234,6 +236,11 @@
         "tlv-dsc": "TVL (dsc)"
       }
     },
+    "cta-section": {
+      "missing-integration": "Suggest a missing integration",
+      "list-your-integration": "List your integration",
+      "integrate-with-marinade": "Integrate with Marinade"
+    },
     "info-msol-sol-price": "MSOL/SOL price",
     "info-total-sol-staked": "Total SOL staked",
     "info-total-staked": "Total staked",
@@ -259,6 +266,7 @@
     "stake-inputs-balance": "Balance",
     "stake-inputs-exchange-rate": "Exchange rate",
     "stake-inputs-unstake-fee": "Unstake fee",
+    "stake-inputs-projected-apy": "Projected APY",
     "from-fee": "from",
     "stake-inputs-deposit-fee": "Deposit fee",
     "stake-action": "Stake",
@@ -294,11 +302,10 @@
       "errorBody": "Address was not copied"
     },
     "success-stake": {
-      "title": "Well done!",
-      "body-line1": "You’re now staking with Marinade!",
-      "body-line2-before": "Click the button to explore what you can do with ",
-      "body-line2-after": " you just received.",
-      "button": "Use your {{stakedCurrency}}"
+      "title": "Liquid Staking Confirmed",
+      "body-line1": "Ready to keep going? Explore ways to earn even more with your new mSOL!",
+      "body-line2-after": " received",
+      "button": "Use {{stakedCurrency}} in DeFi"
     },
     "defi-subtitle": {
       "header": "Participate in DeFi",
@@ -416,6 +423,7 @@
     "exchange-rate-tooltip": "mSOL/SOL price increases every epoch because staking rewards are accumulated into the SOL staked pool. Therefore, the ratio is not 1:1. This ratio only goes up with time.",
     "deposit-fee-tooltip": "There is 0% fee for staking your SOL and receiving mSOL.",
     "unstake-fee-tooltip": "The unstake fee varies between 0.3% and 3% depending on how much liquidity is in the pool and how big amount you're unstaking.",
+    "projected-apy-tooltip": "The projected Annual Percentage Yield (APY) of holding mSOL for 1 year.",
     "amount-exceeds-current-liquidity-cap": "Amount entered exceeds the current Liquidity cap.",
     "liquidity-sol-confirmed": "Add liquidity confirmed",
     "successfully-liquidity-your-sol": "You've successfully added liquidity",

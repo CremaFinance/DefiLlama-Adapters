@@ -12,6 +12,7 @@ import {
 import { PublicKey } from "@solana/web3.js";
 import JSBI from "jsbi";
 import { useTranslation } from "next-export-i18n";
+import { useState } from "react";
 import { MdContentCopy } from "react-icons/md";
 
 import MButton from "../../atoms/Button";
@@ -29,7 +30,10 @@ import { DEFAULT_ENDPOINT } from "utils/web3/endpoints";
 
 type UnstakeTicketsSectionProps = {
   ticketAccounts: TicketAccount[];
-  runClaimHandler: (accountPubkey: TicketAccount["key"]) => void;
+  runClaimHandler: (
+    accountPubkey: TicketAccount["key"],
+    setLoaderStateCallback: (state: boolean) => void
+  ) => void;
 };
 
 const UnstakeTicketsSection = ({
@@ -42,6 +46,8 @@ const UnstakeTicketsSection = ({
   const { connected: isWalletConnected } = useWallet();
   const epochInfo = useEpochInfo()?.data;
   const accounts: TicketAccount[] = [];
+
+  const [isClaimProcessing, setIsClaimProcessing] = useState(false);
 
   const SLOT_DURATION_MILLISECONDS = DEFAULT_ENDPOINT.slotTimeAvg1h;
   const EXTRA_WAIT_MILLISECONDS = 1000 * 60 * 60 * 4 + 1000 * 60 * 45;
@@ -169,8 +175,13 @@ const UnstakeTicketsSection = ({
                       px={[4, 4]}
                       height="32px"
                       bg={colors.white}
+                      isLoading={isClaimProcessing}
                       onClick={() => {
-                        runClaimHandler(new PublicKey(account.key));
+                        runClaimHandler(
+                          new PublicKey(account.key),
+                          (isLoading: boolean) =>
+                            setIsClaimProcessing(isLoading)
+                        );
                       }}
                     >
                       {t("appPage.claim-action")}

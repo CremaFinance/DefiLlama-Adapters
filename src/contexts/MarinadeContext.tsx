@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-no-constructed-context-values */
+/* eslint-disable no-promise-executor-return */
 /* eslint-disable no-plusplus */
 /* eslint-disable sonarjs/prefer-immediate-return */
 /* eslint-disable react-hooks/exhaustive-deps */
@@ -8,7 +10,7 @@
 /* eslint-disable sonarjs/no-duplicate-string */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import * as anchor from "@project-serum/anchor";
-import { BN } from "@project-serum/anchor";
+import { Address, BN } from "@project-serum/anchor";
 import {
   ASSOCIATED_TOKEN_PROGRAM_ID,
   Token,
@@ -313,14 +315,16 @@ export function MarinadeProvider({ children }: MarinadeProviderProps) {
         program?.instruction.deposit(new anchor.BN(amountLamports), {
           accounts: {
             state: keys.marinadeStateId,
-            stSolMint: marinadeState?.state.st_sol_mint.value,
-            liqPoolSolLegPda: marinadeState?.liqPoolSolAccountPDA,
-            liqPoolStSolLeg: marinadeState?.state.liq_pool.st_sol_leg.value,
-            liqPoolStSolLegAuthority: marinadeState?.liqPoolStSolAuth,
-            reservePda: marinadeState?.reservePDA,
-            transferFrom: walletPubKey,
-            mintTo: userStSOLAccountAddress,
-            stSolMintAuthority: marinadeState?.liqPoolStSolMintAuth,
+            stSolMint: marinadeState?.state.st_sol_mint.value as Address,
+            liqPoolSolLegPda: marinadeState?.liqPoolSolAccountPDA as Address,
+            liqPoolStSolLeg: marinadeState?.state.liq_pool.st_sol_leg
+              .value as Address,
+            liqPoolStSolLegAuthority:
+              marinadeState?.liqPoolStSolAuth as Address,
+            reservePda: marinadeState?.reservePDA as Address,
+            transferFrom: walletPubKey as Address,
+            mintTo: userStSOLAccountAddress as Address,
+            stSolMintAuthority: marinadeState?.liqPoolStSolMintAuth as Address,
             systemProgram: anchor.web3.SystemProgram.programId,
             tokenProgram: TOKEN_PROGRAM_ID,
           },
@@ -354,19 +358,20 @@ export function MarinadeProvider({ children }: MarinadeProviderProps) {
           {
             accounts: {
               state: keys.marinadeStateId,
-              stSolMint: marinadeState?.state.st_sol_mint.value,
+              stSolMint: marinadeState?.state.st_sol_mint.value as Address,
 
-              liqPoolSolLegPda: marinadeState?.liqPoolSolAccountPDA,
+              liqPoolSolLegPda: marinadeState?.liqPoolSolAccountPDA as Address,
 
-              liqPoolStSolLeg: marinadeState?.state.liq_pool.st_sol_leg.value,
+              liqPoolStSolLeg: marinadeState?.state.liq_pool.st_sol_leg
+                .value as Address,
 
-              treasuryMsolAccount:
-                marinadeState?.state.treasury_msol_account.value,
+              treasuryMsolAccount: marinadeState?.state.treasury_msol_account
+                .value as Address,
 
-              getStSolFrom: userStSOLAccountAddress,
-              getStSolFromAuthority: walletPubKey,
+              getStSolFrom: userStSOLAccountAddress as Address,
+              getStSolFromAuthority: walletPubKey as Address,
 
-              transferSolTo: walletPubKey,
+              transferSolTo: walletPubKey as Address,
 
               systemProgram: anchor.web3.SystemProgram.programId,
               tokenProgram: TOKEN_PROGRAM_ID,
@@ -417,15 +422,16 @@ export function MarinadeProvider({ children }: MarinadeProviderProps) {
         await program?.instruction.addLiquidity(new anchor.BN(amountLamports), {
           accounts: {
             state: keys.marinadeStateId,
-            lpMint: marinadeState?.state.liq_pool.lp_mint.value,
-            lpMintAuthority: marinadeState?.liqMintAuthority,
+            lpMint: marinadeState?.state.liq_pool.lp_mint.value as Address,
+            lpMintAuthority: marinadeState?.liqMintAuthority as Address,
 
-            liqPoolStSolLeg: marinadeState?.state.liq_pool.st_sol_leg.value,
-            liqPoolSolLegPda: marinadeState?.liqPoolSolAccountPDA,
+            liqPoolStSolLeg: marinadeState?.state.liq_pool.st_sol_leg
+              .value as Address,
+            liqPoolSolLegPda: marinadeState?.liqPoolSolAccountPDA as Address,
 
-            transferFrom: walletPubKey,
+            transferFrom: walletPubKey as Address,
 
-            mintTo: userLiqSOLAccountAddress,
+            mintTo: userLiqSOLAccountAddress as Address,
 
             systemProgram: anchor.web3.SystemProgram.programId,
             tokenProgram: TOKEN_PROGRAM_ID,
@@ -486,17 +492,19 @@ export function MarinadeProvider({ children }: MarinadeProviderProps) {
           {
             accounts: {
               state: keys.marinadeStateId,
-              lpMint: marinadeState?.state.liq_pool.lp_mint.value,
+              lpMint: marinadeState?.state.liq_pool.lp_mint.value as Address,
 
-              burnFrom: userLiqSOLAccountAddress,
-              burnFromAuthority: walletPubKey,
+              burnFrom: userLiqSOLAccountAddress as Address,
+              burnFromAuthority: walletPubKey as Address,
 
-              transferSolTo: walletPubKey,
-              transferStSolTo: userStSOLAccountAddress,
+              transferSolTo: walletPubKey as Address,
+              transferStSolTo: userStSOLAccountAddress as Address,
 
-              liqPoolSolLegPda: marinadeState?.liqPoolSolAccountPDA,
-              liqPoolStSolLeg: marinadeState?.state.liq_pool.st_sol_leg.value,
-              liqPoolStSolLegAuthority: marinadeState?.liqPoolStSolAuth,
+              liqPoolSolLegPda: marinadeState?.liqPoolSolAccountPDA as Address,
+              liqPoolStSolLeg: marinadeState?.state.liq_pool.st_sol_leg
+                .value as Address,
+              liqPoolStSolLegAuthority:
+                marinadeState?.liqPoolStSolAuth as Address,
 
               systemProgram: anchor.web3.SystemProgram.programId,
               tokenProgram: TOKEN_PROGRAM_ID,
@@ -546,10 +554,10 @@ export function MarinadeProvider({ children }: MarinadeProviderProps) {
           {
             accounts: {
               state: keys.marinadeStateId,
-              stSolMint: marinadeState?.state.st_sol_mint.value,
+              stSolMint: marinadeState?.state.st_sol_mint.value as Address,
 
-              burnStSolFrom: userStSOLAccountAddress,
-              burnStSolAuthority: walletPubKey,
+              burnStSolFrom: userStSOLAccountAddress as Address,
+              burnStSolAuthority: walletPubKey as Address,
 
               newTicketAccount: newTicketAccount.publicKey,
 
@@ -585,10 +593,10 @@ export function MarinadeProvider({ children }: MarinadeProviderProps) {
         await program?.instruction.claim({
           accounts: {
             state: keys.marinadeStateId,
-            reservePda: marinadeState?.reservePDA,
+            reservePda: marinadeState?.reservePDA as Address,
 
             ticketAccount: ticket,
-            transferSolTo: walletPubKey,
+            transferSolTo: walletPubKey as Address,
 
             clock: SYSVAR_CLOCK_PUBKEY,
             systemProgram: anchor.web3.SystemProgram.programId,
@@ -697,11 +705,10 @@ export function MarinadeProvider({ children }: MarinadeProviderProps) {
         await program?.instruction.depositStakeAccount(validatorIndex, {
           accounts: {
             state: keys.marinadeStateId,
-            validatorList:
-              marinadeState?.state.validator_system.validator_list.account
-                .value,
-            stakeList:
-              marinadeState?.state.stake_system.stake_list.account.value,
+            validatorList: marinadeState?.state.validator_system.validator_list
+              .account.value as Address,
+            stakeList: marinadeState?.state.stake_system.stake_list.account
+              .value as Address,
             stakeAccount: new PublicKey(stakeAccount.pubkey),
             stakeAuthority: new PublicKey(
               stakeAccount.account.data.parsed.info.meta.authorized.withdrawer
@@ -716,10 +723,10 @@ export function MarinadeProvider({ children }: MarinadeProviderProps) {
                 keys.marinadeProgramId
               )
             )[0],
-            rentPayer: walletPubKey,
-            stSolMint: marinadeState?.state.st_sol_mint.value,
-            mintTo: userStSOLAccountAddress,
-            stSolMintAuthority: marinadeState?.liqPoolStSolMintAuth,
+            rentPayer: walletPubKey as Address,
+            stSolMint: marinadeState?.state.st_sol_mint.value as Address,
+            mintTo: userStSOLAccountAddress as Address,
+            stSolMintAuthority: marinadeState?.liqPoolStSolMintAuth as Address,
             clock: SYSVAR_CLOCK_PUBKEY,
             rent: SYSVAR_RENT_PUBKEY,
             systemProgram: anchor.web3.SystemProgram.programId,

@@ -9,6 +9,7 @@ import { orca } from "./orca";
 import { port } from "./port";
 import { raydium } from "./raydium";
 import { saber } from "./saber";
+import { synthetify } from "./synthetify";
 
 export const providerKeys = {
   ORCA: "orca",
@@ -20,6 +21,7 @@ export const providerKeys = {
   MNDE: "marinade",
   ALDRIN: "aldrin",
   SABER: "saber",
+  SYNTHETIFY: "synthetify",
 } as const;
 export type ProviderKeys = typeof providerKeys[keyof typeof providerKeys];
 
@@ -33,6 +35,7 @@ export const providers: Providers<ProviderKeys> = {
   [providerKeys.MNDE]: marinade,
   [providerKeys.ALDRIN]: aldrin,
   [providerKeys.SABER]: saber,
+  [providerKeys.SYNTHETIFY]: synthetify,
 };
 
 export type ProviderOptions = Record<string, Record<string, unknown>>;

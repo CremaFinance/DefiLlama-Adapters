@@ -27,6 +27,7 @@ const MobileMenu = () => {
     <Flex
       position="fixed"
       width="100vw"
+      height="56px"
       bottom="0"
       bg="white"
       display={["flex", "none"]}
@@ -42,7 +43,7 @@ const MobileMenu = () => {
         isActive={isStakingActive}
         flex={0.33}
         fontWeight="normal"
-        font="text-lg"
+        font="text-2xl"
         py={isStakingActive ? "6px" : "9px"}
         mb={isStakingActive ? 0 : "3px"}
         _active={activeMenu}
@@ -59,7 +60,7 @@ const MobileMenu = () => {
         isActive={isDefiActive}
         flex={0.33}
         fontWeight="normal"
-        font="text-lg"
+        font="text-2xl"
         py={isDefiActive ? "6px" : "9px"}
         mb={isDefiActive ? 0 : "3px"}
         _active={activeMenu}
@@ -76,7 +77,7 @@ const MobileMenu = () => {
         isActive={isMndeActive}
         flex={0.33}
         fontWeight="normal"
-        font="text-lg"
+        font="text-2xl"
         py={isMndeActive ? "6px" : "9px"}
         mb={isMndeActive ? 0 : "3px"}
         _active={activeMenu}

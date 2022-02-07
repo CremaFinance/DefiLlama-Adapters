@@ -4,11 +4,18 @@ import {
   useDisclosure,
   useToast,
   Box,
+  Table,
+  Tbody,
+  Tr,
+  Td,
+  Thead,
+  Th,
 } from "@chakra-ui/react";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import BN from "bn.js";
 import { useTranslation } from "next-export-i18n";
 import { useContext, useEffect, useState, useMemo } from "react";
+import { BiChevronDown, BiChevronUp } from "react-icons/bi";
 import { MdInfoOutline } from "react-icons/md";
 
 import { useChain, useConnection } from "../../../contexts/ConnectionProvider";
@@ -27,13 +34,19 @@ import TransactionLink from "components/molecules/TransactionLink";
 import { AccountsContext } from "contexts/AccountsContext";
 import { useStats } from "contexts/StatsContext";
 import { useEpochInfo } from "hooks/useEpochInfo";
+import { usePrices } from "hooks/usePrices";
 import { useTracking } from "hooks/useTracking";
 import { useWallet } from "hooks/useWallet";
+import { coinSymbols } from "services/domain/coinSymbols";
 import { StakeAccount } from "solana/domain/stake-account";
 import colors from "styles/customTheme/colors";
 import { basicInputChecks } from "utils/basic-input-checks";
 import { checkNativeSOLBalance } from "utils/check-native-sol-balance";
-import { format5Dec } from "utils/number-to-short-version";
+import {
+  format2Dec,
+  format5Dec,
+  numberToShortVersion,
+} from "utils/number-to-short-version";
 import { shortenAddress } from "utils/shorten-address";
 
 const BasicStake = () => {
@@ -50,6 +63,10 @@ const BasicStake = () => {
   const [stakeAccount, setStakeAccount] = useState<StakeAccountType | null>(
     null
   );
+  const prices = usePrices([coinSymbols.SOL]);
+  const solPrice = prices[coinSymbols.SOL]?.usd ?? 0;
+
+  const [showEstimation, setShowEstimation] = useState(false);
   const { nativeSOLBalance } = useUserBalance();
   const { connected: isWalletConnected, publicKey: walletPubKey } = useWallet();
   const epochInfo = useEpochInfo()?.data;
@@ -60,12 +77,53 @@ const BasicStake = () => {
       }
     },
   });
-  const { totalStaked } = useStats();
+  const { totalStaked, stakeAPY } = useStats();
   const chain = useChain();
 
   const marinade = useMarinade();
   const state = marinade?.marinadeState?.state;
   const marinadeState = marinade?.marinadeState;
+
+  const mSOLvsSOLParity = marinadeState?.state?.st_sol_price
+    ? marinadeState.state.st_sol_price.toNumber() / 0x1_0000_0000
+    : 0;
+  const sourceTokenBalance = nativeSOLBalance
+    ? nativeSOLBalance / LAMPORTS_PER_SOL - 0.001
+    : 0;
+
+  const mSOLReceived = format5Dec(Number(solStaked) / mSOLvsSOLParity);
+
+  const APY = stakeAPY ?? 0;
+  const APY_PCT = APY * 100;
+  const PERIODS = 365;
+  const APR = PERIODS * ((APY + 1) ** (1 / PERIODS) - 1);
+  const DPR = APR / PERIODS;
+
+  const generateEntry = (duration: string, days: number) => {
+    const ratio = (1 + DPR) ** days;
+    const newmSOLvsSOL = mSOLvsSOLParity * ratio;
+    const mSOLToReceive = Number(solToStake) / mSOLvsSOLParity;
+
+    return {
+      duration,
+      mSOL: numberToShortVersion(mSOLToReceive),
+      SOL: numberToShortVersion(mSOLToReceive * newmSOLvsSOL),
+      value: `$${numberToShortVersion(
+        mSOLToReceive * newmSOLvsSOL * solPrice
+      )}`,
+    };
+  };
+
+  const tableData = useMemo(() => {
+    return [
+      generateEntry("Now", 0),
+      generateEntry("1m", 30),
+      generateEntry("3m", 90),
+      generateEntry("6m", 180),
+      generateEntry("1y", 365),
+    ];
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mSOLReceived, mSOLvsSOLParity, solPrice, Number(solToStake)]);
 
   const {
     getStakeAccountsAction,
@@ -96,15 +154,6 @@ const BasicStake = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isWalletConnected, stakeLoading]);
-
-  const mSOLvsSOLParity = marinadeState?.state?.st_sol_price
-    ? marinadeState.state.st_sol_price.toNumber() / 0x1_0000_0000
-    : 1;
-  const sourceTokenBalance = nativeSOLBalance
-    ? nativeSOLBalance / LAMPORTS_PER_SOL - 0.001
-    : 0;
-
-  const mSOLReceived = format5Dec(Number(solStaked) / mSOLvsSOLParity);
 
   const handleSelectAccountCallback = (
     value: boolean,
@@ -433,6 +482,97 @@ const BasicStake = () => {
         </Flex>
         <MText type="text-md">0%</MText>
       </Flex>
+
+      <Flex width="100%" mt={1} mb={1} justifyContent="space-between">
+        <Flex>
+          <MText type="text-md">
+            {t("appPage.stake-inputs-projected-apy")}
+          </MText>
+          <TooltipWithContent tooltipText={t("appPage.projected-apy-tooltip")}>
+            <IconButton
+              variant="link"
+              aria-label="Info stake fee"
+              size="sm"
+              _focus={{ boxShadow: "none" }}
+              icon={<MdInfoOutline />}
+            />
+          </TooltipWithContent>
+        </Flex>
+        <MText type="text-md">{format2Dec(APY_PCT)}%</MText>
+      </Flex>
+
+      {Number(solToStake) >= 0.1 && (
+        <Flex
+          width="100%"
+          mt={1}
+          mb={1}
+          justifyContent="flex-start"
+          alignItems="center"
+        >
+          <MText
+            type="text-md"
+            color={colors.marinadeGreen}
+            fontWeight="700"
+            onClick={() => setShowEstimation((v) => !v)}
+            cursor="pointer"
+          >
+            Estimated results{" "}
+          </MText>
+          <IconButton
+            position="relative"
+            right="6px"
+            variant="link"
+            aria-label="dropdown results"
+            size="lg"
+            onClick={() => setShowEstimation((v) => !v)}
+            _focus={{ boxShadow: "none" }}
+            icon={showEstimation ? <BiChevronUp /> : <BiChevronDown />}
+            color={colors.marinadeGreen}
+          />
+        </Flex>
+      )}
+      {showEstimation && Number(solToStake) >= 0.1 && (
+        <Table width="100%" mt="15px">
+          <Thead>
+            <Tr height="60px" borderTop="1px solid #edf2f7">
+              <Th px={1} width="10px">
+                Period
+              </Th>
+              <Th px={1} width="500px" textAlign="right">
+                mSOL
+              </Th>
+              <Th px={1} width="500px" textAlign="right">
+                SOL
+              </Th>
+              <Th px={1} width="500px" textAlign="right">
+                $ value
+              </Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {tableData.map((tuple) => (
+              <Tr
+                key={tuple.duration}
+                height="60px"
+                fontSize={{ base: "13px", sm: "14.4px" }}
+              >
+                <Td px={1} width="10px">
+                  {tuple.duration}
+                </Td>
+                <Td px={1} width="500px" textAlign="right">
+                  {tuple.mSOL}
+                </Td>
+                <Td px={1} width="500px" textAlign="right">
+                  {tuple.SOL}
+                </Td>
+                <Td px={1} width="500px" textAlign="right">
+                  {tuple.value}
+                </Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      )}
       <SuccessStakeModal
         isOpen={isOpen}
         onClose={onClose}

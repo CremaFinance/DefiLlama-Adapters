@@ -264,4 +264,19 @@ export const coinTokens: TokenRecord<CoinSymbols> = {
       website: "https://saber.so",
     },
   },
+  [coinSymbols.SNY]: {
+    chainId: 101,
+    address: "4dmKkXNHdgYsXqBHCuMikNQWwVomZURhYvkkX5c4pQ7y",
+    symbol: "SNY",
+    name: "Synthetify",
+    decimals: 6,
+    logoURI:
+      "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/4dmKkXNHdgYsXqBHCuMikNQWwVomZURhYvkkX5c4pQ7y/logo.png",
+    extensions: {
+      coingeckoId: "synthetify-token",
+      serumV3Usdc: "DPfj2jYwPaezkCmUNm5SSYfkrkz8WFqwGLcxDDUsN3gA",
+      twitter: "https://twitter.com/synthetify",
+      website: "https://synthetify.io/",
+    },
+  },
 };
