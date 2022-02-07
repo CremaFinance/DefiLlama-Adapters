@@ -1,9 +1,9 @@
 import { Box, Flex, Image } from "@chakra-ui/react";
 
 import DefiSection from "components/app/DefiSection";
-import Footer from "components/app/Footer";
 import Header from "components/app/Header";
 import MobileMenu from "components/app/MobileMenu";
+import Footer from "components/layout/Footer";
 import colors from "styles/customTheme/colors";
 
 const Defi = () => {

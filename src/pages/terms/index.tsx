@@ -1,8 +1,8 @@
 import { Box, Heading, ListItem, OrderedList, Text } from "@chakra-ui/layout";
 import { FC } from "react";
 
-import Footer from "components/app/Footer";
 import Header from "components/index/Header";
+import Footer from "components/layout/Footer";
 import { useTranslation } from "hooks/useTranslation";
 import colors from "styles/customTheme/colors";
 
