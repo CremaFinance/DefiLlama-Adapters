@@ -53,6 +53,9 @@ const TOKADAPT_STATE_ID = new PublicKey(
   "taspunvVUXLG82PrsCCtQeknWrGHNHWcZmVQYNcQBDg"
 );
 const MNDE_MINT = new PublicKey("MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey");
+const MSOL_SOL_LP_MINT = new PublicKey(
+  "LPmSozJJ8Jh69ut2WP3XmVohTjL4ipR18yiCzxrUmVj"
+);
 
 function loadFarm({
   connected,
@@ -113,10 +116,28 @@ function loadFarm({
 
       const withdraw = async (uiAmount: string) => {
         let tx = new TransactionEnvelope(rewarder.sdk.provider, []);
+
         if (miner && !(await quarry.provider.getAccountInfo(miner.minerKey))) {
           const { miner: minerKey, tx: createMinerTx } =
             await quarry.createMiner({});
           tx = createMinerTx;
+        }
+
+        if (
+          !miner?.stakedTokenATA ||
+          !(await quarry.provider.getAccountInfo(miner?.stakedTokenATA))
+        ) {
+          const { instruction: createAtaInstruction } = await st.getOrCreateATA(
+            {
+              provider: rewarder.sdk.provider,
+              mint: MSOL_SOL_LP_MINT,
+              owner: rewarder.sdk.provider.wallet.publicKey,
+              payer: rewarder.sdk.provider.wallet.publicKey,
+            }
+          );
+          if (createAtaInstruction) {
+            tx.instructions.push(createAtaInstruction);
+          }
         }
 
         if (miner) {
