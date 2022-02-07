@@ -1,7 +1,6 @@
 import {
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalOverlay,
   Center,
@@ -35,7 +34,6 @@ const PendingStakeModal = ({
     <Modal isOpen={isOpenProp} onClose={onCloseProp} size="lg" isCentered>
       <ModalOverlay />
       <ModalContent width="480px" height="271px">
-        <ModalCloseButton _focus={{ boxShadow: "none" }} color="gray.500" />
         <ModalBody display="flex" justifyContent="center" top="50%">
           <Center flexDir="column" height="100%" alignItems="center" margin="0">
             <Text
