@@ -7,7 +7,7 @@ import {
   Image,
   Flex,
 } from "@chakra-ui/react";
-import { PropsWithChildren, FunctionComponent } from "react";
+import type { PropsWithChildren, FunctionComponent } from "react";
 
 import { useTranslation } from "../../../hooks/useTranslation";
 import colors from "../../../styles/customTheme/colors";

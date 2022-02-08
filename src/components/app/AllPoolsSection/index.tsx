@@ -2,13 +2,14 @@ import { Flex } from "@chakra-ui/react";
 import { useMemo, useState } from "react";
 
 import { useStats } from "../../../contexts/StatsContext";
-import { Pool, PoolConfig } from "../../../services/domain/pool";
+import type { Pool, PoolConfig } from "../../../services/domain/pool";
 import { providerKeys } from "../../../services/pools/index";
 import CallToActionSection from "../CallToActionSection";
 import PoolRow from "components/molecules/PoolRow";
 import { usePools } from "hooks/usePools";
 
-import { COLUMNS, COLUMNS_SORTER, SortingState } from "./constants";
+import type { SortingState } from "./constants";
+import { COLUMNS, COLUMNS_SORTER } from "./constants";
 import DesktopDataHeader from "./DesktopDataHeader";
 import MobileDataHeader from "./MobileDataHeader";
 

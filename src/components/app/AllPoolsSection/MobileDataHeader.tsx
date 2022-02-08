@@ -13,7 +13,8 @@ import { BsChevronDown } from "react-icons/bs";
 import { useTranslation } from "../../../hooks/useTranslation";
 import colors from "../../../styles/customTheme/colors";
 
-import { COLUMNS, DataHeaderProps, SortingState } from "./constants";
+import type { DataHeaderProps, SortingState } from "./constants";
+import { COLUMNS } from "./constants";
 
 const MobileDataHeader = ({ setSorting }: DataHeaderProps) => {
   const { t } = useTranslation();

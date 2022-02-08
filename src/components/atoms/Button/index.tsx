@@ -1,5 +1,7 @@
-import { Button as ChakraButton, ButtonProps } from "@chakra-ui/react";
-import { forwardRef, LegacyRef } from "react";
+import type { ButtonProps } from "@chakra-ui/react";
+import { Button as ChakraButton } from "@chakra-ui/react";
+import type { LegacyRef } from "react";
+import { forwardRef } from "react";
 
 import colors from "../../../styles/customTheme/colors";
 

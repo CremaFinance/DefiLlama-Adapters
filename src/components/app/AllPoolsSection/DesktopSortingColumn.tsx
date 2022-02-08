@@ -1,7 +1,9 @@
-import { Flex, FlexProps, Image } from "@chakra-ui/react";
-import { Dispatch, SetStateAction } from "react";
+import type { FlexProps } from "@chakra-ui/react";
+import { Flex, Image } from "@chakra-ui/react";
+import type { Dispatch, SetStateAction } from "react";
 
-import { COLUMNS, SortingState } from "./constants";
+import type { SortingState } from "./constants";
+import { COLUMNS } from "./constants";
 
 const poolSortPicker = (
   { column, isInverted }: SortingState,

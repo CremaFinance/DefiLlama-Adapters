@@ -1,5 +1,7 @@
-import { Link as ChakraLink, LinkProps, ChakraProps } from "@chakra-ui/react";
-import { forwardRef, LegacyRef } from "react";
+import type { LinkProps, ChakraProps } from "@chakra-ui/react";
+import { Link as ChakraLink } from "@chakra-ui/react";
+import type { LegacyRef } from "react";
+import { forwardRef } from "react";
 
 type Props = ChakraProps &
   LinkProps & {

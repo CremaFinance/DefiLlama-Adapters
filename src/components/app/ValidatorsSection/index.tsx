@@ -25,7 +25,8 @@ import { useTranslation } from "next-export-i18n";
 import { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import { MdContentCopy } from "react-icons/md";
-import { useQuery, UseQueryResult } from "react-query";
+import type { UseQueryResult } from "react-query";
+import { useQuery } from "react-query";
 
 import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";

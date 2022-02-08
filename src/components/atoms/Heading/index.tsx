@@ -1,9 +1,7 @@
-import {
-  Heading as ChakraHeading,
-  HeadingProps,
-  ChakraProps,
-} from "@chakra-ui/react";
-import { forwardRef, LegacyRef } from "react";
+import type { HeadingProps, ChakraProps } from "@chakra-ui/react";
+import { Heading as ChakraHeading } from "@chakra-ui/react";
+import type { LegacyRef } from "react";
+import { forwardRef } from "react";
 
 type Props = HeadingProps &
   ChakraProps & {

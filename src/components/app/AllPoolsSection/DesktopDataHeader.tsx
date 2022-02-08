@@ -2,7 +2,8 @@ import { Flex } from "@chakra-ui/react";
 
 import { useTranslation } from "../../../hooks/useTranslation";
 
-import { COLUMNS, DataHeaderProps } from "./constants";
+import type { DataHeaderProps } from "./constants";
+import { COLUMNS } from "./constants";
 import DesktopSortingColumn from "./DesktopSortingColumn";
 
 const DesktopDataHeader = ({ sorting, setSorting }: DataHeaderProps) => {

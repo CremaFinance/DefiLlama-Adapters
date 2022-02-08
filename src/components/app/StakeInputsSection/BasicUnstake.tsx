@@ -1,7 +1,8 @@
 /* eslint-disable complexity */
 import { Flex, IconButton, useToast, Box } from "@chakra-ui/react";
 import { useWallet } from "@solana/wallet-adapter-react";
-import { LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
+import type { PublicKey } from "@solana/web3.js";
+import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
 import { useState, useContext, useEffect } from "react";
 import { MdInfoOutline } from "react-icons/md";
@@ -22,7 +23,7 @@ import { useChain, useConnection, useKeys } from "contexts/ConnectionProvider";
 import { useMarinade } from "contexts/MarinadeContext";
 import { useStats } from "contexts/StatsContext";
 import { useTracking } from "hooks/useTracking";
-import { TicketAccount } from "solana/domain/ticket-account";
+import type { TicketAccount } from "solana/domain/ticket-account";
 import colors from "styles/customTheme/colors";
 import { basicInputChecks } from "utils/basic-input-checks";
 import { checkNativeSOLBalance } from "utils/check-native-sol-balance";

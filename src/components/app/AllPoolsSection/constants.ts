@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
-import { Dispatch, SetStateAction } from "react";
+import type { Dispatch, SetStateAction } from "react";
 
-import { Pool, PoolConfig } from "../../../services/domain/pool";
+import type { Pool, PoolConfig } from "../../../services/domain/pool";
 
 export enum COLUMNS {
   APY = "APY",
