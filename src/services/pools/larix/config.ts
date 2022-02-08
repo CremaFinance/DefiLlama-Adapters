@@ -15,8 +15,7 @@ import { lendingLarixPoolTokens } from "./lendingLarixPoolTokens";
 
 const provider = "Larix";
 const actions = [
-  { text: "Supply", url: "https://projectlarix.com/", isExternal: true },
-  { text: "Borrow", url: "https://projectlarix.com/", isExternal: true },
+  { text: "Supply/Borrow", url: "https://projectlarix.com/", isExternal: true },
 ];
 
 export type LarixPoolsResponse = Record<LendingLarixPoolIds, LarixPool>;

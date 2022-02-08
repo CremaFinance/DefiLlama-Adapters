@@ -20,12 +20,7 @@ const lendActions = [
 ];
 const farmActions = [
   {
-    text: "Add Liquidity",
-    url: "https://francium.io/app/invest/farm",
-    isExternal: true,
-  },
-  {
-    text: "Swap",
+    text: "Farm",
     url: "https://francium.io/app/invest/farm",
     isExternal: true,
   },
