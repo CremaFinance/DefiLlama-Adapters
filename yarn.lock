@@ -2848,12 +2848,11 @@
     bs58 "^4.0.1"
     eventemitter3 "^4.0.7"
 
-"@quarryprotocol/quarry-sdk@^1.11.0":
-  version "1.11.0"
-  resolved "https://registry.yarnpkg.com/@quarryprotocol/quarry-sdk/-/quarry-sdk-1.11.0.tgz#04a22c6606295ff85412da1b246c71d06ce9d372"
-  integrity sha512-OWoDAob6rkjbW5Pt2z6dLeJ9jtrNmN6DR7EV7ZEueufjxX7uBO+oJlttIkGtRqmXJw0MU0cIHUuwYVsSwtHt6w==
+"@quarryprotocol/quarry-sdk@^1.11.12":
+  version "1.11.12"
+  resolved "https://registry.yarnpkg.com/@quarryprotocol/quarry-sdk/-/quarry-sdk-1.11.12.tgz#2c500bef2d9c5a2d9b8f169886f313445c3fcac7"
+  integrity sha512-8WAuruvFqSxrvtE7l89xtjYHmasUa45rLzjP4eqpLilWMj4/4Eylka30DrCr5HK/qeHR6YzyEtsMtHESxSB8Gg==
   dependencies:
-    lodash.mapvalues "^4.6.0"
     tiny-invariant "^1.2.0"
     tslib "^2.3.1"
 
