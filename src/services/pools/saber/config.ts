@@ -30,7 +30,7 @@ export type SaberPoolsResponse = { pools: PoolStats[] };
 const provider = "Saber";
 const actions = [
   {
-    text: "Deposit",
+    text: "Add liquidity",
     url: "https://app.saber.so/#/pools/msol_sol/deposit",
     isExternal: true,
   },
