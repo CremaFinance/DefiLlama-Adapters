@@ -2935,12 +2935,12 @@
     lodash.mapvalues "^4.6.0"
     tslib "^2.3.1"
 
-"@saberhq/token-utils@^1.12.36":
-  version "1.12.36"
-  resolved "https://registry.yarnpkg.com/@saberhq/token-utils/-/token-utils-1.12.36.tgz#5d65792e36879e0560fc2e8242ae83fb843a5144"
-  integrity sha512-VXK+Sy0Hn9eKW5frKq/bWvKM1nKSG/cy8kh7UHFZ3LoIFgFPcyjikvVKVQo7ozTldz+lm2Oa/bYhn33IFmE1sQ==
+"@saberhq/token-utils@^1.12.36", "@saberhq/token-utils@^1.12.37":
+  version "1.12.37"
+  resolved "https://registry.yarnpkg.com/@saberhq/token-utils/-/token-utils-1.12.37.tgz#ed42d7d6be0a28467547268a199d63ad4e637da1"
+  integrity sha512-xjD3zG2ZNCHAkxxbB/Q77u3Ukoe5OMDb+izIgqVQQ+hgMrMNezCyPdgYkrc0000VsFv0WvmBfpbPwU7rRziIRg==
   dependencies:
-    "@saberhq/solana-contrib" "^1.12.36"
+    "@saberhq/solana-contrib" "^1.12.37"
     "@solana/buffer-layout" "^4.0.0"
     "@solana/spl-token" "^0.1.8"
     "@ubeswap/token-math" "^4.4.1"
@@ -12264,10 +12264,10 @@ next-seo@^5.0.0:
   resolved "https://registry.yarnpkg.com/next-seo/-/next-seo-5.0.0.tgz#8a5c82279edcbd74c4ce58efa5588528e47c0d72"
   integrity sha512-uCa8hoE5VQz4D2NqZAPhqR64hY5LSmaq70wmfGK09U57TMY7XzsDI+MjfZo0MgHJM87bj3Fd/oMQbDcZ/YWhJQ==
 
-next-sitemap@^2.1.8:
-  version "2.1.8"
-  resolved "https://registry.yarnpkg.com/next-sitemap/-/next-sitemap-2.1.8.tgz#2fbfcfd842f0f14444467fbd895e12345e5c0208"
-  integrity sha512-q7MuDqK3bDQO/RDBkAbC0sP2LDpdKwE6QsOZ+vY/k16MLhSIaY9ZVBjnv2ePAThQDdhQ3dxaj8jKY7z5lnQxxw==
+next-sitemap@^2.1.13:
+  version "2.1.13"
+  resolved "https://registry.yarnpkg.com/next-sitemap/-/next-sitemap-2.1.13.tgz#1772e9f0eae07d4b1c3194654b84e6579c05a95c"
+  integrity sha512-gybyH7ylRiwgRakI81++Hx6a+LUl7tkcmcsjNJA0L0t95lk3gc0OYHH9siV+JMdytd4lag5ue8E8iMGKJ06Q/Q==
   dependencies:
     "@corex/deepmerge" "^2.6.148"
     minimist "^1.2.5"
