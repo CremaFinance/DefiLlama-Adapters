@@ -2,9 +2,11 @@ import { Flex } from "@chakra-ui/layout";
 import { Image, Text, Box } from "@chakra-ui/react";
 import { FunctionComponent } from "react";
 
+import { useTranslation } from "hooks/useTranslation";
 import colors from "styles/customTheme/colors";
 
 const WhySection: FunctionComponent = () => {
+  const { t } = useTranslation();
   return (
     <Flex
       aria-label="why-section"
@@ -20,7 +22,7 @@ const WhySection: FunctionComponent = () => {
         fontSize={["30px", "43.95px"]}
         pb={10}
       >
-        $MNDE token gives you a say on
+        {t("mndePage.why-section.header")}
       </Text>
       <Flex
         flexDirection={["column", "column", "row"]}
@@ -40,7 +42,7 @@ const WhySection: FunctionComponent = () => {
             fontSize={["20px", "28px"]}
             py={6}
           >
-            $250M Treasury
+            {t("mndePage.why-section.cards.0.header")}
           </Text>
           <Box maxWidth="278px">
             <Text
@@ -49,8 +51,7 @@ const WhySection: FunctionComponent = () => {
               fontSize="18px"
               py={{ sm: 4 }}
             >
-              The Marinade DAO treasury holds a 30% allocation of MNDE, as well
-              as receiving ongoing fees from staked SOL.
+              {t("mndePage.why-section.cards.0.text")}
             </Text>
           </Box>
         </Flex>
@@ -67,7 +68,7 @@ const WhySection: FunctionComponent = () => {
             fontSize={["20px", "28px"]}
             py={6}
           >
-            Vote with your NFT
+            {t("mndePage.why-section.cards.1.header")}
           </Text>
           <Box maxWidth="278px">
             <Text
@@ -76,9 +77,7 @@ const WhySection: FunctionComponent = () => {
               fontSize="18px"
               py={{ sm: 4 }}
             >
-              The security and decentralization of Solana is positively
-              influenced by the Marinade staking algorithm, which stakes and
-              balances the Marinade pool. You govern that algorithm.
+              {t("mndePage.why-section.cards.1.text")}
             </Text>
           </Box>
         </Flex>
@@ -95,7 +94,7 @@ const WhySection: FunctionComponent = () => {
             fontSize={["20px", "28px"]}
             py={6}
           >
-            Executive Team
+            {t("mndePage.why-section.cards.2.header")}
           </Text>
           <Box maxWidth="278px">
             <Text
@@ -104,9 +103,7 @@ const WhySection: FunctionComponent = () => {
               fontSize="18px"
               py={{ sm: 4 }}
             >
-              The security and decentralization of Solana is positively
-              influenced by the Marinade staking algorithm, which stakes and
-              balances the Marinade pool. You govern that algorithm.
+              {t("mndePage.why-section.cards.2.text")}
             </Text>
           </Box>
         </Flex>
