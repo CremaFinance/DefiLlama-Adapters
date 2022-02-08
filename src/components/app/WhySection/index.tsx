@@ -7,6 +7,7 @@ import colors from "styles/customTheme/colors";
 
 const WhySection: FunctionComponent = () => {
   const { t } = useTranslation();
+  const cardIndexes = Array.from({ length: 3 }, (_, i) => i);
   return (
     <Flex
       aria-label="why-section"
@@ -29,84 +30,36 @@ const WhySection: FunctionComponent = () => {
         flex={1}
         justifyContent="space-between"
       >
-        <Flex flexDirection="column" alignItems="center">
-          <Image
-            src="/ilustrations/treasury.svg"
-            width={["60px", "100px"]}
-            alt="Treasury"
-          />
-          <Text
-            color={colors.white800}
-            textAlign="center"
-            fontWeight="bold"
-            fontSize={["20px", "28px"]}
-            py={6}
-          >
-            {t("mndePage.why-section.cards.0.header")}
-          </Text>
-          <Box maxWidth="278px">
-            <Text
-              color={colors.white800}
-              textAlign="center"
-              fontSize="18px"
-              py={{ sm: 4 }}
-            >
-              {t("mndePage.why-section.cards.0.text")}
-            </Text>
-          </Box>
-        </Flex>
-        <Flex flexDirection="column" alignItems="center">
-          <Image
-            src="/ilustrations/sol-delegation.svg"
-            width={["60px", "100px"]}
-            alt="Treasury"
-          />
-          <Text
-            color={colors.white800}
-            textAlign="center"
-            fontWeight="bold"
-            fontSize={["20px", "28px"]}
-            py={6}
-          >
-            {t("mndePage.why-section.cards.1.header")}
-          </Text>
-          <Box maxWidth="278px">
-            <Text
-              color={colors.white800}
-              textAlign="center"
-              fontSize="18px"
-              py={{ sm: 4 }}
-            >
-              {t("mndePage.why-section.cards.1.text")}
-            </Text>
-          </Box>
-        </Flex>
-        <Flex flexDirection="column" alignItems="center">
-          <Image
-            src="/ilustrations/exec-team.svg"
-            width={["60px", "100px"]}
-            alt="Treasury"
-          />
-          <Text
-            color={colors.white800}
-            textAlign="center"
-            fontWeight="bold"
-            fontSize={["20px", "28px"]}
-            py={6}
-          >
-            {t("mndePage.why-section.cards.2.header")}
-          </Text>
-          <Box maxWidth="278px">
-            <Text
-              color={colors.white800}
-              textAlign="center"
-              fontSize="18px"
-              py={{ sm: 4 }}
-            >
-              {t("mndePage.why-section.cards.2.text")}
-            </Text>
-          </Box>
-        </Flex>
+        {cardIndexes.map((index) => {
+          return (
+            <Flex flexDirection="column" alignItems="center">
+              <Image
+                src={`/ilustrations/why-card-${index}.svg`}
+                width={["60px", "100px"]}
+                alt="Treasury"
+              />
+              <Text
+                color={colors.white800}
+                textAlign="center"
+                fontWeight="bold"
+                fontSize={["20px", "28px"]}
+                py={6}
+              >
+                {t(`mndePage.why-section.cards.${index}.header`)}
+              </Text>
+              <Box maxWidth="278px">
+                <Text
+                  color={colors.white800}
+                  textAlign="center"
+                  fontSize="18px"
+                  py={{ sm: 4 }}
+                >
+                  {t(`mndePage.why-section.cards.${index}.text`)}
+                </Text>
+              </Box>
+            </Flex>
+          );
+        })}
       </Flex>
     </Flex>
   );
