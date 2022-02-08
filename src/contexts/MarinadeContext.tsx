@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-no-constructed-context-values */
+/* eslint-disable no-promise-executor-return */
 /* eslint-disable no-plusplus */
 /* eslint-disable sonarjs/prefer-immediate-return */
 /* eslint-disable react-hooks/exhaustive-deps */

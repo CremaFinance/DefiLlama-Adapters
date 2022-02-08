@@ -51,9 +51,15 @@ export const saberPools: Record<FarmPoolAddress, PoolConfig> = {
       tokenA: coinSymbols.mSOL,
       tokenB: coinSymbols.SOL,
       rewards: {
-        [coinSymbols.MNDE]: {
-          aprDescription: "Emission",
+        [coinSymbols.SABER]: {
+          aprDescription: "SABER",
           dailyRate: 34410.77441 / 7,
+          quarry: "7193EeecxsPPv9TMoQATTN8i1eTqEUSNU8aDLuFCQy68",
+        },
+        [coinSymbols.MNDE]: {
+          aprDescription: "MNDE",
+          dailyRate: 34410.77441 / 7,
+          quarry: "8k36P2RifbC9rYFqfvyYfgLmyq7RgA2JfmtYo57KMBLa",
         },
       },
       actions,
