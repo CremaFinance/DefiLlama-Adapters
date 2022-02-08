@@ -91,7 +91,7 @@
     "eslint-plugin-testing-library": "5.0.4",
     "husky": "^7.0.4",
     "lint-staged": "^12.3.3",
-    "next-sitemap": "^2.1.8",
+    "next-sitemap": "^2.1.13",
     "next-transpile-modules": "^9.0.0",
     "prettier": "^2.5.1",
     "standard-version": "^9.3.2",
