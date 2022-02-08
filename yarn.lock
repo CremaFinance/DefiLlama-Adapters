@@ -2823,12 +2823,11 @@
     bs58 "^4.0.1"
     eventemitter3 "^4.0.7"
 
-"@quarryprotocol/quarry-sdk@^1.11.0":
-  version "1.11.0"
-  resolved "https://registry.yarnpkg.com/@quarryprotocol/quarry-sdk/-/quarry-sdk-1.11.0.tgz#04a22c6606295ff85412da1b246c71d06ce9d372"
-  integrity sha512-OWoDAob6rkjbW5Pt2z6dLeJ9jtrNmN6DR7EV7ZEueufjxX7uBO+oJlttIkGtRqmXJw0MU0cIHUuwYVsSwtHt6w==
+"@quarryprotocol/quarry-sdk@^1.11.12":
+  version "1.11.12"
+  resolved "https://registry.yarnpkg.com/@quarryprotocol/quarry-sdk/-/quarry-sdk-1.11.12.tgz#2c500bef2d9c5a2d9b8f169886f313445c3fcac7"
+  integrity sha512-8WAuruvFqSxrvtE7l89xtjYHmasUa45rLzjP4eqpLilWMj4/4Eylka30DrCr5HK/qeHR6YzyEtsMtHESxSB8Gg==
   dependencies:
-    lodash.mapvalues "^4.6.0"
     tiny-invariant "^1.2.0"
     tslib "^2.3.1"
 
@@ -2935,12 +2934,12 @@
     lodash.mapvalues "^4.6.0"
     tslib "^2.3.1"
 
-"@saberhq/token-utils@^1.12.36":
-  version "1.12.36"
-  resolved "https://registry.yarnpkg.com/@saberhq/token-utils/-/token-utils-1.12.36.tgz#5d65792e36879e0560fc2e8242ae83fb843a5144"
-  integrity sha512-VXK+Sy0Hn9eKW5frKq/bWvKM1nKSG/cy8kh7UHFZ3LoIFgFPcyjikvVKVQo7ozTldz+lm2Oa/bYhn33IFmE1sQ==
+"@saberhq/token-utils@^1.12.36", "@saberhq/token-utils@^1.12.37":
+  version "1.12.37"
+  resolved "https://registry.yarnpkg.com/@saberhq/token-utils/-/token-utils-1.12.37.tgz#ed42d7d6be0a28467547268a199d63ad4e637da1"
+  integrity sha512-xjD3zG2ZNCHAkxxbB/Q77u3Ukoe5OMDb+izIgqVQQ+hgMrMNezCyPdgYkrc0000VsFv0WvmBfpbPwU7rRziIRg==
   dependencies:
-    "@saberhq/solana-contrib" "^1.12.36"
+    "@saberhq/solana-contrib" "^1.12.37"
     "@solana/buffer-layout" "^4.0.0"
     "@solana/spl-token" "^0.1.8"
     "@ubeswap/token-math" "^4.4.1"
