@@ -19,9 +19,9 @@ const Footer = () => {
       bg={colors.blackMate}
       as="footer"
       aria-label="footer-section"
+      px={{ base: 4, md: 10, lg: 160 }}
       pt={[12, 8]}
       pb={[24, 8]}
-      px={{ base: 4, md: "12vw" }}
       flexDirection="column"
     >
       <Flex flexDirection={["column", "row"]}>
