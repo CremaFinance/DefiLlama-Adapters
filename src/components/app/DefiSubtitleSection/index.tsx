@@ -56,7 +56,7 @@ const DefiSubtitleSection = () => {
                 width="16px"
                 height="16px"
                 marginLeft="9px"
-                color="green800"
+                color="gray.500"
               />
             </Button>
           </PopoverTrigger>
