@@ -2999,10 +2999,10 @@
   dependencies:
     buffer "~6.0.3"
 
-"@solana/spl-token-registry@^0.2.1838":
-  version "0.2.1838"
-  resolved "https://registry.yarnpkg.com/@solana/spl-token-registry/-/spl-token-registry-0.2.1838.tgz#28019bcf8f75e67786f7020d813c80291d66548d"
-  integrity sha512-5PSwEQYpOvm9BZrmKQAQmJgWpjtakAr9F29X4bilL0dwB7r0C9yKYgQR6qtPFr6GW4DXYFmDuXQSf1f23xRANw==
+"@solana/spl-token-registry@^0.2.2123":
+  version "0.2.2123"
+  resolved "https://registry.yarnpkg.com/@solana/spl-token-registry/-/spl-token-registry-0.2.2123.tgz#9e157077b9654dde22142dde0ee93721d20724e7"
+  integrity sha512-kspebjglLa016+2+v1Opu/RSsMDIkHzS5oP06g1XjEYfysr5xNmQ5ir6vYOXIF/CaFTLg/JChP5aDBSWVjW0nw==
   dependencies:
     cross-fetch "3.0.6"
 
@@ -7526,14 +7526,7 @@ cross-fetch@3.0.6:
   dependencies:
     node-fetch "2.6.1"
 
-cross-fetch@^3.0.4, cross-fetch@^3.1.4:
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.1.4.tgz#9723f3a3a247bf8b89039f3a380a9244e8fa2f39"
-  integrity sha512-1eAtFWdIubi6T4XPy6ei9iUFoKpUkIF971QLN8lIvvvwueI65+Nw5haMNKUwfJxabqlIIDODJKGrQ66gxC0PbQ==
-  dependencies:
-    node-fetch "2.6.1"
-
-cross-fetch@^3.0.6:
+cross-fetch@^3.0.4, cross-fetch@^3.0.6, cross-fetch@^3.1.4:
   version "3.1.5"
   resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.1.5.tgz#e1389f44d9e7ba767907f7af8454787952ab534f"
   integrity sha512-lvb1SBsI0Z7GDwmuid+mU3kWVBwTVUbe7S0H52yaaAdQOXq2YktTCZdlAcNKFzE6QtRz0snpw9bNiPeOIkkQvw==
