@@ -313,9 +313,25 @@
       "body-mobile": "Use mSOL and explore additional yield while still earning your staking rewards"
     },
     "mnde": {
-      "header": "Participate in Marinade",
-      "description": "MNDE is the governance token of Marinade finance.",
-      "docs-link": "https://docs.marinade.finance/marinade-dao/tokenomics"
+      "header": "MNDE",
+      "description1": "The Marinade token - MNDE - represents fractional ownership of Marinade.",
+      "description2": "Acquire and stake MNDE to vote and earn within the Marinade DAO.",
+      "docs-link": "https://docs.marinade.finance/marinade-dao/tokenomics",
+      "lock-card": {
+        "title": "Lock MNDE",
+        "description": "Acquire and lock MNDE to participate in governance and unlock additional incentives.",
+        "button": "Get and lock MNDE"
+      },
+      "nft-vote-card": {
+        "title": "Vote with your NFT",
+        "description": "Influence the delegation strategy, decide on treasury spend, and control the executive team.",
+        "button": "Vote"
+      },
+      "earn-card": {
+        "title": "Earn",
+        "description": "Benefit from MNDE buybacks and a share of protocol fees weighted to your commitment.",
+        "button": "Coming soon"
+      }
     },
     "stake-inputs-time-to-unstake": "Time to unstake",
     "tooltip-time-to-unstake-text": "Unstaking will take 1-2 epochs. This time is an estimation; please refer to the docs to learn more.",
