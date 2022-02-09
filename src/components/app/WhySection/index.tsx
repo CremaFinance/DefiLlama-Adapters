@@ -1,6 +1,6 @@
 import { Flex } from "@chakra-ui/layout";
 import { Image, Text, Box } from "@chakra-ui/react";
-import { FunctionComponent } from "react";
+import type { FunctionComponent } from "react";
 
 import { useTranslation } from "hooks/useTranslation";
 import colors from "styles/customTheme/colors";
@@ -32,7 +32,7 @@ const WhySection: FunctionComponent = () => {
       >
         {cardIndexes.map((index) => {
           return (
-            <Flex flexDirection="column" alignItems="center">
+            <Flex flexDirection="column" alignItems="center" mb={{ sm: 16 }}>
               <Image
                 src={`/ilustrations/why-card-${index}.svg`}
                 width={["60px", "100px"]}
