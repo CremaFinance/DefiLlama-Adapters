@@ -257,10 +257,6 @@
     "info-apy-tooltip-link-text": "See stats",
     "info-validators-tooltip": "Stake is only delegated to validators that are not part of the security group to secure the network and help with its decentralization. Marinade’s algorithm evaluates all validators and selects the top-performers.",
     "info-validators-tooltip-docs-link": "https://docs.marinade.finance/marinade-protocol/validators",
-
-    "footer-join-us": "Join us",
-    "footer-learn-more": "Learn more",
-
     "stake-inputs-title": "Stake Solana",
     "stake-inputs-subtitle": "Stake SOL and use mSOL while earning rewards",
     "stake-inputs-balance": "Balance",

@@ -19,91 +19,80 @@ const Footer = () => {
       bg={colors.blackMate}
       as="footer"
       aria-label="footer-section"
-      py={8}
-      px={{ base: 4, md: "40px", lg: 168 }}
+      px={{ base: 4, md: 10, lg: 160 }}
+      pt={[12, 8]}
+      pb={[24, 8]}
       flexDirection="column"
     >
-      <Box display="flex" flexWrap="wrap">
-        <Box
-          minWidth="300"
-          pt={8}
-          pb={[6, 0]}
-          display="flex"
-          flex="0.5"
-          flexDirection="column"
-        >
-          <NextLink href="/">
-            <Image
-              cursor="pointer"
-              src="/marinade-logo-white.svg"
-              alt="Marinade Logo"
-              width={200}
-            />
-          </NextLink>
-          <MText py={6} type="text-xl" color={colors.white800}>
-            {t("indexPage.footer-description")}
-          </MText>
-          <Box display="flex" flexDirection="row">
-            <Link
-              target="_blank"
-              rel="noreferrer noopener"
-              href="https://discord.com/invite/6EtUf4Euu6"
-            >
+      <Flex flexDirection={["column", "row"]}>
+        <Flex flexDirection="column" flex={{ base: 0.33, lg: 0.56 }}>
+          <Flex minWidth="300" pt={6} display="flex" flexDirection="column">
+            <NextLink href="/">
               <Image
                 cursor="pointer"
-                src="/discord.svg"
-                alt="Discord Logo"
-                width={30}
+                src="../../marinade-logo-white.svg"
+                alt="Marinade Logo"
+                width={200}
               />
-            </Link>
-            <Link
-              target="_blank"
-              rel="noreferrer noopener"
-              marginLeft="4"
-              marginRight="4"
-              href="https://medium.com/marinade-finance"
+            </NextLink>
+            <MText
+              py={6}
+              type="text-xl"
+              color={colors.white800}
+              maxWidth={{ base: "360", md: "30vw", lg: "25vw" }}
             >
-              <Image
-                cursor="pointer"
-                src="/medium.svg"
-                alt="Medium Logo"
-                width={30}
-              />
-            </Link>
-            <Link
-              target="_blank"
-              rel="noreferrer noopener"
-              href="https://twitter.com/MarinadeFinance"
-            >
-              <Image
-                cursor="pointer"
-                src="/twitter.svg"
-                alt="Twitter Logo"
-                width={30}
-              />
-            </Link>
-          </Box>
-        </Box>
+              {t("indexPage.footer-description")}
+            </MText>
+          </Flex>
 
-        <Box display="flex" flex={[0.1, 0.2]} />
+          <Flex pb={8} flex={{ base: 0.33, lg: 0.24 }} flexDirection="column">
+            <Flex flexDirection="row">
+              <Link
+                target="_blank"
+                rel="noreferrer noopener"
+                href="https://discord.com/invite/6EtUf4Euu6"
+              >
+                <Image
+                  cursor="pointer"
+                  src="../../discord.svg"
+                  alt="Discord Logo"
+                  width={[50, 30]}
+                />
+              </Link>
+              <Link
+                target="_blank"
+                rel="noreferrer noopener"
+                marginLeft={[16, 4]}
+                marginRight={[16, 4]}
+                href="https://medium.com/marinade-finance"
+              >
+                <Image
+                  cursor="pointer"
+                  src="../../medium.svg"
+                  alt="Medium Logo"
+                  width={[50, 30]}
+                />
+              </Link>
+              <Link
+                target="_blank"
+                rel="noreferrer noopener"
+                href="https://twitter.com/MarinadeFinance"
+              >
+                <Image
+                  cursor="pointer"
+                  src="../../twitter.svg"
+                  alt="Twitter Logo"
+                  width={[50, 30]}
+                />
+              </Link>
+            </Flex>
+          </Flex>
+        </Flex>
 
-        <Box
-          minWidth={["100%", "250"]}
-          pt={8}
-          display="flex"
-          flex="0.25"
-          flexDirection="column"
-        >
-          <MText
-            pb={2}
-            type="text-2xl"
-            maxW="600"
-            color={colors.white}
-            fontWeight="800"
-          >
+        <Flex py={6} flex={{ base: 0.33, lg: 0.2 }} flexDirection="column">
+          <MText pb={2} type="text-2xl" color={colors.white} fontWeight="800">
             {t("indexPage.footer-product")}
           </MText>
-
           <MButton
             font="text-xl"
             fontWeight={500}
@@ -117,7 +106,6 @@ const Footer = () => {
           >
             {t("indexPage.footer-stake-sol")}
           </MButton>
-
           <MButton
             font="text-xl"
             fontWeight={500}
@@ -139,7 +127,6 @@ const Footer = () => {
           >
             {t("indexPage.footer-validators")}
           </MButton>
-
           <MButton
             font="text-xl"
             fontWeight={500}
@@ -169,7 +156,6 @@ const Footer = () => {
               {t("indexPage.footer-msol")}
             </Link>
           </MButton>
-
           <MButton
             font="text-xl"
             fontWeight={500}
@@ -213,7 +199,6 @@ const Footer = () => {
           >
             {t("indexPage.footer-defi-integration")}
           </MButton>
-
           <MButton
             font="text-xl"
             fontWeight={500}
@@ -273,18 +258,12 @@ const Footer = () => {
               {t("indexPage.footer-msol-stats")}
             </Link>
           </MButton>
-        </Box>
-        <Box py={8} display="flex" flex="0.25" flexDirection="column">
-          <MText
-            pb={2}
-            type="text-2xl"
-            maxW="600"
-            color={colors.white}
-            fontWeight="800"
-          >
+        </Flex>
+
+        <Flex py={6} flex={{ base: 0.33, lg: 0.2 }} flexDirection="column">
+          <MText pb={2} type="text-2xl" color={colors.white} fontWeight="800">
             {t("indexPage.footer-learn")}
           </MText>
-
           <MButton
             font="text-xl"
             fontWeight={500}
@@ -314,7 +293,6 @@ const Footer = () => {
               {t("indexPage.footer-docs")}
             </Link>
           </MButton>
-
           <MButton
             font="text-xl"
             fontWeight={500}
@@ -404,7 +382,6 @@ const Footer = () => {
               {t("indexPage.footer-roadmap")}
             </Link>
           </MButton>
-
           <MButton
             font="text-xl"
             fontWeight={500}
@@ -434,10 +411,10 @@ const Footer = () => {
               {t("indexPage.footer-terms")}
             </Link>
           </MButton>
-        </Box>
-      </Box>
+        </Flex>
+      </Flex>
 
-      <Box width="100%" mt={6}>
+      <Box width="100%" mt={4}>
         <MText type="text-md" color={colors.white800}>
           {t("indexPage.footer-copyright").replace(
             "{{year}}",

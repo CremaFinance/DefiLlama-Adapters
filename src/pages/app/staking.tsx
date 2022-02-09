@@ -2,11 +2,11 @@ import { Box, Flex, Image } from "@chakra-ui/react";
 import { useEffect } from "react";
 
 import FAQSection from "components/app/FAQSection";
-import Footer from "components/app/Footer";
 import Header from "components/app/Header";
 import MobileMenu from "components/app/MobileMenu";
 import StakeInputsSection from "components/app/StakeInputsSection";
 import StakingSection from "components/app/StakingSection";
+import Footer from "components/layout/Footer";
 import { useTracking } from "hooks/useTracking";
 import colors from "styles/customTheme/colors";
 
