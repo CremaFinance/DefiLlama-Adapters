@@ -113,10 +113,28 @@ function loadFarm({
 
       const withdraw = async (uiAmount: string) => {
         let tx = new TransactionEnvelope(rewarder.sdk.provider, []);
+
         if (miner && !(await quarry.provider.getAccountInfo(miner.minerKey))) {
           const { miner: minerKey, tx: createMinerTx } =
             await quarry.createMiner({});
           tx = createMinerTx;
+        }
+
+        if (
+          miner &&
+          !(await quarry.provider.getAccountInfo(miner?.stakedTokenATA))
+        ) {
+          const { instruction: createAtaInstruction } = await st.getOrCreateATA(
+            {
+              provider: rewarder.sdk.provider,
+              mint: miner?.quarry.quarryData.tokenMintKey,
+              owner: rewarder.sdk.provider.wallet.publicKey,
+              payer: rewarder.sdk.provider.wallet.publicKey,
+            }
+          );
+          if (createAtaInstruction) {
+            tx.instructions.push(createAtaInstruction);
+          }
         }
 
         if (miner) {
