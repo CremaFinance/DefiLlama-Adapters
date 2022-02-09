@@ -22,14 +22,6 @@ const PendingStakeModal = ({
 }: PendingStakeModalProps) => {
   const { t } = useTranslation();
 
-  const approvalTitle = t("appPage.awaiting-transaction-approval.title");
-  const approvalBodyLine = t("appPage.awaiting-transaction-approval.body-line");
-  const confirmationTitle = t(
-    "appPage.awaiting-transaction-confirmation.title"
-  );
-  const confirmationBodyLine = t(
-    "appPage.awaiting-transaction-confirmation.body-line"
-  );
   return (
     <Modal isOpen={isOpenProp} onClose={onCloseProp} size="lg" isCentered>
       <ModalOverlay />
@@ -41,36 +33,20 @@ const PendingStakeModal = ({
               fontWeight="bold"
               lineHeight="39.38px"
               mb={3}
-              display={!isTransactionSignedProp ? "flex" : "none"}
             >
-              {approvalTitle}
-            </Text>
-            <Text
-              fontSize="28.13px"
-              fontWeight="bold"
-              lineHeight="39.38px"
-              mb={3}
-              display={isTransactionSignedProp ? "flex" : "none"}
-            >
-              {confirmationTitle}
+              {!isTransactionSignedProp
+                ? t("appPage.awaiting-transaction-approval.title")
+                : t("appPage.awaiting-transaction-confirmation.title")}
             </Text>
             <Text
               marginTop="9px"
               fontSize="17.5px"
               lineHeight="27px"
               textAlign="center"
-              display={!isTransactionSignedProp ? "flex" : "none"}
             >
-              {approvalBodyLine}
-            </Text>
-            <Text
-              marginTop="9px"
-              fontSize="17.5px"
-              lineHeight="27px"
-              textAlign="center"
-              display={isTransactionSignedProp ? "flex" : "none"}
-            >
-              {confirmationBodyLine}
+              {!isTransactionSignedProp
+                ? t("appPage.awaiting-transaction-approval.body-line")
+                : t("appPage.awaiting-transaction-confirmation.body-line")}
             </Text>
           </Center>
         </ModalBody>

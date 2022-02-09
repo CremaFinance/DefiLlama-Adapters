@@ -34,11 +34,16 @@ import { format2Dec, format5Dec } from "utils/number-to-short-version";
 
 interface Props {
   onCloseProp: () => Promise<void> | void;
+  triggerTransactionModal: (value: boolean) => void;
   isOpenProp: boolean;
 }
 
 // eslint-disable-next-line complexity
-const MSolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
+const MSolLpModal = ({
+  isOpenProp,
+  onCloseProp,
+  triggerTransactionModal,
+}: Props) => {
   const { t } = useTranslation();
   const toast = useToast();
   const { track } = useTracking();
@@ -93,6 +98,7 @@ const MSolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
     }
 
     setLoading(true);
+    triggerTransactionModal(true);
 
     return mLP
       ?.stake(amount)
@@ -134,7 +140,10 @@ const MSolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
           });
         }
       )
-      .finally(() => setLoading(false));
+      .finally(() => {
+        setLoading(false);
+        triggerTransactionModal(false);
+      });
   };
 
   const withdrawDepositHandler = () => {
@@ -176,6 +185,7 @@ const MSolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
       return false;
     }
     setLoading(true);
+    triggerTransactionModal(true);
 
     return mLP
       .withdraw(amount)
@@ -224,7 +234,10 @@ const MSolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
           });
         }
       )
-      .finally(() => setLoading(false));
+      .finally(() => {
+        setLoading(false);
+        triggerTransactionModal(false);
+      });
   };
 
   return (

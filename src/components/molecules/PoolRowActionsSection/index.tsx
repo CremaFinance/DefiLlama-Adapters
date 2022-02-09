@@ -1,5 +1,6 @@
 import { Flex, Image, useDisclosure } from "@chakra-ui/react";
 import type { FunctionComponent } from "react";
+import { useContext, useState } from "react";
 
 import { useWallet } from "../../../hooks/useWallet";
 import type { Action } from "../../../services/domain/pool";
@@ -7,6 +8,8 @@ import colors from "../../../styles/customTheme/colors";
 import Button from "../../atoms/Button";
 import { ConnectWallet } from "../ConnectWallet";
 import SolLiquidityModal from "../SolLiquidityModal";
+import PendingStakeModal from "components/molecules/PendingStakeModal";
+import { AccountsContext } from "contexts/AccountsContext";
 
 type PoolRowActionsSectionProps = {
   actions: Action[];
@@ -15,8 +18,24 @@ type PoolRowActionsSectionProps = {
 const PoolRowActionsSection: FunctionComponent<PoolRowActionsSectionProps> = ({
   actions,
 }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { transactionSigned, transactionSignedAction } =
+    useContext(AccountsContext);
+  const { isOpen, onOpen, onClose } = useDisclosure({
+    onClose: () => {
+      transactionSignedAction(false);
+    },
+  });
   const { connected: isWalletConnected } = useWallet();
+
+  const [isLoading, setIsLoading] = useState(false);
+  const triggerTransactionModal = (value: boolean) => {
+    if (!value) {
+      setIsLoading(false);
+      transactionSignedAction(false);
+    } else {
+      setIsLoading(true);
+    }
+  };
 
   return (
     <>
@@ -104,7 +123,16 @@ const PoolRowActionsSection: FunctionComponent<PoolRowActionsSectionProps> = ({
         </Flex>
       )}
 
-      <SolLiquidityModal isOpen={isOpen} onClose={onClose} />
+      <SolLiquidityModal
+        isOpen={isOpen}
+        onClose={onClose}
+        triggerTransactionModal={triggerTransactionModal}
+      />
+      <PendingStakeModal
+        isTransactionSigned={transactionSigned}
+        isOpen={isLoading}
+        onClose={onClose}
+      />
     </>
   );
 };

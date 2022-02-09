@@ -51,6 +51,7 @@ const BasicUnstake = () => {
   const keys = useKeys();
 
   const [isUnstakeNowActive, setUnstakeNowActive] = useState(true);
+  const [isClaimLoading, setClaimLoading] = useState(false);
   const [unstakeLoading, setUnstakeLoading] = useState(false);
   const [stSolToUnstake, setStSolToUnstake] = useState<string>("");
   const [showModal, setShowModal] = useState(false);
@@ -290,6 +291,7 @@ const BasicUnstake = () => {
     setLodaerStateCallback: (state: boolean) => void
   ) => {
     setLodaerStateCallback(true);
+    setClaimLoading(true);
     marinade
       .runClaim(accountPubkey)
       .then(
@@ -353,7 +355,11 @@ const BasicUnstake = () => {
           true
         )
       )
-      .finally(() => setLodaerStateCallback(false));
+      .finally(() => {
+        setClaimLoading(false);
+        transactionSignedAction(false);
+        setLodaerStateCallback(false);
+      });
   };
 
   return (
@@ -435,7 +441,7 @@ const BasicUnstake = () => {
       />
       <PendingStakeModal
         isTransactionSigned={transactionSigned}
-        isOpen={unstakeLoading}
+        isOpen={unstakeLoading || isClaimLoading}
         onClose={onClose}
       />
       <UnstakeTicketsSection
