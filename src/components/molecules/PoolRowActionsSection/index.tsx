@@ -2,14 +2,14 @@ import { Flex, Image, useDisclosure } from "@chakra-ui/react";
 import type { FunctionComponent } from "react";
 import { useContext, useState } from "react";
 
+import { AccountsContext } from "../../../contexts/AccountsContext";
 import { useWallet } from "../../../hooks/useWallet";
 import type { Action } from "../../../services/domain/pool";
 import colors from "../../../styles/customTheme/colors";
 import Button from "../../atoms/Button";
 import { ConnectWallet } from "../ConnectWallet";
+import PendingStakeModal from "../PendingStakeModal";
 import SolLiquidityModal from "../SolLiquidityModal";
-import PendingStakeModal from "components/molecules/PendingStakeModal";
-import { AccountsContext } from "contexts/AccountsContext";
 
 type PoolRowActionsSectionProps = {
   actions: Action[];
