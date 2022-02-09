@@ -1,12 +1,24 @@
-/* eslint-disable complexity */
-import { Flex, Image, Text } from "@chakra-ui/react";
-import { useTranslation } from "next-export-i18n";
+import { Flex, Image, Text, Icon } from "@chakra-ui/react";
+import { FiExternalLink } from "react-icons/fi";
 
-import MButton from "../../../atoms/Button";
+import MButton from "../../atoms/Button";
 import colors from "styles/customTheme/colors";
 
-const EarnMNDECard = () => {
-  const { t } = useTranslation();
+type MNDESubmenuCardProps = {
+  cardTitle: string;
+  cardDescription: string;
+  cardButtonText: string;
+  cardButtonDisabled?: boolean;
+  cardIllustrationPath: string;
+};
+
+const MNDESubmenuCard = ({
+  cardTitle,
+  cardDescription,
+  cardButtonText,
+  cardButtonDisabled = false,
+  cardIllustrationPath,
+}: MNDESubmenuCardProps) => {
   return (
     <Flex
       ml="8px"
@@ -27,7 +39,7 @@ const EarnMNDECard = () => {
       <Image
         width="80px"
         height={{ base: "80px", md: "54px", xl: "80px" }}
-        src="/ilustrations/earn.svg"
+        src={cardIllustrationPath}
       />
       <Text
         marginTop={{ base: "16pxpx", md: "4px", xl: "16px" }}
@@ -36,25 +48,20 @@ const EarnMNDECard = () => {
         lineHeight="140%"
         color={colors.blackMate}
       >
-        {t("appPage.mnde.earn-card.title")}
+        {cardTitle}
       </Text>
       <Text
         marginTop="8px"
         fontSize={{ base: "18px", md: "12px", xl: "18px" }}
         lineHeight="150%"
         textAlign="center"
+        justifyContent="center"
         color={colors.blackMate}
       >
-        {t("appPage.mnde.earn-card.description")}
+        {cardDescription}
       </Text>
-      <Flex
-        marginTop={{ base: "24px", md: "10px", xl: "24px" }}
-        width="100%"
-        alignItems="center"
-        justifyContent="center"
-      >
+      <Flex marginTop={{ base: "24px", md: "10px", xl: "24px" }} width="100%">
         <MButton
-          disabled
           width="100%"
           height={{ base: "40px", md: "24px", xl: "40px" }}
           variant="big-solid"
@@ -62,11 +69,19 @@ const EarnMNDECard = () => {
           lineHeight="140%"
           fontWeight="bold"
           paddingX="44px"
+          isDisabled={cardButtonDisabled}
         >
-          {t("appPage.mnde.earn-card.button")}
+          {cardButtonText}
+          <Icon
+            as={FiExternalLink}
+            width="16px"
+            height="16px"
+            cursor="pointer"
+            marginLeft="9px"
+          />
         </MButton>
       </Flex>
     </Flex>
   );
 };
-export default EarnMNDECard;
+export default MNDESubmenuCard;

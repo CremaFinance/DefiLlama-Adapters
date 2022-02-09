@@ -2,8 +2,8 @@ import { Flex, Image } from "@chakra-ui/react";
 
 import Footer from "components/app/Footer";
 import Header from "components/app/Header";
-import SubmenusMndeSection from "components/app/MndeSection/SubmenusSection";
 import MobileMenu from "components/app/MobileMenu";
+import SubmenusMndeSection from "components/app/SubmenusSection";
 import colors from "styles/customTheme/colors";
 
 const Mnde = () => {

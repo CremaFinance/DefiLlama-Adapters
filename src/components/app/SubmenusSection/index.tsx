@@ -2,12 +2,9 @@ import { Flex, Text, IconButton } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { MdInfoOutline } from "react-icons/md";
 
+import MNDESubmenuCard from "components/molecules/MNDESubmenuCard";
 import TooltipWithContent from "components/molecules/TooltipWithContent";
 import colors from "styles/customTheme/colors";
-
-import EarnMNDECard from "./EarnMNDECard";
-import LockMNDECard from "./LockMNDECard";
-import NFTVoteMNDECard from "./NFTVoteMNDECard";
 
 const SubmenusMndeSection = () => {
   const { t } = useTranslation();
@@ -79,11 +76,25 @@ const SubmenusMndeSection = () => {
         alignItems="center"
         px={{ base: "4px", lg: "6vw" }}
       >
-        <>
-          <LockMNDECard />
-          <NFTVoteMNDECard />
-          <EarnMNDECard />
-        </>
+        <MNDESubmenuCard
+          cardTitle={t("appPage.mnde.lock-card.title")}
+          cardDescription={t("appPage.mnde.lock-card.description")}
+          cardButtonText={t("appPage.mnde.lock-card.button")}
+          cardIllustrationPath="/ilustrations/lock.svg"
+        />
+        <MNDESubmenuCard
+          cardTitle={t("appPage.mnde.nft-vote-card.title")}
+          cardDescription={t("appPage.mnde.nft-vote-card.description")}
+          cardButtonText={t("appPage.mnde.nft-vote-card.button")}
+          cardIllustrationPath="/ilustrations/vote.svg"
+        />
+        <MNDESubmenuCard
+          cardTitle={t("appPage.mnde.earn-card.title")}
+          cardDescription={t("appPage.mnde.earn-card.description")}
+          cardButtonText={t("appPage.mnde.earn-card.button")}
+          cardIllustrationPath="/ilustrations/earn.svg"
+          cardButtonDisabled
+        />
       </Flex>
     </Flex>
   );
