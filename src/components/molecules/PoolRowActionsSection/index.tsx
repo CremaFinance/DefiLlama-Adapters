@@ -1,8 +1,8 @@
 import { Flex, Image, useDisclosure } from "@chakra-ui/react";
-import { FunctionComponent } from "react";
+import type { FunctionComponent } from "react";
 
 import { useWallet } from "../../../hooks/useWallet";
-import { Action } from "../../../services/domain/pool";
+import type { Action } from "../../../services/domain/pool";
 import colors from "../../../styles/customTheme/colors";
 import Button from "../../atoms/Button";
 import { ConnectWallet } from "../ConnectWallet";

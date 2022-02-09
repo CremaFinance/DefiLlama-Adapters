@@ -1,5 +1,7 @@
-import { ChakraProps, Text as ChakraText, TextProps } from "@chakra-ui/react";
-import { forwardRef, LegacyRef } from "react";
+import type { ChakraProps, TextProps } from "@chakra-ui/react";
+import { Text as ChakraText } from "@chakra-ui/react";
+import type { LegacyRef } from "react";
+import { forwardRef } from "react";
 
 type Props = TextProps &
   ChakraProps & {

@@ -25,8 +25,8 @@ import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 import { ConnectWallet } from "../../molecules/ConnectWallet";
 import TooltipWithContent from "../../molecules/TooltipWithContent";
+import type { StakeAccountType } from "components/molecules/StakeInput";
 import StakeInput, {
-  StakeAccountType,
   StakeInputTypeEnum,
 } from "components/molecules/StakeInput";
 import SuccessStakeModal from "components/molecules/SuccessStakeModal";
@@ -38,7 +38,7 @@ import { usePrices } from "hooks/usePrices";
 import { useTracking } from "hooks/useTracking";
 import { useWallet } from "hooks/useWallet";
 import { coinSymbols } from "services/domain/coinSymbols";
-import { StakeAccount } from "solana/domain/stake-account";
+import type { StakeAccount } from "solana/domain/stake-account";
 import colors from "styles/customTheme/colors";
 import { basicInputChecks } from "utils/basic-input-checks";
 import { checkNativeSOLBalance } from "utils/check-native-sol-balance";

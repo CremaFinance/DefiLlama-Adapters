@@ -7,7 +7,7 @@ import {
   useToast,
   Link,
 } from "@chakra-ui/react";
-import { WalletError } from "@solana/wallet-adapter-base";
+import type { WalletError } from "@solana/wallet-adapter-base";
 import { useCallback, useEffect, useState } from "react";
 
 import { useTranslation } from "../../../hooks/useTranslation";

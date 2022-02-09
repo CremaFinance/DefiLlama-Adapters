@@ -1,9 +1,9 @@
 import { Flex, Image, Icon, Spinner, Tooltip } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
-import { FunctionComponent } from "react";
+import type { FunctionComponent } from "react";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 
-import { Pool, PoolConfig } from "../../../services/domain/pool";
+import type { Pool, PoolConfig } from "../../../services/domain/pool";
 import colors from "../../../styles/customTheme/colors";
 import { numberToShortVersion } from "../../../utils/number-to-short-version";
 import Button from "../../atoms/Button";

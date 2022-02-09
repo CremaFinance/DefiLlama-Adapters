@@ -1,5 +1,6 @@
 import { Button, MenuButton, Image } from "@chakra-ui/react";
-import { createElement, FC } from "react";
+import type { FC } from "react";
+import { createElement } from "react";
 
 interface StakeInputButtonProps {
   component: "Button" | "MenuButton";

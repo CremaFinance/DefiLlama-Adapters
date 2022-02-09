@@ -20,7 +20,7 @@ import Countdown from "../../atoms/Countdown";
 import MText from "../../atoms/Text";
 import { useEpochInfo } from "hooks/useEpochInfo";
 import { useWallet } from "hooks/useWallet";
-import { TicketAccount } from "solana/domain/ticket-account";
+import type { TicketAccount } from "solana/domain/ticket-account";
 import { LamportsToSol } from "solana/marinade-anchor/common";
 import colors from "styles/customTheme/colors";
 import { copyAddressToClipboard } from "utils/copy-to-clipboard";

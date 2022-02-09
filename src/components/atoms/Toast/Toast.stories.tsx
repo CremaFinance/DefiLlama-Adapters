@@ -1,5 +1,5 @@
 import { Alert as Toast } from "@chakra-ui/react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import type { ComponentStory, ComponentMeta } from "@storybook/react";
 
 export default {
   title: "Atoms/Toast",

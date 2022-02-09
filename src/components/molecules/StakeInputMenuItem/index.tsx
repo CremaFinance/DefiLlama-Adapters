@@ -1,5 +1,5 @@
 import { Flex, Image, useMediaQuery, MenuItem, Box } from "@chakra-ui/react";
-import { FC } from "react";
+import type { FC } from "react";
 
 import { format2Dec, format5Dec } from "../../../utils/number-to-short-version";
 import { shortenAddress } from "../../../utils/shorten-address";

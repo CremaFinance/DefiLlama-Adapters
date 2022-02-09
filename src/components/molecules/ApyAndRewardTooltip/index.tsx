@@ -6,12 +6,15 @@ import {
   PopoverBody,
   Icon,
 } from "@chakra-ui/react";
-import { PropsWithChildren, FunctionComponent } from "react";
+import type { PropsWithChildren, FunctionComponent } from "react";
 import { HiCheckCircle } from "react-icons/hi";
 
 import { useTranslation } from "../../../hooks/useTranslation";
-import { Leverage, LeverageConfig } from "../../../services/domain/leverage";
-import { Rewards, RewardsConfig } from "../../../services/domain/rewards";
+import type {
+  Leverage,
+  LeverageConfig,
+} from "../../../services/domain/leverage";
+import type { Rewards, RewardsConfig } from "../../../services/domain/rewards";
 import Text from "../../atoms/Text";
 
 type ApyAndRewardTooltipProps = PropsWithChildren<{
