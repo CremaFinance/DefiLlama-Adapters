@@ -21,11 +21,11 @@ export const WalletConnectionProvider: FC<{ children: ReactNode }> = ({
 
   const wallets = useMemo(
     () => [
+      new SolflareWalletAdapter(),
+      new SolflareWebWalletAdapter(),
       new PhantomWalletAdapter(),
       new SolletWalletAdapter({ network }),
       new SolletExtensionWalletAdapter({ network }),
-      new SolflareWalletAdapter(),
-      new SolflareWebWalletAdapter(),
       new Coin98WalletAdapter(),
       new SlopeWalletAdapter(),
     ],
