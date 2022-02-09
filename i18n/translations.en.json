@@ -298,7 +298,7 @@
       "errorBody": "Address was not copied"
     },
     "success-stake": {
-      "title": "Liquid Staking Confirmed",
+      "title": "Liquid staking confirmed",
       "body-line1": "Ready to keep going? Explore ways to earn even more with your new mSOL!",
       "body-line2-after": " received",
       "button": "Use {{stakedCurrency}} in DeFi"
