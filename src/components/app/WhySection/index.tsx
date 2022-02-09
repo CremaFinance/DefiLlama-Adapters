@@ -28,6 +28,7 @@ const WhySection: FunctionComponent = () => {
       <Flex
         flexDirection={{ base: "column", md: "row" }}
         justifyContent="center"
+        alignItems={{ base: "center", md: "unset" }}
         marginY={4}
       >
         {[0, 1, 2].map((index) => (
