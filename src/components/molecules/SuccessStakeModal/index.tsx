@@ -48,7 +48,7 @@ const SuccessStakeModal = ({
               marginTop="64px"
               width="300px"
               height="253.2px"
-              src="/ilustrations/success.svg"
+              src="/ilustrations/success-stake.svg"
             />
             <Text
               marginTop="24px"
