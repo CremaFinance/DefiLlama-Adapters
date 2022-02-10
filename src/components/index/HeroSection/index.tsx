@@ -46,7 +46,11 @@ const HeroSection = () => {
         zIndex={10}
         textAlign={["center", "left"]}
       >
-        <MHeading type="heading-lg" mt={[0, "1vh"]} color={colors.greenVibrant}>
+        <MHeading
+          type="heading-lg"
+          mt={[0, "1vh"]}
+          color={colors.marinadeGreen}
+        >
           {t("indexPage.hero-section-title")}
         </MHeading>
 
