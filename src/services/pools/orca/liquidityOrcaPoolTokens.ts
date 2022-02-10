@@ -1,10 +1,8 @@
 /* eslint-disable sonarjs/no-duplicate-string */
-import { TokenRecord } from "../../domain/token";
+import type { TokenRecord } from "../../domain/token";
 
-import {
-  liquidityOrcaPoolAddress,
-  LiquidityOrcaPoolAddress,
-} from "./liquidityOrcaPoolAddress";
+import type { LiquidityOrcaPoolAddress } from "./liquidityOrcaPoolAddress";
+import { liquidityOrcaPoolAddress } from "./liquidityOrcaPoolAddress";
 
 const orcaUri = "/pools/orca.png";
 

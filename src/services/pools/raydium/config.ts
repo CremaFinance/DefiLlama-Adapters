@@ -1,17 +1,13 @@
 import { coinSymbols } from "../../domain/coinSymbols";
 import { marketTypes } from "../../domain/marketTypes";
-import { PoolConfig } from "../../domain/pool";
+import type { PoolConfig } from "../../domain/pool";
 
-import {
-  LiquidityRaydiumPoolAddress,
-  liquidityRaydiumPoolAddress,
-} from "./liquidityRaydiumPoolAddress";
-import {
-  LiquidityPoolRaydiumIds,
-  liquidityPoolRaydiumIds,
-} from "./liquidityRaydiumPoolIds";
+import type { LiquidityRaydiumPoolAddress } from "./liquidityRaydiumPoolAddress";
+import { liquidityRaydiumPoolAddress } from "./liquidityRaydiumPoolAddress";
+import type { LiquidityPoolRaydiumIds } from "./liquidityRaydiumPoolIds";
+import { liquidityPoolRaydiumIds } from "./liquidityRaydiumPoolIds";
 import { liquidityPoolTokensRaydium } from "./liquidityRaydiumPoolTokens";
-import { RaydiumPool } from "./raydiumPool";
+import type { RaydiumPool } from "./raydiumPool";
 
 const provider = "Raydium";
 const actions = [

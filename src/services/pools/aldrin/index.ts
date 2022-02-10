@@ -1,7 +1,7 @@
-import { Prices } from "../../domain/coinSymbols";
-import { Pool } from "../../domain/pool";
+import type { Prices } from "../../domain/coinSymbols";
+import type { Pool } from "../../domain/pool";
 
-import { AldrinPoolsResponse } from "./aldrinPool";
+import type { AldrinPoolsResponse } from "./aldrinPool";
 import { aldrinPools } from "./config";
 
 export async function fetchAldrinPools(): Promise<AldrinPoolsResponse> {

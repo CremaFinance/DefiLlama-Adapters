@@ -1,17 +1,13 @@
 import { coinSymbols } from "../../domain/coinSymbols";
 import { marketTypes } from "../../domain/marketTypes";
-import { PoolConfig } from "../../domain/pool";
+import type { PoolConfig } from "../../domain/pool";
 
-import {
-  LiquidityMarinadePoolAddress,
-  liquidityMarinadePoolAddress,
-} from "./liquidityMarinadePoolAddress";
-import {
-  LiquidityPoolMarinadeIds,
-  liquidityPoolMarinadeIds,
-} from "./liquidityMarinadePoolIds";
+import type { LiquidityMarinadePoolAddress } from "./liquidityMarinadePoolAddress";
+import { liquidityMarinadePoolAddress } from "./liquidityMarinadePoolAddress";
+import type { LiquidityPoolMarinadeIds } from "./liquidityMarinadePoolIds";
+import { liquidityPoolMarinadeIds } from "./liquidityMarinadePoolIds";
 import { liquidityPoolTokensMarinade } from "./liquidityMarinadePoolTokens";
-import { MarinadePool } from "./marinadePool";
+import type { MarinadePool } from "./marinadePool";
 
 const provider = "Marinade";
 const actions = [

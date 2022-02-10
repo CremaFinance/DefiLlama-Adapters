@@ -1,9 +1,9 @@
 import { updatePoolRewards } from "../../../utils/update-pool-rewards";
-import { Prices } from "../../domain/coinSymbols";
-import { Pool } from "../../domain/pool";
+import type { Prices } from "../../domain/coinSymbols";
+import type { Pool } from "../../domain/pool";
 
 import { franciumLendingPools } from "./config";
-import { FranciumPoolsResponse } from "./franciumPool";
+import type { FranciumPoolsResponse } from "./franciumPool";
 
 export const mapLendingPools = (
   franciumResults: FranciumPoolsResponse,

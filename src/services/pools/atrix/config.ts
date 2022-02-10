@@ -1,16 +1,12 @@
 import { coinSymbols } from "../../domain/coinSymbols";
 import { marketTypes } from "../../domain/marketTypes";
-import { PoolConfig } from "../../domain/pool";
+import type { PoolConfig } from "../../domain/pool";
 
-import { AtrixPool } from "./atrixPool";
-import {
-  LiquidityAtrixPoolAddress,
-  liquidityAtrixPoolAddress,
-} from "./liquidityAtrixPoolAddress";
-import {
-  LiquidityPoolAtrixIds,
-  liquidityPoolAtrixIds,
-} from "./liquidityAtrixPoolIds";
+import type { AtrixPool } from "./atrixPool";
+import type { LiquidityAtrixPoolAddress } from "./liquidityAtrixPoolAddress";
+import { liquidityAtrixPoolAddress } from "./liquidityAtrixPoolAddress";
+import type { LiquidityPoolAtrixIds } from "./liquidityAtrixPoolIds";
+import { liquidityPoolAtrixIds } from "./liquidityAtrixPoolIds";
 import { liquidityPoolTokensAtrix } from "./liquidityAtrixPoolTokens";
 
 const provider = "Atrix";

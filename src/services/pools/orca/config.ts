@@ -1,17 +1,13 @@
 import { coinSymbols } from "../../domain/coinSymbols";
 import { marketTypes } from "../../domain/marketTypes";
-import { PoolConfig } from "../../domain/pool";
+import type { PoolConfig } from "../../domain/pool";
 
-import {
-  LiquidityOrcaPoolAddress,
-  liquidityOrcaPoolAddress,
-} from "./liquidityOrcaPoolAddress";
-import {
-  LiquidityOrcaPoolIds,
-  liquidityOrcaPoolIds,
-} from "./liquidityOrcaPoolIds";
+import type { LiquidityOrcaPoolAddress } from "./liquidityOrcaPoolAddress";
+import { liquidityOrcaPoolAddress } from "./liquidityOrcaPoolAddress";
+import type { LiquidityOrcaPoolIds } from "./liquidityOrcaPoolIds";
+import { liquidityOrcaPoolIds } from "./liquidityOrcaPoolIds";
 import { liquidityPoolTokens } from "./liquidityOrcaPoolTokens";
-import { OrcaPool } from "./orcaPool";
+import type { OrcaPool } from "./orcaPool";
 
 const provider = "Orca";
 const orcaReward = "Emission";

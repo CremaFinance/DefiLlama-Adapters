@@ -1,8 +1,9 @@
 import { coinSymbols } from "../../domain/coinSymbols";
 import { marketTypes } from "../../domain/marketTypes";
-import { PoolConfig } from "../../domain/pool";
+import type { PoolConfig } from "../../domain/pool";
 
-import { synthetifyPoolAddress, SynthetifyPoolAddress } from "./poolAddress";
+import type { SynthetifyPoolAddress } from "./poolAddress";
+import { synthetifyPoolAddress } from "./poolAddress";
 import { synthetifyPoolIds } from "./poolIds";
 import { synthetifyPoolTokens } from "./poolTokens";
 

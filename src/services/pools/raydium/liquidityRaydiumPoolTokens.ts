@@ -1,9 +1,7 @@
-import { Token } from "../../domain/token";
+import type { Token } from "../../domain/token";
 
-import {
-  liquidityRaydiumPoolAddress,
-  LiquidityRaydiumPoolAddress,
-} from "./liquidityRaydiumPoolAddress";
+import type { LiquidityRaydiumPoolAddress } from "./liquidityRaydiumPoolAddress";
+import { liquidityRaydiumPoolAddress } from "./liquidityRaydiumPoolAddress";
 
 const raydiumUri =
   "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R/logo.png";

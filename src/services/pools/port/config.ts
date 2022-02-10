@@ -1,14 +1,13 @@
 import { coinSymbols } from "../../domain/coinSymbols";
 import { marketTypes } from "../../domain/marketTypes";
-import { PoolConfig } from "../../domain/pool";
+import type { PoolConfig } from "../../domain/pool";
 
-import {
-  lendingPortPoolAddress,
-  LendingPortPoolAddress,
-} from "./lendingPortPoolAddress";
-import { lendingPortPoolIds, LendingPortPoolIds } from "./lendingPortPoolIds";
+import type { LendingPortPoolAddress } from "./lendingPortPoolAddress";
+import { lendingPortPoolAddress } from "./lendingPortPoolAddress";
+import type { LendingPortPoolIds } from "./lendingPortPoolIds";
+import { lendingPortPoolIds } from "./lendingPortPoolIds";
 import { lendingPortPoolTokens } from "./lendingPortPoolTokens";
-import { PortPool } from "./portPool";
+import type { PortPool } from "./portPool";
 
 const provider = "Port";
 const actions = [

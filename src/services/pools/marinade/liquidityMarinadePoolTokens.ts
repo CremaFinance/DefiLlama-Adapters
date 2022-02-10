@@ -1,9 +1,7 @@
-import { Token } from "../../domain/token";
+import type { Token } from "../../domain/token";
 
-import {
-  liquidityMarinadePoolAddress,
-  LiquidityMarinadePoolAddress,
-} from "./liquidityMarinadePoolAddress";
+import type { LiquidityMarinadePoolAddress } from "./liquidityMarinadePoolAddress";
+import { liquidityMarinadePoolAddress } from "./liquidityMarinadePoolAddress";
 
 export const liquidityPoolTokensMarinade: Record<
   LiquidityMarinadePoolAddress,

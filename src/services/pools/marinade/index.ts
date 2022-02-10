@@ -2,11 +2,11 @@ import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 
 import { format2Dec } from "../../../utils/number-to-short-version";
 import { updatePoolRewards } from "../../../utils/update-pool-rewards";
-import { Prices } from "../../domain/coinSymbols";
-import { FetchPools, Pool } from "../../domain/pool";
+import type { Prices } from "../../domain/coinSymbols";
+import type { FetchPools, Pool } from "../../domain/pool";
 
 import { marinadePools } from "./config";
-import { MarinadePool } from "./marinadePool";
+import type { MarinadePool } from "./marinadePool";
 
 export async function fetchMarinadePools(): Promise<MarinadePool> {
   const response = await fetch(`https://api.marinade.finance/lp/apy/7d`);

@@ -1,14 +1,15 @@
 /* eslint-disable sonarjs/cognitive-complexity */
 import { updatePoolRewardsFromTotalYeildFarmAPR } from "../../../utils/update-pool-rewards";
-import { Prices } from "../../domain/coinSymbols";
-import { Pool } from "../../domain/pool";
+import type { Prices } from "../../domain/coinSymbols";
+import type { Pool } from "../../domain/pool";
 
 import { franciumFarmPools } from "./config";
-import {
+import type {
   FranciumPoolsResponse,
   FranciumPoolInfoResponse,
 } from "./franciumPool";
-import { FarmPoolIds, farmPoolIds } from "./PoolIds";
+import type { FarmPoolIds } from "./PoolIds";
+import { farmPoolIds } from "./PoolIds";
 
 export const mapFarmPools = (
   results: FranciumPoolsResponse,
