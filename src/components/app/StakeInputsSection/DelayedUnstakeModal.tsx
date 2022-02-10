@@ -35,12 +35,14 @@ type DelayedUnstakeModalProps = {
   stSolToUnstake: number;
   isOpen: boolean;
   onClose: () => void;
+  triggerTransactionModal: (value: boolean) => void;
 };
 
 const DelayedUnstakeModal = ({
   stSolToUnstake,
   isOpen,
   onClose,
+  triggerTransactionModal,
 }: DelayedUnstakeModalProps) => {
   const { t } = useTranslation();
   const toast = useToast();
@@ -101,6 +103,7 @@ const DelayedUnstakeModal = ({
     }
 
     setUnstakeLoading(true);
+    triggerTransactionModal(true);
 
     marinade
       .runOrderUnstake(toUnstakeFullDecimals * LAMPORTS_PER_SOL)
@@ -150,6 +153,7 @@ const DelayedUnstakeModal = ({
       )
       .finally(() => {
         setUnstakeLoading(false);
+        triggerTransactionModal(false);
         onClose();
       });
   };

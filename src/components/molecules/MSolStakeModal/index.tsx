@@ -30,6 +30,7 @@ import TransactionLink from "../TransactionLink";
 
 interface MSolStakeModalProps {
   onClose: () => Promise<void> | void;
+  triggerTransactionModal: (value: boolean) => void;
   isOpen: boolean;
 }
 
@@ -37,6 +38,7 @@ interface MSolStakeModalProps {
 const MSolStakeModal = ({
   onClose: onCloseProp,
   isOpen: isOpenProp,
+  triggerTransactionModal,
 }: MSolStakeModalProps) => {
   const { t } = useTranslation();
   const toast = useToast();
@@ -87,6 +89,7 @@ const MSolStakeModal = ({
     }
 
     setLoading(true);
+    triggerTransactionModal(true);
 
     mSOL
       .stake(amount)
@@ -133,7 +136,10 @@ const MSolStakeModal = ({
           });
         }
       )
-      .finally(() => setLoading(false));
+      .finally(() => {
+        setLoading(false);
+        triggerTransactionModal(false);
+      });
   };
 
   // eslint-disable-next-line consistent-return
@@ -173,6 +179,7 @@ const MSolStakeModal = ({
     }
 
     setLoading(true);
+    triggerTransactionModal(true);
 
     mSOL
       .withdraw(amount)
@@ -221,7 +228,10 @@ const MSolStakeModal = ({
           });
         }
       )
-      .finally(() => setLoading(false));
+      .finally(() => {
+        setLoading(false);
+        triggerTransactionModal(false);
+      });
   };
 
   return (

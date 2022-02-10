@@ -26,6 +26,7 @@ import MText from "../../atoms/Text";
 import { ConnectWallet } from "../../molecules/ConnectWallet";
 import TooltipWithContent from "../../molecules/TooltipWithContent";
 import type { StakeAccountType } from "components/molecules/StakeInput";
+import PendingStakeModal from "components/molecules/PendingStakeModal";
 import StakeInput, {
   StakeInputTypeEnum,
 } from "components/molecules/StakeInput";
@@ -67,6 +68,16 @@ const BasicStake = () => {
   const solPrice = prices[coinSymbols.SOL]?.usd ?? 0;
 
   const [showEstimation, setShowEstimation] = useState(false);
+  const {
+    getStakeAccountsAction,
+    stakeAccounts,
+    fetchStakesLoading,
+    walletPubKeyContext,
+    transactionSigned,
+    transactionSignedAction,
+    resetAccountsAction,
+    fetchStakesLoadingAction,
+  } = useContext(AccountsContext);
   const { nativeSOLBalance } = useUserBalance();
   const { connected: isWalletConnected, publicKey: walletPubKey } = useWallet();
   const epochInfo = useEpochInfo()?.data;
@@ -75,6 +86,7 @@ const BasicStake = () => {
       if (stakeAccount === null) {
         setSolToStake("");
       }
+      transactionSignedAction(false);
     },
   });
   const { totalStaked, stakeAPY } = useStats();
@@ -124,15 +136,6 @@ const BasicStake = () => {
     ];
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mSOLReceived, mSOLvsSOLParity, solPrice, Number(solToStake)]);
-
-  const {
-    getStakeAccountsAction,
-    stakeAccounts,
-    fetchStakesLoading,
-    walletPubKeyContext,
-    resetAccountsAction,
-    fetchStakesLoadingAction,
-  } = useContext(AccountsContext);
 
   useEffect(() => {
     if (walletPubKey === null || !isWalletConnected) {
@@ -396,7 +399,9 @@ const BasicStake = () => {
           });
         }
       )
-      .finally(() => setStakeLoading(false));
+      .finally(() => {
+        setStakeLoading(false);
+      });
   };
 
   const parsedStakeAccounts = useMemo(() => {
@@ -578,6 +583,11 @@ const BasicStake = () => {
         onClose={onClose}
         stakedAmount={mSOLReceived}
         stakedCurrency="mSOL"
+      />
+      <PendingStakeModal
+        isTransactionSigned={transactionSigned}
+        isOpen={stakeLoading}
+        onClose={onClose}
       />
     </>
   );

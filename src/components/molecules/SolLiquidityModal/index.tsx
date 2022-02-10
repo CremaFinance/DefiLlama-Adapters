@@ -35,12 +35,14 @@ import TransactionLink from "../TransactionLink";
 
 interface SolLiquidityModalProps {
   onClose: () => Promise<void> | void;
+  triggerTransactionModal: (value: boolean) => void;
   isOpen: boolean;
 }
 
 const SolLiquidityModal = ({
   onClose: onCloseProp,
   isOpen: isOpenProp,
+  triggerTransactionModal,
 }: SolLiquidityModalProps) => {
   const { t } = useTranslation();
   const toast = useToast();
@@ -108,6 +110,7 @@ const SolLiquidityModal = ({
     }
 
     setLoading(true);
+    triggerTransactionModal(true);
 
     marinade
       .runAddLiquidity(Number(amount) * LAMPORTS_PER_SOL)
@@ -155,7 +158,10 @@ const SolLiquidityModal = ({
           });
         }
       )
-      .finally(() => setLoading(false));
+      .finally(() => {
+        setLoading(false);
+        triggerTransactionModal(false);
+      });
   };
 
   // eslint-disable-next-line consistent-return
@@ -189,6 +195,7 @@ const SolLiquidityModal = ({
       });
     }
     setLoading(true);
+    triggerTransactionModal(true);
 
     marinade
       .runRemoveLiquidity(Number(amount) * LAMPORTS_PER_SOL)
@@ -235,7 +242,10 @@ const SolLiquidityModal = ({
           });
         }
       )
-      .finally(() => setLoading(false));
+      .finally(() => {
+        setLoading(false);
+        triggerTransactionModal(false);
+      });
   };
 
   return (
