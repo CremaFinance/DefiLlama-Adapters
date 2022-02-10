@@ -42,19 +42,19 @@ const SuccessStakeModal = ({
       <ModalOverlay />
       <ModalContent maxW="480px">
         <ModalCloseButton _focus={{ boxShadow: "none" }} />
-        <ModalBody display="flex" justifyContent="center">
+        <ModalBody display="flex" justifyContent="center" paddingTop="0px">
           <Flex flexDir="column" height="100%" alignItems="center" margin="0">
             <Image
-              marginTop="59px"
-              width="219.03px"
-              height="166.64px"
+              marginTop="64px"
+              width="300px"
+              height="253.2px"
               src="/ilustrations/success-stake.svg"
             />
             <Text
               marginTop="24px"
-              fontSize="22.5px"
+              fontSize="28.13px"
               fontWeight="bold"
-              lineHeight="33.75px"
+              lineHeight="39.38px"
             >
               {t("appPage.success-stake.title")}
             </Text>
