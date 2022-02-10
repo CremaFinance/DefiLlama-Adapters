@@ -2,6 +2,7 @@ import { Flex, Image } from "@chakra-ui/react";
 
 import Footer from "components/app/Footer";
 import Header from "components/app/Header";
+import ExplanationSection from "components/app/MndeSection/ExplanationSection";
 import MobileMenu from "components/app/MobileMenu";
 import SubmenusMndeSection from "components/app/SubmenusSection";
 import WhySection from "components/app/WhySection";
@@ -42,6 +43,7 @@ const Mnde = () => {
         <SubmenusMndeSection />
       </Flex>
       <WhySection />
+      <ExplanationSection />
       <Footer />
       <MobileMenu />
     </Flex>

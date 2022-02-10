@@ -126,7 +126,6 @@
         "subtitle": "Put your staked SOL to work in DeFi and explore additional yield."
       }
     ],
-
     "contributor-section-title": "Become a contributor to Marinade",
     "contributor-section-subtitle": "Marinade is a community-driven project built without any VC money or token sales. Join the Marinade DAO and let's build together.",
     "contributor-section-action": "Join the Marinade DAO",
@@ -534,6 +533,34 @@
         {
           "header": "Executive Team",
           "text": "The security and decentralization of Solana is positively influenced by the Marinade staking algorithm, which stakes and balances the Marinade pool. You govern that algorithm."
+        }
+      ]
+    },
+    "explanation-section": {
+      "items": [
+        {
+          "header": {
+            "green": "Commit to governance,",
+            "black": "get a Chef NFT"
+          },
+          "text": "Marinade governance is built around a token locking, voting escrow model. Building on the Marinade liquid staking experience, locking your tokens will mint you a unique chef NFT. You can set it as your profile picture or participate in the NFT ecosystem, but be aware that as the NFT represents your locked MNDE position, selling the NFT also means selling this MNDE.",
+          "ilustration-alt": "Lock MNDE"
+        },
+        {
+          "header": {
+            "green": "Earn",
+            "black": "while it’s cooking"
+          },
+          "text": "After paying regular costs and saving for a rainy day, Marinade will share protocol profits with its holders. This will make MNDE one of the tastiest tokens to hold, and it'll only get sweeter with every additional SOL staked. Soon!",
+          "ilustration-alt": "Earn big"
+        },
+        {
+          "header": {
+            "green": "Build with Marinade,",
+            "black": " apply for funding"
+          },
+          "text": "The natural and organic staking rewards from a more decentralized and censorship resistant Solana can fuel ecosystem growth. Build with Marinade and give back when you succeed so the kitchen can feed future projects.",
+          "ilustration-alt": "Build"
         }
       ]
     }
