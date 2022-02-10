@@ -506,6 +506,23 @@
         "title": "Something went wrong",
         "account-deactivated": "Your mSOL-SOL LP account is deactivated. Add any SOL liquidity to the LP to re-activate the account and try to withdraw LP again."
       }
+    },
+    "why-section": {
+      "header": "$MNDE token gives you a say on",
+      "cards": [
+        {
+          "header": "$250M Treasury",
+          "text": "The Marinade DAO treasury holds a 30% allocation of MNDE, as well as receiving ongoing fees from staked SOL."
+        },
+        {
+          "header": "Vote with your NFT",
+          "text": "The security and decentralization of Solana is positively influenced by the Marinade staking algorithm, which stakes and balances the Marinade pool. You govern that algorithm."
+        },
+        {
+          "header": "Executive Team",
+          "text": "The security and decentralization of Solana is positively influenced by the Marinade staking algorithm, which stakes and balances the Marinade pool. You govern that algorithm."
+        }
+      ]
     }
   },
   "termsPage": {

@@ -4,6 +4,7 @@ import Footer from "components/app/Footer";
 import Header from "components/app/Header";
 import MobileMenu from "components/app/MobileMenu";
 import SubmenusMndeSection from "components/app/SubmenusSection";
+import WhySection from "components/app/WhySection";
 import colors from "styles/customTheme/colors";
 
 const Mnde = () => {
@@ -40,6 +41,7 @@ const Mnde = () => {
       <Flex flex={1}>
         <SubmenusMndeSection />
       </Flex>
+      <WhySection />
       <Footer />
       <MobileMenu />
     </Flex>
