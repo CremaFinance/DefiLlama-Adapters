@@ -411,6 +411,18 @@ const BasicUnstake = () => {
       <UnstakeTicketsSection
         ticketAccounts={ticketAccounts}
         runClaimHandler={runClaimHandler}
+        refreshTicketAccounts={() => {
+          if (walletConnected) {
+            getTicketAccountsAction(
+              keys,
+              walletConnected,
+              connection,
+              walletPubKey as PublicKey,
+              !fetchTicketsLoading || !unstakeLoading
+            );
+            fetchTicketsLoadingAction(false);
+          }
+        }}
       />
     </>
   );
