@@ -331,6 +331,17 @@
         "title": "Earn",
         "description": "Benefit from MNDE buybacks and a share of protocol fees weighted to your commitment.",
         "button": "Coming soon"
+      },
+      "lock": {
+        "info-section": {
+          "header": "Lock MNDE",
+          "description": "Acquire and stake MNDE to receive an NFT that you can use to vote and earn within the Marinade DAO.",
+          "steps" : {
+            "first" : "1. Lock MNDE",
+            "second" : "2. Receive NFT",
+            "third" : "3. Use NFT to vote"
+          }
+        }
       }
     },
     "stake-inputs-time-to-unstake": "Time to unstake",
