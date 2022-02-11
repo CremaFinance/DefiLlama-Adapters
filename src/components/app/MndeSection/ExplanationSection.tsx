@@ -1,9 +1,10 @@
 import { Box, Flex } from "@chakra-ui/layout";
-import { Image, Text } from "@chakra-ui/react";
+import { Image } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import type { FunctionComponent } from "react";
 
 import MButton from "../../atoms/Button";
+import MHeading from "../../atoms/Heading";
 import CardWithIlustration from "components/molecules/CardWithIlustration";
 import { useTranslation } from "hooks/useTranslation";
 import colors from "styles/customTheme/colors";
@@ -42,36 +43,22 @@ const ExplanationSection: FunctionComponent = (): JSX.Element => {
     </MButton>
   );
 
-  const renderHeaderText = (index: number): JSX.Element[] => {
-    const colorMap: { [key: string]: string } = {
-      green: colors.marinadeGreen,
-      black: colors.black,
-    };
-    return ["green", "black"].map((color) => {
-      return (
-        <Text
-          color={colorMap[color]}
-          textAlign="left"
-          fontWeight="bold"
-          fontSize={["30px", "43.95px"]}
-          lineHeight={["35px", "48px"]}
-          ml={0}
-        >
-          {t(`mndePage.explanation-section.items.${index}.header.${color}`)}
-        </Text>
-      );
-    });
+  const renderHeaderText = (index: number): JSX.Element => {
+    return (
+      <MHeading mb={6} fontWeight="bold" type="heading-md">
+        <MHeading as="span" type="heading-md" color={colors.marinadeGreen}>
+          {t(`mndePage.explanation-section.items.${index}.header.green`)}
+        </MHeading>{" "}
+        {t(`mndePage.explanation-section.items.${index}.header.black`)}
+      </MHeading>
+    );
   };
 
   const renderCardWithIlustration = (index: number): JSX.Element => {
     return (
       <CardWithIlustration
         key={`card-with-ilustration-${index}`}
-        header={
-          <Box pb={4} alignSelf="start">
-            {renderHeaderText(index)}
-          </Box>
-        }
+        header={<Box alignSelf="start">{renderHeaderText(index)}</Box>}
         text={t(`mndePage.explanation-section.items.${index}.text`) || ""}
         ilustrationData={{
           src: `/ilustrations/explanation-section-${index}.svg`,

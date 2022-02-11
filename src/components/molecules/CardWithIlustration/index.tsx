@@ -1,7 +1,7 @@
-import { Flex, Text, Image, Box, HStack } from "@chakra-ui/react";
+import { Flex, Image, Stack, useBreakpointValue } from "@chakra-ui/react";
 import type { FunctionComponent } from "react";
 
-import colors from "styles/customTheme/colors";
+import MText from "../../atoms/Text";
 
 interface CardWithIlustrationProps {
   header: JSX.Element | string;
@@ -18,46 +18,39 @@ const CardWithIlustration: FunctionComponent<CardWithIlustrationProps> = ({
   footer,
   reverseSections = false,
 }) => {
+  const breakpoint = useBreakpointValue({ base: "base", lg: "lg" });
   const renderTextSection = (): JSX.Element => {
     return (
-      <Box
-        maxWidth="530px"
+      <Flex
         justifyContent="left"
         alignItems="center"
         direction="column"
         flex={1}
-        ml={{ base: "0", lg: "0.5rem" }}
-        alignSelf="start"
+        marginInlineStart="0.5rem"
+        marginInlineEnd="0.5rem"
+        alignSelf={{ base: "center", lg: "flex-start" }}
+        maxWidth="530px"
       >
         {header}
-        <Text
-          color={colors.black}
-          textAlign="left"
-          fontWeight="normal"
-          fontSize={{ base: "16px", lg: "22.5px" }}
-          lineHeight={{ base: "21px", lg: "27px" }}
-          ml={0}
-        >
-          {text}
-        </Text>
+        <MText type="text-2xl">{text}</MText>
         {footer}
-      </Box>
+      </Flex>
     );
   };
 
   const renderIlustration = (): JSX.Element => {
     return (
       <Flex
-        justifyContent={reverseSections ? "start" : "end"}
         alignItems="center"
         flex={1}
-        display={{ base: "none", md: "flex" }}
         alignSelf={{ base: "center", lg: "end" }}
+        maxWidth="530px"
+        mb={{ base: 20, md: "unset" }}
       >
         <Image
           src={ilustrationData.src}
           width={[
-            "60px",
+            "200px",
             ilustrationData.width ? ilustrationData.width : "492px",
           ]}
           alt={ilustrationData.alt}
@@ -66,16 +59,17 @@ const CardWithIlustration: FunctionComponent<CardWithIlustrationProps> = ({
     );
   };
   return (
-    <HStack
-      gap={{ base: 0, md: 6 }}
-      direction="row"
+    <Stack
+      gap={{ base: 10, md: 10, lg: 20 }}
+      direction={{ base: "column-reverse", lg: "row" }}
       align="end"
       justify="center"
     >
-      {!reverseSections && renderTextSection()}
+      {(!reverseSections || breakpoint?.includes("base")) &&
+        renderTextSection()}
       {renderIlustration()}
-      {reverseSections && renderTextSection()}
-    </HStack>
+      {reverseSections && !breakpoint?.includes("base") && renderTextSection()}
+    </Stack>
   );
 };
 
