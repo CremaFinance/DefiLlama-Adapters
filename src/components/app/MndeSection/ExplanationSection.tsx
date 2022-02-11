@@ -78,8 +78,7 @@ const ExplanationSection: FunctionComponent = (): JSX.Element => {
       aria-label="explanation-section"
       direction="column"
       px={{ base: 4, md: "12vw" }}
-      pt={8}
-      pb={20}
+      py={20}
       gap={{ base: 50, lg: 120 }}
     >
       {[0, 1, 2].map(renderCardWithIlustration)}
