@@ -1,4 +1,4 @@
-import { LendingPortPoolIds } from "./lendingPortPoolIds";
+import type { LendingPortPoolIds } from "./lendingPortPoolIds";
 
 export interface PortPool {
   poolId: LendingPortPoolIds;

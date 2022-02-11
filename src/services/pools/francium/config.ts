@@ -1,15 +1,11 @@
 import { coinSymbols } from "../../domain/coinSymbols";
 import { marketTypes } from "../../domain/marketTypes";
-import { PoolConfig } from "../../domain/pool";
+import type { PoolConfig } from "../../domain/pool";
 import { orcaPools } from "../orca/config";
 import { liquidityOrcaPoolAddress } from "../orca/liquidityOrcaPoolAddress";
 
-import {
-  farmPoolAddress,
-  FarmPoolAddress,
-  LendingPoolAddress,
-  lendingPoolAddress,
-} from "./PoolAddress";
+import type { FarmPoolAddress, LendingPoolAddress } from "./PoolAddress";
+import { farmPoolAddress, lendingPoolAddress } from "./PoolAddress";
 import { lendingPoolIds } from "./PoolIds";
 import { farmPoolTokens, lendingPoolTokens } from "./PoolTokens";
 

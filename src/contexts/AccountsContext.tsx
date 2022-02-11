@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Connection, PublicKey } from "@solana/web3.js";
-import React, { createContext, ReactNode, useReducer } from "react";
+import type { Connection, PublicKey } from "@solana/web3.js";
+import type { ReactNode } from "react";
+import React, { createContext, useReducer } from "react";
 
-import { Keys } from "../solana/domain/keys";
-import { StakeAccount } from "../solana/domain/stake-account";
-import { TicketAccount } from "../solana/domain/ticket-account";
+import type { Keys } from "../solana/domain/keys";
+import type { StakeAccount } from "../solana/domain/stake-account";
+import type { TicketAccount } from "../solana/domain/ticket-account";
 import { getUserStakeAccounts } from "../solana/get-user-stake-accounts";
 import { getUserTicketAccounts } from "../solana/get-user-ticket-accounts";
 

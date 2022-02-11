@@ -1,6 +1,6 @@
-import { DWM } from "../../domain/dwm";
+import type { DWM } from "../../domain/dwm";
 
-import { LiquidityOrcaPoolIds } from "./liquidityOrcaPoolIds";
+import type { LiquidityOrcaPoolIds } from "./liquidityOrcaPoolIds";
 
 export interface OrcaPool {
   poolId: LiquidityOrcaPoolIds;

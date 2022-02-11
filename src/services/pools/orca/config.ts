@@ -1,17 +1,13 @@
 import { coinSymbols } from "../../domain/coinSymbols";
 import { marketTypes } from "../../domain/marketTypes";
-import { PoolConfig } from "../../domain/pool";
+import type { PoolConfig } from "../../domain/pool";
 
-import {
-  LiquidityOrcaPoolAddress,
-  liquidityOrcaPoolAddress,
-} from "./liquidityOrcaPoolAddress";
-import {
-  LiquidityOrcaPoolIds,
-  liquidityOrcaPoolIds,
-} from "./liquidityOrcaPoolIds";
+import type { LiquidityOrcaPoolAddress } from "./liquidityOrcaPoolAddress";
+import { liquidityOrcaPoolAddress } from "./liquidityOrcaPoolAddress";
+import type { LiquidityOrcaPoolIds } from "./liquidityOrcaPoolIds";
+import { liquidityOrcaPoolIds } from "./liquidityOrcaPoolIds";
 import { liquidityPoolTokens } from "./liquidityOrcaPoolTokens";
-import { OrcaPool } from "./orcaPool";
+import type { OrcaPool } from "./orcaPool";
 
 const provider = "Orca";
 const orcaReward = "Emission";
@@ -100,10 +96,6 @@ export const orcaPools: Record<LiquidityOrcaPoolAddress, PoolConfig> = {
           aprDescription: orcaReward,
           dailyRate: 2817 / 7,
         },
-        [coinSymbols.MNDE]: {
-          aprDescription: mndeReward,
-          dailyRate: 120437.7104 / 7,
-        },
       },
       actions,
     },
@@ -123,7 +115,7 @@ export const orcaPools: Record<LiquidityOrcaPoolAddress, PoolConfig> = {
         },
         [coinSymbols.MNDE]: {
           aprDescription: mndeReward,
-          dailyRate: 68821.54882 / 7,
+          dailyRate: 94629.62963 / 7,
         },
       },
       actions,
@@ -141,10 +133,6 @@ export const orcaPools: Record<LiquidityOrcaPoolAddress, PoolConfig> = {
         [coinSymbols.ORCA]: {
           aprDescription: orcaReward,
           dailyRate: 1359 / 7,
-        },
-        [coinSymbols.MNDE]: {
-          aprDescription: mndeReward,
-          dailyRate: 8602.693603 / 7,
         },
       },
       actions,
