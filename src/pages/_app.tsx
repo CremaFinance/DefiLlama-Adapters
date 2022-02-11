@@ -51,7 +51,6 @@ const MyApp = ({
 }: MyAppProps) => {
   useEffect(() => {
     localStorage.removeItem("chakra-ui-color-mode");
-    sessionStorage.removeItem("chakra-ui-color-mode");
   }, []);
 
   const queryClient = new QueryClient();
