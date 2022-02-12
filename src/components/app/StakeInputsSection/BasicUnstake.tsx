@@ -217,6 +217,7 @@ const BasicUnstake = () => {
             category: trackingCategoryBasicStaking,
             action: "Unstake",
             label: "Success",
+            value: Number(toUnstakeFullDecimals),
           });
         },
         (error) => {
@@ -287,7 +288,7 @@ const BasicUnstake = () => {
             status: "success",
           });
           track({
-            event: "Claim SOL",
+            event: "Claim Unstake Ticket",
             category: trackingCategoryBasicStaking,
             action: "Claim",
             label: "Success",

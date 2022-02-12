@@ -117,6 +117,7 @@ const MSolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
             category: trackCategory,
             action: "Add",
             label: "Success",
+            value: Number(amount),
           });
         },
         (error) => {
