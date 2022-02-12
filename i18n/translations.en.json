@@ -314,6 +314,11 @@
     },
     "mnde": {
       "header": "MNDE",
+      "nft": "NFT",
+      "nft-mockup-value": "Level 1",
+      "unlock-period": "Unlock period",
+      "unlock-period-mockup-value": "30 days",
+      "lock-button": "Lock MNDE",
       "description1": "The Marinade token - MNDE - represents fractional ownership of Marinade.",
       "description2": "Acquire and stake MNDE to vote and earn within the Marinade DAO.",
       "docs-link": "https://docs.marinade.finance/marinade-dao/tokenomics",
