@@ -44,7 +44,6 @@ const AllPoolsSection = () => {
         }),
     [results, sorting]
   );
-
   return (
     <Flex
       flexDir="column"

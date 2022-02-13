@@ -41,6 +41,7 @@ export const marinadePools: Record<LiquidityMarinadePoolAddress, PoolConfig> = {
         },
       },
       actions,
+      RowExtensionComponent: "MarinadePoolRowExtension",
     },
   },
 };
