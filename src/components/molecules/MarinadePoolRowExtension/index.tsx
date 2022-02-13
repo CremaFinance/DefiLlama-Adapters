@@ -125,7 +125,7 @@ const MarinadePoolRowExtension = () => {
   return (
     <Flex
       py={5}
-      direction={["column", "row"]}
+      direction={{ base: "column", lg: "row" }}
       justifyContent="space-between"
       alignItems="center"
     >
@@ -138,7 +138,7 @@ const MarinadePoolRowExtension = () => {
         <Stack
           direction="row"
           spacing={{ base: 4, md: 8 }}
-          mt={{ base: 2, md: "unset" }}
+          mt={{ base: 2, lg: "unset" }}
         >
           <Flex alignItems="center">
             <Image src="/icons/mnde.svg" boxSize="24px" mr="4px" />
