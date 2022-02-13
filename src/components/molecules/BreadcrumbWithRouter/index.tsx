@@ -27,7 +27,7 @@ const BreadcrumbWithRouter: FunctionComponent<BreadcrumbWithRouterProps> = ({
   const renderItems = () => {
     return breadcrumbItems.map((item) => {
       return (
-        <ChakraBreadcrumbItem>
+        <ChakraBreadcrumbItem key={item.title + item.link}>
           <BreadcrumbLink as={Link} onClick={() => router.push(item.link)}>
             {item.title}
           </BreadcrumbLink>

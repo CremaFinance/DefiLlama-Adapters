@@ -468,6 +468,7 @@
     "modal-claim-success-discord": "mDAO Discord",
     "manage-deposit-action": "Manage deposit",
     "here": "here",
+    "breadcrumbs": { "lock": "Lock MNDE" },
     "msol-stake-modal": {
       "deposit-msol": "Deposit mSOL",
       "withdraw-msol": "Withdraw mSOL",
