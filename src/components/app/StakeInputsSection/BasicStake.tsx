@@ -260,6 +260,7 @@ const BasicStake = () => {
           category: "Account Staking",
           action: "Stake",
           label: "Success",
+          value: stakeAccount?.balance,
         });
 
         setSolStaked(solToStake);
@@ -369,6 +370,7 @@ const BasicStake = () => {
             category: "Basic Staking",
             action: "Stake",
             label: "Success",
+            value: Number(solToStake),
           });
 
           setSolStaked(solToStake);

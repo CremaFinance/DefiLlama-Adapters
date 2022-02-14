@@ -187,13 +187,13 @@ const BasicUnstake = () => {
 
     if (!stSOLBalance || Number.isNaN(stSOLBalance)) return false;
 
-    let toUnstakeFullDecimals;
+    let toUnstakeFullDecimals: number;
     if (Number(stSolToUnstake) === Math.round(stSOLBalance * 1e5) / 1e5) {
       // Note: input text has 5 decimals (rounded), while stSOLBalance has full decimals
       // so if the user wants to unstake all, get precise balance
       toUnstakeFullDecimals = stSOLBalance;
     } else {
-      toUnstakeFullDecimals = stSolToUnstake;
+      toUnstakeFullDecimals = Number(stSolToUnstake);
     }
 
     if (toUnstakeFullDecimals > stSOLBalance) {
@@ -241,6 +241,7 @@ const BasicUnstake = () => {
             category: trackingCategoryBasicStaking,
             action: "Unstake",
             label: "Success",
+            value: Number(toUnstakeFullDecimals),
           });
         },
         (error) => {
@@ -313,7 +314,7 @@ const BasicUnstake = () => {
             status: "success",
           });
           track({
-            event: "Claim SOL",
+            event: "Claim Unstake Ticket",
             category: trackingCategoryBasicStaking,
             action: "Claim",
             label: "Success",

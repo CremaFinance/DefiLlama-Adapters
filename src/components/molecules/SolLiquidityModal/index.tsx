@@ -137,6 +137,7 @@ const SolLiquidityModal = ({
             category: "Liquidity",
             action: "Add",
             label: "Success",
+            value: Number(amount),
           });
         },
         (error) => {
@@ -220,6 +221,7 @@ const SolLiquidityModal = ({
             category: "Liquidity",
             action: "Remove",
             label: "Success",
+            value: Number(amount),
           });
         },
         (error) => {
