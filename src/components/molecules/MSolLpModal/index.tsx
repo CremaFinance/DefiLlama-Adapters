@@ -316,7 +316,6 @@ const MSolLpModal = ({
           <Flex justifyContent="center">
             {isDepostActive ? (
               <Button
-                font="text-xl"
                 bg={colors.marinadeGreen}
                 isLoading={loading}
                 _hover={{ bg: colors.green800 }}
@@ -332,7 +331,6 @@ const MSolLpModal = ({
               </Button>
             ) : (
               <Button
-                font="text-xl"
                 bg={colors.marinadeGreen}
                 isLoading={loading}
                 _hover={{ bg: colors.green800 }}

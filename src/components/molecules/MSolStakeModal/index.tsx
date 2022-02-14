@@ -281,7 +281,6 @@ const MSolStakeModal = ({
           <Flex justifyContent="center">
             {isDepositActive ? (
               <Button
-                font="text-xl"
                 bg={colors.marinadeGreen}
                 isLoading={loading}
                 _hover={{ bg: colors.green800 }}
@@ -303,7 +302,6 @@ const MSolStakeModal = ({
               </Button>
             ) : (
               <Button
-                font="text-xl"
                 bg={colors.marinadeGreen}
                 isLoading={loading}
                 _hover={{ bg: colors.green800 }}

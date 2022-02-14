@@ -357,7 +357,6 @@ const SolLiquidityModal = ({
           <Flex justifyContent="center">
             {isAddLiquidityActive ? (
               <Button
-                font="text-xl"
                 bg={colors.marinadeGreen}
                 isLoading={loading}
                 _hover={{ bg: colors.green800 }}
@@ -373,7 +372,6 @@ const SolLiquidityModal = ({
               </Button>
             ) : (
               <Button
-                font="text-xl"
                 bg={colors.marinadeGreen}
                 isLoading={loading}
                 _hover={{ bg: colors.green800 }}
