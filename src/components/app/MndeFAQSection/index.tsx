@@ -23,7 +23,7 @@ const MndeFAQSection = () => {
       flexDirection="column"
       alignItems="center"
     >
-      <Flex width={["288px", "480px"]} flexDirection="column">
+      <Flex width={["90%", "480px"]} flexDirection="column">
         <MHeading type="heading-sm" mt={8} mb={[5, 6]} textAlign="center">
           {t("appPage.mnde.faq-title")}
         </MHeading>
