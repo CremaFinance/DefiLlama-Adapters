@@ -1,5 +1,6 @@
 import { Flex, Text, IconButton } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
+import { useRouter } from "next/router";
 import { MdInfoOutline } from "react-icons/md";
 
 import MNDESubmenuCard from "components/molecules/MNDESubmenuCard";
@@ -8,6 +9,7 @@ import colors from "styles/customTheme/colors";
 
 const SubmenusMndeSection = () => {
   const { t } = useTranslation();
+  const router = useRouter();
 
   return (
     <Flex
@@ -81,6 +83,7 @@ const SubmenusMndeSection = () => {
           cardDescription={t("appPage.mnde.lock-card.description")}
           cardButtonText={t("appPage.mnde.lock-card.button")}
           cardIllustrationPath="/ilustrations/lock.svg"
+          onClickCardButton={() => router.push("mnde/lock")}
         />
         <MNDESubmenuCard
           cardTitle={t("appPage.mnde.nft-vote-card.title")}

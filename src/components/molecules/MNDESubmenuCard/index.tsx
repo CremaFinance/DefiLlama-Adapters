@@ -10,6 +10,7 @@ type MNDESubmenuCardProps = {
   cardButtonText: string;
   cardButtonDisabled?: boolean;
   cardIllustrationPath: string;
+  onClickCardButton?: () => void;
 };
 
 const MNDESubmenuCard = ({
@@ -18,6 +19,7 @@ const MNDESubmenuCard = ({
   cardButtonText,
   cardButtonDisabled = false,
   cardIllustrationPath,
+  onClickCardButton,
 }: MNDESubmenuCardProps) => {
   return (
     <Flex
@@ -70,6 +72,7 @@ const MNDESubmenuCard = ({
           fontWeight="bold"
           paddingX="44px"
           isDisabled={cardButtonDisabled}
+          onClick={() => onClickCardButton && onClickCardButton()}
         >
           {cardButtonText}
           <Icon
