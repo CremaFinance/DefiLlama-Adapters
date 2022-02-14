@@ -336,6 +336,7 @@
         "info-section": {
           "header": "Lock MNDE",
           "description": "Acquire and stake MNDE to receive an NFT that you can use to vote and earn within the Marinade DAO.",
+          "mobile-description": "Lorem ipsum one line",
           "steps" : {
             "first" : "1. Lock MNDE",
             "second" : "2. Receive NFT",

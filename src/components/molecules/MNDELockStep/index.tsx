@@ -16,27 +16,33 @@ const MNDELockStep = ({
 }: MNDELockStepProps) => {
   return (
     <Flex
-      width={{ base: "235px" }}
+      width={{ base: "85.5px", md: "235px" }}
       flexDirection="column"
       mb="16px"
+      mx={{ base: "8px", md: "0px" }}
       justifyContent="center"
       alignItems="center"
       zIndex={6}
     >
-      <Image width="100px" height="100px" src={stepIllustrationPath} />
+      <Image
+        width={{ base: "40px", md: "100px" }}
+        height={{ base: "40px", md: "100px" }}
+        src={stepIllustrationPath}
+      />
       <Text
         marginTop="8px"
-        fontSize="18px"
+        fontSize={{ base: "14px", md: "18px" }}
         fontWeight="bold"
         lineHeight="25.2px"
+        textAlign="center"
         color={stepLinkEnabled ? colors.marinadeGreen : colors.blackMate}
       >
         {stepTitle}
         {stepLinkEnabled ? (
           <Icon
             as={FiExternalLink}
-            width="18px"
-            height="18px"
+            width={{ base: "14px", md: "18px" }}
+            height={{ base: "14px", md: "18px" }}
             cursor="pointer"
             marginLeft="4px"
           />
