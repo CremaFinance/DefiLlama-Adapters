@@ -336,6 +336,25 @@
         "description": "Benefit from MNDE buybacks and a share of protocol fees weighted to your commitment.",
         "button": "Coming soon"
       },
+      "faq-title": "FAQ",
+      "faq-items": [
+        {
+          "question": "When do I receive my NFT?",
+          "response": "Lorem ipsum"
+        },
+        {
+          "question": "Is it possible to sell or transfer my NFT while my MNDE is locked?",
+          "response": "Yes, you can transfer your NFT to another wallet or sell it on a third-party marketplace. In both cases, the MNDE locked in the NFT will alos be transfered with the NFT."
+        },
+        {
+          "question": "What happend to my NFT if I choose to unlock my MNDE?",
+          "response": "Lorem ipsum"
+        },
+        {
+          "question": "Will I be notified of Marinade governance opportunities?",
+          "response": "Lorem ipsum"
+        }
+      ],
       "lock": {
         "info-section": {
           "header": "Lock MNDE",
