@@ -25,8 +25,8 @@ import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 import { ConnectWallet } from "../../molecules/ConnectWallet";
 import TooltipWithContent from "../../molecules/TooltipWithContent";
-import type { StakeAccountType } from "components/molecules/StakeInput";
 import PendingStakeModal from "components/molecules/PendingStakeModal";
+import type { StakeAccountType } from "components/molecules/StakeInput";
 import StakeInput, {
   StakeInputTypeEnum,
 } from "components/molecules/StakeInput";
@@ -260,7 +260,7 @@ const BasicStake = () => {
           category: "Account Staking",
           action: "Stake",
           label: "Success",
-          value: stakeAccount?.balance,
+          sol_amount: stakeAccount?.balance,
         });
 
         setSolStaked(solToStake);
@@ -370,7 +370,7 @@ const BasicStake = () => {
             category: "Basic Staking",
             action: "Stake",
             label: "Success",
-            value: Number(solToStake),
+            sol_amount: Number(solToStake),
           });
 
           setSolStaked(solToStake);

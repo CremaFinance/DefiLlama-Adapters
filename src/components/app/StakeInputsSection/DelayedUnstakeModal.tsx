@@ -79,7 +79,7 @@ const DelayedUnstakeModal = ({
 
     if (!stSOLBalance || Number.isNaN(stSOLBalance)) return false;
 
-    let toUnstakeFullDecimals;
+    let toUnstakeFullDecimals: number;
     if (stSolToUnstake === Math.round(stSOLBalance * 1e5) / 1e5) {
       // Note: input text has 5 decimals (rounded), while stSOLBalance has full decimals
       // so if the user wants to unstake all, get precise balance
@@ -129,6 +129,7 @@ const DelayedUnstakeModal = ({
             category: "Account Staking",
             action: "Unstake",
             label: "Success",
+            sol_amount: toUnstakeFullDecimals,
           });
         },
         (error) => {

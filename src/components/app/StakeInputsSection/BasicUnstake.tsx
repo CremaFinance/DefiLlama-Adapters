@@ -241,7 +241,7 @@ const BasicUnstake = () => {
             category: trackingCategoryBasicStaking,
             action: "Unstake",
             label: "Success",
-            value: Number(toUnstakeFullDecimals),
+            sol_amount: Number(toUnstakeFullDecimals),
           });
         },
         (error) => {

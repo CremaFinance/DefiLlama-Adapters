@@ -114,7 +114,7 @@ const MSolStakeModal = ({
             category: "mSOL Farm",
             action: "Add",
             label: "Success",
-            value: Number(amount),
+            sol_amount: Number(amount),
           });
         },
         (error) => {
