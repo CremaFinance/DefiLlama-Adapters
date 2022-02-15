@@ -16,7 +16,7 @@ type TrackEvent = {
   action: string;
   label: "Success" | "Error";
   description?: string;
-  value?: number;
+  sol_amount?: number;
 };
 export const useTracking = () => {
   const track = useCallback((event: TrackEvent) => {

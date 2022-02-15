@@ -123,7 +123,7 @@ const MSolLpModal = ({
             category: trackCategory,
             action: "Add",
             label: "Success",
-            value: Number(amount),
+            sol_amount: Number(amount),
           });
         },
         (error) => {
