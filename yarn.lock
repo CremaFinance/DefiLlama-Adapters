@@ -2933,10 +2933,10 @@
     lodash.mapvalues "^4.6.0"
     tslib "^2.3.1"
 
-"@saberhq/solana-contrib@^1.12.35", "@saberhq/solana-contrib@^1.12.37", "@saberhq/solana-contrib@^1.12.41":
-  version "1.12.41"
-  resolved "https://registry.yarnpkg.com/@saberhq/solana-contrib/-/solana-contrib-1.12.41.tgz#6deab7c21808d3044df602687a7f085234f1484e"
-  integrity sha512-Kp4dYgOKaWAPvHJwx6BnWB8PENsJmgkl21tuIK37rrGRw4h3S5iXya7BwotIoKDOodi4Eqv6nnclIc2UYoywBw==
+"@saberhq/solana-contrib@^1.12.35", "@saberhq/solana-contrib@^1.12.41", "@saberhq/solana-contrib@^1.12.44":
+  version "1.12.44"
+  resolved "https://registry.yarnpkg.com/@saberhq/solana-contrib/-/solana-contrib-1.12.44.tgz#3a1de6b9b5878969c7d186db4350df146c77df1e"
+  integrity sha512-wSbTdq5uLmxwGQ1RoL0oO048I7fPAVRsJT9k+Ff3q8wmG5pwe1EmZnVPRx+YfMYK48ZfGTZCtePk75c6euCWGA==
   dependencies:
     "@types/promise-retry" "^1.1.3"
     "@types/retry" "^0.12.1"
