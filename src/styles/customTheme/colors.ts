@@ -1,4 +1,4 @@
-import { DeepPartial, Theme } from "@chakra-ui/react";
+import type { DeepPartial, Theme } from "@chakra-ui/react";
 
 /** extend additional color here */
 const extendedColors: DeepPartial<
@@ -52,6 +52,7 @@ const colors = {
   greenVibrant: "#08B898",
   greenVibrant800: "#08B898CC",
   marinadeGreen: "#308D8A",
+  marinadeOrange: "#EB8302",
   green800: "#308D8ACC",
   marinadeLighterGreen: "#DFF4ED",
   marinadeEvenLighterGreen: "#ECFAF5",
