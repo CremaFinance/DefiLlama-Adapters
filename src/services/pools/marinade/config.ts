@@ -1,6 +1,7 @@
 import { coinSymbols } from "../../domain/coinSymbols";
 import { marketTypes } from "../../domain/marketTypes";
 import type { PoolConfig } from "../../domain/pool";
+import MarinadePoolRowExtension from "components/molecules/MarinadePoolRowExtension";
 
 import type { LiquidityMarinadePoolAddress } from "./liquidityMarinadePoolAddress";
 import { liquidityMarinadePoolAddress } from "./liquidityMarinadePoolAddress";
@@ -41,7 +42,7 @@ export const marinadePools: Record<LiquidityMarinadePoolAddress, PoolConfig> = {
         },
       },
       actions,
-      RowExtensionComponent: "MarinadePoolRowExtension",
+      RowExtensionComponent: MarinadePoolRowExtension,
     },
   },
 };

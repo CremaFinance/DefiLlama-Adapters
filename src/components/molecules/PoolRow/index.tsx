@@ -1,6 +1,5 @@
 import { Flex, Image, Icon, Spinner, Tooltip, Divider } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
-import dynamic from "next/dynamic";
 import type { FunctionComponent } from "react";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 
@@ -43,9 +42,6 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
         numberToShortVersion(totalLockedValue)
       )
     : "";
-  const ExtensionComponent = RowExtensionComponent
-    ? dynamic(() => import(`../../molecules/${RowExtensionComponent}`))
-    : null;
 
   return (
     <Flex
@@ -181,10 +177,10 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
         </Flex>
       </Flex>
 
-      {ExtensionComponent ? (
+      {RowExtensionComponent ? (
         <>
           <Divider mt={{ base: 6, md: "unset" }} />
-          <ExtensionComponent />
+          <RowExtensionComponent />
           <Divider />
         </>
       ) : null}

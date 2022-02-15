@@ -36,7 +36,7 @@ export interface PoolConfig extends Token {
   tokenA: CoinSymbols;
   tokenB?: CoinSymbols;
   leverage?: LeverageConfig;
-  RowExtensionComponent?: string;
+  RowExtensionComponent?: () => JSX.Element;
 }
 
 /**
