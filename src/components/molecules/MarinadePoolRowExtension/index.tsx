@@ -127,7 +127,7 @@ const MarinadePoolRowExtension = () => {
       py={5}
       direction={{ base: "column", lg: "row" }}
       justifyContent="space-between"
-      alignItems="center"
+      alignItems={{ base: "flex-start", lg: "center" }}
     >
       <MText fontWeight="bold" fontSize="text-md">{`${t(
         "mndePage.your-deposit"
@@ -137,7 +137,7 @@ const MarinadePoolRowExtension = () => {
       {connected && (
         <Stack
           direction="row"
-          spacing={{ base: 4, md: 8 }}
+          spacing={{ base: 6, md: 8 }}
           mt={{ base: 2, lg: "unset" }}
         >
           <Flex alignItems="center">

@@ -179,7 +179,7 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
 
       {RowExtensionComponent ? (
         <>
-          <Divider mt={{ base: 6, md: "unset" }} />
+          <Divider mt={{ base: 6, lg: "unset" }} />
           <RowExtensionComponent />
           <Divider />
         </>
