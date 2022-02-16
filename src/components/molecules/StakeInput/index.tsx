@@ -250,7 +250,7 @@ const StakeInput = ({
             >
               {isWalletConnected && (
                 <Box>
-                  <MenuItem ml={1}>
+                  <MenuItem>
                     <MText type="text-sm" fontWeight="bold" ml={1}>
                       {t("appPage.wallet")}
                     </MText>
