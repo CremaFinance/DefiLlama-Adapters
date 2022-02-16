@@ -1,4 +1,4 @@
-import { Flex, Image, Text, Icon } from "@chakra-ui/react";
+import { Flex, Image, Text, Icon, Spacer } from "@chakra-ui/react";
 import { RiCheckboxCircleFill } from "react-icons/ri";
 
 import colors from "styles/customTheme/colors";
@@ -31,7 +31,7 @@ const NFTLevelsItem = ({
       mt={{ base: "2px", md: "0px" }}
       mb={{ base: "2px", md: "0px" }}
       height={{ md: "137px" }}
-      width={{ md: "73px" }}
+      width={{ base: "100%", md: "73px" }}
       flexDirection={{ base: "row", md: "column" }}
       background="white"
       justifyContent="top"
@@ -45,27 +45,16 @@ const NFTLevelsItem = ({
         width="72px"
         flexDirection="column"
         background={
-          // eslint-disable-next-line no-nested-ternary
-          !disabled
-            ? selected
-              ? colors.marinadeEvenLighterGreen
-              : "#F7FAFC"
-            : "F7FAFC"
+          !disabled && selected ? colors.marinadeEvenLighterGreen : "gray.50"
         }
         border="1px solid"
         borderColor={
-          // eslint-disable-next-line no-nested-ternary
-          !disabled
-            ? selected
-              ? "#98D7C3"
-              : colors.lightGray
-            : colors.lightGray
+          !disabled && selected ? colors.marinadeBorderGreen : colors.lightGray
         }
         borderRadius="4px"
         justifyContent="center"
         alignItems="center"
         zIndex={6}
-        mr={{ base: "60px", md: "0px" }}
       >
         {!disabled ? (
           <Icon
@@ -82,6 +71,7 @@ const NFTLevelsItem = ({
         ) : null}
         <Image src={ilustration} opacity={disabled ? "40%" : "100%"} mb={mb} />
       </Flex>
+      <Spacer display={{ base: "flex", md: "none" }} />
       <Flex
         flexDirection="column"
         w={{ base: "120px", md: "72px" }}

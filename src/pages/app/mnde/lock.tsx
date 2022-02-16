@@ -2,6 +2,9 @@ import { Flex } from "@chakra-ui/react";
 
 import Footer from "components/app/Footer";
 import Header from "components/app/Header";
+import LockMNDESection from "components/app/LockMNDESection";
+import MndeFAQSection from "components/app/MndeFAQSection";
+import MndeLockInfoSection from "components/app/MndeLockInfoSection";
 import type { BreadcrumbItem } from "components/molecules/BreadcrumbWithRouter";
 import BreadcrumbWithRouter from "components/molecules/BreadcrumbWithRouter";
 import { useTranslation } from "hooks/useTranslation";
@@ -25,6 +28,9 @@ const Lock = () => {
     >
       <Header />
       <BreadcrumbWithRouter breadcrumbItems={breadcrumbItems} />
+      <MndeLockInfoSection />
+      <LockMNDESection />
+      <MndeFAQSection />
       <Footer />
     </Flex>
   );
