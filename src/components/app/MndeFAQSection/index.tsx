@@ -17,7 +17,7 @@ const MndeFAQSection = () => {
 
   return (
     <Flex
-      mt="44px"
+      mb="40px"
       aria-label="faq-section"
       justifyContent="center"
       flexDirection="column"

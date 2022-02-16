@@ -336,6 +336,29 @@
         "description": "Benefit from MNDE buybacks and a share of protocol fees weighted to your commitment.",
         "button": "Coming soon"
       },
+      "nft-levels": {
+        "level-one": {
+          "amount": "Limited edition: {{amountLeft}} left",
+          "title": "1k-4.9k MNDE"
+        },
+        "level-two": {
+          "amount": "Limited edition: {{amountLeft}} left",
+          "title": "5k-24.9k MNDE"
+        },
+        "level-three": {
+          "amount": "Regular edition",
+          "title": "25k-99.9k MNDE"
+        },
+        "level-four": {
+          "amount": "Limited edition: {{amountLeft}} left",
+          "title": "100k-499k MNDE"
+        },
+        "level-five": {
+          "amount": "Limited edition: {{amountLeft}} left",
+          "title": ">500k MNDE"
+        },
+        "buy-more": "Buy more MNDE to unlock"
+      },
       "faq-title": "FAQ",
       "faq-items": [
         {
