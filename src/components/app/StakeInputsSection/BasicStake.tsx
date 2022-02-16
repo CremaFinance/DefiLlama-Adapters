@@ -17,6 +17,7 @@ import { useTranslation } from "next-export-i18n";
 import { useContext, useEffect, useState, useMemo } from "react";
 import { BiChevronDown, BiChevronUp } from "react-icons/bi";
 import { MdInfoOutline } from "react-icons/md";
+import { v4 as uuidv4 } from "uuid";
 
 import { useChain, useConnection } from "../../../contexts/ConnectionProvider";
 import { useMarinade } from "../../../contexts/MarinadeContext";
@@ -261,7 +262,7 @@ const BasicStake = () => {
           action: "Stake",
           label: "Success",
           sol_amount: stakeAccount?.balance,
-          transaction_id: transactionSignature,
+          transaction_id: uuidv4(),
           currency: "USD",
         });
 
@@ -373,7 +374,7 @@ const BasicStake = () => {
             action: "Stake",
             label: "Success",
             sol_amount: Number(solToStake),
-            transaction_id: transactionSignature,
+            transaction_id: uuidv4(),
             currency: "USD",
           });
 

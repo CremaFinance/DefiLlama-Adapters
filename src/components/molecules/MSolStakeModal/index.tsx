@@ -13,6 +13,7 @@ import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
 import { useRouter } from "next/dist/client/router";
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 import { useChain } from "../../../contexts/ConnectionProvider";
 import { useMarinade } from "../../../contexts/MarinadeContext";
@@ -115,7 +116,7 @@ const MSolStakeModal = ({
             action: "Add",
             label: "Success",
             sol_amount: Number(amount),
-            transaction_id: transactionSignature,
+            transaction_id: uuidv4(),
             currency: "USD",
           });
         },

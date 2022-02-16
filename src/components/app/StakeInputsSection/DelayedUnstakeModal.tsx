@@ -11,6 +11,7 @@ import {
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import dayjs from "dayjs";
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 import { useChain } from "../../../contexts/ConnectionProvider";
 import {
@@ -130,7 +131,7 @@ const DelayedUnstakeModal = ({
             action: "Unstake",
             label: "Success",
             sol_amount: toUnstakeFullDecimals,
-            transaction_id: transactionSignature,
+            transaction_id: uuidv4(),
             currency: "USD",
           });
         },

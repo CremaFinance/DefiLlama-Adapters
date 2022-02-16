@@ -12,6 +12,7 @@ import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
 import { useState, useContext, useEffect } from "react";
 import { MdInfoOutline } from "react-icons/md";
+import { v4 as uuidv4 } from "uuid";
 
 import { useUserBalance } from "../../../contexts/UserBalanceContext";
 import MButton from "../../atoms/Button";
@@ -242,7 +243,7 @@ const BasicUnstake = () => {
             action: "Unstake",
             label: "Success",
             sol_amount: Number(toUnstakeFullDecimals),
-            transaction_id: transactionSignature,
+            transaction_id: uuidv4(),
             currency: "USD",
           });
         },
