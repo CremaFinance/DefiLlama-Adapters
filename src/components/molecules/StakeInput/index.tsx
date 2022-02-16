@@ -10,6 +10,7 @@ import {
   Box,
   useDisclosure,
   Modal,
+  MenuItem,
   ModalOverlay,
   ModalContent,
   ModalHeader,
@@ -32,10 +33,7 @@ import {
   format3Dec,
   numberToShortVersion,
 } from "../../../utils/number-to-short-version";
-import {
-  shortenAddress,
-  shortenAddressForMobile,
-} from "../../../utils/shorten-address";
+import { shortenAddress } from "../../../utils/shorten-address";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 import StakeInputButton from "../StakeInputButton";
@@ -114,6 +112,7 @@ const StakeInput = ({
     stakeAccounts.length;
   const { isOpen, onOpen, onClose } = useDisclosure();
   const solTranslation = t("appPage.sol");
+  const stakeAccountsTranslation = t("appPage.stake-accounts");
   const BUFFER =
     tokenName === coinSymbols.SOL
       ? 0.01 +
@@ -239,11 +238,7 @@ const StakeInput = ({
                 stakeAccounts.length ? "/icons/expand-more-black.svg" : ""
               }
             >
-              <MText fontWeight="400">
-                {isWiderThan768
-                  ? shortenAddress(`${selectedAccount.address}`)
-                  : shortenAddressForMobile(`${selectedAccount.address}`)}
-              </MText>
+              <MText fontWeight="400">{solTranslation}</MText>
             </StakeInputButton>
 
             <MenuList
@@ -255,6 +250,12 @@ const StakeInput = ({
             >
               {isWalletConnected && (
                 <Box>
+                  <MenuItem ml={1}>
+                    <MText type="text-sm" fontWeight="bold" ml={1}>
+                      {t("appPage.wallet")}
+                    </MText>
+                  </MenuItem>
+
                   <StakeInputMenuItem
                     key={currentAccount.address}
                     icon={tokenIcon}
@@ -265,7 +266,11 @@ const StakeInput = ({
                       handleSelectedAccount(currentAccount, false);
                     }}
                   />
-
+                  <MenuItem ml={1}>
+                    <MText type="text-sm" fontWeight="bold">
+                      {stakeAccountsTranslation}
+                    </MText>
+                  </MenuItem>
                   {stakeAccounts.map((stakeAccount) => (
                     <StakeInputMenuItem
                       key={stakeAccount.address}
@@ -275,7 +280,7 @@ const StakeInput = ({
                       }}
                       icon={tokenIcon}
                       balance={stakeAccount.balance}
-                      title={t("appPage.sol-stake-account")}
+                      title={solTranslation}
                       subTitle={stakeAccount.address}
                       shortenSubtitle
                     />
@@ -307,9 +312,7 @@ const StakeInput = ({
               rightIcon="/icons/expand-more-black.svg"
               onClick={onOpen}
             >
-              <MText fontWeight="400">
-                {shortenAddressForMobile(`${selectedAccount.address}`)}
-              </MText>
+              <MText fontWeight="400">{solTranslation}</MText>
             </StakeInputButton>
 
             <Modal
@@ -320,9 +323,12 @@ const StakeInput = ({
             >
               <ModalOverlay />
               <ModalContent>
-                <ModalHeader>{t("appPage.stake-accounts")}</ModalHeader>
+                <ModalHeader>{stakeAccountsTranslation}</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
+                  <MText type="text-sm" fontWeight="bold" ml={1}>
+                    {t("appPage.wallet")}
+                  </MText>
                   <StakeInputMenuItem
                     key={currentAccount.address}
                     icon={tokenIcon}
@@ -334,6 +340,9 @@ const StakeInput = ({
                       onClose();
                     }}
                   />
+                  <MText type="text-sm" fontWeight="bold" ml={1}>
+                    {stakeAccountsTranslation}
+                  </MText>
                   {stakeAccounts.map((stakeAccount) => (
                     <StakeInputMenuItem
                       key={stakeAccount.address}
@@ -344,7 +353,7 @@ const StakeInput = ({
                       }}
                       icon={tokenIcon}
                       balance={stakeAccount.balance}
-                      title={t("appPage.sol-stake-account")}
+                      title={solTranslation}
                       subTitle={stakeAccount.address}
                       shortenSubtitle
                     />

@@ -187,6 +187,7 @@
     "stake-menu-item": "Stake",
     "defi-menu-item": "DeFi",
     "mnde-menu-item": "MNDE",
+    "wallet": "Wallet",
     "connect-wallet": "Connect wallet",
     "wallet-missing": "Please click here to install official {{wallet}} extension",
     "disconnect-wallet": "Disconnect",
@@ -328,7 +329,6 @@
 
     "tickets-accounts": "Ticket accounts",
     "sol": "SOL",
-    "sol-stake-account": "SOL (stake account)",
     "wrapped-sol": "Wrapped SOL",
     "claim-action": "Claim",
     "copy-success-title": "Address copied",
