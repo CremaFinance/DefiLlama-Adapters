@@ -261,6 +261,8 @@ const BasicStake = () => {
           action: "Stake",
           label: "Success",
           sol_amount: stakeAccount?.balance,
+          transaction_id: transactionSignature,
+          currency: "USD",
         });
 
         setSolStaked(solToStake);
@@ -371,6 +373,8 @@ const BasicStake = () => {
             action: "Stake",
             label: "Success",
             sol_amount: Number(solToStake),
+            transaction_id: transactionSignature,
+            currency: "USD",
           });
 
           setSolStaked(solToStake);

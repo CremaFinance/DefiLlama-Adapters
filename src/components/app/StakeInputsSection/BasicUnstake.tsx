@@ -242,6 +242,8 @@ const BasicUnstake = () => {
             action: "Unstake",
             label: "Success",
             sol_amount: Number(toUnstakeFullDecimals),
+            transaction_id: transactionSignature,
+            currency: "USD",
           });
         },
         (error) => {
