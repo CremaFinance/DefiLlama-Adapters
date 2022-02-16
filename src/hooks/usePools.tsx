@@ -1,8 +1,9 @@
 import { useQueries } from "react-query";
 
-import { CoinSymbols, Prices } from "../services/domain/coinSymbols";
+import type { CoinSymbols, Prices } from "../services/domain/coinSymbols";
 import { fetchCoinPrice } from "../services/markets/coinPrice";
-import { providers, ProviderOptions } from "../services/pools";
+import type { ProviderOptions } from "../services/pools";
+import { providers } from "../services/pools";
 import { getProviderTokens } from "../utils/tokens-list";
 
 const refetchInterval = 5 * 60 * 1000;

@@ -1,4 +1,4 @@
-import { Flex, Image, Icon, Spinner, Tooltip } from "@chakra-ui/react";
+import { Flex, Image, Icon, Spinner, Tooltip, Divider } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import type { FunctionComponent } from "react";
 import { HiOutlineInformationCircle } from "react-icons/hi";
@@ -28,10 +28,10 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
     actions,
     provider,
     leverage,
+    RowExtensionComponent,
   } = pool;
   const { t } = useTranslation();
   const totalApy = apy?.toFixed(2);
-
   const totalApyString = totalApy
     ? t("appPage.pool-row.total-apy")?.replace("{{totalApy}}", totalApy)
     : "";
@@ -46,131 +46,144 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
   return (
     <Flex
       bg="white"
-      paddingX={{ base: "24px", lg: "1.5rem" }}
-      paddingY={{ base: "24px", lg: "16px" }}
       borderRadius="8px"
       borderStyle="solid"
       borderWidth="1px"
       borderColor="gray.200"
-      alignItems={{ base: "stretch", lg: "center" }}
       boxSizing="border-box"
       minWidth={{ base: "288px", lg: "900px" }}
       maxWidth={{ base: "320px", lg: "1100px" }}
       marginBottom={{ base: "15px", lg: "14px" }}
       flex={1}
-      minHeight="104.39px"
-      flexDirection={{ base: "column", lg: "row" }}
       marginX={{ base: "0", sm: "16px", lg: "0" }}
+      flexDirection="column"
+      paddingX={{ base: "24px", lg: "1.5rem" }}
+      paddingY={{ base: "24px", lg: "16px" }}
     >
       <Flex
         flex={1}
-        maxWidth={{ base: undefined, lg: "208px" }}
-        justifyContent={{ base: "space-between", lg: "flex-start" }}
+        flexDirection={{ base: "column", lg: "row" }}
+        alignItems={{ base: "stretch", lg: "center" }}
+        minHeight="70px"
       >
-        <Flex alignItems="center">
-          <Image
-            src={`/pools/${tokenA.toLowerCase()}.png`}
-            width="40px"
-            height="40px"
-          />
-          {tokenB && (
+        <Flex
+          flex={1}
+          maxWidth={{ base: undefined, lg: "208px" }}
+          justifyContent={{ base: "space-between", lg: "flex-start" }}
+        >
+          <Flex alignItems="center">
             <Image
-              src={tokenB ? `/pools/${tokenB.toLowerCase()}.png` : ""}
+              src={`/pools/${tokenA.toLowerCase()}.png`}
               width="40px"
               height="40px"
-              marginLeft="-8px"
             />
+            {tokenB && (
+              <Image
+                src={tokenB ? `/pools/${tokenB.toLowerCase()}.png` : ""}
+                width="40px"
+                height="40px"
+                marginLeft="-8px"
+              />
+            )}
+            <Text marginLeft="8px" lineHeight="21.6px" fontSize="14.4px">
+              {pairString}
+            </Text>
+          </Flex>
+          <Flex
+            flex={{ base: undefined, lg: 1 }}
+            maxWidth="193px"
+            display={{ base: "flex", lg: "none" }}
+          >
+            <Image
+              src={logoURI}
+              marginRight={{ base: "0", xl: "1rem" }}
+              width={{ base: "2.5rem", lg: "4rem" }}
+              height={{ base: "2.5rem", lg: "4rem" }}
+            />
+          </Flex>
+        </Flex>
+        <Flex
+          alignItems="center"
+          flex={{ base: undefined, lg: 1 }}
+          maxWidth="230px"
+        >
+          {totalApy ? (
+            <Heading lineHeight="140%" fontSize="18px">
+              {totalApyString}
+            </Heading>
+          ) : (
+            <Spinner size="xs" />
           )}
-          <Text marginLeft="8px" lineHeight="21.6px" fontSize="14.4px">
-            {pairString}
-          </Text>
+          <ApyAndRewardTooltip
+            rewards={rewards}
+            tradingApy={tradingApy}
+            leverage={leverage}
+          >
+            <Button
+              variant="link"
+              _hover={{}}
+              color="black"
+              minWidth="16px"
+              marginLeft="6px"
+            >
+              <Icon
+                as={HiOutlineInformationCircle}
+                width="16px"
+                height="16px"
+                color="gray.500"
+              />
+            </Button>
+          </ApyAndRewardTooltip>
+        </Flex>
+        <Flex
+          flex={1}
+          fontSize="14.4px"
+          lineHeight="21.6px"
+          maxWidth="274px"
+          paddingTop={{ base: "8px", lg: "0" }}
+        >
+          {totalLockedValue ? (
+            <Heading lineHeight="140%" fontSize={{ base: "16px", lg: "18px" }}>
+              {tvlString}
+            </Heading>
+          ) : (
+            <Spinner size="xs" />
+          )}
         </Flex>
         <Flex
           flex={{ base: undefined, lg: 1 }}
           maxWidth="193px"
-          display={{ base: "flex", lg: "none" }}
+          display={{ base: "none", lg: "flex" }}
         >
-          <Image
-            src={logoURI}
-            marginRight={{ base: "0", xl: "1rem" }}
-            width={{ base: "2.5rem", lg: "4rem" }}
-            height={{ base: "2.5rem", lg: "4rem" }}
-          />
+          <Tooltip
+            hasArrow
+            label={provider}
+            bg={colors.marinadeEvenLighterGreen}
+            color="black"
+          >
+            <Image
+              src={logoURI}
+              marginRight={{ base: "0", xl: "1rem" }}
+              width="40px"
+              height="40px"
+            />
+          </Tooltip>
+        </Flex>
+        <Flex
+          justifyContent={{ base: "stretch", lg: "flex-end" }}
+          marginTop={{ base: "16px", lg: "0" }}
+        >
+          <PoolRowActionsSection actions={actions} />
         </Flex>
       </Flex>
-      <Flex
-        alignItems="center"
-        flex={{ base: undefined, lg: 1 }}
-        maxWidth="230px"
-      >
-        {totalApy ? (
-          <Heading lineHeight="140%" fontSize="18px">
-            {totalApyString}
-          </Heading>
-        ) : (
-          <Spinner size="xs" />
-        )}
-        <ApyAndRewardTooltip
-          rewards={rewards}
-          tradingApy={tradingApy}
-          leverage={leverage}
-        >
-          <Button
-            variant="link"
-            _hover={{}}
-            color="black"
-            minWidth="16px"
-            marginLeft="6px"
-          >
-            <Icon
-              as={HiOutlineInformationCircle}
-              width="16px"
-              height="16px"
-              color="gray.500"
-            />
-          </Button>
-        </ApyAndRewardTooltip>
-      </Flex>
-      <Flex
-        flex={1}
-        fontSize="14.4px"
-        lineHeight="21.6px"
-        maxWidth="274px"
-        paddingTop={{ base: "8px", lg: "0" }}
-      >
-        {totalLockedValue ? (
-          <Heading lineHeight="140%" fontSize={{ base: "16px", lg: "18px" }}>
-            {tvlString}
-          </Heading>
-        ) : (
-          <Spinner size="xs" />
-        )}
-      </Flex>
-      <Flex
-        flex={{ base: undefined, lg: 1 }}
-        maxWidth="193px"
-        display={{ base: "none", lg: "flex" }}
-      >
-        <Tooltip
-          hasArrow
-          label={provider}
-          bg={colors.marinadeEvenLighterGreen}
-          color="black"
-        >
-          <Image
-            src={logoURI}
-            marginRight={{ base: "0", xl: "1rem" }}
-            width="40px"
-            height="40px"
-          />
-        </Tooltip>
-      </Flex>
-      <Flex
-        justifyContent={{ base: "stretch", lg: "flex-end" }}
-        marginTop={{ base: "16px", lg: "0" }}
-      >
-        <PoolRowActionsSection actions={actions} />
-      </Flex>
+
+      {RowExtensionComponent ? (
+        <>
+          <Divider mt={{ base: 6, lg: "unset" }} />
+          <RowExtensionComponent />
+          <Divider />
+        </>
+      ) : null}
     </Flex>
   );
 };
