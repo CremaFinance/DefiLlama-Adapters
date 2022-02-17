@@ -16,6 +16,7 @@ import {
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 import { useChain } from "../../../contexts/ConnectionProvider";
 import { useMarinade } from "../../../contexts/MarinadeContext";
@@ -138,6 +139,8 @@ const SolLiquidityModal = ({
             action: "Add",
             label: "Success",
             sol_amount: Number(amount),
+            transaction_id: uuidv4(),
+            currency: "USD",
           });
         },
         (error) => {
@@ -222,6 +225,8 @@ const SolLiquidityModal = ({
             action: "Remove",
             label: "Success",
             sol_amount: Number(amount),
+            transaction_id: uuidv4(),
+            currency: "USD",
           });
         },
         (error) => {

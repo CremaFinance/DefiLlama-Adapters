@@ -16,6 +16,7 @@ import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import BN from "bn.js";
 import { useTranslation } from "next-export-i18n";
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 import StakeInput, { StakeInputTypeEnum } from "../StakeInput";
 import SwitchButtons from "../SwitchButtons";
@@ -124,6 +125,8 @@ const MSolLpModal = ({
             action: "Add",
             label: "Success",
             sol_amount: Number(amount),
+            transaction_id: uuidv4(),
+            currency: "USD",
           });
         },
         (error) => {
