@@ -2205,10 +2205,10 @@
     "@ethersproject/logger" "^5.5.0"
     hash.js "1.1.7"
 
-"@fontsource/lexend@^4.5.3":
-  version "4.5.3"
-  resolved "https://registry.yarnpkg.com/@fontsource/lexend/-/lexend-4.5.3.tgz#50ed39bb858cbd7142eddcff771892d03fddca00"
-  integrity sha512-BABZfVvX4TQU/yairWyKdZqdNqnDAQcJTlWgetd6x4Hfk/m3teewkv5OupBJtUv3665DBpdjHSLluu7ss052ig==
+"@fontsource/lexend@^4.5.5":
+  version "4.5.5"
+  resolved "https://registry.yarnpkg.com/@fontsource/lexend/-/lexend-4.5.5.tgz#53b6b6dedb5bcb2d634e33eb31e48f8d1bb24df8"
+  integrity sha512-FUIPeK1aB85elx62/gwxsQGODSychVNt/5ark1HhVKhewRJHDX4BrzFsQ/H8A7jxWQeVjycoNyVCtdCsIygbzw==
 
 "@fontsource/maven-pro@^4.5.4":
   version "4.5.4"
