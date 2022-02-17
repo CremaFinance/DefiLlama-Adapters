@@ -1,4 +1,4 @@
-import { Flex, Image, Icon, Spinner, Tooltip, Divider } from "@chakra-ui/react";
+import { Flex, Image, Icon, Spinner, Tooltip } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import type { FunctionComponent } from "react";
 import { HiOutlineInformationCircle } from "react-icons/hi";
@@ -28,7 +28,6 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
     actions,
     provider,
     leverage,
-    RowExtensionComponent,
   } = pool;
   const { t } = useTranslation();
   const totalApy = apy?.toFixed(2);
@@ -176,14 +175,6 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
           <PoolRowActionsSection actions={actions} />
         </Flex>
       </Flex>
-
-      {RowExtensionComponent ? (
-        <>
-          <Divider mt={{ base: 6, lg: "unset" }} />
-          <RowExtensionComponent />
-          <Divider />
-        </>
-      ) : null}
     </Flex>
   );
 };
