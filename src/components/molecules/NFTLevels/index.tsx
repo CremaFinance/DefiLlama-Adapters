@@ -36,8 +36,6 @@ const NFTLevels = () => {
       alignItems="center"
     >
       <Flex
-        ml={{ base: "0px", md: "8px" }}
-        mr={{ base: "0px", md: "8px" }}
         height={{ base: "425px", md: "180px" }}
         width="100%"
         flexDirection={{ md: "row", base: "column" }}
