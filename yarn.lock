@@ -2217,10 +2217,10 @@
   resolved "https://registry.yarnpkg.com/@fontsource/lexend/-/lexend-4.5.3.tgz#50ed39bb858cbd7142eddcff771892d03fddca00"
   integrity sha512-BABZfVvX4TQU/yairWyKdZqdNqnDAQcJTlWgetd6x4Hfk/m3teewkv5OupBJtUv3665DBpdjHSLluu7ss052ig==
 
-"@fontsource/maven-pro@^4.5.2":
-  version "4.5.2"
-  resolved "https://registry.yarnpkg.com/@fontsource/maven-pro/-/maven-pro-4.5.2.tgz#e3974d4dab052a9aae10f7dd32c76113642d4151"
-  integrity sha512-GYT9VPghw/RnHLJ+t1qyInmoTd5gvAalAFyG+kM0wVNWFZg+JvMk6+gegQ/XJBhSr9kOaWuzZxLepqEeskDFJw==
+"@fontsource/maven-pro@^4.5.4":
+  version "4.5.4"
+  resolved "https://registry.yarnpkg.com/@fontsource/maven-pro/-/maven-pro-4.5.4.tgz#28a098f6f2d6631d1c86caabb07e62726fbe71c4"
+  integrity sha512-PraH2oGq2ubPQRFgGGvsKBTi6XGH3h3BLcoh/OSmFwu/fZ6Njas9gmH67vLcgfYNKmIt38PRRmeoUkU4YY8TPg==
 
 "@gar/promisify@^1.0.1":
   version "1.1.2"

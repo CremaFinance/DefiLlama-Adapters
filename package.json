@@ -30,7 +30,7 @@
     "@emotion/server": "^11.4.0",
     "@emotion/styled": "^11.6.0",
     "@fontsource/lexend": "^4.5.3",
-    "@fontsource/maven-pro": "^4.5.2",
+    "@fontsource/maven-pro": "^4.5.4",
     "@project-serum/anchor": "^0.20.1",
     "@quarryprotocol/quarry-sdk": "^1.11.12",
     "@saberhq/anchor-contrib": "^1.12.35",
