@@ -406,7 +406,7 @@ const StakeInput = ({
                   tokenBalance
                 )} ${tokenName}`
               : `${t("appPage.stake-account-singular")} ${shortenAddress(
-                  currentAccount?.address || ""
+                  selectedAccount?.address || ""
                 )}`}
           </MText>
           {tokenBalance &&
