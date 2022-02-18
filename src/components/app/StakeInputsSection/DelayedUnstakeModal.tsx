@@ -6,7 +6,10 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  useMediaQuery,
   useToast,
+  VStack,
+  Stack,
 } from "@chakra-ui/react";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import dayjs from "dayjs";
@@ -27,6 +30,7 @@ import { checkNativeSOLBalance } from "../../../utils/check-native-sol-balance";
 import { format5Dec } from "../../../utils/number-to-short-version";
 import { DEFAULT_ENDPOINT } from "../../../utils/web3/endpoints";
 import Button from "../../atoms/Button";
+import MHeading from "../../atoms/Heading";
 import Text from "../../atoms/Text";
 import TransactionLink from "components/molecules/TransactionLink";
 import { useTracking } from "hooks/useTracking";
@@ -55,6 +59,7 @@ const DelayedUnstakeModal = ({
   const { nativeSOLBalance, stSOLBalance } = useUserBalance();
   const { connected: isWalletConnected } = useWallet();
   const chain = useChain();
+  const [isWiderThan768] = useMediaQuery("(min-width: 768px)");
 
   const EXTRA_WAIT_MILLISECONDS = 1000 * 60 * 60 * 4 + 1000 * 60 * 45; // 4 hours to finnish BE operations + 45 minutes to be safe
   const epochEnds = Date.now() + (epochData?.msUntilEpochEnd ?? 0);
@@ -161,90 +166,114 @@ const DelayedUnstakeModal = ({
         onClose();
       });
   };
-
+  const unstakeDate = dayjs(
+    new Date(
+      epochEnds +
+        (epochData?.slotsInEpoch ?? 0) *
+          DEFAULT_ENDPOINT.slotTimeAvg1h *
+          /* Note: we add one more epoch if stake-delta is already started (we're in the stake-delta-window) */
+          (Number(
+            marinade?.marinadeState?.state.stake_system?.last_stake_delta_epoch
+          ) === epochData?.epoch
+            ? 1
+            : 0) +
+        EXTRA_WAIT_MILLISECONDS
+    )
+  ).format(" MMMM D YYYY, h:mm a");
+  const unstakeAmount =
+    (stSolToUnstake &&
+      state &&
+      state.state?.st_sol_price &&
+      format5Dec(
+        (stSolToUnstake * state.state.st_sol_price.toNumber()) / 0x1_0000_0000
+      )) ||
+    "0";
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      size={isWiderThan768 ? "md" : "full"}
+    >
       <ModalOverlay />
-      <ModalContent>
+      <ModalContent py={2}>
         <ModalHeader fontSize="18px">
-          {t("appPage.start-delayed-unstake-action")}
-        </ModalHeader>
-        <ModalCloseButton mt={1} _focus={{ boxShadow: "none" }} />
-        <ModalBody>
-          <Text fontSize="14px">
-            {t("appPage.unstake-cooldown-description")}
-            <b>
-              {dayjs(
-                new Date(
-                  epochEnds +
-                    (epochData?.slotsInEpoch ?? 0) *
-                      DEFAULT_ENDPOINT.slotTimeAvg1h *
-                      /* Note: we add one more epoch if stake-delta is already started (we're in the stake-delta-window) */
-                      (Number(
-                        marinade?.marinadeState?.state.stake_system
-                          ?.last_stake_delta_epoch
-                      ) === epochData?.epoch
-                        ? 1
-                        : 0) +
-                    EXTRA_WAIT_MILLISECONDS
-                )
-              ).format(" MMMM D YYYY, h:mm a")}
-            </b>
-            {t("appPage.you-will-be-able-to-claim")}{" "}
-            {stSolToUnstake &&
-              state &&
-              state.state?.st_sol_price &&
-              format5Dec(
-                (stSolToUnstake * state.state.st_sol_price.toNumber()) /
-                  0x1_0000_0000
-              )}
-            {" SOL."}
-          </Text>
-          <br />
-          <Text fontSize="14px">
-            {t("appPage.approximate-unstake-time-explanation")}
-          </Text>
-          <br />
-          <Text fontSize="14px">{t("appPage.delayed-agree-text")}</Text>
-        </ModalBody>
-        <ModalFooter
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          flexDirection={["column-reverse", "row"]}
-        >
-          <Button
-            font="text-lg"
-            colorScheme="gray"
-            _hover={{ bg: "gray.100" }}
-            border="1px"
-            borderColor="gray.500"
-            textColor={colors.black}
-            bg={colors.white}
-            mt={[4, 0]}
-            size="lg"
-            mr={[0, 3]}
-            onClick={onClose}
-          >
-            {t("appPage.cancel-action")}
-          </Button>
-          <Button
-            font="text-lg"
-            bg={colors.marinadeGreen}
-            isLoading={unstakeLoading}
-            _hover={{ bg: colors.green800 }}
-            colorScheme={colors.marinadeGreen}
-            isDisabled={
-              !marinade.marinadeState ||
-              ((nativeSOLBalance === null || stSOLBalance === null) &&
-                isWalletConnected)
-            }
-            size="lg"
-            type="button"
-            onClick={delayedUnstakeHandler}
-          >
+          <MHeading fontSize="18px">
             {t("appPage.start-delayed-unstake-action")}
-          </Button>
+          </MHeading>
+        </ModalHeader>
+        <ModalCloseButton mt={2} mr={2} _focus={{ boxShadow: "none" }} />
+        <ModalBody>
+          <VStack alignItems="flex-start" spacing={4} fontSize="14px">
+            <Text>{t("appPage.delayed-unstake-modal.description")}</Text>
+            <MHeading fontSize="14px">
+              {t("appPage.delayed-unstake-modal.items.0.title")}
+            </MHeading>
+            <Text>
+              {t("appPage.delayed-unstake-modal.items.0.description")
+                ?.replace("{{time}}", unstakeDate)
+                .replace("{{amount}}", unstakeAmount)}
+            </Text>
+            <MHeading fontSize="14px">
+              {t("appPage.delayed-unstake-modal.items.1.title")?.replace(
+                "{{time}}",
+                unstakeDate
+              )}
+            </MHeading>
+            <Text>
+              {t("appPage.delayed-unstake-modal.items.1.description")?.replace(
+                "{{time}}",
+                unstakeDate
+              )}
+            </Text>
+            <Text>
+              {t("appPage.delayed-unstake-modal.items.2.description")}
+            </Text>
+            <Text>
+              {t("appPage.delayed-unstake-modal.items.3.description")}
+            </Text>
+          </VStack>
+        </ModalBody>
+        <ModalFooter display="flex" justifyContent="center">
+          <Stack
+            flex={1}
+            justifyContent="center"
+            alignItems="center"
+            direction={{ base: "column-reverse", md: "row" }}
+            spacing={4}
+          >
+            <Button
+              font="text-lg"
+              colorScheme="gray"
+              _hover={{ bg: "gray.100" }}
+              border="1px"
+              borderColor="gray.500"
+              textColor={colors.black}
+              bg={colors.white}
+              size="md"
+              onClick={onClose}
+              width={{ base: "100%", md: "unset" }}
+            >
+              {t("appPage.cancel-action")}
+            </Button>
+            <Button
+              font="text-lg"
+              bg={colors.marinadeGreen}
+              isLoading={unstakeLoading}
+              _hover={{ bg: colors.green800 }}
+              colorScheme={colors.marinadeGreen}
+              isDisabled={
+                !marinade.marinadeState ||
+                ((nativeSOLBalance === null || stSOLBalance === null) &&
+                  isWalletConnected)
+              }
+              size="md"
+              type="button"
+              onClick={delayedUnstakeHandler}
+              width={{ base: "100%", md: "unset" }}
+            >
+              {t("appPage.start-delayed-unstake-action")}
+            </Button>
+          </Stack>
         </ModalFooter>
       </ModalContent>
     </Modal>

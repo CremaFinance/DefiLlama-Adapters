@@ -279,10 +279,26 @@
     "balance": "Balance",
     "max": "Max",
     "conversion-explained": "You will receive",
-    "unstake-cooldown-description": "You're starting the unstaking process, Marinade must unstake SOL and wait for the cool-down period. This action is irreversible, cannot be canceled or undone and you must wait the cool-down period to get your SOL. Approximately on",
-    "you-will-be-able-to-claim": "*, you'll be able to claim at least ≈",
-    "approximate-unstake-time-explanation": "*Solana can add more delay to the unstake based on total unstaking in the epoch. The time is approximate. Even if you have to wait another epoch, your funds are secure and your ticket will be valid and has no expiry time",
-    "delayed-agree-text": "By clicking on \"Start delayed unstake\" button you understand and agree with the above.",
+    "delayed-unstake-modal": {
+      "description": "By clicking \"Start delayed unstake\" you are initiating the unstaking process. However, this is a two-step process that requires you to return to the app at a later time.",
+      "items": [
+        {
+          "title": "1. Click on \"Start delayed unstake.\"",
+          "description": "This action is irreversible. Marinade will initiate the cool-down period until the completion of the next Solana epoch. On *Approximately {{time}}* you will be able to claim at least ≈ {{amount}} SOL."
+        },
+        {
+          "title": "2. Return to the Stake page in Marinade app after {{time}}* to claim the SOL back to your wallet.",
+          "description": "Until then, your funds are secure and there is no expiration date."
+        },
+        {
+          "description": "By clicking on the \"Start delayed unstake\" button you understand and agree with the process above."
+        },
+        {
+          "description": "* This time is local, approximate and is subject to additional delay by Solana that postpones the unstaking of your SOL until the following epoch (48-72 hours later)."
+        }
+      ]
+    },
+    "unstake-cooldown-description": "By clicking \"Start delayed unstake\" you are initiating the unstaking process. However, this is a two-step process that requires you to return to the app at a later time.",
     "successfully-unstake-mSOL": "You've successfully unstaked your mSOL",
     "unstake-mSOL-confirmed": "Unstake mSOL confirmed",
     "stake-dropdown-wallet-balance": "Wallet balance",
