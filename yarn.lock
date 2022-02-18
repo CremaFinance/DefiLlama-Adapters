@@ -2205,10 +2205,10 @@
     "@ethersproject/logger" "^5.5.0"
     hash.js "1.1.7"
 
-"@fontsource/lexend@^4.5.3":
-  version "4.5.3"
-  resolved "https://registry.yarnpkg.com/@fontsource/lexend/-/lexend-4.5.3.tgz#50ed39bb858cbd7142eddcff771892d03fddca00"
-  integrity sha512-BABZfVvX4TQU/yairWyKdZqdNqnDAQcJTlWgetd6x4Hfk/m3teewkv5OupBJtUv3665DBpdjHSLluu7ss052ig==
+"@fontsource/lexend@^4.5.5":
+  version "4.5.5"
+  resolved "https://registry.yarnpkg.com/@fontsource/lexend/-/lexend-4.5.5.tgz#53b6b6dedb5bcb2d634e33eb31e48f8d1bb24df8"
+  integrity sha512-FUIPeK1aB85elx62/gwxsQGODSychVNt/5ark1HhVKhewRJHDX4BrzFsQ/H8A7jxWQeVjycoNyVCtdCsIygbzw==
 
 "@fontsource/maven-pro@^4.5.4":
   version "4.5.4"
@@ -2916,21 +2916,21 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.1.0.tgz#7f698254aadf921e48dda8c0a6b304026b8a9323"
   integrity sha512-JLo+Y592QzIE+q7Dl2pMUtt4q8SKYI5jDrZxrozEQxnGVOyYE+GWK9eLkwTaeN9DDctlaRAQ3TBmzZ1qdLE30A==
 
-"@saberhq/anchor-contrib@^1.12.35":
-  version "1.12.35"
-  resolved "https://registry.yarnpkg.com/@saberhq/anchor-contrib/-/anchor-contrib-1.12.35.tgz#40624b4000cb3aa68c0a92ee81837ee0b431f771"
-  integrity sha512-Wls++r8eewjUi45FGLdU7Fqpx6TXTY3L3ceyFKk9YcyxtWm7bY7MaauH7ljyal3aVVpxq+BIAvL7UC5KXEjUeg==
+"@saberhq/anchor-contrib@^1.12.43":
+  version "1.12.43"
+  resolved "https://registry.yarnpkg.com/@saberhq/anchor-contrib/-/anchor-contrib-1.12.43.tgz#5fb33b654b2c022f8af081e8452cd55a11749b9c"
+  integrity sha512-c+NADWQqXBtIaJrH/Rr/JSzNuNwb/sKWTzaK3U7n6/tL4TGYT7YzL8j0sY+xOXgdmAvKRFNKJrAoeOcJ83bLiw==
   dependencies:
-    "@saberhq/solana-contrib" "^1.12.35"
+    "@saberhq/solana-contrib" "^1.12.43"
     eventemitter3 "^4.0.7"
     lodash.camelcase "^4.3.0"
     lodash.mapvalues "^4.6.0"
     tslib "^2.3.1"
 
-"@saberhq/solana-contrib@^1.12.35", "@saberhq/solana-contrib@^1.12.41", "@saberhq/solana-contrib@^1.12.44":
-  version "1.12.44"
-  resolved "https://registry.yarnpkg.com/@saberhq/solana-contrib/-/solana-contrib-1.12.44.tgz#3a1de6b9b5878969c7d186db4350df146c77df1e"
-  integrity sha512-wSbTdq5uLmxwGQ1RoL0oO048I7fPAVRsJT9k+Ff3q8wmG5pwe1EmZnVPRx+YfMYK48ZfGTZCtePk75c6euCWGA==
+"@saberhq/solana-contrib@^1.12.41", "@saberhq/solana-contrib@^1.12.43", "@saberhq/solana-contrib@^1.12.44":
+  version "1.12.45"
+  resolved "https://registry.yarnpkg.com/@saberhq/solana-contrib/-/solana-contrib-1.12.45.tgz#5663e05f84655c4ef5d33a6797308dcda7ab53a2"
+  integrity sha512-zCxIiPg/soRg3nFtR7aslrHQVtaQCtb5lbEovlzk5w8M7ejJFFtKBwueJzBQwMLXhRF4RkqME+HiGknI72IgHQ==
   dependencies:
     "@types/promise-retry" "^1.1.3"
     "@types/retry" "^0.12.1"
@@ -9876,10 +9876,10 @@ hosted-git-info@^4.0.0, hosted-git-info@^4.0.1:
   dependencies:
     lru-cache "^6.0.0"
 
-html-dom-parser@1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/html-dom-parser/-/html-dom-parser-1.0.4.tgz#84878b54e1d434f25e611e44254b49d39340a81b"
-  integrity sha512-ThM/vK/18R5/cVB9UsqhNqbJU7LE2BmSA7C/FjYV88wIDW75GSUpvSE/JxE4mJ8bOuU6Kp15/I1giM2JbD+ieA==
+html-dom-parser@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/html-dom-parser/-/html-dom-parser-1.1.0.tgz#daf0ff559bb0c4ffe7543d507baeaf1e2ca14e2c"
+  integrity sha512-x3MOz8S8BkihGgggtp2N0U+JAWlD9iGERbjuBJH+gIGF9B1kGQh5x489IQ0YPqi8HyMIWCRLdJY1q3IaQlqG/Q==
   dependencies:
     domhandler "4.3.0"
     htmlparser2 "7.2.0"
@@ -9914,13 +9914,13 @@ html-minifier-terser@^5.0.1:
     relateurl "^0.2.7"
     terser "^4.6.3"
 
-html-react-parser@^1.4.6:
-  version "1.4.6"
-  resolved "https://registry.yarnpkg.com/html-react-parser/-/html-react-parser-1.4.6.tgz#ad1ddf25f473377058c0580410e5f9c68ced6a49"
-  integrity sha512-tbKIw/aPsOmTZUs7sTSDDzfnBSAfHu8RpoNY8QhHloB//lr9eEM7qkzNbf/eXo4XIdo8ykZpB7ECQp3k+Iz10A==
+html-react-parser@^1.4.8:
+  version "1.4.8"
+  resolved "https://registry.yarnpkg.com/html-react-parser/-/html-react-parser-1.4.8.tgz#27bc0f9dc294c875daeca8a21a48d5b845a1364e"
+  integrity sha512-5XsBdFVhJLxdtRp7tWwZ6DwqOt6fJ+2lJc0lctwjX1yaxWNB41S5uzqii7vJcSCaabM+CK28U75e5f4wIMqdSg==
   dependencies:
     domhandler "4.3.0"
-    html-dom-parser "1.0.4"
+    html-dom-parser "1.1.0"
     react-property "2.0.0"
     style-to-js "1.1.0"
 
