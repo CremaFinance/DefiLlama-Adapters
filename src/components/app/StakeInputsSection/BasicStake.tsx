@@ -412,7 +412,9 @@ const BasicStake = () => {
   };
 
   const parsedStakeAccounts = useMemo(() => {
-    return parseStakeAccounts();
+    return parseStakeAccounts().filter(
+      (account) => account.balance >= 1 && account.isStakable
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stakeAccounts]);
 
