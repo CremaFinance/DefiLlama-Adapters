@@ -62,6 +62,7 @@ const MNDELockStep = ({
               height={{ base: "14px", md: "18px" }}
               cursor="pointer"
               marginLeft="4px"
+              marginTop="8px"
             />
           ) : null}
         </Flex>

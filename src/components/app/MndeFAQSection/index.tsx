@@ -35,7 +35,13 @@ const MndeFAQSection = () => {
               </MText>
               <AccordionIcon fontSize="2em" />
             </AccordionButton>
-            <AccordionPanel position="relative" pl={[4, 8]} pr={[4, 6]}>
+            <AccordionPanel
+              aria-label="item"
+              position="relative"
+              pl={[4, 8]}
+              pr={[4, 6]}
+              pt="16px"
+            >
               <MText type="text-md" lineHeight="170%">
                 {t(`appPage.mnde.faq-items.0.response`)}
               </MText>
@@ -54,6 +60,7 @@ const MndeFAQSection = () => {
               pb={4}
               pl={[4, 8]}
               pr={[4, 6]}
+              pt="16px"
             >
               <MText type="text-md" lineHeight="170%">
                 {t(`appPage.mnde.faq-items.1.response`)}
@@ -73,6 +80,7 @@ const MndeFAQSection = () => {
               pb={4}
               pl={[4, 8]}
               pr={[4, 6]}
+              pt="16px"
             >
               <MText type="text-md" lineHeight="170%">
                 {t(`appPage.mnde.faq-items.2.response`)}
@@ -92,6 +100,7 @@ const MndeFAQSection = () => {
               pb={4}
               pl={[4, 8]}
               pr={[4, 6]}
+              pt={{ base: "16px", md: "8px" }}
             >
               <MText type="text-md" lineHeight="170%">
                 {t(`appPage.mnde.faq-items.3.response`)}
