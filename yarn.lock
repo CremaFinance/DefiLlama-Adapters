@@ -2837,7 +2837,7 @@
     lodash.mapvalues "^4.6.0"
     tslib "^2.3.1"
 
-"@saberhq/solana-contrib@^1.12.41", "@saberhq/solana-contrib@^1.12.43", "@saberhq/solana-contrib@^1.12.44":
+"@saberhq/solana-contrib@^1.12.43", "@saberhq/solana-contrib@^1.12.44", "@saberhq/solana-contrib@^1.12.45":
   version "1.12.45"
   resolved "https://registry.yarnpkg.com/@saberhq/solana-contrib/-/solana-contrib-1.12.45.tgz#5663e05f84655c4ef5d33a6797308dcda7ab53a2"
   integrity sha512-zCxIiPg/soRg3nFtR7aslrHQVtaQCtb5lbEovlzk5w8M7ejJFFtKBwueJzBQwMLXhRF4RkqME+HiGknI72IgHQ==
@@ -2849,26 +2849,26 @@
     tiny-invariant "^1.2.0"
     tslib "^2.3.1"
 
-"@saberhq/stableswap-sdk@^1.12.41":
-  version "1.12.41"
-  resolved "https://registry.yarnpkg.com/@saberhq/stableswap-sdk/-/stableswap-sdk-1.12.41.tgz#0f1eb9c854ff99487a901ad7160c8e98ea5ee073"
-  integrity sha512-lO9JaMucBVOnxfNzbsJL2icCAUNLpOyrIkOul+PX+XF+vB7IhvoeT36MZJzI1D1WMj2t5Ps9NnFLtXYzhucRHQ==
+"@saberhq/stableswap-sdk@^1.12.45":
+  version "1.12.45"
+  resolved "https://registry.yarnpkg.com/@saberhq/stableswap-sdk/-/stableswap-sdk-1.12.45.tgz#0fc5cb2752a086adf0999ffc5f4a134984749f47"
+  integrity sha512-F9m5Cq8SY17Jz8AxcK3ciBdcTJ6ENu7Ghy09PfotFHFl29fM+z0wlxX/QtZFRHgNwrLPhpHe0AsM/F1iwfvVpQ==
   dependencies:
-    "@saberhq/solana-contrib" "^1.12.41"
-    "@saberhq/token-utils" "^1.12.41"
+    "@saberhq/solana-contrib" "^1.12.45"
+    "@saberhq/token-utils" "^1.12.45"
     "@solana/buffer-layout" "^4.0.0"
     lodash.mapvalues "^4.6.0"
     tslib "^2.3.1"
 
-"@saberhq/token-utils@^1.12.40", "@saberhq/token-utils@^1.12.41":
-  version "1.12.41"
-  resolved "https://registry.yarnpkg.com/@saberhq/token-utils/-/token-utils-1.12.41.tgz#f49824cf20b4a4174e122774194c1f7890ac397d"
-  integrity sha512-CbIjiLyttqD6I+VaigxdUeDE+AFHSt6GfeXPfDtTaaFMUqAAhHql7YtaMf3WE0wyZUg+BYGIUOCa16JoXf0Unw==
+"@saberhq/token-utils@^1.12.40", "@saberhq/token-utils@^1.12.45":
+  version "1.12.45"
+  resolved "https://registry.yarnpkg.com/@saberhq/token-utils/-/token-utils-1.12.45.tgz#84e5f2a9aeec14255fc525acdf657da6749b8ec5"
+  integrity sha512-12lgtNFs7BTB/f8bIY9c87kz2CsmbHvnsT9p9tBrKEF/l3D5ixpENWezPinKY2q9IzFECPvluWDGXUO+6HuHnQ==
   dependencies:
-    "@saberhq/solana-contrib" "^1.12.41"
+    "@saberhq/solana-contrib" "^1.12.45"
     "@solana/buffer-layout" "^4.0.0"
     "@solana/spl-token" "^0.1.8"
-    "@ubeswap/token-math" "^4.4.1"
+    "@ubeswap/token-math" "^4.4.2"
     tiny-invariant "^1.2.0"
     tslib "^2.3.1"
 
@@ -4624,10 +4624,10 @@
     "@typescript-eslint/types" "5.9.0"
     eslint-visitor-keys "^3.0.0"
 
-"@ubeswap/token-math@^4.4.1":
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/@ubeswap/token-math/-/token-math-4.4.1.tgz#bb1aa0547691aed6c14d1a80db4538b6e74a502e"
-  integrity sha512-856auygzQ8chxOt2dNGk5Tp/TWl8Fgs2U6pTHkclFn8RcV7htpd/DaTYDCITQneLTAIfAkm1UopIkwHDaMMx4g==
+"@ubeswap/token-math@^4.4.2":
+  version "4.4.4"
+  resolved "https://registry.yarnpkg.com/@ubeswap/token-math/-/token-math-4.4.4.tgz#98ff131a4371a6229245d8aa79bf198a35682b9c"
+  integrity sha512-AbcyDhKVPaFQOuzak1UPyBPNbo6IHCKY4C2xq5DOcW6qmlI+4EaxI9mU2jpG/joYAtqPYrx2BbLizU+TfB6bmg==
   dependencies:
     big.js "^6.1.1"
     decimal.js-light "^2.5.1"
