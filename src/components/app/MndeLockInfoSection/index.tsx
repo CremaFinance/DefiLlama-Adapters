@@ -11,7 +11,7 @@ const MndeLockInfoSection = () => {
   const [isLargerThan430] = useMediaQuery("(min-width: 430px)");
   return (
     <Flex
-      pb={[8, 8]}
+      pb="8"
       aria-label="mnde-section"
       position="relative"
       flexDirection="column"

@@ -83,7 +83,7 @@ const MNDESubmenuCard = ({
               width="16px"
               height="16px"
               cursor="pointer"
-              marginLeft="9px"
+              marginLeft="8px"
             />
           ) : null}
         </MButton>
