@@ -1,8 +1,8 @@
 /* eslint-disable sonarjs/cognitive-complexity */
 import { PublicKey } from "@solana/web3.js";
+import type { ReactNode } from "react";
 import {
   createContext,
-  ReactNode,
   useContext,
   useEffect,
   useMemo,
@@ -12,6 +12,7 @@ import {
 
 import { useWallet } from "../hooks/useWallet";
 import { isError } from "../utils/is-error";
+import { findAssociatedTokenAddress } from "utils/web3/find-associated-token-address";
 
 import { useConnection } from "./ConnectionProvider";
 import { useMarinade } from "./MarinadeContext";
@@ -20,6 +21,7 @@ import { useStats } from "./StatsContext";
 export interface UserBalance {
   nativeSOLBalance: null | number;
   stSOLBalance: null | number;
+  MNDEBalance: null | number;
   liqSOLBalance: null | number;
   liquiditySOLPart: null | number;
   liquidityMSolPart: null | number;
@@ -28,6 +30,7 @@ export interface UserBalance {
 const UserBalanceContext = createContext<UserBalance>({
   nativeSOLBalance: null,
   stSOLBalance: null,
+  MNDEBalance: null,
   liqSOLBalance: null,
   liquiditySOLPart: null,
   liquidityMSolPart: null,
@@ -43,9 +46,12 @@ export function UserBalanceProvider({ children }: UserBalanceProviderProps) {
 
   const [nativeSOLBalance, setNativeSOLBalance] = useState<number | null>(null);
   const [stSOLBalance, setStSOLBalance] = useState<number | null>(null);
+  const [MNDEBalance, setMNDEBalance] = useState<number | null>(null);
   const [liqSOLBalance, setLiqSOLBalance] = useState<number | null>(null);
 
   const nativeAccSubRef = useRef<undefined | ConnectionSubscription>();
+
+  const errorMsg = "could not find account";
 
   useEffect(() => {
     if (walletConnected && walletPubKey) {
@@ -75,6 +81,55 @@ export function UserBalanceProvider({ children }: UserBalanceProviderProps) {
     };
   }, [walletConnected, connection, walletPubKey, liqSOLBalance, stSOLBalance]);
 
+  const MNDESubscriptionRef = useRef<undefined | ConnectionSubscription>();
+
+  useEffect(() => {
+    const fetchBalance = async () => {
+      try {
+        if (walletPubKey) {
+          findAssociatedTokenAddress(
+            walletPubKey,
+            new PublicKey("MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey")
+          ).then((associatedTokenAddress) => {
+            connection
+              .getTokenAccountBalance(associatedTokenAddress)
+              .then((result) => setMNDEBalance(Number(result.value.amount)));
+          });
+        }
+      } catch (e) {
+        if (isError(e) && e.message.endsWith(errorMsg)) {
+          setMNDEBalance(0);
+        }
+      }
+    };
+    fetchBalance();
+    if (!MNDESubscriptionRef.current) {
+      MNDESubscriptionRef.current = {
+        key: new PublicKey("MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey"),
+        subscription: connection.onAccountChange(
+          new PublicKey("MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey"),
+          () => {
+            fetchBalance();
+          }
+        ),
+      };
+    }
+    return () => {
+      if (MNDESubscriptionRef.current) {
+        connection.removeAccountChangeListener(
+          MNDESubscriptionRef.current.subscription
+        );
+        MNDESubscriptionRef.current = undefined;
+      }
+    };
+  }, [
+    connection,
+    userStSOLAccountAddress,
+    walletConnected,
+    nativeSOLBalance,
+    walletPubKey,
+  ]);
+
   const stSolSubscriptionRef = useRef<undefined | ConnectionSubscription>();
 
   useEffect(() => {
@@ -88,7 +143,7 @@ export function UserBalanceProvider({ children }: UserBalanceProviderProps) {
             setStSOLBalance(balance.value.uiAmount);
           }
         } catch (e) {
-          if (isError(e) && e.message.endsWith("could not find account")) {
+          if (isError(e) && e.message.endsWith(errorMsg)) {
             setStSOLBalance(0);
           }
         }
@@ -129,7 +184,7 @@ export function UserBalanceProvider({ children }: UserBalanceProviderProps) {
             setLiqSOLBalance(balance.value.uiAmount);
           }
         } catch (e) {
-          if (isError(e) && e.message.endsWith("could not find account")) {
+          if (isError(e) && e.message.endsWith(errorMsg)) {
             setLiqSOLBalance(0);
           }
         }
@@ -181,6 +236,7 @@ export function UserBalanceProvider({ children }: UserBalanceProviderProps) {
     return {
       nativeSOLBalance,
       stSOLBalance,
+      MNDEBalance,
       liqSOLBalance,
       liquiditySOLPart,
       liquidityMSolPart,
@@ -188,6 +244,7 @@ export function UserBalanceProvider({ children }: UserBalanceProviderProps) {
   }, [
     nativeSOLBalance,
     stSOLBalance,
+    MNDEBalance,
     liqSOLBalance,
     liquiditySOLPart,
     liquidityMSolPart,

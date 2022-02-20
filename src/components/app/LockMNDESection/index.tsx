@@ -1,19 +1,53 @@
 import { Flex, IconButton, Box } from "@chakra-ui/react";
+import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
+import { useEffect, useState } from "react";
 import { MdInfoOutline } from "react-icons/md";
 
+import { useUserBalance } from "../../../contexts/UserBalanceContext";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 import { ConnectWallet } from "../../molecules/ConnectWallet";
 import TooltipWithContent from "../../molecules/TooltipWithContent";
-import MndeLockInput from "components/molecules/MndeLockInput";
 import NFTLevels from "components/molecules/NFTLevels";
+import StakeInput, {
+  StakeInputTypeEnum,
+} from "components/molecules/StakeInput";
+import type { StakeAccountType } from "components/molecules/StakeInput";
 import { useWallet } from "hooks/useWallet";
 import colors from "styles/customTheme/colors";
 
 const LockMNDESection = () => {
+  const [MNDEToLock, setMNDEToLock] = useState<string>("");
   const { t } = useTranslation();
-  const { connected: isWalletConnected } = useWallet();
+  const { connected: isWalletConnected, publicKey: walletPubKey } = useWallet();
+
+  const { MNDEBalance } = useUserBalance();
+
+  const sourceTokenBalance = MNDEBalance
+    ? MNDEBalance / LAMPORTS_PER_SOL - 0.001
+    : 0;
+
+  const currentAccount: StakeAccountType = {
+    address: walletPubKey?.toBase58().toString() || "",
+    balance: sourceTokenBalance,
+  };
+
+  const [selectedLevel, setSelectedLevel] = useState("-");
+  const [updateInputValue, setUpdateInputValue] = useState(false);
+
+  const handleLevelSelected = (value: string, changeInputAmount: boolean) => {
+    setUpdateInputValue(changeInputAmount);
+    setSelectedLevel(value);
+  };
+
+  useEffect(() => {
+    if (selectedLevel === "1" && updateInputValue) setMNDEToLock("1000");
+    if (selectedLevel === "2" && updateInputValue) setMNDEToLock("5000");
+    if (selectedLevel === "3" && updateInputValue) setMNDEToLock("25000");
+    if (selectedLevel === "4" && updateInputValue) setMNDEToLock("100000");
+    if (selectedLevel === "5" && updateInputValue) setMNDEToLock("500000");
+  }, [selectedLevel, updateInputValue]);
 
   return (
     <Flex width="100%" justifyContent="center" alignItems="center">
@@ -27,13 +61,21 @@ const LockMNDESection = () => {
         position="relative"
         p={[4, 10]}
       >
-        <MndeLockInput
+        <StakeInput
+          stakeInputType={StakeInputTypeEnum.Source}
           tokenName="MNDE"
           tokenIcon="/icons/mnde.svg"
-          tokenBalance={0}
+          onValueChange={setMNDEToLock}
+          value={MNDEToLock}
+          tokenBalance={(MNDEBalance ?? 0) / LAMPORTS_PER_SOL}
+          currentAccount={currentAccount}
           mb={2}
         />
-        <NFTLevels />
+        <NFTLevels
+          input={MNDEToLock}
+          balance={(MNDEBalance ?? 0) / LAMPORTS_PER_SOL}
+          onLevelClick={handleLevelSelected}
+        />
         {isWalletConnected ? (
           <MButton
             font="text-xl"
@@ -68,7 +110,11 @@ const LockMNDESection = () => {
               />
             </TooltipWithContent>
           </Flex>
-          <MText type="text-md">{t("appPage.mnde.nft-mockup-value")}</MText>
+          <MText type="text-md">
+            {selectedLevel !== "-"
+              ? t("appPage.mnde.nft-level-value") + selectedLevel
+              : "-"}
+          </MText>
         </Flex>
         <Flex width="100%" mt={1} mb={1} justifyContent="space-between">
           <Flex>

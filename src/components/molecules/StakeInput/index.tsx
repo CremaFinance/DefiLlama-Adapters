@@ -84,18 +84,25 @@ const StakeInput = ({
   isLoading,
 }: StakeInputProps) => {
   const { t } = useTranslation();
-  const prices = usePrices([coinSymbols.SOL, coinSymbols.mSOL]);
+  const prices = usePrices([
+    coinSymbols.SOL,
+    coinSymbols.mSOL,
+    coinSymbols.MNDE,
+  ]);
   const stats = useStats();
 
   const balanceLabel = t("appPage.balance");
   const solUSD =
     prices[coinSymbols.SOL]?.usd && Number(prices[coinSymbols.SOL]?.usd);
+  const mndeUSD =
+    prices[coinSymbols.MNDE]?.usd && Number(prices[coinSymbols.MNDE]?.usd);
   const tokenPrices = {
     [coinSymbols.SOL]: solUSD,
     [coinSymbols.mSOL]:
       solUSD && stats?.mSOLvsSOLParity !== null
         ? solUSD * stats.mSOLvsSOLParity
         : undefined,
+    [coinSymbols.MNDE]: mndeUSD,
   };
   const [isWiderThan768] = useMediaQuery("(min-width: 768px)");
   const [selectedAccount, setSelectedAccount] = useState(currentAccount);
