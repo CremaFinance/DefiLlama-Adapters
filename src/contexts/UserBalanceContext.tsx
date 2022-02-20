@@ -12,7 +12,7 @@ import {
 
 import { useWallet } from "../hooks/useWallet";
 import { isError } from "../utils/is-error";
-import { findAssociatedTokenAddress } from "utils/web3/find-associated-token-address";
+import { findAssociatedTokenAddress } from "../utils/web3/find-associated-token-address";
 
 import { useConnection } from "./ConnectionProvider";
 import { useMarinade } from "./MarinadeContext";
