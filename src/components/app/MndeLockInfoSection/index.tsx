@@ -11,7 +11,7 @@ const MndeLockInfoSection = () => {
   const [isLargerThan430] = useMediaQuery("(min-width: 430px)");
   return (
     <Flex
-      pb={[12, 8]}
+      pb="8"
       aria-label="mnde-section"
       position="relative"
       flexDirection="column"
@@ -85,6 +85,7 @@ const MndeLockInfoSection = () => {
           stepTitle={t("appPage.mnde.lock.info-section.steps.third")}
           stepIllustrationPath="/ilustrations/vote.svg"
           stepLinkEnabled
+          href="/"
         />
       </Flex>
     </Flex>

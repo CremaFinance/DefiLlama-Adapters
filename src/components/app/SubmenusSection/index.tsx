@@ -13,7 +13,7 @@ const SubmenusMndeSection = () => {
 
   return (
     <Flex
-      pt={["100px", "72px"]}
+      pt={["68px", "72px"]}
       pb={[12, 8]}
       aria-label="mnde-section"
       position="relative"
@@ -90,6 +90,7 @@ const SubmenusMndeSection = () => {
           cardDescription={t("appPage.mnde.nft-vote-card.description")}
           cardButtonText={t("appPage.mnde.nft-vote-card.button")}
           cardIllustrationPath="/ilustrations/vote.svg"
+          isExternal
         />
         <MNDESubmenuCard
           cardTitle={t("appPage.mnde.earn-card.title")}

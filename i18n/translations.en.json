@@ -363,7 +363,7 @@
       "faq-items": [
         {
           "question": "When do I receive my NFT?",
-          "response": "Lorem ipsum"
+          "response": "You will receive your NFT immediately after it is minted upon locking the MNDE."
         },
         {
           "question": "Is it possible to sell or transfer my NFT while my MNDE is locked?",
@@ -371,11 +371,11 @@
         },
         {
           "question": "What happend to my NFT if I choose to unlock my MNDE?",
-          "response": "Lorem ipsum"
+          "response": "The NFT will begin a 30-day cooldown period. After 30 days, the NFT will be burned and the underlying MNDE will be returned to the holder’s wallet."
         },
         {
           "question": "Will I be notified of Marinade governance opportunities?",
-          "response": "Lorem ipsum"
+          "response": "Proposals will be announced in the Marinade Discord server and viewable on Tribeca."
         }
       ],
       "lock": {

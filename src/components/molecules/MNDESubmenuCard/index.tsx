@@ -11,6 +11,7 @@ type MNDESubmenuCardProps = {
   cardButtonDisabled?: boolean;
   cardIllustrationPath: string;
   onClickCardButton?: () => void;
+  isExternal?: boolean;
 };
 
 const MNDESubmenuCard = ({
@@ -20,6 +21,7 @@ const MNDESubmenuCard = ({
   cardButtonDisabled = false,
   cardIllustrationPath,
   onClickCardButton,
+  isExternal,
 }: MNDESubmenuCardProps) => {
   return (
     <Flex
@@ -75,13 +77,15 @@ const MNDESubmenuCard = ({
           onClick={() => onClickCardButton && onClickCardButton()}
         >
           {cardButtonText}
-          <Icon
-            as={FiExternalLink}
-            width="16px"
-            height="16px"
-            cursor="pointer"
-            marginLeft="9px"
-          />
+          {isExternal ? (
+            <Icon
+              as={FiExternalLink}
+              width="16px"
+              height="16px"
+              cursor="pointer"
+              marginLeft="8px"
+            />
+          ) : null}
         </MButton>
       </Flex>
     </Flex>

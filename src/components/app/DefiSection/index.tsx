@@ -6,7 +6,7 @@ import DefiSubtitleSection from "../DefiSubtitleSection";
 const DefiSection = () => {
   return (
     <Flex
-      pt={["100px", "72px"]}
+      pt={["68px", "72px"]}
       pb={[12, 8]}
       aria-label="defi-section"
       position="relative"
