@@ -80,54 +80,6 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
         alignItems="center"
         zIndex={6}
       >
-        {balance < 1000 ? (
-          <Flex
-            ml={{ base: "0px", md: "4px" }}
-            mr={{ base: "0px", md: "4px" }}
-            width={{ base: "100%", sm: "0" }}
-          >
-            <Divider
-              borderColor="gray.200"
-              orientation="vertical"
-              height="180px"
-              opacity="1"
-              mt="43px"
-              display={{ base: "none", md: "flex" }}
-            />
-            <Divider
-              mt="4px"
-              mb="30px"
-              ml="2px"
-              borderColor="gray.200"
-              orientation="horizontal"
-              width={{ base: "100%", sm: "340px" }}
-              height="10px"
-              opacity="1"
-              display={{ base: "flex", md: "none" }}
-            />
-            <Text
-              marginLeft={{ base: "5px", md: "9px" }}
-              marginTop={{ base: "20px", md: "190px" }}
-              position="absolute"
-              fontWeight="bold"
-              textAlign="left"
-              fontSize="9.22px"
-              cursor="pointer"
-              lineHeight="13.83px"
-              color={colors.marinadeGreen}
-            >
-              {t(buyMoreString)}
-              <Icon
-                as={FiExternalLink}
-                width="10px"
-                height="10px"
-                cursor="pointer"
-                marginLeft="2px"
-                marginBottom="-1px"
-              />
-            </Text>
-          </Flex>
-        ) : undefined}
         <NFTLevelsItem
           ilustration="/ilustrations/nft-tier1.svg"
           title={t("appPage.mnde.nft-levels.level-one.title")}
