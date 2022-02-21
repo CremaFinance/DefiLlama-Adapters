@@ -11,6 +11,8 @@ import {
 } from "react";
 
 import { useWallet } from "../hooks/useWallet";
+import { coinSymbols } from "../services/domain/coinSymbols";
+import { coinTokens } from "../services/domain/coinTokens";
 import { isError } from "../utils/is-error";
 import { findAssociatedTokenAddress } from "../utils/web3/find-associated-token-address";
 
@@ -89,7 +91,7 @@ export function UserBalanceProvider({ children }: UserBalanceProviderProps) {
         if (walletPubKey) {
           findAssociatedTokenAddress(
             walletPubKey,
-            new PublicKey("MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey")
+            new PublicKey(coinTokens[coinSymbols.MNDE].address)
           ).then((associatedTokenAddress) => {
             connection
               .getTokenAccountBalance(associatedTokenAddress)
@@ -105,9 +107,9 @@ export function UserBalanceProvider({ children }: UserBalanceProviderProps) {
     fetchBalance();
     if (!MNDESubscriptionRef.current) {
       MNDESubscriptionRef.current = {
-        key: new PublicKey("MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey"),
+        key: new PublicKey(coinTokens[coinSymbols.MNDE].address),
         subscription: connection.onAccountChange(
-          new PublicKey("MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey"),
+          new PublicKey(coinTokens[coinSymbols.MNDE].address),
           () => {
             fetchBalance();
           }

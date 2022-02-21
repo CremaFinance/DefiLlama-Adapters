@@ -1,10 +1,9 @@
-import { Flex, Divider, Text, Icon } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { useState, useEffect } from "react";
-import { FiExternalLink } from "react-icons/fi";
 
+import LevelDivider from "../LevelDivider";
 import NFTLevelsItem from "../NFTLevelsItem";
-import colors from "styles/customTheme/colors";
 
 type NFTLevelsProps = {
   balance: number;
@@ -14,7 +13,6 @@ type NFTLevelsProps = {
 
 const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
   const { t } = useTranslation();
-  const buyMoreString = "appPage.mnde.nft-levels.buy-more";
   const placeholder = "{{amountLeft}}";
 
   const [selectedLevel, setSelectedLevel] = useState("none");
@@ -95,54 +93,7 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
           disabled={balance < 1000}
           limited
         />
-        {balance < 5000 && balance > 1000 ? (
-          <Flex
-            ml={{ base: "0px", md: "4px" }}
-            mr={{ base: "0px", md: "4px" }}
-            width={{ base: "100%", sm: "0" }}
-          >
-            <Divider
-              borderColor="gray.200"
-              orientation="vertical"
-              height="180px"
-              opacity="1"
-              mt="43px"
-              display={{ base: "none", md: "flex" }}
-            />
-            <Divider
-              mt="4px"
-              mb="30px"
-              ml="2px"
-              borderColor="gray.200"
-              orientation="horizontal"
-              width={{ base: "100%", sm: "340px" }}
-              height="10px"
-              opacity="1"
-              display={{ base: "flex", md: "none" }}
-            />
-            <Text
-              marginLeft={{ base: "5px", md: "9px" }}
-              marginTop={{ base: "20px", md: "190px" }}
-              position="absolute"
-              fontWeight="bold"
-              textAlign="left"
-              fontSize="9.22px"
-              cursor="pointer"
-              lineHeight="13.83px"
-              color={colors.marinadeGreen}
-            >
-              {t(buyMoreString)}
-              <Icon
-                as={FiExternalLink}
-                width="10px"
-                height="10px"
-                cursor="pointer"
-                marginLeft="2px"
-                marginBottom="-1px"
-              />
-            </Text>
-          </Flex>
-        ) : undefined}
+        <LevelDivider min={1000} max={5000} balance={balance} />
         <NFTLevelsItem
           ilustration="/ilustrations/nft-tier2.svg"
           title={t("appPage.mnde.nft-levels.level-two.title")}
@@ -158,54 +109,7 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
           disabled={balance < 5000}
           limited
         />
-        {balance < 25000 && balance > 5000 ? (
-          <Flex
-            ml={{ base: "0px", md: "4px" }}
-            mr={{ base: "0px", md: "4px" }}
-            width={{ base: "100%", sm: "0" }}
-          >
-            <Divider
-              borderColor="gray.200"
-              orientation="vertical"
-              height="180px"
-              opacity="1"
-              mt="43px"
-              display={{ base: "none", md: "flex" }}
-            />
-            <Divider
-              mt="4px"
-              mb="30px"
-              ml="2px"
-              borderColor="gray.200"
-              orientation="horizontal"
-              width={{ base: "100%", sm: "340px" }}
-              height="10px"
-              opacity="1"
-              display={{ base: "flex", md: "none" }}
-            />
-            <Text
-              marginLeft={{ base: "5px", md: "9px" }}
-              marginTop={{ base: "20px", md: "190px" }}
-              position="absolute"
-              fontWeight="bold"
-              textAlign="left"
-              fontSize="9.22px"
-              cursor="pointer"
-              lineHeight="13.83px"
-              color={colors.marinadeGreen}
-            >
-              {t(buyMoreString)}
-              <Icon
-                as={FiExternalLink}
-                width="10px"
-                height="10px"
-                cursor="pointer"
-                marginLeft="2px"
-                marginBottom="-1px"
-              />
-            </Text>
-          </Flex>
-        ) : undefined}
+        <LevelDivider min={5000} max={25000} balance={balance} />
         <NFTLevelsItem
           ilustration="/ilustrations/nft-tier3.svg"
           title={t("appPage.mnde.nft-levels.level-three.title")}
@@ -217,54 +121,7 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
           selected={selectedLevel === "tier3"}
           disabled={balance < 25000}
         />
-        {balance < 100000 && balance > 25000 ? (
-          <Flex
-            ml={{ base: "0px", md: "4px" }}
-            mr={{ base: "0px", md: "4px" }}
-            width={{ base: "100%", sm: "0" }}
-          >
-            <Divider
-              borderColor="gray.200"
-              orientation="vertical"
-              height="180px"
-              opacity="1"
-              mt="43px"
-              display={{ base: "none", md: "flex" }}
-            />
-            <Divider
-              mt="4px"
-              mb="30px"
-              ml="2px"
-              borderColor="gray.200"
-              orientation="horizontal"
-              width={{ base: "100%", sm: "340px" }}
-              height="10px"
-              opacity="1"
-              display={{ base: "flex", md: "none" }}
-            />
-            <Text
-              marginLeft={{ base: "5px", md: "9px" }}
-              marginTop={{ base: "20px", md: "190px" }}
-              position="absolute"
-              fontWeight="bold"
-              textAlign="left"
-              fontSize="9.22px"
-              cursor="pointer"
-              lineHeight="13.83px"
-              color={colors.marinadeGreen}
-            >
-              {t("appPage.mnde.nft-levels.buy-more")}
-              <Icon
-                as={FiExternalLink}
-                width="10px"
-                height="10px"
-                cursor="pointer"
-                marginLeft="2px"
-                marginBottom="-1px"
-              />
-            </Text>
-          </Flex>
-        ) : undefined}
+        <LevelDivider min={25000} max={100000} balance={balance} />
         <NFTLevelsItem
           ilustration="/ilustrations/nft-tier4.svg"
           title={t("appPage.mnde.nft-levels.level-four.title")}
@@ -281,54 +138,7 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
           disabled={balance < 100000}
           mb="-9px"
         />
-        {balance < 500000 && balance > 100000 ? (
-          <Flex
-            ml={{ base: "0px", md: "4px" }}
-            mr={{ base: "0px", md: "4px" }}
-            width={{ base: "100%", sm: "0" }}
-          >
-            <Divider
-              borderColor="gray.200"
-              orientation="vertical"
-              height="180px"
-              opacity="1"
-              mt="43px"
-              display={{ base: "none", md: "flex" }}
-            />
-            <Divider
-              mt="4px"
-              mb="30px"
-              ml="2px"
-              borderColor="gray.200"
-              orientation="horizontal"
-              width={{ base: "100%", sm: "340px" }}
-              height="10px"
-              opacity="1"
-              display={{ base: "flex", md: "none" }}
-            />
-            <Text
-              marginLeft={{ base: "5px", md: "9px" }}
-              marginTop={{ base: "20px", md: "190px" }}
-              position="absolute"
-              fontWeight="bold"
-              textAlign="left"
-              fontSize="9.22px"
-              cursor="pointer"
-              lineHeight="13.83px"
-              color={colors.marinadeGreen}
-            >
-              {t(buyMoreString)}
-              <Icon
-                as={FiExternalLink}
-                width="10px"
-                height="10px"
-                cursor="pointer"
-                marginLeft="2px"
-                marginBottom="-1px"
-              />
-            </Text>
-          </Flex>
-        ) : undefined}
+        <LevelDivider min={100000} max={500000} balance={balance} />
         <NFTLevelsItem
           ilustration="/ilustrations/nft-tier5.svg"
           title={t("appPage.mnde.nft-levels.level-five.title")}

@@ -13,25 +13,15 @@ import NFTLevels from "components/molecules/NFTLevels";
 import StakeInput, {
   StakeInputTypeEnum,
 } from "components/molecules/StakeInput";
-import type { StakeAccountType } from "components/molecules/StakeInput";
 import { useWallet } from "hooks/useWallet";
 import colors from "styles/customTheme/colors";
 
 const LockMNDESection = () => {
   const [MNDEToLock, setMNDEToLock] = useState<string>("");
   const { t } = useTranslation();
-  const { connected: isWalletConnected, publicKey: walletPubKey } = useWallet();
+  const { connected: isWalletConnected } = useWallet();
 
   const { MNDEBalance } = useUserBalance();
-
-  const sourceTokenBalance = MNDEBalance
-    ? MNDEBalance / LAMPORTS_PER_SOL - 0.001
-    : 0;
-
-  const currentAccount: StakeAccountType = {
-    address: walletPubKey?.toBase58().toString() || "",
-    balance: sourceTokenBalance,
-  };
 
   const [selectedLevel, setSelectedLevel] = useState("-");
   const [updateInputValue, setUpdateInputValue] = useState(false);
@@ -68,7 +58,6 @@ const LockMNDESection = () => {
           onValueChange={setMNDEToLock}
           value={MNDEToLock}
           tokenBalance={(MNDEBalance ?? 0) / LAMPORTS_PER_SOL}
-          currentAccount={currentAccount}
           mb={2}
         />
         <NFTLevels
