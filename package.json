@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.17.2",
-    "@chakra-ui/layout": "^1.6.0",
+    "@chakra-ui/layout": "^1.7.6",
     "@chakra-ui/react": "^1.8.3",
     "@emotion/cache": "^11.7.1",
     "@emotion/react": "^11.8.1",
@@ -49,7 +49,7 @@
     "bs58": "^4.0.1",
     "chart.js": "^3.7.0",
     "dayjs": "^1.10.7",
-    "framer-motion": "^5.5.5",
+    "framer-motion": "^6.2.7",
     "graphql": "^16.3.0",
     "graphql-request": "^4.0.0",
     "html-react-parser": "^1.4.8",
