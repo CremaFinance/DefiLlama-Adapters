@@ -314,7 +314,7 @@
     "mnde": {
       "header": "MNDE",
       "nft": "NFT",
-      "nft-mockup-value": "Level 1",
+      "nft-level-value": "Level ",
       "unlock-period": "Unlock period",
       "unlock-period-mockup-value": "30 days",
       "lock-button": "Lock MNDE",
