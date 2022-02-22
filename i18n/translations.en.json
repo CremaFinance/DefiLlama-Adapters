@@ -357,7 +357,16 @@
           "amount": "Limited edition: {{amountLeft}} left",
           "title": ">500k MNDE"
         },
-        "buy-more": "Buy more MNDE to unlock"
+        "buy-more": "Buy more MNDE to unlock",
+        "lock-period": "(30d)",
+        "cancel-unlock": "Cancel unlock",
+        "delayed-claim": "Claim in ",
+        "claim": "Claim",
+        "unlock": "Unlock",
+        "vote": "Vote",
+        "locked-mnde-header": "Locked MNDE",
+        "nft-header": "NFT",
+        "total-locked": "Total locked:"
       },
       "faq-title": "FAQ",
       "faq-items": [

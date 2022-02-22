@@ -5,6 +5,8 @@ import { MdInfoOutline } from "react-icons/md";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 import { ConnectWallet } from "../../molecules/ConnectWallet";
+import type { NFTType } from "../../molecules/NFTTable";
+import NFTTable from "../../molecules/NFTTable";
 import TooltipWithContent from "../../molecules/TooltipWithContent";
 import MndeLockInput from "components/molecules/MndeLockInput";
 import NFTLevels from "components/molecules/NFTLevels";
@@ -14,6 +16,38 @@ import colors from "styles/customTheme/colors";
 const LockMNDESection = () => {
   const { t } = useTranslation();
   const { connected: isWalletConnected } = useWallet();
+
+  const mockupCurrentDate = new Date().getTime();
+  const mockupLockEndDate = new Date(
+    mockupCurrentDate + 60 * 1000 * 60 * 24 * 30
+  );
+  const mockupPastLockEndDate = new Date(
+    mockupCurrentDate - 60 * 1000 * 60 * 24
+  );
+  const mockupNFTs: NFTType[] = [
+    {
+      lockedMNDE: 7000,
+      id: "1831",
+      thumbnailURL: "/ilustrations/egg.svg",
+    },
+    {
+      lockedMNDE: 4000,
+      id: "1832",
+      thumbnailURL: "/ilustrations/steak.svg",
+      lockEndDate: mockupLockEndDate,
+    },
+    {
+      lockedMNDE: 1500,
+      id: "1834",
+      thumbnailURL: "/ilustrations/fish.svg",
+      lockEndDate: mockupPastLockEndDate,
+    },
+  ];
+  let totalLockedMNDE = 0;
+
+  mockupNFTs?.forEach((nft) => {
+    totalLockedMNDE += Number(nft.lockedMNDE);
+  });
 
   return (
     <Flex width="100%" justifyContent="center" alignItems="center">
@@ -70,6 +104,7 @@ const LockMNDESection = () => {
           </Flex>
           <MText type="text-md">{t("appPage.mnde.nft-mockup-value")}</MText>
         </Flex>
+
         <Flex width="100%" mt={1} mb={1} justifyContent="space-between">
           <Flex>
             <MText type="text-md">{t("appPage.mnde.unlock-period")}</MText>
@@ -87,6 +122,9 @@ const LockMNDESection = () => {
             {t("appPage.mnde.unlock-period-mockup-value")}
           </MText>
         </Flex>
+        {isWalletConnected ? (
+          <NFTTable accountNFTs={mockupNFTs} lockedMNDE={totalLockedMNDE} />
+        ) : undefined}
       </Flex>
     </Flex>
   );
