@@ -31,12 +31,14 @@ export interface PoolConfig extends Token {
   tradingApy?: number; // todo double check think this is actually apr
   apr?: number;
   apy?: number; // todo we are actually showing apr need to calc apy
+  aprValue?: number;
   totalLockedValue?: number;
   liq?: number;
   tokenA: CoinSymbols;
   tokenB?: CoinSymbols;
   leverage?: LeverageConfig;
   RowExtensionComponent?: () => JSX.Element;
+  componentAction?: string;
 }
 
 /**

@@ -195,6 +195,7 @@
     "disconnect-wallet-description": "You've successfully disconnected from your wallet",
     "pool-row": {
       "total-apy": "{{totalApy}} % APY",
+      "total-apr": "{{totalApr}} % APR",
       "buttons": {
         "addLiquidy": "Add liquidity",
         "supply": "Supply",
