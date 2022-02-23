@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Flex, Box, IconButton, useDisclosure } from "@chakra-ui/react";
 import { SolanaProvider } from "@saberhq/solana-contrib";
 import {
@@ -31,7 +32,7 @@ import { useWallet } from "hooks/useWallet";
 import colors from "styles/customTheme/colors";
 
 const LockMNDESection = () => {
-  const NFT_KIND = "3roCMuwf371Qn5En2HsR9t1XxMGnUnjZFuLHnzP2cJhf";
+  const NFT_KIND = "CGuuiDE5Fa3ETc2qXzuww3DKT6adDLkfkbSCn1wxiofe";
   const anchorProvider = useAnchorProvider();
 
   const prov = SolanaProvider.init({

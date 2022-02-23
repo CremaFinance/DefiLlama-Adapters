@@ -8483,9 +8483,9 @@ escodegen@^2.0.0:
   optionalDependencies:
     source-map "~0.6.1"
 
-"escrow-relocker-sdk@file:./escrow-relocker-sdk-v0.3.0.tgz":
-  version "0.3.0"
-  resolved "file:./escrow-relocker-sdk-v0.3.0.tgz#9617450b72392d24c054d4a0498943dbfc33b7cf"
+"escrow-relocker-sdk@file:./escrow-relocker-sdk-v0.4.0.tgz":
+  version "0.4.0"
+  resolved "file:./escrow-relocker-sdk-v0.4.0.tgz#2a6909d8e78ac0b68a82dd7d69c7249b7d34303e"
   dependencies:
     "@metaplex-foundation/mpl-token-metadata" "^1.2.0"
     "@project-serum/anchor" "^0.22.0"
