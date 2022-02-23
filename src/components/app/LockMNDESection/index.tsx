@@ -1,4 +1,4 @@
-import { Flex, IconButton, Box } from "@chakra-ui/react";
+import { Flex, IconButton, Box, useDisclosure } from "@chakra-ui/react";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
 import { useEffect, useState } from "react";
@@ -9,6 +9,7 @@ import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 import { ConnectWallet } from "../../molecules/ConnectWallet";
 import TooltipWithContent from "../../molecules/TooltipWithContent";
+import LockMndeModal from "components/molecules/LockMndeModal";
 import NFTLevels from "components/molecules/NFTLevels";
 import StakeInput, {
   StakeInputTypeEnum,
@@ -30,6 +31,12 @@ const LockMNDESection = () => {
     setUpdateInputValue(changeInputAmount);
     setSelectedLevel(value);
   };
+
+  const {
+    isOpen: isLockMndeOpen,
+    onOpen: onLockMndeOpen,
+    onClose: onLockMndeClose,
+  } = useDisclosure();
 
   useEffect(() => {
     if (selectedLevel === "1" && updateInputValue) setMNDEToLock("1000");
@@ -77,6 +84,9 @@ const LockMNDESection = () => {
             width="100%"
             mx={4}
             my={4}
+            onClick={() => {
+              onLockMndeOpen();
+            }}
           >
             {t("appPage.mnde.lock-button")}
           </MButton>
@@ -123,6 +133,11 @@ const LockMNDESection = () => {
           </MText>
         </Flex>
       </Flex>
+      <LockMndeModal
+        isOpen={isLockMndeOpen}
+        onClose={onLockMndeClose}
+        onLockConfirm={() => {}}
+      />
     </Flex>
   );
 };
