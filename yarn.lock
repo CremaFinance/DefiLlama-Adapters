@@ -2870,26 +2870,6 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.10.2.tgz#0798c03351f0dea1a5a4cabddf26a55a7cbee590"
   integrity sha512-IXf3XA7+XyN7CP9gGh/XB0UxVMlvARGEgGXLubFICsUMGz6Q+DU+i4gGlpOxTjKvXjkJDJC8YdqdKkDj9qZHEQ==
 
-"@project-serum/anchor@^0.20.1":
-  version "0.20.1"
-  resolved "https://registry.yarnpkg.com/@project-serum/anchor/-/anchor-0.20.1.tgz#0937807e807e8332aa708cfef4bcb6cbb88b4129"
-  integrity sha512-2TuBmGUn9qeYz6sJINJlElrBuPsaUAtYyUsJ3XplEBf1pczrANAgs5ceJUFzdiqGEWLn+84ObSdBeChT/AXYFA==
-  dependencies:
-    "@project-serum/borsh" "^0.2.2"
-    "@solana/web3.js" "^1.17.0"
-    base64-js "^1.5.1"
-    bn.js "^5.1.2"
-    bs58 "^4.0.1"
-    buffer-layout "^1.2.2"
-    camelcase "^5.3.1"
-    crypto-hash "^1.3.0"
-    eventemitter3 "^4.0.7"
-    find "^0.3.0"
-    js-sha256 "^0.9.0"
-    pako "^2.0.3"
-    snake-case "^3.0.4"
-    toml "^3.0.0"
-
 "@project-serum/anchor@^0.22.0":
   version "0.22.0"
   resolved "https://registry.yarnpkg.com/@project-serum/anchor/-/anchor-0.22.0.tgz#79d182851346fb46d471577c63eabdf6f199c03e"
@@ -2911,14 +2891,6 @@
     snake-case "^3.0.4"
     toml "^3.0.0"
 
-"@project-serum/borsh@^0.2.2":
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/@project-serum/borsh/-/borsh-0.2.2.tgz#63e558f2d6eb6ab79086bf499dea94da3182498f"
-  integrity sha512-Ms+aWmGVW6bWd3b0+MWwoaYig2QD0F90h0uhr7AzY3dpCb5e2S6RsRW02vFTfa085pY2VLB7nTZNbFECQ1liTg==
-  dependencies:
-    bn.js "^5.1.2"
-    buffer-layout "^1.2.0"
-
 "@project-serum/borsh@^0.2.5":
   version "0.2.5"
   resolved "https://registry.yarnpkg.com/@project-serum/borsh/-/borsh-0.2.5.tgz#6059287aa624ecebbfc0edd35e4c28ff987d8663"
@@ -2935,10 +2907,10 @@
     bs58 "^4.0.1"
     eventemitter3 "^4.0.7"
 
-"@quarryprotocol/quarry-sdk@^1.11.12":
-  version "1.11.12"
-  resolved "https://registry.yarnpkg.com/@quarryprotocol/quarry-sdk/-/quarry-sdk-1.11.12.tgz#2c500bef2d9c5a2d9b8f169886f313445c3fcac7"
-  integrity sha512-8WAuruvFqSxrvtE7l89xtjYHmasUa45rLzjP4eqpLilWMj4/4Eylka30DrCr5HK/qeHR6YzyEtsMtHESxSB8Gg==
+"@quarryprotocol/quarry-sdk@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@quarryprotocol/quarry-sdk/-/quarry-sdk-2.0.1.tgz#c297e30a549b7f5a08f2cf924c0d260a7b41505c"
+  integrity sha512-Yavy9rpFJlONez/SU1eLCgDP8q3mb0a33KturHABeWro9Afi1svCOaZnl2c9KLs4B0WnUrD06b4N7gKq+W3bWQ==
   dependencies:
     tiny-invariant "^1.2.0"
     tslib "^2.3.1"
@@ -3023,18 +2995,6 @@
     lodash.mapvalues "^4.6.0"
     tslib "^2.3.1"
 
-"@saberhq/solana-contrib@^1.12.36", "@saberhq/solana-contrib@^1.12.37":
-  version "1.12.37"
-  resolved "https://registry.yarnpkg.com/@saberhq/solana-contrib/-/solana-contrib-1.12.37.tgz#9e907bfdfbe7ee6d41b1a7d4f9f5b48ed9656944"
-  integrity sha512-3u2PdOWzvWV6jENlR4G74SvKm4W4W+NLrLAapU78lztX1PlEceI7elUrLm+nLWN2nyic+W3x6SZ+cw9iZIJuBg==
-  dependencies:
-    "@types/promise-retry" "^1.1.3"
-    "@types/retry" "^0.12.1"
-    promise-retry "^2.0.1"
-    retry "^0.13.1"
-    tiny-invariant "^1.2.0"
-    tslib "^2.3.1"
-
 "@saberhq/solana-contrib@^1.12.45":
   version "1.12.45"
   resolved "https://registry.yarnpkg.com/@saberhq/solana-contrib/-/solana-contrib-1.12.45.tgz#5663e05f84655c4ef5d33a6797308dcda7ab53a2"
@@ -3047,27 +3007,15 @@
     tiny-invariant "^1.2.0"
     tslib "^2.3.1"
 
-"@saberhq/stableswap-sdk@^1.12.36":
-  version "1.12.36"
-  resolved "https://registry.yarnpkg.com/@saberhq/stableswap-sdk/-/stableswap-sdk-1.12.36.tgz#911bf70963e7a66cf4d8371e473a73ce7d4ab56a"
-  integrity sha512-d9kzotX7skrk6NVjkK1+NVIxoN8uHbHzHQkb16pXHxO11ecy70y6eO3Adftkd7k8HMn234yaqHYn2vPcgXyRHw==
+"@saberhq/stableswap-sdk@^1.12.45":
+  version "1.12.45"
+  resolved "https://registry.yarnpkg.com/@saberhq/stableswap-sdk/-/stableswap-sdk-1.12.45.tgz#0fc5cb2752a086adf0999ffc5f4a134984749f47"
+  integrity sha512-F9m5Cq8SY17Jz8AxcK3ciBdcTJ6ENu7Ghy09PfotFHFl29fM+z0wlxX/QtZFRHgNwrLPhpHe0AsM/F1iwfvVpQ==
   dependencies:
-    "@saberhq/solana-contrib" "^1.12.36"
-    "@saberhq/token-utils" "^1.12.36"
+    "@saberhq/solana-contrib" "^1.12.45"
+    "@saberhq/token-utils" "^1.12.45"
     "@solana/buffer-layout" "^4.0.0"
     lodash.mapvalues "^4.6.0"
-    tslib "^2.3.1"
-
-"@saberhq/token-utils@^1.12.36", "@saberhq/token-utils@^1.12.37":
-  version "1.12.37"
-  resolved "https://registry.yarnpkg.com/@saberhq/token-utils/-/token-utils-1.12.37.tgz#ed42d7d6be0a28467547268a199d63ad4e637da1"
-  integrity sha512-xjD3zG2ZNCHAkxxbB/Q77u3Ukoe5OMDb+izIgqVQQ+hgMrMNezCyPdgYkrc0000VsFv0WvmBfpbPwU7rRziIRg==
-  dependencies:
-    "@saberhq/solana-contrib" "^1.12.37"
-    "@solana/buffer-layout" "^4.0.0"
-    "@solana/spl-token" "^0.1.8"
-    "@ubeswap/token-math" "^4.4.1"
-    tiny-invariant "^1.2.0"
     tslib "^2.3.1"
 
 "@saberhq/token-utils@^1.12.45":
@@ -3309,10 +3257,30 @@
     "@solana/wallet-adapter-tokenpocket" "^0.4.1"
     "@solana/wallet-adapter-torus" "^0.11.2"
 
-"@solana/web3.js@^1.17.0", "@solana/web3.js@^1.20.0", "@solana/web3.js@^1.21.0", "@solana/web3.js@^1.30.2", "@solana/web3.js@^1.31.0", "@solana/web3.js@^1.32.0":
+"@solana/web3.js@^1.17.0", "@solana/web3.js@^1.20.0", "@solana/web3.js@^1.21.0", "@solana/web3.js@^1.30.2", "@solana/web3.js@^1.31.0":
   version "1.32.0"
   resolved "https://registry.yarnpkg.com/@solana/web3.js/-/web3.js-1.32.0.tgz#b9821de52d0e773c363516c3dcef9be701295d82"
   integrity sha512-jquZ/VBvM3zXAaTJvdWd9mlP0WiZaZqjji0vw5UAsb5IKIossrLhHtyUqMfo41Qkdwu1aVwf7YWG748i4XIJnw==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+    "@ethersproject/sha2" "^5.5.0"
+    "@solana/buffer-layout" "^3.0.0"
+    bn.js "^5.0.0"
+    borsh "^0.4.0"
+    bs58 "^4.0.1"
+    buffer "6.0.1"
+    cross-fetch "^3.1.4"
+    jayson "^3.4.4"
+    js-sha3 "^0.8.0"
+    rpc-websockets "^7.4.2"
+    secp256k1 "^4.0.2"
+    superstruct "^0.14.2"
+    tweetnacl "^1.0.0"
+
+"@solana/web3.js@^1.35.1":
+  version "1.35.1"
+  resolved "https://registry.yarnpkg.com/@solana/web3.js/-/web3.js-1.35.1.tgz#777b039a3b51e63c347712a57c7db87c9d1db832"
+  integrity sha512-3bDawFFI0KcvgI8Ae4N4hdQ8+Bg9gu6q+IkhPrYxOF6RYnB3U+9A4u+DhHZWLvTvgoTyesi/m5HzlleKtFEqRQ==
   dependencies:
     "@babel/runtime" "^7.12.5"
     "@ethersproject/sha2" "^5.5.0"
@@ -5400,17 +5368,6 @@
   dependencies:
     "@typescript-eslint/types" "5.9.0"
     eslint-visitor-keys "^3.0.0"
-
-"@ubeswap/token-math@^4.4.1":
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/@ubeswap/token-math/-/token-math-4.4.1.tgz#bb1aa0547691aed6c14d1a80db4538b6e74a502e"
-  integrity sha512-856auygzQ8chxOt2dNGk5Tp/TWl8Fgs2U6pTHkclFn8RcV7htpd/DaTYDCITQneLTAIfAkm1UopIkwHDaMMx4g==
-  dependencies:
-    big.js "^6.1.1"
-    decimal.js-light "^2.5.1"
-    tiny-invariant "^1.2.0"
-    toformat "^2.0.0"
-    tslib "^2.3.1"
 
 "@ubeswap/token-math@^4.4.2":
   version "4.4.4"
