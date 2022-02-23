@@ -631,6 +631,35 @@
         "twitter": "Share on twitter",
         "download": "Download PFP"
       }
+    },
+    "unlock-mnde-modal": {
+      "header": "Are you sure you want to start unlocking your MNDE?",
+      "body": [
+        {
+          "text": "By unlocking your MNDE you will initiate a unlock period and your voting power will gradually decline over the 30 day unlocking period. When it is complete "
+        },
+        {
+          "text": "your NFT will be burned "
+        },
+        { "text": " and you will also need to " },
+        { "text": "return here to claim your 1000 MNDE." }
+      ],
+      "button": "Go to VOTE"
+    },
+    "mnde-unlock-confirm-modal": {
+      "header": "Unlocking started!",
+      "body": [
+        {
+          "text": "You have started the unlocking of"
+        },
+        {
+          "text": "XXXX MNDE"
+        },
+        {
+          "text": "Come back here after the cooldown period to claim your MNDE. You can re-lock your MNDE at any time."
+        }
+      ],
+      "button": "Close"
     }
   },
   "termsPage": {
