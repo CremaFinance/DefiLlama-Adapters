@@ -2763,10 +2763,10 @@
     bs58 "^4.0.1"
     eventemitter3 "^4.0.7"
 
-"@quarryprotocol/quarry-sdk@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@quarryprotocol/quarry-sdk/-/quarry-sdk-2.0.1.tgz#c297e30a549b7f5a08f2cf924c0d260a7b41505c"
-  integrity sha512-Yavy9rpFJlONez/SU1eLCgDP8q3mb0a33KturHABeWro9Afi1svCOaZnl2c9KLs4B0WnUrD06b4N7gKq+W3bWQ==
+"@quarryprotocol/quarry-sdk@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@quarryprotocol/quarry-sdk/-/quarry-sdk-3.0.0.tgz#264f480ea2b3e49a25b0ed3ae91bf15f7f0ee442"
+  integrity sha512-U4bHADUKTCmKwvpSUH3guHfCLXCDDxkhr2W3cGnmwghaN1mWNw1HH9cCpKgFMSpJjoh69spwALxVhDC5lZ42/w==
   dependencies:
     tiny-invariant "^1.2.0"
     tslib "^2.3.1"
@@ -11617,10 +11617,10 @@ next-seo@^5.1.0:
   resolved "https://registry.yarnpkg.com/next-seo/-/next-seo-5.1.0.tgz#aa9fd6249a11bf93e6da06fa2a6bc89268936edf"
   integrity sha512-ampuQfNTOi1x+xtRIb6CZGunIo6rQXtMo2Tyu861d5GjJFIwfOXsA4lzCa4+e2rLkyXDyVpavNNUZWa3US9ELw==
 
-next-sitemap@^2.4.4:
-  version "2.4.4"
-  resolved "https://registry.yarnpkg.com/next-sitemap/-/next-sitemap-2.4.4.tgz#5a4bc98579a2a392229ea3379db1d8cd695f7889"
-  integrity sha512-+huBDNj0BSU9gXWpBfpqeXHnAUnyNg4cEMN6K2CCmYhMGMYnsO5vaOylGJRlW9V3mqIJlTkbMV1K9dkESFamJQ==
+next-sitemap@^2.4.6:
+  version "2.4.6"
+  resolved "https://registry.yarnpkg.com/next-sitemap/-/next-sitemap-2.4.6.tgz#a92cbbfafca3884867fc0158a768597ff992d160"
+  integrity sha512-xfQbpmJF96NUgIxlOitfDyRngZB24avaWIzDOSVosEpUV2SdMNsRuAm0IeSVdYpYSI1PZ6LldvT9Xnumpc016Q==
   dependencies:
     "@corex/deepmerge" "^2.6.148"
     minimist "^1.2.5"
