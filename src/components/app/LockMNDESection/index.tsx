@@ -1,9 +1,22 @@
 import { Flex, IconButton, Box } from "@chakra-ui/react";
-import { LAMPORTS_PER_SOL } from "@solana/web3.js";
+import { SolanaProvider } from "@saberhq/solana-contrib";
+import {
+  ASSOCIATED_TOKEN_PROGRAM_ID,
+  Token,
+  TOKEN_PROGRAM_ID,
+} from "@solana/spl-token";
+import { LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
+import BN from "bn.js";
+import {
+  EscrowRelockerSDK,
+  EscrowWrapper,
+  SimpleNftKindWrapper,
+} from "escrow-relocker-sdk";
 import { useTranslation } from "next-export-i18n";
 import { useEffect, useState } from "react";
 import { MdInfoOutline } from "react-icons/md";
 
+import { useAnchorProvider } from "../../../contexts/AnchorContext";
 import { useUserBalance } from "../../../contexts/UserBalanceContext";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
@@ -17,6 +30,16 @@ import { useWallet } from "hooks/useWallet";
 import colors from "styles/customTheme/colors";
 
 const LockMNDESection = () => {
+  const NFT_KIND = "3roCMuwf371Qn5En2HsR9t1XxMGnUnjZFuLHnzP2cJhf";
+  const anchorProvider = useAnchorProvider();
+
+  const prov = SolanaProvider.init({
+    connection: anchorProvider.connection,
+    wallet: anchorProvider.wallet,
+  });
+
+  const sdk = new EscrowRelockerSDK(prov);
+
   const [MNDEToLock, setMNDEToLock] = useState<string>("");
   const { t } = useTranslation();
   const { connected: isWalletConnected } = useWallet();
@@ -29,6 +52,29 @@ const LockMNDESection = () => {
   const handleLevelSelected = (value: string, changeInputAmount: boolean) => {
     setUpdateInputValue(changeInputAmount);
     setSelectedLevel(value);
+  };
+
+  const lockMNDE = async (amount: string) => {
+    const nftKind = new PublicKey(NFT_KIND);
+    const nftKindWrapper = new SimpleNftKindWrapper(sdk, nftKind);
+    const realm = await nftKindWrapper.realm();
+    const escrowWrapper = await EscrowWrapper.fromRealm(realm);
+
+    const payFrom = await Token.getAssociatedTokenAddress(
+      ASSOCIATED_TOKEN_PROGRAM_ID,
+      TOKEN_PROGRAM_ID,
+      await nftKindWrapper.govMint(),
+      sdk.provider.wallet.publicKey
+    );
+    const tx = await escrowWrapper.init({
+      nftKind: nftKindWrapper,
+      nftOwner: sdk.provider.wallet.publicKey,
+      govAmount: new BN(Number(amount) * LAMPORTS_PER_SOL),
+      payFrom,
+      payFromAuthority: undefined,
+      rentPayer: undefined,
+    });
+    await tx.confirm();
   };
 
   useEffect(() => {
@@ -77,6 +123,9 @@ const LockMNDESection = () => {
             width="100%"
             mx={4}
             my={4}
+            onClick={async () => {
+              await lockMNDE(MNDEToLock);
+            }}
           >
             {t("appPage.mnde.lock-button")}
           </MButton>

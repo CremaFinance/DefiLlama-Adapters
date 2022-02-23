@@ -33,7 +33,6 @@ const MNDELockStep = ({
         src={stepIllustrationPath}
       />
       <Link
-        isDisabled
         isExternal
         href={href}
         cursor={href ? "pointer" : "initial"}
