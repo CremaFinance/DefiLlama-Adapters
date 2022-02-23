@@ -618,7 +618,14 @@
     },
     "lock-mnde-complete-modal": {
       "header": "MNDE locked!",
-      "body": "Once MNDE is locked, you will not be able to use your tokens until you initiate the unlocking period and wait 30 days.",
+      "body": [
+        {
+          "text": "You now have your very own unique NFT which enables voting power in the Marinade DAO."
+        },
+        {
+          "text": "You may now view your NFT and its traits in your wallet! But remember, sending the NFT to another wallet also means you are sending the locked MNDE."
+        }
+      ],
       "button": "Go to VOTE",
       "links": {
         "twitter": "Share on twitter",

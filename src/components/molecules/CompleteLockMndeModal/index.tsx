@@ -48,8 +48,11 @@ const CompleteLockMndeModal: FunctionComponent<CompleteLockMndeModalProps> = ({
             <MHeading type="heading-2xsm" pt={6}>
               {t("mndePage.lock-mnde-complete-modal.header")}
             </MHeading>
+            <MText mt={4} textAlign="center">
+              {t("mndePage.lock-mnde-complete-modal.body.0.text")}
+            </MText>
             <MText mt={8} textAlign="center">
-              {t("mndePage.lock-mnde-complete-modal.body")}
+              {t("mndePage.lock-mnde-complete-modal.body.1.text")}
             </MText>
             <Flex justifyContent="space-between" w="100%" my={5}>
               <MLink
