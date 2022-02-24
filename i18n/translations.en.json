@@ -314,7 +314,7 @@
     "mnde": {
       "header": "MNDE",
       "nft": "NFT",
-      "nft-mockup-value": "Level 1",
+      "nft-level-value": "Level ",
       "unlock-period": "Unlock period",
       "unlock-period-mockup-value": "30 days",
       "lock-button": "Lock MNDE",
@@ -392,10 +392,10 @@
           "header": "Lock MNDE",
           "description": "Acquire and stake MNDE to receive an NFT that you can use to vote and earn within the Marinade DAO.",
           "mobile-description": "Lorem ipsum one line",
-          "steps" : {
-            "first" : "1. Lock MNDE",
-            "second" : "2. Receive NFT",
-            "third" : "3. Use NFT to vote"
+          "steps": {
+            "first": "1. Lock MNDE",
+            "second": "2. Receive NFT",
+            "third": "3. Use NFT to vote"
           }
         }
       }
@@ -619,6 +619,27 @@
           "ilustration-alt": "Build"
         }
       ]
+    },
+    "lock-mnde-confirm-modal": {
+      "header": "Are you sure you want to lock?",
+      "body": "Placeholder explaining what you get, your voting power. The one above is the NFT.",
+      "button": "Lock MNDE"
+    },
+    "lock-mnde-complete-modal": {
+      "header": "MNDE locked!",
+      "body": [
+        {
+          "text": "You now have your very own unique NFT which enables voting power in the Marinade DAO."
+        },
+        {
+          "text": "You may now view your NFT and its traits in your wallet! But remember, sending the NFT to another wallet also means you are sending the locked MNDE."
+        }
+      ],
+      "button": "Go to VOTE",
+      "links": {
+        "twitter": "Share on twitter",
+        "download": "Download PFP"
+      }
     }
   },
   "termsPage": {

@@ -1,14 +1,18 @@
-import { Flex, Divider, Text, Icon } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { useState, useEffect } from "react";
-import { FiExternalLink } from "react-icons/fi";
 
+import LevelDivider from "../LevelDivider";
 import NFTLevelsItem from "../NFTLevelsItem";
-import colors from "styles/customTheme/colors";
 
-const NFTLevels = () => {
+type NFTLevelsProps = {
+  balance: number;
+  input: string;
+  onLevelClick: (value: string, changeInputAmount: boolean) => void;
+};
+
+const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
   const { t } = useTranslation();
-
   const placeholder = "{{amountLeft}}";
 
   const [selectedLevel, setSelectedLevel] = useState("none");
@@ -23,6 +27,34 @@ const NFTLevels = () => {
     setTierFourAmountLeft("213");
     setTierFiveAmountLeft("3");
   }, []);
+
+  useEffect(() => {
+    const inputAmount = Number(input);
+    if (inputAmount < 1000) {
+      setSelectedLevel("-");
+      onLevelClick("-", false);
+    }
+    if (inputAmount > 999 && inputAmount < 5000 && inputAmount <= balance) {
+      setSelectedLevel("tier1");
+      onLevelClick("1", false);
+    }
+    if (inputAmount > 4999 && inputAmount < 25000 && inputAmount <= balance) {
+      setSelectedLevel("tier2");
+      onLevelClick("2", false);
+    }
+    if (inputAmount > 24999 && inputAmount < 100000 && inputAmount <= balance) {
+      setSelectedLevel("tier3");
+      onLevelClick("3", false);
+    }
+    if (inputAmount > 99999 && inputAmount < 500000 && inputAmount <= balance) {
+      setSelectedLevel("tier4");
+      onLevelClick("4", false);
+    }
+    if (inputAmount > 499999 && inputAmount <= balance) {
+      setSelectedLevel("tier5");
+      onLevelClick("5", false);
+    }
+  }, [balance, input, onLevelClick]);
 
   return (
     <Flex
@@ -53,10 +85,13 @@ const NFTLevels = () => {
           )}
           onClick={() => {
             setSelectedLevel("tier1");
+            if (balance >= 1000) onLevelClick("1", true);
           }}
           selected={selectedLevel === "tier1"}
+          disabled={balance < 1000}
           limited
         />
+        <LevelDivider min={1000} max={5000} balance={balance} />
         <NFTLevelsItem
           ilustration="/ilustrations/nft-tier2.svg"
           title={t("appPage.mnde.nft-levels.level-two.title")}
@@ -66,65 +101,25 @@ const NFTLevels = () => {
           )}
           onClick={() => {
             setSelectedLevel("tier2");
+            if (balance >= 5000) onLevelClick("2", true);
           }}
           selected={selectedLevel === "tier2"}
+          disabled={balance < 5000}
           limited
         />
+        <LevelDivider min={5000} max={25000} balance={balance} />
         <NFTLevelsItem
           ilustration="/ilustrations/nft-tier3.svg"
           title={t("appPage.mnde.nft-levels.level-three.title")}
           amount={t("appPage.mnde.nft-levels.level-three.amount")}
           onClick={() => {
             setSelectedLevel("tier3");
+            if (balance >= 25000) onLevelClick("3", true);
           }}
           selected={selectedLevel === "tier3"}
+          disabled={balance < 25000}
         />
-        <Flex
-          ml={{ base: "0px", md: "4px" }}
-          mr={{ base: "0px", md: "4px" }}
-          width={{ base: "100%", sm: "0" }}
-        >
-          <Divider
-            borderColor="gray.200"
-            orientation="vertical"
-            height="180px"
-            opacity="1"
-            mt="43px"
-            display={{ base: "none", md: "flex" }}
-          />
-          <Divider
-            mt="4px"
-            mb="30px"
-            ml="2px"
-            borderColor="gray.200"
-            orientation="horizontal"
-            width={{ base: "100%", sm: "340px" }}
-            height="10px"
-            opacity="1"
-            display={{ base: "flex", md: "none" }}
-          />
-          <Text
-            marginLeft={{ base: "5px", md: "9px" }}
-            marginTop={{ base: "20px", md: "190px" }}
-            position="absolute"
-            fontWeight="bold"
-            textAlign="left"
-            fontSize="9.22px"
-            cursor="pointer"
-            lineHeight="13.83px"
-            color={colors.marinadeGreen}
-          >
-            {t("appPage.mnde.nft-levels.buy-more")}
-            <Icon
-              as={FiExternalLink}
-              width="10px"
-              height="10px"
-              cursor="pointer"
-              marginLeft="2px"
-              marginBottom="-1px"
-            />
-          </Text>
-        </Flex>
+        <LevelDivider min={25000} max={100000} balance={balance} />
         <NFTLevelsItem
           ilustration="/ilustrations/nft-tier4.svg"
           title={t("appPage.mnde.nft-levels.level-four.title")}
@@ -134,12 +129,14 @@ const NFTLevels = () => {
           )}
           onClick={() => {
             setSelectedLevel("tier4");
+            if (balance >= 100000) onLevelClick("4", true);
           }}
           selected={selectedLevel === "tier4"}
           limited
-          disabled
+          disabled={balance < 100000}
           mb="-9px"
         />
+        <LevelDivider min={100000} max={500000} balance={balance} />
         <NFTLevelsItem
           ilustration="/ilustrations/nft-tier5.svg"
           title={t("appPage.mnde.nft-levels.level-five.title")}
@@ -149,10 +146,11 @@ const NFTLevels = () => {
           )}
           onClick={() => {
             setSelectedLevel("tier5");
+            if (balance >= 500000) onLevelClick("5", true);
           }}
           selected={selectedLevel === "tier5"}
           limited
-          disabled
+          disabled={balance < 499999}
         />
       </Flex>
     </Flex>

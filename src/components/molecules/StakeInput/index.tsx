@@ -21,7 +21,6 @@ import { useState, useEffect } from "react";
 import NumberFormat from "react-number-format";
 
 import { useMarinade } from "../../../contexts/MarinadeContext";
-import { useStats } from "../../../contexts/StatsContext";
 import { useUserBalance } from "../../../contexts/UserBalanceContext";
 import { usePrices } from "../../../hooks/usePrices";
 import { useTranslation } from "../../../hooks/useTranslation";
@@ -84,19 +83,10 @@ const StakeInput = ({
   isLoading,
 }: StakeInputProps) => {
   const { t } = useTranslation();
-  const prices = usePrices([coinSymbols.SOL, coinSymbols.mSOL]);
-  const stats = useStats();
+  const prices = usePrices([coinSymbols[tokenName]]);
 
   const balanceLabel = t("appPage.balance");
-  const solUSD =
-    prices[coinSymbols.SOL]?.usd && Number(prices[coinSymbols.SOL]?.usd);
-  const tokenPrices = {
-    [coinSymbols.SOL]: solUSD,
-    [coinSymbols.mSOL]:
-      solUSD && stats?.mSOLvsSOLParity !== null
-        ? solUSD * stats.mSOLvsSOLParity
-        : undefined,
-  };
+  const tokenPrice = prices[coinSymbols[tokenName]]?.usd;
   const [isWiderThan768] = useMediaQuery("(min-width: 768px)");
   const [selectedAccount, setSelectedAccount] = useState(currentAccount);
   const [isStakeAccountSelected, setIsStakeAccountSelected] = useState(false);
@@ -207,7 +197,7 @@ const StakeInput = ({
       <Flex justifyContent="space-between">
         {!isWalletConnected ? (
           <StakeInputButton component="Button" tokenIcon={tokenIcon}>
-            <MText fontWeight="400">{solTranslation}</MText>
+            <MText fontWeight="400">{tokenName}</MText>
           </StakeInputButton>
         ) : null}
         {isWalletConnected && !isInputWithStakeAccounts ? (
@@ -423,7 +413,7 @@ const StakeInput = ({
         </Flex>
         {isWalletConnected && parseFloat(value || "") ? (
           <MText type="text-sm">{`-$ ${format3Dec(
-            parseFloat(value || "") * (tokenPrices[tokenName] || 0)
+            parseFloat(value || "") * (tokenPrice || 0)
           )}`}</MText>
         ) : null}
       </Flex>
