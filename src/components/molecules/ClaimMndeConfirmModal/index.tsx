@@ -26,7 +26,7 @@ const ClaimMndeConfirmModal: FunctionComponent<ClaimMndeConfirmModalProps> = ({
 }) => {
   const { t } = useTranslation();
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={isOpen} onClose={onClose} isCentered>
       <ModalOverlay />
       <ModalContent p={6}>
         <ModalCloseButton />
