@@ -8,6 +8,8 @@ import { useUserBalance } from "../../../contexts/UserBalanceContext";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 import { ConnectWallet } from "../../molecules/ConnectWallet";
+import type { NFTType } from "../../molecules/NFTTable";
+import NFTTable from "../../molecules/NFTTable";
 import TooltipWithContent from "../../molecules/TooltipWithContent";
 import LockMndeModal from "components/molecules/LockMndeModal";
 import NFTLevels from "components/molecules/NFTLevels";
@@ -22,6 +24,37 @@ const LockMNDESection = () => {
   const { t } = useTranslation();
   const { connected: isWalletConnected } = useWallet();
 
+  const mockupCurrentDate = new Date().getTime();
+  const mockupLockEndDate = new Date(
+    mockupCurrentDate + 60 * 1000 * 60 * 24 * 30
+  );
+  const mockupPastLockEndDate = new Date(
+    mockupCurrentDate - 60 * 1000 * 60 * 24
+  );
+  const mockupNFTs: NFTType[] = [
+    {
+      lockedMNDE: 7000,
+      id: "1831",
+      thumbnailURL: "/ilustrations/egg.svg",
+    },
+    {
+      lockedMNDE: 4000,
+      id: "1832",
+      thumbnailURL: "/ilustrations/steak.svg",
+      lockEndDate: mockupLockEndDate,
+    },
+    {
+      lockedMNDE: 1500,
+      id: "1834",
+      thumbnailURL: "/ilustrations/fish.svg",
+      lockEndDate: mockupPastLockEndDate,
+    },
+  ];
+  let totalLockedMNDE = 0;
+
+  mockupNFTs?.forEach((nft) => {
+    totalLockedMNDE += Number(nft.lockedMNDE);
+  });
   const { MNDEBalance } = useUserBalance();
 
   const [selectedLevel, setSelectedLevel] = useState("-");
@@ -115,6 +148,7 @@ const LockMNDESection = () => {
               : "-"}
           </MText>
         </Flex>
+
         <Flex width="100%" mt={1} mb={1} justifyContent="space-between">
           <Flex>
             <MText type="text-md">{t("appPage.mnde.unlock-period")}</MText>
@@ -132,6 +166,9 @@ const LockMNDESection = () => {
             {t("appPage.mnde.unlock-period-mockup-value")}
           </MText>
         </Flex>
+        {isWalletConnected ? (
+          <NFTTable accountNFTs={mockupNFTs} lockedMNDE={totalLockedMNDE} />
+        ) : undefined}
       </Flex>
       <LockMndeModal
         isOpen={isLockMndeOpen}
