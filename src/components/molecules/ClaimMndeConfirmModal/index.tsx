@@ -6,6 +6,7 @@ import {
   ModalContent,
   ModalOverlay,
   Image,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import type { FunctionComponent } from "react";
@@ -25,10 +26,12 @@ const ClaimMndeConfirmModal: FunctionComponent<ClaimMndeConfirmModalProps> = ({
   onClose,
 }) => {
   const { t } = useTranslation();
+  const modalSize = useBreakpointValue({ base: "full", md: "md" });
+
   return (
-    <Modal isOpen={isOpen} onClose={onClose} isCentered>
+    <Modal isOpen={isOpen} onClose={onClose} isCentered size={modalSize}>
       <ModalOverlay />
-      <ModalContent p={6}>
+      <ModalContent px={6} py={4}>
         <ModalCloseButton />
         <ModalBody display="flex" p={0}>
           <Flex
@@ -47,9 +50,9 @@ const ClaimMndeConfirmModal: FunctionComponent<ClaimMndeConfirmModalProps> = ({
             <MHeading type="heading-2xsm" pt={6} textAlign="center">
               {t("mndePage.claim-mnde-confirm-modal.header")}
             </MHeading>
-            <MText textAlign="center" mt={4}>
+            <MText fontSize="text-xl" textAlign="center" mt={4}>
               {t("mndePage.claim-mnde-confirm-modal.body.0.text")}{" "}
-              <MText display="inline" fontWeight="bold">
+              <MText fontSize="text-xl" display="inline" fontWeight="bold">
                 {t("mndePage.claim-mnde-confirm-modal.body.1.text")}
               </MText>
             </MText>
@@ -60,7 +63,7 @@ const ClaimMndeConfirmModal: FunctionComponent<ClaimMndeConfirmModalProps> = ({
               _hover={{ bg: colors.green800 }}
               colorScheme={colors.marinadeGreen}
               rounded="md"
-              mt={5}
+              mt={{ base: "auto", md: 4 }}
               px={4}
               height="40px"
               width="100%"
