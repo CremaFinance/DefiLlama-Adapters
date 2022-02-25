@@ -669,6 +669,33 @@
         }
       ],
       "button": "Close"
+    },
+    "cancel-unlocking-modal": {
+      "header": "Cancel unlocking",
+      "body": [
+        {
+          "text": "Re-locking your"
+        },
+        {
+          "text": "XXXX MNDE"
+        },
+        {
+          "text": "will restore your voting power and reset your unlock period to 30 days."
+        }
+      ],
+      "button": "Cancel unlocking"
+    },
+    "cancel-unlocking-confirm-modal": {
+      "header": "Unlocking canceled",
+      "body": [
+        {
+          "text": "You have successfully calnceled unlocking"
+        },
+        {
+          "text": "XXXX MNDE."
+        }
+      ],
+      "button": "Close"
     }
   },
   "termsPage": {
