@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import {
   Flex,
   Table,
@@ -27,7 +28,6 @@ type NFTTableProps = {
   accountNFTs?: NFTType[];
   lockedMNDE?: number;
 };
-
 const NFTTable = ({ accountNFTs, lockedMNDE }: NFTTableProps) => {
   const [isMobile] = useMediaQuery("(max-width: 425px)");
   const { t } = useTranslation();
@@ -58,6 +58,7 @@ const NFTTable = ({ accountNFTs, lockedMNDE }: NFTTableProps) => {
         <Tbody>
           {accountNFTs?.map((nft) => (
             <NFTTableRow
+              key={nft.id}
               id={nft.id}
               thumbnailURL={nft.thumbnailURL}
               lockedMNDE={nft.lockedMNDE}

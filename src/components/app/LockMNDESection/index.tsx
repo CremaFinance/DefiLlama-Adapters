@@ -1,12 +1,14 @@
-/* eslint-disable no-console */
 import { Flex, Box, IconButton, useDisclosure } from "@chakra-ui/react";
+import { getParsedNftAccountsByOwner } from "@nfteyez/sol-rayz";
 import { SolanaProvider } from "@saberhq/solana-contrib";
 import {
   ASSOCIATED_TOKEN_PROGRAM_ID,
   Token,
   TOKEN_PROGRAM_ID,
 } from "@solana/spl-token";
+import type { Connection } from "@solana/web3.js";
 import { LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
+import axios from "axios";
 import BN from "bn.js";
 import {
   EscrowRelockerSDK,
@@ -33,8 +35,11 @@ import StakeInput, {
 import { useWallet } from "hooks/useWallet";
 import colors from "styles/customTheme/colors";
 
+import type { NftAccount, NftMetadata } from "./types";
+
 const LockMNDESection = () => {
-  const NFT_KIND = "CGuuiDE5Fa3ETc2qXzuww3DKT6adDLkfkbSCn1wxiofe";
+  const NFT_KIND = "A6a8qXF7THHDDqBESyXghZgzSJjkjk2v94iAzgY8V9Au";
+  const NFT_CREATOR = "HZFGFiLGtZZxrFjG9bnD9FKCYpxnwKwJGAsxbmzjgGNb";
   const anchorProvider = useAnchorProvider();
 
   const prov = SolanaProvider.init({
@@ -48,46 +53,97 @@ const LockMNDESection = () => {
   const { t } = useTranslation();
   const { connected: isWalletConnected } = useWallet();
 
-  const mockupCurrentDate = new Date().getTime();
-  const mockupLockEndDate = new Date(
-    mockupCurrentDate + 60 * 1000 * 60 * 24 * 30
-  );
-  const mockupPastLockEndDate = new Date(
-    mockupCurrentDate - 60 * 1000 * 60 * 24
-  );
-  const mockupNFTs: NFTType[] = [
-    {
-      lockedMNDE: 7000,
-      id: "1831",
-      thumbnailURL: "/ilustrations/egg.svg",
-    },
-    {
-      lockedMNDE: 4000,
-      id: "1832",
-      thumbnailURL: "/ilustrations/steak.svg",
-      lockEndDate: mockupLockEndDate,
-    },
-    {
-      lockedMNDE: 1500,
-      id: "1834",
-      thumbnailURL: "/ilustrations/fish.svg",
-      lockEndDate: mockupPastLockEndDate,
-    },
-  ];
   let totalLockedMNDE = 0;
-
-  mockupNFTs?.forEach((nft) => {
-    totalLockedMNDE += Number(nft.lockedMNDE);
-  });
+  const nftItems: NFTType[] = [];
   const { MNDEBalance } = useUserBalance();
 
+  const [NFTs, setNFTs] = useState([] as NFTType[]);
   const [selectedLevel, setSelectedLevel] = useState("-");
   const [updateInputValue, setUpdateInputValue] = useState(false);
+  const [MNDELocked, setMNDELocked] = useState(0);
+  const [IsRefreshing, setIsRefreshing] = useState(true);
 
   const handleLevelSelected = (value: string, changeInputAmount: boolean) => {
     setUpdateInputValue(changeInputAmount);
     setSelectedLevel(value);
   };
+
+  async function fetchNftMetadataByAccount(
+    account: NftAccount
+  ): Promise<NftMetadata | undefined> {
+    const response = await axios.get(account.data.uri);
+    return response.data as NftMetadata;
+  }
+
+  async function getUsersVotingNftsByWallet(
+    walletPublicKey: PublicKey,
+    connection: Connection,
+    creators: string[]
+  ): Promise<NftAccount[]> {
+    try {
+      const unfilteredNftAccounts = await getParsedNftAccountsByOwner({
+        publicAddress: walletPublicKey.toString(),
+        connection,
+      });
+
+      return unfilteredNftAccounts.filter((acc) => {
+        const nftCreators = acc.data.creators;
+        const nftCreatorAddresses: string[] = nftCreators.map((c) => c.address);
+        const containsCreators = creators.every((c) =>
+          nftCreatorAddresses.includes(c)
+        );
+        if (containsCreators) {
+          return creators.every(
+            (c) =>
+              nftCreators.find((nftCreator) => nftCreator.address === c)
+                .verified === 1
+          );
+        }
+        return false;
+      });
+    } catch {
+      return [];
+    }
+  }
+
+  const getNFTs = async () => {
+    const nfts = await getUsersVotingNftsByWallet(
+      sdk.provider.wallet.publicKey,
+      sdk.provider.connection,
+      [NFT_CREATOR]
+    );
+
+    await nfts.map(async (nft) => {
+      const escrow = await EscrowWrapper.address(sdk, new PublicKey(nft.mint));
+      const escrowWrap = new EscrowWrapper(sdk, escrow);
+      const metadata = await fetchNftMetadataByAccount(nft);
+      if (escrowWrap) {
+        const escrowData = await escrowWrap.data();
+        const amounts = escrowData.amount.toNumber() / LAMPORTS_PER_SOL;
+        const nftItem = {
+          lockedMNDE: amounts,
+          id: escrowData.index.toString(),
+          thumbnailURL: metadata?.image,
+          lockEndDate: (await escrowWrap.isLocked())
+            ? undefined
+            : new Date(escrowData.claimTime.toNumber() * 1000),
+        } as NFTType;
+        nftItems.push(nftItem);
+        totalLockedMNDE += Number(nftItem.lockedMNDE);
+      }
+    });
+  };
+
+  useEffect(() => {
+    if (IsRefreshing && isWalletConnected) {
+      (async () => {
+        await getNFTs();
+        await setMNDELocked(totalLockedMNDE);
+        await setNFTs(nftItems);
+        setIsRefreshing(false);
+      })();
+    }
+  });
 
   const lockMNDE = async (amount: string) => {
     const nftKind = new PublicKey(NFT_KIND);
@@ -111,6 +167,7 @@ const LockMNDESection = () => {
     });
     await tx.confirm();
   };
+
   const {
     isOpen: isLockMndeOpen,
     onOpen: onLockMndeOpen,
@@ -123,7 +180,7 @@ const LockMNDESection = () => {
     if (selectedLevel === "3" && updateInputValue) setMNDEToLock("25000");
     if (selectedLevel === "4" && updateInputValue) setMNDEToLock("100000");
     if (selectedLevel === "5" && updateInputValue) setMNDEToLock("500000");
-  }, [selectedLevel, updateInputValue]);
+  }, [selectedLevel, updateInputValue, NFTs]);
 
   return (
     <Flex width="100%" justifyContent="center" alignItems="center">
@@ -213,14 +270,16 @@ const LockMNDESection = () => {
           </MText>
         </Flex>
         {isWalletConnected ? (
-          <NFTTable accountNFTs={mockupNFTs} lockedMNDE={totalLockedMNDE} />
+          <NFTTable accountNFTs={NFTs} lockedMNDE={MNDELocked} />
         ) : undefined}
       </Flex>
       <LockMndeModal
         isOpen={isLockMndeOpen}
         onClose={onLockMndeClose}
         onLockConfirm={async () => {
-          await lockMNDE(MNDEToLock);
+          await lockMNDE(MNDEToLock).then(() => {
+            setIsRefreshing(true);
+          });
         }}
       />
     </Flex>
