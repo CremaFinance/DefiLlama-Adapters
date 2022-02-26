@@ -51,8 +51,9 @@ const CancelUnlockingModal: FunctionComponent<CancelUnlockingModalProps> = ({
               mt={6}
             >
               <Image
-                src="/ilustrations/relock.svg"
+                src="/ilustrations/relocked.svg"
                 alt="Fish"
+                mt={{ base: "48px", md: "unset" }}
                 maxWidth={{ base: "300px", md: "320px" }}
               />
               <MHeading type="heading-2xsm" pt={6} textAlign="center">

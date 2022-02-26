@@ -43,7 +43,8 @@ const CancelUnlockingConfirmModal: FunctionComponent<
           >
             <Image
               src="/ilustrations/relock.svg"
-              alt="Fish"
+              alt="Relock"
+              mt={{ base: "48px", md: "unset" }}
               maxWidth={{ base: "300px", md: "320px" }}
             />
             <MHeading type="heading-2xsm" pt={6} textAlign="center">
