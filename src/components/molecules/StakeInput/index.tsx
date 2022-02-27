@@ -142,8 +142,11 @@ const StakeInput = ({
   };
 
   useEffect(() => {
+    if (selectAccountCallback && onValueChange && !isWalletConnected) {
+      onValueChange("0");
+      setIsStakeAccountSelected(false);
+    }
     if (
-      !isWalletConnected ||
       stakeAccounts === undefined ||
       stakeAccounts === null ||
       stakeAccounts.length === 0 ||
@@ -403,7 +406,7 @@ const StakeInput = ({
           <MText type="text-sm">
             {!isStakeAccountSelected
               ? `${balanceLabel}: ${numberToShortVersion(
-                  tokenBalance
+                  isWalletConnected ? tokenBalance : 0
                 )} ${tokenName}`
               : `${t("appPage.stake-account-singular")} ${shortenAddress(
                   selectedAccount?.address || ""
