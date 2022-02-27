@@ -12,6 +12,7 @@ import {
   Text,
   Button,
   useToast,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
@@ -47,6 +48,7 @@ const SolLiquidityModal = ({
 }: SolLiquidityModalProps) => {
   const { t } = useTranslation();
   const toast = useToast();
+  const modalSize = useBreakpointValue({ base: "full", md: "md" });
 
   const { track } = useTracking();
   const [isAddLiquidityActive, setAddLiquidityActive] = useState(true);
@@ -79,6 +81,7 @@ const SolLiquidityModal = ({
       Number(amount),
       isWalletConnected
     );
+
     if (basicInputChecksErrors) {
       return toast(basicInputChecksErrors);
     }
@@ -256,18 +259,12 @@ const SolLiquidityModal = ({
   };
 
   return (
-    <Modal isOpen={isOpenProp} onClose={onCloseProp}>
-      <ModalOverlay w="100vw" />
-      <ModalContent
-        px={[4, 8]}
-        pb={[4, 8]}
-        w={["90vw", "480px"]}
-        backgroundColor="white"
-        overflow="auto"
-      >
+    <Modal isOpen={isOpenProp} onClose={onCloseProp} size={modalSize}>
+      <ModalOverlay />
+      <ModalContent px={8}>
         <ModalHeader mb={[2, 0]} />
         <ModalCloseButton _focus={{ boxShadow: "none" }} />
-        <ModalBody p={0}>
+        <ModalBody p={0} display="flex" flexDirection="column">
           <Flex display="flex" justifyContent="center">
             <SwitchButtons
               leftText={t("appPage.liquidity-modal.add-liquidity")}
@@ -285,26 +282,6 @@ const SolLiquidityModal = ({
               }}
             />
           </Flex>
-          <Flex mb={2}>
-            <Image src="/icons/mSOL-SOL LP.svg" width="24px" height="24px" />
-            <Text marginLeft="8px" fontSize="14.4px">
-              {t("appPage.liquidity-modal.pool")}
-            </Text>
-          </Flex>
-          <Flex justifyContent="space-between">
-            <Text lineHeight="21.6px" fontSize="14.4px">
-              {t("appPage.liquidity-modal.balance")}
-            </Text>
-            <Text lineHeight="21.6px" fontSize="14.4px">
-              {format5Dec(liqSOLBalance ?? 0)}
-            </Text>
-          </Flex>
-          <Text align="end" lineHeight="21.6px" fontSize="14.4px">
-            {`= ${format5Dec(liquiditySOLPart ?? 0)} SOL`}
-          </Text>
-          <Text align="end" mb={4} lineHeight="21.6px" fontSize="14.4px">
-            {`= $ ${format2Dec((liquiditySOLPart ?? 0) * (solUSD ?? 0))}`}
-          </Text>
           {isAddLiquidityActive ? (
             <StakeInput
               stakeInputType={StakeInputTypeEnum.Liquidity}
@@ -330,8 +307,8 @@ const SolLiquidityModal = ({
               mb={4}
             />
           )}
-          <Flex h="52px">
-            {!isAddLiquidityActive ? (
+          {!isAddLiquidityActive ? (
+            <Flex h="52px">
               <Flex flexDirection="column" flex={1}>
                 <Flex justifyContent="space-between">
                   <Text lineHeight="21.6px" fontSize="14.4px">
@@ -347,7 +324,13 @@ const SolLiquidityModal = ({
                     } SOL`}
                   </Text>
                 </Flex>
-                <Text mb={4} align="end" lineHeight="21.6px" fontSize="14.4px">
+                <Text
+                  mb={4}
+                  mt={2}
+                  align="end"
+                  lineHeight="21.6px"
+                  fontSize="14.4px"
+                >
                   {`= ${
                     liquidityMSolPart && liqSOLBalance
                       ? format5Dec(
@@ -357,9 +340,21 @@ const SolLiquidityModal = ({
                   } mSOL`}
                 </Text>
               </Flex>
-            ) : null}
+            </Flex>
+          ) : null}
+          <Flex alignItems="center" mt={4}>
+            <Image src="/icons/mSOL-SOL LP.svg" width="24px" height="24px" />
+            <Text fontSize="14.4px" ml="8px">
+              {t("appPage.liquidity-modal.pool")}
+            </Text>
+            <Text lineHeight="21.6px" fontSize="14.4px" ml="auto">
+              {`${format5Dec(liqSOLBalance ?? 0)}`}
+            </Text>
           </Flex>
-          <Flex justifyContent="center">
+          <Text align="end" my={4} lineHeight="21.6px" fontSize="14.4px">
+            {`= $ ${format2Dec((liquiditySOLPart ?? 0) * (solUSD ?? 0))}`}
+          </Text>
+          <Flex flex={1} mb={4} direction="column">
             {isAddLiquidityActive ? (
               <Button
                 bg={colors.marinadeGreen}
@@ -368,9 +363,10 @@ const SolLiquidityModal = ({
                 colorScheme={colors.marinadeGreen}
                 rounded="md"
                 height="48px"
+                mt={{ base: "auto", md: 8 }}
+                mb={8}
                 width="100%"
                 _focus={{ boxShadow: "none" }}
-                my={8}
                 onClick={addLiquidityHandler}
               >
                 {t("appPage.liquidity-modal.add-liquidity")}
@@ -385,7 +381,8 @@ const SolLiquidityModal = ({
                 height="48px"
                 width="100%"
                 _focus={{ boxShadow: "none" }}
-                my={8}
+                mt={{ base: "auto", md: 8 }}
+                mb={8}
                 onClick={
                   liqSOLBalance === 0
                     ? () => setAddLiquidityActive(true)
@@ -395,14 +392,14 @@ const SolLiquidityModal = ({
                 {removeLiquidityButton}
               </Button>
             )}
+            <Text lineHeight="21.6px" fontSize="14.4px">
+              {t(
+                isAddLiquidityActive
+                  ? "appPage.liquidity-modal.description-add-liqidity"
+                  : "appPage.liquidity-modal.description-remove-liqidity"
+              )}
+            </Text>
           </Flex>
-          <Text lineHeight="21.6px" fontSize="14.4px">
-            {t(
-              isAddLiquidityActive
-                ? "appPage.liquidity-modal.description-add-liqidity"
-                : "appPage.liquidity-modal.description-remove-liqidity"
-            )}
-          </Text>
         </ModalBody>
       </ModalContent>
     </Modal>
