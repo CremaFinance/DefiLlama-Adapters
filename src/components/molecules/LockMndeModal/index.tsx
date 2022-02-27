@@ -40,7 +40,7 @@ const LockMndeModal: FunctionComponent<LockMndeModalProps> = ({
         <ModalOverlay />
         <ModalContent p={6}>
           <ModalHeader />
-          <ModalCloseButton />
+          <ModalCloseButton _focus={{ outline: "none" }} />
           <ModalBody display="flex" p={0}>
             <Flex
               flex={1}
