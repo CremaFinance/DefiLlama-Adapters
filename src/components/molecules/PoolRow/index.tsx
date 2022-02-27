@@ -1,4 +1,4 @@
-import { Flex, Image, Icon, Spinner, Tooltip } from "@chakra-ui/react";
+import { Flex, Image, Icon, Spinner, Tooltip, Divider } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import type { FunctionComponent } from "react";
 import { HiOutlineInformationCircle } from "react-icons/hi";
@@ -28,12 +28,20 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
     actions,
     provider,
     leverage,
+    aprValue,
+    componentAction,
+    RowExtensionComponent,
   } = pool;
   const { t } = useTranslation();
   const totalApy = apy?.toFixed(2);
+  const totalApr = aprValue?.toFixed(2);
   const totalApyString = totalApy
     ? t("appPage.pool-row.total-apy")?.replace("{{totalApy}}", totalApy)
     : "";
+  const totalAprString = aprValue
+    ? t("appPage.pool-row.total-apr")?.replace("{{totalApr}}", totalApr)
+    : "";
+
   const pairString = tokenB ? `${tokenA}-${tokenB}` : tokenA;
   const tvlString = totalLockedValue
     ? t("appPage.pool-row.tvl")?.replace(
@@ -106,33 +114,42 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
           flex={{ base: undefined, lg: 1 }}
           maxWidth="230px"
         >
-          {totalApy ? (
+          {totalApy && (
             <Heading lineHeight="140%" fontSize="18px">
               {totalApyString}
             </Heading>
-          ) : (
-            <Spinner size="xs" />
           )}
-          <ApyAndRewardTooltip
-            rewards={rewards}
-            tradingApy={tradingApy}
-            leverage={leverage}
-          >
-            <Button
-              variant="link"
-              _hover={{}}
-              color="black"
-              minWidth="16px"
-              marginLeft="6px"
+
+          {totalApr && (
+            <Heading lineHeight="140%" fontSize="18px">
+              {totalAprString}
+            </Heading>
+          )}
+
+          {!totalApr && !totalApy && <Spinner size="xs" />}
+
+          {!aprValue && (
+            <ApyAndRewardTooltip
+              rewards={rewards}
+              tradingApy={tradingApy}
+              leverage={leverage}
             >
-              <Icon
-                as={HiOutlineInformationCircle}
-                width="16px"
-                height="16px"
-                color="gray.500"
-              />
-            </Button>
-          </ApyAndRewardTooltip>
+              <Button
+                variant="link"
+                _hover={{}}
+                color="black"
+                minWidth="16px"
+                marginLeft="6px"
+              >
+                <Icon
+                  as={HiOutlineInformationCircle}
+                  width="16px"
+                  height="16px"
+                  color="gray.500"
+                />
+              </Button>
+            </ApyAndRewardTooltip>
+          )}
         </Flex>
         <Flex
           flex={1}
@@ -172,9 +189,19 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
           justifyContent={{ base: "stretch", lg: "flex-end" }}
           marginTop={{ base: "16px", lg: "0" }}
         >
-          <PoolRowActionsSection actions={actions} />
+          <PoolRowActionsSection
+            actions={actions}
+            componentAction={componentAction || ""}
+          />
         </Flex>
       </Flex>
+      {RowExtensionComponent ? (
+        <>
+          <Divider mt={{ base: 6, lg: "unset" }} />
+          <RowExtensionComponent />
+          <Divider />
+        </>
+      ) : null}
     </Flex>
   );
 };

@@ -8,15 +8,19 @@ import type { Action } from "../../../services/domain/pool";
 import colors from "../../../styles/customTheme/colors";
 import Button from "../../atoms/Button";
 import { ConnectWallet } from "../ConnectWallet";
+import MSolLpModal from "../MSolLpModal";
+import MSolStakeModal from "../MSolStakeModal";
 import PendingStakeModal from "../PendingStakeModal";
 import SolLiquidityModal from "../SolLiquidityModal";
 
 type PoolRowActionsSectionProps = {
   actions: Action[];
+  componentAction: string;
 };
 
 const PoolRowActionsSection: FunctionComponent<PoolRowActionsSectionProps> = ({
   actions,
+  componentAction,
 }) => {
   const { transactionSigned, transactionSignedAction } =
     useContext(AccountsContext);
@@ -123,11 +127,27 @@ const PoolRowActionsSection: FunctionComponent<PoolRowActionsSectionProps> = ({
         </Flex>
       )}
 
-      <SolLiquidityModal
-        isOpen={isOpen}
-        onClose={onClose}
-        triggerTransactionModal={triggerTransactionModal}
-      />
+      {componentAction === "mSOLSOLLiquidityModal" && (
+        <SolLiquidityModal
+          isOpen={isOpen}
+          onClose={onClose}
+          triggerTransactionModal={triggerTransactionModal}
+        />
+      )}
+      {componentAction === "mSOLStakeModal" && (
+        <MSolStakeModal
+          isOpen={isOpen}
+          onClose={onClose}
+          triggerTransactionModal={triggerTransactionModal}
+        />
+      )}
+      {componentAction === "mSolSolLPFarmModal" && (
+        <MSolLpModal
+          isOpenProp={isOpen}
+          onCloseProp={onClose}
+          triggerTransactionModal={triggerTransactionModal}
+        />
+      )}
       <PendingStakeModal
         isTransactionSigned={transactionSigned}
         isOpen={isLoading}

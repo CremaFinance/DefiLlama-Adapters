@@ -2,10 +2,11 @@ import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 
 import { format2Dec } from "../../../utils/number-to-short-version";
 import { updatePoolRewards } from "../../../utils/update-pool-rewards";
-import type { Prices } from "../../domain/coinSymbols";
 import type { FetchPools, Pool } from "../../domain/pool";
+import type { Prices } from "services/domain/coinSymbols";
 
 import { marinadePools } from "./config";
+import { liquidityMarinadePoolAddress } from "./liquidityMarinadePoolAddress";
 import type { MarinadePool } from "./marinadePool";
 
 export async function fetchMarinadePools(): Promise<MarinadePool> {
@@ -24,6 +25,18 @@ export const mapMarinadePoolsResponse = (
   const poolsArray = Object.entries(marinadePools).map(
     ([poolkey, incoming]) => {
       let pool = incoming;
+      if (poolkey === liquidityMarinadePoolAddress.MSOL_FARM) {
+        pool.totalLockedValue = Number(options?.MSOL_TVL);
+        pool.aprValue = Number(options?.MSOL_APR);
+
+        return { [poolkey as string]: pool as Pool };
+      }
+
+      if (poolkey === liquidityMarinadePoolAddress.MNDE_mSOL_SOL_LP_FARM) {
+        pool.totalLockedValue = Number(options?.MSOL_SOL_TVL);
+        pool.aprValue = Number(options?.MSOL_SOL_APR);
+        return { [poolkey as string]: pool as Pool };
+      }
       if (pool.providerId) {
         const result = marinadeResults;
         if (result) {

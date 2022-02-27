@@ -2,6 +2,7 @@ import { coinSymbols } from "../../domain/coinSymbols";
 import { marketTypes } from "../../domain/marketTypes";
 import type { PoolConfig } from "../../domain/pool";
 import MarinadePoolRowExtension from "components/molecules/MarinadePoolRowExtension";
+import MsolSolLPRowExtension from "components/molecules/MsolSolLPRowExtension";
 
 import type { LiquidityMarinadePoolAddress } from "./liquidityMarinadePoolAddress";
 import { liquidityMarinadePoolAddress } from "./liquidityMarinadePoolAddress";
@@ -42,7 +43,34 @@ export const marinadePools: Record<LiquidityMarinadePoolAddress, PoolConfig> = {
         },
       },
       actions,
-      RowExtensionComponent: MarinadePoolRowExtension,
+      componentAction: "mSOLSOLLiquidityModal",
     },
+  },
+  [liquidityMarinadePoolAddress.MSOL_FARM]: {
+    ...liquidityPoolTokensMarinade[liquidityMarinadePoolAddress.MSOL_FARM],
+    ...{
+      provider,
+      marketType: marketTypes.LP,
+      providerId: liquidityPoolMarinadeIds.MSOL_FARM,
+      tokenA: coinSymbols.mSOL,
+      actions,
+      RowExtensionComponent: MarinadePoolRowExtension,
+      componentAction: "mSOLStakeModal",
+    },
+  },
+  [liquidityMarinadePoolAddress.MNDE_mSOL_SOL_LP_FARM]: {
+    ...liquidityPoolTokensMarinade[
+      liquidityMarinadePoolAddress.MNDE_mSOL_SOL_LP_FARM
+    ],
+    ...{
+      provider,
+      marketType: marketTypes.LP,
+      providerId: liquidityPoolMarinadeIds.MNDE_mSOL_SOL_LP_FARM,
+      tokenA: coinSymbols.mSOL,
+      tokenB: coinSymbols.SOL,
+      actions,
+    },
+    RowExtensionComponent: MsolSolLPRowExtension,
+    componentAction: "mSolSolLPFarmModal",
   },
 };
