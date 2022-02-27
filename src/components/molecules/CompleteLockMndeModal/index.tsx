@@ -30,7 +30,7 @@ const CompleteLockMndeModal: FunctionComponent<CompleteLockMndeModalProps> = ({
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent p={6}>
-        <ModalCloseButton />
+        <ModalCloseButton _focus={{ outline: "none" }} />
         <ModalBody display="flex" p={0}>
           <Flex
             flex={1}
