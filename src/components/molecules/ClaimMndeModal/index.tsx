@@ -15,30 +15,31 @@ import type { FunctionComponent } from "react";
 import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
-import MndeUnlockConfirmModal from "../MndeUnlockConfirmModal";
+import ClaimMndeConfirmModal from "../ClaimMndeConfirmModal";
 import colors from "styles/customTheme/colors";
 
-interface StartUnlockingMndeModalProps {
+interface ClaimMndeModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const StartUnlockingMndeModal: FunctionComponent<
-  StartUnlockingMndeModalProps
-> = ({ isOpen, onClose }) => {
+const ClaimMndeModal: FunctionComponent<ClaimMndeModalProps> = ({
+  isOpen,
+  onClose,
+}) => {
   const { t } = useTranslation();
   const modalSize = useBreakpointValue({ base: "full", md: "md" });
 
   const {
-    isOpen: isConfirmModalOpen,
-    onOpen: onConfirmModalOpen,
-    onClose: onConfirmModalClose,
+    isOpen: isOpenClaimConfirmModal,
+    onOpen: onOpenClaimConfirmModal,
+    onClose: onCloseClaimConfirmModal,
   } = useDisclosure();
   return (
     <>
       <Modal isOpen={isOpen} onClose={onClose} size={modalSize}>
         <ModalOverlay />
-        <ModalContent p={6}>
+        <ModalContent px={6} py={4}>
           <ModalCloseButton _focus={{ outline: "none" }} />
           <ModalBody display="flex" p={0}>
             <Flex
@@ -50,28 +51,29 @@ const StartUnlockingMndeModal: FunctionComponent<
               mt={6}
             >
               <Image
-                src="/ilustrations/fish-bw.svg"
-                alt="Fish"
+                src="/ilustrations/burn.svg"
+                alt="Burn"
                 mt={{ base: "48px", md: "unset" }}
                 maxWidth={{ base: "300px", md: "382px" }}
               />
               <MHeading type="heading-2xsm" pt={6} textAlign="center">
-                {t("mndePage.unlock-mnde-modal.header")}
+                {t("mndePage.claim-mnde-modal.header")}
               </MHeading>
-              <MText textAlign="center" mt={4}>
-                {t("mndePage.unlock-mnde-modal.body.0.text")}
+              <MText fontSize="text-xl" textAlign="center" mt={4}>
+                {t("mndePage.claim-mnde-modal.body.0.text")}
+                <MText fontSize="text-xl" display="inline" fontWeight="bold">
+                  {t("mndePage.claim-mnde-modal.body.1.text")}
+                </MText>{" "}
                 <MText
-                  display="inline-block"
+                  fontSize="text-xl"
+                  display="inline"
                   fontWeight="bold"
                   color={colors?.red?.[500]}
                 >
-                  {t("mndePage.unlock-mnde-modal.body.1.text")}
+                  {t("mndePage.claim-mnde-modal.body.2.text")}
                 </MText>{" "}
-                <MText display="inline-block">
-                  {t("mndePage.unlock-mnde-modal.body.2.text")}
-                </MText>{" "}
-                <MText display="inline-block" fontWeight="bold">
-                  {t("mndePage.unlock-mnde-modal.body.3.text")}
+                <MText fontSize="text-xl" display="inline">
+                  {t("mndePage.claim-mnde-modal.body.3.text")}
                 </MText>
               </MText>
 
@@ -81,27 +83,44 @@ const StartUnlockingMndeModal: FunctionComponent<
                 _hover={{ bg: colors.green800 }}
                 colorScheme={colors.marinadeGreen}
                 rounded="md"
-                mt={5}
+                mt={{ base: "auto", md: 4 }}
+                mb={4}
                 px={4}
                 height="40px"
                 width="100%"
                 onClick={() => {
-                  onConfirmModalOpen();
+                  onOpenClaimConfirmModal();
                   onClose();
                 }}
               >
-                {t("mndePage.unlock-mnde-modal.button")}
+                {t("mndePage.claim-mnde-modal.buttons.claim")}
+              </MButton>
+              <MButton
+                variant="outline"
+                borderColor="gray"
+                _hover={{ bg: "gray.100" }}
+                color="black"
+                font="text-lg"
+                rounded="md"
+                px={4}
+                height="40px"
+                width="100%"
+                onClick={() => {
+                  onClose();
+                }}
+              >
+                {t("mndePage.claim-mnde-modal.buttons.relock")}
               </MButton>
             </Flex>
           </ModalBody>
         </ModalContent>
       </Modal>
-      <MndeUnlockConfirmModal
-        isOpen={isConfirmModalOpen}
-        onClose={() => onConfirmModalClose()}
+      <ClaimMndeConfirmModal
+        isOpen={isOpenClaimConfirmModal}
+        onClose={() => onCloseClaimConfirmModal()}
       />
     </>
   );
 };
 
-export default StartUnlockingMndeModal;
+export default ClaimMndeModal;

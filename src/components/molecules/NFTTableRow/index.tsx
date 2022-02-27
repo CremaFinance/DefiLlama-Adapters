@@ -12,6 +12,7 @@ import MButton from "../../atoms/Button";
 import Countdown from "../../atoms/Countdown";
 import MText from "../../atoms/Text";
 import CancelUnlockingModal from "../CancelUnlockingModal";
+import ClaimMndeModal from "../ClaimMndeModal";
 import StartUnlockingMndeModal from "../StartUnlockingMndeModal";
 import colors from "styles/customTheme/colors";
 
@@ -45,6 +46,11 @@ const NFTTableRow = ({
     isOpen: isStartUnlockOpen,
     onOpen: onStartUnlockOpen,
     onClose: onStartUnlockClose,
+  } = useDisclosure();
+  const {
+    isOpen: isClaimMndeModalOpen,
+    onOpen: onClaimMndeModalOpen,
+    onClose: onClaimMndeModalClose,
   } = useDisclosure();
   return (
     <>
@@ -134,6 +140,7 @@ const NFTTableRow = ({
                   fontWeight="500"
                   fontSize="14.4px"
                   isDisabled={lockEndDate.getTime() - new Date().getTime() > 0}
+                  onClick={() => onClaimMndeModalOpen()}
                 >
                   {lockEndDate.getTime() - new Date().getTime() <= 0
                     ? t("appPage.mnde.nft-levels.claim")
@@ -162,6 +169,10 @@ const NFTTableRow = ({
         onClose={() => {
           onStartUnlockClose();
         }}
+      />
+      <ClaimMndeModal
+        isOpen={isClaimMndeModalOpen}
+        onClose={() => onClaimMndeModalClose()}
       />
     </>
   );
