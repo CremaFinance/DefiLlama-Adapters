@@ -147,6 +147,10 @@ const SolLiquidityModal = ({
           // eslint-disable-next-line no-console
           console.error(error);
 
+          if (error.toString().includes("Failed to sign transaction")) {
+            return;
+          }
+
           toast({
             title: t("appPage.something-went-wrong"),
             description: error.message,
@@ -232,6 +236,10 @@ const SolLiquidityModal = ({
         (error) => {
           // eslint-disable-next-line no-console
           console.error(error);
+
+          if (error.toString().includes("Failed to sign transaction")) {
+            return;
+          }
 
           toast({
             title: t("appPage.something-went-wrong"),

@@ -290,6 +290,13 @@ const BasicStake = () => {
               }
               return "";
             }, "") || (error as Error).message;
+
+        if (
+          (error as Error).toString().includes("Failed to sign transaction")
+        ) {
+          return;
+        }
+
         toast({
           title: t("appPage.something-went-wrong"),
           description,
