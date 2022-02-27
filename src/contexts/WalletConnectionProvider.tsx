@@ -16,9 +16,9 @@ import { useTranslation } from "next-export-i18n";
 import type { FC, ReactNode } from "react";
 import { useCallback, useMemo } from "react";
 
+import Link from "../components/atoms/Link";
+import { useTracking } from "../hooks/useTracking";
 import { DEFAULT_ENDPOINT } from "../utils/web3/endpoints";
-import Link from "components/atoms/Link";
-import { useTracking } from "hooks/useTracking";
 
 export const WalletConnectionProvider: FC<{ children: ReactNode }> = ({
   children,
