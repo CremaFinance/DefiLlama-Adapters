@@ -389,6 +389,8 @@ const BasicStake = () => {
             description = t("appPage.capped-tvl-is-full");
           } else if (error.toString().includes("no record of a prior credit")) {
             description = t("appPage.missing-sol-for-fee");
+          } else if (error.toString().includes("Failed to sign transaction")) {
+            return;
           }
 
           toast({

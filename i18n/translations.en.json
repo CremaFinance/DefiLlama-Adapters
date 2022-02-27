@@ -193,6 +193,7 @@
     "disconnect-wallet": "Disconnect",
     "disconnect-wallet-title": "Disconnected from wallet",
     "disconnect-wallet-description": "You've successfully disconnected from your wallet",
+    "ledger-blind-signing": "If you're using Ledger, make sure the Solana app is open and check for blind signing details ",
     "pool-row": {
       "total-apy": "{{totalApy}} % APY",
       "total-apr": "{{totalApr}} % APR",
