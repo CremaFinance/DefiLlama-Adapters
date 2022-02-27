@@ -1,8 +1,8 @@
 /* eslint-disable sonarjs/cognitive-complexity */
-import { PublicKey } from "@solana/web3.js";
+import type { PublicKey } from "@solana/web3.js";
+import type { ReactNode } from "react";
 import {
   createContext,
-  ReactNode,
   useContext,
   useEffect,
   useMemo,
