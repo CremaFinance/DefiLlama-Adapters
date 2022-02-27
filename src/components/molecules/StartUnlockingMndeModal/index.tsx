@@ -7,6 +7,7 @@ import {
   ModalOverlay,
   Image,
   useDisclosure,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import type { FunctionComponent } from "react";
@@ -26,6 +27,8 @@ const StartUnlockingMndeModal: FunctionComponent<
   StartUnlockingMndeModalProps
 > = ({ isOpen, onClose }) => {
   const { t } = useTranslation();
+  const modalSize = useBreakpointValue({ base: "full", md: "md" });
+
   const {
     isOpen: isConfirmModalOpen,
     onOpen: onConfirmModalOpen,
@@ -33,10 +36,10 @@ const StartUnlockingMndeModal: FunctionComponent<
   } = useDisclosure();
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} size={modalSize}>
         <ModalOverlay />
         <ModalContent p={6}>
-          <ModalCloseButton />
+          <ModalCloseButton _focus={{ outline: "none" }} />
           <ModalBody display="flex" p={0}>
             <Flex
               flex={1}
@@ -49,6 +52,7 @@ const StartUnlockingMndeModal: FunctionComponent<
               <Image
                 src="/ilustrations/fish-bw.svg"
                 alt="Fish"
+                mt={{ base: "48px", md: "unset" }}
                 maxWidth={{ base: "300px", md: "382px" }}
               />
               <MHeading type="heading-2xsm" pt={6} textAlign="center">

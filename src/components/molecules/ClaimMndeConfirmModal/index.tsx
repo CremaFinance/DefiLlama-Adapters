@@ -46,6 +46,7 @@ const ClaimMndeConfirmModal: FunctionComponent<ClaimMndeConfirmModalProps> = ({
               src="/ilustrations/burned.svg"
               alt="Fish"
               maxWidth={{ base: "300px", md: "320px" }}
+              mt={{ base: "48px", md: "unset" }}
             />
             <MHeading type="heading-2xsm" pt={6} textAlign="center">
               {t("mndePage.claim-mnde-confirm-modal.header")}

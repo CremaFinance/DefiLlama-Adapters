@@ -6,6 +6,7 @@ import {
   ModalContent,
   ModalOverlay,
   Image,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import type { FunctionComponent } from "react";
@@ -24,11 +25,13 @@ const MndeUnlockConfirmModal: FunctionComponent<
   MndeUnlockConfirmModalProps
 > = ({ isOpen, onClose }) => {
   const { t } = useTranslation();
+  const modalSize = useBreakpointValue({ base: "full", md: "md" });
+
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={isOpen} onClose={onClose} size={modalSize}>
       <ModalOverlay />
       <ModalContent p={6}>
-        <ModalCloseButton />
+        <ModalCloseButton _focus={{ outline: "none" }} />
         <ModalBody display="flex" p={0}>
           <Flex
             flex={1}
@@ -42,6 +45,7 @@ const MndeUnlockConfirmModal: FunctionComponent<
               src="/ilustrations/unlock.svg"
               alt="Fish"
               maxWidth={{ base: "300px", md: "382px" }}
+              mt={{ base: "48px", md: "unset" }}
             />
             <MHeading type="heading-2xsm" pt={6} textAlign="center">
               {t("mndePage.mnde-unlock-confirm-modal.header")}
@@ -62,10 +66,10 @@ const MndeUnlockConfirmModal: FunctionComponent<
               _hover={{ bg: colors.green800 }}
               colorScheme={colors.marinadeGreen}
               rounded="md"
-              mt={5}
               px={4}
               height="40px"
               width="100%"
+              mt={{ base: "auto", md: 4 }}
               onClick={() => {
                 onClose();
               }}

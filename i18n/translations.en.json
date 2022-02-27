@@ -696,6 +696,37 @@
         }
       ],
       "button": "Close"
+    },
+    "claim-mnde-modal": {
+      "header": "Are you sure you want to claim your MNDE and burn you NFT?",
+      "body": [
+        {
+          "text": "You are about to claim "
+        },
+        {
+          "text": " XXXX MNDE and"
+        },
+        { "text": "burn your NFT" },
+        {
+          "text": ". You can also choose to relock your MNDE and keep your NFT."
+        }
+      ],
+      "buttons": {
+        "claim": "Claim MNDE and burn NFT",
+        "relock": "Re-lock MNDE"
+      }
+    },
+    "claim-mnde-confirm-modal": {
+      "header": "MNDE claimed and NFT burned!",
+      "body": [
+        {
+          "text": "You have successfully claimed"
+        },
+        {
+          "text": "XXXX MNDE  and burnt your NFT."
+        }
+      ],
+      "button": "Close"
     }
   },
   "termsPage": {

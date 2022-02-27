@@ -52,7 +52,8 @@ const ClaimMndeModal: FunctionComponent<ClaimMndeModalProps> = ({
             >
               <Image
                 src="/ilustrations/burn.svg"
-                alt="Fish"
+                alt="Burn"
+                mt={{ base: "48px", md: "unset" }}
                 maxWidth={{ base: "300px", md: "382px" }}
               />
               <MHeading type="heading-2xsm" pt={6} textAlign="center">
