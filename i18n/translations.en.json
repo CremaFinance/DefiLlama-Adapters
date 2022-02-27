@@ -441,7 +441,7 @@
         "secondary": "Leave the app"
       }
     },
-    "exchange-rate-tooltip": "mSOL/SOL price increases every epoch because staking rewards are accumulated into the SOL staked pool. Therefore, the ratio is not 1:1. This ratio only goes up with time.",
+    "exchange-rate-tooltip": "SOL/mSOL exchange rate is determined by a formula: Marinade’s SOL staked / current mSOL supply. Because staked SOL is earning yield, it grows in size vs. mSOL over time. When you swap mSOL back to SOL, you receive more SOL than you staked/swapped before.",
     "deposit-fee-tooltip": "There is 0% fee for staking your SOL and receiving mSOL.",
     "unstake-fee-tooltip": "The unstake fee varies between 0.3% and 3% depending on how much liquidity is in the pool and how big amount you're unstaking.",
     "projected-apy-tooltip": "The projected Annual Percentage Yield (APY) of holding mSOL for 1 year.",
