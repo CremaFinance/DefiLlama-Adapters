@@ -7,7 +7,7 @@ import { useStats } from "../../../contexts/StatsContext";
 import type { Pool, PoolConfig } from "../../../services/domain/pool";
 import { providerKeys } from "../../../services/pools/index";
 import CallToActionSection from "../CallToActionSection";
-import PoolRow from "components/molecules/PoolRow";
+import MemoPoolRow from "components/molecules/PoolRow";
 import { useQuarryProvider } from "contexts/QuaryContext";
 import { usePools } from "hooks/usePools";
 import { usePrices } from "hooks/usePrices";
@@ -89,11 +89,16 @@ const AllPoolsSection = () => {
   const prices = usePrices([coinSymbols.SOL, coinSymbols.MNDE]);
   const stats = useStats();
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const mLPStats = useMemo(() => mLPRowStats(mLP, prices, stats), [mLP]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const mSOLStats = useMemo(() => mSolRowStats(mSOL, prices, stats), [mSOL]);
+
   const results = usePools({
     [providerKeys.MNDE]: {
       tvl: stats.liqPoolBalance,
-      ...mLPRowStats(mLP, prices, stats),
-      ...mSolRowStats(mSOL, prices, stats),
+      ...mLPStats,
+      ...mSOLStats,
     },
   });
 
@@ -139,7 +144,7 @@ const AllPoolsSection = () => {
             justifyContent="center"
             width="100%"
           >
-            <PoolRow pool={pool.pool} />
+            <MemoPoolRow pool={pool.pool} />
           </Flex>
         ))}
       </Flex>

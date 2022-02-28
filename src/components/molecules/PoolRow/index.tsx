@@ -1,6 +1,7 @@
 import { Flex, Image, Icon, Spinner, Tooltip, Divider } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import type { FunctionComponent } from "react";
+import { memo } from "react";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 
 import type { Pool, PoolConfig } from "../../../services/domain/pool";
@@ -206,4 +207,13 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
   );
 };
 
-export default PoolRow;
+const areEqual = (prevProps: PoolRowProps, nextProps: PoolRowProps) => {
+  return (
+    prevProps.pool.apr === nextProps.pool.apr &&
+    prevProps.pool.apy === nextProps.pool.apy &&
+    prevProps.pool.totalLockedValue === nextProps.pool.totalLockedValue
+  );
+};
+const MemoPoolRow = memo(PoolRow, areEqual);
+
+export default MemoPoolRow;
