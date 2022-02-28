@@ -209,6 +209,7 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
 
 const areEqual = (prevProps: PoolRowProps, nextProps: PoolRowProps) => {
   return (
+    prevProps.pool.apr === nextProps.pool.apr &&
     prevProps.pool.apy === nextProps.pool.apy &&
     prevProps.pool.totalLockedValue === nextProps.pool.totalLockedValue
   );
