@@ -9,15 +9,16 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable sonarjs/no-duplicate-string */
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import type { Address } from "@project-serum/anchor";
 import * as anchor from "@project-serum/anchor";
-import { Address, BN } from "@project-serum/anchor";
+import { BN } from "@project-serum/anchor";
 import {
   ASSOCIATED_TOKEN_PROGRAM_ID,
   Token,
   TOKEN_PROGRAM_ID,
 } from "@solana/spl-token";
+import type { AccountInfo, TransactionSignature } from "@solana/web3.js";
 import {
-  AccountInfo,
   Keypair,
   PublicKey,
   StakeProgram,
@@ -25,9 +26,9 @@ import {
   SYSVAR_CLOCK_PUBKEY,
   SYSVAR_RENT_PUBKEY,
   Transaction,
-  TransactionSignature,
 } from "@solana/web3.js";
 import { deserializeUnchecked } from "borsh";
+import type { ReactNode } from "react";
 import {
   createContext,
   useCallback,
@@ -35,11 +36,10 @@ import {
   useEffect,
   useMemo,
   useState,
-  ReactNode,
 } from "react";
 
 import { useWallet } from "../hooks/useWallet";
-import { StakeAccount } from "../solana/domain/stake-account";
+import type { StakeAccount } from "../solana/domain/stake-account";
 import * as marinade from "../solana/marinade-anchor/marinade-finance-schema";
 import * as MarinadeProgramJSON from "../solana/marinade-anchor/marinade_finance.json";
 import { findAssociatedTokenAddress } from "../utils/web3/find-associated-token-address";
