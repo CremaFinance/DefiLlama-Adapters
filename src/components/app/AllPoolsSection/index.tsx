@@ -89,11 +89,16 @@ const AllPoolsSection = () => {
   const prices = usePrices([coinSymbols.SOL, coinSymbols.MNDE]);
   const stats = useStats();
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const mLPStats = useMemo(() => mLPRowStats(mLP, prices, stats), [mLP]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const mSOLStats = useMemo(() => mSolRowStats(mSOL, prices, stats), [mSOL]);
+
   const results = usePools({
     [providerKeys.MNDE]: {
       tvl: stats.liqPoolBalance,
-      ...mLPRowStats(mLP, prices, stats),
-      ...mSolRowStats(mSOL, prices, stats),
+      ...mLPStats,
+      ...mSOLStats,
     },
   });
 
