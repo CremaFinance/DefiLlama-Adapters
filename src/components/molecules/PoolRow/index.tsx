@@ -78,7 +78,7 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
           maxWidth={{ base: undefined, lg: "208px" }}
           justifyContent={{ base: "space-between", lg: "flex-start" }}
         >
-          <Flex alignItems="center">
+          <Flex alignItems="center" mb={{ base: 2, md: "unset" }}>
             <Image
               src={`/pools/${tokenA.toLowerCase()}.png`}
               width="40px"
