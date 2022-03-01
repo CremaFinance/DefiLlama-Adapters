@@ -7,6 +7,7 @@ import MndeFAQSection from "components/app/MndeFAQSection";
 import MndeLockInfoSection from "components/app/MndeLockInfoSection";
 import type { BreadcrumbItem } from "components/molecules/BreadcrumbWithRouter";
 import BreadcrumbWithRouter from "components/molecules/BreadcrumbWithRouter";
+import { GovernanceContextProvider } from "contexts/GovernanceContext";
 import { useTranslation } from "hooks/useTranslation";
 import colors from "styles/customTheme/colors";
 
@@ -29,7 +30,9 @@ const Lock = () => {
       <Header />
       <BreadcrumbWithRouter breadcrumbItems={breadcrumbItems} />
       <MndeLockInfoSection />
-      <LockMNDESection />
+      <GovernanceContextProvider>
+        <LockMNDESection />
+      </GovernanceContextProvider>
       <MndeFAQSection />
       <Footer />
     </Flex>

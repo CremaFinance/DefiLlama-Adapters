@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
   Flex,
   Table,
@@ -10,11 +10,14 @@ import {
   useMediaQuery,
 } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
+import { useContext, useEffect } from "react";
 import { FiExternalLink } from "react-icons/fi";
 
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 import NFTTableRow from "../NFTTableRow";
+import { GovernanceContext } from "contexts/GovernanceContext";
+import { useWallet } from "hooks/useWallet";
 import colors from "styles/customTheme/colors";
 
 export type NFTType = {
@@ -24,13 +27,20 @@ export type NFTType = {
   lockEndDate?: Date;
 };
 
-type NFTTableProps = {
-  accountNFTs?: NFTType[];
-  lockedMNDE?: number;
-};
-const NFTTable = ({ accountNFTs, lockedMNDE }: NFTTableProps) => {
+const NFTTable = () => {
   const [isMobile] = useMediaQuery("(max-width: 425px)");
   const { t } = useTranslation();
+  const { connected: isWalletConnected } = useWallet();
+
+  const { nfts, getNftsAction, fetchNftsLoading, lockedMnde } =
+    useContext(GovernanceContext);
+
+  useEffect(() => {
+    if (isWalletConnected) {
+      getNftsAction(isWalletConnected, !fetchNftsLoading);
+    }
+  }, [isWalletConnected, nfts, lockedMnde]);
+
   return (
     <Flex width="100%" pt={8} flexDirection="column">
       <Table variant="simple">
@@ -56,7 +66,7 @@ const NFTTable = ({ accountNFTs, lockedMNDE }: NFTTableProps) => {
           </Thead>
         ) : undefined}
         <Tbody>
-          {accountNFTs?.map((nft) => (
+          {nfts.map((nft) => (
             <NFTTableRow
               key={nft.id}
               id={nft.id}
@@ -81,7 +91,7 @@ const NFTTable = ({ accountNFTs, lockedMNDE }: NFTTableProps) => {
                 fontWeight="bold"
                 textAlign={isMobile ? "right" : "left"}
               >
-                {lockedMNDE ? `${lockedMNDE} MNDE` : "-"}
+                {lockedMnde ? `${lockedMnde} MNDE` : "-"}
               </MText>
             </Td>
           </Tr>
