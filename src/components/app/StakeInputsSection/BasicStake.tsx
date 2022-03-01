@@ -290,6 +290,13 @@ const BasicStake = () => {
               }
               return "";
             }, "") || (error as Error).message;
+
+        if (
+          (error as Error).toString().includes("Failed to sign transaction")
+        ) {
+          return;
+        }
+
         toast({
           title: t("appPage.something-went-wrong"),
           description,
@@ -389,6 +396,8 @@ const BasicStake = () => {
             description = t("appPage.capped-tvl-is-full");
           } else if (error.toString().includes("no record of a prior credit")) {
             description = t("appPage.missing-sol-for-fee");
+          } else if (error.toString().includes("Failed to sign transaction")) {
+            return;
           }
 
           toast({

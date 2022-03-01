@@ -258,6 +258,8 @@ const BasicUnstake = () => {
             );
           } else if (error.toString().includes("no record of a prior credit")) {
             description = t("appPage.you-need-some-sol-balance-for-fee");
+          } else if (error.toString().includes("Failed to sign transaction")) {
+            return;
           }
 
           toast({
@@ -333,6 +335,8 @@ const BasicUnstake = () => {
             errorMessage = t(
               "appPage.claim-error-tooltip-body-not-enough-sol-balance"
             );
+          } else if (error.toString().includes("Failed to sign transaction")) {
+            return;
           }
           errorMessage = error.message;
 

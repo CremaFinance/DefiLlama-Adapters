@@ -1,18 +1,10 @@
-import { useToast } from "@chakra-ui/react";
-import { WalletNotConnectedError } from "@solana/wallet-adapter-base";
-import {
-  Account,
-  Commitment,
-  Connection,
-  Transaction,
-  TransactionInstruction,
-} from "@solana/web3.js";
-import React, { FC, ReactNode, useContext, useEffect, useMemo } from "react";
+import { Account, Connection } from "@solana/web3.js";
+import type { FC, ReactNode } from "react";
+import React, { useContext, useEffect, useMemo } from "react";
 
-import TransactionLink from "../components/molecules/TransactionLink";
 import { useLocalStorageState } from "../hooks/useLocalStorageState";
-import { useWallet } from "../hooks/useWallet";
-import { DEFAULT_ENDPOINT, ENDPOINTS, ENV } from "../utils/web3/endpoints";
+import type { ENV } from "../utils/web3/endpoints";
+import { DEFAULT_ENDPOINT, ENDPOINTS } from "../utils/web3/endpoints";
 
 interface ConnectionConfig {
   connection: Connection;
@@ -96,6 +88,7 @@ export const ConnectionProvider: FC<{ children: ReactNode }> = ({
 
   return (
     <ConnectionContext.Provider
+      // eslint-disable-next-line react/jsx-no-constructed-context-values
       value={{
         endpoint,
         setEndpoint,
@@ -142,106 +135,3 @@ export function useConnectionConfig() {
         marinadeStateId: chain.marinadeStateId,
     }
 } */
-
-const getErrorForTransaction = async (connection: Connection, txid: string) => {
-  // wait for all confirmation before getting transaction
-  await connection.confirmTransaction(txid, "max");
-
-  const tx = await connection.getParsedConfirmedTransaction(txid);
-
-  const errors: string[] = [];
-  if (tx?.meta && tx.meta.logMessages) {
-    tx.meta.logMessages.forEach((log) => {
-      const regex = /Error: (.*)/gm;
-      let m;
-      // eslint-disable-next-line no-cond-assign
-      while ((m = regex.exec(log)) !== null) {
-        // This is necessary to avoid infinite loops with zero-width matches
-        if (m.index === regex.lastIndex) {
-          // eslint-disable-next-line no-plusplus
-          regex.lastIndex++;
-        }
-
-        if (m.length > 1) {
-          errors.push(m[1]);
-        }
-      }
-    });
-  }
-
-  return errors;
-};
-
-export const sendTransaction = async (
-  connection: Connection,
-  instructions: TransactionInstruction[],
-  signers: Account[],
-  awaitConfirmation = true
-) => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const chain = useChain();
-
-  let transaction = new Transaction();
-  instructions.forEach((instruction) => transaction.add(instruction));
-  transaction.recentBlockhash = (
-    await connection.getRecentBlockhash("max")
-  ).blockhash;
-
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { publicKey, signTransaction } = useWallet();
-
-  if (!publicKey) throw new WalletNotConnectedError();
-  if (!signTransaction)
-    throw new Error("Wallet does not support transaction signing!");
-
-  transaction.setSigners(
-    // fee payed by the wallet owner
-    publicKey,
-    ...signers.map((s) => s.publicKey)
-  );
-  if (signers.length > 0) {
-    transaction.partialSign(...signers);
-  }
-  transaction = await signTransaction(transaction);
-
-  const rawTransaction = transaction.serialize();
-  const options = {
-    skipPreflight: true,
-    commitment: "singleGossip",
-  };
-
-  const txid = await connection.sendRawTransaction(rawTransaction, options);
-
-  if (awaitConfirmation) {
-    const status = (
-      await connection.confirmTransaction(
-        txid,
-        options && (options.commitment as Commitment)
-      )
-    ).value;
-
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const toast = useToast();
-    if (status?.err) {
-      const errors = await getErrorForTransaction(connection, txid);
-      toast({
-        title: "Transaction failed",
-        status: "error",
-        duration: 10000,
-        description: (
-          <>
-            {errors.map((err) => (
-              <div>{err}</div>
-            ))}
-            <TransactionLink chainName={chain.name} transactionid={txid} />
-          </>
-        ),
-      });
-      throw new Error(
-        `Raw transaction ${txid} failed (${JSON.stringify(status)})`
-      );
-    }
-  }
-
-  return txid;
-};

@@ -124,6 +124,10 @@ const MSolStakeModal = ({
           // eslint-disable-next-line no-console
           console.error(error);
 
+          if (error.toString().includes("Failed to sign transaction")) {
+            return;
+          }
+
           toast({
             title: t("appPage.something-went-wrong"),
             description: error.toString().includes("0xa7")
@@ -215,6 +219,10 @@ const MSolStakeModal = ({
         (error) => {
           // eslint-disable-next-line no-console
           console.error(error);
+
+          if (error.toString().includes("Failed to sign transaction")) {
+            return;
+          }
 
           toast({
             title: t("appPage.something-went-wrong"),
