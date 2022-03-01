@@ -41,7 +41,6 @@ export const usePools = (providerOptions?: ProviderOptions) => {
       enabled: getProviderTokens(provider).every((t) => prices[t]),
       placeholderData: provider.pools,
       refetchInterval,
-      initialData: [],
     };
   });
 
