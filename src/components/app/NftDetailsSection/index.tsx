@@ -1,4 +1,4 @@
-import { Flex, Image, Stack, IconButton } from "@chakra-ui/react";
+import { Flex, Image, Stack, IconButton, Box } from "@chakra-ui/react";
 import type { FunctionComponent } from "react";
 import { MdInfoOutline } from "react-icons/md";
 
@@ -99,17 +99,20 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
 
           {data?.properties.unlock_duration}
         </Flex>
-        <Flex flexWrap="wrap" margin="-13px" mt={6}>
+        <Box
+          display="grid"
+          gridTemplateColumns={{ base: "1fr 1fr", md: "1fr 1fr 1fr" }}
+          gridGap={6}
+          mt={6}
+        >
           {data?.attributes.map((attribute) => (
             <Flex
               p={4}
-              width="140px"
               flexDirection="column"
               backgroundColor="#F7FAFC"
               border="1px solid"
               borderColor={colors.lightGray}
               borderRadius="6px"
-              margin="10px"
             >
               <MText
                 fontSize="11px"
@@ -121,7 +124,7 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
               <MText fontSize="14px">{attribute.value}</MText>
             </Flex>
           ))}
-        </Flex>
+        </Box>
         <Stack
           spacing={6}
           mt={6}
