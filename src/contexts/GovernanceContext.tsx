@@ -75,7 +75,7 @@ const GovernanceContext = createContext({
   fetchNftsLoading: false,
   fetchNftsLoadingAction: (_boolean: boolean) => {},
   startUnlocking: (_nftMint: PublicKey) => {},
-  lockMNDE: async (_amount: string, _balance: string): Promise<boolean> => {
+  lockMNDE: async (_amount: string): Promise<boolean> => {
     return true;
   },
   resetNftsAction: () => {},
