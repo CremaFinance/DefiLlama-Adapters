@@ -75,6 +75,7 @@ const GovernanceContext = createContext({
   fetchNftsLoading: false,
   fetchNftsLoadingAction: (_boolean: boolean) => {},
   startUnlocking: (_nftMint: PublicKey) => {},
+  claimMNDE: (_nftMint: PublicKey) => {},
   cancelUnlocking: (_nftMint: PublicKey) => {},
   lockMNDE: async (_amount: string): Promise<boolean> => {
     return true;
@@ -344,6 +345,33 @@ function GovernanceContextProvider(props: {
     });
   }
 
+  async function claimMNDE(nftMint: PublicKey) {
+    const escrow = await EscrowWrapper.address(sdk, nftMint);
+
+    const escrowWrapper = new EscrowWrapper(sdk, escrow);
+    const escrowData = await escrowWrapper.data();
+
+    const nftToken = await Token.getAssociatedTokenAddress(
+      ASSOCIATED_TOKEN_PROGRAM_ID,
+      TOKEN_PROGRAM_ID,
+      escrowData.nftMint,
+      sdk.provider.wallet.publicKey,
+      true
+    );
+
+    const tx = await escrowWrapper.exitEscrow({
+      nftToken,
+      withdrawTo: await Token.getAssociatedTokenAddress(
+        ASSOCIATED_TOKEN_PROGRAM_ID,
+        TOKEN_PROGRAM_ID,
+        await escrowWrapper.govMint(),
+        sdk.provider.wallet.publicKey
+      ),
+    });
+    await tx.confirm().then(() => {
+      getNftsAction(true, true);
+    });
+  }
   async function cancelUnlocking(nftMint: PublicKey) {
     const escrow = await EscrowWrapper.address(sdk, nftMint);
 
@@ -372,6 +400,7 @@ function GovernanceContextProvider(props: {
         nfts: state.nfts,
         getNftsAction,
         startUnlocking,
+        claimMNDE,
         cancelUnlocking,
         fetchNftsLoadingAction,
         lockMNDE,
