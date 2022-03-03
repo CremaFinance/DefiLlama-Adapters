@@ -21,7 +21,7 @@ import colors from "styles/customTheme/colors";
 interface LockMndeModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onLockConfirm: () => void;
+  onLockConfirm: () => Promise<boolean>;
 }
 
 const LockMndeModal: FunctionComponent<LockMndeModalProps> = ({
@@ -70,8 +70,9 @@ const LockMndeModal: FunctionComponent<LockMndeModalProps> = ({
                 mt={{ base: "auto", md: 4 }}
                 width="100%"
                 onClick={() => {
-                  onLockConfirm();
-                  onCompleteLockModalOpen();
+                  onLockConfirm().then((result) => {
+                    if (result) onCompleteLockModalOpen();
+                  });
                   onClose();
                 }}
               >

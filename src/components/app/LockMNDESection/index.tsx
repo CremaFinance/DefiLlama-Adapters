@@ -1,14 +1,20 @@
-import { Flex, IconButton, Box, useDisclosure } from "@chakra-ui/react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import {
+  Flex,
+  Box,
+  IconButton,
+  useDisclosure,
+  useToast,
+} from "@chakra-ui/react";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MdInfoOutline } from "react-icons/md";
 
 import { useUserBalance } from "../../../contexts/UserBalanceContext";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 import { ConnectWallet } from "../../molecules/ConnectWallet";
-import type { NFTType } from "../../molecules/NFTTable";
 import NFTTable from "../../molecules/NFTTable";
 import TooltipWithContent from "../../molecules/TooltipWithContent";
 import LockMndeModal from "components/molecules/LockMndeModal";
@@ -16,45 +22,27 @@ import NFTLevels from "components/molecules/NFTLevels";
 import StakeInput, {
   StakeInputTypeEnum,
 } from "components/molecules/StakeInput";
+import { GovernanceContext } from "contexts/GovernanceContext";
+import { useTracking } from "hooks/useTracking";
 import { useWallet } from "hooks/useWallet";
 import colors from "styles/customTheme/colors";
 
 const LockMNDESection = () => {
+  const {
+    fetchNftsLoadingAction,
+    resetNftsAction,
+    getNftsAction,
+    fetchNftsLoading,
+    lockMNDE,
+  } = useContext(GovernanceContext);
+  const toast = useToast();
+
+  const { track } = useTracking();
+
   const [MNDEToLock, setMNDEToLock] = useState<string>("");
   const { t } = useTranslation();
   const { connected: isWalletConnected } = useWallet();
 
-  const mockupCurrentDate = new Date().getTime();
-  const mockupLockEndDate = new Date(
-    mockupCurrentDate + 60 * 1000 * 60 * 24 * 30
-  );
-  const mockupPastLockEndDate = new Date(
-    mockupCurrentDate - 60 * 1000 * 60 * 24
-  );
-  const mockupNFTs: NFTType[] = [
-    {
-      lockedMNDE: 7000,
-      id: "1831",
-      thumbnailURL: "/ilustrations/egg.svg",
-    },
-    {
-      lockedMNDE: 4000,
-      id: "1832",
-      thumbnailURL: "/ilustrations/steak.svg",
-      lockEndDate: mockupLockEndDate,
-    },
-    {
-      lockedMNDE: 1500,
-      id: "1834",
-      thumbnailURL: "/ilustrations/fish.svg",
-      lockEndDate: mockupPastLockEndDate,
-    },
-  ];
-  let totalLockedMNDE = 0;
-
-  mockupNFTs?.forEach((nft) => {
-    totalLockedMNDE += Number(nft.lockedMNDE);
-  });
   const { MNDEBalance } = useUserBalance();
 
   const [selectedLevel, setSelectedLevel] = useState("-");
@@ -64,6 +52,15 @@ const LockMNDESection = () => {
     setUpdateInputValue(changeInputAmount);
     setSelectedLevel(value);
   };
+
+  useEffect(() => {
+    if (isWalletConnected) {
+      getNftsAction(isWalletConnected, !fetchNftsLoading);
+    } else {
+      resetNftsAction();
+      fetchNftsLoadingAction(false);
+    }
+  }, [fetchNftsLoading, isWalletConnected]);
 
   const {
     isOpen: isLockMndeOpen,
@@ -117,6 +114,10 @@ const LockMNDESection = () => {
             width="100%"
             mx={4}
             my={4}
+            isDisabled={
+              Number(MNDEToLock) < 1000 ||
+              Number(MNDEToLock) > (MNDEBalance ?? 0) / LAMPORTS_PER_SOL
+            }
             onClick={() => {
               onLockMndeOpen();
             }}
@@ -166,14 +167,43 @@ const LockMNDESection = () => {
             {t("appPage.mnde.unlock-period-mockup-value")}
           </MText>
         </Flex>
-        {isWalletConnected ? (
-          <NFTTable accountNFTs={mockupNFTs} lockedMNDE={totalLockedMNDE} />
-        ) : undefined}
+        {isWalletConnected ? <NFTTable /> : undefined}
       </Flex>
       <LockMndeModal
         isOpen={isLockMndeOpen}
         onClose={onLockMndeClose}
-        onLockConfirm={() => {}}
+        onLockConfirm={async (): Promise<boolean> => {
+          return lockMNDE(MNDEToLock).then(
+            (result) => {
+              return result;
+            },
+            (error) => {
+              let description = error.message;
+              if (error.toString().includes("0xec6")) {
+                description = t("appPage.capped-tvl-is-full");
+              } else if (
+                error.toString().includes("no record of a prior credit")
+              ) {
+                description = t("appPage.missing-sol-for-fee");
+              }
+
+              toast({
+                title: t("appPage.something-went-wrong"),
+                description,
+                status: "warning",
+              });
+
+              track({
+                event: "Lock MNDE Error",
+                category: "Lock MNDE",
+                action: "Lock",
+                label: "Error",
+                description,
+              });
+              return false;
+            }
+          );
+        }}
       />
     </Flex>
   );

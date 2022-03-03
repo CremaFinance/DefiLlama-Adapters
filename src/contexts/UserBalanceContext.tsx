@@ -92,10 +92,19 @@ export function UserBalanceProvider({ children }: UserBalanceProviderProps) {
           findAssociatedTokenAddress(
             walletPubKey,
             new PublicKey(coinTokens[coinSymbols.MNDE].address)
-          ).then((associatedTokenAddress) => {
-            connection
-              .getTokenAccountBalance(associatedTokenAddress)
-              .then((result) => setMNDEBalance(Number(result.value.amount)));
+          ).then(async (associatedTokenAddress) => {
+            try {
+              const accountBalance = await connection.getTokenAccountBalance(
+                associatedTokenAddress
+              );
+              if (accountBalance) {
+                setMNDEBalance(Number(accountBalance.value.amount));
+              }
+            } catch (e) {
+              if (isError(e) && e.message.endsWith(errorMsg)) {
+                setMNDEBalance(0);
+              }
+            }
           });
         }
       } catch (e) {
