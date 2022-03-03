@@ -2921,10 +2921,10 @@
     buffer-layout "^1.2.0"
     dotenv "10.0.0"
 
-"@solana/wallet-adapter-base@^0.9.3":
-  version "0.9.3"
-  resolved "https://registry.yarnpkg.com/@solana/wallet-adapter-base/-/wallet-adapter-base-0.9.3.tgz#4e109cd698232d17f1ef76ebdbdcd816698e0a9f"
-  integrity sha512-XXUZJWvFouNuuBVnTGZjEhZQFszG60Ss3qDbmV2O4j6S4IwgfabCZ/J+eMG02a86nGEjQrfKz0jmumpmYICZOQ==
+"@solana/wallet-adapter-base@^0.9.3", "@solana/wallet-adapter-base@^0.9.4":
+  version "0.9.4"
+  resolved "https://registry.yarnpkg.com/@solana/wallet-adapter-base/-/wallet-adapter-base-0.9.4.tgz#4a3341d3808f46c290e3fd580ce43f1181a702fc"
+  integrity sha512-f7AZIs0Si9YJ779KJhII+wzNMPDZBzOJI3mP4cB2Vmjnoa3m8OsLjf9i/ZBsDmW6yyJxDhhjOp3xcAuqDxL1Aw==
   dependencies:
     "@solana/web3.js" "^1.20.0"
     eventemitter3 "^4.0.0"
