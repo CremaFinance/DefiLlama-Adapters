@@ -28,9 +28,11 @@ import type {
   NftMetadata,
 } from "components/app/LockMNDESection/types";
 import type { NFTType } from "components/molecules/NFTTable";
-import { checkMNDEBalance } from "utils/check-mnde-balance";
+import { checkNativeSOLBalance } from "utils/check-native-sol-balance";
 
 import { useAnchorProvider } from "./AnchorContext";
+import { useMarinade } from "./MarinadeContext";
+import { useUserBalance } from "./UserBalanceContext";
 
 interface State {
   nfts: NFTType[];
@@ -67,7 +69,7 @@ export enum ActionTypes {
 const GovernanceContext = createContext({
   fetchNftsLoading: false,
   fetchNftsLoadingAction: (_boolean: boolean) => {},
-  lockMNDE: async (_amount: string, _balance: string): Promise<boolean> => {
+  lockMNDE: async (_amount: string): Promise<boolean> => {
     return true;
   },
   resetNftsAction: () => {},
@@ -106,6 +108,8 @@ function GovernanceContextProvider(props: {
   const NFT_CREATOR = "4eopmn89uciMvKzGYwkFBMXVpLCjnGda7uWo5uZqQCFF";
   const anchorProvider = useAnchorProvider();
   const toast = useToast();
+  const marinade = useMarinade();
+  const { nativeSOLBalance } = useUserBalance();
 
   const prov = SolanaProvider.init({
     connection: anchorProvider.connection,
@@ -222,12 +226,17 @@ function GovernanceContextProvider(props: {
   }
 
   // eslint-disable-next-line consistent-return
-  async function lockMNDE(amount: string, balance: string): Promise<boolean> {
-    const checkBalance = checkMNDEBalance(Number(balance), Number(amount));
-    if (checkBalance) {
-      toast(checkBalance);
+  async function lockMNDE(amount: string): Promise<boolean> {
+    const fundsNeeded = marinade.marinadeState?.transactionFee;
+    const checkBalanceErrors = checkNativeSOLBalance(
+      nativeSOLBalance ?? 0,
+      fundsNeeded ?? 0
+    );
+    if (checkBalanceErrors) {
+      toast(checkBalanceErrors);
       return false;
     }
+
     const nftKind = new PublicKey(NFT_KIND);
     const nftKindWrapper = new SimpleNftKindWrapper(sdk, nftKind);
     const realm = await nftKindWrapper.realm();

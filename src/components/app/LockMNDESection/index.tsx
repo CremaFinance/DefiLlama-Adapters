@@ -114,7 +114,10 @@ const LockMNDESection = () => {
             width="100%"
             mx={4}
             my={4}
-            isDisabled={Number(MNDEToLock) < 1000}
+            isDisabled={
+              Number(MNDEToLock) < 1000 ||
+              Number(MNDEToLock) > (MNDEBalance ?? 0) / LAMPORTS_PER_SOL
+            }
             onClick={() => {
               onLockMndeOpen();
             }}
@@ -170,10 +173,7 @@ const LockMNDESection = () => {
         isOpen={isLockMndeOpen}
         onClose={onLockMndeClose}
         onLockConfirm={async (): Promise<boolean> => {
-          return lockMNDE(
-            MNDEToLock,
-            ((MNDEBalance ?? 0) / LAMPORTS_PER_SOL ?? 0).toString()
-          ).then(
+          return lockMNDE(MNDEToLock).then(
             (result) => {
               return result;
             },
