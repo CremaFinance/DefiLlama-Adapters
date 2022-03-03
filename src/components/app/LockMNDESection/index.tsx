@@ -132,26 +132,6 @@ const LockMNDESection = () => {
 
         <Flex width="100%" mt={1} mb={1} justifyContent="space-between">
           <Flex>
-            <MText type="text-md">{t("appPage.mnde.nft")}</MText>
-            <TooltipWithContent tooltipText={t("appPage.mnde.nft")}>
-              <IconButton
-                variant="link"
-                aria-label="NFT Level"
-                size="sm"
-                _focus={{ boxShadow: "none" }}
-                icon={<MdInfoOutline />}
-              />
-            </TooltipWithContent>
-          </Flex>
-          <MText type="text-md">
-            {selectedLevel !== "-"
-              ? t("appPage.mnde.nft-level-value") + selectedLevel
-              : "-"}
-          </MText>
-        </Flex>
-
-        <Flex width="100%" mt={1} mb={1} justifyContent="space-between">
-          <Flex>
             <MText type="text-md">{t("appPage.mnde.unlock-period")}</MText>
             <TooltipWithContent tooltipText={t("appPage.mnde.unlock-period")}>
               <IconButton
