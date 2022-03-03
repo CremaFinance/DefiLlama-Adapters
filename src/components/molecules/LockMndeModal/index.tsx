@@ -7,6 +7,7 @@ import {
   ModalHeader,
   ModalOverlay,
   useDisclosure,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import type { FunctionComponent } from "react";
@@ -34,13 +35,15 @@ const LockMndeModal: FunctionComponent<LockMndeModalProps> = ({
     onOpen: onCompleteLockModalOpen,
     onClose: onCompleteLockModalClose,
   } = useDisclosure();
+  const modalSize = useBreakpointValue({ base: "full", md: "md" });
+
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} size={modalSize}>
         <ModalOverlay />
         <ModalContent p={6}>
           <ModalHeader />
-          <ModalCloseButton />
+          <ModalCloseButton _focus={{ outline: "none" }} />
           <ModalBody display="flex" p={0}>
             <Flex
               flex={1}
@@ -50,7 +53,7 @@ const LockMndeModal: FunctionComponent<LockMndeModalProps> = ({
               width="480px"
               flexDirection="column"
             >
-              <MHeading type="heading-2xsm">
+              <MHeading mt={{ base: "48px", md: "unset" }} type="heading-2xsm">
                 {t("mndePage.lock-mnde-confirm-modal.header")}
               </MHeading>
               <MText pt={8} textAlign="center">
@@ -64,8 +67,8 @@ const LockMndeModal: FunctionComponent<LockMndeModalProps> = ({
                 rounded="md"
                 px={4}
                 height="40px"
+                mt={{ base: "auto", md: 4 }}
                 width="100%"
-                mt={4}
                 onClick={() => {
                   onLockConfirm().then((result) => {
                     if (result) onCompleteLockModalOpen();

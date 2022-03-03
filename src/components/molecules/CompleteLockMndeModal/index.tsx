@@ -6,6 +6,7 @@ import {
   ModalContent,
   ModalOverlay,
   Image,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import type { FunctionComponent } from "react";
@@ -26,11 +27,13 @@ const CompleteLockMndeModal: FunctionComponent<CompleteLockMndeModalProps> = ({
   onClose,
 }) => {
   const { t } = useTranslation();
+  const modalSize = useBreakpointValue({ base: "full", md: "md" });
+
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={isOpen} onClose={onClose} size={modalSize}>
       <ModalOverlay />
       <ModalContent p={6}>
-        <ModalCloseButton />
+        <ModalCloseButton _focus={{ outline: "none" }} />
         <ModalBody display="flex" p={0}>
           <Flex
             flex={1}
