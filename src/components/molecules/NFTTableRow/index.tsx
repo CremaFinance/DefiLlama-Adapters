@@ -47,6 +47,7 @@ const NFTTableRow: FunctionComponent<NFTTableRowProps> = ({
     <Tr height="84px">
       <Td pl={0} py={0} pr={[4, 8]}>
         <Flex
+          cursor="pointer"
           flexDirection="column"
           onClick={() =>
             router.push({
