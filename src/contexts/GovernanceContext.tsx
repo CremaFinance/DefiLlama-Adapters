@@ -213,6 +213,7 @@ function GovernanceContextProvider(props: {
           address: new PublicKey(nft.mint),
           lockedMNDE: amounts,
           id: escrowData.index.toString(),
+          dataUri: nft.data.uri,
           thumbnailURL: metadata?.image,
           lockEndDate: (await escrowWrap.isLocked())
             ? undefined

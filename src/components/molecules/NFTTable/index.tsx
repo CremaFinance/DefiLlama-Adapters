@@ -34,6 +34,7 @@ export type NFTType = {
   id: string;
   thumbnailURL: string;
   lockEndDate?: Date;
+  dataUri: string;
 };
 
 const noPriorCredit = "no record of a prior credit";
