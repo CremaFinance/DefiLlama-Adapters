@@ -31,7 +31,7 @@ const NFTTableRow = ({
   isCancelEnabled,
 }: NFTTableRowProps) => {
   const { t } = useTranslation();
-  const { startUnlocking } = useContext(GovernanceContext);
+  const { startUnlocking, cancelUnlocking } = useContext(GovernanceContext);
   const [isMobile] = useMediaQuery("(max-width: 425px)");
   return (
     <Tr height="84px">
@@ -87,7 +87,11 @@ const NFTTableRow = ({
                 fontWeight="500"
                 fontSize="14.4px"
                 onClick={() => {
-                  startUnlocking(address);
+                  if (isUnlockEnabled) {
+                    startUnlocking(address);
+                  } else {
+                    cancelUnlocking(address);
+                  }
                 }}
               >
                 {isCancelEnabled
