@@ -102,8 +102,8 @@ function GovernanceContextProvider(props: {
   children: ReactNode;
 }): JSX.Element {
   const [state, dispatch] = useReducer(governanceContext, initialState);
-  const NFT_KIND = "A6a8qXF7THHDDqBESyXghZgzSJjkjk2v94iAzgY8V9Au";
-  const NFT_CREATOR = "HZFGFiLGtZZxrFjG9bnD9FKCYpxnwKwJGAsxbmzjgGNb";
+  const NFT_KIND = "AxFYMzasysofqoWFhEcNJQ5caWWsWUdMTwto2cP33L5C";
+  const NFT_CREATOR = "4eopmn89uciMvKzGYwkFBMXVpLCjnGda7uWo5uZqQCFF";
   const anchorProvider = useAnchorProvider();
   const toast = useToast();
 
