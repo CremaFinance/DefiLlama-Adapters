@@ -266,7 +266,9 @@ function GovernanceContextProvider(props: {
       rentPayer: undefined,
     });
     await tx.confirm().then(() => {
-      getNftsAction(true, true);
+      setTimeout(() => {
+        getNftsAction(true, true);
+      }, 500);
     });
     return true;
   }
