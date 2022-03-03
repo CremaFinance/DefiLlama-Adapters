@@ -25,12 +25,11 @@ const MNDESubmenuCard = ({
 }: MNDESubmenuCardProps) => {
   return (
     <Flex
-      ml="8px"
-      mr="8px"
-      height={{ base: "347px", md: "216px", xl: "352px" }}
-      width={{ base: "90%", md: "224px", xl: "360px" }}
+      mx={{ base: "0px", lg: "8px" }}
+      height={{ base: "auto", md: "216px", xl: "352px" }}
+      width={{ base: "100%", md: "224px", xl: "360px" }}
       flexDirection="column"
-      padding={{ base: "32px", md: "10px", lg: "32px" }}
+      p={6}
       mb="16px"
       background="white"
       border="1px solid"
@@ -44,10 +43,11 @@ const MNDESubmenuCard = ({
         width="80px"
         height={{ base: "80px", md: "54px", xl: "80px" }}
         src={cardIllustrationPath}
+        pb={4}
       />
       <Text
         marginTop={{ base: "16pxpx", md: "4px", xl: "16px" }}
-        fontSize={{ base: "28.13px", md: "16.13px", xl: "28.13px" }}
+        fontSize={{ base: "22.13px", md: "28.13px" }}
         fontWeight="bold"
         lineHeight="140%"
         color={colors.blackMate}
@@ -56,7 +56,7 @@ const MNDESubmenuCard = ({
       </Text>
       <Text
         marginTop="8px"
-        fontSize={{ base: "18px", md: "12px", xl: "18px" }}
+        fontSize={{ base: "16px", md: "18px" }}
         lineHeight="150%"
         textAlign="center"
         justifyContent="center"
