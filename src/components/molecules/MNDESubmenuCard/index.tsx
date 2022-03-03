@@ -25,8 +25,9 @@ const MNDESubmenuCard = ({
 }: MNDESubmenuCardProps) => {
   return (
     <Flex
-      mx={{ base: "0px", lg: "8px" }}
-      height={{ base: "auto", md: "216px", xl: "352px" }}
+      direction="column"
+      mx={{ base: "0px", md: "8px" }}
+      height={{ base: "auto", md: "348px", xl: "352px" }}
       width={{ base: "100%", md: "224px", xl: "360px" }}
       flexDirection="column"
       p={6}
@@ -35,44 +36,40 @@ const MNDESubmenuCard = ({
       border="1px solid"
       borderColor={colors.lightGray}
       borderRadius="8px"
-      justifyContent="center"
+      justifyContent="space-between"
       alignItems="center"
       zIndex={6}
     >
-      <Image
-        width="80px"
-        height={{ base: "80px", md: "54px", xl: "80px" }}
-        src={cardIllustrationPath}
-        pb={4}
-      />
-      <Text
-        marginTop={{ base: "16px", md: "4px", xl: "16px" }}
-        fontSize={{ base: "18px", md: "28px" }}
-        fontWeight="bold"
-        lineHeight="140%"
-        color={colors.blackMate}
-      >
-        {cardTitle}
-      </Text>
-      <Text
-        marginTop="8px"
-        fontSize={{ base: "16px", md: "18px" }}
-        lineHeight="150%"
-        textAlign="center"
-        justifyContent="center"
-        color={colors.blackMate}
-      >
-        {cardDescription}
-      </Text>
+      <Flex direction="column" alignItems="center">
+        <Image width="80px" height="80px" src={cardIllustrationPath} pb={4} />
+        <Text
+          mt="16px"
+          fontSize={{ base: "18px", xl: "28px" }}
+          fontWeight="bold"
+          lineHeight="140%"
+          color={colors.blackMate}
+        >
+          {cardTitle}
+        </Text>
+
+        <Text
+          marginTop="8px"
+          fontSize={{ base: "16px", xl: "18px" }}
+          lineHeight="150%"
+          textAlign="center"
+          justifyContent="center"
+          color={colors.blackMate}
+        >
+          {cardDescription}
+        </Text>
+      </Flex>
       <Flex marginTop={{ base: "24px", md: "10px", xl: "24px" }} width="100%">
         <MButton
           width="100%"
-          height={{ base: "40px", md: "24px", xl: "40px" }}
+          height="40px"
           variant="big-solid"
-          fontSize={{ base: "16px", sm: "10px", md: "10px", xl: "16px" }}
-          lineHeight="140%"
+          fontSize={{ base: "16px", lg: "16px" }}
           fontWeight="bold"
-          paddingX="44px"
           isDisabled={cardButtonDisabled}
           onClick={() => onClickCardButton && onClickCardButton()}
         >
