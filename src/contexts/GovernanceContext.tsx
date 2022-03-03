@@ -212,10 +212,6 @@ function GovernanceContextProvider(props: {
           type: ActionTypes.LOCKED_MNDE,
           payload: state.lockedMnde,
         });
-        dispatch({
-          type: ActionTypes.FETCH_NFTS,
-          payload: false,
-        });
       });
     }
   }
