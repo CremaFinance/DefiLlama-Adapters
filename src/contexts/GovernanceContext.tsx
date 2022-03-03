@@ -3,6 +3,7 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
+import { useToast } from "@chakra-ui/react";
 import { getParsedNftAccountsByOwner } from "@nfteyez/sol-rayz";
 import { SolanaProvider } from "@saberhq/solana-contrib";
 import {
@@ -27,6 +28,7 @@ import type {
   NftMetadata,
 } from "components/app/LockMNDESection/types";
 import type { NFTType } from "components/molecules/NFTTable";
+import { checkMNDEBalance } from "utils/check-mnde-balance";
 
 import { useAnchorProvider } from "./AnchorContext";
 
@@ -65,7 +67,9 @@ export enum ActionTypes {
 const GovernanceContext = createContext({
   fetchNftsLoading: false,
   fetchNftsLoadingAction: (_boolean: boolean) => {},
-  lockMNDE: async (_amount: string) => {},
+  lockMNDE: async (_amount: string, _balance: string): Promise<boolean> => {
+    return true;
+  },
   resetNftsAction: () => {},
   nfts: [] as NFTType[],
   getNftsAction: (_walletConnected: boolean, _isForced: boolean) => {},
@@ -101,6 +105,7 @@ function GovernanceContextProvider(props: {
   const NFT_KIND = "A6a8qXF7THHDDqBESyXghZgzSJjkjk2v94iAzgY8V9Au";
   const NFT_CREATOR = "HZFGFiLGtZZxrFjG9bnD9FKCYpxnwKwJGAsxbmzjgGNb";
   const anchorProvider = useAnchorProvider();
+  const toast = useToast();
 
   const prov = SolanaProvider.init({
     connection: anchorProvider.connection,
@@ -216,7 +221,13 @@ function GovernanceContextProvider(props: {
     }
   }
 
-  async function lockMNDE(amount: string) {
+  // eslint-disable-next-line consistent-return
+  async function lockMNDE(amount: string, balance: string): Promise<boolean> {
+    const checkBalance = checkMNDEBalance(Number(balance), Number(amount));
+    if (checkBalance) {
+      toast(checkBalance);
+      return false;
+    }
     const nftKind = new PublicKey(NFT_KIND);
     const nftKindWrapper = new SimpleNftKindWrapper(sdk, nftKind);
     const realm = await nftKindWrapper.realm();
@@ -239,6 +250,7 @@ function GovernanceContextProvider(props: {
     await tx.confirm().then(() => {
       getNftsAction(true, true);
     });
+    return true;
   }
 
   return (

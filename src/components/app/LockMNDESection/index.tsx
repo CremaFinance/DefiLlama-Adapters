@@ -1,5 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Flex, Box, IconButton, useDisclosure } from "@chakra-ui/react";
+import {
+  Flex,
+  Box,
+  IconButton,
+  useDisclosure,
+  useToast,
+} from "@chakra-ui/react";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
 import { useContext, useEffect, useState } from "react";
@@ -17,6 +23,7 @@ import StakeInput, {
   StakeInputTypeEnum,
 } from "components/molecules/StakeInput";
 import { GovernanceContext } from "contexts/GovernanceContext";
+import { useTracking } from "hooks/useTracking";
 import { useWallet } from "hooks/useWallet";
 import colors from "styles/customTheme/colors";
 
@@ -28,6 +35,9 @@ const LockMNDESection = () => {
     fetchNftsLoading,
     lockMNDE,
   } = useContext(GovernanceContext);
+  const toast = useToast();
+
+  const { track } = useTracking();
 
   const [MNDEToLock, setMNDEToLock] = useState<string>("");
   const { t } = useTranslation();
@@ -104,6 +114,7 @@ const LockMNDESection = () => {
             width="100%"
             mx={4}
             my={4}
+            isDisabled={Number(MNDEToLock) < 1000}
             onClick={() => {
               onLockMndeOpen();
             }}
@@ -158,8 +169,40 @@ const LockMNDESection = () => {
       <LockMndeModal
         isOpen={isLockMndeOpen}
         onClose={onLockMndeClose}
-        onLockConfirm={async () => {
-          await lockMNDE(MNDEToLock);
+        onLockConfirm={async (): Promise<boolean> => {
+          return lockMNDE(
+            MNDEToLock,
+            ((MNDEBalance ?? 0) / LAMPORTS_PER_SOL ?? 0).toString()
+          ).then(
+            (result) => {
+              return result;
+            },
+            (error) => {
+              let description = error.message;
+              if (error.toString().includes("0xec6")) {
+                description = t("appPage.capped-tvl-is-full");
+              } else if (
+                error.toString().includes("no record of a prior credit")
+              ) {
+                description = t("appPage.missing-sol-for-fee");
+              }
+
+              toast({
+                title: t("appPage.something-went-wrong"),
+                description,
+                status: "warning",
+              });
+
+              track({
+                event: "Lock MNDE Error",
+                category: "Lock MNDE",
+                action: "Lock",
+                label: "Error",
+                description,
+              });
+              return false;
+            }
+          );
         }}
       />
     </Flex>

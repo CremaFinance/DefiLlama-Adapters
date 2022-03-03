@@ -12,6 +12,7 @@ type TrackEvent = {
     | "mSOL Farm"
     | "MSOL-SOL LP Farm"
     | "Retro MNDE CLaim"
+    | "Lock MNDE"
     | "Page Inits";
   action: string;
   label: "Success" | "Error";
