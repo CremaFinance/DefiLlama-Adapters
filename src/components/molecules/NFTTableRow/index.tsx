@@ -1,14 +1,18 @@
 import { Flex, Tr, Td, Image, useMediaQuery } from "@chakra-ui/react";
+import type { PublicKey } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
+import { useContext } from "react";
 
 import MButton from "../../atoms/Button";
 import Countdown from "../../atoms/Countdown";
 import MText from "../../atoms/Text";
+import { GovernanceContext } from "contexts/GovernanceContext";
 import colors from "styles/customTheme/colors";
 
 type NFTTableRowProps = {
   lockedMNDE: number;
   id: string;
+  address: PublicKey;
   thumbnailURL: string;
   lockEndDate?: Date;
   isUnlockEnabled?: boolean;
@@ -19,6 +23,7 @@ type NFTTableRowProps = {
 const NFTTableRow = ({
   lockedMNDE,
   id,
+  address,
   thumbnailURL,
   lockEndDate,
   isUnlockEnabled,
@@ -26,6 +31,7 @@ const NFTTableRow = ({
   isCancelEnabled,
 }: NFTTableRowProps) => {
   const { t } = useTranslation();
+  const { startUnlocking } = useContext(GovernanceContext);
   const [isMobile] = useMediaQuery("(max-width: 425px)");
   return (
     <Tr height="84px">
@@ -80,6 +86,9 @@ const NFTTableRow = ({
                 bg={colors.white}
                 fontWeight="500"
                 fontSize="14.4px"
+                onClick={() => {
+                  startUnlocking(address);
+                }}
               >
                 {isCancelEnabled
                   ? t("appPage.mnde.nft-levels.cancel-unlock")

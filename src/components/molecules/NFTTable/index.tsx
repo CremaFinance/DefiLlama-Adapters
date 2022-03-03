@@ -9,6 +9,7 @@ import {
   Icon,
   useMediaQuery,
 } from "@chakra-ui/react";
+import type { PublicKey } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
 import { useContext, useEffect } from "react";
 import { FiExternalLink } from "react-icons/fi";
@@ -21,6 +22,7 @@ import { useWallet } from "hooks/useWallet";
 import colors from "styles/customTheme/colors";
 
 export type NFTType = {
+  address: PublicKey;
   lockedMNDE: number;
   id: string;
   thumbnailURL: string;
@@ -70,6 +72,7 @@ const NFTTable = () => {
             <NFTTableRow
               key={nft.id}
               id={nft.id}
+              address={nft.address}
               thumbnailURL={nft.thumbnailURL}
               lockedMNDE={nft.lockedMNDE}
               lockEndDate={nft.lockEndDate}

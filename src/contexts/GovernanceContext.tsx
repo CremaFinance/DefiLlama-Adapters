@@ -5,7 +5,7 @@
 
 import { useToast } from "@chakra-ui/react";
 import { getParsedNftAccountsByOwner } from "@nfteyez/sol-rayz";
-import { SolanaProvider } from "@saberhq/solana-contrib";
+import { SolanaProvider, TransactionEnvelope } from "@saberhq/solana-contrib";
 import {
   ASSOCIATED_TOKEN_PROGRAM_ID,
   Token,
@@ -20,6 +20,11 @@ import {
   EscrowWrapper,
   SimpleNftKindWrapper,
 } from "escrow-relocker-sdk";
+import {
+  GaugemeisterWrapper,
+  GaugeVoterWrapper,
+  GaugeVoteWrapper,
+} from "escrow-relocker-sdk/gauges";
 import { createContext, useReducer } from "react";
 import type { ReactNode } from "react";
 
@@ -67,6 +72,7 @@ export enum ActionTypes {
 const GovernanceContext = createContext({
   fetchNftsLoading: false,
   fetchNftsLoadingAction: (_boolean: boolean) => {},
+  startUnlocking: (_nftMint: PublicKey) => {},
   lockMNDE: async (_amount: string, _balance: string): Promise<boolean> => {
     return true;
   },
@@ -180,6 +186,7 @@ function GovernanceContextProvider(props: {
         const escrowData = await escrowWrap.data();
         const amounts = escrowData.amount.toNumber() / LAMPORTS_PER_SOL;
         const nftItem = {
+          address: new PublicKey(nft.mint),
           lockedMNDE: amounts,
           id: escrowData.index.toString(),
           thumbnailURL: metadata?.image,
@@ -252,12 +259,87 @@ function GovernanceContextProvider(props: {
     });
     return true;
   }
+  async function closeGaugeVoter(nftMint: PublicKey, gaugemeister: PublicKey) {
+    const escrow = await EscrowWrapper.address(sdk, nftMint);
+    const escrowWrapper = new EscrowWrapper(sdk, escrow);
+    const escrowData = await escrowWrapper.data();
+
+    const nftToken = await Token.getAssociatedTokenAddress(
+      ASSOCIATED_TOKEN_PROGRAM_ID,
+      TOKEN_PROGRAM_ID,
+      escrowData.nftMint,
+      sdk.provider.wallet.publicKey,
+      true
+    );
+
+    const gaugeVoterWrapper = await GaugeVoterWrapper.new(
+      new GaugemeisterWrapper(sdk, gaugemeister),
+      escrowWrapper
+    );
+
+    let tx = new TransactionEnvelope(sdk.provider, []);
+    if (!(await gaugeVoterWrapper.data()).voteCount.isZero()) {
+      const gauges = await gaugeVoterWrapper.gaugemeister.loadGauges();
+      for (const gauge of gauges) {
+        const gaugeVoteWrapper = await GaugeVoteWrapper.new(
+          gaugeVoterWrapper,
+          gauge
+        );
+        const gaugeVoteData = await gaugeVoteWrapper.tryData();
+        if (gaugeVoteData) {
+          tx = tx.combine(
+            await gaugeVoteWrapper.close({
+              nftToken,
+              resetWeight: !gaugeVoteData.weight.isZero(),
+            })
+          );
+          if (tx.instructions.length >= 10) {
+            const result = await tx.confirm();
+            tx = new TransactionEnvelope(sdk.provider, []);
+          }
+        }
+      }
+    }
+
+    tx = tx.combine(
+      await gaugeVoterWrapper.close({
+        nftToken,
+      })
+    );
+    const result = await tx.confirm();
+  }
+
+  async function startUnlocking(nftMint: PublicKey) {
+    const escrow = await EscrowWrapper.address(sdk, nftMint);
+
+    const escrowWrapper = new EscrowWrapper(sdk, escrow);
+    const escrowData = await escrowWrapper.data();
+
+    const nftToken = await Token.getAssociatedTokenAddress(
+      ASSOCIATED_TOKEN_PROGRAM_ID,
+      TOKEN_PROGRAM_ID,
+      escrowData.nftMint,
+      sdk.provider.wallet.publicKey,
+      true
+    );
+
+    for (const gaugeVoterWrapper of await escrowWrapper.gaugeVoters()) {
+      await closeGaugeVoter(nftMint, gaugeVoterWrapper.gaugemeister.address);
+    }
+    const tx = await escrowWrapper.startUnlocking({
+      nftToken,
+    });
+    await tx.confirm().then(() => {
+      getNftsAction(true, true);
+    });
+  }
 
   return (
     <GovernanceContext.Provider
       value={{
         nfts: state.nfts,
         getNftsAction,
+        startUnlocking,
         fetchNftsLoadingAction,
         lockMNDE,
         resetNftsAction,
