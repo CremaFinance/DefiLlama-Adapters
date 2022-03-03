@@ -46,8 +46,8 @@ const MNDESubmenuCard = ({
         pb={4}
       />
       <Text
-        marginTop={{ base: "16pxpx", md: "4px", xl: "16px" }}
-        fontSize={{ base: "22.13px", md: "28.13px" }}
+        marginTop={{ base: "16px", md: "4px", xl: "16px" }}
+        fontSize={{ base: "18px", md: "28px" }}
         fontWeight="bold"
         lineHeight="140%"
         color={colors.blackMate}

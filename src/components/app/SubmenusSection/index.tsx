@@ -13,7 +13,7 @@ const SubmenusMndeSection = () => {
 
   return (
     <Flex
-      pt={["48px", "72px"]}
+      pt={["56px", "72px"]}
       pb={[12, 8]}
       aria-label="mnde-section"
       position="relative"

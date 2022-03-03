@@ -47,7 +47,7 @@ const MNDELockStep = ({
             marginTop="8px"
             fontSize={{ base: "14px", md: "18px" }}
             fontWeight="bold"
-            lineHeight="25.2px"
+            lineHeight="16px"
             textAlign="center"
             color={stepLinkEnabled ? colors.marinadeGreen : colors.blackMate}
           >
