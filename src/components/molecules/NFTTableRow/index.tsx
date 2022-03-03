@@ -31,7 +31,7 @@ const NFTTableRow = ({
   isCancelEnabled,
 }: NFTTableRowProps) => {
   const { t } = useTranslation();
-  const { startUnlocking } = useContext(GovernanceContext);
+  const { startUnlocking, claimMNDE } = useContext(GovernanceContext);
   const [isMobile] = useMediaQuery("(max-width: 425px)");
   return (
     <Tr height="84px">
@@ -118,9 +118,14 @@ const NFTTableRow = ({
                 bg={colors.white}
                 fontWeight="500"
                 fontSize="14.4px"
+                onClick={() => {
+                  if (lockEndDate.getTime() - new Date().getTime() < 0) {
+                    claimMNDE(address);
+                  }
+                }}
                 isDisabled={lockEndDate.getTime() - new Date().getTime() > 0}
               >
-                {lockEndDate.getTime() - new Date().getTime() <= 0
+                {lockEndDate.getTime() - new Date().getTime() < 0
                   ? t("appPage.mnde.nft-levels.claim")
                   : t("appPage.mnde.nft-levels.delayed-claim")}
                 {lockEndDate.getTime() - new Date().getTime() > 0 ? (
