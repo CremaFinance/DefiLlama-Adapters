@@ -11,14 +11,14 @@ import { useTranslation } from "hooks/useTranslation";
 import colors from "styles/customTheme/colors";
 
 interface NftDetailsSectionProps {
-  dataUri: string;
+  id: string;
 }
 
 const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
-  dataUri,
+  id,
 }) => {
   const { t } = useTranslation();
-  const { data } = useNftDetails(dataUri as string);
+  const { data } = useNftDetails(id as string);
 
   return (
     <Flex

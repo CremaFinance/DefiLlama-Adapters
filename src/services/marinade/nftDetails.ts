@@ -10,12 +10,15 @@ export interface NftData {
   };
 }
 
+const metadataApi = "https://marinade-nft.beta.live/metadata";
+
 export const fetchNftData = async ({
   queryKey,
 }: {
   queryKey: string[];
 }): Promise<NftData> => {
-  const [, dataUri] = queryKey;
-  const response = await fetch(dataUri);
+  const [, id] = queryKey;
+  const response = await fetch(`${metadataApi}/${id}`);
+  if (!response.ok) throw new Error();
   return response.json();
 };

@@ -14,15 +14,21 @@ const NftDetails = () => {
   const router = useRouter();
   const { t } = useTranslation();
 
-  const { dataUri } = router.query;
+  const { pid } = router.query;
 
-  const { data } = useNftDetails(dataUri as string);
+  const { data, isError, isLoading } = useNftDetails(pid as string);
+
+  if (isError) {
+    router.push("/404");
+    return null;
+  }
 
   const breadcrumbItems: BreadcrumbItem[] = [
     { title: "MNDE", link: "/app/mnde" },
     { title: t("mndePage.breadcrumbs.lock") || "", link: "/app/mnde/lock" },
     { title: data?.name || "", link: "" },
   ];
+
   return (
     <Flex
       position="relative"
@@ -33,7 +39,7 @@ const NftDetails = () => {
     >
       <Header />
       <BreadcrumbWithRouter breadcrumbItems={breadcrumbItems} />
-      <NftDetailsSection dataUri={dataUri as string} />
+      {!isLoading && <NftDetailsSection id={pid as string} />}
       <Footer />
     </Flex>
   );

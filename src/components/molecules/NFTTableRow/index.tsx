@@ -49,12 +49,7 @@ const NFTTableRow: FunctionComponent<NFTTableRowProps> = ({
         <Flex
           cursor="pointer"
           flexDirection="column"
-          onClick={() =>
-            router.push({
-              pathname: `lock/${id}`,
-              query: { dataUri },
-            })
-          }
+          onClick={() => router.push(`lock/${id}`)}
         >
           <Image src={thumbnailURL} width="48px" />
           <MText

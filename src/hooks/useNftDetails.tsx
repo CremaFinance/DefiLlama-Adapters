@@ -4,9 +4,9 @@ import { useQuery } from "react-query";
 import type { NftData } from "services/marinade/nftDetails";
 import { fetchNftData } from "services/marinade/nftDetails";
 
-export const useNftDetails = (dataUri: string) => {
-  return useQuery(
-    ["datauri", dataUri as string],
-    fetchNftData
-  ) as UseQueryResult<NftData, Error>;
+export const useNftDetails = (id: string) => {
+  return useQuery(["datauri", id as string], fetchNftData) as UseQueryResult<
+    NftData,
+    Error
+  >;
 };
