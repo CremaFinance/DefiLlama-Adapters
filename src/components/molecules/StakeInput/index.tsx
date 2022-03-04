@@ -209,7 +209,7 @@ const StakeInput = ({
       <Flex justifyContent="space-between">
         {!isWalletConnected ? (
           <StakeInputButton component="Button" tokenIcon={tokenIcon}>
-            <MText fontWeight="400">{solTranslation}</MText>
+            <MText fontWeight="400">{tokenName}</MText>
           </StakeInputButton>
         ) : null}
         {isWalletConnected && !isInputWithStakeAccounts ? (
@@ -241,7 +241,7 @@ const StakeInput = ({
                 stakeAccounts.length ? "/icons/expand-more-black.svg" : ""
               }
             >
-              <MText fontWeight="400">{solTranslation}</MText>
+              <MText fontWeight="400">{tokenName}</MText>
             </StakeInputButton>
 
             <MenuList
