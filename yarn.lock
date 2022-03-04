@@ -2635,6 +2635,18 @@
   resolved "https://registry.yarnpkg.com/@ledgerhq/logs/-/logs-6.10.0.tgz#c012c1ecc1a0e53d50e6af381618dca5268461c1"
   integrity sha512-lLseUPEhSFUXYTKj6q7s2O3s2vW2ebgA11vMAlKodXGf5AFw4zUoEbTz9CoFOC9jS6xY4Qr8BmRnxP/odT4Uuw==
 
+"@marinade-finance/escrow-relocker-sdk@file:./marinade-finance-escrow-relocker-sdk-v0.6.0.tgz":
+  version "0.6.0"
+  resolved "file:./marinade-finance-escrow-relocker-sdk-v0.6.0.tgz#22a27fe48ac2d828aad51df59fb320aee125cd8b"
+  dependencies:
+    "@metaplex-foundation/mpl-token-metadata" "^1.2.0"
+    "@project-serum/anchor" "^0.22.0"
+    "@saberhq/anchor-contrib" "^1.12.45"
+    "@saberhq/token-utils" "^1.12.45"
+    "@solana/spl-token" "^0.1.8"
+    bn.js "^5.2.0"
+    object-hash "^2.2.0"
+
 "@mdx-js/loader@^1.6.22":
   version "1.6.22"
   resolved "https://registry.yarnpkg.com/@mdx-js/loader/-/loader-1.6.22.tgz#d9e8fe7f8185ff13c9c8639c048b123e30d322c4"
@@ -8680,18 +8692,6 @@ escodegen@^2.0.0:
     optionator "^0.8.1"
   optionalDependencies:
     source-map "~0.6.1"
-
-"escrow-relocker-sdk@file:./escrow-relocker-sdk-v0.5.0.tgz":
-  version "0.5.0"
-  resolved "file:./escrow-relocker-sdk-v0.5.0.tgz#a50b7a468f64b4398b6c3c010ddbe08e6781b6d9"
-  dependencies:
-    "@metaplex-foundation/mpl-token-metadata" "^1.2.0"
-    "@project-serum/anchor" "^0.22.0"
-    "@saberhq/anchor-contrib" "^1.12.45"
-    "@saberhq/token-utils" "^1.12.45"
-    "@solana/spl-token" "^0.1.8"
-    bn.js "^5.2.0"
-    object-hash "^2.2.0"
 
 eslint-config-airbnb-base@^15.0.0:
   version "15.0.0"
