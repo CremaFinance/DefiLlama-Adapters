@@ -413,6 +413,7 @@ const StakeInput = ({
                 )}`}
           </MText>
           {tokenBalance &&
+          isWalletConnected &&
           !isStakeAccountSelected &&
           stakeInputType !== StakeInputTypeEnum.Target ? (
             <MButton
