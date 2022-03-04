@@ -941,7 +941,7 @@
         "tooltip": "Your NFT contains [total] locked MNDE tokens. Sending this NFT to another wallet will also send these tokens. "
       },
       "cooldown-period": {
-        "text": "Cooldown peiod",
+        "text": "Unlock period",
         "tooltip": "Upon the completion of the 30-day MNDE unlocking period, this NFT will be burned."
       },
       "share-twitter": "Share on twitter",
