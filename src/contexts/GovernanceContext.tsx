@@ -268,7 +268,7 @@ function GovernanceContextProvider(props: {
     await tx.confirm().then(() => {
       setTimeout(() => {
         getNftsAction(true, true);
-      }, 500);
+      }, 1000);
     });
     return true;
   }
