@@ -97,33 +97,36 @@ const LockMNDESection = () => {
           tokenBalance={(MNDEBalance ?? 0) / LAMPORTS_PER_SOL}
           mb={2}
         />
-        <NFTLevels
-          input={MNDEToLock}
-          balance={(MNDEBalance ?? 0) / LAMPORTS_PER_SOL}
-          onLevelClick={handleLevelSelected}
-        />
+
         {isWalletConnected ? (
-          <MButton
-            font="text-xl"
-            bg={colors.marinadeGreen}
-            _hover={{ bg: colors.green800 }}
-            colorScheme={colors.marinadeGreen}
-            rounded="md"
-            px={4}
-            height="40px"
-            width="100%"
-            mx={4}
-            my={4}
-            isDisabled={
-              Number(MNDEToLock) < 1000 ||
-              Number(MNDEToLock) > (MNDEBalance ?? 0) / LAMPORTS_PER_SOL
-            }
-            onClick={() => {
-              onLockMndeOpen();
-            }}
-          >
-            {t("appPage.mnde.lock-button")}
-          </MButton>
+          <>
+            <NFTLevels
+              input={MNDEToLock}
+              balance={(MNDEBalance ?? 0) / LAMPORTS_PER_SOL}
+              onLevelClick={handleLevelSelected}
+            />
+            <MButton
+              font="text-xl"
+              bg={colors.marinadeGreen}
+              _hover={{ bg: colors.green800 }}
+              colorScheme={colors.marinadeGreen}
+              rounded="md"
+              px={4}
+              height="40px"
+              width="100%"
+              mx={4}
+              my={4}
+              isDisabled={
+                Number(MNDEToLock) < 1000 ||
+                Number(MNDEToLock) > (MNDEBalance ?? 0) / LAMPORTS_PER_SOL
+              }
+              onClick={() => {
+                onLockMndeOpen();
+              }}
+            >
+              {t("appPage.mnde.lock-button")}
+            </MButton>
+          </>
         ) : (
           <Box my={4} width="100%">
             <ConnectWallet props={{ width: "100%" }} />
