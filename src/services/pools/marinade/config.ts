@@ -1,17 +1,15 @@
 import { coinSymbols } from "../../domain/coinSymbols";
 import { marketTypes } from "../../domain/marketTypes";
-import { PoolConfig } from "../../domain/pool";
+import type { PoolConfig } from "../../domain/pool";
+import MarinadePoolRowExtension from "components/molecules/MarinadePoolRowExtension";
+import MsolSolLPRowExtension from "components/molecules/MsolSolLPRowExtension";
 
-import {
-  LiquidityMarinadePoolAddress,
-  liquidityMarinadePoolAddress,
-} from "./liquidityMarinadePoolAddress";
-import {
-  LiquidityPoolMarinadeIds,
-  liquidityPoolMarinadeIds,
-} from "./liquidityMarinadePoolIds";
+import type { LiquidityMarinadePoolAddress } from "./liquidityMarinadePoolAddress";
+import { liquidityMarinadePoolAddress } from "./liquidityMarinadePoolAddress";
+import type { LiquidityPoolMarinadeIds } from "./liquidityMarinadePoolIds";
+import { liquidityPoolMarinadeIds } from "./liquidityMarinadePoolIds";
 import { liquidityPoolTokensMarinade } from "./liquidityMarinadePoolTokens";
-import { MarinadePool } from "./marinadePool";
+import type { MarinadePool } from "./marinadePool";
 
 const provider = "Marinade";
 const actions = [
@@ -45,6 +43,34 @@ export const marinadePools: Record<LiquidityMarinadePoolAddress, PoolConfig> = {
         },
       },
       actions,
+      componentAction: "mSOLSOLLiquidityModal",
     },
+  },
+  [liquidityMarinadePoolAddress.MSOL_FARM]: {
+    ...liquidityPoolTokensMarinade[liquidityMarinadePoolAddress.MSOL_FARM],
+    ...{
+      provider,
+      marketType: marketTypes.LP,
+      providerId: liquidityPoolMarinadeIds.MSOL_FARM,
+      tokenA: coinSymbols.mSOL,
+      actions,
+      RowExtensionComponent: MarinadePoolRowExtension,
+      componentAction: "mSOLStakeModal",
+    },
+  },
+  [liquidityMarinadePoolAddress.MNDE_mSOL_SOL_LP_FARM]: {
+    ...liquidityPoolTokensMarinade[
+      liquidityMarinadePoolAddress.MNDE_mSOL_SOL_LP_FARM
+    ],
+    ...{
+      provider,
+      marketType: marketTypes.LP,
+      providerId: liquidityPoolMarinadeIds.MNDE_mSOL_SOL_LP_FARM,
+      tokenA: coinSymbols.mSOL,
+      tokenB: coinSymbols.SOL,
+      actions,
+    },
+    RowExtensionComponent: MsolSolLPRowExtension,
+    componentAction: "mSolSolLPFarmModal",
   },
 };

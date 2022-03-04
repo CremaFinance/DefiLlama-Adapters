@@ -11,7 +11,7 @@ import {
 import { BN } from "@project-serum/anchor";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useContext } from "react";
 import { IoCheckmarkCircle } from "react-icons/io5";
 
 import { useWallet } from "../../../hooks/useWallet";
@@ -20,7 +20,9 @@ import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
 import { ConnectWallet } from "../../molecules/ConnectWallet";
 import MSolLpModal from "components/molecules/MSolLpModal";
+import PendingStakeModal from "components/molecules/PendingStakeModal";
 import TransactionLink from "components/molecules/TransactionLink";
+import { AccountsContext } from "contexts/AccountsContext";
 import { useChain } from "contexts/ConnectionProvider";
 import { useQuarryProvider } from "contexts/QuaryContext";
 import { useStats } from "contexts/StatsContext";
@@ -40,7 +42,13 @@ const MSolLPCard = () => {
   const { track } = useTracking();
   const { connected } = useWallet();
   const stats = useStats();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { transactionSigned, transactionSignedAction } =
+    useContext(AccountsContext);
+  const { isOpen, onOpen, onClose } = useDisclosure({
+    onClose: () => {
+      transactionSignedAction(false);
+    },
+  });
 
   const {
     mndeTokadaptState,
@@ -102,11 +110,21 @@ const MSolLPCard = () => {
     return () => clearTimeout(clock);
   }, []);
 
+  const [isLoading, setIsLoading] = useState(false);
+  const triggerTransactionModal = (value: boolean) => {
+    if (!value) {
+      setIsLoading(false);
+      transactionSignedAction(false);
+    } else {
+      setIsLoading(true);
+    }
+  };
   const [isClaimProcessing, setIsClaimProcessing] = useState(false);
 
   // eslint-disable-next-line consistent-return
   const claimHandler = useCallback(() => {
     setIsClaimProcessing(true);
+    setIsLoading(true);
     mLP
       ?.claim()
       .then(
@@ -151,8 +169,10 @@ const MSolLPCard = () => {
       )
       .finally(() => {
         setIsClaimProcessing(false);
+        setIsLoading(false);
+        transactionSignedAction(false);
       });
-  }, [chain.name, mLP, t, toast, track]);
+  }, [chain.name, mLP, t, toast, track, transactionSignedAction]);
 
   return (
     <Flex
@@ -271,8 +291,17 @@ const MSolLPCard = () => {
         <ConnectWallet />
       )}
       {isOpen ? (
-        <MSolLpModal isOpenProp={isOpen} onCloseProp={onClose} />
+        <MSolLpModal
+          isOpenProp={isOpen}
+          onCloseProp={onClose}
+          triggerTransactionModal={triggerTransactionModal}
+        />
       ) : null}
+      <PendingStakeModal
+        isTransactionSigned={transactionSigned}
+        isOpen={isLoading}
+        onClose={onClose}
+      />
     </Flex>
   );
 };

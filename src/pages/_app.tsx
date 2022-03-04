@@ -1,4 +1,4 @@
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, ColorModeScript, LightMode } from "@chakra-ui/react";
 import type { EmotionCache } from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
 import { DefaultSeo } from "next-seo";
@@ -76,6 +76,11 @@ const MyApp = ({
           `,
           }}
         />
+        {/* https://chakra-ui.com/docs/features/color-mode#for-nextjs */}
+        <ColorModeScript
+          initialColorMode={customTheme.config.initialColorMode}
+        />
+
         <DefaultSeo {...defaultSEOConfig} />
 
         <QueryClientProvider client={queryClient}>
@@ -88,9 +93,11 @@ const MyApp = ({
                     <QuarryProvider>
                       <StatsProvider>
                         <UserBalanceProvider>
-                          <Layout>
-                            <Component {...pageProps} />
-                          </Layout>
+                          <LightMode>
+                            <Layout>
+                              <Component {...pageProps} />
+                            </Layout>
+                          </LightMode>
                         </UserBalanceProvider>
                       </StatsProvider>
                     </QuarryProvider>

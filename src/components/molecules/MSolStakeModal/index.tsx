@@ -13,6 +13,7 @@ import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
 import { useRouter } from "next/dist/client/router";
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 import { useChain } from "../../../contexts/ConnectionProvider";
 import { useMarinade } from "../../../contexts/MarinadeContext";
@@ -30,6 +31,7 @@ import TransactionLink from "../TransactionLink";
 
 interface MSolStakeModalProps {
   onClose: () => Promise<void> | void;
+  triggerTransactionModal: (value: boolean) => void;
   isOpen: boolean;
 }
 
@@ -37,6 +39,7 @@ interface MSolStakeModalProps {
 const MSolStakeModal = ({
   onClose: onCloseProp,
   isOpen: isOpenProp,
+  triggerTransactionModal,
 }: MSolStakeModalProps) => {
   const { t } = useTranslation();
   const toast = useToast();
@@ -87,6 +90,7 @@ const MSolStakeModal = ({
     }
 
     setLoading(true);
+    triggerTransactionModal(true);
 
     mSOL
       .stake(amount)
@@ -111,11 +115,18 @@ const MSolStakeModal = ({
             category: "mSOL Farm",
             action: "Add",
             label: "Success",
+            sol_amount: Number(amount),
+            transaction_id: uuidv4(),
+            currency: "USD",
           });
         },
         (error) => {
           // eslint-disable-next-line no-console
           console.error(error);
+
+          if (error.toString().includes("Failed to sign transaction")) {
+            return;
+          }
 
           toast({
             title: t("appPage.something-went-wrong"),
@@ -133,7 +144,10 @@ const MSolStakeModal = ({
           });
         }
       )
-      .finally(() => setLoading(false));
+      .finally(() => {
+        setLoading(false);
+        triggerTransactionModal(false);
+      });
   };
 
   // eslint-disable-next-line consistent-return
@@ -173,6 +187,7 @@ const MSolStakeModal = ({
     }
 
     setLoading(true);
+    triggerTransactionModal(true);
 
     mSOL
       .withdraw(amount)
@@ -205,6 +220,10 @@ const MSolStakeModal = ({
           // eslint-disable-next-line no-console
           console.error(error);
 
+          if (error.toString().includes("Failed to sign transaction")) {
+            return;
+          }
+
           toast({
             title: t("appPage.something-went-wrong"),
             description: error.toString().includes("0xa7")
@@ -221,7 +240,10 @@ const MSolStakeModal = ({
           });
         }
       )
-      .finally(() => setLoading(false));
+      .finally(() => {
+        setLoading(false);
+        triggerTransactionModal(false);
+      });
   };
 
   return (
@@ -270,7 +292,6 @@ const MSolStakeModal = ({
           <Flex justifyContent="center">
             {isDepositActive ? (
               <Button
-                font="text-xl"
                 bg={colors.marinadeGreen}
                 isLoading={loading}
                 _hover={{ bg: colors.green800 }}
@@ -292,7 +313,6 @@ const MSolStakeModal = ({
               </Button>
             ) : (
               <Button
-                font="text-xl"
                 bg={colors.marinadeGreen}
                 isLoading={loading}
                 _hover={{ bg: colors.green800 }}

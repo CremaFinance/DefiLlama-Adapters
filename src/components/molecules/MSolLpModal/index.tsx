@@ -16,6 +16,7 @@ import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import BN from "bn.js";
 import { useTranslation } from "next-export-i18n";
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 import StakeInput, { StakeInputTypeEnum } from "../StakeInput";
 import SwitchButtons from "../SwitchButtons";
@@ -34,11 +35,16 @@ import { format2Dec, format5Dec } from "utils/number-to-short-version";
 
 interface Props {
   onCloseProp: () => Promise<void> | void;
+  triggerTransactionModal: (value: boolean) => void;
   isOpenProp: boolean;
 }
 
 // eslint-disable-next-line complexity
-const MSolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
+const MSolLpModal = ({
+  isOpenProp,
+  onCloseProp,
+  triggerTransactionModal,
+}: Props) => {
   const { t } = useTranslation();
   const toast = useToast();
   const { track } = useTracking();
@@ -93,6 +99,7 @@ const MSolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
     }
 
     setLoading(true);
+    triggerTransactionModal(true);
 
     return mLP
       ?.stake(amount)
@@ -117,6 +124,9 @@ const MSolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
             category: trackCategory,
             action: "Add",
             label: "Success",
+            sol_amount: Number(amount),
+            transaction_id: uuidv4(),
+            currency: "USD",
           });
         },
         (error) => {
@@ -134,7 +144,10 @@ const MSolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
           });
         }
       )
-      .finally(() => setLoading(false));
+      .finally(() => {
+        setLoading(false);
+        triggerTransactionModal(false);
+      });
   };
 
   const withdrawDepositHandler = () => {
@@ -176,6 +189,7 @@ const MSolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
       return false;
     }
     setLoading(true);
+    triggerTransactionModal(true);
 
     return mLP
       .withdraw(amount)
@@ -224,7 +238,10 @@ const MSolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
           });
         }
       )
-      .finally(() => setLoading(false));
+      .finally(() => {
+        setLoading(false);
+        triggerTransactionModal(false);
+      });
   };
 
   return (
@@ -302,7 +319,6 @@ const MSolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
           <Flex justifyContent="center">
             {isDepostActive ? (
               <Button
-                font="text-xl"
                 bg={colors.marinadeGreen}
                 isLoading={loading}
                 _hover={{ bg: colors.green800 }}
@@ -318,7 +334,6 @@ const MSolLpModal = ({ isOpenProp, onCloseProp }: Props) => {
               </Button>
             ) : (
               <Button
-                font="text-xl"
                 bg={colors.marinadeGreen}
                 isLoading={loading}
                 _hover={{ bg: colors.green800 }}

@@ -1,4 +1,4 @@
-import { Providers } from "../domain/providers";
+import type { Providers } from "../domain/providers";
 
 import { aldrin } from "./aldrin";
 import { atrix } from "./atrix";

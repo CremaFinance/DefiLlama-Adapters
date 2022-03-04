@@ -186,13 +186,16 @@
     "stake-menu-item": "Stake",
     "defi-menu-item": "DeFi",
     "mnde-menu-item": "MNDE",
+    "wallet": "Wallet",
     "connect-wallet": "Connect wallet",
     "wallet-missing": "Please click here to install official {{wallet}} extension",
     "disconnect-wallet": "Disconnect",
     "disconnect-wallet-title": "Disconnected from wallet",
     "disconnect-wallet-description": "You've successfully disconnected from your wallet",
+    "ledger-blind-signing": "If you're using Ledger, make sure the Solana app is open and you have blind signing enabled. More details ",
     "pool-row": {
       "total-apy": "{{totalApy}} % APY",
+      "total-apr": "{{totalApr}} % APR",
       "buttons": {
         "addLiquidy": "Add liquidity",
         "supply": "Supply",
@@ -217,7 +220,7 @@
       "conversion-explained": "You will receive",
       "description-add-liqidity": "You are adding liquidity only in SOL. When removing liquidity, you will burn shares from the liquidity pool. You will receive SOL and mSOL from the pool according to the actual pool composition.",
       "description-remove-liqidity": "You will burn shares from the liquidity pool. You will receive SOL and mSOL from the pool according to the actual pool composition.",
-      "pool": "mSOL - SOL LP"
+      "pool": "mSOL - SOL LP Balance"
     },
     "all-pools-section": {
       "pair": "Pair",
@@ -256,10 +259,6 @@
     "info-apy-tooltip-link-text": "See stats",
     "info-validators-tooltip": "Stake is only delegated to validators that are not part of the security group to secure the network and help with its decentralization. Marinade’s algorithm evaluates all validators and selects the top-performers.",
     "info-validators-tooltip-docs-link": "https://docs.marinade.finance/marinade-protocol/validators",
-
-    "footer-join-us": "Join us",
-    "footer-learn-more": "Learn more",
-
     "stake-inputs-title": "Stake Solana",
     "stake-inputs-subtitle": "Stake SOL and use mSOL while earning rewards",
     "stake-inputs-balance": "Balance",
@@ -281,10 +280,26 @@
     "balance": "Balance",
     "max": "Max",
     "conversion-explained": "You will receive",
-    "unstake-cooldown-description": "You're starting the unstaking process, Marinade must unstake SOL and wait for the cool-down period. This action is irreversible, cannot be canceled or undone and you must wait the cool-down period to get your SOL. Approximately on",
-    "you-will-be-able-to-claim": "*, you'll be able to claim at least ≈",
-    "approximate-unstake-time-explanation": "*Solana can add more delay to the unstake based on total unstaking in the epoch. The time is approximate. Even if you have to wait another epoch, your funds are secure and your ticket will be valid and has no expiry time",
-    "delayed-agree-text": "By clicking on \"Start delayed unstake\" button you understand and agree with the above.",
+    "delayed-unstake-modal": {
+      "description": "By clicking \"Start delayed unstake\" you are initiating the unstaking process. However, this is a two-step process that requires you to return to the app at a later time.",
+      "items": [
+        {
+          "title": "1. Click on \"Start delayed unstake.\"",
+          "description": "This action is irreversible. Marinade will initiate the cool-down period until the completion of the next Solana epoch. On *Approximately {{time}}* you will be able to claim at least ≈ {{amount}} SOL."
+        },
+        {
+          "title": "2. Return to the Stake page in Marinade app after {{time}}* to claim the SOL back to your wallet.",
+          "description": "Until then, your funds are secure and there is no expiration date."
+        },
+        {
+          "description": "By clicking on the \"Start delayed unstake\" button you understand and agree with the process above."
+        },
+        {
+          "description": "* This time is local, approximate and is subject to additional delay by Solana that postpones the unstaking of your SOL until the following epoch (48-72 hours later)."
+        }
+      ]
+    },
+    "unstake-cooldown-description": "By clicking \"Start delayed unstake\" you are initiating the unstaking process. However, this is a two-step process that requires you to return to the app at a later time.",
     "successfully-unstake-mSOL": "You've successfully unstaked your mSOL",
     "unstake-mSOL-confirmed": "Unstake mSOL confirmed",
     "stake-dropdown-wallet-balance": "Wallet balance",
@@ -301,10 +316,18 @@
       "errorBody": "Address was not copied"
     },
     "success-stake": {
-      "title": "Liquid Staking Confirmed",
+      "title": "Liquid staking confirmed",
       "body-line1": "Ready to keep going? Explore ways to earn even more with your new mSOL!",
       "body-line2-after": " received",
       "button": "Use {{stakedCurrency}} in DeFi"
+    },
+    "awaiting-transaction-approval": {
+      "title": "Approve your transaction",
+      "body-line": "Please confirm the transaction directly in your wallet."
+    },
+    "awaiting-transaction-confirmation": {
+      "title": "Transaction sent",
+      "body-line": "Please wait until your transaction is confirmed on the blockchain."
     },
     "defi-subtitle": {
       "header": "Participate in DeFi",
@@ -407,7 +430,6 @@
 
     "tickets-accounts": "Ticket accounts",
     "sol": "SOL",
-    "sol-stake-account": "SOL (stake account)",
     "wrapped-sol": "Wrapped SOL",
     "claim-action": "Claim",
     "copy-success-title": "Address copied",
@@ -503,7 +525,7 @@
         "secondary": "Leave the app"
       }
     },
-    "exchange-rate-tooltip": "mSOL/SOL price increases every epoch because staking rewards are accumulated into the SOL staked pool. Therefore, the ratio is not 1:1. This ratio only goes up with time.",
+    "exchange-rate-tooltip": "SOL/mSOL exchange rate is determined by a formula: Marinade’s SOL staked / current mSOL supply. Because staked SOL is earning yield, it grows in size vs. mSOL over time. When you swap mSOL back to SOL, you receive more SOL than you staked/swapped before.",
     "deposit-fee-tooltip": "There is 0% fee for staking your SOL and receiving mSOL.",
     "unstake-fee-tooltip": "The unstake fee varies between 0.3% and 3% depending on how much liquidity is in the pool and how big amount you're unstaking.",
     "projected-apy-tooltip": "The projected Annual Percentage Yield (APY) of holding mSOL for 1 year.",

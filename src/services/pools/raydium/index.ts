@@ -1,9 +1,9 @@
 import { updatePoolRewards } from "../../../utils/update-pool-rewards";
-import { Prices } from "../../domain/coinSymbols";
-import { Pool } from "../../domain/pool";
+import type { Prices } from "../../domain/coinSymbols";
+import type { Pool } from "../../domain/pool";
 
 import { raydiumPools } from "./config";
-import { RaydiumPoolsResponse } from "./raydiumPool";
+import type { RaydiumPoolsResponse } from "./raydiumPool";
 
 export async function fetchRaydiumPools(): Promise<RaydiumPoolsResponse> {
   const response = await fetch(`https://api.raydium.io/pairs`);

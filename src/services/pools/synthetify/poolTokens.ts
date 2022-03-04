@@ -1,6 +1,7 @@
-import { TokenRecord } from "../../domain/token";
+import type { TokenRecord } from "../../domain/token";
 
-import { synthetifyPoolAddress, SynthetifyPoolAddress } from "./poolAddress";
+import type { SynthetifyPoolAddress } from "./poolAddress";
+import { synthetifyPoolAddress } from "./poolAddress";
 
 export const synthetifyPoolTokens: TokenRecord<SynthetifyPoolAddress> = {
   [synthetifyPoolAddress.SNY_mSOL]: {

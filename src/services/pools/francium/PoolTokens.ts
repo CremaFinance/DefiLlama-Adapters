@@ -1,11 +1,7 @@
-import { Token } from "../../domain/token";
+import type { Token } from "../../domain/token";
 
-import {
-  farmPoolAddress,
-  FarmPoolAddress,
-  lendingPoolAddress,
-  LendingPoolAddress,
-} from "./PoolAddress";
+import type { FarmPoolAddress, LendingPoolAddress } from "./PoolAddress";
+import { farmPoolAddress, lendingPoolAddress } from "./PoolAddress";
 
 const logoURI = "/pools/francium.png";
 

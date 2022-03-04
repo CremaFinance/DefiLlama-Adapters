@@ -1,9 +1,7 @@
-import { Token } from "../../domain/token";
+import type { Token } from "../../domain/token";
 
-import {
-  lendingPortPoolAddress,
-  LendingPortPoolAddress,
-} from "./lendingPortPoolAddress";
+import type { LendingPortPoolAddress } from "./lendingPortPoolAddress";
+import { lendingPortPoolAddress } from "./lendingPortPoolAddress";
 
 export const lendingPortPoolTokens: Record<LendingPortPoolAddress, Token> = {
   [lendingPortPoolAddress.PORT_mSOL]: {

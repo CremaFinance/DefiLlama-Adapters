@@ -1,16 +1,12 @@
 import { coinSymbols } from "../../domain/coinSymbols";
 import { marketTypes } from "../../domain/marketTypes";
-import { PoolConfig } from "../../domain/pool";
+import type { PoolConfig } from "../../domain/pool";
 
-import { LarixPool } from "./larixPool";
-import {
-  lendingLarixPoolAddress,
-  LendingLarixPoolAddress,
-} from "./lendingLarixPoolAddress";
-import {
-  lendingLarixPoolIds,
-  LendingLarixPoolIds,
-} from "./lendingLarixPoolIds";
+import type { LarixPool } from "./larixPool";
+import type { LendingLarixPoolAddress } from "./lendingLarixPoolAddress";
+import { lendingLarixPoolAddress } from "./lendingLarixPoolAddress";
+import type { LendingLarixPoolIds } from "./lendingLarixPoolIds";
+import { lendingLarixPoolIds } from "./lendingLarixPoolIds";
 import { lendingLarixPoolTokens } from "./lendingLarixPoolTokens";
 
 const provider = "Larix";
