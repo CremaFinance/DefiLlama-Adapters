@@ -45,61 +45,63 @@ const NFTTable = () => {
 
   return (
     <Flex width="100%" pt={8} flexDirection="column">
-      <Table variant="simple">
-        {!isMobile ? (
-          <Thead>
+      {nfts.length ? (
+        <Table variant="simple">
+          {!isMobile ? (
+            <Thead>
+              <Tr>
+                <Td pl={0} px="0">
+                  <MText
+                    fontSize="14.4px"
+                    fontWeight="bold"
+                    textAlign="left"
+                    width="102px"
+                  >
+                    {t("appPage.mnde.nft-levels.nft-header")}
+                  </MText>
+                </Td>
+                <Td isNumeric px="0">
+                  <MText fontSize="14.4px" fontWeight="bold" textAlign="left">
+                    {t("appPage.mnde.nft-levels.locked-mnde-header")}
+                  </MText>
+                </Td>
+              </Tr>
+            </Thead>
+          ) : undefined}
+          <Tbody>
+            {nfts.map((nft) => (
+              <NFTTableRow
+                key={nft.id}
+                id={nft.id}
+                address={nft.address}
+                thumbnailURL={nft.thumbnailURL}
+                lockedMNDE={nft.lockedMNDE}
+                lockEndDate={nft.lockEndDate}
+                isClaimEnabled={nft.lockEndDate !== undefined}
+                isCancelEnabled={nft.lockEndDate !== undefined}
+                isUnlockEnabled={nft.lockEndDate === undefined}
+              />
+            ))}
             <Tr>
-              <Td pl={0} px="0">
-                <MText
-                  fontSize="14.4px"
-                  fontWeight="bold"
-                  textAlign="left"
-                  width="102px"
-                >
-                  {t("appPage.mnde.nft-levels.nft-header")}
+              <Td px="0">
+                <MText fontSize="14.4px" fontWeight="bold" textAlign="left">
+                  {t("appPage.mnde.nft-levels.total-locked")}
                 </MText>
               </Td>
               <Td isNumeric px="0">
-                <MText fontSize="14.4px" fontWeight="bold" textAlign="left">
-                  {t("appPage.mnde.nft-levels.locked-mnde-header")}
+                <MText
+                  pl={4}
+                  fontSize="14.4px"
+                  fontWeight="bold"
+                  textAlign={isMobile ? "right" : "left"}
+                >
+                  {lockedMnde ? `${lockedMnde} MNDE` : "-"}
                 </MText>
               </Td>
             </Tr>
-          </Thead>
-        ) : undefined}
-        <Tbody>
-          {nfts.map((nft) => (
-            <NFTTableRow
-              key={nft.id}
-              id={nft.id}
-              address={nft.address}
-              thumbnailURL={nft.thumbnailURL}
-              lockedMNDE={nft.lockedMNDE}
-              lockEndDate={nft.lockEndDate}
-              isClaimEnabled={nft.lockEndDate !== undefined}
-              isCancelEnabled={nft.lockEndDate !== undefined}
-              isUnlockEnabled={nft.lockEndDate === undefined}
-            />
-          ))}
-          <Tr>
-            <Td px="0">
-              <MText fontSize="14.4px" fontWeight="bold" textAlign="left">
-                {t("appPage.mnde.nft-levels.total-locked")}
-              </MText>
-            </Td>
-            <Td isNumeric px="0">
-              <MText
-                pl={4}
-                fontSize="14.4px"
-                fontWeight="bold"
-                textAlign={isMobile ? "right" : "left"}
-              >
-                {lockedMnde ? `${lockedMnde} MNDE` : "-"}
-              </MText>
-            </Td>
-          </Tr>
-        </Tbody>
-      </Table>
+          </Tbody>
+        </Table>
+      ) : undefined}
       <MButton
         mt="32px"
         colorScheme="gray"
@@ -115,6 +117,9 @@ const NFTTable = () => {
         fontWeight="700"
         fontSize="18px"
         rightIcon={<Icon as={FiExternalLink} width="16.67px" height="16.2px" />}
+        onClick={() =>
+          window.open("https://vote.marinade.finance/gov/mnde", "_blank")
+        }
       >
         {t("appPage.mnde.nft-levels.vote")}
       </MButton>

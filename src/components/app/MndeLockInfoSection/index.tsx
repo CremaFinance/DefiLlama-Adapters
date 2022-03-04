@@ -85,7 +85,7 @@ const MndeLockInfoSection = () => {
           stepTitle={t("appPage.mnde.lock.info-section.steps.third")}
           stepIllustrationPath="/ilustrations/vote.svg"
           stepLinkEnabled
-          href="/"
+          href="https://vote.marinade.finance/gov/mnde"
         />
       </Flex>
     </Flex>
