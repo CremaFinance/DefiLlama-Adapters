@@ -1,9 +1,9 @@
 import { Flex } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
-import Footer from "components/app/Footer";
 import Header from "components/app/Header";
 import NftDetailsSection from "components/app/NftDetailsSection";
+import Footer from "components/layout/Footer";
 import type { BreadcrumbItem } from "components/molecules/BreadcrumbWithRouter";
 import BreadcrumbWithRouter from "components/molecules/BreadcrumbWithRouter";
 import { useNftDetails } from "hooks/useNftDetails";
