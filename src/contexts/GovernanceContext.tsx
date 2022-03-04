@@ -4,6 +4,16 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { useToast } from "@chakra-ui/react";
+import {
+  EscrowRelockerSDK,
+  EscrowWrapper,
+  SimpleNftKindWrapper,
+} from "@marinade-finance/escrow-relocker-sdk";
+import {
+  GaugemeisterWrapper,
+  GaugeVoterWrapper,
+  GaugeVoteWrapper,
+} from "@marinade-finance/escrow-relocker-sdk/gauges";
 import { getParsedNftAccountsByOwner } from "@nfteyez/sol-rayz";
 import { SolanaProvider, TransactionEnvelope } from "@saberhq/solana-contrib";
 import {
@@ -15,16 +25,6 @@ import type { Connection } from "@solana/web3.js";
 import { PublicKey, LAMPORTS_PER_SOL } from "@solana/web3.js";
 import axios from "axios";
 import BN from "bn.js";
-import {
-  EscrowRelockerSDK,
-  EscrowWrapper,
-  SimpleNftKindWrapper,
-} from "escrow-relocker-sdk";
-import {
-  GaugemeisterWrapper,
-  GaugeVoterWrapper,
-  GaugeVoteWrapper,
-} from "escrow-relocker-sdk/gauges";
 import { createContext, useReducer } from "react";
 import type { ReactNode } from "react";
 

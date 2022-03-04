@@ -91,6 +91,9 @@ const SubmenusMndeSection = () => {
           cardButtonText={t("appPage.mnde.nft-vote-card.button")}
           cardIllustrationPath="/ilustrations/vote.svg"
           isExternal
+          onClickCardButton={() =>
+            window.open("https://vote.marinade.finance/gov/mnde", "_blank")
+          }
         />
         <MNDESubmenuCard
           cardTitle={t("appPage.mnde.earn-card.title")}
