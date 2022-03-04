@@ -68,9 +68,11 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
       alignItems="center"
     >
       <Flex
+        height={{ base: "400px", md: "180px" }}
         width="100%"
         flexDirection={{ md: "row", base: "column" }}
-        py={[2, 4]}
+        mt={[2, 0]}
+        mb={[0, 6]}
         justifyContent="center"
         alignItems="center"
         zIndex={6}
