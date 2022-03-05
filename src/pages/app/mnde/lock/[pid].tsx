@@ -16,8 +16,7 @@ const NftDetails = () => {
 
   const { pid } = router.query;
 
-  const { data, isError, isLoading } = useNftDetails(pid as string);
-
+  const { data, isError } = useNftDetails(pid as string);
   if (isError) {
     router.push("/404");
     return null;
@@ -39,7 +38,7 @@ const NftDetails = () => {
     >
       <Header />
       <BreadcrumbWithRouter breadcrumbItems={breadcrumbItems} />
-      {!isLoading && <NftDetailsSection id={pid as string} />}
+      <NftDetailsSection id={pid as string} />
       <Footer />
     </Flex>
   );
