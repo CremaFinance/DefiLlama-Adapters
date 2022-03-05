@@ -1,9 +1,7 @@
-import { TokenRecord } from "../../domain/token";
+import type { TokenRecord } from "../../domain/token";
 
-import {
-  lendingLarixPoolAddress,
-  LendingLarixPoolAddress,
-} from "./lendingLarixPoolAddress";
+import type { LendingLarixPoolAddress } from "./lendingLarixPoolAddress";
+import { lendingLarixPoolAddress } from "./lendingLarixPoolAddress";
 
 export const lendingLarixPoolTokens: TokenRecord<LendingLarixPoolAddress> = {
   [lendingLarixPoolAddress.LARIX_mSOL]: {

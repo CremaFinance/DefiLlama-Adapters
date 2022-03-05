@@ -1,8 +1,8 @@
-import { CoinSymbols, Prices } from "./coinSymbols";
-import { LeverageConfig } from "./leverage";
-import { MarketTypes } from "./marketTypes";
-import { Rewards, RewardsConfig } from "./rewards";
-import { Token } from "./token";
+import type { CoinSymbols, Prices } from "./coinSymbols";
+import type { LeverageConfig } from "./leverage";
+import type { MarketTypes } from "./marketTypes";
+import type { Rewards, RewardsConfig } from "./rewards";
+import type { Token } from "./token";
 
 /**
  * Text and link for the 'Actions' available on a pool row in the UI
@@ -31,11 +31,14 @@ export interface PoolConfig extends Token {
   tradingApy?: number; // todo double check think this is actually apr
   apr?: number;
   apy?: number; // todo we are actually showing apr need to calc apy
+  aprValue?: number;
   totalLockedValue?: number;
   liq?: number;
   tokenA: CoinSymbols;
   tokenB?: CoinSymbols;
   leverage?: LeverageConfig;
+  RowExtensionComponent?: () => JSX.Element;
+  componentAction?: string;
 }
 
 /**

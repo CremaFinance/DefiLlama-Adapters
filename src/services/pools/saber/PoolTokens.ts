@@ -1,6 +1,7 @@
-import { Token } from "../../domain/token";
+import type { Token } from "../../domain/token";
 
-import { farmPoolAddress, FarmPoolAddress } from "./PoolAddress";
+import type { FarmPoolAddress } from "./PoolAddress";
+import { farmPoolAddress } from "./PoolAddress";
 
 const logoURI = "/pools/saber.png";
 

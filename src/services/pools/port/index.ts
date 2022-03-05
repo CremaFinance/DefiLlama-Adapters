@@ -1,12 +1,11 @@
 /* eslint-disable sonarjs/cognitive-complexity */
-
 import { updatePoolRewards } from "../../../utils/update-pool-rewards";
-import { Pool } from "../../domain/pool";
-import { Prices } from "services/domain/coinSymbols";
+import type { Pool } from "../../domain/pool";
+import type { Prices } from "services/domain/coinSymbols";
 import { coinTokens } from "services/domain/coinTokens";
 
 import { portPools } from "./config";
-import { PortReserveResponse, PortPoolsResponse } from "./portPool";
+import type { PortReserveResponse, PortPoolsResponse } from "./portPool";
 
 const fetchPortPools = async (): Promise<PortPoolsResponse> => {
   const response = await fetch(

@@ -1,11 +1,9 @@
 import { coinSymbols } from "../../domain/coinSymbols";
 import { marketTypes } from "../../domain/marketTypes";
-import { PoolConfig } from "../../domain/pool";
+import type { PoolConfig } from "../../domain/pool";
 
-import {
-  LiquidityAldrinPoolAddress,
-  liquidityAldrinPoolAddress,
-} from "./liquidityAldrinPoolAddress";
+import type { LiquidityAldrinPoolAddress } from "./liquidityAldrinPoolAddress";
+import { liquidityAldrinPoolAddress } from "./liquidityAldrinPoolAddress";
 import { liquidityPoolAldrinIds } from "./liquidityAldrinPoolIds";
 import { liquidityPoolTokensAldrin } from "./liquidityAldrinPoolTokens";
 

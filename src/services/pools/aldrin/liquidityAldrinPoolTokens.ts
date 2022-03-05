@@ -1,9 +1,7 @@
-import { Token } from "../../domain/token";
+import type { Token } from "../../domain/token";
 
-import {
-  liquidityAldrinPoolAddress,
-  LiquidityAldrinPoolAddress,
-} from "./liquidityAldrinPoolAddress";
+import type { LiquidityAldrinPoolAddress } from "./liquidityAldrinPoolAddress";
+import { liquidityAldrinPoolAddress } from "./liquidityAldrinPoolAddress";
 
 const aldrinUri =
   "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/E5ndSkaB17Dm7CsD22dvcjfrYSDLCxFcMd6z8ddCk5wp/logo.png";

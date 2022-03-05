@@ -1,4 +1,4 @@
-import { TokenExtensions } from "./tokenExtensions";
+import type { TokenExtensions } from "./tokenExtensions";
 
 /** based on https://github.com/solana-labs/token-list/blob/main/src/lib/tokenlist.ts#L43 */
 export interface Token {

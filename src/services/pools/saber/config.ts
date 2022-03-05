@@ -1,9 +1,10 @@
 import { coinSymbols } from "../../domain/coinSymbols";
 import { marketTypes } from "../../domain/marketTypes";
-import { PoolConfig } from "../../domain/pool";
-import { Token } from "../../domain/token";
+import type { PoolConfig } from "../../domain/pool";
+import type { Token } from "../../domain/token";
 
-import { farmPoolAddress, FarmPoolAddress } from "./PoolAddress";
+import type { FarmPoolAddress } from "./PoolAddress";
+import { farmPoolAddress } from "./PoolAddress";
 import { farmPoolTokens } from "./PoolTokens";
 
 export type SaberPoolResponse =

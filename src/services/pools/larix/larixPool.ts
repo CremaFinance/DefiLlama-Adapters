@@ -1,4 +1,4 @@
-import { LendingLarixPoolIds } from "./lendingLarixPoolIds";
+import type { LendingLarixPoolIds } from "./lendingLarixPoolIds";
 
 export interface LarixPool {
   mint_name: LendingLarixPoolIds;

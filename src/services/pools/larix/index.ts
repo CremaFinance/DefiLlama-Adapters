@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { updatePoolRewards } from "../../../utils/update-pool-rewards";
-import { Pool } from "../../domain/pool";
-import { Prices } from "services/domain/coinSymbols";
+import type { Pool } from "../../domain/pool";
+import type { Prices } from "services/domain/coinSymbols";
 
 import { larixPools } from "./config";
-import { LarixPoolsResponse } from "./larixPool";
+import type { LarixPoolsResponse } from "./larixPool";
 
 const fetchLarixPools = async (): Promise<LarixPoolsResponse> => {
   const response = await fetch(`https://api.projectlarix.com/market`);

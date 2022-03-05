@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Connection, PublicKey } from "@solana/web3.js";
-import React, { createContext, ReactNode, useReducer } from "react";
+import type { Connection, PublicKey } from "@solana/web3.js";
+import type { ReactNode } from "react";
+import React, { createContext, useReducer } from "react";
 
-import { Keys } from "../solana/domain/keys";
-import { StakeAccount } from "../solana/domain/stake-account";
-import { TicketAccount } from "../solana/domain/ticket-account";
+import type { Keys } from "../solana/domain/keys";
+import type { StakeAccount } from "../solana/domain/stake-account";
+import type { TicketAccount } from "../solana/domain/ticket-account";
 import { getUserStakeAccounts } from "../solana/get-user-stake-accounts";
 import { getUserTicketAccounts } from "../solana/get-user-ticket-accounts";
 
@@ -15,6 +16,7 @@ interface State {
   fetchStakesLoading: boolean;
   fetchTicketsLoading: boolean;
   walletPubKeyContext: PublicKey | any;
+  transactionSigned: boolean;
 }
 
 export type Action =
@@ -33,6 +35,10 @@ export type Action =
   | {
       type: "WALLET_PUBKEY";
       payload: PublicKey | any;
+    }
+  | {
+      type: "TRANSACTION_SIGNED";
+      payload: boolean;
     };
 
 const initialState: State = {
@@ -41,6 +47,7 @@ const initialState: State = {
   fetchStakesLoading: true,
   fetchTicketsLoading: true,
   walletPubKeyContext: null,
+  transactionSigned: false,
 };
 
 export enum ActionTypes {
@@ -49,12 +56,15 @@ export enum ActionTypes {
   FETCH_STAKES_LOADING = "FETCH_STAKES_LOADING",
   FETCH_TICKETS_LOADING = "FETCH_TICKETS_LOADING",
   WALLET_PUBKEY = "WALLET_PUBKEY",
+  TRANSACTION_SIGNED = "TRANSACTION_SIGNED",
 }
 
 const AccountsContext = createContext({
   fetchStakesLoading: false,
   fetchTicketsLoading: false,
+  transactionSigned: false,
   fetchTicketsLoadingAction: (_boolean: boolean) => {},
+  transactionSignedAction: (_boolean: boolean) => {},
   fetchStakesLoadingAction: (_boolean: boolean) => {},
   resetAccountsAction: () => {},
   ticketAccounts: [] as TicketAccount[],
@@ -101,6 +111,11 @@ function accountsContext(state: State, action: Action) {
       return {
         ...state,
         fetchTicketsLoading: action.payload,
+      };
+    case ActionTypes.TRANSACTION_SIGNED:
+      return {
+        ...state,
+        transactionSigned: action.payload,
       };
     default:
       return state;
@@ -163,6 +178,13 @@ function AccountsContextProvider(props: { children: ReactNode }): JSX.Element {
     });
   }
 
+  function transactionSignedAction(signed: boolean) {
+    dispatch({
+      type: ActionTypes.TRANSACTION_SIGNED,
+      payload: signed,
+    });
+  }
+
   function fetchStakesLoadingAction(loading: boolean) {
     dispatch({
       type: ActionTypes.FETCH_STAKES_LOADING,
@@ -204,19 +226,30 @@ function AccountsContextProvider(props: { children: ReactNode }): JSX.Element {
 
   return (
     <AccountsContext.Provider
-      value={{
-        stakeAccounts: state.stakeAccounts,
-        getStakeAccountsAction,
-        ticketAccounts: state.ticketAccounts,
-        getTicketAccountsAction,
-        fetchStakesLoading: state.fetchStakesLoading,
-        fetchTicketsLoadingAction,
-        fetchStakesLoadingAction,
-        resetAccountsAction,
-        fetchTicketsLoading: state.fetchTicketsLoading,
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        walletPubKeyContext: state.walletPubKeyContext!, // https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-0.html#non-null-assertion-operator
-      }}
+      value={React.useMemo(() => {
+        return {
+          transactionSigned: state.transactionSigned,
+          transactionSignedAction,
+          stakeAccounts: state.stakeAccounts,
+          getStakeAccountsAction,
+          ticketAccounts: state.ticketAccounts,
+          getTicketAccountsAction,
+          fetchStakesLoading: state.fetchStakesLoading,
+          fetchTicketsLoadingAction,
+          fetchStakesLoadingAction,
+          resetAccountsAction,
+          fetchTicketsLoading: state.fetchTicketsLoading,
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          walletPubKeyContext: state.walletPubKeyContext!, // https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-0.html#non-null-assertion-operator
+        };
+      }, [
+        state.transactionSigned,
+        state.stakeAccounts,
+        state.ticketAccounts,
+        state.fetchStakesLoading,
+        state.fetchTicketsLoading,
+        state.walletPubKeyContext,
+      ])}
       {...props}
     />
   );

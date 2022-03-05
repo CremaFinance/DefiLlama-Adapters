@@ -1,10 +1,11 @@
 import { updatePoolFromTokens } from "../../../utils/update-pool";
-import { Prices } from "../../domain/coinSymbols";
-import { FetchPools, Pool } from "../../domain/pool";
-import { Provider } from "../../domain/providers";
+import type { Prices } from "../../domain/coinSymbols";
+import type { FetchPools, Pool } from "../../domain/pool";
+import type { Provider } from "../../domain/providers";
 
-import { orcaPools, OrcaPoolsResponse } from "./config";
-import { LiquidityOrcaPoolIds } from "./liquidityOrcaPoolIds";
+import type { OrcaPoolsResponse } from "./config";
+import { orcaPools } from "./config";
+import type { LiquidityOrcaPoolIds } from "./liquidityOrcaPoolIds";
 
 export async function fetchOrcaPools(): Promise<OrcaPoolsResponse> {
   const response = await fetch(`https://api.orca.so/allpools`);

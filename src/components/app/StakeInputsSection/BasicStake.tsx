@@ -17,6 +17,7 @@ import { useTranslation } from "next-export-i18n";
 import { useContext, useEffect, useState, useMemo } from "react";
 import { BiChevronDown, BiChevronUp } from "react-icons/bi";
 import { MdInfoOutline } from "react-icons/md";
+import { v4 as uuidv4 } from "uuid";
 
 import { useChain, useConnection } from "../../../contexts/ConnectionProvider";
 import { useMarinade } from "../../../contexts/MarinadeContext";
@@ -25,6 +26,7 @@ import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 import { ConnectWallet } from "../../molecules/ConnectWallet";
 import TooltipWithContent from "../../molecules/TooltipWithContent";
+import PendingStakeModal from "components/molecules/PendingStakeModal";
 import type { StakeAccountType } from "components/molecules/StakeInput";
 import StakeInput, {
   StakeInputTypeEnum,
@@ -67,6 +69,16 @@ const BasicStake = () => {
   const solPrice = prices[coinSymbols.SOL]?.usd ?? 0;
 
   const [showEstimation, setShowEstimation] = useState(false);
+  const {
+    getStakeAccountsAction,
+    stakeAccounts,
+    fetchStakesLoading,
+    walletPubKeyContext,
+    transactionSigned,
+    transactionSignedAction,
+    resetAccountsAction,
+    fetchStakesLoadingAction,
+  } = useContext(AccountsContext);
   const { nativeSOLBalance } = useUserBalance();
   const { connected: isWalletConnected, publicKey: walletPubKey } = useWallet();
   const epochInfo = useEpochInfo()?.data;
@@ -75,6 +87,7 @@ const BasicStake = () => {
       if (stakeAccount === null) {
         setSolToStake("");
       }
+      transactionSignedAction(false);
     },
   });
   const { totalStaked, stakeAPY } = useStats();
@@ -124,15 +137,6 @@ const BasicStake = () => {
     ];
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mSOLReceived, mSOLvsSOLParity, solPrice, Number(solToStake)]);
-
-  const {
-    getStakeAccountsAction,
-    stakeAccounts,
-    fetchStakesLoading,
-    walletPubKeyContext,
-    resetAccountsAction,
-    fetchStakesLoadingAction,
-  } = useContext(AccountsContext);
 
   useEffect(() => {
     if (walletPubKey === null || !isWalletConnected) {
@@ -257,6 +261,9 @@ const BasicStake = () => {
           category: "Account Staking",
           action: "Stake",
           label: "Success",
+          sol_amount: stakeAccount?.balance,
+          transaction_id: uuidv4(),
+          currency: "USD",
         });
 
         setSolStaked(solToStake);
@@ -283,6 +290,13 @@ const BasicStake = () => {
               }
               return "";
             }, "") || (error as Error).message;
+
+        if (
+          (error as Error).toString().includes("Failed to sign transaction")
+        ) {
+          return;
+        }
+
         toast({
           title: t("appPage.something-went-wrong"),
           description,
@@ -366,6 +380,9 @@ const BasicStake = () => {
             category: "Basic Staking",
             action: "Stake",
             label: "Success",
+            sol_amount: Number(solToStake),
+            transaction_id: uuidv4(),
+            currency: "USD",
           });
 
           setSolStaked(solToStake);
@@ -379,6 +396,8 @@ const BasicStake = () => {
             description = t("appPage.capped-tvl-is-full");
           } else if (error.toString().includes("no record of a prior credit")) {
             description = t("appPage.missing-sol-for-fee");
+          } else if (error.toString().includes("Failed to sign transaction")) {
+            return;
           }
 
           toast({
@@ -396,11 +415,15 @@ const BasicStake = () => {
           });
         }
       )
-      .finally(() => setStakeLoading(false));
+      .finally(() => {
+        setStakeLoading(false);
+      });
   };
 
   const parsedStakeAccounts = useMemo(() => {
-    return parseStakeAccounts();
+    return parseStakeAccounts().filter(
+      (account) => account.balance >= 1 && account.isStakable
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stakeAccounts]);
 
@@ -578,6 +601,11 @@ const BasicStake = () => {
         onClose={onClose}
         stakedAmount={mSOLReceived}
         stakedCurrency="mSOL"
+      />
+      <PendingStakeModal
+        isTransactionSigned={transactionSigned}
+        isOpen={stakeLoading}
+        onClose={onClose}
       />
     </>
   );

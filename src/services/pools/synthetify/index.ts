@@ -1,12 +1,13 @@
 import { Connection, PublicKey } from "@solana/web3.js";
 
-import { FetchPools, Pool } from "../../domain/pool";
-import { Provider } from "../../domain/providers";
-import { coinSymbols, Prices } from "services/domain/coinSymbols";
+import type { FetchPools, Pool } from "../../domain/pool";
+import type { Provider } from "../../domain/providers";
+import type { Prices } from "services/domain/coinSymbols";
+import { coinSymbols } from "services/domain/coinSymbols";
 import { DEFAULT_ENDPOINT } from "utils/web3/endpoints";
 
 import { synthetifyPools } from "./config";
-import { SynthetifyStatsResponse } from "./pool";
+import type { SynthetifyStatsResponse } from "./pool";
 import { synthetifyPoolAddress } from "./poolAddress";
 
 const connection = new Connection(DEFAULT_ENDPOINT.endpoint, "recent");

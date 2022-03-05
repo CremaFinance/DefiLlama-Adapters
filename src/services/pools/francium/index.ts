@@ -1,8 +1,8 @@
-import { Prices } from "../../domain/coinSymbols";
-import { Provider } from "../../domain/providers";
+import type { Prices } from "../../domain/coinSymbols";
+import type { Provider } from "../../domain/providers";
 
 import { franciumFarmPools, franciumLendingPools } from "./config";
-import {
+import type {
   FranciumPoolsResponse,
   FranciumPoolInfoResponse,
 } from "./franciumPool";

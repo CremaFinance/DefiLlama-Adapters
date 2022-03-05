@@ -5,10 +5,11 @@ import { request, gql } from "graphql-request";
 import { APYFromAPR } from "../../../utils/apy-from-apr";
 import { updatePoolQuarryRewards } from "../../../utils/update-pool-quarry-rewards";
 import { DEFAULT_ENDPOINT } from "../../../utils/web3/endpoints";
-import { Prices } from "../../domain/coinSymbols";
-import { FetchPools, Pool } from "../../domain/pool";
+import type { Prices } from "../../domain/coinSymbols";
+import type { FetchPools, Pool } from "../../domain/pool";
 
-import { saberPools, SaberPoolsResponse } from "./config";
+import type { SaberPoolsResponse } from "./config";
+import { saberPools } from "./config";
 import { farmPoolAddress } from "./PoolAddress";
 
 // note: only works on mainnet
