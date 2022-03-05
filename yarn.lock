@@ -11479,10 +11479,10 @@ nested-error-stacks@^2.0.0, nested-error-stacks@^2.1.0:
   resolved "https://registry.yarnpkg.com/nested-error-stacks/-/nested-error-stacks-2.1.0.tgz#0fbdcf3e13fe4994781280524f8b96b0cdff9c61"
   integrity sha512-AO81vsIO1k1sM4Zrd6Hu7regmJN1NSiAja10gc4bX3F0wd+9rQmcuHQaHVQCYIEC8iFXnE+mavh23GOt7wBgug==
 
-next-export-i18n@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/next-export-i18n/-/next-export-i18n-1.4.1.tgz#b3113d42d27620fc9d4ed30cfb4599eac9548db0"
-  integrity sha512-1Hmr08Qi0plt8M7yvvLGLl/O2AyC8qRT8lH3OTgj/tvw/H8cmlibjQ3ZpzSkoggNv1n4e6XhAdT7YYrP08jM8A==
+next-export-i18n@^1.4.3:
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/next-export-i18n/-/next-export-i18n-1.4.3.tgz#6c079be104d3607149241e53907d53afada3c28f"
+  integrity sha512-ngzKoHimHzsqTGCIDOykdBAGKVyV3/aYM0MSPETD0pupIeF1gx43Hmso/eP/kFYd9uqBXogsCraWyJhnc1kY0w==
   dependencies:
     mustache "^4.2.0"
 
