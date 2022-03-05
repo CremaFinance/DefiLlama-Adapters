@@ -1,14 +1,4 @@
-export interface NftData {
-  name: string;
-  image: string;
-  description: string;
-  attributes: { trait_type: string; value: string }[];
-  properties: {
-    category: string;
-    mnde_amount: number;
-    unlock_duration: number;
-  };
-}
+import type { NftData } from "services/domain/nftData";
 
 export const fetchNftData = async ({
   queryKey,
@@ -16,7 +6,7 @@ export const fetchNftData = async ({
   queryKey: string[];
 }): Promise<NftData> => {
   const [, uri] = queryKey;
-  const response = await fetch(uri);
+  const response = await fetch(uri, { mode: "cors" });
   if (!response.ok) throw new Error();
   return response.json();
 };

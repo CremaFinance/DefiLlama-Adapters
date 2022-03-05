@@ -5,7 +5,7 @@ import {
 import type { UseQueryResult } from "react-query";
 import { useQuery } from "react-query";
 
-import type { NftData } from "services/marinade/nftDetails";
+import type { NftData } from "services/domain/nftData";
 import { fetchNftData } from "services/marinade/nftDetails";
 
 import { useEscrow } from "./useEscrow";
