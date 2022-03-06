@@ -59,7 +59,7 @@
     "jsbi": "^4.1.0",
     "mustache": "^4.2.0",
     "next": "^12.1.0",
-    "next-export-i18n": "^1.2.1",
+    "next-export-i18n": "^1.4.3",
     "next-pwa": "^5.4.4",
     "next-seo": "^5.1.0",
     "react": "^17.0.2",
