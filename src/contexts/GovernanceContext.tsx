@@ -25,6 +25,7 @@ import {
 import type { Connection } from "@solana/web3.js";
 import { PublicKey, LAMPORTS_PER_SOL } from "@solana/web3.js";
 import axios from "axios";
+import axiosRetry from "axios-retry";
 import BN from "bn.js";
 import { createContext, useReducer } from "react";
 import type { ReactNode } from "react";
@@ -147,6 +148,16 @@ function GovernanceContextProvider(props: {
   async function fetchNftMetadataByAccount(
     account: NftAccount
   ): Promise<NftMetadata | undefined> {
+    axiosRetry(axios, {
+      retries: 5,
+      retryDelay: (retryCount) => {
+        return retryCount * 2000;
+      },
+      retryCondition: (error) => {
+        return error?.response?.status === 400;
+      },
+    });
+
     const response = await axios.get(account.data.uri);
     return response.data as NftMetadata;
   }
@@ -272,9 +283,10 @@ function GovernanceContextProvider(props: {
       rentPayer: undefined,
     });
     let response = false;
-    await tx.confirm().then(() => {
-      getNftsAction(true, true);
-      response = true;
+    await tx.confirm().then(async () => {
+      await fetchNFTs().then(() => {
+        response = true;
+      });
     });
     return response;
   }

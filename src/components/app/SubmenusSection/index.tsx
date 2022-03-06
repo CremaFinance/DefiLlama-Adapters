@@ -13,7 +13,7 @@ const SubmenusMndeSection = () => {
 
   return (
     <Flex
-      pt={["68px", "72px"]}
+      pt={["56px", "72px"]}
       pb={[12, 8]}
       aria-label="mnde-section"
       position="relative"
@@ -76,7 +76,7 @@ const SubmenusMndeSection = () => {
         flexWrap="wrap"
         justifyContent="center"
         alignItems="center"
-        px={{ base: "4px", lg: "6vw" }}
+        px={{ base: "24px", lg: "6vw" }}
       >
         <MNDESubmenuCard
           cardTitle={t("appPage.mnde.lock-card.title")}
