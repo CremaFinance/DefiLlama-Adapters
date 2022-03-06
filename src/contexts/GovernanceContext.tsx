@@ -77,7 +77,9 @@ const GovernanceContext = createContext({
   startUnlocking: async (_nftMint: PublicKey): Promise<boolean> => {
     return true;
   },
-  claimMNDE: async (_nftMint: PublicKey) => {},
+  claimMNDE: async (_nftMint: PublicKey): Promise<boolean> => {
+    return true;
+  },
   cancelUnlocking: async (_nftMint: PublicKey) => {},
   lockMNDE: async (_amount: string): Promise<boolean> => {
     return true;
@@ -266,10 +268,12 @@ function GovernanceContextProvider(props: {
       payFromAuthority: undefined,
       rentPayer: undefined,
     });
+    let response = false;
     await tx.confirm().then(() => {
       getNftsAction(true, true);
+      response = true;
     });
-    return true;
+    return response;
   }
   async function closeGaugeVoter(nftMint: PublicKey, gaugemeister: PublicKey) {
     const escrow = await EscrowWrapper.address(sdk, nftMint);
@@ -341,10 +345,12 @@ function GovernanceContextProvider(props: {
     const tx = await escrowWrapper.startUnlocking({
       nftToken,
     });
+    let response = false;
     await tx.confirm().then(() => {
       getNftsAction(true, true);
+      response = true;
     });
-    return true;
+    return response;
   }
 
   async function claimMNDE(nftMint: PublicKey) {
@@ -373,6 +379,7 @@ function GovernanceContextProvider(props: {
     await tx.confirm().then(() => {
       getNftsAction(true, true);
     });
+    return true;
   }
   async function cancelUnlocking(nftMint: PublicKey) {
     const escrow = await EscrowWrapper.address(sdk, nftMint);

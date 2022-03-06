@@ -11,21 +11,30 @@ import {
 } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import type { FunctionComponent } from "react";
+import { useContext } from "react";
 
 import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
 import ClaimMndeConfirmModal from "../ClaimMndeConfirmModal";
+import PendingStakeModal from "components/molecules/PendingStakeModal";
+import { AccountsContext } from "contexts/AccountsContext";
 import colors from "styles/customTheme/colors";
 
 interface ClaimMndeModalProps {
   isOpen: boolean;
+  mndeAmount: string;
+  isPendingOpen: boolean;
   onClose: () => void;
+  onClaimConfirm: () => Promise<boolean>;
 }
 
 const ClaimMndeModal: FunctionComponent<ClaimMndeModalProps> = ({
   isOpen,
   onClose,
+  mndeAmount,
+  isPendingOpen,
+  onClaimConfirm,
 }) => {
   const { t } = useTranslation();
   const modalSize = useBreakpointValue({ base: "full", md: "md" });
@@ -35,6 +44,14 @@ const ClaimMndeModal: FunctionComponent<ClaimMndeModalProps> = ({
     onOpen: onOpenClaimConfirmModal,
     onClose: onCloseClaimConfirmModal,
   } = useDisclosure();
+  const {
+    isOpen: isPendingTransactionOpen,
+    onOpen: openPendingTransaction,
+    onClose: closePendingTransaction,
+  } = useDisclosure();
+
+  const { transactionSigned, transactionSignedAction } =
+    useContext(AccountsContext);
   return (
     <>
       <Modal isOpen={isOpen} onClose={onClose} size={modalSize}>
@@ -62,7 +79,10 @@ const ClaimMndeModal: FunctionComponent<ClaimMndeModalProps> = ({
               <MText fontSize="text-xl" textAlign="center" mt={4}>
                 {t("mndePage.claim-mnde-modal.body.0.text")}
                 <MText fontSize="text-xl" display="inline" fontWeight="bold">
-                  {t("mndePage.claim-mnde-modal.body.1.text")}
+                  {t("mndePage.claim-mnde-modal.body.1.text").replace(
+                    "XXXX",
+                    mndeAmount
+                  )}
                 </MText>{" "}
                 <MText
                   fontSize="text-xl"
@@ -89,7 +109,14 @@ const ClaimMndeModal: FunctionComponent<ClaimMndeModalProps> = ({
                 height="40px"
                 width="100%"
                 onClick={() => {
-                  onOpenClaimConfirmModal();
+                  openPendingTransaction();
+                  onClaimConfirm().then((result) => {
+                    if (result) {
+                      closePendingTransaction();
+                      onOpenClaimConfirmModal();
+                      transactionSignedAction(false);
+                    }
+                  });
                   onClose();
                 }}
               >
@@ -116,8 +143,16 @@ const ClaimMndeModal: FunctionComponent<ClaimMndeModalProps> = ({
         </ModalContent>
       </Modal>
       <ClaimMndeConfirmModal
+        mndeAmount={mndeAmount}
         isOpen={isOpenClaimConfirmModal}
         onClose={() => onCloseClaimConfirmModal()}
+      />
+      <PendingStakeModal
+        isTransactionSigned={transactionSigned}
+        isOpen={isPendingTransactionOpen && isPendingOpen}
+        onClose={() => {
+          transactionSignedAction(false);
+        }}
       />
     </>
   );

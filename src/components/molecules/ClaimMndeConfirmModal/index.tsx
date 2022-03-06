@@ -17,6 +17,7 @@ import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
 
 interface ClaimMndeConfirmModalProps {
+  mndeAmount: string;
   isOpen: boolean;
   onClose: () => void;
 }
@@ -24,6 +25,7 @@ interface ClaimMndeConfirmModalProps {
 const ClaimMndeConfirmModal: FunctionComponent<ClaimMndeConfirmModalProps> = ({
   isOpen,
   onClose,
+  mndeAmount,
 }) => {
   const { t } = useTranslation();
   const modalSize = useBreakpointValue({ base: "full", md: "md" });
@@ -54,7 +56,10 @@ const ClaimMndeConfirmModal: FunctionComponent<ClaimMndeConfirmModalProps> = ({
             <MText fontSize="text-xl" textAlign="center" mt={4}>
               {t("mndePage.claim-mnde-confirm-modal.body.0.text")}{" "}
               <MText fontSize="text-xl" display="inline" fontWeight="bold">
-                {t("mndePage.claim-mnde-confirm-modal.body.1.text")}
+                {t("mndePage.claim-mnde-confirm-modal.body.1.text").replace(
+                  "XXXX",
+                  mndeAmount
+                )}
               </MText>
             </MText>
 

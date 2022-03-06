@@ -57,7 +57,7 @@ const LockMndeModal: FunctionComponent<LockMndeModalProps> = ({
 
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose} size={modalSize}>
+      <Modal isOpen={isOpen} onClose={onClose} size={modalSize} isCentered>
         <ModalOverlay />
         <ModalContent p={6}>
           <ModalHeader />

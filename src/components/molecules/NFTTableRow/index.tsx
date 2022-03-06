@@ -24,6 +24,7 @@ type NFTTableRowProps = {
     mndeAmount: string,
     address: PublicKey
   ) => void;
+  onClaimMnde: (mndeAmount: string, address: PublicKey) => void;
 };
 
 const NFTTableRow: FunctionComponent<NFTTableRowProps> = ({
@@ -36,9 +37,10 @@ const NFTTableRow: FunctionComponent<NFTTableRowProps> = ({
   isClaimEnabled,
   isCancelEnabled,
   onUnlockMnde,
+  onClaimMnde,
 }) => {
   const { t } = useTranslation();
-  const { claimMNDE, cancelUnlocking } = useContext(GovernanceContext);
+  const { cancelUnlocking } = useContext(GovernanceContext);
   const [isMobile] = useMediaQuery("(max-width: 425px)");
   return (
     <Tr height="84px">
@@ -131,7 +133,7 @@ const NFTTableRow: FunctionComponent<NFTTableRowProps> = ({
                 fontSize="14.4px"
                 onClick={() => {
                   if (lockEndDate.getTime() - new Date().getTime() < 0) {
-                    claimMNDE(address);
+                    onClaimMnde(lockedMNDE.toString(), address);
                   }
                 }}
                 isDisabled={lockEndDate.getTime() - new Date().getTime() > 0}

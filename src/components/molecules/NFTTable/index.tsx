@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable react-hooks/exhaustive-deps */
 import {
   Flex,
@@ -19,6 +20,7 @@ import { FiExternalLink } from "react-icons/fi";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 import NFTTableRow from "../NFTTableRow";
+import ClaimMndeModal from "components/molecules/ClaimMndeModal";
 import StartUnlockingMndeModal from "components/molecules/StartUnlockingMndeModal";
 import { GovernanceContext } from "contexts/GovernanceContext";
 import { useTracking } from "hooks/useTracking";
@@ -39,7 +41,7 @@ const NFTTable = () => {
   const [currentNFTImageUri, setCurrentNFTImageUri] = useState("/");
   const [currentNFTAddress, setCurrentNFTAddress] = useState(PublicKey.default);
 
-  const { startUnlocking } = useContext(GovernanceContext);
+  const { startUnlocking, claimMNDE } = useContext(GovernanceContext);
 
   const toast = useToast();
   const { track } = useTracking();
@@ -51,6 +53,17 @@ const NFTTable = () => {
     onClose: onUnlockMndeClose,
     onOpen: onUnlockMndeOpen,
   } = useDisclosure();
+  const {
+    isOpen: isClaimMndeOpen,
+    onClose: onClaimMndeClose,
+    onOpen: onClaimMndeOpen,
+  } = useDisclosure();
+
+  function onStartClaiming(mndeAmount: string, address: PublicKey) {
+    setCurrentNFTMndeValue(mndeAmount);
+    setCurrentNFTAddress(address);
+    onClaimMndeOpen();
+  }
 
   function onStartUnlocking(
     imgURI: string,
@@ -109,8 +122,8 @@ const NFTTable = () => {
                 isClaimEnabled={nft.lockEndDate !== undefined}
                 isCancelEnabled={nft.lockEndDate !== undefined}
                 isUnlockEnabled={nft.lockEndDate === undefined}
-                // eslint-disable-next-line react/jsx-no-bind
                 onUnlockMnde={onStartUnlocking}
+                onClaimMnde={onStartClaiming}
               />
             ))}
             <Tr>
@@ -154,6 +167,46 @@ const NFTTable = () => {
       >
         {t("appPage.mnde.nft-levels.vote")}
       </MButton>
+      <ClaimMndeModal
+        isPendingOpen={isPendingLockOpen}
+        isOpen={isClaimMndeOpen}
+        onClaimConfirm={async (): Promise<boolean> => {
+          setIsPendingLockOpen(true);
+          return claimMNDE(currentNFTAddress).then(
+            (result) => {
+              return result;
+            },
+            (error) => {
+              setIsPendingLockOpen(false);
+              let description = error.message;
+              if (error.toString().includes("0xec6")) {
+                description = t("appPage.capped-tvl-is-full");
+              } else if (
+                error.toString().includes("no record of a prior credit")
+              ) {
+                description = t("appPage.missing-sol-for-fee");
+              }
+
+              toast({
+                title: t("appPage.something-went-wrong"),
+                description,
+                status: "warning",
+              });
+
+              track({
+                event: "Claim MNDE Error",
+                category: "Lock MNDE",
+                action: "Claim",
+                label: "Error",
+                description,
+              });
+              return false;
+            }
+          );
+        }}
+        onClose={onClaimMndeClose}
+        mndeAmount={currentNFTMndeValue}
+      />
       <StartUnlockingMndeModal
         isPendingOpen={isPendingLockOpen}
         onUnlockConfirm={async (): Promise<boolean> => {
