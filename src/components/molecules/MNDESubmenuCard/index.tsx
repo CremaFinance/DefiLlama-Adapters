@@ -25,54 +25,51 @@ const MNDESubmenuCard = ({
 }: MNDESubmenuCardProps) => {
   return (
     <Flex
-      ml="8px"
-      mr="8px"
-      height={{ base: "347px", md: "216px", xl: "352px" }}
-      width={{ base: "90%", md: "224px", xl: "360px" }}
+      direction="column"
+      mx={{ base: "0px", md: "8px" }}
+      height={{ base: "auto", md: "348px", xl: "352px" }}
+      width={{ base: "100%", md: "224px", xl: "360px" }}
       flexDirection="column"
-      padding={{ base: "32px", md: "10px", lg: "32px" }}
+      p={6}
       mb="16px"
       background="white"
       border="1px solid"
       borderColor={colors.lightGray}
       borderRadius="8px"
-      justifyContent="center"
+      justifyContent="space-between"
       alignItems="center"
       zIndex={6}
     >
-      <Image
-        width="80px"
-        height={{ base: "80px", md: "54px", xl: "80px" }}
-        src={cardIllustrationPath}
-      />
-      <Text
-        marginTop={{ base: "16pxpx", md: "4px", xl: "16px" }}
-        fontSize={{ base: "28.13px", md: "16.13px", xl: "28.13px" }}
-        fontWeight="bold"
-        lineHeight="140%"
-        color={colors.blackMate}
-      >
-        {cardTitle}
-      </Text>
-      <Text
-        marginTop="8px"
-        fontSize={{ base: "18px", md: "12px", xl: "18px" }}
-        lineHeight="150%"
-        textAlign="center"
-        justifyContent="center"
-        color={colors.blackMate}
-      >
-        {cardDescription}
-      </Text>
+      <Flex direction="column" alignItems="center">
+        <Image width="80px" height="80px" src={cardIllustrationPath} pb={4} />
+        <Text
+          mt="16px"
+          fontSize={{ base: "18px", xl: "28px" }}
+          fontWeight="bold"
+          lineHeight="140%"
+          color={colors.blackMate}
+        >
+          {cardTitle}
+        </Text>
+
+        <Text
+          marginTop="8px"
+          fontSize={{ base: "16px", xl: "18px" }}
+          lineHeight="150%"
+          textAlign="center"
+          justifyContent="center"
+          color={colors.blackMate}
+        >
+          {cardDescription}
+        </Text>
+      </Flex>
       <Flex marginTop={{ base: "24px", md: "10px", xl: "24px" }} width="100%">
         <MButton
           width="100%"
-          height={{ base: "40px", md: "24px", xl: "40px" }}
+          height="40px"
           variant="big-solid"
-          fontSize={{ base: "16px", sm: "10px", md: "10px", xl: "16px" }}
-          lineHeight="140%"
+          fontSize={{ base: "16px", lg: "16px" }}
           fontWeight="bold"
-          paddingX="44px"
           isDisabled={cardButtonDisabled}
           onClick={() => onClickCardButton && onClickCardButton()}
         >

@@ -10,7 +10,7 @@ const WhySection: FunctionComponent = () => {
   const { t } = useTranslation();
   return (
     <Flex
-      py={24}
+      py={16}
       bg={colors.blackMate}
       as="section"
       aria-label="why-section"
