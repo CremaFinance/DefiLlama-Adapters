@@ -11,31 +11,49 @@ import {
 } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import type { FunctionComponent } from "react";
+import { useEffect, useContext } from "react";
 
 import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
 import CompleteLockMndeModal from "../CompleteLockMndeModal";
+import PendingStakeModal from "components/molecules/PendingStakeModal";
+import { AccountsContext } from "contexts/AccountsContext";
 import colors from "styles/customTheme/colors";
 
 interface LockMndeModalProps {
   isOpen: boolean;
+  isPendingOpen: boolean;
   onClose: () => void;
   onLockConfirm: () => Promise<boolean>;
 }
 
 const LockMndeModal: FunctionComponent<LockMndeModalProps> = ({
   isOpen,
+  isPendingOpen,
   onClose,
   onLockConfirm,
 }) => {
   const { t } = useTranslation();
+  const {
+    isOpen: isPendingTransactionOpen,
+    onOpen: openPendingTransaction,
+    onClose: closePendingTransaction,
+  } = useDisclosure();
   const {
     isOpen: isCompleteLockModalOpen,
     onOpen: onCompleteLockModalOpen,
     onClose: onCompleteLockModalClose,
   } = useDisclosure();
   const modalSize = useBreakpointValue({ base: "full", md: "md" });
+  const { transactionSigned, transactionSignedAction } =
+    useContext(AccountsContext);
+
+  useEffect(() => {
+    if (!isPendingOpen) {
+      closePendingTransaction();
+    }
+  }, [closePendingTransaction, isPendingOpen]);
 
   return (
     <>
@@ -70,8 +88,13 @@ const LockMndeModal: FunctionComponent<LockMndeModalProps> = ({
                 mt={{ base: "auto", md: 4 }}
                 width="100%"
                 onClick={() => {
+                  openPendingTransaction();
                   onLockConfirm().then((result) => {
-                    if (result) onCompleteLockModalOpen();
+                    if (result) {
+                      closePendingTransaction();
+                      onCompleteLockModalOpen();
+                      transactionSignedAction(false);
+                    }
                   });
                   onClose();
                 }}
@@ -85,6 +108,13 @@ const LockMndeModal: FunctionComponent<LockMndeModalProps> = ({
       <CompleteLockMndeModal
         isOpen={isCompleteLockModalOpen}
         onClose={onCompleteLockModalClose}
+      />
+      <PendingStakeModal
+        isTransactionSigned={transactionSigned}
+        isOpen={isPendingTransactionOpen && isPendingOpen}
+        onClose={() => {
+          transactionSignedAction(false);
+        }}
       />
     </>
   );
