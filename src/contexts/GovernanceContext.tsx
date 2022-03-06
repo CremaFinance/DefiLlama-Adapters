@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/no-identical-functions */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-await-in-loop */
 /* eslint-disable react/jsx-no-constructed-context-values */
@@ -346,9 +347,10 @@ function GovernanceContextProvider(props: {
       nftToken,
     });
     let response = false;
-    await tx.confirm().then(() => {
-      getNftsAction(true, true);
-      response = true;
+    await tx.confirm().then(async () => {
+      await fetchNFTs().then(() => {
+        response = true;
+      });
     });
     return response;
   }
@@ -376,10 +378,13 @@ function GovernanceContextProvider(props: {
         sdk.provider.wallet.publicKey
       ),
     });
-    await tx.confirm().then(() => {
-      getNftsAction(true, true);
+    let response = false;
+    await tx.confirm().then(async () => {
+      await fetchNFTs().then(() => {
+        response = true;
+      });
     });
-    return true;
+    return response;
   }
   async function cancelUnlocking(nftMint: PublicKey) {
     const escrow = await EscrowWrapper.address(sdk, nftMint);
