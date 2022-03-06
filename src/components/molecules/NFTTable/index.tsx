@@ -8,16 +8,20 @@ import {
   Td,
   Icon,
   useMediaQuery,
+  useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
-import type { PublicKey } from "@solana/web3.js";
+import { PublicKey } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FiExternalLink } from "react-icons/fi";
 
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 import NFTTableRow from "../NFTTableRow";
+import StartUnlockingMndeModal from "components/molecules/StartUnlockingMndeModal";
 import { GovernanceContext } from "contexts/GovernanceContext";
+import { useTracking } from "hooks/useTracking";
 import { useWallet } from "hooks/useWallet";
 import colors from "styles/customTheme/colors";
 
@@ -31,8 +35,33 @@ export type NFTType = {
 
 const NFTTable = () => {
   const [isMobile] = useMediaQuery("(max-width: 425px)");
+  const [currentNFTMndeValue, setCurrentNFTMndeValue] = useState("0");
+  const [currentNFTImageUri, setCurrentNFTImageUri] = useState("/");
+  const [currentNFTAddress, setCurrentNFTAddress] = useState(PublicKey.default);
+
+  const { startUnlocking } = useContext(GovernanceContext);
+
+  const toast = useToast();
+  const { track } = useTracking();
   const { t } = useTranslation();
   const { connected: isWalletConnected } = useWallet();
+  const [isPendingLockOpen, setIsPendingLockOpen] = useState(false);
+  const {
+    isOpen: isUnlockMndeOpen,
+    onClose: onUnlockMndeClose,
+    onOpen: onUnlockMndeOpen,
+  } = useDisclosure();
+
+  function onStartUnlocking(
+    imgURI: string,
+    mndeAmount: string,
+    address: PublicKey
+  ) {
+    setCurrentNFTMndeValue(mndeAmount);
+    setCurrentNFTImageUri(imgURI);
+    setCurrentNFTAddress(address);
+    onUnlockMndeOpen();
+  }
 
   const { nfts, getNftsAction, fetchNftsLoading, lockedMnde } =
     useContext(GovernanceContext);
@@ -80,6 +109,8 @@ const NFTTable = () => {
                 isClaimEnabled={nft.lockEndDate !== undefined}
                 isCancelEnabled={nft.lockEndDate !== undefined}
                 isUnlockEnabled={nft.lockEndDate === undefined}
+                // eslint-disable-next-line react/jsx-no-bind
+                onUnlockMnde={onStartUnlocking}
               />
             ))}
             <Tr>
@@ -123,6 +154,47 @@ const NFTTable = () => {
       >
         {t("appPage.mnde.nft-levels.vote")}
       </MButton>
+      <StartUnlockingMndeModal
+        isPendingOpen={isPendingLockOpen}
+        onUnlockConfirm={async (): Promise<boolean> => {
+          setIsPendingLockOpen(true);
+          return startUnlocking(currentNFTAddress).then(
+            (result) => {
+              return result;
+            },
+            (error) => {
+              setIsPendingLockOpen(false);
+              let description = error.message;
+              if (error.toString().includes("0xec6")) {
+                description = t("appPage.capped-tvl-is-full");
+              } else if (
+                error.toString().includes("no record of a prior credit")
+              ) {
+                description = t("appPage.missing-sol-for-fee");
+              }
+
+              toast({
+                title: t("appPage.something-went-wrong"),
+                description,
+                status: "warning",
+              });
+
+              track({
+                event: "Unlock MNDE Error",
+                category: "Lock MNDE",
+                action: "Unlock",
+                label: "Error",
+                description,
+              });
+              return false;
+            }
+          );
+        }}
+        isOpen={isUnlockMndeOpen}
+        onClose={onUnlockMndeClose}
+        imgURI={currentNFTImageUri}
+        mndeAmount={currentNFTMndeValue}
+      />
     </Flex>
   );
 };

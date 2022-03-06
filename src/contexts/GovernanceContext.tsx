@@ -74,9 +74,11 @@ export enum ActionTypes {
 const GovernanceContext = createContext({
   fetchNftsLoading: false,
   fetchNftsLoadingAction: (_boolean: boolean) => {},
-  startUnlocking: (_nftMint: PublicKey) => {},
-  claimMNDE: (_nftMint: PublicKey) => {},
-  cancelUnlocking: (_nftMint: PublicKey) => {},
+  startUnlocking: async (_nftMint: PublicKey): Promise<boolean> => {
+    return true;
+  },
+  claimMNDE: async (_nftMint: PublicKey) => {},
+  cancelUnlocking: async (_nftMint: PublicKey) => {},
   lockMNDE: async (_amount: string): Promise<boolean> => {
     return true;
   },
@@ -234,7 +236,6 @@ function GovernanceContextProvider(props: {
     }
   }
 
-  // eslint-disable-next-line consistent-return
   async function lockMNDE(amount: string): Promise<boolean> {
     const fundsNeeded = marinade.marinadeState?.transactionFee;
     const checkBalanceErrors = checkNativeSOLBalance(
@@ -320,7 +321,7 @@ function GovernanceContextProvider(props: {
     const result = await tx.confirm();
   }
 
-  async function startUnlocking(nftMint: PublicKey) {
+  async function startUnlocking(nftMint: PublicKey): Promise<boolean> {
     const escrow = await EscrowWrapper.address(sdk, nftMint);
 
     const escrowWrapper = new EscrowWrapper(sdk, escrow);
@@ -343,6 +344,7 @@ function GovernanceContextProvider(props: {
     await tx.confirm().then(() => {
       getNftsAction(true, true);
     });
+    return true;
   }
 
   async function claimMNDE(nftMint: PublicKey) {

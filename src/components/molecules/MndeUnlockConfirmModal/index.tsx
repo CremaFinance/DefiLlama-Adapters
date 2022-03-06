@@ -17,18 +17,19 @@ import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
 
 interface MndeUnlockConfirmModalProps {
+  mndeAmount: string;
   isOpen: boolean;
   onClose: () => void;
 }
 
 const MndeUnlockConfirmModal: FunctionComponent<
   MndeUnlockConfirmModalProps
-> = ({ isOpen, onClose }) => {
+> = ({ isOpen, onClose, mndeAmount }) => {
   const { t } = useTranslation();
   const modalSize = useBreakpointValue({ base: "full", md: "md" });
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size={modalSize}>
+    <Modal isOpen={isOpen} onClose={onClose} size={modalSize} isCentered>
       <ModalOverlay />
       <ModalContent p={6}>
         <ModalCloseButton _focus={{ outline: "none" }} />
@@ -53,7 +54,10 @@ const MndeUnlockConfirmModal: FunctionComponent<
             <MText textAlign="center" mt={4}>
               {t("mndePage.mnde-unlock-confirm-modal.body.0.text")}{" "}
               <MText display="inline-block" fontWeight="bold">
-                {t("mndePage.mnde-unlock-confirm-modal.body.1.text")}
+                {t("mndePage.mnde-unlock-confirm-modal.body.1.text").replace(
+                  "XXXX",
+                  mndeAmount
+                )}
               </MText>{" "}
               <MText display="inline-block">
                 {t("mndePage.mnde-unlock-confirm-modal.body.2.text")}

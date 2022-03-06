@@ -675,7 +675,7 @@
         { "text": " and you will also need to " },
         { "text": "return here to claim your 1000 MNDE." }
       ],
-      "button": "Go to VOTE"
+      "button": "Start unlocking"
     },
     "mnde-unlock-confirm-modal": {
       "header": "Unlocking started!",

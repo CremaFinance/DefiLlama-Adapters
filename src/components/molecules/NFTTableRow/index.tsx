@@ -1,6 +1,7 @@
 import { Flex, Tr, Td, Image, useMediaQuery } from "@chakra-ui/react";
 import type { PublicKey } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
+import type { FunctionComponent } from "react";
 import { useContext } from "react";
 
 import MButton from "../../atoms/Button";
@@ -18,9 +19,14 @@ type NFTTableRowProps = {
   isUnlockEnabled?: boolean;
   isClaimEnabled?: boolean;
   isCancelEnabled?: boolean;
+  onUnlockMnde: (
+    imgURI: string,
+    mndeAmount: string,
+    address: PublicKey
+  ) => void;
 };
 
-const NFTTableRow = ({
+const NFTTableRow: FunctionComponent<NFTTableRowProps> = ({
   lockedMNDE,
   id,
   address,
@@ -29,10 +35,10 @@ const NFTTableRow = ({
   isUnlockEnabled,
   isClaimEnabled,
   isCancelEnabled,
-}: NFTTableRowProps) => {
+  onUnlockMnde,
+}) => {
   const { t } = useTranslation();
-  const { startUnlocking, claimMNDE, cancelUnlocking } =
-    useContext(GovernanceContext);
+  const { claimMNDE, cancelUnlocking } = useContext(GovernanceContext);
   const [isMobile] = useMediaQuery("(max-width: 425px)");
   return (
     <Tr height="84px">
@@ -89,7 +95,7 @@ const NFTTableRow = ({
                 fontSize="14.4px"
                 onClick={() => {
                   if (isUnlockEnabled) {
-                    startUnlocking(address);
+                    onUnlockMnde(thumbnailURL, lockedMNDE.toString(), address);
                   } else {
                     cancelUnlocking(address);
                   }
