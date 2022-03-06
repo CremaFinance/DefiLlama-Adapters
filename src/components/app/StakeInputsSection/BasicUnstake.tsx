@@ -145,6 +145,7 @@ const BasicUnstake = () => {
         !fetchTicketsLoading || !unstakeLoading
       );
     } else {
+      setStSolToUnstake("");
       resetAccountsAction();
       fetchTicketsLoadingAction(false);
     }
