@@ -20,6 +20,7 @@ import { FiExternalLink } from "react-icons/fi";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 import NFTTableRow from "../NFTTableRow";
+import CancelUnlockingModal from "components/molecules/CancelUnlockingModal";
 import ClaimMndeModal from "components/molecules/ClaimMndeModal";
 import StartUnlockingMndeModal from "components/molecules/StartUnlockingMndeModal";
 import { GovernanceContext } from "contexts/GovernanceContext";
@@ -35,19 +36,31 @@ export type NFTType = {
   lockEndDate?: Date;
 };
 
+const tvlFullDescription = "appPage.capped-tvl-is-full";
+const noPriorCredit = "no record of a prior credit";
+const solFee = "appPage.missing-sol-for-fee";
+const somethingWentWrong = "appPage.something-went-wrong";
+
 const NFTTable = () => {
   const [isMobile] = useMediaQuery("(max-width: 425px)");
   const [currentNFTMndeValue, setCurrentNFTMndeValue] = useState("0");
   const [currentNFTImageUri, setCurrentNFTImageUri] = useState("/");
   const [currentNFTAddress, setCurrentNFTAddress] = useState(PublicKey.default);
 
-  const { startUnlocking, claimMNDE } = useContext(GovernanceContext);
+  const { startUnlocking, claimMNDE, cancelUnlocking } =
+    useContext(GovernanceContext);
 
   const toast = useToast();
   const { track } = useTracking();
   const { t } = useTranslation();
   const { connected: isWalletConnected } = useWallet();
   const [isPendingLockOpen, setIsPendingLockOpen] = useState(false);
+
+  const {
+    isOpen: isCancelMndeOpen,
+    onClose: onCancelMndeClose,
+    onOpen: onCancelMndeOpen,
+  } = useDisclosure();
   const {
     isOpen: isUnlockMndeOpen,
     onClose: onUnlockMndeClose,
@@ -58,6 +71,12 @@ const NFTTable = () => {
     onClose: onClaimMndeClose,
     onOpen: onClaimMndeOpen,
   } = useDisclosure();
+
+  function onCancelUnlocking(mndeAmount: string, address: PublicKey) {
+    setCurrentNFTMndeValue(mndeAmount);
+    setCurrentNFTAddress(address);
+    onCancelMndeOpen();
+  }
 
   function onStartClaiming(mndeAmount: string, address: PublicKey) {
     setCurrentNFTMndeValue(mndeAmount);
@@ -124,6 +143,7 @@ const NFTTable = () => {
                 isUnlockEnabled={nft.lockEndDate === undefined}
                 onUnlockMnde={onStartUnlocking}
                 onClaimMnde={onStartClaiming}
+                onCancelMnde={onCancelUnlocking}
               />
             ))}
             <Tr>
@@ -180,15 +200,13 @@ const NFTTable = () => {
               setIsPendingLockOpen(false);
               let description = error.message;
               if (error.toString().includes("0xec6")) {
-                description = t("appPage.capped-tvl-is-full");
-              } else if (
-                error.toString().includes("no record of a prior credit")
-              ) {
-                description = t("appPage.missing-sol-for-fee");
+                description = t(tvlFullDescription);
+              } else if (error.toString().includes(noPriorCredit)) {
+                description = t(solFee);
               }
 
               toast({
-                title: t("appPage.something-went-wrong"),
+                title: t(somethingWentWrong),
                 description,
                 status: "warning",
               });
@@ -219,15 +237,13 @@ const NFTTable = () => {
               setIsPendingLockOpen(false);
               let description = error.message;
               if (error.toString().includes("0xec6")) {
-                description = t("appPage.capped-tvl-is-full");
-              } else if (
-                error.toString().includes("no record of a prior credit")
-              ) {
-                description = t("appPage.missing-sol-for-fee");
+                description = t(tvlFullDescription);
+              } else if (error.toString().includes(noPriorCredit)) {
+                description = t(solFee);
               }
 
               toast({
-                title: t("appPage.something-went-wrong"),
+                title: t(somethingWentWrong),
                 description,
                 status: "warning",
               });
@@ -246,6 +262,44 @@ const NFTTable = () => {
         isOpen={isUnlockMndeOpen}
         onClose={onUnlockMndeClose}
         imgURI={currentNFTImageUri}
+        mndeAmount={currentNFTMndeValue}
+      />
+      <CancelUnlockingModal
+        isPendingOpen={isPendingLockOpen}
+        onCancelConfirm={async (): Promise<boolean> => {
+          setIsPendingLockOpen(true);
+          return cancelUnlocking(currentNFTAddress).then(
+            (result) => {
+              return result;
+            },
+            (error) => {
+              setIsPendingLockOpen(false);
+              let description = error.message;
+              if (error.toString().includes("0xec6")) {
+                description = t(tvlFullDescription);
+              } else if (error.toString().includes(noPriorCredit)) {
+                description = t(solFee);
+              }
+
+              toast({
+                title: t(somethingWentWrong),
+                description,
+                status: "warning",
+              });
+
+              track({
+                event: "Cancel unlock MNDE Error",
+                category: "Lock MNDE",
+                action: "Cancel unlock",
+                label: "Error",
+                description,
+              });
+              return false;
+            }
+          );
+        }}
+        isOpen={isCancelMndeOpen}
+        onClose={onCancelMndeClose}
         mndeAmount={currentNFTMndeValue}
       />
     </Flex>

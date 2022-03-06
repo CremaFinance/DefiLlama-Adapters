@@ -81,7 +81,9 @@ const GovernanceContext = createContext({
   claimMNDE: async (_nftMint: PublicKey): Promise<boolean> => {
     return true;
   },
-  cancelUnlocking: async (_nftMint: PublicKey) => {},
+  cancelUnlocking: async (_nftMint: PublicKey): Promise<boolean> => {
+    return true;
+  },
   lockMNDE: async (_amount: string): Promise<boolean> => {
     return true;
   },
@@ -355,7 +357,7 @@ function GovernanceContextProvider(props: {
     return response;
   }
 
-  async function claimMNDE(nftMint: PublicKey) {
+  async function claimMNDE(nftMint: PublicKey): Promise<boolean> {
     const escrow = await EscrowWrapper.address(sdk, nftMint);
 
     const escrowWrapper = new EscrowWrapper(sdk, escrow);
@@ -403,9 +405,12 @@ function GovernanceContextProvider(props: {
     const tx = await escrowWrapper.cancelUnlocking({
       nftToken,
     });
+    let response = false;
     await tx.confirm().then(() => {
       getNftsAction(true, true);
+      response = true;
     });
+    return response;
   }
 
   return (
