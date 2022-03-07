@@ -58,6 +58,7 @@ const LockMNDESection = () => {
     if (isWalletConnected) {
       getNftsAction(isWalletConnected, !fetchNftsLoading);
     } else {
+      setMNDEToLock("");
       resetNftsAction();
       fetchNftsLoadingAction(false);
     }
