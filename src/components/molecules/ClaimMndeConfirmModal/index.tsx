@@ -57,7 +57,7 @@ const ClaimMndeConfirmModal: FunctionComponent<ClaimMndeConfirmModalProps> = ({
               {t("mndePage.claim-mnde-confirm-modal.body.0.text")}{" "}
               <MText fontSize="text-xl" display="inline" fontWeight="bold">
                 {t("mndePage.claim-mnde-confirm-modal.body.1.text").replace(
-                  "XXXX",
+                  "{{value}}",
                   mndeAmount
                 )}
               </MText>

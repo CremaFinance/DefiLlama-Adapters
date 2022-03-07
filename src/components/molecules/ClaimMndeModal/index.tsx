@@ -80,7 +80,7 @@ const ClaimMndeModal: FunctionComponent<ClaimMndeModalProps> = ({
                 {t("mndePage.claim-mnde-modal.body.0.text")}
                 <MText fontSize="text-xl" display="inline" fontWeight="bold">
                   {t("mndePage.claim-mnde-modal.body.1.text").replace(
-                    "XXXX",
+                    "{{value}}",
                     mndeAmount
                   )}
                 </MText>{" "}

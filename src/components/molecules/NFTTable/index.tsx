@@ -36,7 +36,6 @@ export type NFTType = {
   lockEndDate?: Date;
 };
 
-const tvlFullDescription = "appPage.capped-tvl-is-full";
 const noPriorCredit = "no record of a prior credit";
 const solFee = "appPage.missing-sol-for-fee";
 const somethingWentWrong = "appPage.something-went-wrong";
@@ -199,9 +198,7 @@ const NFTTable = () => {
             (error) => {
               setIsPendingLockOpen(false);
               let description = error.message;
-              if (error.toString().includes("0xec6")) {
-                description = t(tvlFullDescription);
-              } else if (error.toString().includes(noPriorCredit)) {
+              if (error.toString().includes(noPriorCredit)) {
                 description = t(solFee);
               }
 
@@ -236,9 +233,7 @@ const NFTTable = () => {
             (error) => {
               setIsPendingLockOpen(false);
               let description = error.message;
-              if (error.toString().includes("0xec6")) {
-                description = t(tvlFullDescription);
-              } else if (error.toString().includes(noPriorCredit)) {
+              if (error.toString().includes(noPriorCredit)) {
                 description = t(solFee);
               }
 
@@ -275,9 +270,7 @@ const NFTTable = () => {
             (error) => {
               setIsPendingLockOpen(false);
               let description = error.message;
-              if (error.toString().includes("0xec6")) {
-                description = t(tvlFullDescription);
-              } else if (error.toString().includes(noPriorCredit)) {
+              if (error.toString().includes(noPriorCredit)) {
                 description = t(solFee);
               }
 

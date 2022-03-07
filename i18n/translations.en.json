@@ -673,7 +673,7 @@
           "text": "your NFT will be burned "
         },
         { "text": " and you will also need to " },
-        { "text": "return here to claim your 1000 MNDE." }
+        { "text": "return here to claim your {{value}} MNDE." }
       ],
       "button": "Start unlocking"
     },
@@ -684,7 +684,7 @@
           "text": "You have started the unlocking of"
         },
         {
-          "text": "XXXX MNDE"
+          "text": "{{value}} MNDE"
         },
         {
           "text": "Come back here after the cooldown period to claim your MNDE. You can re-lock your MNDE at any time."
@@ -699,7 +699,7 @@
           "text": "Re-locking your"
         },
         {
-          "text": "XXXX MNDE"
+          "text": "{{value}} MNDE"
         },
         {
           "text": "will restore your voting power and reset your unlock period to 30 days."
@@ -708,29 +708,29 @@
       "button": "Cancel unlocking"
     },
     "cancel-unlocking-confirm-modal": {
-      "header": "Unlocking canceled",
+      "header": "Unlocking cancelled",
       "body": [
         {
-          "text": "You have successfully calnceled unlocking"
+          "text": "You have successfully cancelled unlocking"
         },
         {
-          "text": "XXXX MNDE."
+          "text": "{{value}} MNDE."
         }
       ],
       "button": "Close"
     },
     "claim-mnde-modal": {
-      "header": "Are you sure you want to claim your MNDE and burn you NFT?",
+      "header": "Are you sure you want to claim your MNDE and burn your NFT?",
       "body": [
         {
           "text": "You are about to claim "
         },
         {
-          "text": " XXXX MNDE and"
+          "text": " {{value}} MNDE and"
         },
         { "text": "burn your NFT" },
         {
-          "text": ". You can also choose to relock your MNDE and keep your NFT."
+          "text": ". You can also choose to re-lock your MNDE and keep your NFT."
         }
       ],
       "buttons": {
@@ -745,7 +745,7 @@
           "text": "You have successfully claimed"
         },
         {
-          "text": "XXXX MNDE  and burnt your NFT."
+          "text": "{{value}} MNDE  and burnt your NFT."
         }
       ],
       "button": "Close"

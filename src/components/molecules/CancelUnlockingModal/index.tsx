@@ -85,7 +85,7 @@ const CancelUnlockingModal: FunctionComponent<CancelUnlockingModalProps> = ({
                 {t("mndePage.cancel-unlocking-modal.body.0.text")}{" "}
                 <MText fontSize="text-xl" display="inline" fontWeight="bold">
                   {t("mndePage.cancel-unlocking-modal.body.1.text").replace(
-                    "XXXX",
+                    "{{value}}",
                     mndeAmount
                   )}
                 </MText>{" "}

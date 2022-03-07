@@ -99,7 +99,7 @@ const StartUnlockingMndeModal: FunctionComponent<
                 </MText>{" "}
                 <MText display="inline-block" fontWeight="bold">
                   {t("mndePage.unlock-mnde-modal.body.3.text")?.replace(
-                    "1000",
+                    "{{value}}",
                     mndeAmount
                   )}
                 </MText>
