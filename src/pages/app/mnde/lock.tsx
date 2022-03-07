@@ -4,6 +4,7 @@ import Header from "components/app/Header";
 import LockMNDESection from "components/app/LockMNDESection";
 import MndeFAQSection from "components/app/MndeFAQSection";
 import MndeLockInfoSection from "components/app/MndeLockInfoSection";
+import MobileMenu from "components/app/MobileMenu";
 import Footer from "components/layout/Footer";
 import type { BreadcrumbItem } from "components/molecules/BreadcrumbWithRouter";
 import BreadcrumbWithRouter from "components/molecules/BreadcrumbWithRouter";
@@ -35,6 +36,7 @@ const Lock = () => {
       </GovernanceContextProvider>
       <MndeFAQSection />
       <Footer />
+      <MobileMenu />
     </Flex>
   );
 };
