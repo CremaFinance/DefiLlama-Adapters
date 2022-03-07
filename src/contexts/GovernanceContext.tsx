@@ -63,7 +63,7 @@ export type Action =
 
 const initialState: State = {
   nfts: [] as NFTType[],
-  fetchNftsLoading: true,
+  fetchNftsLoading: false,
   lockedMnde: 0,
 };
 
