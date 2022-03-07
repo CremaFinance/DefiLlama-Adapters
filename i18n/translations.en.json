@@ -934,6 +934,20 @@
       }
     ]
   },
+  "nftDetailsPage": {
+    "details-section": {
+      "mnde-balance": {
+        "text": "MNDE Balance",
+        "tooltip": "Your NFT contains [total] locked MNDE tokens. Sending this NFT to another wallet will also send these tokens. "
+      },
+      "cooldown-period": {
+        "text": "Unlock period",
+        "tooltip": "Upon the completion of the 30-day MNDE unlocking period, this NFT will be burned."
+      },
+      "share-twitter": "Share on twitter",
+      "download": "Download"
+    }
+  },
   "404Page": {
     "page-not-cooked": "Oops! It seems like this page is not cooked.",
     "go-to-homepage": "Go to homepage"

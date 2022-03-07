@@ -6,7 +6,6 @@
 
 import { useToast } from "@chakra-ui/react";
 import {
-  EscrowRelockerSDK,
   EscrowWrapper,
   SimpleNftKindWrapper,
 } from "@marinade-finance/escrow-relocker-sdk";
@@ -15,8 +14,11 @@ import {
   GaugeVoterWrapper,
   GaugeVoteWrapper,
 } from "@marinade-finance/escrow-relocker-sdk/gauges";
-import { getParsedNftAccountsByOwner } from "@nfteyez/sol-rayz";
-import { SolanaProvider, TransactionEnvelope } from "@saberhq/solana-contrib";
+import {
+  getParsedAccountByMint,
+  getParsedNftAccountsByOwner,
+} from "@nfteyez/sol-rayz";
+import { TransactionEnvelope } from "@saberhq/solana-contrib";
 import {
   ASSOCIATED_TOKEN_PROGRAM_ID,
   Token,
@@ -35,6 +37,7 @@ import type {
   NftMetadata,
 } from "components/app/LockMNDESection/types";
 import type { NFTType } from "components/molecules/NFTTable";
+import { useEscrow } from "hooks/useEscrow";
 import { checkNativeSOLBalance } from "utils/check-native-sol-balance";
 
 import { useAnchorProvider } from "./AnchorContext";
@@ -127,12 +130,7 @@ function GovernanceContextProvider(props: {
   const marinade = useMarinade();
   const { nativeSOLBalance } = useUserBalance();
 
-  const prov = SolanaProvider.init({
-    connection: anchorProvider.connection,
-    wallet: anchorProvider.wallet,
-  });
-
-  const sdk = new EscrowRelockerSDK(prov);
+  const sdk = useEscrow();
 
   function resetNftsAction() {
     dispatch({
@@ -206,6 +204,7 @@ function GovernanceContextProvider(props: {
       const escrow = await EscrowWrapper.address(sdk, new PublicKey(nft.mint));
       const escrowWrap = new EscrowWrapper(sdk, escrow);
       const metadata = await fetchNftMetadataByAccount(nft);
+
       if (escrowWrap) {
         const escrowData = await escrowWrap.data();
         const amounts = escrowData.amount.toNumber() / LAMPORTS_PER_SOL;
@@ -213,6 +212,7 @@ function GovernanceContextProvider(props: {
           address: new PublicKey(nft.mint),
           lockedMNDE: amounts,
           id: escrowData.index.toString(),
+          dataUri: nft.data.uri,
           thumbnailURL: metadata?.image,
           lockEndDate: (await escrowWrap.isLocked())
             ? undefined

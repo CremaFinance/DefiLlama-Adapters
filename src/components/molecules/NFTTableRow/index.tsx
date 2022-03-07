@@ -1,6 +1,7 @@
 import { Flex, Tr, Td, Image, useMediaQuery } from "@chakra-ui/react";
 import type { PublicKey } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
+import { useRouter } from "next/router";
 import type { FunctionComponent } from "react";
 
 import MButton from "../../atoms/Button";
@@ -41,10 +42,15 @@ const NFTTableRow: FunctionComponent<NFTTableRowProps> = ({
 }) => {
   const { t } = useTranslation();
   const [isMobile] = useMediaQuery("(max-width: 425px)");
+  const router = useRouter();
   return (
     <Tr height="84px">
       <Td pl={0} py={0} pr={[4, 8]}>
-        <Flex flexDirection="column">
+        <Flex
+          cursor="pointer"
+          flexDirection="column"
+          onClick={() => router.push(`lock/nft?pid=${address.toString()}`)}
+        >
           <Image src={thumbnailURL} width="48px" />
           <MText
             mt="4px"
