@@ -11,7 +11,7 @@ import { fetchNftData } from "services/marinade/nftDetails";
 import { useEscrow } from "./useEscrow";
 
 export const useNftDetails = (mintAddress: string) => {
-  const { sdk } = useEscrow();
+  const sdk = useEscrow();
   const { data, isError } = useQuery(
     ["mintAddress", mintAddress],
     async ({ queryKey }: { queryKey: string[] }) => {

@@ -9,7 +9,5 @@ export const useEscrow = () => {
     connection: anchorProvider.connection,
     wallet: anchorProvider.wallet,
   });
-  const sdk = new EscrowRelockerSDK(prov);
-
-  return { sdk };
+  return new EscrowRelockerSDK(prov);
 };

@@ -24,14 +24,16 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
     <Flex
       p={6}
       marginTop={{ base: "16px", lg: "40px" }}
-      height="900px"
+      height="50vh"
       backgroundColor={colors.white}
       width="525px"
       margin="0 auto"
       borderRadius="8px"
       border="1px solid #EDF2F7"
+      alignItems="center"
+      justifyContent="center"
     >
-      <Spinner size="md" margin="0 auto" />
+      <Spinner size="md" />
     </Flex>
   );
 

@@ -130,7 +130,7 @@ function GovernanceContextProvider(props: {
   const marinade = useMarinade();
   const { nativeSOLBalance } = useUserBalance();
 
-  const { sdk } = useEscrow();
+  const sdk = useEscrow();
 
   function resetNftsAction() {
     dispatch({
