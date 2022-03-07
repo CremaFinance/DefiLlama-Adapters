@@ -1,12 +1,11 @@
 import { Flex, Tr, Td, Image, useMediaQuery } from "@chakra-ui/react";
 import type { PublicKey } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
-import { useContext } from "react";
+import type { FunctionComponent } from "react";
 
 import MButton from "../../atoms/Button";
 import Countdown from "../../atoms/Countdown";
 import MText from "../../atoms/Text";
-import { GovernanceContext } from "contexts/GovernanceContext";
 import colors from "styles/customTheme/colors";
 
 type NFTTableRowProps = {
@@ -18,9 +17,16 @@ type NFTTableRowProps = {
   isUnlockEnabled?: boolean;
   isClaimEnabled?: boolean;
   isCancelEnabled?: boolean;
+  onUnlockMnde: (
+    imgURI: string,
+    mndeAmount: string,
+    address: PublicKey
+  ) => void;
+  onClaimMnde: (mndeAmount: string, address: PublicKey) => void;
+  onCancelMnde: (mndeAmount: string, address: PublicKey) => void;
 };
 
-const NFTTableRow = ({
+const NFTTableRow: FunctionComponent<NFTTableRowProps> = ({
   lockedMNDE,
   id,
   address,
@@ -29,10 +35,11 @@ const NFTTableRow = ({
   isUnlockEnabled,
   isClaimEnabled,
   isCancelEnabled,
-}: NFTTableRowProps) => {
+  onUnlockMnde,
+  onClaimMnde,
+  onCancelMnde,
+}) => {
   const { t } = useTranslation();
-  const { startUnlocking, claimMNDE, cancelUnlocking } =
-    useContext(GovernanceContext);
   const [isMobile] = useMediaQuery("(max-width: 425px)");
   return (
     <Tr height="84px">
@@ -89,9 +96,9 @@ const NFTTableRow = ({
                 fontSize="14.4px"
                 onClick={() => {
                   if (isUnlockEnabled) {
-                    startUnlocking(address);
+                    onUnlockMnde(thumbnailURL, lockedMNDE.toString(), address);
                   } else {
-                    cancelUnlocking(address);
+                    onCancelMnde(lockedMNDE.toString(), address);
                   }
                 }}
               >
@@ -125,7 +132,7 @@ const NFTTableRow = ({
                 fontSize="14.4px"
                 onClick={() => {
                   if (lockEndDate.getTime() - new Date().getTime() < 0) {
-                    claimMNDE(address);
+                    onClaimMnde(lockedMNDE.toString(), address);
                   }
                 }}
                 isDisabled={lockEndDate.getTime() - new Date().getTime() > 0}

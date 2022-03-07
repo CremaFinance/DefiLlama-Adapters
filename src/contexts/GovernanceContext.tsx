@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/no-identical-functions */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-await-in-loop */
 /* eslint-disable react/jsx-no-constructed-context-values */
@@ -75,9 +76,15 @@ export enum ActionTypes {
 const GovernanceContext = createContext({
   fetchNftsLoading: false,
   fetchNftsLoadingAction: (_boolean: boolean) => {},
-  startUnlocking: (_nftMint: PublicKey) => {},
-  claimMNDE: (_nftMint: PublicKey) => {},
-  cancelUnlocking: (_nftMint: PublicKey) => {},
+  startUnlocking: async (_nftMint: PublicKey): Promise<boolean> => {
+    return true;
+  },
+  claimMNDE: async (_nftMint: PublicKey): Promise<boolean> => {
+    return true;
+  },
+  cancelUnlocking: async (_nftMint: PublicKey): Promise<boolean> => {
+    return true;
+  },
   lockMNDE: async (_amount: string): Promise<boolean> => {
     return true;
   },
@@ -245,7 +252,6 @@ function GovernanceContextProvider(props: {
     }
   }
 
-  // eslint-disable-next-line consistent-return
   async function lockMNDE(amount: string): Promise<boolean> {
     const fundsNeeded = marinade.marinadeState?.transactionFee;
     const checkBalanceErrors = checkNativeSOLBalance(
@@ -334,7 +340,7 @@ function GovernanceContextProvider(props: {
     const result = await tx.confirm();
   }
 
-  async function startUnlocking(nftMint: PublicKey) {
+  async function startUnlocking(nftMint: PublicKey): Promise<boolean> {
     const escrow = await EscrowWrapper.address(sdk, nftMint);
 
     const escrowWrapper = new EscrowWrapper(sdk, escrow);
@@ -354,12 +360,16 @@ function GovernanceContextProvider(props: {
     const tx = await escrowWrapper.startUnlocking({
       nftToken,
     });
-    await tx.confirm().then(() => {
-      getNftsAction(true, true);
+    let response = false;
+    await tx.confirm().then(async () => {
+      await fetchNFTs().then(() => {
+        response = true;
+      });
     });
+    return response;
   }
 
-  async function claimMNDE(nftMint: PublicKey) {
+  async function claimMNDE(nftMint: PublicKey): Promise<boolean> {
     const escrow = await EscrowWrapper.address(sdk, nftMint);
 
     const escrowWrapper = new EscrowWrapper(sdk, escrow);
@@ -382,9 +392,13 @@ function GovernanceContextProvider(props: {
         sdk.provider.wallet.publicKey
       ),
     });
-    await tx.confirm().then(() => {
-      getNftsAction(true, true);
+    let response = false;
+    await tx.confirm().then(async () => {
+      await fetchNFTs().then(() => {
+        response = true;
+      });
     });
+    return response;
   }
   async function cancelUnlocking(nftMint: PublicKey) {
     const escrow = await EscrowWrapper.address(sdk, nftMint);
@@ -403,9 +417,12 @@ function GovernanceContextProvider(props: {
     const tx = await escrowWrapper.cancelUnlocking({
       nftToken,
     });
+    let response = false;
     await tx.confirm().then(() => {
       getNftsAction(true, true);
+      response = true;
     });
+    return response;
   }
 
   return (

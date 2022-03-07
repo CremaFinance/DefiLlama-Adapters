@@ -18,17 +18,18 @@ import colors from "styles/customTheme/colors";
 
 interface CancelUnlockingConfirmModalProps {
   isOpen: boolean;
+  mndeAmount: string;
   onClose: () => void;
 }
 
 const CancelUnlockingConfirmModal: FunctionComponent<
   CancelUnlockingConfirmModalProps
-> = ({ isOpen, onClose }) => {
+> = ({ isOpen, onClose, mndeAmount }) => {
   const { t } = useTranslation();
   const modalSize = useBreakpointValue({ base: "full", md: "md" });
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size={modalSize}>
+    <Modal isOpen={isOpen} onClose={onClose} size={modalSize} isCentered>
       <ModalOverlay />
       <ModalContent px={6} py={4}>
         <ModalCloseButton _focus={{ outline: "none" }} />
@@ -53,7 +54,9 @@ const CancelUnlockingConfirmModal: FunctionComponent<
             <MText fontSize="text-xl" textAlign="center" mt={4}>
               {t("mndePage.cancel-unlocking-confirm-modal.body.0.text")}{" "}
               <MText fontSize="text-xl" display="inline" fontWeight="bold">
-                {t("mndePage.cancel-unlocking-confirm-modal.body.1.text")}
+                {t(
+                  "mndePage.cancel-unlocking-confirm-modal.body.1.text"
+                ).replace("{{value}}", mndeAmount)}
               </MText>
             </MText>
 

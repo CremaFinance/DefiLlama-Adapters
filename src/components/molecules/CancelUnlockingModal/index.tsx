@@ -11,33 +11,55 @@ import {
 } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import type { FunctionComponent } from "react";
+import { useEffect, useContext } from "react";
 
 import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
 import CancelUnlockingConfirmModal from "../CancelUnlockingConfirmModal";
+import PendingStakeModal from "components/molecules/PendingStakeModal";
+import { AccountsContext } from "contexts/AccountsContext";
 import colors from "styles/customTheme/colors";
 
 interface CancelUnlockingModalProps {
+  mndeAmount: string;
   isOpen: boolean;
+  isPendingOpen: boolean;
   onClose: () => void;
+  onCancelConfirm: () => Promise<boolean>;
 }
 
 const CancelUnlockingModal: FunctionComponent<CancelUnlockingModalProps> = ({
   isOpen,
+  mndeAmount,
+  isPendingOpen,
   onClose,
+  onCancelConfirm,
 }) => {
   const { t } = useTranslation();
   const modalSize = useBreakpointValue({ base: "full", md: "md" });
+  const { transactionSigned, transactionSignedAction } =
+    useContext(AccountsContext);
   const {
     isOpen: isOpenCancelUnlockingConfirmModal,
     onOpen: onOpenCancelUnlockingConfirmModal,
     onClose: onCloseCancelUnlockingConfirmModal,
   } = useDisclosure();
+  const {
+    isOpen: isPendingTransactionOpen,
+    onOpen: openPendingTransaction,
+    onClose: closePendingTransaction,
+  } = useDisclosure();
+
+  useEffect(() => {
+    if (!isPendingOpen) {
+      closePendingTransaction();
+    }
+  }, [closePendingTransaction, isPendingOpen]);
 
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose} size={modalSize}>
+      <Modal isOpen={isOpen} onClose={onClose} size={modalSize} isCentered>
         <ModalOverlay />
         <ModalContent px={6} py={4}>
           <ModalCloseButton _focus={{ outline: "none" }} />
@@ -62,7 +84,10 @@ const CancelUnlockingModal: FunctionComponent<CancelUnlockingModalProps> = ({
               <MText fontSize="text-xl" textAlign="center" mt={4}>
                 {t("mndePage.cancel-unlocking-modal.body.0.text")}{" "}
                 <MText fontSize="text-xl" display="inline" fontWeight="bold">
-                  {t("mndePage.cancel-unlocking-modal.body.1.text")}
+                  {t("mndePage.cancel-unlocking-modal.body.1.text").replace(
+                    "{{value}}",
+                    mndeAmount
+                  )}
                 </MText>{" "}
                 <MText fontSize="text-xl" display="inline">
                   {t("mndePage.cancel-unlocking-modal.body.2.text")}
@@ -80,7 +105,14 @@ const CancelUnlockingModal: FunctionComponent<CancelUnlockingModalProps> = ({
                 height="40px"
                 width="100%"
                 onClick={() => {
-                  onOpenCancelUnlockingConfirmModal();
+                  openPendingTransaction();
+                  onCancelConfirm().then((result) => {
+                    if (result) {
+                      closePendingTransaction();
+                      onOpenCancelUnlockingConfirmModal();
+                      transactionSignedAction(false);
+                    }
+                  });
                   onClose();
                 }}
               >
@@ -91,8 +123,16 @@ const CancelUnlockingModal: FunctionComponent<CancelUnlockingModalProps> = ({
         </ModalContent>
       </Modal>
       <CancelUnlockingConfirmModal
+        mndeAmount={mndeAmount}
         isOpen={isOpenCancelUnlockingConfirmModal}
         onClose={onCloseCancelUnlockingConfirmModal}
+      />
+      <PendingStakeModal
+        isTransactionSigned={transactionSigned}
+        isOpen={isPendingTransactionOpen && isPendingOpen}
+        onClose={() => {
+          transactionSignedAction(false);
+        }}
       />
     </>
   );

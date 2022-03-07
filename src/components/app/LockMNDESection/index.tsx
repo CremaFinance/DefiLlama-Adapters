@@ -39,6 +39,7 @@ const LockMNDESection = () => {
 
   const { track } = useTracking();
 
+  const [isPendingLockOpen, setIsPendingLockOpen] = useState(false);
   const [MNDEToLock, setMNDEToLock] = useState<string>("");
   const { t } = useTranslation();
   const { connected: isWalletConnected } = useWallet();
@@ -121,6 +122,7 @@ const LockMNDESection = () => {
                 Number(MNDEToLock) > (MNDEBalance ?? 0) / LAMPORTS_PER_SOL
               }
               onClick={() => {
+                setIsPendingLockOpen(true);
                 onLockMndeOpen();
               }}
             >
@@ -153,6 +155,7 @@ const LockMNDESection = () => {
         {isWalletConnected ? <NFTTable /> : undefined}
       </Flex>
       <LockMndeModal
+        isPendingOpen={isPendingLockOpen}
         isOpen={isLockMndeOpen}
         onClose={onLockMndeClose}
         onLockConfirm={async (): Promise<boolean> => {
@@ -161,6 +164,7 @@ const LockMNDESection = () => {
               return result;
             },
             (error) => {
+              setIsPendingLockOpen(false);
               let description = error.message;
               if (error.toString().includes("0xec6")) {
                 description = t("appPage.capped-tvl-is-full");
