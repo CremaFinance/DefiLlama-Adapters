@@ -2,6 +2,7 @@ import { Flex } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
 import Header from "components/app/Header";
+import MobileMenu from "components/app/MobileMenu";
 import NftDetailsSection from "components/app/NftDetailsSection";
 import Footer from "components/layout/Footer";
 import type { BreadcrumbItem } from "components/molecules/BreadcrumbWithRouter";
@@ -40,6 +41,7 @@ const NftDetails = () => {
       <BreadcrumbWithRouter breadcrumbItems={breadcrumbItems} />
       <NftDetailsSection id={pid as string} />
       <Footer />
+      <MobileMenu />
     </Flex>
   );
 };
