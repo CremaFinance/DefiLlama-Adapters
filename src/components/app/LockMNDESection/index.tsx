@@ -95,7 +95,9 @@ const LockMNDESection = () => {
           tokenIcon="/icons/mnde.svg"
           onValueChange={setMNDEToLock}
           value={MNDEToLock}
-          tokenBalance={(MNDEBalance ?? 0) / LAMPORTS_PER_SOL}
+          tokenBalance={
+            (isWalletConnected ? MNDEBalance ?? 0 : 0) / LAMPORTS_PER_SOL
+          }
           mb={2}
         />
 
@@ -161,6 +163,7 @@ const LockMNDESection = () => {
         onLockConfirm={async (): Promise<boolean> => {
           return lockMNDE(MNDEToLock).then(
             (result) => {
+              setMNDEToLock("");
               return result;
             },
             (error) => {
