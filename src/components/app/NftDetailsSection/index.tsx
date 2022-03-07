@@ -8,6 +8,7 @@ import MText from "../../atoms/Text";
 import TooltipWithContent from "components/molecules/TooltipWithContent";
 import { useNftDetails } from "hooks/useNftDetails";
 import { useTranslation } from "hooks/useTranslation";
+import { downloadPfp } from "services/marinade/downloadPfp";
 import colors from "styles/customTheme/colors";
 
 interface NftDetailsSectionProps {
@@ -133,6 +134,7 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
           >
             {data?.attributes.map((attribute) => (
               <Flex
+                key={`${attribute.trait_type}-${attribute.value}`}
                 p={4}
                 flexDirection="column"
                 backgroundColor="#F7FAFC"
@@ -189,7 +191,9 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
               px={4}
               height="40px"
               width="100%"
-              onClick={() => {}}
+              onClick={() => {
+                downloadPfp(data?.image, data?.properties.files[0].uri);
+              }}
             >
               {t("nftDetailsPage.details-section.download")}
               <Image
