@@ -4,6 +4,7 @@ import { MdInfoOutline } from "react-icons/md";
 
 import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
+import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
 import TooltipWithContent from "components/molecules/TooltipWithContent";
 import { useNftDetails } from "hooks/useNftDetails";
@@ -168,7 +169,7 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
               rounded="md"
               px={4}
               height="40px"
-              width="100%"
+              flex={1}
               onClick={() => {}}
             >
               {t("nftDetailsPage.details-section.share-twitter")}
@@ -181,29 +182,37 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
                 width={5}
               />
             </MButton>
-            <MButton
-              variant="outline"
-              borderColor="gray"
-              _hover={{ bg: "gray.100" }}
-              color="black"
-              font="text-lg"
-              rounded="md"
-              px={4}
+
+            <MLink
+              target="_blank"
+              rel="noreferrer"
               height="40px"
-              width="100%"
+              font="text-lg"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              _hover={{ textDecoration: "underline" }}
+              _focus={{ boxShadow: "none" }}
+              colorScheme={colors.marinadeGreen}
+              color={colors.marinadeGreen}
+              rounded="md"
+              flex={1}
+              px={4}
               onClick={() => {
                 downloadPfp(data?.image, data?.properties.files[0].uri);
               }}
             >
-              {t("nftDetailsPage.details-section.download")}
+              {t("mndePage.lock-mnde-complete-modal.links.download")}
+
               <Image
                 ml={2}
+                color={colors.marinadeGreen}
                 cursor="pointer"
-                src="/icons/pointer-down-black.svg"
-                alt="Download"
+                src="/icons/download.svg"
+                alt="Twitter Logo"
                 width={5}
               />
-            </MButton>
+            </MLink>
           </Stack>
         </Flex>
       )}
