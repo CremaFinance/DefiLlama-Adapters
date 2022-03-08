@@ -4,7 +4,6 @@ import { MdInfoOutline } from "react-icons/md";
 
 import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
-import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
 import TooltipWithContent from "components/molecules/TooltipWithContent";
 import { useNftDetails } from "hooks/useNftDetails";
@@ -138,7 +137,7 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
                 key={`${attribute.trait_type}-${attribute.value}`}
                 p={4}
                 flexDirection="column"
-                backgroundColor="#F7FAFC"
+                backgroundColor={colors.aliceBlue}
                 border="1px solid"
                 borderColor={colors.lightGray}
                 borderRadius="6px"
@@ -164,12 +163,11 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
               variant="outline"
               borderColor="gray"
               _hover={{ bg: "gray.100" }}
+              width="100%"
               color="black"
               font="text-lg"
               rounded="md"
-              px={4}
               height="40px"
-              flex={1}
               onClick={() => {}}
             >
               {t("nftDetailsPage.details-section.share-twitter")}
@@ -183,36 +181,30 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
               />
             </MButton>
 
-            <MLink
-              target="_blank"
-              rel="noreferrer"
-              height="40px"
+            <MButton
+              variant="outline"
+              borderColor="gray"
+              _hover={{ bg: "gray.100" }}
+              color="black"
               font="text-lg"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-              _hover={{ textDecoration: "underline" }}
-              _focus={{ boxShadow: "none" }}
-              colorScheme={colors.marinadeGreen}
-              color={colors.marinadeGreen}
               rounded="md"
-              flex={1}
               px={4}
+              height="40px"
+              width="100%"
               onClick={() => {
                 downloadPfp(data?.image, data?.properties.files[0].uri);
               }}
             >
-              {t("mndePage.lock-mnde-complete-modal.links.download")}
-
+              {t("nftDetailsPage.details-section.download")}
               <Image
                 ml={2}
                 color={colors.marinadeGreen}
                 cursor="pointer"
-                src="/icons/download.svg"
-                alt="Twitter Logo"
+                src="/icons/download-black.svg"
+                alt="Download"
                 width={5}
               />
-            </MLink>
+            </MButton>
           </Stack>
         </Flex>
       )}
