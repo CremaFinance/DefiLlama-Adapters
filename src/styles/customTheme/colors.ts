@@ -60,6 +60,7 @@ const colors = {
   white: "#FFFFFF",
   white800: "#FFFFFFCC",
   lightGray: "#EDF2F7",
+  aliceBlue: "F7FAFC",
 };
 
 export default colors;

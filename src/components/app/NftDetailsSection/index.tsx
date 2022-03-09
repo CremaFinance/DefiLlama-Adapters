@@ -8,6 +8,7 @@ import MText from "../../atoms/Text";
 import TooltipWithContent from "components/molecules/TooltipWithContent";
 import { useNftDetails } from "hooks/useNftDetails";
 import { useTranslation } from "hooks/useTranslation";
+import { downloadPfp } from "services/marinade/downloadPfp";
 import colors from "styles/customTheme/colors";
 
 interface NftDetailsSectionProps {
@@ -133,9 +134,10 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
           >
             {data?.attributes.map((attribute) => (
               <Flex
+                key={`${attribute.trait_type}-${attribute.value}`}
                 p={4}
                 flexDirection="column"
-                backgroundColor="#F7FAFC"
+                backgroundColor={colors.aliceBlue}
                 border="1px solid"
                 borderColor={colors.lightGray}
                 borderRadius="6px"
@@ -161,12 +163,11 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
               variant="outline"
               borderColor="gray"
               _hover={{ bg: "gray.100" }}
+              width="100%"
               color="black"
               font="text-lg"
               rounded="md"
-              px={4}
               height="40px"
-              width="100%"
               onClick={() => {}}
             >
               {t("nftDetailsPage.details-section.share-twitter")}
@@ -179,6 +180,7 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
                 width={5}
               />
             </MButton>
+
             <MButton
               variant="outline"
               borderColor="gray"
@@ -189,13 +191,16 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
               px={4}
               height="40px"
               width="100%"
-              onClick={() => {}}
+              onClick={() => {
+                downloadPfp(data?.image, data?.properties.files[0].uri);
+              }}
             >
               {t("nftDetailsPage.details-section.download")}
               <Image
                 ml={2}
+                color={colors.marinadeGreen}
                 cursor="pointer"
-                src="/icons/pointer-down-black.svg"
+                src="/icons/download-black.svg"
                 alt="Download"
                 width={5}
               />
