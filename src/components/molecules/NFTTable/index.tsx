@@ -28,15 +28,6 @@ import { useTracking } from "hooks/useTracking";
 import { useWallet } from "hooks/useWallet";
 import colors from "styles/customTheme/colors";
 
-export type NFTType = {
-  address: PublicKey;
-  lockedMNDE: number;
-  id: string;
-  thumbnailURL: string;
-  lockEndDate?: Date;
-  dataUri: string;
-};
-
 const noPriorCredit = "no record of a prior credit";
 const solFee = "appPage.missing-sol-for-fee";
 const somethingWentWrong = "appPage.something-went-wrong";

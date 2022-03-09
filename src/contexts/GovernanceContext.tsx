@@ -36,8 +36,8 @@ import type {
   NftAccount,
   NftMetadata,
 } from "components/app/LockMNDESection/types";
-import type { NFTType } from "components/molecules/NFTTable";
 import { useEscrow } from "hooks/useEscrow";
+import type { NFTType } from "services/domain/nftType";
 import { checkNativeSOLBalance } from "utils/check-native-sol-balance";
 
 import { useAnchorProvider } from "./AnchorContext";
