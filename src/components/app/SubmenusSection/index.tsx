@@ -79,6 +79,16 @@ const SubmenusMndeSection = () => {
         px={{ base: "24px", lg: "6vw" }}
       >
         <MNDESubmenuCard
+          cardTitle={t("appPage.mnde.buy-mnde-card.title")}
+          cardDescription={t("appPage.mnde.buy-mnde-card.description")}
+          cardButtonText={t("appPage.mnde.buy-mnde-card.button")}
+          cardIllustrationPath="/ilustrations/buy-mnde.svg"
+          isExternal
+          onClickCardButton={() =>
+            window.open("https://jup.ag/swap/mSOL-MNDE", "_blank")
+          }
+        />
+        <MNDESubmenuCard
           cardTitle={t("appPage.mnde.lock-card.title")}
           cardDescription={t("appPage.mnde.lock-card.description")}
           cardButtonText={t("appPage.mnde.lock-card.button")}

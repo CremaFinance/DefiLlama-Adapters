@@ -349,8 +349,14 @@
         "description": "Acquire and lock MNDE to participate in governance and unlock additional incentives.",
         "button": "Get and lock MNDE"
       },
+      "buy-mnde-card": {
+        "title":"Buy MNDE",
+        "description":"Acquire MNDE to participate in governance and unlock additional incentives.",
+        "button":"Buy MNDE"
+
+      },
       "nft-vote-card": {
-        "title": "Vote with your NFT",
+        "title": "Vote",
         "description": "Influence the delegation strategy, decide on treasury spend, and control the executive team.",
         "button": "Vote"
       },

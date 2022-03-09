@@ -25,10 +25,11 @@ const MNDESubmenuCard = ({
 }: MNDESubmenuCardProps) => {
   return (
     <Flex
+      flex={{ base: "inherit", md: "1 0 40%", lg: "inherit" }}
       direction="column"
-      mx={{ base: "0px", md: "8px" }}
-      height={{ base: "auto", md: "348px", xl: "352px" }}
-      width={{ base: "100%", md: "224px", xl: "360px" }}
+      mx={{ base: "0px", md: "12px" }}
+      height={{ base: "auto", md: "348px", xl: "363px" }}
+      width={{ base: "100%", md: "210px", xl: "290px" }}
       flexDirection="column"
       p={6}
       mb="16px"
@@ -41,7 +42,7 @@ const MNDESubmenuCard = ({
       zIndex={6}
     >
       <Flex direction="column" alignItems="center">
-        <Image width="80px" height="80px" src={cardIllustrationPath} pb={4} />
+        <Image width="80px" height="80px" src={cardIllustrationPath} />
         <Text
           mt="16px"
           fontSize={{ base: "18px", xl: "28px" }}
@@ -68,7 +69,7 @@ const MNDESubmenuCard = ({
           width="100%"
           height="40px"
           variant="big-solid"
-          fontSize={{ base: "16px", lg: "16px" }}
+          fontSize="16px"
           fontWeight="bold"
           isDisabled={cardButtonDisabled}
           onClick={() => onClickCardButton && onClickCardButton()}
