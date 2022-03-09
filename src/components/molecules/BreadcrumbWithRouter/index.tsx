@@ -39,6 +39,7 @@ const BreadcrumbWithRouter: FunctionComponent<BreadcrumbWithRouterProps> = ({
   return (
     <Box px={{ base: 4, md: 10, lg: 180 }} pt={["72px", "80px"]}>
       <Breadcrumb
+        position="fixed"
         fontWeight="bold"
         fontSize="md"
         spacing={4}
