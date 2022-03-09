@@ -10,11 +10,15 @@ import {
 } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import type { FunctionComponent } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
 import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
+import type { NFTType } from "../NFTTable";
+import { GovernanceContext } from "contexts/GovernanceContext";
+import { downloadPfp } from "services/marinade/downloadPfp";
 import colors from "styles/customTheme/colors";
 
 interface CompleteLockMndeModalProps {
@@ -28,6 +32,12 @@ const CompleteLockMndeModal: FunctionComponent<CompleteLockMndeModalProps> = ({
 }) => {
   const { t } = useTranslation();
   const modalSize = useBreakpointValue({ base: "full", md: "md" });
+  const [nft, setNft] = useState<NFTType | null>(null);
+  const { fetchNftsLoading, nfts } = useContext(GovernanceContext);
+
+  useEffect(() => {
+    if (!fetchNftsLoading && nfts.length) setNft(nfts[0]);
+  }, [fetchNftsLoading, nfts, setNft]);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size={modalSize}>
@@ -44,7 +54,7 @@ const CompleteLockMndeModal: FunctionComponent<CompleteLockMndeModalProps> = ({
             mt={6}
           >
             <Image
-              src="/ilustrations/fish.svg"
+              src={nft?.thumbnailURL}
               alt="Fish"
               maxWidth={{ base: "300px", md: "382px" }}
             />
@@ -100,6 +110,9 @@ const CompleteLockMndeModal: FunctionComponent<CompleteLockMndeModalProps> = ({
                 color={colors.marinadeGreen}
                 rounded="md"
                 flex={1}
+                onClick={() => {
+                  downloadPfp(nft?.thumbnailURL, nft?.id);
+                }}
               >
                 {t("mndePage.lock-mnde-complete-modal.links.download")}
 

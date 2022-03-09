@@ -222,7 +222,7 @@ function GovernanceContextProvider(props: {
     const tempState = (await (
       await Promise.all(nftTypePromises)
     ).filter((nfttype) => nfttype !== null)) as NFTType[];
-    state.nfts = tempState;
+    state.nfts = tempState.sort((a, b) => parseFloat(b.id) - parseFloat(a.id));
     state.lockedMnde = tempState.reduce(
       (acc, curr) => acc + curr.lockedMNDE,
       0

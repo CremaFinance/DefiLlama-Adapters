@@ -165,6 +165,7 @@ const LockMNDESection = () => {
           return lockMNDE(MNDEToLock).then(
             (result) => {
               setMNDEToLock("");
+              fetchNftsLoadingAction(false);
               return result;
             },
             (error) => {
