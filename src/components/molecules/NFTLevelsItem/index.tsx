@@ -30,7 +30,7 @@ const NFTLevelsItem = ({
       mr={{ base: "0px", md: "4px" }}
       mt={{ base: "2px", md: "0px" }}
       mb={{ base: "2px", md: "0px" }}
-      height={{ md: "137px" }}
+      height={{ md: "154px" }}
       width={{ base: "100%", md: "73px" }}
       flexDirection={{ base: "row", md: "column" }}
       background="white"
@@ -95,7 +95,7 @@ const NFTLevelsItem = ({
           maxW={{ base: "120px", md: "72px" }}
           fontWeight="bold"
           textAlign={{ base: "right", md: "left" }}
-          fontSize="9.22px"
+          fontSize="11.52px"
           lineHeight="13.83px"
           color={limited ? colors.marinadeOrange : "gray.500"}
         >

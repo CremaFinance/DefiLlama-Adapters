@@ -38,19 +38,27 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
       setSelectedLevel("tier1");
       onLevelClick("1", false);
     }
-    if (inputAmount > 4999 && inputAmount < 25000 && inputAmount <= balance) {
+    if (inputAmount >= 5000 && inputAmount < 25000 && inputAmount <= balance) {
       setSelectedLevel("tier2");
       onLevelClick("2", false);
     }
-    if (inputAmount > 24999 && inputAmount < 100000 && inputAmount <= balance) {
+    if (
+      inputAmount >= 25000 &&
+      inputAmount < 100000 &&
+      inputAmount <= balance
+    ) {
       setSelectedLevel("tier3");
       onLevelClick("3", false);
     }
-    if (inputAmount > 99999 && inputAmount < 500000 && inputAmount <= balance) {
+    if (
+      inputAmount >= 100000 &&
+      inputAmount < 500000 &&
+      inputAmount <= balance
+    ) {
       setSelectedLevel("tier4");
       onLevelClick("4", false);
     }
-    if (inputAmount > 499999 && inputAmount <= balance) {
+    if (inputAmount >= 500000 && inputAmount <= balance) {
       setSelectedLevel("tier5");
       onLevelClick("5", false);
     }
@@ -68,7 +76,7 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
       alignItems="center"
     >
       <Flex
-        height={{ base: "400px", md: "180px" }}
+        height={{ base: "400px", md: "200px" }}
         width="100%"
         flexDirection={{ md: "row", base: "column" }}
         mt={[2, 0]}
