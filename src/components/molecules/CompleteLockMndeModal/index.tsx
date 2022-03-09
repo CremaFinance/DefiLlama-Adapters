@@ -18,6 +18,7 @@ import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
 import type { NFTType } from "../NFTTable";
 import { GovernanceContext } from "contexts/GovernanceContext";
+import { downloadPfp } from "services/marinade/downloadPfp";
 import colors from "styles/customTheme/colors";
 
 interface CompleteLockMndeModalProps {
@@ -109,6 +110,9 @@ const CompleteLockMndeModal: FunctionComponent<CompleteLockMndeModalProps> = ({
                 color={colors.marinadeGreen}
                 rounded="md"
                 flex={1}
+                onClick={() => {
+                  downloadPfp(nft?.thumbnailURL, nft?.id);
+                }}
               >
                 {t("mndePage.lock-mnde-complete-modal.links.download")}
 
