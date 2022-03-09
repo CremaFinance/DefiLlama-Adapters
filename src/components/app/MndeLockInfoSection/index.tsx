@@ -15,7 +15,7 @@ const MndeLockInfoSection = () => {
       width="100vw"
     >
       <Flex
-        marginTop={{ base: "16px", lg: "40px" }}
+        marginTop={{ base: "24px", lg: "40px" }}
         marginBottom={{ base: "16px", lg: "40px" }}
         marginX="8px"
         alignItems="center"

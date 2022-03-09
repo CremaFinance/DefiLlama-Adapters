@@ -37,12 +37,17 @@ const BreadcrumbWithRouter: FunctionComponent<BreadcrumbWithRouterProps> = ({
   };
 
   return (
-    <Box px={{ base: 4, md: 10, lg: 180 }} pt={["72px", "80px"]}>
+    <Box px={{ base: 4, md: 10, lg: 180 }} pt={["64px", "80px"]}>
       <Breadcrumb
         position="fixed"
+        width="100%"
+        zIndex="1000"
         fontWeight="bold"
         fontSize="md"
         spacing={4}
+        pl={{ base: "16px", md: 0 }}
+        left={{ base: 0, md: "initial" }}
+        bg={colors.greenLight}
         color={colors.marinadeGreen}
         separator={
           <Image src="/icons/arrow-right-green.svg" width="7px" height="13px" />
