@@ -192,15 +192,13 @@ function GovernanceContextProvider(props: {
   }
 
   const fetchNFTs = async () => {
-    const tempNFTs: NFTType[] = [];
-    let total = 0;
     const nfts = await getUsersVotingNftsByWallet(
       sdk.provider.wallet.publicKey,
       sdk.provider.connection,
       [NFT_CREATOR]
     );
 
-    for (const nft of nfts) {
+    const nftTypePromises = nfts.map(async (nft) => {
       const escrow = await EscrowWrapper.address(sdk, new PublicKey(nft.mint));
       const escrowWrap = new EscrowWrapper(sdk, escrow);
       const metadata = await fetchNftMetadataByAccount(nft);
@@ -208,7 +206,7 @@ function GovernanceContextProvider(props: {
       if (escrowWrap) {
         const escrowData = await escrowWrap.data();
         const amounts = escrowData.amount.toNumber() / LAMPORTS_PER_SOL;
-        const nftItem = {
+        return {
           address: new PublicKey(nft.mint),
           lockedMNDE: amounts,
           id: escrowData.index.toString(),
@@ -218,12 +216,17 @@ function GovernanceContextProvider(props: {
             ? undefined
             : new Date(escrowData.claimTime.toNumber() * 1000),
         } as NFTType;
-        tempNFTs.push(nftItem);
-        total += nftItem.lockedMNDE;
       }
-    }
-    state.nfts = tempNFTs;
-    state.lockedMnde = total;
+      return null;
+    });
+    const tempState = (await (
+      await Promise.all(nftTypePromises)
+    ).filter((nfttype) => nfttype !== null)) as NFTType[];
+    state.nfts = tempState;
+    state.lockedMnde = tempState.reduce(
+      (acc, curr) => acc + curr.lockedMNDE,
+      0
+    );
   };
 
   function fetchNftsLoadingAction(loading: boolean) {
