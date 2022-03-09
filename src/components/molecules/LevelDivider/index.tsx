@@ -1,7 +1,8 @@
-import { Flex, Text, Icon, Divider } from "@chakra-ui/react";
+import { Flex, Icon, Divider } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { FiExternalLink } from "react-icons/fi";
 
+import MLink from "../../atoms/Link";
 import colors from "styles/customTheme/colors";
 
 type LevelDividerProps = {
@@ -27,7 +28,7 @@ const LevelDivider = ({
       width={{ base: "100%", sm: "0" }}
       height={{ base: "auto", sm: "100%" }}
       display={
-        (balance < max || disableMax) && (balance > min || disableMin)
+        (balance < max || disableMax) && (balance >= min || disableMin)
           ? "flex"
           : "none"
       }
@@ -35,7 +36,6 @@ const LevelDivider = ({
       <Divider
         borderColor="gray.200"
         orientation="vertical"
-        height="100%"
         opacity="1"
         mt="22px"
         display={{ base: "none", md: "flex" }}
@@ -46,32 +46,41 @@ const LevelDivider = ({
         ml="2px"
         borderColor="gray.200"
         orientation="horizontal"
-        width="100%"
-        height="10px"
         opacity="1"
         display={{ base: "flex", md: "none" }}
       />
-      <Text
+      <Flex
         marginLeft={{ base: "5px", md: "9px" }}
-        marginTop={{ base: "20px", md: "190px" }}
+        height="100%"
         position="absolute"
-        fontWeight="bold"
-        textAlign="left"
-        fontSize="9.22px"
-        cursor="pointer"
-        lineHeight="13.83px"
-        color={colors.marinadeGreen}
+        display="flex"
+        flexDirection={["row", "column"]}
+        justifyContent="flex-end"
       >
-        {t("appPage.mnde.nft-levels.buy-more")}
-        <Icon
-          as={FiExternalLink}
-          width="10px"
-          height="10px"
+        <MLink
+          target="_blank"
+          rel="noreferrer noopener"
+          fontWeight="bold"
+          textAlign="left"
+          fontSize="11.52px"
           cursor="pointer"
-          marginLeft="2px"
-          marginBottom="-1px"
-        />
-      </Text>
+          lineHeight="13.83px"
+          _hover={{ textDecoration: "underline" }}
+          _focus={{ boxShadow: "none" }}
+          color={colors.marinadeGreen}
+          href="https://jup.ag/swap/mSOL-MNDE"
+        >
+          {t("appPage.mnde.nft-levels.buy-more")}
+          <Icon
+            as={FiExternalLink}
+            width="12px"
+            height="12px"
+            cursor="pointer"
+            marginLeft="2px"
+            marginBottom="-1px"
+          />
+        </MLink>
+      </Flex>
     </Flex>
   );
 };
