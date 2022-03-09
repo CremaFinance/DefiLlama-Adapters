@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { PublicKey } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { FiExternalLink } from "react-icons/fi";
 
 import MButton from "../../atoms/Button";
@@ -24,8 +24,8 @@ import CancelUnlockingModal from "components/molecules/CancelUnlockingModal";
 import ClaimMndeModal from "components/molecules/ClaimMndeModal";
 import StartUnlockingMndeModal from "components/molecules/StartUnlockingMndeModal";
 import { GovernanceContext } from "contexts/GovernanceContext";
+import useGovernanceData from "hooks/useGovernanceData";
 import { useTracking } from "hooks/useTracking";
-import { useWallet } from "hooks/useWallet";
 import colors from "styles/customTheme/colors";
 
 const noPriorCredit = "no record of a prior credit";
@@ -44,7 +44,7 @@ const NFTTable = () => {
   const toast = useToast();
   const { track } = useTracking();
   const { t } = useTranslation();
-  const { connected: isWalletConnected } = useWallet();
+  const { data: governance } = useGovernanceData();
   const [isPendingLockOpen, setIsPendingLockOpen] = useState(false);
 
   const {
@@ -86,18 +86,9 @@ const NFTTable = () => {
     onUnlockMndeOpen();
   }
 
-  const { nfts, getNftsAction, fetchNftsLoading, lockedMnde } =
-    useContext(GovernanceContext);
-
-  useEffect(() => {
-    if (isWalletConnected) {
-      getNftsAction(isWalletConnected, !fetchNftsLoading);
-    }
-  }, [isWalletConnected, nfts, lockedMnde]);
-
   return (
     <Flex width="100%" pt={8} flexDirection="column">
-      {nfts.length ? (
+      {governance?.nfts.length ? (
         <Table variant="simple">
           {!isMobile ? (
             <Thead>
@@ -121,7 +112,7 @@ const NFTTable = () => {
             </Thead>
           ) : undefined}
           <Tbody>
-            {nfts.map((nft) => (
+            {governance?.nfts.map((nft) => (
               <NFTTableRow
                 key={nft.id}
                 id={nft.id}
@@ -150,7 +141,9 @@ const NFTTable = () => {
                   fontWeight="bold"
                   textAlign={isMobile ? "right" : "left"}
                 >
-                  {lockedMnde ? `${lockedMnde} MNDE` : "-"}
+                  {governance.lockedMnde
+                    ? `${governance.lockedMnde} MNDE`
+                    : "-"}
                 </MText>
               </Td>
             </Tr>

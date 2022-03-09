@@ -3,6 +3,8 @@ import { EscrowWrapper } from "@marinade-finance/escrow-relocker-sdk";
 import { getParsedNftAccountsByOwner } from "@nfteyez/sol-rayz";
 import type { Connection } from "@solana/web3.js";
 import { LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
+import axios from "axios";
+import axiosRetry from "axios-retry";
 
 import type {
   NftAccount,
@@ -12,12 +14,22 @@ import type { NFTType } from "services/domain/nftType";
 
 const NFT_CREATOR = "4eopmn89uciMvKzGYwkFBMXVpLCjnGda7uWo5uZqQCFF";
 
-const fetchNftMetadataByAccount = async (
+async function fetchNftMetadataByAccount(
   account: NftAccount
-): Promise<NftMetadata | undefined> => {
-  const response = fetch(account.data.uri);
-  return (await response).json();
-};
+): Promise<NftMetadata | undefined> {
+  axiosRetry(axios, {
+    retries: 5,
+    retryDelay: (retryCount) => {
+      return retryCount * 2000;
+    },
+    retryCondition: (error) => {
+      return error?.response?.status === 400;
+    },
+  });
+
+  const response = await axios.get(account.data.uri);
+  return response.data as NftMetadata;
+}
 
 const getUsersVotingNftsByWallet = async (
   walletPublicKey: PublicKey,
@@ -50,14 +62,14 @@ const getUsersVotingNftsByWallet = async (
   }
 };
 
-export const fetchNFTs = async (sdk: EscrowRelockerSDK) => {
-  const nfts = await getUsersVotingNftsByWallet(
+export const fetchGovernanceData = async (sdk: EscrowRelockerSDK) => {
+  const walletNfts = await getUsersVotingNftsByWallet(
     sdk.provider.wallet.publicKey,
     sdk.provider.connection,
     [NFT_CREATOR]
   );
 
-  const nftTypePromises = nfts.map(async (nft) => {
+  const nftTypePromises = walletNfts.map(async (nft) => {
     const escrow = await EscrowWrapper.address(sdk, new PublicKey(nft.mint));
     const escrowWrap = new EscrowWrapper(sdk, escrow);
     const metadata = await fetchNftMetadataByAccount(nft);
@@ -78,10 +90,12 @@ export const fetchNFTs = async (sdk: EscrowRelockerSDK) => {
     }
     return null;
   });
-  const parsedNfts = (await Promise.all(nftTypePromises)).filter(
-    (nfttype) => nfttype !== null
-  ) as NFTType[];
+  const nfts = (await Promise.all(nftTypePromises))
+    .filter((nfttype) => nfttype !== null)
+    .sort(
+      (a, b) => parseFloat((b as NFTType).id) - parseFloat((a as NFTType).id)
+    ) as NFTType[];
 
-  const lockedMnde = parsedNfts.reduce((acc, curr) => acc + curr.lockedMNDE, 0);
-  return { parsedNfts, lockedMnde };
+  const lockedMnde = nfts.reduce((acc, curr) => acc + curr.lockedMNDE, 0);
+  return { nfts, lockedMnde };
 };

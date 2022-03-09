@@ -4,21 +4,21 @@ import type { UseQueryResult } from "react-query";
 import { useQuery } from "react-query";
 
 import type { NFTType } from "services/domain/nftType";
-import { fetchNFTs } from "services/marinade/fetchNfts";
+import { fetchGovernanceData } from "services/marinade/fetchGovernanceData";
 
 import { useEscrow } from "./useEscrow";
 
-const useNfts = () => {
+const useGovernance = () => {
   const { connected } = useWallet();
 
   const sdk = useEscrow();
   return useQuery(
     ["nfts"],
     () => {
-      return fetchNFTs(sdk as EscrowRelockerSDK);
+      return fetchGovernanceData(sdk as EscrowRelockerSDK);
     },
-    { enabled: connected }
-  ) as UseQueryResult<{ parsedNfts: NFTType[]; lockedMnde: number }, Error>;
+    { enabled: connected, refetchOnWindowFocus: false }
+  ) as UseQueryResult<{ nfts: NFTType[]; lockedMnde: number }, Error>;
 };
 
-export default useNfts;
+export default useGovernance;
