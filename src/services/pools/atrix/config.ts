@@ -54,7 +54,7 @@ export const atrixPools: Record<LiquidityAtrixPoolAddress, PoolConfig> = {
       rewards: {
         [coinSymbols.MNDE]: {
           aprDescription: "daily MNDE",
-          dailyRate: 34410.77441 / 7,
+          dailyRate: 8602.693603 / 7,
         },
       },
       actions,
