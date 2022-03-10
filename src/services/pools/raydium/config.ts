@@ -56,7 +56,7 @@ export const raydiumPools: Record<LiquidityRaydiumPoolAddress, PoolConfig> = {
       rewards: {
         [coinSymbols.MNDE]: {
           aprDescription: mndeReward,
-          dailyRate: 94629.62963 / 7,
+          dailyRate: 43013.46801 / 7,
         },
       },
       actions,
@@ -92,7 +92,7 @@ export const raydiumPools: Record<LiquidityRaydiumPoolAddress, PoolConfig> = {
       rewards: {
         [coinSymbols.MNDE]: {
           aprDescription: mndeReward,
-          dailyRate: 17205.38721 / 7,
+          dailyRate: 8602.693603 / 7,
         },
       },
       actions,
@@ -109,7 +109,7 @@ export const raydiumPools: Record<LiquidityRaydiumPoolAddress, PoolConfig> = {
       rewards: {
         [coinSymbols.MNDE]: {
           aprDescription: mndeReward,
-          dailyRate: 17205.38721 / 7,
+          dailyRate: 8602.693603 / 7,
         },
       },
       actions,
