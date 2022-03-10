@@ -340,6 +340,7 @@
       "nft-level-value": "Level ",
       "unlock-period": "Unlock period",
       "unlock-period-mockup-value": "30 days",
+      "lock-nfts": "If you lock MNDE, your NFTs will be displayed here.",
       "lock-button": "Lock MNDE",
       "description1": "The Marinade token - MNDE - represents fractional ownership of Marinade.",
       "description2": "Acquire and stake MNDE to vote and earn within the Marinade DAO.",
