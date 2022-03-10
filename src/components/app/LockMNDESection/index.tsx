@@ -15,14 +15,16 @@ import { MdInfoOutline } from "react-icons/md";
 import { useUserBalance } from "../../../contexts/UserBalanceContext";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
+import CompleteLockMndeModal from "../../molecules/CompleteLockMndeModal";
 import { ConnectWallet } from "../../molecules/ConnectWallet";
 import NFTTable from "../../molecules/NFTTable";
 import TooltipWithContent from "../../molecules/TooltipWithContent";
-import LockMndeModal from "components/molecules/LockMndeModal";
 import NFTLevels from "components/molecules/NFTLevels";
+import PendingStakeModal from "components/molecules/PendingStakeModal";
 import StakeInput, {
   StakeInputTypeEnum,
 } from "components/molecules/StakeInput";
+import { AccountsContext } from "contexts/AccountsContext";
 import { GovernanceContext } from "contexts/GovernanceContext";
 import useGovernanceData from "hooks/useGovernanceData";
 import { useTracking } from "hooks/useTracking";
@@ -41,6 +43,9 @@ const LockMNDESection = () => {
   const { t } = useTranslation();
   const { connected: isWalletConnected } = useWallet();
 
+  const { transactionSigned, transactionSignedAction } =
+    useContext(AccountsContext);
+
   const { MNDEBalance } = useUserBalance();
 
   const [selectedLevel, setSelectedLevel] = useState("-");
@@ -52,9 +57,9 @@ const LockMNDESection = () => {
   };
 
   const {
-    isOpen: isLockMndeOpen,
-    onOpen: onLockMndeOpen,
-    onClose: onLockMndeClose,
+    isOpen: isCompleteLockMndeOpen,
+    onOpen: onCompleteLockMndeOpen,
+    onClose: onCompleteLockMndeClose,
   } = useDisclosure();
 
   useEffect(() => {
@@ -113,7 +118,40 @@ const LockMNDESection = () => {
               }
               onClick={() => {
                 setIsPendingLockOpen(true);
-                onLockMndeOpen();
+                lockMNDE(MNDEToLock).then(
+                  (result) => {
+                    setMNDEToLock("");
+                    transactionSignedAction(false);
+                    setIsPendingLockOpen(false);
+                    if (result) onCompleteLockMndeOpen();
+                  },
+                  (error) => {
+                    setIsPendingLockOpen(false);
+                    let description = error.message;
+                    if (error.toString().includes("0xec6")) {
+                      description = t("appPage.capped-tvl-is-full");
+                    } else if (
+                      error.toString().includes("no record of a prior credit")
+                    ) {
+                      description = t("appPage.missing-sol-for-fee");
+                    }
+
+                    toast({
+                      title: t("appPage.something-went-wrong"),
+                      description,
+                      status: "warning",
+                    });
+
+                    track({
+                      event: "Lock MNDE Error",
+                      category: "Lock MNDE",
+                      action: "Lock",
+                      label: "Error",
+                      description,
+                    });
+                    return false;
+                  }
+                );
               }}
             >
               {t("appPage.mnde.lock-button")}
@@ -162,43 +200,15 @@ const LockMNDESection = () => {
           </MText>
         )}
       </Flex>
-      <LockMndeModal
-        isPendingOpen={isPendingLockOpen}
-        isOpen={isLockMndeOpen}
-        onClose={onLockMndeClose}
-        onLockConfirm={async (): Promise<boolean> => {
-          return lockMNDE(MNDEToLock).then(
-            (result) => {
-              setMNDEToLock("");
-              return result;
-            },
-            (error) => {
-              setIsPendingLockOpen(false);
-              let description = error.message;
-              if (error.toString().includes("0xec6")) {
-                description = t("appPage.capped-tvl-is-full");
-              } else if (
-                error.toString().includes("no record of a prior credit")
-              ) {
-                description = t("appPage.missing-sol-for-fee");
-              }
-
-              toast({
-                title: t("appPage.something-went-wrong"),
-                description,
-                status: "warning",
-              });
-
-              track({
-                event: "Lock MNDE Error",
-                category: "Lock MNDE",
-                action: "Lock",
-                label: "Error",
-                description,
-              });
-              return false;
-            }
-          );
+      <CompleteLockMndeModal
+        isOpen={isCompleteLockMndeOpen}
+        onClose={onCompleteLockMndeClose}
+      />
+      <PendingStakeModal
+        isTransactionSigned={transactionSigned}
+        isOpen={isPendingLockOpen}
+        onClose={() => {
+          transactionSignedAction(false);
         }}
       />
     </Flex>
