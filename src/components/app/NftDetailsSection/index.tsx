@@ -44,6 +44,7 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
       mt={20}
       aria-label="nft-details-section"
       flexDirection="column"
+      pt={{ base: "112px", lg: "88px" }}
       marginTop={{ base: "16px", lg: "40px" }}
       marginBottom={{ base: "16px", lg: "40px" }}
       alignItems="center"

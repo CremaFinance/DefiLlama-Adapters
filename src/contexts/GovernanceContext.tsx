@@ -31,13 +31,14 @@ import axiosRetry from "axios-retry";
 import BN from "bn.js";
 import { createContext, useReducer } from "react";
 import type { ReactNode } from "react";
+import { useQueryClient } from "react-query";
 
 import type {
   NftAccount,
   NftMetadata,
 } from "components/app/LockMNDESection/types";
-import type { NFTType } from "components/molecules/NFTTable";
 import { useEscrow } from "hooks/useEscrow";
+import type { NFTType } from "services/domain/nftType";
 import { checkNativeSOLBalance } from "utils/check-native-sol-balance";
 
 import { useAnchorProvider } from "./AnchorContext";
@@ -64,12 +65,6 @@ export type Action =
       payload: number;
     };
 
-const initialState: State = {
-  nfts: [] as NFTType[],
-  fetchNftsLoading: false,
-  lockedMnde: 0,
-};
-
 export enum ActionTypes {
   NFTS = "NFTS",
   FETCH_NFTS = "FETCH_NFTS",
@@ -77,8 +72,6 @@ export enum ActionTypes {
 }
 
 const GovernanceContext = createContext({
-  fetchNftsLoading: false,
-  fetchNftsLoadingAction: (_boolean: boolean) => {},
   startUnlocking: async (_nftMint: PublicKey): Promise<boolean> => {
     return true;
   },
@@ -91,169 +84,18 @@ const GovernanceContext = createContext({
   lockMNDE: async (_amount: string): Promise<boolean> => {
     return true;
   },
-  resetNftsAction: () => {},
-  nfts: [] as NFTType[],
-  getNftsAction: (_walletConnected: boolean, _isForced: boolean) => {},
-  lockedMnde: 0,
 });
-
-function governanceContext(state: State, action: Action) {
-  switch (action.type) {
-    case ActionTypes.NFTS:
-      return {
-        ...state,
-        nfts: action.payload,
-      };
-    case ActionTypes.FETCH_NFTS:
-      return {
-        ...state,
-        fetchNftsLoading: action.payload,
-      };
-    case ActionTypes.LOCKED_MNDE:
-      return {
-        ...state,
-        lockedMnde: action.payload,
-      };
-    default:
-      return state;
-  }
-}
 
 function GovernanceContextProvider(props: {
   children: ReactNode;
 }): JSX.Element {
-  const [state, dispatch] = useReducer(governanceContext, initialState);
   const NFT_KIND = "AxFYMzasysofqoWFhEcNJQ5caWWsWUdMTwto2cP33L5C";
-  const NFT_CREATOR = "4eopmn89uciMvKzGYwkFBMXVpLCjnGda7uWo5uZqQCFF";
-  const anchorProvider = useAnchorProvider();
   const toast = useToast();
   const marinade = useMarinade();
   const { nativeSOLBalance } = useUserBalance();
+  const queryClient = useQueryClient();
 
   const sdk = useEscrow();
-
-  function resetNftsAction() {
-    dispatch({
-      type: ActionTypes.NFTS,
-      payload: [],
-    });
-    dispatch({
-      type: ActionTypes.LOCKED_MNDE,
-      payload: 0,
-    });
-  }
-
-  async function fetchNftMetadataByAccount(
-    account: NftAccount
-  ): Promise<NftMetadata | undefined> {
-    axiosRetry(axios, {
-      retries: 5,
-      retryDelay: (retryCount) => {
-        return retryCount * 2000;
-      },
-      retryCondition: (error) => {
-        return error?.response?.status === 400;
-      },
-    });
-
-    const response = await axios.get(account.data.uri);
-    return response.data as NftMetadata;
-  }
-
-  async function getUsersVotingNftsByWallet(
-    walletPublicKey: PublicKey,
-    connection: Connection,
-    creators: string[]
-  ): Promise<NftAccount[]> {
-    try {
-      const unfilteredNftAccounts = await getParsedNftAccountsByOwner({
-        publicAddress: walletPublicKey.toString(),
-        connection,
-      });
-
-      return unfilteredNftAccounts.filter((acc) => {
-        const nftCreators = acc.data.creators;
-        const nftCreatorAddresses: string[] = nftCreators.map((c) => c.address);
-        const containsCreators = creators.every((c) =>
-          nftCreatorAddresses.includes(c)
-        );
-        if (containsCreators) {
-          return creators.every(
-            (c) =>
-              nftCreators.find((nftCreator) => nftCreator.address === c)
-                .verified === 1
-          );
-        }
-        return false;
-      });
-    } catch {
-      return [];
-    }
-  }
-
-  const fetchNFTs = async () => {
-    const nfts = await getUsersVotingNftsByWallet(
-      sdk.provider.wallet.publicKey,
-      sdk.provider.connection,
-      [NFT_CREATOR]
-    );
-
-    const nftTypePromises = nfts.map(async (nft) => {
-      const escrow = await EscrowWrapper.address(sdk, new PublicKey(nft.mint));
-      const escrowWrap = new EscrowWrapper(sdk, escrow);
-      const metadata = await fetchNftMetadataByAccount(nft);
-
-      if (escrowWrap) {
-        const escrowData = await escrowWrap.data();
-        const amounts = escrowData.amount.toNumber() / LAMPORTS_PER_SOL;
-        return {
-          address: new PublicKey(nft.mint),
-          lockedMNDE: amounts,
-          id: escrowData.index.toString(),
-          dataUri: nft.data.uri,
-          thumbnailURL: metadata?.image,
-          lockEndDate: (await escrowWrap.isLocked())
-            ? undefined
-            : new Date(escrowData.claimTime.toNumber() * 1000),
-        } as NFTType;
-      }
-      return null;
-    });
-    const tempState = (await (
-      await Promise.all(nftTypePromises)
-    ).filter((nfttype) => nfttype !== null)) as NFTType[];
-    state.nfts = tempState.sort((a, b) => parseFloat(b.id) - parseFloat(a.id));
-    state.lockedMnde = tempState.reduce(
-      (acc, curr) => acc + curr.lockedMNDE,
-      0
-    );
-  };
-
-  function fetchNftsLoadingAction(loading: boolean) {
-    dispatch({
-      type: ActionTypes.FETCH_NFTS,
-      payload: loading,
-    });
-  }
-
-  function getNftsAction(walletConnected: boolean, isForced: boolean) {
-    if (walletConnected && isForced) {
-      dispatch({
-        type: ActionTypes.FETCH_NFTS,
-        payload: true,
-      });
-      fetchNFTs().then(() => {
-        dispatch({
-          type: ActionTypes.NFTS,
-          payload: state.nfts,
-        });
-        dispatch({
-          type: ActionTypes.LOCKED_MNDE,
-          payload: state.lockedMnde,
-        });
-      });
-    }
-  }
 
   async function lockMNDE(amount: string): Promise<boolean> {
     const fundsNeeded = marinade.marinadeState?.transactionFee;
@@ -287,7 +129,7 @@ function GovernanceContextProvider(props: {
     });
     let response = false;
     await tx.confirm().then(async () => {
-      await fetchNFTs().then(() => {
+      await queryClient.invalidateQueries("nfts").then((res) => {
         response = true;
       });
     });
@@ -365,7 +207,7 @@ function GovernanceContextProvider(props: {
     });
     let response = false;
     await tx.confirm().then(async () => {
-      await fetchNFTs().then(() => {
+      await queryClient.invalidateQueries("nfts").then(() => {
         response = true;
       });
     });
@@ -397,7 +239,7 @@ function GovernanceContextProvider(props: {
     });
     let response = false;
     await tx.confirm().then(async () => {
-      await fetchNFTs().then(() => {
+      await queryClient.invalidateQueries("nfts").then(() => {
         response = true;
       });
     });
@@ -421,8 +263,8 @@ function GovernanceContextProvider(props: {
       nftToken,
     });
     let response = false;
-    await tx.confirm().then(() => {
-      getNftsAction(true, true);
+    await tx.confirm().then(async () => {
+      await queryClient.invalidateQueries("nfts");
       response = true;
     });
     return response;
@@ -431,16 +273,10 @@ function GovernanceContextProvider(props: {
   return (
     <GovernanceContext.Provider
       value={{
-        nfts: state.nfts,
-        getNftsAction,
         startUnlocking,
         claimMNDE,
         cancelUnlocking,
-        fetchNftsLoadingAction,
         lockMNDE,
-        resetNftsAction,
-        fetchNftsLoading: state.fetchNftsLoading,
-        lockedMnde: state.lockedMnde,
       }}
       {...props}
     />

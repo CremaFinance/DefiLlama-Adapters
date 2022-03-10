@@ -5,6 +5,7 @@ import {
   IconButton,
   useDisclosure,
   useToast,
+  Spinner,
 } from "@chakra-ui/react";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
@@ -25,18 +26,14 @@ import StakeInput, {
 } from "components/molecules/StakeInput";
 import { AccountsContext } from "contexts/AccountsContext";
 import { GovernanceContext } from "contexts/GovernanceContext";
+import useGovernanceData from "hooks/useGovernanceData";
 import { useTracking } from "hooks/useTracking";
 import { useWallet } from "hooks/useWallet";
 import colors from "styles/customTheme/colors";
 
 const LockMNDESection = () => {
-  const {
-    fetchNftsLoadingAction,
-    resetNftsAction,
-    getNftsAction,
-    fetchNftsLoading,
-    lockMNDE,
-  } = useContext(GovernanceContext);
+  const { lockMNDE } = useContext(GovernanceContext);
+  const { isLoading } = useGovernanceData();
   const toast = useToast();
 
   const { track } = useTracking();
@@ -58,16 +55,6 @@ const LockMNDESection = () => {
     setUpdateInputValue(changeInputAmount);
     setSelectedLevel(value);
   };
-
-  useEffect(() => {
-    if (isWalletConnected) {
-      getNftsAction(isWalletConnected, !fetchNftsLoading);
-    } else {
-      setMNDEToLock("");
-      resetNftsAction();
-      fetchNftsLoadingAction(false);
-    }
-  }, [fetchNftsLoading, isWalletConnected]);
 
   const {
     isOpen: isCompleteLockMndeOpen,
@@ -134,7 +121,6 @@ const LockMNDESection = () => {
                 lockMNDE(MNDEToLock).then(
                   (result) => {
                     setMNDEToLock("");
-                    fetchNftsLoadingAction(false);
                     transactionSignedAction(false);
                     setIsPendingLockOpen(false);
                     if (result) onCompleteLockMndeOpen();
@@ -194,7 +180,25 @@ const LockMNDESection = () => {
             {t("appPage.mnde.unlock-period-mockup-value")}
           </MText>
         </Flex>
-        {isWalletConnected ? <NFTTable /> : undefined}
+        {isWalletConnected && !isLoading ? (
+          <NFTTable />
+        ) : (
+          isLoading && (
+            <Flex
+              height="48px"
+              width="100%"
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Spinner />
+            </Flex>
+          )
+        )}
+        {!isWalletConnected && !isLoading && (
+          <MText type="text-md" mt={9} mr="auto">
+            {t("appPage.mnde.lock-nfts")}
+          </MText>
+        )}
       </Flex>
       <CompleteLockMndeModal
         isOpen={isCompleteLockMndeOpen}

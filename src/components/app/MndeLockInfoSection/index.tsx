@@ -10,6 +10,7 @@ const MndeLockInfoSection = () => {
     <Flex
       pb={[4, 8]}
       aria-label="mnde-section"
+      pt={{ base: "88px", lg: "56px" }}
       position="relative"
       flexDirection="column"
       width="100vw"
