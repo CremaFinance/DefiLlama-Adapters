@@ -38,7 +38,7 @@
     "@saberhq/stableswap-sdk": "^1.12.48",
     "@saberhq/token-utils": "^1.12.40",
     "@solana/spl-token": "^0.1.8",
-    "@solana/spl-token-registry": "^0.2.2790",
+    "@solana/spl-token-registry": "^0.2.2816",
     "@solana/wallet-adapter-base": "^0.9.4",
     "@solana/wallet-adapter-react": "^0.15.3",
     "@solana/wallet-adapter-wallets": "^0.15.5",
