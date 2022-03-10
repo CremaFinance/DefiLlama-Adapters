@@ -443,12 +443,14 @@ const BasicUnstake = () => {
           5
         )} SOL`}</MText>
       </Flex>
-      <DelayedUnstakeModal
-        stSolToUnstake={Number(stSolToUnstake)}
-        isOpen={showModal}
-        onClose={resetInputs}
-        triggerTransactionModal={triggerTransactionModal}
-      />
+      {showModal && (
+        <DelayedUnstakeModal
+          stSolToUnstake={Number(stSolToUnstake)}
+          isOpen={showModal}
+          onClose={resetInputs}
+          triggerTransactionModal={triggerTransactionModal}
+        />
+      )}
       <PendingStakeModal
         isTransactionSigned={transactionSigned}
         isOpen={unstakeLoading || isClaimLoading}
