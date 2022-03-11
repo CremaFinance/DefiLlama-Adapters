@@ -945,7 +945,7 @@
     "details-section": {
       "mnde-balance": {
         "text": "MNDE Balance",
-        "tooltip": "Your NFT contains [total] locked MNDE tokens. Sending this NFT to another wallet will also send these tokens. "
+        "tooltip": "Your NFT contains {{value}} locked MNDE tokens. Sending this NFT to another wallet will also send these tokens. "
       },
       "cooldown-period": {
         "text": "Unlock period",
