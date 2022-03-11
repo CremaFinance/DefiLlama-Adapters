@@ -52,13 +52,13 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
     }
     if (
       inputAmount >= 100000 &&
-      inputAmount < 500000 &&
+      inputAmount < 250000 &&
       inputAmount <= balance
     ) {
       setSelectedLevel("tier4");
       onLevelClick("4", false);
     }
-    if (inputAmount >= 500000 && inputAmount <= balance) {
+    if (inputAmount >= 250000 && inputAmount <= balance) {
       setSelectedLevel("tier5");
       onLevelClick("5", false);
     }
@@ -145,7 +145,7 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
           disabled={balance < 100000}
           mb="-9px"
         />
-        <LevelDivider min={100000} max={500000} balance={balance} />
+        <LevelDivider min={100000} max={250000} balance={balance} />
         <NFTLevelsItem
           ilustration="/ilustrations/nft-tier5.svg"
           title={t("appPage.mnde.nft-levels.level-five.title")}
@@ -155,11 +155,11 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
           )}
           onClick={() => {
             setSelectedLevel("tier5");
-            if (balance >= 500000) onLevelClick("5", true);
+            if (balance >= 250000) onLevelClick("5", true);
           }}
           selected={selectedLevel === "tier5"}
           limited
-          disabled={balance < 499999}
+          disabled={balance < 250000}
         />
       </Flex>
     </Flex>

@@ -67,7 +67,7 @@ const LockMNDESection = () => {
     if (selectedLevel === "2" && updateInputValue) setMNDEToLock("5000");
     if (selectedLevel === "3" && updateInputValue) setMNDEToLock("25000");
     if (selectedLevel === "4" && updateInputValue) setMNDEToLock("100000");
-    if (selectedLevel === "5" && updateInputValue) setMNDEToLock("500000");
+    if (selectedLevel === "5" && updateInputValue) setMNDEToLock("250000");
   }, [selectedLevel, updateInputValue]);
 
   return (
