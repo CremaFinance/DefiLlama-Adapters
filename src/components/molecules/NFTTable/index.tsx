@@ -174,6 +174,7 @@ const NFTTable = () => {
       <ClaimMndeModal
         isPendingOpen={isPendingLockOpen}
         isOpen={isClaimMndeOpen}
+        onRelock={onCancelMndeOpen}
         onClaimConfirm={async (): Promise<boolean> => {
           setIsPendingLockOpen(true);
           return claimMNDE(currentNFTAddress).then(
