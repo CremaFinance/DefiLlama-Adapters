@@ -20,11 +20,12 @@ interface MndeUnlockConfirmModalProps {
   mndeAmount: string;
   isOpen: boolean;
   onClose: () => void;
+  onCancelUnlock: () => void;
 }
 
 const MndeUnlockConfirmModal: FunctionComponent<
   MndeUnlockConfirmModalProps
-> = ({ isOpen, onClose, mndeAmount }) => {
+> = ({ isOpen, onClose, mndeAmount, onCancelUnlock }) => {
   const { t } = useTranslation();
   const modalSize = useBreakpointValue({ base: "full", md: "md" });
 
@@ -71,6 +72,7 @@ const MndeUnlockConfirmModal: FunctionComponent<
               colorScheme={colors.marinadeGreen}
               rounded="md"
               px={4}
+              mb={4}
               height="40px"
               width="100%"
               mt={{ base: "auto", md: 4 }}
@@ -78,7 +80,24 @@ const MndeUnlockConfirmModal: FunctionComponent<
                 onClose();
               }}
             >
-              {t("mndePage.mnde-unlock-confirm-modal.button")}
+              {t("mndePage.mnde-unlock-confirm-modal.buttons.close")}
+            </MButton>
+            <MButton
+              variant="outline"
+              borderColor="gray"
+              _hover={{ bg: "gray.100" }}
+              color="black"
+              font="text-lg"
+              rounded="md"
+              px={4}
+              height="40px"
+              width="100%"
+              onClick={() => {
+                onClose();
+                onCancelUnlock();
+              }}
+            >
+              {t("mndePage.mnde-unlock-confirm-modal.buttons.cancel")}
             </MButton>
           </Flex>
         </ModalBody>

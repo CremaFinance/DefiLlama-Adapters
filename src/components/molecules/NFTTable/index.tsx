@@ -243,6 +243,7 @@ const NFTTable = () => {
         onClose={onUnlockMndeClose}
         imgURI={currentNFTImageUri}
         mndeAmount={currentNFTMndeValue}
+        onCancelUnlock={onCancelMndeOpen}
       />
       <CancelUnlockingModal
         isPendingOpen={isPendingLockOpen}

@@ -683,6 +683,7 @@
         { "text": "return here to claim your {{value}} MNDE." }
       ],
       "button": "Start unlocking"
+
     },
     "mnde-unlock-confirm-modal": {
       "header": "Unlocking started!",
@@ -697,7 +698,10 @@
           "text": "Come back here after the cooldown period to claim your MNDE. You can re-lock your MNDE at any time."
         }
       ],
-      "button": "Close"
+      "buttons":{
+        "close":"Close",
+        "cancel": "Cancel unlock"
+      }
     },
     "cancel-unlocking-modal": {
       "header": "Cancel unlocking",

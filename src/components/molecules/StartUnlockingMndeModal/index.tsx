@@ -28,6 +28,7 @@ interface StartUnlockingMndeModalProps {
   isPendingOpen: boolean;
   onClose: () => void;
   onUnlockConfirm: () => Promise<boolean>;
+  onCancelUnlock: () => void;
 }
 
 const StartUnlockingMndeModal: FunctionComponent<
@@ -39,6 +40,7 @@ const StartUnlockingMndeModal: FunctionComponent<
   mndeAmount,
   onUnlockConfirm,
   isPendingOpen,
+  onCancelUnlock,
 }) => {
   const { t } = useTranslation();
   const modalSize = useBreakpointValue({ base: "full", md: "md" });
@@ -136,6 +138,7 @@ const StartUnlockingMndeModal: FunctionComponent<
       <MndeUnlockConfirmModal
         mndeAmount={mndeAmount}
         isOpen={isConfirmModalOpen}
+        onCancelUnlock={onCancelUnlock}
         onClose={() => onConfirmModalClose()}
       />
       <PendingStakeModal
