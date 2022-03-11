@@ -1,4 +1,4 @@
-import { Flex } from "@chakra-ui/react";
+import { Flex, Spacer } from "@chakra-ui/react";
 
 import Header from "components/app/Header";
 import LockMNDESection from "components/app/LockMNDESection";
@@ -35,6 +35,7 @@ const Lock = () => {
         <LockMNDESection />
       </GovernanceContextProvider>
       <MndeFAQSection />
+      <Spacer />
       <Footer />
       <MobileMenu />
     </Flex>

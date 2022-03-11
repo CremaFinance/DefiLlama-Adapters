@@ -1,4 +1,4 @@
-import { Flex } from "@chakra-ui/react";
+import { Flex, Spacer } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
 import Header from "components/app/Header";
@@ -40,6 +40,7 @@ const NftDetails = () => {
       <Header />
       <BreadcrumbWithRouter breadcrumbItems={breadcrumbItems} />
       <NftDetailsSection id={pid as string} />
+      <Spacer />
       <Footer />
       <MobileMenu />
     </Flex>
