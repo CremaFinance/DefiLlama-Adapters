@@ -338,7 +338,10 @@
       "header": "MNDE",
       "nft": "NFT",
       "nft-level-value": "Level ",
-      "unlock-period": "Unlock period",
+      "unlock-period":{
+        "text": "Unlock period",
+        "tooltip": "During the unlock period, unlocking tokens cannot vote. When the unlocking period passes, all NFT can be burned and all tokens can be withdrawn from the governance escrow."
+      },
       "unlock-period-mockup-value": "30 days",
       "lock-nfts": "If you lock MNDE, your NFTs will be displayed here.",
       "lock-button": "Lock MNDE",
