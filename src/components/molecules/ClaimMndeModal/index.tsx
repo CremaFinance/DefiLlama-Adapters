@@ -27,6 +27,7 @@ interface ClaimMndeModalProps {
   isPendingOpen: boolean;
   onClose: () => void;
   onClaimConfirm: () => Promise<boolean>;
+  onRelock: () => void;
 }
 
 const ClaimMndeModal: FunctionComponent<ClaimMndeModalProps> = ({
@@ -35,6 +36,7 @@ const ClaimMndeModal: FunctionComponent<ClaimMndeModalProps> = ({
   mndeAmount,
   isPendingOpen,
   onClaimConfirm,
+  onRelock,
 }) => {
   const { t } = useTranslation();
   const modalSize = useBreakpointValue({ base: "full", md: "md" });
@@ -134,6 +136,7 @@ const ClaimMndeModal: FunctionComponent<ClaimMndeModalProps> = ({
                 width="100%"
                 onClick={() => {
                   onClose();
+                  onRelock();
                 }}
               >
                 {t("mndePage.claim-mnde-modal.buttons.relock")}
