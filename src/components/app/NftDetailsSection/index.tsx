@@ -84,7 +84,12 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
               </MText>
               <TooltipWithContent
                 tooltipText={
-                  t("nftDetailsPage.details-section.mnde-balance.tooltip") || ""
+                  t(
+                    "nftDetailsPage.details-section.mnde-balance.tooltip"
+                  )?.replace(
+                    "{{value}}",
+                    data?.properties.mnde_amount.toString() || "0"
+                  ) || ""
                 }
               >
                 <IconButton
