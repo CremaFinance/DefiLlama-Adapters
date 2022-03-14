@@ -165,8 +165,10 @@ const LockMNDESection = () => {
 
         <Flex width="100%" mt={1} mb={1} justifyContent="space-between">
           <Flex>
-            <MText type="text-md">{t("appPage.mnde.unlock-period")}</MText>
-            <TooltipWithContent tooltipText={t("appPage.mnde.unlock-period")}>
+            <MText type="text-md">{t("appPage.mnde.unlock-period.text")}</MText>
+            <TooltipWithContent
+              tooltipText={t("appPage.mnde.unlock-period.tooltip")}
+            >
               <IconButton
                 variant="link"
                 aria-label="Unlock period"
