@@ -8,12 +8,12 @@ import { useToast } from "@chakra-ui/react";
 import {
   EscrowWrapper,
   SimpleNftKindWrapper,
-} from "@marinade-finance/escrow-relocker-sdk";
+} from "@marinade.finance/escrow-relocker-sdk";
 import {
   GaugemeisterWrapper,
   GaugeVoterWrapper,
   GaugeVoteWrapper,
-} from "@marinade-finance/escrow-relocker-sdk/gauges";
+} from "@marinade.finance/escrow-relocker-sdk/gauges";
 import {
   getParsedAccountByMint,
   getParsedNftAccountsByOwner,

@@ -32,7 +32,7 @@
     "@fontsource/lexend": "^4.5.5",
     "@fontsource/maven-pro": "^4.5.4",
     "@gokiprotocol/client": "^0.7.0",
-    "@marinade-finance/escrow-relocker-sdk": "file:./marinade-finance-escrow-relocker-sdk-v0.6.0.tgz",
+    "@marinade.finance/escrow-relocker-sdk": "^0.6.0",
     "@nfteyez/sol-rayz": "^0.10.2",
     "@project-serum/anchor": "^0.20.1",
     "@project-serum/sol-wallet-adapter": "^0.2.6",
