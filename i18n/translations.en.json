@@ -691,10 +691,7 @@
       "header": "Are you sure you want to start unlocking your MNDE?",
       "body": [
         {
-          "text": "You will initiate a 30-day unlock period and you will not be able to vote during this time. When the unlocking period is complete "
-        },
-        {
-          "text": "you will be able to burn your NFT "
+          "text": "You will initiate a 30-day unlock period and you will not be able to vote during this time. When the unlocking period is complete you will be able to burn your NFT "
         },
         { "text": "and claim your {{value}} MNDE." }
       ],
@@ -708,7 +705,7 @@
           "text": "You have started to unlock"
         },
         {
-          "text": "{{value}} MNDE"
+          "text": "{{value}} MNDE."
         },
         {
           "text": "Come back here after the unlock period to burn your NFT and claim your MNDE. You can re-lock your MNDE at any time during the unlock period to restore your voting rights."

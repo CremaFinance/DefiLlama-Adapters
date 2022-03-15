@@ -27,7 +27,7 @@ const SubmenusMndeSection = () => {
         alignItems="center"
         flexDirection="column"
       >
-        <Flex>
+        <Flex zIndex={15}>
           <Text
             color={colors.black}
             textAlign="center"
