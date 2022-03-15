@@ -81,8 +81,8 @@ const GovernanceContext = createContext({
   cancelUnlocking: async (_nftMint: PublicKey): Promise<boolean> => {
     return true;
   },
-  lockMNDE: async (_amount: string): Promise<boolean> => {
-    return true;
+  lockMNDE: async (_amount: string): Promise<string> => {
+    return "";
   },
 });
 
@@ -97,7 +97,7 @@ function GovernanceContextProvider(props: {
 
   const sdk = useEscrow();
 
-  async function lockMNDE(amount: string): Promise<boolean> {
+  async function lockMNDE(amount: string): Promise<string> {
     const fundsNeeded = marinade.marinadeState?.transactionFee;
     const checkBalanceErrors = checkNativeSOLBalance(
       nativeSOLBalance ?? 0,
@@ -105,7 +105,7 @@ function GovernanceContextProvider(props: {
     );
     if (checkBalanceErrors) {
       toast(checkBalanceErrors);
-      return false;
+      return "";
     }
 
     const nftKind = new PublicKey(NFT_KIND);
@@ -127,10 +127,10 @@ function GovernanceContextProvider(props: {
       payFromAuthority: undefined,
       rentPayer: undefined,
     });
-    let response = false;
-    await tx.confirm().then(async () => {
+    let response = "";
+    await tx.confirm().then(async (txId) => {
       await queryClient.invalidateQueries("nfts").then((res) => {
-        response = true;
+        response = txId.signature;
       });
     });
     return response;
