@@ -51,7 +51,8 @@ const LevelDivider = ({
       />
       <Flex
         marginLeft={{ base: "5px", md: "9px" }}
-        height="100%"
+        height={{ base: "initial", md: "100%" }}
+        marginTop={{ base: "16px", md: "0px" }}
         position="absolute"
         display="flex"
         flexDirection={["row", "column"]}
