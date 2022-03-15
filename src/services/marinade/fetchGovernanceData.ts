@@ -1,5 +1,5 @@
-import type { EscrowRelockerSDK } from "@marinade-finance/escrow-relocker-sdk";
-import { EscrowWrapper } from "@marinade-finance/escrow-relocker-sdk";
+import type { EscrowRelockerSDK } from "@marinade.finance/escrow-relocker-sdk";
+import { EscrowWrapper } from "@marinade.finance/escrow-relocker-sdk";
 import { getParsedNftAccountsByOwner } from "@nfteyez/sol-rayz";
 import type { Connection } from "@solana/web3.js";
 import { LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";

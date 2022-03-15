@@ -1,4 +1,4 @@
-import { EscrowRelockerSDK } from "@marinade-finance/escrow-relocker-sdk";
+import { EscrowRelockerSDK } from "@marinade.finance/escrow-relocker-sdk";
 import { SolanaProvider } from "@saberhq/solana-contrib";
 
 import { useAnchorProvider } from "contexts/AnchorContext";
