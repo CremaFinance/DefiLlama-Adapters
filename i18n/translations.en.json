@@ -371,23 +371,38 @@
       },
       "nft-levels": {
         "level-one": {
-          "amount": "Limited edition: {{amountLeft}} left",
+          "amount": {
+            "limited": "Limited edition: {{amountLeft}} left",
+            "regular": "Regular edition"
+          },
           "title": "1k-5k MNDE"
         },
         "level-two": {
-          "amount": "Limited edition: {{amountLeft}} left",
+          "amount": {
+            "limited": "Limited edition: {{amountLeft}} left",
+            "regular": "Regular edition"
+          },
           "title": "5k-25k MNDE"
         },
         "level-three": {
-          "amount": "Regular edition",
+          "amount": {
+            "limited": "Limited edition: {{amountLeft}} left",
+            "regular": "Regular edition"
+          },
           "title": "25k-100k MNDE"
         },
         "level-four": {
-          "amount": "Limited edition: {{amountLeft}} left",
+          "amount": {
+            "limited": "Limited edition: {{amountLeft}} left",
+            "regular": "Regular edition"
+          },
           "title": "100k-250k MNDE"
         },
         "level-five": {
-          "amount": "Limited edition: {{amountLeft}} left",
+          "amount": {
+            "limited": "Limited edition: {{amountLeft}} left",
+            "regular": "Regular edition"
+          },
           "title": ">250k MNDE"
         },
         "buy-more": "Buy more MNDE to unlock",
