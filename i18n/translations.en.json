@@ -691,7 +691,10 @@
       "header": "Are you sure you want to start unlocking your MNDE?",
       "body": [
         {
-          "text": "You will initiate a 30-day unlock period and you will not be able to vote during this time. When the unlocking period is complete you will be able to burn your NFT "
+          "text": "You will initiate a 30-day unlock period and you will not be able to vote during this time. When the unlocking period is complete you will be able to "
+        },
+        {
+          "text": "burn your NFT "
         },
         { "text": "and claim your {{value}} MNDE." }
       ],
