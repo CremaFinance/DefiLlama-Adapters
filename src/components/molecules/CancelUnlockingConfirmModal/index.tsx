@@ -58,6 +58,9 @@ const CancelUnlockingConfirmModal: FunctionComponent<
                   "mndePage.cancel-unlocking-confirm-modal.body.1.text"
                 ).replace("{{value}}", mndeAmount)}
               </MText>
+              <MText fontSize="text-xl" display="inline" fontWeight="bold">
+                {t("mndePage.cancel-unlocking-confirm-modal.body.2.text")}
+              </MText>
             </MText>
 
             <MButton

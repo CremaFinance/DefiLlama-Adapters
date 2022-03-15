@@ -343,16 +343,15 @@
       "lock-nfts": "If you lock MNDE, your NFTs will be displayed here.",
       "lock-button": "Lock MNDE",
       "description1": "The Marinade token - MNDE - represents fractional ownership of Marinade.",
-      "description2": "Acquire and stake MNDE to vote and earn within the Marinade DAO.",
       "docs-link": "https://docs.marinade.finance/marinade-dao/tokenomics",
       "lock-card": {
-        "title": "Lock MNDE",
-        "description": "Acquire and lock MNDE to participate in governance and unlock additional incentives.",
-        "button": "Get and lock MNDE"
+        "title": "Mint NFT",
+        "description": "Lock MNDE in NFTs to participate in governance and unlock additional incentives.",
+        "button": "Mint NFT"
       },
       "buy-mnde-card": {
         "title":"Buy MNDE",
-        "description":"Acquire MNDE to participate in governance and unlock additional incentives.",
+        "description":"Acquire MNDE to have a stake in the future of Marinade Finance.",
         "button":"Buy MNDE"
 
       },
@@ -406,11 +405,11 @@
         },
         {
           "question": "Is it possible to sell or transfer my NFT while my MNDE is locked?",
-          "response": "Yes, you can transfer your NFT to another wallet or sell it on a third-party marketplace. In both cases, the MNDE locked in the NFT will alos be transfered with the NFT."
+          "response": "Yes, you can transfer your NFT to another wallet or sell it on a third-party marketplace (coming soon). In both cases, the MNDE locked in the NFT will also be transfered with the NFT."
         },
         {
           "question": "What happend to my NFT if I choose to unlock my MNDE?",
-          "response": "The NFT will begin a 30-day cooldown period. After 30 days, the NFT will be burned and the underlying MNDE will be returned to the holder’s wallet."
+          "response": "The NFT will begin a 30-day unlocking period. After 30 days, the user can burn the NFT and claim their MNDE."
         },
         {
           "question": "Will I be notified of Marinade governance opportunities?",
@@ -605,14 +604,14 @@
       }
     },
     "why-section": {
-      "header": "$MNDE token gives you a say on",
+      "header": "$MNDE NFTs give you a say on",
       "cards": [
         {
           "header": "$250M Treasury",
           "text": "The Marinade DAO treasury holds a 30% allocation of MNDE, as well as receiving ongoing fees from staked SOL."
         },
         {
-          "header": "Vote with your NFT",
+          "header": "Delegation Strategy",
           "text": "The security and decentralization of Solana is positively influenced by the Marinade staking algorithm, which stakes and balances the Marinade pool. You govern that algorithm."
         },
         {
@@ -674,13 +673,12 @@
       "header": "Are you sure you want to start unlocking your MNDE?",
       "body": [
         {
-          "text": "By unlocking your MNDE you will initiate a unlock period and your voting power will gradually decline over the 30 day unlocking period. When it is complete "
+          "text": "You will initiate a 30-day unlock period and you will not be able to vote during this time. When the unlocking period is complete "
         },
         {
-          "text": "your NFT will be burned "
+          "text": "you will be able to burn your NFT "
         },
-        { "text": " and you will also need to " },
-        { "text": "return here to claim your {{value}} MNDE." }
+        { "text": "and claim your {{value}} MNDE." }
       ],
       "button": "Start unlocking"
     },
@@ -688,13 +686,13 @@
       "header": "Unlocking started!",
       "body": [
         {
-          "text": "You have started the unlocking of"
+          "text": "You have started to unlock"
         },
         {
           "text": "{{value}} MNDE"
         },
         {
-          "text": "Come back here after the cooldown period to claim your MNDE. You can re-lock your MNDE at any time."
+          "text": "Come back here after the unlock period to burn your NFT and claim your MNDE. You can re-lock your MNDE at any time during the unlock period to restore your voting rights."
         }
       ],
       "button": "Close"
@@ -703,7 +701,7 @@
       "header": "Cancel unlocking",
       "body": [
         {
-          "text": "Re-locking your"
+          "text": "Relocking your"
         },
         {
           "text": "{{value}} MNDE"
@@ -715,44 +713,50 @@
       "button": "Cancel unlocking"
     },
     "cancel-unlocking-confirm-modal": {
-      "header": "Unlocking cancelled",
+      "header": "Unlocking canceled",
       "body": [
         {
-          "text": "You have successfully cancelled unlocking"
+          "text": "You have successfully canceled unlocking"
         },
         {
           "text": "{{value}} MNDE."
+        },
+        {
+          "text": "and still have your NFT and voting power."
         }
       ],
       "button": "Close"
     },
     "claim-mnde-modal": {
-      "header": "Are you sure you want to claim your MNDE and burn your NFT?",
+      "header": "Complete MNDE unlocking and burn NFT?",
       "body": [
         {
-          "text": "You are about to claim "
+          "text": "You are about to unlock "
         },
         {
           "text": " {{value}} MNDE and"
         },
         { "text": "burn your NFT" },
         {
-          "text": ". You can also choose to re-lock your MNDE and keep your NFT."
+          "text": ". You can also choose to relock your MNDE and keep your NFT."
         }
       ],
       "buttons": {
         "claim": "Claim MNDE and burn NFT",
-        "relock": "Re-lock MNDE"
+        "relock": "Relock MNDE"
       }
     },
     "claim-mnde-confirm-modal": {
-      "header": "MNDE claimed and NFT burned!",
+      "header": "MNDE unlocked and NFT burned!",
       "body": [
         {
           "text": "You have successfully claimed"
         },
         {
-          "text": "{{value}} MNDE  and burnt your NFT."
+          "text": "{{value}} MNDE."
+        },
+        {
+          "text": "Your NFT has been burned forever!"
         }
       ],
       "button": "Close"
