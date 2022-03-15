@@ -763,6 +763,10 @@
         }
       ],
       "button": "Close"
+    },
+    "lock-mnde-transaction": {
+      "title":"Lock MNDE confirmed",
+      "description": "You've successfully locked your MNDE"
     }
   },
   "termsPage": {

@@ -24,7 +24,9 @@ import PendingStakeModal from "components/molecules/PendingStakeModal";
 import StakeInput, {
   StakeInputTypeEnum,
 } from "components/molecules/StakeInput";
+import TransactionLink from "components/molecules/TransactionLink";
 import { AccountsContext } from "contexts/AccountsContext";
+import { useChain } from "contexts/ConnectionProvider";
 import { GovernanceContext } from "contexts/GovernanceContext";
 import useGovernanceData from "hooks/useGovernanceData";
 import { useTracking } from "hooks/useTracking";
@@ -33,6 +35,7 @@ import colors from "styles/customTheme/colors";
 
 const LockMNDESection = () => {
   const { lockMNDE } = useContext(GovernanceContext);
+  const chain = useChain();
   const { isLoading } = useGovernanceData();
   const toast = useToast();
 
@@ -119,11 +122,24 @@ const LockMNDESection = () => {
               onClick={() => {
                 setIsPendingLockOpen(true);
                 lockMNDE(MNDEToLock).then(
-                  (result) => {
+                  (signature) => {
                     setMNDEToLock("");
                     transactionSignedAction(false);
                     setIsPendingLockOpen(false);
-                    if (result) onCompleteLockMndeOpen();
+                    if (signature) onCompleteLockMndeOpen();
+                    toast({
+                      title: t("mndePage.lock-mnde-transaction.title"),
+                      description: (
+                        <p>
+                          {t("mndePage.lock-mnde-transaction.description")}{" "}
+                          <TransactionLink
+                            chainName={chain.name}
+                            transactionid={signature}
+                          />
+                        </p>
+                      ),
+                      status: "success",
+                    });
                   },
                   (error) => {
                     setIsPendingLockOpen(false);
