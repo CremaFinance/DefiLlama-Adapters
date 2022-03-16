@@ -705,13 +705,13 @@
       "header": "Unlocking started!",
       "body": [
         {
-          "text": "You have started to unlock"
+          "text": "You have begun the unlocking process of "
         },
         {
           "text": "{{value}} MNDE."
         },
         {
-          "text": "Come back here after the unlock period to burn your NFT and claim your MNDE. You can relock your MNDE at any time during the unlock period to restore your voting rights."
+          "text": "Please return here once the 30-day unlock period is complete to claim your MNDE and burn your NFT. You may cancel this process at any time."
         }
       ],
       "buttons":{
