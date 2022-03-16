@@ -2839,10 +2839,10 @@
     lodash.mapvalues "^4.6.0"
     tslib "^2.3.1"
 
-"@saberhq/solana-contrib@^1.12.43", "@saberhq/solana-contrib@^1.12.48", "@saberhq/solana-contrib@^1.12.52":
-  version "1.12.52"
-  resolved "https://registry.yarnpkg.com/@saberhq/solana-contrib/-/solana-contrib-1.12.52.tgz#dd5f388456434c0aba6a0438f5c2073bf2c9991e"
-  integrity sha512-znTUlEHfgmyPS/Sm3xk61CLLaN7lDQ62zmASHBZe9ScJZa9JAQfNPajTM2secpmAR9fe5cbwUX8v+RlLWh4ifQ==
+"@saberhq/solana-contrib@^1.12.43", "@saberhq/solana-contrib@^1.12.48", "@saberhq/solana-contrib@^1.12.52", "@saberhq/solana-contrib@^1.12.53":
+  version "1.12.53"
+  resolved "https://registry.yarnpkg.com/@saberhq/solana-contrib/-/solana-contrib-1.12.53.tgz#1a946e55ce9a63ceffe4485ec9c31cd9fc890f52"
+  integrity sha512-DpAKOYc2DucUpbnR6rV2P0vvlCexkMBpRYR24Y3ZMc1mgNPK/PCmV6nCm/xDYiOutQ29LeNv0jbUqlg5tdz69Q==
   dependencies:
     "@types/promise-retry" "^1.1.3"
     "@types/retry" "^0.12.1"
@@ -2862,12 +2862,12 @@
     lodash.mapvalues "^4.6.0"
     tslib "^2.3.1"
 
-"@saberhq/token-utils@^1.12.40", "@saberhq/token-utils@^1.12.48":
-  version "1.12.48"
-  resolved "https://registry.yarnpkg.com/@saberhq/token-utils/-/token-utils-1.12.48.tgz#2949ed44119583553990fde28aa62b21afc61a15"
-  integrity sha512-l99NNmuw+JUHLb+51DmyKZo1caH07Nir3QNj44CWzYU08F22zDPlD7kUXDjmHSYH+BzzGB5/EDR/5IIL9Rh9Zg==
+"@saberhq/token-utils@^1.12.48", "@saberhq/token-utils@^1.12.53":
+  version "1.12.53"
+  resolved "https://registry.yarnpkg.com/@saberhq/token-utils/-/token-utils-1.12.53.tgz#405cebd330e68e537b4ce5ffc21462eced22cba7"
+  integrity sha512-r7tCdHZV+ANY2H53xjUJEVpXn27a7fZTpLZKRx7HVeG9/cTwccV0vec1f28Vfu1LNYdnIMeKSaCLk1I7CK05cg==
   dependencies:
-    "@saberhq/solana-contrib" "^1.12.48"
+    "@saberhq/solana-contrib" "^1.12.53"
     "@solana/buffer-layout" "^4.0.0"
     "@solana/spl-token" "^0.1.8"
     "@ubeswap/token-math" "^4.4.4"
@@ -7795,10 +7795,10 @@ eslint-plugin-sonarjs@^0.11.0:
   resolved "https://registry.yarnpkg.com/eslint-plugin-sonarjs/-/eslint-plugin-sonarjs-0.11.0.tgz#46d18bc4066c66e490de057253b9cc97bde9f176"
   integrity sha512-ei/WuZiL0wP+qx2KrxKyZs3+eDbxiGAhFSm3GKCOOAUkg+G2ny6TSXDB2j67tvyqHefi+eoQsAgGQvz+nEtIBw==
 
-eslint-plugin-testing-library@5.0.6:
-  version "5.0.6"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-testing-library/-/eslint-plugin-testing-library-5.0.6.tgz#86b0aff2ed0c80f63966c2a4894c06bff382b6d5"
-  integrity sha512-mMU4+slZsWKHNxtxc5TE2+bs9S//e2uFPlcpTapPhVdnctgn0+G/DaUu6VbT0JLiVMcbBjy3IcfddK+abZawbw==
+eslint-plugin-testing-library@5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-testing-library/-/eslint-plugin-testing-library-5.1.0.tgz#6ad539a53d4e897d3045902f8e534e07cebd4e8b"
+  integrity sha512-YSNzasJUbyhOTe14ZPygeOBvcPvcaNkwHwrj4vdf+uirr2D32JTDaKi6CP5Os2aWtOcvt4uBSPXp9h5xGoqvWQ==
   dependencies:
     "@typescript-eslint/utils" "^5.13.0"
 
