@@ -369,9 +369,9 @@
         "description": "Influence the delegation strategy, decide on treasury spend, and control the executive team.",
         "button": "Vote"
       },
-      "earn-card": {
-        "title": "Earn",
-        "description": "Benefit from MNDE buybacks and a share of protocol fees weighted to your commitment.",
+      "compensation-card": {
+        "title": "Compensation",
+        "description": "Marinade Treasury will compensate active participation in governance.",
         "button": "Coming soon"
       },
       "nft-levels": {
