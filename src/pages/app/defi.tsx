@@ -4,11 +4,13 @@ import DefiSection from "components/app/DefiSection";
 import Header from "components/app/Header";
 import MobileMenu from "components/app/MobileMenu";
 import Footer from "components/layout/Footer";
+import PerformanceNotification from "components/molecules/PerformanceNotification";
 import colors from "styles/customTheme/colors";
 
 const Defi = () => {
   return (
     <Box position="relative" overflow="hidden" bg={colors.greenLight}>
+      <PerformanceNotification />
       <Flex width="100vw" justifyContent="flex-end">
         <Image
           src="../../ilustrations/left-leaf.svg"

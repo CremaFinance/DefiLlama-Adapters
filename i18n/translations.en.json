@@ -453,7 +453,9 @@
     "requested-liquidity-not-enough-funds": "You requested to remove {{amount}} liquidity (have only {{liqSOLBalance}})",
     "remove-liquidity-confirmed": "Remove liquidity confirmed",
     "successfully-removed-liquidity-your-sol": "You've successfully removed liquidity",
-    "your-lp-account-is-deactivated": "Your mSOL-SOL LP account is deactivated. Add any SOL liquidity to the LP to re-activate the account and try to remove liquidity again."
+    "your-lp-account-is-deactivated": "Your mSOL-SOL LP account is deactivated. Add any SOL liquidity to the LP to re-activate the account and try to remove liquidity again.",
+
+    "degraded-network-performance": "Solana network is experiencing degraded performance. Transactions may fail to send or to confirm."
   },
   "mndePage": {
     "retro-title": "MNDE Retro",
