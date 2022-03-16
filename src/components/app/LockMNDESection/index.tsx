@@ -150,10 +150,14 @@ const LockMNDESection = () => {
                       error.toString().includes("no record of a prior credit")
                     ) {
                       description = t("appPage.missing-sol-for-fee");
+                    } else if (error.toString().includes("All promises")) {
+                      description = t(
+                        "appPage.mnde.errors.mint-failed.description"
+                      );
                     }
 
                     toast({
-                      title: t("appPage.something-went-wrong"),
+                      title: t("appPage.mnde.errors.mint-failed.title"),
                       description,
                       status: "warning",
                     });

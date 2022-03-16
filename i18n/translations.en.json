@@ -338,6 +338,12 @@
       "header": "MNDE",
       "nft": "NFT",
       "nft-level-value": "Level ",
+      "errors":{
+        "mint-failed":{
+          "title":"Something went wrong",
+          "description":"Mint failed, please try again."
+        }
+      },
       "unlock-period":{
         "text": "Unlock period",
         "tooltip": "During the unlock period, unlocking tokens cannot vote. When the unlocking period passes, all NFT can be burned and all tokens can be withdrawn from the governance escrow."
