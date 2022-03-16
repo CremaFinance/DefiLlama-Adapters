@@ -61,6 +61,9 @@ const ClaimMndeConfirmModal: FunctionComponent<ClaimMndeConfirmModalProps> = ({
                   mndeAmount
                 )}
               </MText>
+              <MText fontSize="text-xl" display="inline" fontWeight="bold">
+                {t("mndePage.claim-mnde-confirm-modal.body.2.text")}
+              </MText>
             </MText>
 
             <MButton

@@ -27,7 +27,7 @@ const SubmenusMndeSection = () => {
         alignItems="center"
         flexDirection="column"
       >
-        <Flex>
+        <Flex zIndex={15}>
           <Text
             color={colors.black}
             textAlign="center"
@@ -59,15 +59,6 @@ const SubmenusMndeSection = () => {
           display={{ base: "none", xl: "flex" }}
         >
           {t("appPage.mnde.description1")}
-        </Text>
-        <Text
-          color={colors.black}
-          textAlign="center"
-          fontSize={{ base: "14px", md: "18px" }}
-          lineHeight={{ base: "20px", md: "27px" }}
-          maxWidth={{ base: "288px", md: "670px" }}
-        >
-          {t("appPage.mnde.description2")}
         </Text>
       </Flex>
       <Flex

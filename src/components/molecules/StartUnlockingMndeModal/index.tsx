@@ -88,19 +88,16 @@ const StartUnlockingMndeModal: FunctionComponent<
                 {t("mndePage.unlock-mnde-modal.header")}
               </MHeading>
               <MText textAlign="center" mt={4}>
-                {t("mndePage.unlock-mnde-modal.body.0.text")}
+                {t("mndePage.unlock-mnde-modal.body.0.text")}{" "}
                 <MText
+                  color={colors?.red?.[500]}
                   display="inline-block"
                   fontWeight="bold"
-                  color={colors?.red?.[500]}
                 >
                   {t("mndePage.unlock-mnde-modal.body.1.text")}
                 </MText>{" "}
-                <MText display="inline-block">
-                  {t("mndePage.unlock-mnde-modal.body.2.text")}
-                </MText>{" "}
                 <MText display="inline-block" fontWeight="bold">
-                  {t("mndePage.unlock-mnde-modal.body.3.text")?.replace(
+                  {t("mndePage.unlock-mnde-modal.body.2.text")?.replace(
                     "{{value}}",
                     mndeAmount
                   )}
