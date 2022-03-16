@@ -24,7 +24,7 @@ const PerformanceNotification = () => {
       borderColor={colors.marinadeOrange}
       justifyContent="center"
       alignItems="center"
-      display={tps.data && tps.data > 1600 ? "flex" : "none"}
+      display={tps.data && tps.data < 1600 ? "flex" : "none"}
       bg={colors.marinadeOrange400}
     >
       <MdWarning color={colors.marinadeOrange} />
