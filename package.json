@@ -36,7 +36,7 @@
     "@saberhq/anchor-contrib": "^1.12.43",
     "@saberhq/solana-contrib": "^1.12.52",
     "@saberhq/stableswap-sdk": "^1.12.48",
-    "@saberhq/token-utils": "^1.12.40",
+    "@saberhq/token-utils": "^1.12.53",
     "@solana/spl-token": "^0.1.8",
     "@solana/spl-token-registry": "^0.2.2911",
     "@solana/wallet-adapter-base": "^0.9.4",
