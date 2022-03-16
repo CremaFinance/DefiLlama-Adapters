@@ -97,10 +97,10 @@ const SubmenusMndeSection = () => {
           }
         />
         <MNDESubmenuCard
-          cardTitle={t("appPage.mnde.earn-card.title")}
-          cardDescription={t("appPage.mnde.earn-card.description")}
-          cardButtonText={t("appPage.mnde.earn-card.button")}
-          cardIllustrationPath="/ilustrations/earn.svg"
+          cardTitle={t("appPage.mnde.compensation-card.title")}
+          cardDescription={t("appPage.mnde.compensation-card.description")}
+          cardButtonText={t("appPage.mnde.compensation-card.button")}
+          cardIllustrationPath="/ilustrations/compensation.svg"
           cardButtonDisabled
         />
       </Flex>
