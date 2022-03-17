@@ -5,6 +5,7 @@ import {
   BreadcrumbLink,
   Link,
   Image,
+  Text,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import type { FunctionComponent } from "react";
@@ -25,12 +26,16 @@ const BreadcrumbWithRouter: FunctionComponent<BreadcrumbWithRouterProps> = ({
 }) => {
   const router = useRouter();
   const renderItems = () => {
-    return breadcrumbItems.map((item) => {
+    return breadcrumbItems.map((item, i) => {
       return (
         <ChakraBreadcrumbItem key={item.title + item.link}>
-          <BreadcrumbLink as={Link} onClick={() => router.push(item.link)}>
-            {item.title}
-          </BreadcrumbLink>
+          {i + 1 === breadcrumbItems.length ? (
+            <Text color={colors.black}>{item.title}</Text>
+          ) : (
+            <BreadcrumbLink as={Link} onClick={() => router.push(item.link)}>
+              {item.title}
+            </BreadcrumbLink>
+          )}
         </ChakraBreadcrumbItem>
       );
     });
