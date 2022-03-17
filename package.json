@@ -98,7 +98,7 @@
     "lint-staged": "^12.3.5",
     "next-sitemap": "^2.5.10",
     "next-transpile-modules": "^9.0.0",
-    "prettier": "^2.5.1",
+    "prettier": "^2.6.0",
     "standard-version": "^9.3.2",
     "typedoc": "^0.22.13",
     "typedoc-plugin-markdown": "^3.11.14",
