@@ -1,4 +1,5 @@
 import { Flex, Stack, IconButton, Image, Box, Spinner } from "@chakra-ui/react";
+import { useRouter } from "next/dist/client/router";
 import type { FunctionComponent } from "react";
 import { MdInfoOutline } from "react-icons/md";
 
@@ -6,8 +7,10 @@ import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
 import TooltipWithContent from "components/molecules/TooltipWithContent";
+import useGovernanceData from "hooks/useGovernanceData";
 import { useNftDetails } from "hooks/useNftDetails";
 import { useTranslation } from "hooks/useTranslation";
+import { useWallet } from "hooks/useWallet";
 import { downloadPfp } from "services/marinade/downloadPfp";
 import colors from "styles/customTheme/colors";
 
@@ -18,6 +21,9 @@ interface NftDetailsSectionProps {
 const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
   id,
 }) => {
+  const router = useRouter();
+  const { connected: isWalletConnected } = useWallet();
+  const { data: governance } = useGovernanceData();
   const { t } = useTranslation();
   const { isLoading, data, isIdle } = useNftDetails(id as string);
 
@@ -45,7 +51,7 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
       aria-label="nft-details-section"
       flexDirection="column"
       pt={{ base: "112px", lg: "88px" }}
-      marginTop={{ base: "16px", lg: "40px" }}
+      marginTop={{ base: "24px", lg: "48px" }}
       marginBottom={{ base: "16px", lg: "40px" }}
       alignItems="center"
       justifyContent="center"
@@ -132,66 +138,53 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
 
             {data?.properties.unlock_duration}
           </Flex>
-          <Box
-            display="grid"
-            gridTemplateColumns={{ base: "1fr 1fr", md: "1fr 1fr 1fr" }}
-            gridGap={6}
-            mt={6}
-          >
+          <Box display="grid" gridTemplateColumns="1fr 1fr" gridGap={6} mt={6}>
+            <Flex
+              key={`${data?.properties.tier}`}
+              p={4}
+              flexDirection="column"
+              backgroundColor="gray.50"
+              border="1px solid"
+              borderColor="gray.100"
+              borderRadius="6px"
+            >
+              <MText fontSize="11px" fontWeight="bold" color="gray.500">
+                Level
+              </MText>
+              <MText fontSize="14px" fontWeight="bold" color={colors.blackMate}>
+                {data?.properties.tier}
+              </MText>
+            </Flex>
             {data?.attributes.map((attribute) => (
               <Flex
                 key={`${attribute.trait_type}-${attribute.value}`}
                 p={4}
                 flexDirection="column"
-                backgroundColor={colors.aliceBlue}
+                backgroundColor="gray.50"
                 border="1px solid"
-                borderColor={colors.lightGray}
+                borderColor="gray.100"
                 borderRadius="6px"
               >
-                <MText
-                  fontSize="11px"
-                  fontWeight="bold"
-                  color={colors.gray?.[500]}
-                >
-                  {attribute.trait_type}
+                <MText fontSize="11px" fontWeight="bold" color="gray.500">
+                  {`${attribute.trait_type
+                    .charAt(0)
+                    .toUpperCase()}${attribute.trait_type.slice(1)}`}
                 </MText>
-                <MText fontSize="14px">{attribute.value}</MText>
+                <MText
+                  fontSize="14px"
+                  fontWeight="bold"
+                  color={colors.blackMate}
+                >
+                  {attribute.value}
+                </MText>
               </Flex>
             ))}
           </Box>
-          <Stack
-            spacing={6}
-            mt={6}
-            direction={{ base: "column", md: "row" }}
-            width="100%"
-          >
+          <Stack spacing={6} mt={6} direction="column" width="100%">
             <MButton
-              variant="outline"
-              borderColor="gray"
-              _hover={{ bg: "gray.100" }}
-              width="100%"
-              color="black"
-              font="text-lg"
-              rounded="md"
-              height="40px"
-              onClick={() => {}}
-            >
-              {t("nftDetailsPage.details-section.share-twitter")}
-              <Image
-                ml={2}
-                color={colors.marinadeGreen}
-                cursor="pointer"
-                src="/icons/twitter-black.svg"
-                alt="Twitter Logo"
-                width={5}
-              />
-            </MButton>
-
-            <MButton
-              variant="outline"
-              borderColor="gray"
-              _hover={{ bg: "gray.100" }}
-              color="black"
+              bg={colors.marinadeGreen}
+              _hover={{ bg: colors.green800 }}
+              colorScheme={colors.marinadeGreen}
               font="text-lg"
               rounded="md"
               px={4}
@@ -208,9 +201,58 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
                 cursor="pointer"
                 src="/icons/download-black.svg"
                 alt="Download"
-                width={5}
+                width="16px"
               />
             </MButton>
+            <Stack
+              spacing={6}
+              mt={6}
+              direction={{ base: "column", md: "row" }}
+              width="100%"
+            >
+              <MButton
+                _hover={{ bg: "gray.100" }}
+                width="100%"
+                color={colors.marinadeGreen}
+                font="text-xl"
+                rounded="md"
+                height="40px"
+                onClick={() => {}}
+              >
+                {t("nftDetailsPage.details-section.share-twitter")}
+                <Image
+                  ml={2}
+                  color={colors.marinadeGreen}
+                  cursor="pointer"
+                  src="/icons/twitter-black.svg"
+                  alt="Twitter Logo"
+                  width="22px"
+                  height="17.87px"
+                />
+              </MButton>
+              {!isWalletConnected || !governance?.nfts.length ? (
+                <MButton
+                  _hover={{ bg: "gray.100" }}
+                  width="100%"
+                  color={colors.marinadeGreen}
+                  font="text-xl"
+                  rounded="md"
+                  height="40px"
+                  onClick={() => router.push("/app/mnde")}
+                >
+                  {t("nftDetailsPage.details-section.buy-yours")}
+                  <Image
+                    ml={2}
+                    color={colors.marinadeGreen}
+                    cursor="pointer"
+                    src="/icons/buy-yours.svg"
+                    alt="Twitter Logo"
+                    width="14.67px"
+                    height="14.26px"
+                  />
+                </MButton>
+              ) : undefined}
+            </Stack>
           </Stack>
         </Flex>
       )}
