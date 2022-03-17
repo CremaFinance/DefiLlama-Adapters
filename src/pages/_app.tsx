@@ -21,7 +21,7 @@ import { QuarryProvider } from "../contexts/QuaryContext";
 import { StatsProvider } from "../contexts/StatsContext";
 import { UserBalanceProvider } from "../contexts/UserBalanceContext";
 import Layout from "components/layout";
-import Agreement from "components/molecules/Aggrement.tsx";
+import Agreement from "components/molecules/Aggrement";
 import createEmotionCache from "styles/createEmotionCache";
 import customTheme from "styles/customTheme";
 import "styles/globals.css";

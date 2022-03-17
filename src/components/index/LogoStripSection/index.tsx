@@ -90,6 +90,7 @@ const LogoStripSection = () => {
             <Tooltip
               hasArrow
               label={el.title}
+              key={el.title}
               bg={colors.marinadeEvenLighterGreen}
               color="black"
             >
