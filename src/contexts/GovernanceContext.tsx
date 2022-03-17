@@ -89,7 +89,7 @@ const GovernanceContext = createContext({
 function GovernanceContextProvider(props: {
   children: ReactNode;
 }): JSX.Element {
-  const NFT_KIND = "AxFYMzasysofqoWFhEcNJQ5caWWsWUdMTwto2cP33L5C";
+  const NFT_KIND = "FXmqqGyrCnk3bsw9AzNt7X6C11gdkzugNeFKT9vids8e";
   const toast = useToast();
   const marinade = useMarinade();
   const { nativeSOLBalance } = useUserBalance();
