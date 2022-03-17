@@ -7,6 +7,7 @@ export interface NftData {
     category: string;
     mnde_amount: number;
     unlock_duration: number;
+    tier: string;
     files: { uri: string }[];
   };
 }
