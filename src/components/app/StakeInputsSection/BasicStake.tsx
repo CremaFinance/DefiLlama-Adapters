@@ -120,7 +120,7 @@ const BasicStake = () => {
     return {
       duration,
       mSOL: numberToShortVersion(mSOLToReceive),
-      SOL: numberToShortVersion(mSOLToReceive * newmSOLvsSOL),
+      SOL: format5Dec(mSOLToReceive * newmSOLvsSOL),
       value: `$${numberToShortVersion(
         mSOLToReceive * newmSOLvsSOL * solPrice
       )}`,
