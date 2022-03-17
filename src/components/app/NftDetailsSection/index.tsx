@@ -140,6 +140,86 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
           </Flex>
           <Box display="grid" gridTemplateColumns="1fr 1fr" gridGap={6} mt={6}>
             <Flex
+              key={`${data?.description}`}
+              p={4}
+              flexDirection="column"
+              backgroundColor="gray.50"
+              border="1px solid"
+              borderColor="gray.100"
+              borderRadius="6px"
+            >
+              <MText fontSize="11px" fontWeight="bold" color="gray.500">
+                {t("nftDetailsPage.details-section.description")}
+              </MText>
+              <MText fontSize="14px" fontWeight="bold" color={colors.blackMate}>
+                {data?.description}
+              </MText>
+            </Flex>
+            <Flex
+              key={`${data?.collection.family}`}
+              p={4}
+              flexDirection="column"
+              backgroundColor="gray.50"
+              border="1px solid"
+              borderColor="gray.100"
+              borderRadius="6px"
+            >
+              <MText fontSize="11px" fontWeight="bold" color="gray.500">
+                {t("nftDetailsPage.details-section.collection-family")}
+              </MText>
+              <MText fontSize="14px" fontWeight="bold" color={colors.blackMate}>
+                {data?.collection.family}
+              </MText>
+            </Flex>
+            <Flex
+              key={`${data?.collection.name}`}
+              p={4}
+              flexDirection="column"
+              backgroundColor="gray.50"
+              border="1px solid"
+              borderColor="gray.100"
+              borderRadius="6px"
+            >
+              <MText fontSize="11px" fontWeight="bold" color="gray.500">
+                {t("nftDetailsPage.details-section.collection-name")}
+              </MText>
+              <MText fontSize="14px" fontWeight="bold" color={colors.blackMate}>
+                {data?.collection.name}
+              </MText>
+            </Flex>
+            <Flex
+              key={`${data?.symbol}`}
+              p={4}
+              flexDirection="column"
+              backgroundColor="gray.50"
+              border="1px solid"
+              borderColor="gray.100"
+              borderRadius="6px"
+            >
+              <MText fontSize="11px" fontWeight="bold" color="gray.500">
+                {t("nftDetailsPage.details-section.symbol")}
+              </MText>
+              <MText fontSize="14px" fontWeight="bold" color={colors.blackMate}>
+                {data?.symbol}
+              </MText>
+            </Flex>
+            <Flex
+              key={`${data?.properties.edition}`}
+              p={4}
+              flexDirection="column"
+              backgroundColor="gray.50"
+              border="1px solid"
+              borderColor="gray.100"
+              borderRadius="6px"
+            >
+              <MText fontSize="11px" fontWeight="bold" color="gray.500">
+                {t("nftDetailsPage.details-section.edition")}
+              </MText>
+              <MText fontSize="14px" fontWeight="bold" color={colors.blackMate}>
+                {data?.properties.edition === 0 ? "Limited" : "Regular"}
+              </MText>
+            </Flex>
+            <Flex
               key={`${data?.properties.tier}`}
               p={4}
               flexDirection="column"
@@ -149,7 +229,7 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
               borderRadius="6px"
             >
               <MText fontSize="11px" fontWeight="bold" color="gray.500">
-                Level
+                {t("nftDetailsPage.details-section.level")}
               </MText>
               <MText fontSize="14px" fontWeight="bold" color={colors.blackMate}>
                 {data?.properties.tier}
