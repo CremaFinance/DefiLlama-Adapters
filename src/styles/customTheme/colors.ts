@@ -61,6 +61,7 @@ const colors = {
   white800: "#FFFFFFCC",
   lightGray: "#EDF2F7",
   aliceBlue: "F7FAFC",
+  marinadeOrange400: "#F0700066",
 };
 
 export default colors;
