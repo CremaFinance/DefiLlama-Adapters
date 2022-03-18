@@ -1,7 +1,7 @@
 import { Connection } from "@solana/web3.js";
 
 export async function getRecentPerformance(): Promise<number> {
-  const connection = new Connection("https://solana-api.projectserum.com/");
+  const connection = new Connection("https://marinade.rpcpool.com/");
 
   try {
     const response = await connection.getRecentPerformanceSamples(3);
