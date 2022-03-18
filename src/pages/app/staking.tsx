@@ -51,7 +51,7 @@ const Staking = () => {
       <StakingSection />
       <StakeInputsSection />
       <FAQSection />
-      <Footer />
+      <Footer isAppPage />
       <MobileMenu />
     </Box>
   );

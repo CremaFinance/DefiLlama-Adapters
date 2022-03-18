@@ -40,7 +40,7 @@ const Mnde = () => {
       <Flex flex={1}>
         <MndeSection />
       </Flex>
-      <Footer />
+      <Footer isAppPage />
       <MobileMenu />
     </Flex>
   );

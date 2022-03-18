@@ -304,7 +304,7 @@ const Terms: FC = (): JSX.Element => {
           </OrderedList>
         </Box>
         <Box mt="200px">
-          <Footer />
+          <Footer isAppPage />
         </Box>
       </Box>
     </Box>
