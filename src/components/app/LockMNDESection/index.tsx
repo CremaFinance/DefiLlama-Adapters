@@ -53,10 +53,16 @@ const LockMNDESection = () => {
 
   const [selectedLevel, setSelectedLevel] = useState("-");
   const [updateInputValue, setUpdateInputValue] = useState(false);
+  const [nftKind, setNftKind] = useState("");
 
-  const handleLevelSelected = (value: string, changeInputAmount: boolean) => {
+  const handleLevelSelected = (
+    value: string,
+    changeInputAmount: boolean,
+    kind: string
+  ) => {
     setUpdateInputValue(changeInputAmount);
     setSelectedLevel(value);
+    setNftKind(kind);
   };
 
   const {
@@ -121,7 +127,7 @@ const LockMNDESection = () => {
               }
               onClick={() => {
                 setIsPendingLockOpen(true);
-                lockMNDE(MNDEToLock).then(
+                lockMNDE(MNDEToLock, nftKind).then(
                   (signature) => {
                     setMNDEToLock("");
                     transactionSignedAction(false);

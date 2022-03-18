@@ -14,42 +14,24 @@ import {
   GaugeVoterWrapper,
   GaugeVoteWrapper,
 } from "@marinade.finance/escrow-relocker-sdk/gauges";
-import {
-  getParsedAccountByMint,
-  getParsedNftAccountsByOwner,
-} from "@nfteyez/sol-rayz";
 import { TransactionEnvelope } from "@saberhq/solana-contrib";
 import {
   ASSOCIATED_TOKEN_PROGRAM_ID,
   Token,
   TOKEN_PROGRAM_ID,
 } from "@solana/spl-token";
-import type { Connection } from "@solana/web3.js";
 import { PublicKey, LAMPORTS_PER_SOL } from "@solana/web3.js";
-import axios from "axios";
-import axiosRetry from "axios-retry";
 import BN from "bn.js";
-import { createContext, useReducer } from "react";
+import { createContext } from "react";
 import type { ReactNode } from "react";
 import { useQueryClient } from "react-query";
 
-import type {
-  NftAccount,
-  NftMetadata,
-} from "components/app/LockMNDESection/types";
 import { useEscrow } from "hooks/useEscrow";
 import type { NFTType } from "services/domain/nftType";
 import { checkNativeSOLBalance } from "utils/check-native-sol-balance";
 
-import { useAnchorProvider } from "./AnchorContext";
 import { useMarinade } from "./MarinadeContext";
 import { useUserBalance } from "./UserBalanceContext";
-
-interface State {
-  nfts: NFTType[];
-  fetchNftsLoading: boolean;
-  lockedMnde: number;
-}
 
 export type Action =
   | {
@@ -81,7 +63,7 @@ const GovernanceContext = createContext({
   cancelUnlocking: async (_nftMint: PublicKey): Promise<boolean> => {
     return true;
   },
-  lockMNDE: async (_amount: string): Promise<string> => {
+  lockMNDE: async (_amount: string, _kind: string): Promise<string> => {
     return "";
   },
 });
@@ -89,7 +71,6 @@ const GovernanceContext = createContext({
 function GovernanceContextProvider(props: {
   children: ReactNode;
 }): JSX.Element {
-  const NFT_KIND = "t1LQ2M2hqBgmYMaJtDDiXbZu9K6xYHAxERRy1FdLSUL";
   const toast = useToast();
   const marinade = useMarinade();
   const { nativeSOLBalance } = useUserBalance();
@@ -97,7 +78,7 @@ function GovernanceContextProvider(props: {
 
   const sdk = useEscrow();
 
-  async function lockMNDE(amount: string): Promise<string> {
+  async function lockMNDE(amount: string, kind: string): Promise<string> {
     const fundsNeeded = marinade.marinadeState?.transactionFee;
     const checkBalanceErrors = checkNativeSOLBalance(
       nativeSOLBalance ?? 0,
@@ -107,8 +88,7 @@ function GovernanceContextProvider(props: {
       toast(checkBalanceErrors);
       return "";
     }
-
-    const nftKind = new PublicKey(NFT_KIND);
+    const nftKind = new PublicKey(kind);
     const nftKindWrapper = new SimpleNftKindWrapper(sdk, nftKind);
     const realm = await nftKindWrapper.realm();
     const escrowWrapper = await EscrowWrapper.fromRealm(realm);
