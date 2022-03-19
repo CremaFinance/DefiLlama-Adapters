@@ -142,7 +142,7 @@ const NFTTable = () => {
                   textAlign={isMobile ? "right" : "left"}
                 >
                   {governance.lockedMnde
-                    ? `${governance.lockedMnde} MNDE`
+                    ? `${governance.lockedMnde.toLocaleString()} MNDE`
                     : "-"}
                 </MText>
               </Td>

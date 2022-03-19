@@ -94,7 +94,7 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
                     "nftDetailsPage.details-section.mnde-balance.tooltip"
                   )?.replace(
                     "{{value}}",
-                    data?.properties.mnde_amount.toString() || "0"
+                    data?.properties.mnde_amount.toLocaleString() || "0"
                   ) || ""
                 }
               >
@@ -108,7 +108,7 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
               </TooltipWithContent>
             </Flex>
 
-            {data?.properties.mnde_amount}
+            {data?.properties.mnde_amount.toLocaleString()}
           </Flex>
           <Flex
             pt={1}
@@ -138,6 +138,80 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
 
             {data?.properties.unlock_duration}
           </Flex>
+          <Stack spacing={6} mt={6} direction="column" width="100%">
+            <MButton
+              bg={colors.marinadeGreen}
+              _hover={{ bg: colors.green800 }}
+              colorScheme={colors.marinadeGreen}
+              font="text-lg"
+              rounded="md"
+              px={4}
+              height="40px"
+              width="100%"
+              onClick={() => {
+                downloadPfp(data?.image, data?.properties.files[0].uri);
+              }}
+            >
+              {t("nftDetailsPage.details-section.download")}
+              <Image
+                ml={2}
+                color={colors.marinadeGreen}
+                cursor="pointer"
+                src="/icons/download-black.svg"
+                alt="Download"
+                width="16px"
+              />
+            </MButton>
+            <Stack
+              spacing={6}
+              mt={6}
+              direction={{ base: "column", md: "row" }}
+              width="100%"
+            >
+              <MButton
+                _hover={{ bg: "gray.100" }}
+                width="100%"
+                color={colors.marinadeGreen}
+                font="text-xl"
+                rounded="md"
+                height="40px"
+                onClick={() => {}}
+              >
+                {t("nftDetailsPage.details-section.share-twitter")}
+                <Image
+                  ml={2}
+                  color={colors.marinadeGreen}
+                  cursor="pointer"
+                  src="/icons/twitter-black.svg"
+                  alt="Twitter Logo"
+                  width="22px"
+                  height="17.87px"
+                />
+              </MButton>
+              {!isWalletConnected || !governance?.nfts.length ? (
+                <MButton
+                  _hover={{ bg: "gray.100" }}
+                  width="100%"
+                  color={colors.marinadeGreen}
+                  font="text-xl"
+                  rounded="md"
+                  height="40px"
+                  onClick={() => router.push("/app/mnde")}
+                >
+                  {t("nftDetailsPage.details-section.buy-yours")}
+                  <Image
+                    ml={2}
+                    color={colors.marinadeGreen}
+                    cursor="pointer"
+                    src="/icons/buy-yours.svg"
+                    alt="Twitter Logo"
+                    width="14.67px"
+                    height="14.26px"
+                  />
+                </MButton>
+              ) : undefined}
+            </Stack>
+          </Stack>
           <Box display="grid" gridTemplateColumns="1fr 1fr" gridGap={6} mt={6}>
             <Flex
               key={`${data?.description}`}
@@ -260,80 +334,6 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
               </Flex>
             ))}
           </Box>
-          <Stack spacing={6} mt={6} direction="column" width="100%">
-            <MButton
-              bg={colors.marinadeGreen}
-              _hover={{ bg: colors.green800 }}
-              colorScheme={colors.marinadeGreen}
-              font="text-lg"
-              rounded="md"
-              px={4}
-              height="40px"
-              width="100%"
-              onClick={() => {
-                downloadPfp(data?.image, data?.properties.files[0].uri);
-              }}
-            >
-              {t("nftDetailsPage.details-section.download")}
-              <Image
-                ml={2}
-                color={colors.marinadeGreen}
-                cursor="pointer"
-                src="/icons/download-black.svg"
-                alt="Download"
-                width="16px"
-              />
-            </MButton>
-            <Stack
-              spacing={6}
-              mt={6}
-              direction={{ base: "column", md: "row" }}
-              width="100%"
-            >
-              <MButton
-                _hover={{ bg: "gray.100" }}
-                width="100%"
-                color={colors.marinadeGreen}
-                font="text-xl"
-                rounded="md"
-                height="40px"
-                onClick={() => {}}
-              >
-                {t("nftDetailsPage.details-section.share-twitter")}
-                <Image
-                  ml={2}
-                  color={colors.marinadeGreen}
-                  cursor="pointer"
-                  src="/icons/twitter-black.svg"
-                  alt="Twitter Logo"
-                  width="22px"
-                  height="17.87px"
-                />
-              </MButton>
-              {!isWalletConnected || !governance?.nfts.length ? (
-                <MButton
-                  _hover={{ bg: "gray.100" }}
-                  width="100%"
-                  color={colors.marinadeGreen}
-                  font="text-xl"
-                  rounded="md"
-                  height="40px"
-                  onClick={() => router.push("/app/mnde")}
-                >
-                  {t("nftDetailsPage.details-section.buy-yours")}
-                  <Image
-                    ml={2}
-                    color={colors.marinadeGreen}
-                    cursor="pointer"
-                    src="/icons/buy-yours.svg"
-                    alt="Twitter Logo"
-                    width="14.67px"
-                    height="14.26px"
-                  />
-                </MButton>
-              ) : undefined}
-            </Stack>
-          </Stack>
         </Flex>
       )}
     </Flex>

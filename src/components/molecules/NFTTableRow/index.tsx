@@ -67,7 +67,7 @@ const NFTTableRow: FunctionComponent<NFTTableRowProps> = ({
       <Td pr={0} py={0} pl={[2, 6]} textAlign="end">
         <Flex justifyContent="space-between">
           <MText textAlign="left" fontSize="14.4px" alignSelf="center">
-            {!isMobile ? lockedMNDE : undefined}
+            {!isMobile ? lockedMNDE.toLocaleString() : undefined}
           </MText>
           <Flex
             flexDirection="column"
@@ -84,7 +84,7 @@ const NFTTableRow: FunctionComponent<NFTTableRowProps> = ({
             >
               {isMobile ? (
                 <MText textAlign="center" fontSize="14.4px" mb="8px">
-                  {lockedMNDE} MNDE
+                  {lockedMNDE.toLocaleString()} MNDE
                 </MText>
               ) : undefined}
               <MButton
