@@ -80,7 +80,7 @@ const PoolRow: FunctionComponent<PoolRowProps> = ({ pool }) => {
         >
           <Flex alignItems="center" mb={{ base: 2, md: "unset" }}>
             <Image
-              src={`/pools/${tokenA.toLowerCase()}.png`}
+              src={`/pools/${tokenA.toLowerCase().replaceAll("-", "")}.png`}
               width="40px"
               height="40px"
             />
