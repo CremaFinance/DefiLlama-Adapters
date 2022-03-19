@@ -137,7 +137,7 @@ const DelayedUnstakeModal = ({
             label: "Success",
             sol_amount: toUnstakeFullDecimals,
             transaction_id: uuidv4(),
-            currency: "USD",
+            currency: "SOL",
           });
         },
         (error) => {

@@ -17,7 +17,7 @@ type TrackEvent = {
   label: "Success" | "Error";
   description?: string;
   sol_amount?: number;
-  currency?: "USD";
+  currency?: "SOL" | "MSOL";
   transaction_id?: string;
 };
 export const useTracking = () => {

@@ -117,7 +117,7 @@ const MSolStakeModal = ({
             label: "Success",
             sol_amount: Number(amount),
             transaction_id: uuidv4(),
-            currency: "USD",
+            currency: "MSOL",
           });
         },
         (error) => {
