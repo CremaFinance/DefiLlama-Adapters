@@ -20,6 +20,7 @@ type IconWithTextBelowProps = {
   titleColor?: string;
   subtitleColor?: string;
   marginX?: number | string;
+  singleLineTitle?: boolean;
 };
 
 const IconWithTextBelow = ({
@@ -35,6 +36,7 @@ const IconWithTextBelow = ({
   titleColor = colors.white,
   subtitleColor = colors.white800,
   marginX = 0,
+  singleLineTitle = false,
 }: IconWithTextBelowProps) => {
   const { t } = useTranslation();
 
@@ -59,7 +61,7 @@ const IconWithTextBelow = ({
         marginBottom="4"
         marginTop="8"
         wordBreak="keep-all"
-        whiteSpace="pre"
+        whiteSpace={singleLineTitle ? "pre" : "unset"}
         type="heading-xsm"
         textAlign="center"
       >
