@@ -27,6 +27,7 @@ import { GovernanceContext } from "contexts/GovernanceContext";
 import useGovernanceData from "hooks/useGovernanceData";
 import { useTracking } from "hooks/useTracking";
 import colors from "styles/customTheme/colors";
+import { formatNumberLocale } from "utils/format-number-locale";
 
 const noPriorCredit = "no record of a prior credit";
 const solFee = "appPage.missing-sol-for-fee";
@@ -142,7 +143,7 @@ const NFTTable = () => {
                   textAlign={isMobile ? "right" : "left"}
                 >
                   {governance.lockedMnde
-                    ? `${governance.lockedMnde.toLocaleString()} MNDE`
+                    ? `${formatNumberLocale(governance.lockedMnde)} MNDE`
                     : "-"}
                 </MText>
               </Td>

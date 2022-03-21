@@ -13,6 +13,7 @@ import { useTranslation } from "hooks/useTranslation";
 import { useWallet } from "hooks/useWallet";
 import { downloadPfp } from "services/marinade/downloadPfp";
 import colors from "styles/customTheme/colors";
+import { formatNumberLocale } from "utils/format-number-locale";
 
 interface NftDetailsSectionProps {
   id: string;
@@ -94,7 +95,7 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
                     "nftDetailsPage.details-section.mnde-balance.tooltip"
                   )?.replace(
                     "{{value}}",
-                    data?.properties.mnde_amount.toLocaleString() || "0"
+                    formatNumberLocale(data?.properties.mnde_amount)
                   ) || ""
                 }
               >
@@ -108,7 +109,7 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
               </TooltipWithContent>
             </Flex>
 
-            {data?.properties.mnde_amount.toLocaleString()}
+            {formatNumberLocale(data?.properties.mnde_amount)}
           </Flex>
           <Flex
             pt={1}

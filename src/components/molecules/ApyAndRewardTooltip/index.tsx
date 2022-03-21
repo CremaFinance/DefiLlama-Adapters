@@ -16,6 +16,7 @@ import type {
 } from "../../../services/domain/leverage";
 import type { Rewards, RewardsConfig } from "../../../services/domain/rewards";
 import Text from "../../atoms/Text";
+import { formatNumberLocale } from "utils/format-number-locale";
 
 type ApyAndRewardTooltipProps = PropsWithChildren<{
   tradingApy?: number;
@@ -33,7 +34,7 @@ const ApyAndRewardTooltip: FunctionComponent<ApyAndRewardTooltipProps> = ({
 
   const rewardText = (name: string, amount: number) => {
     return t("appPage.pool-row.apyPopover.reward")
-      ?.replace("{{reward}}", Math.floor(amount).toLocaleString())
+      ?.replace("{{reward}}", formatNumberLocale(Math.floor(amount)))
       .replace("{{provider}}", name);
   };
 

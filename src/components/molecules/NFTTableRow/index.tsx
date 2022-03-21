@@ -8,6 +8,7 @@ import MButton from "../../atoms/Button";
 import Countdown from "../../atoms/Countdown";
 import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
+import { formatNumberLocale } from "utils/format-number-locale";
 
 type NFTTableRowProps = {
   lockedMNDE: number;
@@ -67,7 +68,7 @@ const NFTTableRow: FunctionComponent<NFTTableRowProps> = ({
       <Td pr={0} py={0} pl={[2, 6]} textAlign="end">
         <Flex justifyContent="space-between">
           <MText textAlign="left" fontSize="14.4px" alignSelf="center">
-            {!isMobile ? lockedMNDE.toLocaleString() : undefined}
+            {!isMobile ? formatNumberLocale(lockedMNDE) : undefined}
           </MText>
           <Flex
             flexDirection="column"
@@ -84,7 +85,7 @@ const NFTTableRow: FunctionComponent<NFTTableRowProps> = ({
             >
               {isMobile ? (
                 <MText textAlign="center" fontSize="14.4px" mb="8px">
-                  {lockedMNDE.toLocaleString()} MNDE
+                  {formatNumberLocale(lockedMNDE)} MNDE
                 </MText>
               ) : undefined}
               <MButton
