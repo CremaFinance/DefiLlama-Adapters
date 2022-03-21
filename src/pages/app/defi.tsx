@@ -34,7 +34,7 @@ const Defi = () => {
       </Flex>
       <Header />
       <DefiSection />
-      <Footer />
+      <Footer isAppPage />
       <MobileMenu />
     </Box>
   );

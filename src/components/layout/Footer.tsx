@@ -2,13 +2,18 @@ import { Box, Flex, Image, Link, Icon } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
+import type { FunctionComponent } from "react";
 import { FiExternalLink } from "react-icons/fi";
 
 import MButton from "../atoms/Button";
 import MText from "../atoms/Text";
 import colors from "styles/customTheme/colors";
 
-const Footer = () => {
+interface FooterProps {
+  isAppPage?: boolean;
+}
+
+const Footer: FunctionComponent<FooterProps> = ({ isAppPage = false }) => {
   const { t } = useTranslation();
   const router = useRouter();
 
@@ -27,7 +32,7 @@ const Footer = () => {
       <Flex flexDirection={["column", "row"]}>
         <Flex flexDirection="column" flex={{ base: 0.33, lg: 0.56 }}>
           <Flex minWidth="300" pt={6} display="flex" flexDirection="column">
-            <NextLink href="/">
+            <NextLink href="/" passHref>
               <Image
                 cursor="pointer"
                 src="../../marinade-logo-white.svg"
@@ -87,6 +92,33 @@ const Footer = () => {
               </Link>
             </Flex>
           </Flex>
+          {isAppPage && (
+            <Flex direction="column" py={6}>
+              <MText
+                type="text-xl"
+                color={colors.white800}
+                maxWidth={{ base: "360", md: "30vw", lg: "25vw" }}
+              >
+                {t("indexPage.footer-quote.0.text")}
+              </MText>
+              <MText
+                type="text-xl"
+                color={colors.white800}
+                maxWidth={{ base: "360", md: "30vw", lg: "25vw" }}
+              >
+                <MText
+                  type="text-xl"
+                  color={colors.white800}
+                  maxWidth={{ base: "360", md: "30vw", lg: "25vw" }}
+                  display="inline-block"
+                  fontWeight="bold"
+                >
+                  Anatoly Yakovenko,
+                </MText>{" "}
+                {t("indexPage.footer-quote.1.text")}
+              </MText>
+            </Flex>
+          )}
         </Flex>
 
         <Flex py={6} flex={{ base: 0.33, lg: 0.2 }} flexDirection="column">
