@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { EscrowRelockerSDK } from "@marinade.finance/escrow-relocker-sdk";
 import { EscrowWrapper } from "@marinade.finance/escrow-relocker-sdk";
 import { getParsedNftAccountsByOwner } from "@nfteyez/sol-rayz";
@@ -83,7 +84,7 @@ export const fetchGovernanceData = async (sdk: EscrowRelockerSDK) => {
         id: escrowData.index.toString(),
         dataUri: nft.data.uri,
         thumbnailURL: metadata?.image,
-        lockEndDate: (await escrowWrap.isLocked())
+        lockEndDate: (escrowData.state as any).locked
           ? undefined
           : new Date(escrowData.claimTime.toNumber() * 1000),
       } as NFTType;
