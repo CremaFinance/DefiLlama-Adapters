@@ -9,7 +9,7 @@ import Footer from "components/layout/Footer";
 import { GovernanceContextProvider } from "contexts/GovernanceContext";
 import colors from "styles/customTheme/colors";
 
-const Lock = () => {
+const Mnde = () => {
   return (
     <Flex
       position="relative"
@@ -31,4 +31,4 @@ const Lock = () => {
   );
 };
 
-export default Lock;
+export default Mnde;
