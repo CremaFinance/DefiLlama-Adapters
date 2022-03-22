@@ -990,7 +990,13 @@
       },
       "share-twitter": "Share on twitter",
       "download": "Download NFT",
-      "buy-yours": "Buy Yours"
+      "buy-yours": "Buy Yours",
+      "level": "Level",
+      "description": "Description",
+      "symbol": "Symbol",
+      "edition": "Edition",
+      "collection-name": "Collection name",
+      "collection-family": "Collection family"
     }
   },
   "404Page": {

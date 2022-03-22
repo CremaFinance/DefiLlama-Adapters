@@ -20,7 +20,14 @@ import {
   Token,
   TOKEN_PROGRAM_ID,
 } from "@solana/spl-token";
-import { PublicKey, LAMPORTS_PER_SOL } from "@solana/web3.js";
+import {
+  Connection,
+  Keypair,
+  PublicKey,
+  LAMPORTS_PER_SOL,
+} from "@solana/web3.js";
+import axios from "axios";
+import axiosRetry from "axios-retry";
 import BN from "bn.js";
 import { createContext } from "react";
 import type { ReactNode } from "react";
@@ -90,8 +97,6 @@ function GovernanceContextProvider(props: {
     }
     const nftKind = new PublicKey(kind);
     const nftKindWrapper = new SimpleNftKindWrapper(sdk, nftKind);
-    const realm = await nftKindWrapper.realm();
-    const escrowWrapper = await EscrowWrapper.fromRealm(realm);
 
     const payFrom = await Token.getAssociatedTokenAddress(
       ASSOCIATED_TOKEN_PROGRAM_ID,
@@ -99,7 +104,8 @@ function GovernanceContextProvider(props: {
       await nftKindWrapper.govMint(),
       sdk.provider.wallet.publicKey
     );
-    const tx = await escrowWrapper.init({
+    const { tx, wrapper: escrowWrapper } = await EscrowWrapper.init({
+      nftMint: new Keypair(),
       nftKind: nftKindWrapper,
       nftOwner: sdk.provider.wallet.publicKey,
       govAmount: new BN(Number(amount) * LAMPORTS_PER_SOL),
