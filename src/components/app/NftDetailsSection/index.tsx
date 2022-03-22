@@ -3,6 +3,7 @@ import { useRouter } from "next/dist/client/router";
 import type { FunctionComponent } from "react";
 import { MdInfoOutline } from "react-icons/md";
 
+import { formatNumberLocale } from "../../../utils/format-number-locale";
 import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
@@ -13,7 +14,6 @@ import { useTranslation } from "hooks/useTranslation";
 import { useWallet } from "hooks/useWallet";
 import { downloadPfp } from "services/marinade/downloadPfp";
 import colors from "styles/customTheme/colors";
-import { formatNumberLocale } from "utils/format-number-locale";
 
 interface NftDetailsSectionProps {
   id: string;

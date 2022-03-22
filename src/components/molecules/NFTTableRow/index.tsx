@@ -4,11 +4,11 @@ import { useTranslation } from "next-export-i18n";
 import { useRouter } from "next/router";
 import type { FunctionComponent } from "react";
 
+import { formatNumberLocale } from "../../../utils/format-number-locale";
 import MButton from "../../atoms/Button";
 import Countdown from "../../atoms/Countdown";
 import MText from "../../atoms/Text";
 import colors from "styles/customTheme/colors";
-import { formatNumberLocale } from "utils/format-number-locale";
 
 type NFTTableRowProps = {
   lockedMNDE: number;

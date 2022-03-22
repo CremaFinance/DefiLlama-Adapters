@@ -17,6 +17,7 @@ import { useTranslation } from "next-export-i18n";
 import { useContext, useState } from "react";
 import { FiExternalLink } from "react-icons/fi";
 
+import { formatNumberLocale } from "../../../utils/format-number-locale";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 import NFTTableRow from "../NFTTableRow";
@@ -27,7 +28,6 @@ import { GovernanceContext } from "contexts/GovernanceContext";
 import useGovernanceData from "hooks/useGovernanceData";
 import { useTracking } from "hooks/useTracking";
 import colors from "styles/customTheme/colors";
-import { formatNumberLocale } from "utils/format-number-locale";
 
 const noPriorCredit = "no record of a prior credit";
 const solFee = "appPage.missing-sol-for-fee";

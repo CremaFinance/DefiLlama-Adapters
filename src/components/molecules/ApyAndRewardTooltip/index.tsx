@@ -15,8 +15,8 @@ import type {
   LeverageConfig,
 } from "../../../services/domain/leverage";
 import type { Rewards, RewardsConfig } from "../../../services/domain/rewards";
+import { formatNumberLocale } from "../../../utils/format-number-locale";
 import Text from "../../atoms/Text";
-import { formatNumberLocale } from "utils/format-number-locale";
 
 type ApyAndRewardTooltipProps = PropsWithChildren<{
   tradingApy?: number;
