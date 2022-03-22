@@ -106,9 +106,9 @@ export default function SecuritySection() {
         {t("indexPage.security-section-audit-title")}
       </MHeading>
       <Flex
-        flexDirection={{ base: "column", md: "row" }}
+        flexDirection={{ base: "column", lg: "row" }}
         justifyContent="center"
-        alignItems={{ base: "center", md: "unset", lg: "center" }}
+        alignItems={{ base: "center", lg: "center" }}
         marginTop={4}
       >
         <IconWithTextBelow
