@@ -66,6 +66,11 @@ const LockMNDESection = () => {
   } = useDisclosure();
 
   useEffect(() => {
+    if (MNDEBalance && isWalletConnected)
+      setMNDEToLock((MNDEBalance / LAMPORTS_PER_SOL).toString());
+  }, [isWalletConnected, MNDEBalance]);
+
+  useEffect(() => {
     if (selectedLevel === "1" && updateInputValue) setMNDEToLock("1000");
     if (selectedLevel === "2" && updateInputValue) setMNDEToLock("5000");
     if (selectedLevel === "3" && updateInputValue) setMNDEToLock("25000");
