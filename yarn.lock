@@ -2535,10 +2535,10 @@
   resolved "https://registry.yarnpkg.com/@ledgerhq/logs/-/logs-6.10.0.tgz#c012c1ecc1a0e53d50e6af381618dca5268461c1"
   integrity sha512-lLseUPEhSFUXYTKj6q7s2O3s2vW2ebgA11vMAlKodXGf5AFw4zUoEbTz9CoFOC9jS6xY4Qr8BmRnxP/odT4Uuw==
 
-"@marinade.finance/escrow-relocker-sdk@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@marinade.finance/escrow-relocker-sdk/-/escrow-relocker-sdk-0.10.0.tgz#8c08876b32bcdfd7a38d3a06ba0794d681ae809e"
-  integrity sha512-DRG7s/yk4YbclOMGpmfZqpwplhuqpm7uIyAExa8OvXmuf9gUssl8mRcCFK8+T3SNP9ymd0pl14ZjxuBgjHytUQ==
+"@marinade.finance/escrow-relocker-sdk@^0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@marinade.finance/escrow-relocker-sdk/-/escrow-relocker-sdk-0.10.1.tgz#4bb1a507dea3f2b16f443ad28aa9d0f661b29737"
+  integrity sha512-CPepWKQmLPFRANOKbstWfvgGxdplm3/jy4QeZzr46wh5F6zsrr76ll52ISjFtnuOclJEiVU4vzQL4l/h03EvfQ==
   dependencies:
     "@metaplex-foundation/mpl-token-metadata" "^1.2.0"
     "@project-serum/anchor" "^0.22.0"
