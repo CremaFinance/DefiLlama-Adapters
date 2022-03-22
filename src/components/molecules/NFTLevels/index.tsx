@@ -21,7 +21,7 @@ type NFTLevelsProps = {
 const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
   const { t } = useTranslation();
   const placeholder = "{{amountLeft}}";
-  const editionInfo = useEditions()?.data;
+  const { data: editionInfo, isRefetching } = useEditions();
 
   const [selectedLevel, setSelectedLevel] = useState("none");
   const [levelOneAmountLeft, setLevelOneAmountLeft] = useState(0);
@@ -29,11 +29,11 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
   const [levelThreeAmountLeft, setLevelThreeAmountLeft] = useState(0);
   const [levelFourAmountLeft, setLevelFourAmountLeft] = useState(0);
   const [levelFiveAmountLeft, setLevelFiveAmountLeft] = useState(0);
-  const [levelOneLimited, setlevelOneLimited] = useState(true);
-  const [levelTwoLimited, setlevelTwoLimited] = useState(true);
-  const [levelThreeLimited, setlevelThreeLimited] = useState(true);
-  const [levelFourLimited, setlevelFourLimited] = useState(true);
-  const [levelFiveLimited, setlevelFiveLimited] = useState(true);
+  const [levelOneLimited, setlevelOneLimited] = useState(false);
+  const [levelTwoLimited, setlevelTwoLimited] = useState(false);
+  const [levelThreeLimited, setlevelThreeLimited] = useState(false);
+  const [levelFourLimited, setlevelFourLimited] = useState(false);
+  const [levelFiveLimited, setlevelFiveLimited] = useState(false);
 
   useEffect(() => {
     if (editionInfo) {
@@ -48,7 +48,7 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
       setLevelFiveAmountLeft(editionInfo[4].left);
       setlevelFiveLimited(editionInfo[4].editions[0].current);
     }
-  }, [editionInfo]);
+  }, [editionInfo, isRefetching]);
 
   useEffect(() => {
     const inputAmount = Number(input);

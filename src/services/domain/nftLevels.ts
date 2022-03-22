@@ -9,7 +9,7 @@ export const nftLevels: ProcessedEditionsInfo[] = [
         name: "Limited",
         address: "t1LQ2M2hqBgmYMaJtDDiXbZu9K6xYHAxERRy1FdLSUL",
         limit: 2096,
-        current: true,
+        current: false,
       },
       {
         name: "Regular",
@@ -27,7 +27,7 @@ export const nftLevels: ProcessedEditionsInfo[] = [
         name: "Limited",
         address: "t2LqfNN5QbKgrYsgiWsbtYrJtaCMkPeQKeqD2hu6gs3",
         limit: 888,
-        current: true,
+        current: false,
       },
       {
         name: "Regular",
@@ -45,7 +45,7 @@ export const nftLevels: ProcessedEditionsInfo[] = [
         name: "Limited",
         address: "t3Ly8HSX2b13NsoSiK1BgYU4QGXm8rnSty88VLRPtZz",
         limit: 303,
-        current: true,
+        current: false,
       },
       {
         name: "Regular",
@@ -63,7 +63,7 @@ export const nftLevels: ProcessedEditionsInfo[] = [
         name: "Limited",
         address: "t4LfTq89cZbyQM6hEYHX3c58gohdaS2yywNiHq6cfys",
         limit: 33,
-        current: true,
+        current: false,
       },
       {
         name: "Regular",
@@ -81,7 +81,7 @@ export const nftLevels: ProcessedEditionsInfo[] = [
         name: "Limited",
         address: "t5LUtNDPwuf4Uu9ex3kq8tgF3vTwnnFAPw85ymbstU4",
         limit: 13,
-        current: true,
+        current: false,
       },
       {
         name: "Regular",

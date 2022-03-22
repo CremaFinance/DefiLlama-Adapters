@@ -5,7 +5,7 @@ import { fetchEditionsData } from "services/marinade/fetchEditionsData";
 import { useEscrow } from "./useEscrow";
 import { useWallet } from "./useWallet";
 
-const refetchInterval = 1000 * 5;
+const refetchInterval = 1000 * 2;
 
 export const useEditions = () => {
   const sdk = useEscrow();
