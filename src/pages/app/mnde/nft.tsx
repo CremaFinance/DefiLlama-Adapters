@@ -22,8 +22,8 @@ const NftDetails = () => {
   }
 
   const breadcrumbItems: BreadcrumbItem[] = [
-    { title: "MNDE", link: "/app/mnde/lock" },
-    { title: data?.name || "", link: `/app/mnde/lock/nft?pid=${pid}` },
+    { title: "MNDE", link: "/app/mnde" },
+    { title: data?.name || "", link: `/app/mnde/nft?pid=${pid}` },
   ];
 
   return (

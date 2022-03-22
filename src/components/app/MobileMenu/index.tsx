@@ -82,7 +82,7 @@ const MobileMenu = () => {
         mb={isMndeActive ? 0 : "3px"}
         _active={activeMenu}
         _hover={activeMenu}
-        onClick={() => router.push("/app/mnde/lock")}
+        onClick={() => router.push("/app/mnde")}
       >
         {t("appPage.mnde-menu-item")}
       </MButton>

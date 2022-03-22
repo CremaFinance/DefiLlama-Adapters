@@ -156,48 +156,48 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
               </MText>
             </Flex>
             {data?.collection ? (
-              <Flex
-                key={`${data?.collection?.family}`}
-                p={4}
-                flexDirection="column"
-                backgroundColor="gray.50"
-                border="1px solid"
-                borderColor="gray.100"
-                borderRadius="6px"
-              >
-                <MText fontSize="11px" fontWeight="bold" color="gray.500">
-                  {t("nftDetailsPage.details-section.collection-family")}
-                </MText>
-                <MText
-                  fontSize="14px"
-                  fontWeight="bold"
-                  color={colors.blackMate}
+              <>
+                <Flex
+                  key={`${data?.collection?.family}`}
+                  p={4}
+                  flexDirection="column"
+                  backgroundColor="gray.50"
+                  border="1px solid"
+                  borderColor="gray.100"
+                  borderRadius="6px"
                 >
-                  {data?.collection?.family}
-                </MText>
-              </Flex>
-            ) : undefined}
-            {data?.collection ? (
-              <Flex
-                key={`${data?.collection?.name}`}
-                p={4}
-                flexDirection="column"
-                backgroundColor="gray.50"
-                border="1px solid"
-                borderColor="gray.100"
-                borderRadius="6px"
-              >
-                <MText fontSize="11px" fontWeight="bold" color="gray.500">
-                  {t("nftDetailsPage.details-section.collection-name")}
-                </MText>
-                <MText
-                  fontSize="14px"
-                  fontWeight="bold"
-                  color={colors.blackMate}
+                  <MText fontSize="11px" fontWeight="bold" color="gray.500">
+                    {t("nftDetailsPage.details-section.collection-family")}
+                  </MText>
+                  <MText
+                    fontSize="14px"
+                    fontWeight="bold"
+                    color={colors.blackMate}
+                  >
+                    {data?.collection?.family}
+                  </MText>
+                </Flex>
+                <Flex
+                  key={`${data?.collection?.name}`}
+                  p={4}
+                  flexDirection="column"
+                  backgroundColor="gray.50"
+                  border="1px solid"
+                  borderColor="gray.100"
+                  borderRadius="6px"
                 >
-                  {data?.collection?.name}
-                </MText>
-              </Flex>
+                  <MText fontSize="11px" fontWeight="bold" color="gray.500">
+                    {t("nftDetailsPage.details-section.collection-name")}
+                  </MText>
+                  <MText
+                    fontSize="14px"
+                    fontWeight="bold"
+                    color={colors.blackMate}
+                  >
+                    {data?.collection?.name}
+                  </MText>
+                </Flex>
+              </>
             ) : undefined}
             <Flex
               key={`${data?.symbol}`}
@@ -330,7 +330,7 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
                   font="text-xl"
                   rounded="md"
                   height="40px"
-                  onClick={() => router.push("/app/mnde/lock")}
+                  onClick={() => router.push("/app/mnde")}
                 >
                   {t("nftDetailsPage.details-section.buy-yours")}
                   <Image
