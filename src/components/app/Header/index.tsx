@@ -118,7 +118,7 @@ const Header = ({ onValidatorsPage = false }: Props) => {
           py={isMndeActive ? "4px" : "7px"}
           _active={activeMenu}
           _hover={activeMenu}
-          onClick={() => router.push("/app/mnde")}
+          onClick={() => router.push("/app/mnde/lock")}
         >
           {t("appPage.mnde-menu-item")}
         </MButton>

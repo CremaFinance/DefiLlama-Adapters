@@ -8,12 +8,10 @@ import Footer from "components/layout/Footer";
 import type { BreadcrumbItem } from "components/molecules/BreadcrumbWithRouter";
 import BreadcrumbWithRouter from "components/molecules/BreadcrumbWithRouter";
 import { useNftDetails } from "hooks/useNftDetails";
-import { useTranslation } from "hooks/useTranslation";
 import colors from "styles/customTheme/colors";
 
 const NftDetails = () => {
   const router = useRouter();
-  const { t } = useTranslation();
 
   const { pid } = router.query;
 
@@ -24,8 +22,7 @@ const NftDetails = () => {
   }
 
   const breadcrumbItems: BreadcrumbItem[] = [
-    { title: "MNDE", link: "/app/mnde" },
-    { title: t("mndePage.breadcrumbs.lock") || "", link: "/app/mnde/lock" },
+    { title: "MNDE", link: "/app/mnde/lock" },
     { title: data?.name || "", link: `/app/mnde/lock/nft?pid=${pid}` },
   ];
 
