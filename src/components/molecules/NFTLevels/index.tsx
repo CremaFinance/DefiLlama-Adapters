@@ -57,7 +57,7 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
         setSelectedLevel("-");
         onLevelClick("-", false, "");
       }
-      if (inputAmount > 999 && inputAmount < 5000 && inputAmount <= balance) {
+      if (inputAmount >= 1000 && inputAmount < 5000 && inputAmount <= balance) {
         setSelectedLevel("level1");
         onLevelClick(
           "1",
