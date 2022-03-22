@@ -1,70 +1,126 @@
+/* eslint-disable complexity */
+/* eslint-disable sonarjs/cognitive-complexity */
 import { Flex } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { useState, useEffect } from "react";
 
 import LevelDivider from "../LevelDivider";
 import NFTLevelsItem from "../NFTLevelsItem";
+import { useEditions } from "hooks/useEditions";
 
 type NFTLevelsProps = {
   balance: number;
   input: string;
-  onLevelClick: (value: string, changeInputAmount: boolean) => void;
+  onLevelClick: (
+    value: string,
+    changeInputAmount: boolean,
+    kind: string
+  ) => void;
 };
 
 const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
   const { t } = useTranslation();
   const placeholder = "{{amountLeft}}";
+  const { data: editionInfo, isRefetching } = useEditions();
 
   const [selectedLevel, setSelectedLevel] = useState("none");
-  const [levelOneAmountLeft, setLevelOneAmountLeft] = useState("0");
-  const [levelTwoAmountLeft, setLevelTwoAmountLeft] = useState("0");
-  const [levelThreeAmountLeft, setLevelThreeAmountLeft] = useState("0");
-  const [levelFourAmountLeft, setLevelFourAmountLeft] = useState("0");
-  const [levelFiveAmountLeft, setLevelFiveAmountLeft] = useState("0");
+  const [levelOneAmountLeft, setLevelOneAmountLeft] = useState(0);
+  const [levelTwoAmountLeft, setLevelTwoAmountLeft] = useState(0);
+  const [levelThreeAmountLeft, setLevelThreeAmountLeft] = useState(0);
+  const [levelFourAmountLeft, setLevelFourAmountLeft] = useState(0);
+  const [levelFiveAmountLeft, setLevelFiveAmountLeft] = useState(0);
+  const [levelOneLimited, setlevelOneLimited] = useState(false);
+  const [levelTwoLimited, setlevelTwoLimited] = useState(false);
+  const [levelThreeLimited, setlevelThreeLimited] = useState(false);
+  const [levelFourLimited, setlevelFourLimited] = useState(false);
+  const [levelFiveLimited, setlevelFiveLimited] = useState(false);
 
   useEffect(() => {
-    setLevelOneAmountLeft("3,215");
-    setLevelTwoAmountLeft("13");
-    setLevelThreeAmountLeft("0");
-    setLevelFourAmountLeft("213");
-    setLevelFiveAmountLeft("3");
-  }, []);
+    if (editionInfo) {
+      setLevelOneAmountLeft(editionInfo[0].left);
+      setlevelOneLimited(editionInfo[0].editions[0].current);
+      setLevelTwoAmountLeft(editionInfo[1].left);
+      setlevelTwoLimited(editionInfo[1].editions[0].current);
+      setLevelThreeAmountLeft(editionInfo[2].left);
+      setlevelThreeLimited(editionInfo[2].editions[0].current);
+      setLevelFourAmountLeft(editionInfo[3].left);
+      setlevelFourLimited(editionInfo[3].editions[0].current);
+      setLevelFiveAmountLeft(editionInfo[4].left);
+      setlevelFiveLimited(editionInfo[4].editions[0].current);
+    }
+  }, [editionInfo, isRefetching]);
 
   useEffect(() => {
     const inputAmount = Number(input);
-    if (inputAmount < 1000) {
-      setSelectedLevel("-");
-      onLevelClick("-", false);
+    if (editionInfo) {
+      if (inputAmount < 1000) {
+        setSelectedLevel("-");
+        onLevelClick("-", false, "");
+      }
+      if (inputAmount >= 1000 && inputAmount < 5000 && inputAmount <= balance) {
+        setSelectedLevel("level1");
+        onLevelClick(
+          "1",
+          false,
+          editionInfo[0].editions[0].current
+            ? editionInfo[0].editions[0].address
+            : editionInfo[0].editions[1].address
+        );
+      }
+      if (
+        inputAmount >= 5000 &&
+        inputAmount < 25000 &&
+        inputAmount <= balance
+      ) {
+        setSelectedLevel("level2");
+        onLevelClick(
+          "2",
+          false,
+          editionInfo[0].editions[0].current
+            ? editionInfo[0].editions[0].address
+            : editionInfo[0].editions[1].address
+        );
+      }
+      if (
+        inputAmount >= 25000 &&
+        inputAmount < 100000 &&
+        inputAmount <= balance
+      ) {
+        setSelectedLevel("level3");
+        onLevelClick(
+          "3",
+          false,
+          editionInfo[2].editions[0].current
+            ? editionInfo[0].editions[0].address
+            : editionInfo[0].editions[1].address
+        );
+      }
+      if (
+        inputAmount >= 100000 &&
+        inputAmount < 250000 &&
+        inputAmount <= balance
+      ) {
+        setSelectedLevel("level4");
+        onLevelClick(
+          "4",
+          false,
+          editionInfo[3].editions[0].current
+            ? editionInfo[0].editions[0].address
+            : editionInfo[0].editions[1].address
+        );
+      }
+      if (inputAmount >= 250000 && inputAmount <= balance) {
+        setSelectedLevel("level5");
+        onLevelClick(
+          "5",
+          false,
+          editionInfo[0].editions[0].current
+            ? editionInfo[0].editions[0].address
+            : editionInfo[0].editions[1].address
+        );
+      }
     }
-    if (inputAmount > 999 && inputAmount < 5000 && inputAmount <= balance) {
-      setSelectedLevel("level1");
-      onLevelClick("1", false);
-    }
-    if (inputAmount >= 5000 && inputAmount < 25000 && inputAmount <= balance) {
-      setSelectedLevel("level2");
-      onLevelClick("2", false);
-    }
-    if (
-      inputAmount >= 25000 &&
-      inputAmount < 100000 &&
-      inputAmount <= balance
-    ) {
-      setSelectedLevel("level3");
-      onLevelClick("3", false);
-    }
-    if (
-      inputAmount >= 100000 &&
-      inputAmount < 250000 &&
-      inputAmount <= balance
-    ) {
-      setSelectedLevel("level4");
-      onLevelClick("4", false);
-    }
-    if (inputAmount >= 250000 && inputAmount <= balance) {
-      setSelectedLevel("level5");
-      onLevelClick("5", false);
-    }
-  }, [balance, input, onLevelClick]);
+  }, [balance, input, onLevelClick, editionInfo]);
 
   return (
     <Flex
@@ -91,7 +147,7 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
           ilustration="/ilustrations/nft-level1.svg"
           title={t("appPage.mnde.nft-levels.level-one.title")}
           amount={
-            levelOneAmountLeft !== "0"
+            levelOneAmountLeft !== 0
               ? t("appPage.mnde.nft-levels.level-one.amount.limited")?.replace(
                   placeholder,
                   levelOneAmountLeft
@@ -100,18 +156,25 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
           }
           onClick={() => {
             setSelectedLevel("level1");
-            if (balance >= 1000) onLevelClick("1", true);
+            if (balance >= 1000 && editionInfo)
+              onLevelClick(
+                "1",
+                true,
+                editionInfo[0].editions[0].current
+                  ? editionInfo[0].editions[0].address
+                  : editionInfo[0].editions[1].address
+              );
           }}
           selected={selectedLevel === "level1"}
           disabled={balance < 1000}
-          limited={levelOneAmountLeft !== "0"}
+          limited={levelOneLimited}
         />
         <LevelDivider min={1000} max={5000} balance={balance} />
         <NFTLevelsItem
           ilustration="/ilustrations/nft-level2.svg"
           title={t("appPage.mnde.nft-levels.level-two.title")}
           amount={
-            levelTwoAmountLeft !== "0"
+            levelTwoAmountLeft !== 0
               ? t("appPage.mnde.nft-levels.level-two.amount.limited")?.replace(
                   placeholder,
                   levelTwoAmountLeft
@@ -120,18 +183,25 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
           }
           onClick={() => {
             setSelectedLevel("level2");
-            if (balance >= 5000) onLevelClick("2", true);
+            if (balance >= 5000 && editionInfo)
+              onLevelClick(
+                "2",
+                true,
+                editionInfo[1].editions[0].current
+                  ? editionInfo[0].editions[0].address
+                  : editionInfo[0].editions[1].address
+              );
           }}
           selected={selectedLevel === "level2"}
           disabled={balance < 5000}
-          limited={levelTwoAmountLeft !== "0"}
+          limited={levelTwoLimited}
         />
         <LevelDivider min={5000} max={25000} balance={balance} />
         <NFTLevelsItem
           ilustration="/ilustrations/nft-level3.svg"
           title={t("appPage.mnde.nft-levels.level-three.title")}
           amount={
-            levelThreeAmountLeft !== "0"
+            levelThreeAmountLeft !== 0
               ? t(
                   "appPage.mnde.nft-levels.level-three.amount.limited"
                 )?.replace(placeholder, levelThreeAmountLeft)
@@ -139,9 +209,16 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
           }
           onClick={() => {
             setSelectedLevel("level3");
-            if (balance >= 25000) onLevelClick("3", true);
+            if (balance >= 25000 && editionInfo)
+              onLevelClick(
+                "3",
+                true,
+                editionInfo[2].editions[0].current
+                  ? editionInfo[0].editions[0].address
+                  : editionInfo[0].editions[1].address
+              );
           }}
-          limited={levelThreeAmountLeft !== "0"}
+          limited={levelThreeLimited}
           selected={selectedLevel === "level3"}
           disabled={balance < 25000}
         />
@@ -150,7 +227,7 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
           ilustration="/ilustrations/nft-level4.svg"
           title={t("appPage.mnde.nft-levels.level-four.title")}
           amount={
-            levelFourAmountLeft !== "0"
+            levelFourAmountLeft !== 0
               ? t("appPage.mnde.nft-levels.level-four.amount.limited")?.replace(
                   placeholder,
                   levelFourAmountLeft
@@ -159,10 +236,17 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
           }
           onClick={() => {
             setSelectedLevel("level4");
-            if (balance >= 100000) onLevelClick("4", true);
+            if (balance >= 100000 && editionInfo)
+              onLevelClick(
+                "4",
+                true,
+                editionInfo[3].editions[0].current
+                  ? editionInfo[0].editions[0].address
+                  : editionInfo[0].editions[1].address
+              );
           }}
           selected={selectedLevel === "level4"}
-          limited={levelFourAmountLeft !== "0"}
+          limited={levelFourLimited}
           disabled={balance < 100000}
           mb="-9px"
         />
@@ -171,7 +255,7 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
           ilustration="/ilustrations/nft-level5.svg"
           title={t("appPage.mnde.nft-levels.level-five.title")}
           amount={
-            levelFiveAmountLeft !== "0"
+            levelFiveAmountLeft !== 0
               ? t("appPage.mnde.nft-levels.level-five.amount.limited")?.replace(
                   placeholder,
                   levelFiveAmountLeft
@@ -180,10 +264,17 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
           }
           onClick={() => {
             setSelectedLevel("level5");
-            if (balance >= 250000) onLevelClick("5", true);
+            if (balance >= 250000 && editionInfo)
+              onLevelClick(
+                "5",
+                true,
+                editionInfo[4].editions[0].current
+                  ? editionInfo[0].editions[0].address
+                  : editionInfo[0].editions[1].address
+              );
           }}
           selected={selectedLevel === "level5"}
-          limited={levelFiveAmountLeft !== "0"}
+          limited={levelFiveLimited}
           disabled={balance < 250000}
         />
       </Flex>
