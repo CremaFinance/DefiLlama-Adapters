@@ -108,7 +108,7 @@ export default function SecuritySection() {
       <Flex
         flexDirection={{ base: "column", lg: "row" }}
         justifyContent="center"
-        alignItems={{ base: "center", lg: "center" }}
+        alignItems="center"
         marginTop={4}
       >
         <IconWithTextBelow
