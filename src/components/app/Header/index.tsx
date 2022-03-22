@@ -36,104 +36,111 @@ const Header = ({ onValidatorsPage = false }: Props) => {
   return (
     <Flex
       position="fixed"
-      width="100vw"
-      as="header"
-      bg={headerBackground}
-      align="center"
-      justifyContent="space-between"
-      transition="background 0.3s ease, box-shadow 0.3s ease"
-      py={[0, 4]}
-      pt="14px"
+      top="0"
       zIndex={1000}
-      px={{ base: 4, md: 10, lg: 160 }}
+      bg={headerBackground}
+      direction="column"
     >
-      <Link href="/" passHref>
-        <Box>
-          <Image
-            cursor="pointer"
-            src="../../marinade-logo-black.svg"
-            alt="Marinade Logo"
-            width={200}
-            height="40px"
-            display={["none", "block"]}
-          />
-          <Image
-            cursor="pointer"
-            src="../../marinade-icon-black.svg"
-            alt="Marinade Logo"
-            width="36px"
-            display={["block", "none"]}
-          />
-        </Box>
-      </Link>
-
+      <Flex id="system-message" />
       <Flex
-        flexDirection="row"
-        alignContent="center"
-        display={["none", "flex"]}
+        width="100vw"
+        as="header"
+        bg={headerBackground}
+        align="center"
+        justifyContent="space-between"
+        transition="background 0.3s ease, box-shadow 0.3s ease"
+        py={[0, 4]}
+        pt="14px"
+        px={{ base: 4, md: 10, lg: 160 }}
       >
-        <MButton
-          variant="link"
-          color={colors.black}
-          rounded="none"
-          isActive={isStakingActive}
-          width="80px"
-          fontWeight="normal"
-          font="text-xl"
-          mb="4px"
-          py={isStakingActive ? "4px" : "7px"}
-          _active={activeMenu}
-          _hover={activeMenu}
-          onClick={() => router.push("/app/staking")}
-        >
-          {t("appPage.stake-menu-item")}
-        </MButton>
+        <Link href="/" passHref>
+          <Box>
+            <Image
+              cursor="pointer"
+              src="../../marinade-logo-black.svg"
+              alt="Marinade Logo"
+              width={200}
+              height="40px"
+              display={["none", "block"]}
+            />
+            <Image
+              cursor="pointer"
+              src="../../marinade-icon-black.svg"
+              alt="Marinade Logo"
+              width="36px"
+              display={["block", "none"]}
+            />
+          </Box>
+        </Link>
 
-        <MButton
-          variant="link"
-          color={colors.black}
-          rounded="none"
-          isActive={isDefiActive}
-          width="80px"
-          fontWeight="normal"
-          font="text-xl"
-          mb="4px"
-          py={isDefiActive ? "4px" : "7px"}
-          _active={activeMenu}
-          _hover={activeMenu}
-          onClick={() => router.push("/app/defi")}
-        >
-          {t("appPage.defi-menu-item")}
-        </MButton>
-
-        <MButton
-          variant="link"
-          color={colors.black}
-          rounded="none"
-          isActive={isMndeActive}
-          width="80px"
-          fontWeight="normal"
-          font="text-xl"
-          mb="4px"
-          py={isMndeActive ? "4px" : "7px"}
-          _active={activeMenu}
-          _hover={activeMenu}
-          onClick={() => router.push("/app/mnde")}
-        >
-          {t("appPage.mnde-menu-item")}
-        </MButton>
-      </Flex>
-
-      {!onValidatorsPage && (
         <Flex
-          pt={[2, 0]}
-          width={isLargerThan430 ? 200 : "100%"}
-          justifyContent="flex-end"
-          pb="8px"
+          flexDirection="row"
+          alignContent="center"
+          display={["none", "flex"]}
         >
-          <ConnectWallet />
+          <MButton
+            variant="link"
+            color={colors.black}
+            rounded="none"
+            isActive={isStakingActive}
+            width="80px"
+            fontWeight="normal"
+            font="text-xl"
+            mb="4px"
+            py={isStakingActive ? "4px" : "7px"}
+            _active={activeMenu}
+            _hover={activeMenu}
+            onClick={() => router.push("/app/staking")}
+          >
+            {t("appPage.stake-menu-item")}
+          </MButton>
+
+          <MButton
+            variant="link"
+            color={colors.black}
+            rounded="none"
+            isActive={isDefiActive}
+            width="80px"
+            fontWeight="normal"
+            font="text-xl"
+            mb="4px"
+            py={isDefiActive ? "4px" : "7px"}
+            _active={activeMenu}
+            _hover={activeMenu}
+            onClick={() => router.push("/app/defi")}
+          >
+            {t("appPage.defi-menu-item")}
+          </MButton>
+
+          <MButton
+            variant="link"
+            color={colors.black}
+            rounded="none"
+            isActive={isMndeActive}
+            width="80px"
+            fontWeight="normal"
+            font="text-xl"
+            mb="4px"
+            py={isMndeActive ? "4px" : "7px"}
+            _active={activeMenu}
+            _hover={activeMenu}
+            onClick={() => router.push("/app/mnde")}
+          >
+            {t("appPage.mnde-menu-item")}
+          </MButton>
         </Flex>
-      )}
+
+        {!onValidatorsPage && (
+          <Flex
+            pt={[2, 0]}
+            width={isLargerThan430 ? 200 : "100%"}
+            justifyContent="flex-end"
+            pb="8px"
+          >
+            <ConnectWallet />
+          </Flex>
+        )}
+      </Flex>
     </Flex>
   );
 };
