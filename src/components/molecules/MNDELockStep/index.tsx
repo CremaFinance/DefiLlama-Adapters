@@ -36,7 +36,10 @@ const MNDELockStep = ({
         isExternal
         href={href}
         cursor={href ? "pointer" : "initial"}
-        _hover={{ textDecoration: "none" }}
+        _hover={{
+          textDecoration: stepLinkEnabled ? "underline" : "none",
+          textDecorationColor: colors.marinadeGreen,
+        }}
         rel="noreferrer noopener"
         _focus={{ boxShadow: "none" }}
         alignItems="center"

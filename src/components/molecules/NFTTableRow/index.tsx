@@ -4,6 +4,7 @@ import { useTranslation } from "next-export-i18n";
 import { useRouter } from "next/router";
 import type { FunctionComponent } from "react";
 
+import { formatNumberLocale } from "../../../utils/format-number-locale";
 import MButton from "../../atoms/Button";
 import Countdown from "../../atoms/Countdown";
 import MText from "../../atoms/Text";
@@ -67,7 +68,7 @@ const NFTTableRow: FunctionComponent<NFTTableRowProps> = ({
       <Td pr={0} py={0} pl={[2, 6]} textAlign="end">
         <Flex justifyContent="space-between">
           <MText textAlign="left" fontSize="14.4px" alignSelf="center">
-            {!isMobile ? lockedMNDE : undefined}
+            {!isMobile ? formatNumberLocale(lockedMNDE) : undefined}
           </MText>
           <Flex
             flexDirection="column"
@@ -84,7 +85,7 @@ const NFTTableRow: FunctionComponent<NFTTableRowProps> = ({
             >
               {isMobile ? (
                 <MText textAlign="center" fontSize="14.4px" mb="8px">
-                  {lockedMNDE} MNDE
+                  {formatNumberLocale(lockedMNDE)} MNDE
                 </MText>
               ) : undefined}
               <MButton

@@ -17,6 +17,7 @@ import { useTranslation } from "next-export-i18n";
 import { useContext, useState } from "react";
 import { FiExternalLink } from "react-icons/fi";
 
+import { formatNumberLocale } from "../../../utils/format-number-locale";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 import NFTTableRow from "../NFTTableRow";
@@ -142,7 +143,7 @@ const NFTTable = () => {
                   textAlign={isMobile ? "right" : "left"}
                 >
                   {governance.lockedMnde
-                    ? `${governance.lockedMnde} MNDE`
+                    ? `${formatNumberLocale(governance.lockedMnde)} MNDE`
                     : "-"}
                 </MText>
               </Td>
