@@ -1,5 +1,7 @@
+import type { Edition } from "./edition";
+
 export type ProcessedEditionsInfo = {
-  address: string;
-  left: string;
-  limited: boolean;
+  amount: number;
+  left: number;
+  editions: Edition[];
 };

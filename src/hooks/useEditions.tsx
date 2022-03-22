@@ -3,13 +3,22 @@ import { useQuery } from "react-query";
 import { fetchEditionsData } from "services/marinade/fetchEditionsData";
 
 import { useEscrow } from "./useEscrow";
+import { useWallet } from "./useWallet";
 
 const refetchInterval = 1000 * 5;
 
 export const useEditions = () => {
   const sdk = useEscrow();
+  const { connected } = useWallet();
 
-  return useQuery("editionsInfo", () => fetchEditionsData(sdk), {
-    refetchInterval,
-  });
+  return useQuery(
+    "editionsInfo",
+    () => {
+      return fetchEditionsData(sdk);
+    },
+    {
+      enabled: connected,
+      refetchInterval,
+    }
+  );
 };
