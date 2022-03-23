@@ -35,7 +35,7 @@ const PerformanceNotification: FunctionComponent<
     { refetchInterval }
   );
   useEffect(() => {
-    if (!keepClosed && tps.data && tps.data < 1600000000) {
+    if (!keepClosed && tps.data && tps.data < 1600) {
       onOpen();
     }
 
@@ -56,7 +56,7 @@ const PerformanceNotification: FunctionComponent<
             position="relative"
             width="100%"
           >
-            {isLargerThan320 && (
+            {isLargerThan320 ? (
               <>
                 <MdWarning color={colors.marinadeOrange} />
                 <Text
@@ -87,8 +87,7 @@ const PerformanceNotification: FunctionComponent<
                   icon={<MdClose />}
                 />
               </>
-            )}
-            {!isLargerThan320 && (
+            ) : (
               <Flex>
                 <Flex
                   justifyContent="center"
