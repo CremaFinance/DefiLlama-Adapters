@@ -76,9 +76,9 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
         onLevelClick(
           "2",
           false,
-          editionInfo[0].editions[0].current
-            ? editionInfo[0].editions[0].address
-            : editionInfo[0].editions[1].address
+          editionInfo[1].editions[0].current
+            ? editionInfo[1].editions[0].address
+            : editionInfo[1].editions[1].address
         );
       }
       if (
@@ -91,8 +91,8 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
           "3",
           false,
           editionInfo[2].editions[0].current
-            ? editionInfo[0].editions[0].address
-            : editionInfo[0].editions[1].address
+            ? editionInfo[2].editions[0].address
+            : editionInfo[2].editions[1].address
         );
       }
       if (
@@ -105,8 +105,8 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
           "4",
           false,
           editionInfo[3].editions[0].current
-            ? editionInfo[0].editions[0].address
-            : editionInfo[0].editions[1].address
+            ? editionInfo[3].editions[0].address
+            : editionInfo[3].editions[1].address
         );
       }
       if (inputAmount >= 250000 && inputAmount <= balance) {
@@ -114,9 +114,9 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
         onLevelClick(
           "5",
           false,
-          editionInfo[0].editions[0].current
-            ? editionInfo[0].editions[0].address
-            : editionInfo[0].editions[1].address
+          editionInfo[4].editions[0].current
+            ? editionInfo[4].editions[0].address
+            : editionInfo[4].editions[1].address
         );
       }
     }
@@ -188,8 +188,8 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
                 "2",
                 true,
                 editionInfo[1].editions[0].current
-                  ? editionInfo[0].editions[0].address
-                  : editionInfo[0].editions[1].address
+                  ? editionInfo[1].editions[0].address
+                  : editionInfo[1].editions[1].address
               );
           }}
           selected={selectedLevel === "level2"}
@@ -214,8 +214,8 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
                 "3",
                 true,
                 editionInfo[2].editions[0].current
-                  ? editionInfo[0].editions[0].address
-                  : editionInfo[0].editions[1].address
+                  ? editionInfo[2].editions[0].address
+                  : editionInfo[2].editions[1].address
               );
           }}
           limited={levelThreeLimited}
@@ -241,8 +241,8 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
                 "4",
                 true,
                 editionInfo[3].editions[0].current
-                  ? editionInfo[0].editions[0].address
-                  : editionInfo[0].editions[1].address
+                  ? editionInfo[3].editions[0].address
+                  : editionInfo[3].editions[1].address
               );
           }}
           selected={selectedLevel === "level4"}
@@ -269,8 +269,8 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
                 "5",
                 true,
                 editionInfo[4].editions[0].current
-                  ? editionInfo[0].editions[0].address
-                  : editionInfo[0].editions[1].address
+                  ? editionInfo[4].editions[0].address
+                  : editionInfo[4].editions[1].address
               );
           }}
           selected={selectedLevel === "level5"}
