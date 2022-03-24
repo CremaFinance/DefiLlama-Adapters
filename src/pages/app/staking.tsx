@@ -7,7 +7,7 @@ import MobileMenu from "components/app/MobileMenu";
 import StakeInputsSection from "components/app/StakeInputsSection";
 import StakingSection from "components/app/StakingSection";
 import Footer from "components/layout/Footer";
-import PerformanceNotification from "components/molecules/PerformanceNotification";
+import SystemNotificationHandler from "components/molecules/SystemNotificationHandler";
 import { useTracking } from "hooks/useTracking";
 import colors from "styles/customTheme/colors";
 
@@ -25,7 +25,6 @@ const Staking = () => {
 
   return (
     <Box position="relative" overflow="hidden" bg={colors.greenLight}>
-      <PerformanceNotification />
       <Flex width="100vw" justifyContent="flex-end">
         <Image
           src="../../ilustrations/left-leaf.svg"
@@ -48,10 +47,12 @@ const Staking = () => {
         />
       </Flex>
       <Header />
-      <StakingSection />
-      <StakeInputsSection />
-      <FAQSection />
-      <Footer />
+      <SystemNotificationHandler>
+        <StakingSection />
+        <StakeInputsSection />
+        <FAQSection />
+        <Footer isAppPage />
+      </SystemNotificationHandler>
       <MobileMenu />
     </Box>
   );

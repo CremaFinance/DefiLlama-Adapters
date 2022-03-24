@@ -106,9 +106,9 @@ export default function SecuritySection() {
         {t("indexPage.security-section-audit-title")}
       </MHeading>
       <Flex
-        flexDirection={{ base: "column", md: "row" }}
+        flexDirection={{ base: "column", lg: "row" }}
         justifyContent="center"
-        alignItems={{ base: "center", md: "unset", lg: "center" }}
+        alignItems="center"
         marginTop={4}
       >
         <IconWithTextBelow
@@ -124,6 +124,7 @@ export default function SecuritySection() {
           externalUrl={t(
             `indexPage.security-section-audit-neodyme.external-url`
           )}
+          singleLineTitle
         />
         <IconWithTextBelow
           height="55px"
@@ -137,6 +138,7 @@ export default function SecuritySection() {
           title={t(`indexPage.security-section-audit-ackee.title`)}
           subtitle={t(`indexPage.security-section-audit-ackee.subtitle`)}
           externalUrl={t(`indexPage.security-section-audit-ackee.external-url`)}
+          singleLineTitle
         />
         <IconWithTextBelow
           height={14}
@@ -151,6 +153,7 @@ export default function SecuritySection() {
           externalUrl={t(
             `indexPage.security-section-audit-kudelski.external-url`
           )}
+          singleLineTitle
         />
       </Flex>
       <Flex mt={16} mb={8} justifyContent="center">

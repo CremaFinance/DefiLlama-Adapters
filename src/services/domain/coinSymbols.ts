@@ -1,4 +1,4 @@
-import { Price } from "./currency";
+import type { Price } from "./currency";
 
 export const coinSymbols: { [key: string]: string } = {
   mSOL: "mSOL",

@@ -180,6 +180,13 @@
     "footer-terms": "Terms of use",
     "footer-mnde-stats": "MNDE stats",
     "footer-msol-stats": "mSOL stats",
+    "footer-quote": [
+      {
+        "text": "“Liquid Staking solutions like Marinade help increase decentralization while creating new opportunities for users through staking derivatives.”"
+      },
+      { "text": "CEO of Solana Labs" }
+    ],
+
     "read-more": "Read more"
   },
   "appPage": {

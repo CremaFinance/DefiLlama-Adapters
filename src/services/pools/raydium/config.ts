@@ -13,7 +13,7 @@ const provider = "Raydium";
 const actions = [
   {
     text: "Add Liquidity",
-    url: "https://raydium.io/liquidity/?ammId=EGyhb2uLAsRUbRx9dNFBjMVYnFaASWMvD6RE1aEf2LxL",
+    url: "https://v1.raydium.io/liquidity/?ammId=EGyhb2uLAsRUbRx9dNFBjMVYnFaASWMvD6RE1aEf2LxL",
     isExternal: true,
   },
   {

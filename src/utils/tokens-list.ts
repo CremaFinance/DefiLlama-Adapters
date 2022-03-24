@@ -1,11 +1,13 @@
-import { CoinSymbols } from "services/domain/coinSymbols";
-import { PoolConfig } from "services/domain/pool";
-import { Provider } from "services/domain/providers";
+import type { CoinSymbols } from "services/domain/coinSymbols";
+import { coinSymbols } from "services/domain/coinSymbols";
+import type { PoolConfig } from "services/domain/pool";
+import type { Provider } from "services/domain/providers";
 
 export const getTokensList = (pools: PoolConfig[]): CoinSymbols[] => {
   const tokens: CoinSymbols[] = [];
 
   pools.forEach((pair) => {
+    if (!(pair.tokenA in coinSymbols)) return;
     tokens.push(pair.tokenA);
     if (pair.marketType === "LiquidityPool" && pair.tokenB) {
       tokens.push(pair.tokenB);
