@@ -51,6 +51,7 @@ export const WalletConnectionProvider: FC<{ children: ReactNode }> = ({
         error.name !== "WalletSignTransactionError"
       ) {
         toast({
+          position: "bottom-left",
           title: error.name,
           status: "error",
           description: error.message,
@@ -59,6 +60,7 @@ export const WalletConnectionProvider: FC<{ children: ReactNode }> = ({
         });
       } else if (error.toString().includes("Failed to sign transaction")) {
         toast({
+          position: "bottom-left",
           title: error.name,
           status: "error",
           description: (

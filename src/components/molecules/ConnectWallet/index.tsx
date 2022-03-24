@@ -53,6 +53,7 @@ export const ConnectWallet = ({
 
   const showToast = useCallback(() => {
     toast({
+      position: "bottom-left",
       title: "Wallet extension not detected",
       status: "error",
       description: (
@@ -108,6 +109,7 @@ export const ConnectWallet = ({
   const tryDisconnect = useCallback(async () => {
     await disconnect();
     toast({
+      position: "bottom-left",
       title: t("appPage.disconnect-wallet-title"),
       status: "success",
       description: t("appPage.disconnect-wallet-description"),

@@ -57,6 +57,7 @@ const MSolStakeModal = ({
   } = useQuarryProvider();
   const userStake = mSOL?.minerData?.balance;
 
+  const toastPosition = "bottom-left";
   const marinade = useMarinade();
   const marinadeState = marinade?.marinadeState;
 
@@ -69,6 +70,7 @@ const MSolStakeModal = ({
 
     if (Number(amount) > Number(stSOLBalance)) {
       return toast({
+        position: toastPosition,
         title: t("mndePage.msol-stake-modal.insufficient-funds-to-deposit"),
         description: t(
           "mndePage.msol-stake-modal.requested-deposit-not-enough-funds"
@@ -98,6 +100,7 @@ const MSolStakeModal = ({
         (transactionSignature) => {
           setAmount("");
           toast({
+            position: toastPosition,
             title: t("mndePage.msol-stake-modal.msol-deposit-confirmed"),
             description: (
               <p>
@@ -129,6 +132,7 @@ const MSolStakeModal = ({
           }
 
           toast({
+            position: toastPosition,
             title: t("appPage.something-went-wrong"),
             description: error.toString().includes("0xa7")
               ? t("mndePage.msol-stake-modal.your-msol-account-is-deactivated")
@@ -173,6 +177,7 @@ const MSolStakeModal = ({
 
     if (Number(amount) > userStake.toNumber() / LAMPORTS_PER_SOL) {
       return toast({
+        position: toastPosition,
         title: t("mndePage.msol-stake-modal.insufficient-funds-to-withdraw"),
         description: t(
           "mndePage.msol-stake-modal.requested-withdraw-not-enough-funds"
@@ -196,6 +201,7 @@ const MSolStakeModal = ({
           setAmount("");
 
           toast({
+            position: toastPosition,
             title: t("mndePage.msol-stake-modal.msol-withdrew-confirmed"),
             description: (
               <p>
@@ -225,6 +231,7 @@ const MSolStakeModal = ({
           }
 
           toast({
+            position: toastPosition,
             title: t("appPage.something-went-wrong"),
             description: error.toString().includes("0xa7")
               ? t("mndePage.msol-stake-modal.your-msol-account-is-deactivated")
