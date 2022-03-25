@@ -121,7 +121,8 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
       <Text
         alignSelf="start"
         opacity={balance < 1000 ? "40%" : "100%"}
-        mt="4px"
+        mt="16px"
+        mb="8px"
         fontWeight="bold"
         textAlign={{ base: "right", md: "left" }}
         fontSize="11.52px"
