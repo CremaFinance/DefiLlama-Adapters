@@ -154,17 +154,15 @@ const LockMNDESection = () => {
                   },
                   (error) => {
                     setIsPendingLockOpen(false);
-                    let description = error.message;
+                    let description = t(
+                      "appPage.mnde.errors.mint-failed.description"
+                    );
                     if (error.toString().includes("0xec6")) {
                       description = t("appPage.capped-tvl-is-full");
                     } else if (
                       error.toString().includes("no record of a prior credit")
                     ) {
                       description = t("appPage.missing-sol-for-fee");
-                    } else if (error.toString().includes("All promises")) {
-                      description = t(
-                        "appPage.mnde.errors.mint-failed.description"
-                      );
                     }
 
                     toast({
