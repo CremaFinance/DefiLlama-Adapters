@@ -6,10 +6,8 @@ import colors from "styles/customTheme/colors";
 type NFTLevelsItemProps = {
   ilustration: string;
   title: string;
-  amount: string;
   selected?: boolean;
   disabled?: boolean;
-  limited?: boolean;
   onClick?: () => void;
   mb?: string;
 };
@@ -17,10 +15,8 @@ type NFTLevelsItemProps = {
 const NFTLevelsItem = ({
   ilustration,
   title,
-  amount,
   selected = false,
   disabled = false,
-  limited = false,
   onClick,
   mb,
 }: NFTLevelsItemProps) => {
@@ -30,7 +26,6 @@ const NFTLevelsItem = ({
       mr={{ base: "0px", md: "4px" }}
       mt={{ base: "2px", md: "0px" }}
       mb={{ base: "2px", md: "0px" }}
-      height={{ md: "154px" }}
       width={{ base: "100%", md: "73px" }}
       flexDirection={{ base: "row", md: "column" }}
       background="white"
@@ -80,7 +75,7 @@ const NFTLevelsItem = ({
         <Text
           opacity={disabled ? "40%" : "100%"}
           mt="4px"
-          maxW={{ base: "120px", md: "72px" }}
+          maxW={{ base: "120px", md: "64px" }}
           fontWeight="bold"
           textAlign={{ base: "right", md: "left" }}
           fontSize="11.52px"
@@ -88,18 +83,6 @@ const NFTLevelsItem = ({
           color={colors.blackMate}
         >
           {title}
-        </Text>
-        <Text
-          opacity={disabled ? "40%" : "100%"}
-          mt="4px"
-          maxW={{ base: "120px", md: "72px" }}
-          fontWeight="bold"
-          textAlign={{ base: "right", md: "left" }}
-          fontSize="11.52px"
-          lineHeight="13.83px"
-          color={limited ? colors.marinadeOrange : "gray.500"}
-        >
-          {amount}
         </Text>
       </Flex>
     </Flex>

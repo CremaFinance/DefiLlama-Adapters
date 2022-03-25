@@ -13,7 +13,7 @@ import type {
 } from "components/app/LockMNDESection/types";
 import type { NFTType } from "services/domain/nftType";
 
-const NFT_CREATOR = "7yQGDJ6Ymcpy13zXZVvQA1gYxB6YnKeQEsGUGJTSptrM";
+const NFT_CREATOR = "6jG2QcwaJPFS8Y9SzgH2kfKPj6ERhLi9RVtH8kRahj4j";
 
 async function fetchNftMetadataByAccount(
   account: NftAccount
