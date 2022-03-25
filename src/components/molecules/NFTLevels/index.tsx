@@ -217,7 +217,7 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
           disabled={balance < 100000}
           mb="-9px"
         />
-        <LevelDivider min={100000} max={250000} balance={balance} />
+        <LevelDivider min={100000} max={250000} balance={balance} last />
         <NFTLevelsItem
           ilustration="/ilustrations/nft-level5.svg"
           title={t("appPage.mnde.nft-levels.level-five.title")}

@@ -11,6 +11,7 @@ type LevelDividerProps = {
   balance: number;
   disableMin?: boolean;
   disableMax?: boolean;
+  last?: boolean;
 };
 
 const LevelDivider = ({
@@ -19,6 +20,7 @@ const LevelDivider = ({
   balance,
   disableMin = false,
   disableMax = false,
+  last = false,
 }: LevelDividerProps) => {
   const { t } = useTranslation();
   return (
@@ -51,7 +53,7 @@ const LevelDivider = ({
       />
       <Flex
         marginLeft={{ base: "5px", md: "9px" }}
-        height={{ base: "initial", md: "inherit" }}
+        height={{ base: "initial", md: last ? "153px" : "inherit" }}
         marginTop="16px"
         position="absolute"
         display="flex"
