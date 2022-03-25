@@ -26,7 +26,7 @@ const LevelDivider = ({
       ml={{ base: "0px", md: "4px" }}
       mr={{ base: "0px", md: "4px" }}
       width={{ base: "100%", sm: "0" }}
-      height={{ base: "auto", sm: "100%" }}
+      height={{ base: "auto", sm: "140px" }}
       display={
         (balance < max || disableMax) && (balance >= min || disableMin)
           ? "flex"
@@ -37,7 +37,7 @@ const LevelDivider = ({
         borderColor="gray.200"
         orientation="vertical"
         opacity="1"
-        mt="22px"
+        mt="16px"
         display={{ base: "none", md: "flex" }}
       />
       <Divider
@@ -51,8 +51,8 @@ const LevelDivider = ({
       />
       <Flex
         marginLeft={{ base: "5px", md: "9px" }}
-        height={{ base: "initial", md: "100%" }}
-        marginTop={{ base: "16px", md: "0px" }}
+        height={{ base: "initial", md: "inherit" }}
+        marginTop="16px"
         position="absolute"
         display="flex"
         flexDirection={["row", "column"]}

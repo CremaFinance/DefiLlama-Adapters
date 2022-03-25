@@ -158,7 +158,12 @@ const LockMNDESection = () => {
                     if (error.toString().includes("0xec6")) {
                       description = t("appPage.capped-tvl-is-full");
                     } else if (
-                      error.toString().includes("no record of a prior credit")
+                      error
+                        .toString()
+                        .includes("no record of a prior credit") ||
+                      error
+                        .toString()
+                        .includes("Error processing Instruction 5")
                     ) {
                       description = t("appPage.missing-sol-for-fee");
                     } else if (error.toString().includes("All promises")) {
