@@ -345,18 +345,19 @@
       "header": "MNDE",
       "nft": "NFT",
       "nft-level-value": "Level ",
-      "errors":{
-        "mint-failed":{
-          "title":"Something went wrong",
-          "description":"Mint failed, please try again."
+      "errors": {
+        "mint-failed": {
+          "title": "Something went wrong",
+          "description": "Mint failed, please try again."
         }
       },
-      "unlock-period":{
+      "unlock-period": {
         "text": "Unlock period",
         "tooltip": "During the unlock period, unlocking tokens cannot vote. When the unlocking period passes, all NFT can be burned and all tokens can be withdrawn from the governance escrow."
       },
       "unlock-period-mockup-value": "30 days",
       "lock-nfts": "If you lock MNDE, your NFTs will be displayed here.",
+      "connect-to-lock-nfts": "Connect your wallet to manage your NFTs",
       "lock-button": "Lock MNDE",
       "description1": "The Marinade token - MNDE - represents fractional ownership of Marinade.",
       "docs-link": "https://docs.marinade.finance/marinade-dao/tokenomics",
@@ -366,10 +367,9 @@
         "button": "Mint NFT"
       },
       "buy-mnde-card": {
-        "title":"Buy MNDE",
-        "description":"Acquire MNDE to have a stake in the future of Marinade Finance.",
-        "button":"Buy MNDE"
-
+        "title": "Buy MNDE",
+        "description": "Acquire MNDE to have a stake in the future of Marinade Finance.",
+        "button": "Buy MNDE"
       },
       "nft-vote-card": {
         "title": "Vote",
@@ -713,7 +713,6 @@
         { "text": "and claim your {{value}} MNDE." }
       ],
       "button": "Start unlocking"
-
     },
     "mnde-unlock-confirm-modal": {
       "header": "Unlocking started!",
@@ -728,8 +727,8 @@
           "text": "Please return here once the 30-day unlock period is complete to claim your MNDE and burn your NFT. You may cancel this process at any time."
         }
       ],
-      "buttons":{
-        "close":"Close",
+      "buttons": {
+        "close": "Close",
         "cancel": "Cancel unlock"
       }
     },
@@ -798,7 +797,7 @@
       "button": "Close"
     },
     "lock-mnde-transaction": {
-      "title":"Lock MNDE confirmed",
+      "title": "Lock MNDE confirmed",
       "description": "You've successfully locked your MNDE"
     }
   },

@@ -11,6 +11,7 @@ import {
   useMediaQuery,
   useDisclosure,
   useToast,
+  Spinner,
 } from "@chakra-ui/react";
 import { PublicKey } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
@@ -27,6 +28,7 @@ import StartUnlockingMndeModal from "components/molecules/StartUnlockingMndeModa
 import { GovernanceContext } from "contexts/GovernanceContext";
 import useGovernanceData from "hooks/useGovernanceData";
 import { useTracking } from "hooks/useTracking";
+import { useWallet } from "hooks/useWallet";
 import colors from "styles/customTheme/colors";
 
 const noPriorCredit = "no record of a prior credit";
@@ -38,6 +40,7 @@ const NFTTable = () => {
   const [currentNFTMndeValue, setCurrentNFTMndeValue] = useState("0");
   const [currentNFTImageUri, setCurrentNFTImageUri] = useState("/");
   const [currentNFTAddress, setCurrentNFTAddress] = useState(PublicKey.default);
+  const { connected: isWalletConnected } = useWallet();
 
   const { startUnlocking, claimMNDE, cancelUnlocking } =
     useContext(GovernanceContext);
@@ -45,7 +48,7 @@ const NFTTable = () => {
   const toast = useToast();
   const { track } = useTracking();
   const { t } = useTranslation();
-  const { data: governance } = useGovernanceData();
+  const { data: governance, isLoading } = useGovernanceData();
   const [isPendingLockOpen, setIsPendingLockOpen] = useState(false);
 
   const {
@@ -85,6 +88,33 @@ const NFTTable = () => {
     setCurrentNFTImageUri(imgURI);
     setCurrentNFTAddress(address);
     onUnlockMndeOpen();
+  }
+  if (isLoading && isWalletConnected) {
+    return (
+      <Flex
+        height="48px"
+        width="100%"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <Spinner />
+      </Flex>
+    );
+  }
+
+  if (!isWalletConnected && !isLoading) {
+    return (
+      <MText type="text-md" mt={9} mr="auto">
+        {t("appPage.mnde.connect-to-lock-nfts")}
+      </MText>
+    );
+  }
+  if (isWalletConnected && !isLoading && !governance?.nfts.length) {
+    return (
+      <MText type="text-md" mt={9} mr="auto">
+        {t("appPage.mnde.lock-nfts")}
+      </MText>
+    );
   }
 
   return (
