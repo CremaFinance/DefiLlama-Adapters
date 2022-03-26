@@ -6,6 +6,7 @@ import MndeFAQSection from "components/app/MndeFAQSection";
 import MndeLockInfoSection from "components/app/MndeLockInfoSection";
 import MobileMenu from "components/app/MobileMenu";
 import Footer from "components/layout/Footer";
+import SystemNotificationHandler from "components/molecules/SystemNotificationHandler";
 import { GovernanceContextProvider } from "contexts/GovernanceContext";
 import colors from "styles/customTheme/colors";
 
@@ -19,14 +20,16 @@ const Mnde = () => {
       flexDirection="column"
     >
       <Header />
-      <MndeLockInfoSection />
-      <GovernanceContextProvider>
-        <LockMNDESection />
-      </GovernanceContextProvider>
-      <MndeFAQSection />
-      <Spacer />
-      <Footer />
-      <MobileMenu />
+      <SystemNotificationHandler>
+        <MndeLockInfoSection />
+        <GovernanceContextProvider>
+          <LockMNDESection />
+        </GovernanceContextProvider>
+        <MndeFAQSection />
+        <Spacer />
+        <Footer />
+        <MobileMenu />
+      </SystemNotificationHandler>
     </Flex>
   );
 };

@@ -41,7 +41,7 @@ const Header = ({ onValidatorsPage = false }: Props) => {
       bg={headerBackground}
       direction="column"
     >
-      <Flex id="system-message" />
+      <Flex id="system-message" flexDirection="column" />
       <Flex
         width="100vw"
         as="header"
