@@ -217,7 +217,35 @@ const Footer: FunctionComponent<FooterProps> = ({ isAppPage = false }) => {
               {t("indexPage.footer-marinde-dao")}
             </Link>
           </MButton>
-
+          <MButton
+            font="text-xl"
+            fontWeight={500}
+            variant="link"
+            color={colors.white}
+            bg="none"
+            _hover={{ textDecoration: "underline" }}
+            width="fit-content"
+            mb={2}
+            rightIcon={
+              <Icon
+                as={FiExternalLink}
+                width="16px"
+                height="16px"
+                cursor="pointer"
+              />
+            }
+          >
+            <Link
+              as={Link}
+              target="_blank"
+              href="https://vote.marinade.finance/gov/mnde"
+              _hover={{ textDecoration: "none" }}
+              rel="noreferrer noopener"
+              _focus={{ boxShadow: "none" }}
+            >
+              {t("indexPage.footer-tribeca")}
+            </Link>
+          </MButton>
           <MButton
             font="text-xl"
             fontWeight={500}

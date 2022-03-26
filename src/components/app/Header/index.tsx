@@ -1,7 +1,8 @@
-import { Box, Flex, Image, useMediaQuery } from "@chakra-ui/react";
+import { Box, Flex, Icon, Image, useMediaQuery } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
+import { FiExternalLink } from "react-icons/fi";
 
 import MButton from "../../atoms/Button";
 import { ConnectWallet } from "../../molecules/ConnectWallet";
@@ -127,6 +128,33 @@ const Header = ({ onValidatorsPage = false }: Props) => {
             onClick={() => router.push("/app/mnde")}
           >
             {t("appPage.mnde-menu-item")}
+          </MButton>
+
+          <MButton
+            variant="link"
+            color={colors.black}
+            rounded="none"
+            isActive={isDefiActive}
+            width="80px"
+            fontWeight="normal"
+            font="text-xl"
+            mb="4px"
+            py={isDefiActive ? "4px" : "7px"}
+            _active={activeMenu}
+            _hover={activeMenu}
+            onClick={() =>
+              window.open("https://vote.marinade.finance/gov/mnde", "_blank")
+            }
+            rightIcon={
+              <Icon
+                as={FiExternalLink}
+                width="16px"
+                height="16px"
+                cursor="pointer"
+              />
+            }
+          >
+            {t("appPage.vote-menu-item")}
           </MButton>
         </Flex>
 
