@@ -81,7 +81,7 @@ export const fetchGovernanceData = async (sdk: EscrowRelockerSDK) => {
       return {
         address: new PublicKey(nft.mint),
         lockedMNDE: amounts,
-        id: escrowData.index.toString(),
+        id: escrowData.globalIndex.toString(),
         dataUri: nft.data.uri,
         thumbnailURL: metadata?.image,
         lockEndDate: (escrowData.state as any).locked

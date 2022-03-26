@@ -291,7 +291,7 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
               </MText>
             </Flex>
             <Flex
-              key={`${data?.properties.edition}`}
+              key="Edition"
               p={4}
               flexDirection="column"
               backgroundColor="gray.50"

@@ -121,7 +121,8 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
       <Text
         alignSelf="start"
         opacity={balance < 1000 ? "40%" : "100%"}
-        mt="4px"
+        mt="16px"
+        mb="8px"
         fontWeight="bold"
         textAlign={{ base: "right", md: "left" }}
         fontSize="11.52px"
@@ -141,7 +142,7 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
         mt={[2, 0]}
         mb={[0, 6]}
         justifyContent="center"
-        alignItems="center"
+        alignItems="flex-start"
         zIndex={6}
       >
         <NFTLevelsItem
@@ -197,7 +198,7 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
           selected={selectedLevel === "level3"}
           disabled={balance < 25000}
         />
-        <LevelDivider min={25000} max={100000} balance={balance} />
+        <LevelDivider min={25000} max={100000} balance={balance} last />
         <NFTLevelsItem
           ilustration="/ilustrations/nft-level4.svg"
           title={t("appPage.mnde.nft-levels.level-four.title")}
@@ -216,7 +217,7 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
           disabled={balance < 100000}
           mb="-9px"
         />
-        <LevelDivider min={100000} max={250000} balance={balance} />
+        <LevelDivider min={100000} max={250000} balance={balance} last />
         <NFTLevelsItem
           ilustration="/ilustrations/nft-level5.svg"
           title={t("appPage.mnde.nft-levels.level-five.title")}
