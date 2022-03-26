@@ -3,6 +3,7 @@ export const copyAddressToClipboard = (v: string, toast: any, t: any) => {
   navigator.clipboard.writeText(v);
 
   toast({
+    position: "bottom-left",
     title: t("appPage.copy-success-title"),
     description: t("appPage.copy-success-message"),
     status: "success",
