@@ -1,5 +1,6 @@
-import { coinSymbols, CoinSymbols } from "./coinSymbols";
-import { TokenRecord } from "./token";
+import type { CoinSymbols } from "./coinSymbols";
+import { coinSymbols } from "./coinSymbols";
+import type { TokenRecord } from "./token";
 
 /** All cointokens used by marinade */
 export const coinTokens: TokenRecord<CoinSymbols> = {
@@ -277,6 +278,19 @@ export const coinTokens: TokenRecord<CoinSymbols> = {
       serumV3Usdc: "DPfj2jYwPaezkCmUNm5SSYfkrkz8WFqwGLcxDDUsN3gA",
       twitter: "https://twitter.com/synthetify",
       website: "https://synthetify.io/",
+    },
+  },
+  [coinSymbols.NEAR]: {
+    chainId: 101,
+    address: "",
+    symbol: "NEAR",
+    name: "Near",
+    decimals: 9,
+    logoURI: "",
+    extensions: {
+      coingeckoId: "near",
+      twitter: "https://twitter.com/NEARProtocol",
+      website: "https://near.org/",
     },
   },
 };

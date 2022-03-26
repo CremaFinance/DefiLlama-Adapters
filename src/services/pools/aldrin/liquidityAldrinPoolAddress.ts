@@ -5,6 +5,7 @@ export const liquidityAldrinPoolAddress = {
   ALDRIN_mSOL_MNGO: "EotLYRsnRVqR3euN24P9PMXCqJv1WLsV8kJxR9o1y4U7",
   ALDRIN_mSOL_ETH: "4KeZGuXPq9fyZdt5sfzHMM36mxTf3oSkDaa4Y4gHm9Hz",
   ALDRIN_mSOL_BTC: "9hkYqNM8QSx2vTwspaNg5VvW1LBxKWWgud8pCVdxKYZU",
+  ALDRIN_mSOL_NEAR: "J57SuGbMCMuRaQHxiuVChXZeMSTN6ZNqx4GufrY7rzY3",
 } as const;
 
 export type LiquidityAldrinPoolAddress =
