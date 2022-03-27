@@ -1,7 +1,8 @@
-import { Box, Flex, Image, useMediaQuery } from "@chakra-ui/react";
+import { Box, Flex, Icon, Image } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
+import { FiExternalLink } from "react-icons/fi";
 
 import MButton from "../../atoms/Button";
 import { ConnectWallet } from "../../molecules/ConnectWallet";
@@ -27,7 +28,6 @@ const Header = ({ onValidatorsPage = false }: Props) => {
   };
 
   const router = useRouter();
-  const [isLargerThan430] = useMediaQuery("(min-width: 430px)");
   const isStakingActive =
     !onValidatorsPage && router.pathname.includes("staking");
   const isDefiActive = !onValidatorsPage && router.pathname.includes("defi");
@@ -51,7 +51,7 @@ const Header = ({ onValidatorsPage = false }: Props) => {
         transition="background 0.3s ease, box-shadow 0.3s ease"
         py={[0, 4]}
         pt="14px"
-        px={{ base: 4, md: 10, lg: 160 }}
+        px={{ base: 4, md: "32px", lg: 160 }}
       >
         <Link href="/" passHref>
           <Box>
@@ -128,18 +128,39 @@ const Header = ({ onValidatorsPage = false }: Props) => {
           >
             {t("appPage.mnde-menu-item")}
           </MButton>
+
+          <MButton
+            variant="link"
+            color={colors.black}
+            rounded="none"
+            isActive={false}
+            width="80px"
+            fontWeight="normal"
+            font="text-xl"
+            mb="4px"
+            py="7px"
+            _active={{}}
+            _focus={{}}
+            _hover={activeMenu}
+            onClick={() =>
+              window.open("https://vote.marinade.finance/gov/mnde", "_blank")
+            }
+            rightIcon={
+              <Icon
+                as={FiExternalLink}
+                width="16px"
+                height="16px"
+                cursor="pointer"
+              />
+            }
+          >
+            {t("appPage.vote-menu-item")}
+          </MButton>
         </Flex>
 
-        {!onValidatorsPage && (
-          <Flex
-            pt={[2, 0]}
-            width={isLargerThan430 ? 200 : "100%"}
-            justifyContent="flex-end"
-            pb="8px"
-          >
-            <ConnectWallet />
-          </Flex>
-        )}
+        <Flex pt={[2, 0]} justifyContent="flex-end" pb="8px">
+          <ConnectWallet />
+        </Flex>
       </Flex>
     </Flex>
   );
