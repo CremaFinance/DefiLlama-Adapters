@@ -146,7 +146,11 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
         zIndex={6}
       >
         <NFTLevelsItem
-          ilustration="/ilustrations/nft-level1.svg"
+          ilustration={
+            Limited
+              ? "/ilustrations/nft-level1-le.svg"
+              : "/ilustrations/nft-level1-re.svg"
+          }
           title={t("appPage.mnde.nft-levels.level-one.title")}
           onClick={() => {
             setSelectedLevel("level1");
@@ -164,7 +168,11 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
         />
         <LevelDivider min={1000} max={5000} balance={balance} />
         <NFTLevelsItem
-          ilustration="/ilustrations/nft-level2.svg"
+          ilustration={
+            Limited
+              ? "/ilustrations/nft-level2-le.svg"
+              : "/ilustrations/nft-level2-re.svg"
+          }
           title={t("appPage.mnde.nft-levels.level-two.title")}
           onClick={() => {
             setSelectedLevel("level2");
@@ -182,7 +190,11 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
         />
         <LevelDivider min={5000} max={25000} balance={balance} />
         <NFTLevelsItem
-          ilustration="/ilustrations/nft-level3.svg"
+          ilustration={
+            Limited
+              ? "/ilustrations/nft-level3-le.svg"
+              : "/ilustrations/nft-level3-re.svg"
+          }
           title={t("appPage.mnde.nft-levels.level-three.title")}
           onClick={() => {
             setSelectedLevel("level3");
@@ -200,7 +212,11 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
         />
         <LevelDivider min={25000} max={100000} balance={balance} last />
         <NFTLevelsItem
-          ilustration="/ilustrations/nft-level4.svg"
+          ilustration={
+            Limited
+              ? "/ilustrations/nft-level4-le.svg"
+              : "/ilustrations/nft-level4-re.svg"
+          }
           title={t("appPage.mnde.nft-levels.level-four.title")}
           onClick={() => {
             setSelectedLevel("level4");
@@ -215,11 +231,16 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
           }}
           selected={selectedLevel === "level4"}
           disabled={balance < 100000}
+          imageHeight="56px"
           mb="-9px"
         />
         <LevelDivider min={100000} max={250000} balance={balance} last />
         <NFTLevelsItem
-          ilustration="/ilustrations/nft-level5.svg"
+          ilustration={
+            Limited
+              ? "/ilustrations/nft-level5-le.svg"
+              : "/ilustrations/nft-level5-re.svg"
+          }
           title={t("appPage.mnde.nft-levels.level-five.title")}
           onClick={() => {
             setSelectedLevel("level5");
