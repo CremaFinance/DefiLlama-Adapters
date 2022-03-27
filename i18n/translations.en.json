@@ -687,6 +687,8 @@
     },
     "lock-mnde-complete-modal": {
       "header": "MNDE locked!",
+      "pending-header": "Transaction sent!",
+      "pending-body": "Your transaction is being validated on the blockchain. Your minted NFT will appear in a few seconds!",
       "body": [
         {
           "text": "You now have your very own unique NFT which enables voting power in the Marinade DAO."
