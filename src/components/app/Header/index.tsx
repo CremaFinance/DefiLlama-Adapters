@@ -1,4 +1,4 @@
-import { Box, Flex, Icon, Image, useMediaQuery } from "@chakra-ui/react";
+import { Box, Flex, Icon, Image } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
@@ -28,7 +28,6 @@ const Header = ({ onValidatorsPage = false }: Props) => {
   };
 
   const router = useRouter();
-  const [isLargerThan430] = useMediaQuery("(min-width: 430px)");
   const isStakingActive =
     !onValidatorsPage && router.pathname.includes("staking");
   const isDefiActive = !onValidatorsPage && router.pathname.includes("defi");
@@ -134,13 +133,14 @@ const Header = ({ onValidatorsPage = false }: Props) => {
             variant="link"
             color={colors.black}
             rounded="none"
-            isActive={isDefiActive}
+            isActive={false}
             width="80px"
             fontWeight="normal"
             font="text-xl"
             mb="4px"
-            py={isDefiActive ? "4px" : "7px"}
-            _active={activeMenu}
+            py="7px"
+            _active={{}}
+            _focus={{}}
             _hover={activeMenu}
             onClick={() =>
               window.open("https://vote.marinade.finance/gov/mnde", "_blank")
@@ -158,16 +158,9 @@ const Header = ({ onValidatorsPage = false }: Props) => {
           </MButton>
         </Flex>
 
-        {!onValidatorsPage && (
-          <Flex
-            pt={[2, 0]}
-            width={isLargerThan430 ? 200 : "100%"}
-            justifyContent="flex-end"
-            pb="8px"
-          >
-            <ConnectWallet />
-          </Flex>
-        )}
+        <Flex pt={[2, 0]} justifyContent="flex-end" pb="8px">
+          <ConnectWallet />
+        </Flex>
       </Flex>
     </Flex>
   );
