@@ -36,6 +36,7 @@ const CompleteLockMndeModal: FunctionComponent<CompleteLockMndeModalProps> = ({
   const { t } = useTranslation();
   const modalSize = useBreakpointValue({ base: "full", md: "md" });
   const [nft, setNft] = useState<NFTType | null>(null);
+  const [thumbnailLoaded, setThumbnailLoaded] = useState(false);
   const { data: governance, isFetching, isLoading } = useGovernance();
 
   useEffect(() => {
@@ -57,10 +58,17 @@ const CompleteLockMndeModal: FunctionComponent<CompleteLockMndeModalProps> = ({
             flexDirection="column"
             mt={6}
           >
-            <Skeleton isLoaded={!isFetching && !isLoading && txConfirmed}>
+            <Skeleton
+              isLoaded={
+                !isFetching && !isLoading && txConfirmed && thumbnailLoaded
+              }
+            >
               <Image
                 src={nft?.thumbnailURL}
                 alt="Fish"
+                onLoad={() => {
+                  setThumbnailLoaded(txConfirmed);
+                }}
                 maxWidth={{ base: "300px", md: "382px" }}
               />
             </Skeleton>
