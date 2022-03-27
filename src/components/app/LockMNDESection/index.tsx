@@ -45,6 +45,7 @@ const LockMNDESection = () => {
 
   const { transactionSigned, transactionSignedAction } =
     useContext(AccountsContext);
+  const [txConfirmed, setTxConfirmed] = useState(false);
 
   const { MNDEBalance } = useUserBalance();
 
@@ -80,6 +81,12 @@ const LockMNDESection = () => {
     if (selectedLevel === "4" && updateInputValue) setMNDEToLock("100000");
     if (selectedLevel === "5" && updateInputValue) setMNDEToLock("250000");
   }, [selectedLevel, updateInputValue]);
+
+  useEffect(() => {
+    if (isPendingLockOpen) {
+      onCompleteLockMndeOpen();
+    }
+  }, [transactionSigned]);
 
   return (
     <Flex width="100%" justifyContent="center" alignItems="center">
@@ -129,13 +136,15 @@ const LockMNDESection = () => {
               }
               onClick={() => {
                 setIsPendingLockOpen(true);
+                setTxConfirmed(false);
                 lockMNDE(MNDEToLock, nftKind).then(
                   (signature) => {
                     setMNDEToLock("");
                     transactionSignedAction(false);
                     setIsPendingLockOpen(false);
-                    if (signature) onCompleteLockMndeOpen();
+                    setTxConfirmed(true);
                     toast({
+                      position: "bottom-left",
                       title: t("mndePage.lock-mnde-transaction.title"),
                       description: (
                         <p>
@@ -216,12 +225,14 @@ const LockMNDESection = () => {
         <NFTTable />
       </Flex>
       <CompleteLockMndeModal
+        txConfirmed={txConfirmed}
         isOpen={isCompleteLockMndeOpen}
         onClose={onCompleteLockMndeClose}
       />
       <PendingStakeModal
         isTransactionSigned={transactionSigned}
         isOpen={isPendingLockOpen}
+        forceClose
         onClose={() => {
           transactionSignedAction(false);
         }}
