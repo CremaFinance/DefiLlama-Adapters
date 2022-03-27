@@ -8,6 +8,7 @@ type NFTLevelsItemProps = {
   title: string;
   selected?: boolean;
   disabled?: boolean;
+  imageHeight?: string;
   onClick?: () => void;
   mb?: string;
 };
@@ -18,6 +19,7 @@ const NFTLevelsItem = ({
   selected = false,
   disabled = false,
   onClick,
+  imageHeight = "67px",
   mb,
 }: NFTLevelsItemProps) => {
   return (
@@ -64,7 +66,12 @@ const NFTLevelsItem = ({
             display={selected ? "flex" : "none"}
           />
         ) : null}
-        <Image src={ilustration} opacity={disabled ? "40%" : "100%"} mb={mb} />
+        <Image
+          src={ilustration}
+          opacity={disabled ? "40%" : "100%"}
+          height={imageHeight}
+          mb={mb}
+        />
       </Flex>
       <Spacer display={{ base: "flex", md: "none" }} />
       <Flex
