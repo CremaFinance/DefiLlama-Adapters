@@ -51,7 +51,7 @@ const Header = ({ onValidatorsPage = false }: Props) => {
         transition="background 0.3s ease, box-shadow 0.3s ease"
         py={[0, 4]}
         pt="14px"
-        px={{ base: 4, md: 10, lg: 160 }}
+        px={{ base: 4, md: "32px", lg: 160 }}
       >
         <Link href="/" passHref>
           <Box>
