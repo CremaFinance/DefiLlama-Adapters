@@ -152,7 +152,9 @@ const NFTTableRow: FunctionComponent<NFTTableRowProps> = ({
                     initialTimeLeft={
                       lockEndDate.getTime() - new Date().getTime()
                     }
-                    showSeconds={false}
+                    showSeconds={
+                      lockEndDate.getTime() - new Date().getTime() < 60 * 1000
+                    }
                   />
                 ) : undefined}
               </MButton>
