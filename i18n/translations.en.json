@@ -517,6 +517,7 @@
   },
   "mndePage": {
     "retro-title": "MNDE Retro",
+    "comming-soon": "Comming soon",
     "retro-info": "Marinade retroactive claim for early adopters will be distributed in the following phases:",
     "your-deposit": "Your deposit",
     "claim-action": "Claim",
@@ -572,6 +573,55 @@
         "title": "Something went wrong",
         "account-deactivated": "Your mSOL-SOL LP account is deactivated. Add any SOL liquidity to the LP to re-activate the account and try to withdraw LP again."
       }
+    },
+    "info-section": {
+      "highlighted-text": "MNDE is the governance token of Marinade and allows you to take part in the governance of the Marinade protocol and treasury.",
+      "text": "MNDE represents fractional ownership in the Marinade DAO. Token holders of MNDE can lock it to participate in mDAO governance, govern Marinade’s treasury and revenue from mSOL and be eligible to receive future profits from the protocol. When holders lock their MNDE, they receive an NFT chef in return that represents their governing position and is used to vote on mDAO items. MNDE can be traded on leading Solana exchanges and can also be earned through liquidity pools and other DeFi opportunities. "
+    },
+    "why-section": {
+      "header": "$MNDE NFTs give you a say on",
+      "cards": [
+        {
+          "header": "$250M Treasury",
+          "text": "The Marinade DAO treasury holds a 30% allocation of MNDE, as well as receiving ongoing fees from staked SOL."
+        },
+        {
+          "header": "Delegation Strategy",
+          "text": "The security and decentralization of Solana is positively influenced by the Marinade staking algorithm, which stakes and balances the Marinade pool. You govern that algorithm."
+        },
+        {
+          "header": "Executive Team",
+          "text": "The security and decentralization of Solana is positively influenced by the Marinade staking algorithm, which stakes and balances the Marinade pool. You govern that algorithm."
+        }
+      ]
+    },
+    "explanation-section": {
+      "items": [
+        {
+          "header": {
+            "green": "Commit to governance,",
+            "black": "get a Chef NFT"
+          },
+          "text": "Marinade governance is built around a token locking, voting escrow model. Building on the Marinade liquid staking experience, locking your tokens will mint you a unique chef NFT. You can set it as your profile picture or participate in the NFT ecosystem, but be aware that as the NFT represents your locked MNDE position, selling the NFT also means selling this MNDE.",
+          "ilustration-alt": "Lock MNDE"
+        },
+        {
+          "header": {
+            "green": "Earn",
+            "black": "while it’s cooking"
+          },
+          "text": "After paying regular costs and saving for a rainy day, Marinade will share protocol profits with its holders. This will make MNDE one of the tastiest tokens to hold, and it'll only get sweeter with every additional SOL staked. Soon!",
+          "ilustration-alt": "Earn big"
+        },
+        {
+          "header": {
+            "green": "Build with Marinade,",
+            "black": " apply for funding"
+          },
+          "text": "The natural and organic staking rewards from a more decentralized and censorship resistant Solana can fuel ecosystem growth. Build with Marinade and give back when you succeed so the kitchen can feed future projects.",
+          "ilustration-alt": "Build"
+        }
+      ]
     }
   },
   "termsPage": {
@@ -756,53 +806,6 @@
         ]
       }
     ]
-  },
-  "mndePage": {
-    "why-section": {
-      "header": "$MNDE NFTs give you a say on",
-      "cards": [
-        {
-          "header": "$250M Treasury",
-          "text": "The Marinade DAO treasury holds a 30% allocation of MNDE, as well as receiving ongoing fees from staked SOL."
-        },
-        {
-          "header": "Delegation Strategy",
-          "text": "The security and decentralization of Solana is positively influenced by the Marinade staking algorithm, which stakes and balances the Marinade pool. You govern that algorithm."
-        },
-        {
-          "header": "Executive Team",
-          "text": "The security and decentralization of Solana is positively influenced by the Marinade staking algorithm, which stakes and balances the Marinade pool. You govern that algorithm."
-        }
-      ]
-    },
-    "explanation-section": {
-      "items": [
-        {
-          "header": {
-            "green": "Commit to governance,",
-            "black": "get a Chef NFT"
-          },
-          "text": "Marinade governance is built around a token locking, voting escrow model. Building on the Marinade liquid staking experience, locking your tokens will mint you a unique chef NFT. You can set it as your profile picture or participate in the NFT ecosystem, but be aware that as the NFT represents your locked MNDE position, selling the NFT also means selling this MNDE.",
-          "ilustration-alt": "Lock MNDE"
-        },
-        {
-          "header": {
-            "green": "Earn",
-            "black": "while it’s cooking"
-          },
-          "text": "After paying regular costs and saving for a rainy day, Marinade will share protocol profits with its holders. This will make MNDE one of the tastiest tokens to hold, and it'll only get sweeter with every additional SOL staked. Soon!",
-          "ilustration-alt": "Earn big"
-        },
-        {
-          "header": {
-            "green": "Build with Marinade,",
-            "black": " apply for funding"
-          },
-          "text": "The natural and organic staking rewards from a more decentralized and censorship resistant Solana can fuel ecosystem growth. Build with Marinade and give back when you succeed so the kitchen can feed future projects.",
-          "ilustration-alt": "Build"
-        }
-      ]
-    }
   },
   "404Page": {
     "page-not-cooked": "Oops! It seems like this page is not cooked.",

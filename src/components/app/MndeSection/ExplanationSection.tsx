@@ -1,6 +1,5 @@
 import { Box, Flex } from "@chakra-ui/layout";
 import { Image } from "@chakra-ui/react";
-import { useRouter } from "next/router";
 import type { FunctionComponent } from "react";
 
 import MButton from "../../atoms/Button";
@@ -10,7 +9,6 @@ import { useTranslation } from "hooks/useTranslation";
 import colors from "styles/customTheme/colors";
 
 const ExplanationSection: FunctionComponent = (): JSX.Element => {
-  const router = useRouter();
   const { t } = useTranslation();
   const activeMenu = {
     opacity: 1,
@@ -34,9 +32,9 @@ const ExplanationSection: FunctionComponent = (): JSX.Element => {
       mt={14}
       _active={activeMenu}
       _hover={activeMenu}
-      onClick={() => router.push("/app/mnde")}
+      isDisabled
     >
-      Lock your MNDE
+      {t("mndePage.comming-soon")}
       <Image src="/icons/arrow-right.svg" width="16px" alt="Lock MNDE" ml={2} />
     </MButton>
   );
