@@ -71,7 +71,7 @@ export const useHeaderConfig = () => {
           icon: "",
 
           props: {
-            onClick: () => router.push("/app/mnde"),
+            onClick: () => router.push("/tokens/mnde"),
             ...appPageLinkProps,
           },
         },
