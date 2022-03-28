@@ -188,7 +188,38 @@
       { "text": "CEO of Solana Labs" }
     ],
 
-    "read-more": "Read more"
+    "read-more": "Read more",
+    "header-menu": {
+      "community": {
+        "text": "Community",
+        "items": [
+          { "text": "Twitter" },
+          { "text": "Discord" },
+          { "text": "DAO Forum" }
+        ]
+      },
+      "tokens": {
+        "text": "Tokens",
+        "items": [{ "text": "MNDE" }]
+      },
+      "learn": {
+        "text": "Learn",
+        "items": [
+          { "text": "Cookbook" },
+          { "text": "Documentation" },
+          { "text": "FAQ" },
+          { "text": "Validators" }
+        ]
+      },
+      "about": {
+        "text": "About",
+        "items": [
+          { "text": "Press kit" },
+          { "text": "Developers" },
+          { "text": "Security" }
+        ]
+      }
+    }
   },
   "appPage": {
     "stake-menu-item": "Stake",
