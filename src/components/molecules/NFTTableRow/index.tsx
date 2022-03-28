@@ -3,6 +3,7 @@ import type { PublicKey } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
 import { useRouter } from "next/router";
 import type { FunctionComponent } from "react";
+import { useState } from "react";
 
 import { formatNumberLocale } from "../../../utils/format-number-locale";
 import MButton from "../../atoms/Button";
@@ -43,6 +44,7 @@ const NFTTableRow: FunctionComponent<NFTTableRowProps> = ({
 }) => {
   const { t } = useTranslation();
   const [isMobile] = useMediaQuery("(max-width: 425px)");
+  const [countdownVisible, setCountdownVisible] = useState(true);
   const router = useRouter();
   return (
     <Tr height="84px">
@@ -104,25 +106,22 @@ const NFTTableRow: FunctionComponent<NFTTableRowProps> = ({
                 onClick={() => {
                   if (isUnlockEnabled) {
                     onUnlockMnde(thumbnailURL, lockedMNDE.toString(), address);
+                    setCountdownVisible(true);
                   } else {
                     onCancelMnde(lockedMNDE.toString(), address);
                   }
                 }}
               >
-                {isCancelEnabled
-                  ? t("appPage.mnde.nft-levels.cancel-unlock")
-                  : undefined}
-                {isUnlockEnabled
-                  ? t("appPage.mnde.nft-levels.unlock")
-                  : undefined}
+                {isCancelEnabled && t("appPage.mnde.nft-levels.cancel-unlock")}
+                {isUnlockEnabled && t("appPage.mnde.nft-levels.unlock")}
               </MButton>
-              {isUnlockEnabled ? (
+              {isUnlockEnabled && (
                 <MText textAlign="center" fontSize="11.52px">
                   {t("appPage.mnde.nft-levels.lock-period")}
                 </MText>
-              ) : undefined}
+              )}
             </Flex>
-            {isClaimEnabled && lockEndDate ? (
+            {isClaimEnabled && lockEndDate && (
               <MButton
                 colorScheme="gray"
                 _hover={{ bg: "gray.100" }}
@@ -147,16 +146,21 @@ const NFTTableRow: FunctionComponent<NFTTableRowProps> = ({
                 {lockEndDate.getTime() - new Date().getTime() < 0
                   ? t("appPage.mnde.nft-levels.claim")
                   : t("appPage.mnde.nft-levels.delayed-claim")}
-                {lockEndDate.getTime() - new Date().getTime() > 0 ? (
-                  <Countdown
-                    initialTimeLeft={
-                      lockEndDate.getTime() - new Date().getTime()
-                    }
-                    showSeconds={false}
-                  />
-                ) : undefined}
+                {lockEndDate.getTime() - new Date().getTime() > 0 &&
+                  countdownVisible && (
+                    <Countdown
+                      initialTimeLeft={
+                        lockEndDate.getTime() - new Date().getTime()
+                      }
+                      showSeconds={false}
+                      showSecondsOnMinuteLeft
+                      onTimerFinished={() => {
+                        setCountdownVisible(false);
+                      }}
+                    />
+                  )}
               </MButton>
-            ) : undefined}
+            )}
           </Flex>
         </Flex>
       </Td>
