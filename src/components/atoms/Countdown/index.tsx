@@ -5,12 +5,14 @@ import { millisecondsToDhms } from "../../../utils/ms-to-dhms";
 type CountdownProps = {
   initialTimeLeft: number;
   showSeconds: boolean;
+  showSecondsOnMinuteLeft?: boolean;
   onTimerFinished?: () => void;
 };
 
 const Countdown = ({
   initialTimeLeft,
   showSeconds = true,
+  showSecondsOnMinuteLeft = false,
   onTimerFinished = () => {},
 }: CountdownProps) => {
   const [timeLeft, setTimeLeft] = useState(initialTimeLeft);
@@ -26,7 +28,14 @@ const Countdown = ({
     return () => clearTimeout(timer);
   }, [timeLeft, onTimerFinished]);
 
-  return <>{millisecondsToDhms(timeLeft, showSeconds)}</>;
+  return (
+    <>
+      {millisecondsToDhms(
+        timeLeft,
+        showSeconds || (showSecondsOnMinuteLeft && timeLeft < 60000)
+      )}
+    </>
+  );
 };
 
 export default Countdown;
