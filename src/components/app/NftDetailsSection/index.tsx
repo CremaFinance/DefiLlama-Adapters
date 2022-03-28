@@ -27,6 +27,7 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
   const { data: governance } = useGovernanceData();
   const { t } = useTranslation();
   const { isLoading, data, isIdle } = useNftDetails(id as string);
+  const unlockPeriod = (data?.properties.unlock_duration ?? 0) / 86_400;
 
   const skeleton = (
     <Flex
@@ -136,8 +137,11 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
                 />
               </TooltipWithContent>
             </Flex>
-
-            {data?.properties.unlock_duration}
+            {`${
+              unlockPeriod < 1
+                ? unlockPeriod.toFixed(4)
+                : unlockPeriod.toFixed(0)
+            } days`}
           </Flex>
           <Stack spacing={6} mt={6} direction="column" width="100%">
             <MButton
