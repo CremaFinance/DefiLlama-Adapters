@@ -41,7 +41,7 @@ const Header = ({ onValidatorsPage = false }: Props) => {
       bg={headerBackground}
       direction="column"
     >
-      <Flex id="system-message" />
+      <Flex id="system-message" flexDirection="column" />
       <Flex
         width="100vw"
         as="header"
@@ -50,7 +50,6 @@ const Header = ({ onValidatorsPage = false }: Props) => {
         justifyContent="space-between"
         transition="background 0.3s ease, box-shadow 0.3s ease"
         py={[0, 4]}
-        pt="14px"
         px={{ base: 4, md: "32px", lg: 160 }}
       >
         <Link href="/" passHref>

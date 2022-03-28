@@ -1,5 +1,6 @@
 import { Box, Flex, IconButton, useMediaQuery } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
+import { useRouter } from "next/router";
 import type { FunctionComponent } from "react";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
@@ -28,6 +29,8 @@ const PerformanceNotification: FunctionComponent<
   );
 
   const [keepClosed, setKeepClosed] = useState(false);
+  const router = useRouter();
+  const isLandingActive = router.pathname === "/";
 
   const tps = useQuery<number>(
     "recentPerformance",
@@ -35,14 +38,21 @@ const PerformanceNotification: FunctionComponent<
     { refetchInterval }
   );
   useEffect(() => {
-    if (!keepClosed && tps.data && tps.data < 1600) {
+    if (!keepClosed && tps.data && tps.data < 1600 && !isLandingActive) {
       onOpen();
     }
 
     if (!portalContainer) {
       setPortalContainer(document.getElementById("system-message"));
     }
-  }, [keepClosed, tps, showNotification, onOpen, portalContainer]);
+  }, [
+    keepClosed,
+    tps,
+    showNotification,
+    onOpen,
+    portalContainer,
+    isLandingActive,
+  ]);
 
   return !keepClosed && portalContainer !== null && showNotification
     ? createPortal(

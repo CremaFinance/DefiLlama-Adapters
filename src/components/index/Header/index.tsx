@@ -36,50 +36,56 @@ const Header = () => {
   return (
     <Flex
       position="fixed"
-      width="100vw"
-      as="header"
-      bg={headerBackground}
-      align="center"
-      justifyContent="space-between"
-      transition="background 0.3s ease, box-shadow 0.3s ease"
-      py={[2, 4]}
+      top="0"
       zIndex={1000}
-      px={{ base: 4, md: "32px", lg: 160 }}
+      bg={headerBackground}
+      direction="column"
     >
-      <Link href="/" passHref>
-        <Image
-          mt={1}
-          cursor="pointer"
-          src="/marinade-logo-black.svg"
-          alt="Marinade Logo"
-          width={[160, 200]}
-          height="40px"
-        />
-      </Link>
+      <Flex id="system-message" flexDirection="column" bg={colors.greenLight} />
+      <Flex
+        width="100vw"
+        as="header"
+        align="center"
+        justifyContent="space-between"
+        transition="background 0.3s ease, box-shadow 0.3s ease"
+        py={[2, 4]}
+        px={{ base: 4, md: "32px", lg: 160 }}
+      >
+        <Link href="/" passHref>
+          <Image
+            mt={1}
+            cursor="pointer"
+            src="/marinade-logo-black.svg"
+            alt="Marinade Logo"
+            width={[160, 200]}
+            height="40px"
+          />
+        </Link>
 
-      <Box mr={2}>
-        <Box display={["block", "block", "none"]}>
-          <Sidebar />
+        <Box mr={2}>
+          <Box display={["block", "block", "none"]}>
+            <Sidebar />
+          </Box>
+          <MButton
+            display={["none", "none", "flex"]}
+            size="sm"
+            font="text-lg"
+            rounded="md"
+            bg={colors.marinadeGreen}
+            _hover={{ bg: colors.green800 }}
+            colorScheme={colors.marinadeGreen}
+            color={colors.white}
+            width="130px"
+            height="40px"
+            flexDirection="row"
+            justifyContent="space-around"
+            onClick={() => router.push("/app/staking")}
+          >
+            {t("indexPage.go-to-app-action")}
+            <Image src="/icons/arrow-right-white.svg" width="0.8rem" />
+          </MButton>
         </Box>
-        <MButton
-          display={["none", "none", "flex"]}
-          size="sm"
-          font="text-lg"
-          rounded="md"
-          bg={colors.marinadeGreen}
-          _hover={{ bg: colors.green800 }}
-          colorScheme={colors.marinadeGreen}
-          color={colors.white}
-          width="130px"
-          height="40px"
-          flexDirection="row"
-          justifyContent="space-around"
-          onClick={() => router.push("/app/staking")}
-        >
-          {t("indexPage.go-to-app-action")}
-          <Image src="/icons/arrow-right-white.svg" width="0.8rem" />
-        </MButton>
-      </Box>
+      </Flex>
     </Flex>
   );
 };

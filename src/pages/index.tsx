@@ -10,20 +10,24 @@ import SecuritySection from "components/index/SecuritySection";
 import TestemonialSection from "components/index/TestimonialSection";
 import WhySection from "components/index/WhySection";
 import Footer from "components/layout/Footer";
+import SystemNotificationHandler from "components/molecules/SystemNotificationHandler";
+import colors from "styles/customTheme/colors";
 
 const Home = () => {
   return (
-    <Box>
+    <Box bg={colors.greenLight}>
       <Header />
-      <HeroSection />
-      <LogoStripSection />
-      <TestemonialSection />
-      <InfoSection />
-      <WhySection />
-      <ContributorSection />
-      <SecuritySection />
-      <BlogPosts />
-      <Footer />
+      <SystemNotificationHandler>
+        <HeroSection />
+        <LogoStripSection />
+        <TestemonialSection />
+        <InfoSection />
+        <WhySection />
+        <ContributorSection />
+        <SecuritySection />
+        <BlogPosts />
+        <Footer />
+      </SystemNotificationHandler>
     </Box>
   );
 };
