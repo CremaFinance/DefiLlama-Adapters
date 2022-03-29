@@ -3068,14 +3068,13 @@
     "@solana/wallet-adapter-base" "^0.9.3"
     "@solana/web3.js" "^1.20.0"
 
-"@solana/wallet-adapter-react@^0.15.3":
-  version "0.15.3"
-  resolved "https://registry.yarnpkg.com/@solana/wallet-adapter-react/-/wallet-adapter-react-0.15.3.tgz#f3122a691427769d37d0c291b7f0b0f712aa805c"
-  integrity sha512-Nfd8R2WQ8kf/I4x5MzmEVth4sd5tM2sroOdvk9YzHhCo2nBg2edbQCE9rMHzMBEH6+egTA7dgQrlf0FTMHPUzw==
+"@solana/wallet-adapter-react@^0.15.4":
+  version "0.15.4"
+  resolved "https://registry.yarnpkg.com/@solana/wallet-adapter-react/-/wallet-adapter-react-0.15.4.tgz#413c3fa6893e9d809e5a6dd4730695fba942967b"
+  integrity sha512-QB8tE1IqYxvHrdDZP3DGICuCq6xydvjUYhW+usIahORmHniFF62Mp/LPfdAGZRDFF7U2/rZPktGFiOxWUJA7Qw==
   dependencies:
-    "@solana/wallet-adapter-base" "^0.9.3"
-    "@solana/web3.js" "^1.20.0"
-    react "^17.0.0"
+    "@solana/wallet-adapter-base" "^0.9.4"
+    "@solana/web3.js" "^1.36.0"
 
 "@solana/wallet-adapter-safepal@^0.5.2":
   version "0.5.3"
@@ -3165,7 +3164,7 @@
     "@solana/wallet-adapter-tokenpocket" "^0.4.2"
     "@solana/wallet-adapter-torus" "^0.11.10"
 
-"@solana/web3.js@^1.17.0", "@solana/web3.js@^1.20.0", "@solana/web3.js@^1.21.0", "@solana/web3.js@^1.30.2", "@solana/web3.js@^1.31.0", "@solana/web3.js@^1.32.0", "@solana/web3.js@^1.37.0":
+"@solana/web3.js@^1.17.0", "@solana/web3.js@^1.20.0", "@solana/web3.js@^1.21.0", "@solana/web3.js@^1.30.2", "@solana/web3.js@^1.31.0", "@solana/web3.js@^1.32.0", "@solana/web3.js@^1.36.0", "@solana/web3.js@^1.37.0":
   version "1.37.0"
   resolved "https://registry.yarnpkg.com/@solana/web3.js/-/web3.js-1.37.0.tgz#167b5b5d4aedc151237d9230b6142da068b0af34"
   integrity sha512-O2iCcgkGdi2FXwVLztPIZHcBuZXdhbVLavMsG+RdEyFGzFD0tQN1rOJ+Xb5eaexjqtgcqRN+Fyg3wAhLcHJbiA==
@@ -13120,7 +13119,7 @@ react-textarea-autosize@^8.3.0:
     use-composed-ref "^1.0.0"
     use-latest "^1.0.0"
 
-react@^17.0.0, react@^17.0.2:
+react@^17.0.2:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
   integrity sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==
