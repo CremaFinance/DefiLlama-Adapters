@@ -19,13 +19,16 @@ import { IoIosMenu, IoMdArrowRoundForward } from "react-icons/io";
 import MButton from "../atoms/Button";
 import MHeading from "../atoms/Heading";
 import MLink from "../atoms/Link";
+import { useHeaderConfig } from "components/index/HeaderMenu/header.config";
 import colors from "styles/customTheme/colors";
 
 function Sidebar() {
   const router = useRouter();
   const { t } = useTranslation();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const config = useHeaderConfig();
   const stakingPath = "/app/staking";
+  const isMndeActive = router.pathname.includes("tokens/mnde");
 
   return (
     <>
@@ -49,7 +52,7 @@ function Sidebar() {
             <Link href="/" passHref>
               <Image
                 cursor="pointer"
-                src="./marinade-logo-black.svg"
+                src="/marinade-logo-black.svg"
                 alt="Marinade Logo"
                 width={[160, 200]}
               />
@@ -57,114 +60,34 @@ function Sidebar() {
           </DrawerHeader>
 
           <DrawerBody>
-            <MHeading type="heading-xsm" mb={2}>
-              {t("indexPage.product-menu-item")}
-            </MHeading>
-
-            <Flex flexDirection="column" mb={5}>
-              <MLink
-                font="text-xl"
-                fontWeight="normal"
-                mb={2}
-                onClick={() => router.push(stakingPath)}
-              >
-                {t("indexPage.stake-sol-menu-item")}
-              </MLink>
-
-              <MLink
-                font="text-xl"
-                fontWeight="normal"
-                mb={2}
-                _focus={{ boxShadow: "none" }}
-                onClick={() =>
-                  router.push(
-                    {
-                      pathname: stakingPath,
-                      query: { showValidatorsModal: true },
-                    },
-                    stakingPath
-                  )
-                }
-              >
-                {t("indexPage.validators-menu-item")}
-              </MLink>
-
-              <MLink
-                font="text-xl"
-                fontWeight="normal"
-                mb={2}
-                _focus={{ boxShadow: "none" }}
-                onClick={() => router.push(stakingPath)}
-              >
-                {t("indexPage.receive-msol-menu-item")}
-              </MLink>
-
-              <MLink
-                href="https://docs.marinade.finance/marinade-dao"
-                font="text-xl"
-                fontWeight="normal"
-                mb={2}
-                _focus={{ boxShadow: "none" }}
-              >
-                {t("indexPage.marinade-dao-menu-item")}
-              </MLink>
-
-              <MLink
-                font="text-xl"
-                fontWeight="normal"
-                mb={2}
-                _focus={{ boxShadow: "none" }}
-                onClick={() => router.push("/app/defi")}
-              >
-                {t("indexPage.defi-recipes-menu-item")}
-              </MLink>
-            </Flex>
-
-            <MHeading type="heading-xsm" mb={2}>
-              {t("indexPage.learn-menu-item")}
-            </MHeading>
-
-            <Flex flexDirection="column" mb={5}>
-              <MLink
-                href="https://docs.marinade.finance/"
-                font="text-xl"
-                fontWeight="normal"
-                _focus={{ boxShadow: "none" }}
-                mb={2}
-              >
-                {t("indexPage.docs-menu-item")}
-              </MLink>
-
-              <MLink
-                href="https://docs.marinade.finance/marinade-protocol/security"
-                font="text-xl"
-                fontWeight="normal"
-                _focus={{ boxShadow: "none" }}
-                mb={2}
-              >
-                {t("indexPage.security-menu-item")}
-              </MLink>
-
-              <MLink
-                href="https://docs.marinade.finance/#what-is-marinade"
-                font="text-xl"
-                fontWeight="normal"
-                _focus={{ boxShadow: "none" }}
-                mb={2}
-              >
-                {t("indexPage.about-us-menu-item")}
-              </MLink>
-
-              <MLink
-                href="https://docs.marinade.finance/marinade-dao/roadmap"
-                font="text-xl"
-                fontWeight="normal"
-                _focus={{ boxShadow: "none" }}
-                mb={2}
-              >
-                {t("indexPage.roadmap-menu-item")}
-              </MLink>
-            </Flex>
+            {config.map((menu) => {
+              return (
+                <>
+                  <MHeading key={menu.title} type="heading-xsm" mb={2}>
+                    {menu.title}
+                  </MHeading>
+                  <Flex flexDirection="column" mb={5}>
+                    {menu.items.map((item) => {
+                      return (
+                        <MLink
+                          font="text-xl"
+                          fontWeight="normal"
+                          mb={2}
+                          textDecoration={
+                            isMndeActive && item?.title === "MNDE"
+                              ? "underline"
+                              : "none"
+                          }
+                          {...item.props}
+                        >
+                          {item.title}
+                        </MLink>
+                      );
+                    })}
+                  </Flex>
+                </>
+              );
+            })}
 
             <MButton
               font="text-xl"

@@ -21,7 +21,7 @@ const MobileMenu = () => {
   const router = useRouter();
   const isStakingActive = router.pathname.includes("staking");
   const isDefiActive = router.pathname.includes("defi");
-  const isMndeActive = router.pathname.includes("app/mnde");
+  const isMndeActive = router.pathname.includes("mnde");
 
   return (
     <Flex

@@ -191,7 +191,7 @@
     "read-more": "Read more",
     "header-menu": {
       "community": {
-        "text": "Comunity",
+        "text": "Community",
         "items": [
           { "text": "Twitter" },
           { "text": "Discord" },
@@ -576,7 +576,7 @@
     },
     "info-section": {
       "highlighted-text": "MNDE is the governance token of Marinade and allows you to take part in the governance of the Marinade protocol and treasury.",
-      "text": "MNDE represents fractional ownership in the Marinade DAO. Token holders of MNDE can lock it to participate in mDAO governance, govern Marinade’s treasury and revenue from mSOL and be eligible to receive future profits from the protocol. When holders lock their MNDE, they receive an NFT chef in return that represents their governing position and is used to vote on mDAO items. MNDE can be traded on leading Solana exchanges and can also be earned through liquidity pools and other DeFi opportunities. "
+      "text": "MNDE represents fractional ownership in the Marinade DAO. Token holders of MNDE can lock it to participate in mDAO governance, govern Marinade’s treasury and revenue from mSOL. When holders lock their MNDE, they receive an NFT chef in return that represents their governing position and is used to vote on mDAO items. MNDE can be traded on leading Solana exchanges and can also be mined through liquidity pools and other DeFi opportunities."
     },
     "why-section": {
       "header": "$MNDE NFTs give you a say on",

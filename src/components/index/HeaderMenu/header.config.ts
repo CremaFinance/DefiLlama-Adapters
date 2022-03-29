@@ -17,7 +17,7 @@ export const useHeaderConfig = () => {
         outline: "none",
         textDecoration: "none",
         boxShadow: "none",
-        backgroundColor: "gray.100",
+        backgroundColor: { base: "transparent", md: "gray.100" },
       },
       _active: { outline: "none", boxShadow: "none" },
       rel: "noreferrer noopener",
@@ -26,7 +26,8 @@ export const useHeaderConfig = () => {
 
   const appPageLinkProps = {
     _hover: {
-      background: "gray.100",
+      background: { base: "transparent", md: "gray.100" },
+      textDecoration: { base: "underline", md: "none" },
     },
   };
 

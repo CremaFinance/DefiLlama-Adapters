@@ -16,6 +16,7 @@ const InfoSection = () => {
       width="100vw"
       alignItems="center"
       justifyContent="center"
+      zIndex={4}
     >
       <Flex
         alignItems="center"
