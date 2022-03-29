@@ -10,6 +10,7 @@ import MText from "../../atoms/Text";
 import TooltipWithContent from "components/molecules/TooltipWithContent";
 import useGovernanceData from "hooks/useGovernanceData";
 import { useNftDetails } from "hooks/useNftDetails";
+import useShareOnTwitter from "hooks/useShareOnTwitter";
 import { useTranslation } from "hooks/useTranslation";
 import { useWallet } from "hooks/useWallet";
 import { downloadPfp } from "services/marinade/downloadPfp";
@@ -27,8 +28,8 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
   const { data: governance } = useGovernanceData();
   const { t } = useTranslation();
   const { isLoading, data, isIdle } = useNftDetails(id as string);
+  const shareOnTwitter = useShareOnTwitter();
   const unlockPeriod = (data?.properties.unlock_duration ?? 0) / 86_400;
-
   const skeleton = (
     <Flex
       p={6}
@@ -180,7 +181,14 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
                 font="text-xl"
                 rounded="md"
                 height="40px"
-                onClick={() => {}}
+                onClick={async () => {
+                  if (data?.properties.index && data.properties.tier) {
+                    await shareOnTwitter(
+                      data?.properties.index,
+                      data?.properties.tier
+                    );
+                  }
+                }}
               >
                 {t("nftDetailsPage.details-section.share-twitter")}
                 <Image

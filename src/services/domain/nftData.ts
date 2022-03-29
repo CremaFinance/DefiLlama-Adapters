@@ -12,8 +12,9 @@ export interface NftData {
     category: string;
     mnde_amount: number;
     unlock_duration: number;
-    tier: string;
+    tier: number;
     files: { uri: string }[];
     edition: number;
+    index: number;
   };
 }

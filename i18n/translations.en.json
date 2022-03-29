@@ -651,6 +651,7 @@
       "deposit-first-msol": "Deposit first",
       "get-msol": "Get mSOL"
     },
+    "twitter-messages": {"message-one":"I am the newest Marinator at @MarinadeFinance and this is my very own Chef!"},
     "deposit-msol-sol-lp-modal": {
       "deposit": "Deposit mSOL-SOL LP",
       "withdraw": "Withdraw mSOL-SOL LP",
