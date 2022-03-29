@@ -19,7 +19,7 @@ const HeaderMenu = () => {
     <Flex>
       {config.map((menu) => {
         return (
-          <Menu key={menu.title}>
+          <Menu key={menu.title} autoSelect={false}>
             <MenuButton
               as={Button}
               color={colors.black}
@@ -27,6 +27,7 @@ const HeaderMenu = () => {
               rightIcon={<Image src="/icons/arrow-down-black-fill.svg" />}
               _hover={{
                 background: "gray.100",
+                borderRadius: "6px",
               }}
               _focus={{ outline: "none" }}
               _active={{
@@ -38,7 +39,13 @@ const HeaderMenu = () => {
             <MenuList>
               {menu.items.map((item) => {
                 return (
-                  <MenuItem key={item.title} {...item?.props}>
+                  <MenuItem
+                    key={item.title}
+                    {...item?.props}
+                    backgroundColor={
+                      item?.title === "MNDE" ? "gray.100" : "white"
+                    }
+                  >
                     <>
                       {item.title}{" "}
                       {item?.icon && (

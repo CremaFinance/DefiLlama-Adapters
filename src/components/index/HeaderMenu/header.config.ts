@@ -25,9 +25,6 @@ export const useHeaderConfig = () => {
   };
 
   const appPageLinkProps = {
-    _focus: {
-      background: "transparent",
-    },
     _hover: {
       background: "gray.100",
     },

@@ -73,7 +73,7 @@ const ExplanationSection: FunctionComponent = (): JSX.Element => {
       aria-label="explanation-section"
       direction="column"
       px={{ base: 4, md: "12vw" }}
-      pt={8}
+      pt={16}
       pb={20}
       gap={{ base: 50, lg: 120 }}
     >
