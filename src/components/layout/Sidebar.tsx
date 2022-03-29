@@ -79,8 +79,13 @@ function Sidebar() {
                               : "none"
                           }
                           {...item.props}
+                          display="flex"
+                          flexDirection="row"
                         >
-                          {item.title}
+                          {item.title}{" "}
+                          {item?.icon && (
+                            <Image ml="11px" width="12px" src={item?.icon} />
+                          )}
                         </MLink>
                       );
                     })}
