@@ -7,6 +7,7 @@ import {
   Image,
   Flex,
 } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 
 import colors from "styles/customTheme/colors";
 
@@ -14,7 +15,8 @@ import { useHeaderConfig } from "./header.config";
 
 const HeaderMenu = () => {
   const config = useHeaderConfig();
-
+  const router = useRouter();
+  const isMndeActive = router.pathname.includes("tokens/mnde");
   return (
     <Flex>
       {config.map((menu) => {
@@ -43,7 +45,9 @@ const HeaderMenu = () => {
                     key={item.title}
                     {...item?.props}
                     backgroundColor={
-                      item?.title === "MNDE" ? "gray.100" : "white"
+                      isMndeActive && item?.title === "MNDE"
+                        ? "gray.100"
+                        : "white"
                     }
                   >
                     <>
