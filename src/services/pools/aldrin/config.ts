@@ -170,4 +170,24 @@ export const aldrinPools: Record<LiquidityAldrinPoolAddress, PoolConfig> = {
       })),
     },
   },
+  [liquidityAldrinPoolAddress.ALDRIN_mSOL_NEAR]: {
+    ...liquidityPoolTokensAldrin[liquidityAldrinPoolAddress.ALDRIN_mSOL_NEAR],
+    ...{
+      provider,
+      marketType: marketTypes.LP,
+      providerId: liquidityPoolAldrinIds.ALDRIN_mSOL_NEAR,
+      tokenA: coinSymbols.mSOL,
+      tokenB: coinSymbols.NEAR,
+      actions: actions.map((action) => ({
+        text: action.text,
+        url: getActionUrl({
+          tokenA: coinSymbols.mSOL,
+          tokenB: coinSymbols.NEAR,
+          type: action.type,
+          actionBaseUrl: action.url,
+        }),
+        isExternal: action.isExternal,
+      })),
+    },
+  },
 };

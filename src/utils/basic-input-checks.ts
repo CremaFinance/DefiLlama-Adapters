@@ -1,8 +1,9 @@
-import { UseToastOptions } from "@chakra-ui/react";
+import type { UseToastOptions } from "@chakra-ui/react";
 
 export function checkIsPositive(value: number): UseToastOptions | undefined {
   if (Number.isNaN(value) || value <= 0.0001) {
     return {
+      position: "bottom-left",
       title: "Invalid amount",
       description: "Please input a valid amount",
       status: "warning",
@@ -16,6 +17,7 @@ export function checkWallet(
 ): UseToastOptions | undefined {
   if (!isWalletConnected) {
     return {
+      position: "bottom-left",
       title: "Wallet is not connected",
       description: "Please connect your wallet",
       status: "warning",

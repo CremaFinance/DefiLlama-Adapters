@@ -46,6 +46,7 @@ import DelayedUnstakeModal from "./DelayedUnstakeModal";
 const BasicUnstake = () => {
   const { t } = useTranslation();
   const toast = useToast();
+  const toastPosition = "bottom-left";
   const { track } = useTracking();
   const trackingCategoryBasicStaking = "Basic Staking";
   const connection = useConnection();
@@ -207,6 +208,7 @@ const BasicUnstake = () => {
         .replace("{{actualAmount}}", format5Dec(stSOLBalance));
 
       toast({
+        position: toastPosition,
         title: t("appPage.insufficient-funds-to-unstake"),
         description,
         status: "warning",
@@ -224,6 +226,7 @@ const BasicUnstake = () => {
         (transactionSignature) => {
           setStSolToUnstake("");
           toast({
+            position: toastPosition,
             title: t("appPage.unstake-mSOL-confirmed"),
             description: (
               <p>
@@ -264,6 +267,7 @@ const BasicUnstake = () => {
           }
 
           toast({
+            position: toastPosition,
             title: t("appPage.something-went-wrong"),
             description,
             status: "warning",
@@ -307,6 +311,7 @@ const BasicUnstake = () => {
             "appPage.claim-success-tooltip-title"
           )?.replace("{{accountPubkey}}", accountPubkey);
           toast({
+            position: toastPosition,
             title: successTitleMessage,
             description: (
               <p>
@@ -342,6 +347,7 @@ const BasicUnstake = () => {
           errorMessage = error.message;
 
           toast({
+            position: toastPosition,
             title: t("appPage.claim-error-tooltip-title"),
             description: errorMessage,
             status: "warning",

@@ -54,7 +54,7 @@ import { shortenAddress } from "utils/shorten-address";
 const BasicStake = () => {
   const { t } = useTranslation();
   const toast = useToast();
-
+  const toastPosition = "bottom-left";
   const { track } = useTracking();
 
   const connection = useConnection();
@@ -244,6 +244,7 @@ const BasicStake = () => {
         );
 
         toast({
+          position: toastPosition,
           title: t("appPage.stake-account.title", { accountAddress }),
           description: (
             <p>
@@ -298,6 +299,7 @@ const BasicStake = () => {
         }
 
         toast({
+          position: toastPosition,
           title: t("appPage.something-went-wrong"),
           description,
           status: "warning",
@@ -334,6 +336,7 @@ const BasicStake = () => {
       Number(format5Dec(Number(state?.staking_sol_cap), LAMPORTS_PER_SOL))
     ) {
       return toast({
+        position: toastPosition,
         title: t("appPage.ammount-exceeds-current-staking-cap"),
         description: t("appPage.try-using-max-button"),
         status: "warning",
@@ -363,6 +366,7 @@ const BasicStake = () => {
         (transactionSignature) => {
           onOpen();
           toast({
+            position: toastPosition,
             title: t("appPage.stake-sol-confirmed"),
             description: (
               <p>
@@ -401,6 +405,7 @@ const BasicStake = () => {
           }
 
           toast({
+            position: toastPosition,
             title: t("appPage.something-went-wrong"),
             description,
             status: "warning",

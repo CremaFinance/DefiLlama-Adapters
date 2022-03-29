@@ -47,6 +47,7 @@ const MSolLpModal = ({
 }: Props) => {
   const { t } = useTranslation();
   const toast = useToast();
+  const toastPosition = "bottom-left";
   const { track } = useTracking();
   const trackCategory = "MSOL-SOL LP Farm";
   const [isDepostActive, setDepositActive] = useState(true);
@@ -87,6 +88,7 @@ const MSolLpModal = ({
     }
     if (Number(amount) > Number(liqSOLBalance)) {
       toast({
+        position: toastPosition,
         title: t("mndePage.deposit-msol-sol-lp-modal.insufficient-funds.title"),
         description: t(
           "mndePage.deposit-msol-sol-lp-modal.insufficient-funds.description"
@@ -107,6 +109,7 @@ const MSolLpModal = ({
         (transactionSignature) => {
           setAmount("");
           toast({
+            position: toastPosition,
             title: t("mndePage.deposit-msol-sol-lp-modal.deposit-action.title"),
             description: (
               <p>
@@ -131,6 +134,7 @@ const MSolLpModal = ({
         },
         (error) => {
           toast({
+            position: toastPosition,
             title: t("mndePage.deposit-msol-sol-lp-modal.errors.title"),
             description: error.message,
             status: "warning",
@@ -175,6 +179,7 @@ const MSolLpModal = ({
 
     if (Number(amount) > userStake.toNumber() / LAMPORTS_PER_SOL) {
       toast({
+        position: toastPosition,
         title: t("mndePage.deposit-msol-sol-lp-modal.insufficient-funds.title"),
         description: t(
           "mndePage.deposit-msol-sol-lp-modal.insufficient-funds.description"
@@ -197,6 +202,7 @@ const MSolLpModal = ({
         (transactionSignature) => {
           setAmount("");
           toast({
+            position: toastPosition,
             title: t(
               "mndePage.deposit-msol-sol-lp-modal.withdraw-action.title"
             ),
@@ -222,6 +228,7 @@ const MSolLpModal = ({
         },
         (error) => {
           toast({
+            position: toastPosition,
             title: t("mndePage.deposit-msol-sol-lp-modal.errors.title"),
             description: error.toString().includes("0xa7")
               ? t(

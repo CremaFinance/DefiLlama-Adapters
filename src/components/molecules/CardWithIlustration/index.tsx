@@ -5,7 +5,7 @@ import MText from "../../atoms/Text";
 
 interface CardWithIlustrationProps {
   header: JSX.Element | string;
-  text: string;
+  text?: string;
   ilustrationData: { src: string; alt: string; width?: number };
   footer?: JSX.Element;
   reverseSections?: boolean;
@@ -17,6 +17,7 @@ const CardWithIlustration: FunctionComponent<CardWithIlustrationProps> = ({
   ilustrationData,
   footer,
   reverseSections = false,
+  children,
 }) => {
   const breakpoint = useBreakpointValue({ base: "base", lg: "lg" });
   const renderTextSection = (): JSX.Element => {
@@ -32,7 +33,7 @@ const CardWithIlustration: FunctionComponent<CardWithIlustrationProps> = ({
         maxWidth="530px"
       >
         {header}
-        <MText type="text-2xl">{text}</MText>
+        {!children ? <MText type="text-2xl">{text}</MText> : children}
         {footer}
       </Flex>
     );

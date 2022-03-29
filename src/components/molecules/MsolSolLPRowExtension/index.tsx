@@ -79,6 +79,7 @@ const MsolSolLPRowExtension = () => {
       .then(
         (transactionSignature) => {
           toast({
+            position: "bottom-left",
             title: t("mndePage.claim-mnde-confirmed"),
             description: (
               <p>
@@ -103,6 +104,7 @@ const MsolSolLPRowExtension = () => {
           console.error(error);
 
           toast({
+            position: "bottom-left",
             title: t("mndePage.something-went-wrong"),
             description: t("mndePage.error-processing-transaction"),
             status: "warning",

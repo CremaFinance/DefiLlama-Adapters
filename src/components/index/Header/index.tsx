@@ -6,6 +6,7 @@ import { useCallback, useEffect, useState } from "react";
 
 import MButton from "../../atoms/Button";
 import Sidebar from "../../layout/Sidebar";
+import HeaderMenu from "../HeaderMenu";
 import colors from "styles/customTheme/colors";
 
 const Header = () => {
@@ -61,6 +62,10 @@ const Header = () => {
             height="40px"
           />
         </Link>
+
+        <Box display={["none", "none", "block"]}>
+          <HeaderMenu />
+        </Box>
 
         <Box mr={2}>
           <Box display={["block", "block", "none"]}>

@@ -48,6 +48,7 @@ const SolLiquidityModal = ({
 }: SolLiquidityModalProps) => {
   const { t } = useTranslation();
   const toast = useToast();
+  const toastPosition = "bottom-left";
   const modalSize = useBreakpointValue({ base: "full", md: "md" });
 
   const { track } = useTracking();
@@ -94,6 +95,7 @@ const SolLiquidityModal = ({
       )
     ) {
       return toast({
+        position: toastPosition,
         title: t("appPage.amount-exceeds-current-liquidity-cap"),
         description: t("appPage.try-using-max-button"),
         status: "warning",
@@ -123,6 +125,7 @@ const SolLiquidityModal = ({
           setAmount("");
 
           toast({
+            position: toastPosition,
             title: t("appPage.liquidity-sol-confirmed"),
             description: (
               <p>
@@ -155,6 +158,7 @@ const SolLiquidityModal = ({
           }
 
           toast({
+            position: toastPosition,
             title: t("appPage.something-went-wrong"),
             description: error.message,
             status: "warning",
@@ -198,6 +202,7 @@ const SolLiquidityModal = ({
 
     if (liqSOLBalance && Number(amount) > liqSOLBalance) {
       return toast({
+        position: toastPosition,
         title: t("appPage.insufficient-funds-to-remove"),
         description: t("appPage.requested-liquidity-not-enough-funds")
           .replace("{{amount}}", amount)
@@ -214,6 +219,7 @@ const SolLiquidityModal = ({
         (transactionSignature) => {
           setAmount("");
           toast({
+            position: toastPosition,
             title: t("appPage.remove-liquidity-confirmed"),
             description: (
               <p>
@@ -245,6 +251,7 @@ const SolLiquidityModal = ({
           }
 
           toast({
+            position: toastPosition,
             title: t("appPage.something-went-wrong"),
             description: error.toString().includes("0xa7")
               ? t("appPage.your-lp-account-is-deactivated")

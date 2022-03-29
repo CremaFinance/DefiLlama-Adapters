@@ -64,4 +64,13 @@ export const liquidityPoolTokensAldrin: Record<
     logoURI: aldrinUri,
     tags: ["lp-token"],
   },
+  [liquidityAldrinPoolAddress.ALDRIN_mSOL_NEAR]: {
+    chainId: 101,
+    address: "J57SuGbMCMuRaQHxiuVChXZeMSTN6ZNqx4GufrY7rzY3",
+    symbol: "NEAR-mSOL",
+    name: "Aldrin NEAR/mSOL",
+    decimals: 0,
+    logoURI: aldrinUri,
+    tags: ["lp-token"],
+  },
 };

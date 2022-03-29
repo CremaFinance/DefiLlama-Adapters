@@ -51,6 +51,7 @@ const DelayedUnstakeModal = ({
 }: DelayedUnstakeModalProps) => {
   const { t } = useTranslation();
   const toast = useToast();
+  const toastPosition = "bottom-left";
   const { track } = useTracking();
   const [unstakeLoading, setUnstakeLoading] = useState(false);
   const state = useMarinadeState();
@@ -99,6 +100,7 @@ const DelayedUnstakeModal = ({
         ?.replace("{{requestedAmount}}", format5Dec(toUnstakeFullDecimals))
         .replace("{{actualAmount}}", format5Dec(stSOLBalance));
       toast({
+        position: toastPosition,
         title: t("appPage.insufficient-funds-to-unstake"),
         description,
         status: "warning",
@@ -116,6 +118,7 @@ const DelayedUnstakeModal = ({
       .then(
         (transactionSignature) => {
           toast({
+            position: toastPosition,
             title: t("appPage.unstake-mSOL-confirmed"),
             description: (
               <p>
@@ -149,6 +152,7 @@ const DelayedUnstakeModal = ({
           }
 
           toast({
+            position: toastPosition,
             title: t("appPage.something-went-wrong"),
             description: error.message,
             status: "warning",
