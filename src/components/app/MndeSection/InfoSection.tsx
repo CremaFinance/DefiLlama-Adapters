@@ -8,7 +8,7 @@ const InfoSection = () => {
   const { t } = useTranslation();
   return (
     <Flex
-      pt={["56px", "150px"]}
+      pt={["100px", "150px"]}
       pb={[12, 8]}
       aria-label="mnde-section"
       position="relative"

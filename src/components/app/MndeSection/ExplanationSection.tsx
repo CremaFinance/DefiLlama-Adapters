@@ -4,6 +4,8 @@ import type { FunctionComponent } from "react";
 
 import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
+import Link from "../../atoms/Link";
+import MText from "../../atoms/Text";
 import CardWithIlustration from "components/molecules/CardWithIlustration";
 import { useTranslation } from "hooks/useTranslation";
 import colors from "styles/customTheme/colors";
@@ -75,7 +77,66 @@ const ExplanationSection: FunctionComponent = (): JSX.Element => {
       pb={20}
       gap={{ base: 50, lg: 120 }}
     >
-      {[0, 1, 2].map(renderCardWithIlustration)}
+      {[0, 1].map(renderCardWithIlustration)}
+      <CardWithIlustration
+        key="card-with-ilustration-2"
+        header={<Box alignSelf="start">{renderHeaderText(2)}</Box>}
+        ilustrationData={{
+          src: `/ilustrations/explanation-section-2.svg`,
+          alt: t(`mndePage.explanation-section.items.2.ilustration-alt`) || "",
+          width: 363,
+        }}
+      >
+        <Link
+          font="text-md"
+          href="https://docs.marinade.finance/"
+          isExternal
+          fontWeight="bold"
+          display="flex"
+          flexDirection="row"
+          textOverflow="ellipsis"
+          whiteSpace="nowrap"
+          overflow="hidden"
+          width="180px"
+          textDecoration="underline"
+          py="31px"
+          mr="auto"
+          px="10px"
+        >
+          <MText fontSize="18px">
+            {t(`mndePage.explanation-section.items.2.links.0.text`)}
+          </MText>
+          <Image
+            src="/icons/external-link-black.svg"
+            width="1rem"
+            marginLeft="10px"
+          />
+        </Link>
+        <Link
+          font="text-md"
+          href="https://medium.com/marinade-finance/how-marinades-mnde-will-fuel-on-chain-dao-governance-6cd5caf2dd82"
+          isExternal
+          fontWeight="bold"
+          display="flex"
+          flexDirection="row"
+          textOverflow="ellipsis"
+          whiteSpace="nowrap"
+          overflow="hidden"
+          width="180px"
+          textDecoration="underline"
+          mr="auto"
+          px="10px"
+        >
+          <MText fontSize="18px">
+            {t(`mndePage.explanation-section.items.2.links.1.text`)}
+          </MText>
+          <Image
+            src="/icons/external-link-black.svg"
+            width="1rem"
+            marginLeft="10px"
+          />
+        </Link>
+      </CardWithIlustration>
     </Flex>
   );
 };
