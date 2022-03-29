@@ -713,10 +713,10 @@
         },
         {
           "header": {
-            "green": "Build with Marinade,",
-            "black": " apply for funding"
+            "green": "Read",
+            "black": " more about MNDE"
           },
-          "text": "The natural and organic staking rewards from a more decentralized and censorship resistant Solana can fuel ecosystem growth. Build with Marinade and give back when you succeed so the kitchen can feed future projects.",
+          "links": [{ "text": "Documentation" }, { "text": "Read on medium" }],
           "ilustration-alt": "Build"
         }
       ]
