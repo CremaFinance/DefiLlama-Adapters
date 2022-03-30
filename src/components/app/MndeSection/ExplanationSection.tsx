@@ -36,7 +36,7 @@ const ExplanationSection: FunctionComponent = (): JSX.Element => {
       _hover={activeMenu}
       isDisabled
     >
-      {t("mndePage.comming-soon")}
+      {t("mndePage.coming-soon")}
       <Image src="/icons/arrow-right.svg" width="16px" alt="Lock MNDE" ml={2} />
     </MButton>
   );
