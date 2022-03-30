@@ -88,7 +88,31 @@ const CompleteLockMndeModal: FunctionComponent<CompleteLockMndeModalProps> = ({
                 txConfirmed &&
                 t("mndePage.lock-mnde-complete-modal.body.1.text")}
             </MText>
-            <Flex justifyContent="space-between" w="100%" my={5}>
+            <Skeleton
+              width="90%"
+              isLoaded={!isFetching && !isLoading && txConfirmed}
+              my={5}
+            >
+              <MButton
+                font="text-lg"
+                bg={colors.marinadeGreen}
+                _hover={{ bg: colors.green800 }}
+                colorScheme={colors.marinadeGreen}
+                rounded="md"
+                px={4}
+                height="40px"
+                width="100%"
+                onClick={() => {
+                  window.open(
+                    "https://vote.marinade.finance/gov/mnde",
+                    "_blank"
+                  );
+                }}
+              >
+                {t("mndePage.lock-mnde-complete-modal.button")}
+              </MButton>
+            </Skeleton>
+            <Flex justifyContent="space-between" w="100%">
               <Skeleton isLoaded={!isFetching && !isLoading && txConfirmed}>
                 <MLink
                   target="_blank"
@@ -151,29 +175,6 @@ const CompleteLockMndeModal: FunctionComponent<CompleteLockMndeModalProps> = ({
                 </MLink>
               </Skeleton>
             </Flex>
-            <Skeleton
-              width="90%"
-              isLoaded={!isFetching && !isLoading && txConfirmed}
-            >
-              <MButton
-                font="text-lg"
-                bg={colors.marinadeGreen}
-                _hover={{ bg: colors.green800 }}
-                colorScheme={colors.marinadeGreen}
-                rounded="md"
-                px={4}
-                height="40px"
-                width="100%"
-                onClick={() => {
-                  window.open(
-                    "https://vote.marinade.finance/gov/mnde",
-                    "_blank"
-                  );
-                }}
-              >
-                {t("mndePage.lock-mnde-complete-modal.button")}
-              </MButton>
-            </Skeleton>
           </Flex>
         </ModalBody>
       </ModalContent>
