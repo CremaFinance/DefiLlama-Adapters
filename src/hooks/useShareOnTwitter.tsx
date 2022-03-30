@@ -20,7 +20,7 @@ const useShareOnTwitter = () => {
     t("mndePage.twitter-messages.regular.message-three"),
   ];
 
-  return async (index: number, tier: number) => {
+  return async (index: number, tier: number, pid: string) => {
     const editionInfo = data?.find((x) => x !== undefined);
     const isLimited = !!editionInfo?.left;
     const messages: string[] = isLimited ? limitedMessages : regularMessages;
@@ -30,7 +30,7 @@ const useShareOnTwitter = () => {
       `https://twitter.com/intent/tweet?text=${messages[messageIndex].replace(
         "{{left}}",
         isLimited ? editionInfo?.left.toString() : ""
-      )}%0A%0Ahttps://marinade.finance/app/mnde/nft?pid=AVqM4cZzTfZvSNitUcgrRBQfGUAs4c66J3omrWFC2LWW&url=https://${
+      )}%0A%0Ahttps://marinade.finance/app/mnde/nft?pid=${pid}&url=https://${
         twitterData.entities.media[0].display_url
       }`,
       "_blank"

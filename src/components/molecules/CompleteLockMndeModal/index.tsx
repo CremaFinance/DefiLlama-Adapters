@@ -137,7 +137,8 @@ const CompleteLockMndeModal: FunctionComponent<CompleteLockMndeModalProps> = ({
 
                       await shareOnTwitter(
                         metadata.properties.index,
-                        metadata.properties.tier
+                        metadata.properties.tier,
+                        nft.address.toString()
                       );
                     }
                   }}

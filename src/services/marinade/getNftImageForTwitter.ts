@@ -6,7 +6,6 @@ export const getNftImageForTwitter = async (index: number, tier: number) => {
     mode: "cors",
     headers: {
       "Content-Type": "application/json",
-      // 'Content-Type': 'application/x-www-form-urlencoded',
     },
     body: JSON.stringify({
       index,

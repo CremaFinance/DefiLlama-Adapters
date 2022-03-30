@@ -185,7 +185,8 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
                   if (data?.properties.index && data.properties.tier) {
                     await shareOnTwitter(
                       data?.properties.index,
-                      data?.properties.tier
+                      data?.properties.tier,
+                      id
                     );
                   }
                 }}
