@@ -651,7 +651,17 @@
       "deposit-first-msol": "Deposit first",
       "get-msol": "Get mSOL"
     },
-    "twitter-messages": {"message-one":"I am the newest Marinator at @MarinadeFinance and this is my very own Chef!"},
+    "twitter-messages": {
+      "limited": {
+        "message-one": "I’ve joined the @marinadefinance DAO to govern the future of Solana and this is my very own NFT Chef!%0A%0AOnly {{left}} left in the Limited Edition. Lock MNDE now to get your very own Chef!",
+        "message-two":"I’ve just minted my very own NFT Chef at @MarinadeFinance!%0A%0AJoin me in the DAO with a chef of your own! There are {{left}} Limited Edition Chefs left! Get yours!"
+      },
+      "regular": {
+        "message-one":"Meet my very own NFT Chef! Get your own unique Chef now by locking $MNDE for governance at @MarinadeFinance.",
+        "message-two":"I’m officially participating in governance in the @MarinadeFinance DAO on Solana with my new NFT Chef! Join me in the kitchen by minting a Chef of your very own!",
+        "message-three":"Meet my new NFT Chef! It’s proof I am a member of the @MarinadeFinance DAO that will guide the future of Solana. Join me in the kitchen with a Chef of your own!"
+      }
+    },
     "deposit-msol-sol-lp-modal": {
       "deposit": "Deposit mSOL-SOL LP",
       "withdraw": "Withdraw mSOL-SOL LP",
