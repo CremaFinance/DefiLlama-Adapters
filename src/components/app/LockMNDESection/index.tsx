@@ -159,7 +159,10 @@ const LockMNDESection = () => {
                     });
                   },
                   (error) => {
+                    transactionSignedAction(false);
                     setIsPendingLockOpen(false);
+                    setTxConfirmed(false);
+                    onCompleteLockMndeClose();
                     let description = t(
                       "appPage.mnde.errors.mint-failed.description"
                     );

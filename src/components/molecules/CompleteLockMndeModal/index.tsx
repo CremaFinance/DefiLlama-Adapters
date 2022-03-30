@@ -59,6 +59,8 @@ const CompleteLockMndeModal: FunctionComponent<CompleteLockMndeModalProps> = ({
             mt={6}
           >
             <Skeleton
+              width={{ base: "300px", md: "382px" }}
+              height={{ base: "300px", md: "382px" }}
               isLoaded={
                 !isFetching && !isLoading && txConfirmed && thumbnailLoaded
               }
