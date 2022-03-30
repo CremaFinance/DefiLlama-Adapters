@@ -93,7 +93,7 @@ const ClaimMndeModal: FunctionComponent<ClaimMndeModalProps> = ({
                   color={colors?.red?.[500]}
                 >
                   {t("mndePage.claim-mnde-modal.body.2.text")}
-                </MText>{" "}
+                </MText>
                 <MText fontSize="text-xl" display="inline">
                   {t("mndePage.claim-mnde-modal.body.3.text")}
                 </MText>
