@@ -37,7 +37,7 @@ const InfoSection = () => {
         <Flex pt={12} pb="65px">
           <MButton variant="big-solid" isDisabled>
             {" "}
-            {t("mndePage.comming-soon")}
+            {t("mndePage.coming-soon")}
           </MButton>
         </Flex>
       </Flex>
