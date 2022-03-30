@@ -385,7 +385,7 @@
       },
       "unlock-period": {
         "text": "Unlock period",
-        "tooltip": "During the unlock period, unlocking tokens cannot vote. When the unlocking period passes, all NFT can be burned and all tokens can be withdrawn from the governance escrow."
+        "tooltip": "During the unlock period, unlocking NFTs cannot vote. When the unlocking period is over, the NFT can be burned and tokens can be withdrawn from the governance escrow."
       },
       "unlock-period-mockup-value": "30 days",
       "lock-nfts": "If you lock MNDE, your NFTs will be displayed here.",
@@ -470,11 +470,11 @@
         },
         {
           "question": "Is it possible to sell or transfer my NFT while my MNDE is locked?",
-          "response": "Yes, you can transfer your NFT to another wallet or sell it on a third-party marketplace (coming soon). In both cases, the MNDE locked in the NFT will also be transfered with the NFT."
+          "response": "Yes, you can transfer your NFT to another wallet or sell it on a third-party marketplace (coming soon). In both cases, the MNDE locked in the NFT will also be transferred with the NFT. If your NFT is in its unlocking period, it becomes non-transferable."
         },
         {
-          "question": "What happend to my NFT if I choose to unlock my MNDE?",
-          "response": "The NFT will begin a 30-day unlocking period. After 30 days, the user can burn the NFT and claim their MNDE."
+          "question": "What happens to my NFT if I choose to unlock my MNDE?",
+          "response": "Your NFT will begin a 30-day unlocking period. After 30 days, you will be able to burn your NFT and claim the underlying MNDE."
         },
         {
           "question": "Will I be notified of Marinade governance opportunities?",
@@ -1035,7 +1035,7 @@
       },
       "cooldown-period": {
         "text": "Unlock period",
-        "tooltip": "Upon the completion of the 30-day MNDE unlocking period, this NFT will be burned."
+        "tooltip": "Upon completion of the 30-day unlocking period, the NFT can be burned to get back the underlying MNDE tokens"
       },
       "share-twitter": "Share on twitter",
       "download": "Download NFT",
