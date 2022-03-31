@@ -26,6 +26,7 @@ const GovernanceNotification: FunctionComponent<
           borderColor={colors.marinadeBorderGreen}
           bg={colors.marinadeEvenLighterGreen}
         >
+          <Flex width="68px" />
           <Flex flex={1} justifyContent="center" alignItems="center">
             <MdNotifications color={colors.marinadeGreen} />
             <Text
