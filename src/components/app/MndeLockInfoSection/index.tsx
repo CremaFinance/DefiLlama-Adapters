@@ -1,10 +1,13 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Text, Image } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
+import { useRouter } from "next/dist/client/router";
 
+import MButton from "../../atoms/Button";
 import MNDELockStep from "components/molecules/MNDELockStep";
 import colors from "styles/customTheme/colors";
 
 const MndeLockInfoSection = () => {
+  const router = useRouter();
   const { t } = useTranslation();
   return (
     <Flex
@@ -16,8 +19,8 @@ const MndeLockInfoSection = () => {
       width="100vw"
     >
       <Flex
-        marginTop={{ base: "16px", lg: "40px" }}
-        marginBottom={{ base: "16px", lg: "40px" }}
+        marginTop={{ base: "16px", lg: "24px" }}
+        marginBottom={{ base: "16px", lg: "24px" }}
         marginX="8px"
         alignItems="center"
         flexDirection="column"
@@ -43,6 +46,27 @@ const MndeLockInfoSection = () => {
         >
           {t("appPage.mnde.lock.info-section.description")}
         </Text>
+        <MButton
+          display="flex"
+          font="text-xl"
+          variant="link"
+          fontWeight="bold"
+          mt="8px"
+          _hover={{ bg: colors.transparent }}
+          color={colors.marinadeGreen}
+          justifyContent="space-around"
+          flexDirection="row"
+          rightIcon={
+            <Image
+              src="/icons/arrow-right-full-green.svg"
+              width="13.33px"
+              height="12.99px"
+            />
+          }
+          onClick={() => router.push("/tokens/mnde")}
+        >
+          {t("appPage.mnde.lock.info-section.learn-more")}
+        </MButton>
       </Flex>
       <Flex
         flexDirection="row"
