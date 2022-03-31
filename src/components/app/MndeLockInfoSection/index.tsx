@@ -52,10 +52,14 @@ const MndeLockInfoSection = () => {
           variant="link"
           fontWeight="bold"
           mt="8px"
-          _hover={{ bg: colors.transparent }}
           color={colors.marinadeGreen}
           justifyContent="space-around"
           flexDirection="row"
+          _hover={{
+            bg: colors.transparent,
+            textDecoration: "underline",
+            textDecorationColor: colors.marinadeGreen,
+          }}
           rightIcon={
             <Image
               src="/icons/arrow-right-full-green.svg"
