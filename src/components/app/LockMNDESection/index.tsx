@@ -143,20 +143,22 @@ const LockMNDESection = () => {
                     transactionSignedAction(false);
                     setIsPendingLockOpen(false);
                     setTxConfirmed(true);
-                    toast({
-                      position: "bottom-left",
-                      title: t("mndePage.lock-mnde-transaction.title"),
-                      description: (
-                        <p>
-                          {t("mndePage.lock-mnde-transaction.description")}{" "}
-                          <TransactionLink
-                            chainName={chain.name}
-                            transactionid={signature}
-                          />
-                        </p>
-                      ),
-                      status: "success",
-                    });
+                    if (signature) {
+                      toast({
+                        position: "bottom-left",
+                        title: t("mndePage.lock-mnde-transaction.title"),
+                        description: (
+                          <p>
+                            {t("mndePage.lock-mnde-transaction.description")}{" "}
+                            <TransactionLink
+                              chainName={chain.name}
+                              transactionid={signature}
+                            />
+                          </p>
+                        ),
+                        status: "success",
+                      });
+                    }
                   },
                   (error) => {
                     transactionSignedAction(false);
