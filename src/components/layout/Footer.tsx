@@ -112,6 +112,7 @@ const Footer: FunctionComponent<FooterProps> = ({ isAppPage = false }) => {
                   maxWidth={{ base: "360", md: "30vw", lg: "25vw" }}
                   display="inline-block"
                   fontWeight="bold"
+                  as="span"
                 >
                   Anatoly Yakovenko,
                 </MText>{" "}
