@@ -615,7 +615,7 @@
   },
   "mndePage": {
     "retro-title": "MNDE Retro",
-    "comming-soon": "Comming soon",
+    "coming-soon": "Coming soon",
     "retro-info": "Marinade retroactive claim for early adopters will be distributed in the following phases:",
     "your-deposit": "Your deposit",
     "claim-action": "Claim",
@@ -717,7 +717,7 @@
             "green": "Read",
             "black": " more about MNDE"
           },
-          "links": [{ "text": "Documentation" }, { "text": "Read on medium" }],
+          "links": [{ "text": "Documentation" }, { "text": "Read on Medium" }],
           "ilustration-alt": "Build"
         }
       ]
