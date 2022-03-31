@@ -7,6 +7,7 @@ import { formatNumberLocale } from "../../../utils/format-number-locale";
 import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
+import TwitterDataLoadingModal from "../TwittedDataLoadingModal";
 import TooltipWithContent from "components/molecules/TooltipWithContent";
 import useGovernanceData from "hooks/useGovernanceData";
 import { useNftDetails } from "hooks/useNftDetails";
@@ -28,7 +29,8 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
   const { data: governance } = useGovernanceData();
   const { t } = useTranslation();
   const { isLoading, data, isIdle } = useNftDetails(id as string);
-  const shareOnTwitter = useShareOnTwitter();
+  const { isLoadingIntent, onLoadingIntent, shareOnTwitter } =
+    useShareOnTwitter();
   const unlockPeriod = (data?.properties.unlock_duration ?? 0) / 86_400;
   const skeleton = (
     <Flex
@@ -183,6 +185,7 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
                 height="40px"
                 onClick={async () => {
                   if (data?.properties.index && data.properties.tier) {
+                    onLoadingIntent();
                     await shareOnTwitter(
                       data?.properties.index,
                       data?.properties.tier,
@@ -362,6 +365,7 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
           </Box>
         </Flex>
       )}
+      <TwitterDataLoadingModal isOpen={isLoadingIntent} />
     </Flex>
   );
 };
