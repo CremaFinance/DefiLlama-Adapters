@@ -10,6 +10,7 @@ import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
 import { useContext, useEffect, useState } from "react";
 import { MdInfoOutline } from "react-icons/md";
+import { v4 as uuidv4 } from "uuid";
 
 import { useUserBalance } from "../../../contexts/UserBalanceContext";
 import MButton from "../../atoms/Button";
@@ -157,6 +158,15 @@ const LockMNDESection = () => {
                           </p>
                         ),
                         status: "success",
+                      });
+                      track({
+                        event: "Lock MNDE",
+                        category: "Lock MNDE",
+                        action: "Lock",
+                        label: "Success",
+                        sol_amount: Number(MNDEToLock),
+                        currency: "MNDE",
+                        transaction_id: uuidv4(),
                       });
                     }
                   },

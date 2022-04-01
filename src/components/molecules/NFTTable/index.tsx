@@ -210,6 +210,13 @@ const NFTTable = () => {
           setIsPendingLockOpen(true);
           return claimMNDE(currentNFTAddress).then(
             (result) => {
+              track({
+                event: "Claim MNDE",
+                category: "Lock MNDE",
+                action: "Claim",
+                label: "Success",
+                currency: "MNDE Refund",
+              });
               return result;
             },
             (error) => {
@@ -245,6 +252,12 @@ const NFTTable = () => {
           setIsPendingLockOpen(true);
           return startUnlocking(currentNFTAddress).then(
             (result) => {
+              track({
+                event: "Unlock MNDE",
+                category: "Lock MNDE",
+                action: "Unlock",
+                label: "Success",
+              });
               return result;
             },
             (error) => {
@@ -283,6 +296,12 @@ const NFTTable = () => {
           setIsPendingLockOpen(true);
           return cancelUnlocking(currentNFTAddress).then(
             (result) => {
+              track({
+                event: "Cancel unlock MNDE",
+                category: "Lock MNDE",
+                action: "Unlock",
+                label: "Success",
+              });
               return result;
             },
             (error) => {

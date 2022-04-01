@@ -18,7 +18,7 @@ type TrackEvent = {
   label: "Success" | "Error";
   description?: string;
   sol_amount?: number;
-  currency?: "SOL" | "MSOL";
+  currency?: "SOL" | "MSOL" | "MNDE" | "MNDE Refund";
   transaction_id?: string;
 };
 export const useTracking = () => {
