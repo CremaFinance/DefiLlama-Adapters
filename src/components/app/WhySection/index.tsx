@@ -45,7 +45,7 @@ const WhySection: FunctionComponent = () => {
             title={
               t(`mndePage.why-section.cards.${index}.header`)?.replace(
                 "{{value}}",
-                numberToShortVersion(totalTLV)
+                numberToShortVersion(totalTLV ?? 0, true)
               ) || ""
             }
             subtitle={t(`mndePage.why-section.cards.${index}.text`)}

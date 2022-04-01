@@ -11,8 +11,8 @@ import type { UseQueryResult } from "react-query";
 import { useQuery } from "react-query";
 
 import { fetchStakeAPY } from "../services/marinade/stakeAPY";
+import { fetchTotalTLV } from "../services/marinade/totalTLV";
 import { isError } from "../utils/is-error";
-import { fetchTotalTLV } from "services/marinade/totalTlv";
 
 import { useConnection } from "./ConnectionProvider";
 import { useMarinadeState } from "./MarinadeContext";
