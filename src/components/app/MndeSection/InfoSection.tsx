@@ -44,7 +44,6 @@ const InfoSection = () => {
             target="_blank"
             rel="noreferrer noopener"
             _focus={{ boxShadow: "none" }}
-            mr={4}
             href="https://discord.com/invite/6EtUf4Euu6"
             display="flex"
             justifyContent="center"
