@@ -1,19 +1,18 @@
+/* eslint-disable react/jsx-no-constructed-context-values */
+/* eslint-disable no-promise-executor-return */
+/* eslint-disable no-unsafe-optional-chaining */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable sonarjs/cognitive-complexity */
 /* eslint-disable consistent-return */
 /* eslint-disable no-await-in-loop */
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
-import { useQuery, UseQueryResult } from "react-query";
+import type { ReactNode } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import type { UseQueryResult } from "react-query";
+import { useQuery } from "react-query";
 
 import { fetchStakeAPY } from "../services/marinade/stakeAPY";
 import { isError } from "../utils/is-error";
+import { fetchTotalTLV } from "services/marinade/totalTlv";
 
 import { useConnection } from "./ConnectionProvider";
 import { useMarinadeState } from "./MarinadeContext";
@@ -50,6 +49,11 @@ export interface Stats {
    */
   stakeAPY: null | number;
 
+  /**
+   * Total TLV
+   */
+  totalTLV: null | number;
+
   unstakeFee: null | number;
   totalValidatorsCount: null | number;
 }
@@ -61,6 +65,7 @@ const StatsContext = createContext<Stats>({
   lpTokenSupply: null,
   mSOLvsSOLParity: null,
   stakeAPY: null,
+  totalTLV: null,
   unstakeFee: null,
   totalValidatorsCount: null,
 });
@@ -248,6 +253,7 @@ export function StatsProvider({ children }: StatsProviderProps) {
   }, [data]);
 
   const stakeAPY = useQuery<number, Error>("stakeAPY", () => fetchStakeAPY());
+  const totalTLV = useQuery<number, Error>("totalTLV", () => fetchTotalTLV());
 
   return (
     <StatsContext.Provider
@@ -258,6 +264,7 @@ export function StatsProvider({ children }: StatsProviderProps) {
         lpTokenSupply,
         mSOLvsSOLParity,
         stakeAPY: stakeAPY.data ?? 0,
+        totalTLV: totalTLV.data ?? 0,
         unstakeFee,
         totalValidatorsCount,
       }}

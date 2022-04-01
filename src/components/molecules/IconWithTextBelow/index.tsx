@@ -46,7 +46,7 @@ const IconWithTextBelow = ({
       marginBottom={marginBottom}
       marginTop={marginTop}
       marginX={marginX}
-      width="18rem"
+      width="19rem"
       alignItems="center"
     >
       <Image
