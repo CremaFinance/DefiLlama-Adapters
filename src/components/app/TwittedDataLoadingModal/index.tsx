@@ -5,6 +5,8 @@ import {
   ModalContent,
   ModalOverlay,
   useBreakpointValue,
+  Image,
+  Spinner,
 } from "@chakra-ui/react";
 import type { FunctionComponent } from "react";
 
@@ -24,14 +26,31 @@ const TwitterDataLoadingModal: FunctionComponent<
   return (
     <Modal isOpen={isOpen} isCentered onClose={() => {}} size={modalSize}>
       <ModalOverlay />
-      <ModalContent width="480px" height="300px">
-        <ModalBody display="flex" justifyContent="center" alignItems="center">
+      <ModalContent width="480px">
+        <ModalBody
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          flexDirection="column"
+          py={12}
+          position="relative"
+        >
+          <Spinner
+            size="md"
+            position="absolute"
+            top={0}
+            right={0}
+            mr={8}
+            mt={8}
+          />
+          <Image src="/ilustrations/twitter-loading.svg" />
           <Center
             flexDir="column"
             height="100%"
             alignItems="center"
             margin="0"
             justifyContent="center"
+            pt={6}
           >
             <Text
               fontSize="28.13px"

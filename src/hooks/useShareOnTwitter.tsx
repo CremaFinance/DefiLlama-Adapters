@@ -36,7 +36,7 @@ const useShareOnTwitter = () => {
         `https://twitter.com/intent/tweet?text=${messages[messageIndex].replace(
           "{{left}}",
           isLimited ? editionInfo?.left.toString() : ""
-        )}%0A%0Ahttps://marinade.finance/app/mnde/nft?pid=${pid}%0A&url=https://${
+        )}%0A%0Ahttps://marinade.finance/app/mnde/nft?pid=${pid}%0A&hashtags=Governooor&url=https://${
           twitterData.entities.media[0].display_url
         }`,
         "_blank"
