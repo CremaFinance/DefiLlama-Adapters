@@ -3,11 +3,16 @@ import type { FunctionComponent } from "react";
 
 import MHeading from "../../atoms/Heading";
 import IconWithTextBelow from "components/molecules/IconWithTextBelow";
+import { useStats } from "contexts/StatsContext";
 import { useTranslation } from "hooks/useTranslation";
 import colors from "styles/customTheme/colors";
+import { numberToShortVersion } from "utils/number-to-short-version";
 
 const WhySection: FunctionComponent = () => {
   const { t } = useTranslation();
+
+  const { totalTLV } = useStats();
+
   return (
     <Flex
       py={16}
@@ -34,10 +39,15 @@ const WhySection: FunctionComponent = () => {
         {[0, 1, 2].map((index) => (
           <IconWithTextBelow
             marginTop={8}
-            marginX={8}
+            marginX={16}
             key={`mnde-why-section-item-${index}`}
             icon={`/ilustrations/why-card-${index}.svg`}
-            title={t(`mndePage.why-section.cards.${index}.header`) || ""}
+            title={
+              t(`mndePage.why-section.cards.${index}.header`)?.replace(
+                "{{value}}",
+                numberToShortVersion(totalTLV ?? 0, true)
+              ) || ""
+            }
             subtitle={t(`mndePage.why-section.cards.${index}.text`)}
           />
         ))}

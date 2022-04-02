@@ -1,15 +1,26 @@
-export function numberToShortVersion(value: number): string {
+export function numberToShortVersion(
+  value: number,
+  singleDec?: boolean
+): string {
   if (value < 1_000) {
-    return `${Math.floor(value * 100) / 100}`;
+    return singleDec
+      ? `${(Math.floor(value * 100) / 100).toFixed(1)}`
+      : `${Math.floor(value * 100) / 100}`;
   }
   if (value < 1_000_000) {
-    return `${Math.floor((value / 1_000) * 100) / 100}K`;
+    return singleDec
+      ? `${(Math.floor((value / 1_000) * 100) / 100).toFixed(1)}K`
+      : `${Math.floor((value / 1_000) * 100) / 100}K`;
   }
   if (value < 1_000_000_000) {
-    return `${Math.floor((value / 1_000_000) * 100) / 100}M`;
+    return singleDec
+      ? `${(Math.floor((value / 1_000_000) * 100) / 100).toFixed(1)}M`
+      : `${Math.floor((value / 1_000_000) * 100) / 100}M`;
   }
 
-  return `${Math.floor((value / 1_000_000_000) * 100) / 100}B`;
+  return singleDec
+    ? `${(Math.floor((value / 1_000_000_000) * 100) / 100).toFixed(1)}B`
+    : `${Math.floor((value / 1_000_000_000) * 100) / 100}B`;
 }
 
 export function format5Dec(balance: number, divisor?: number): string {

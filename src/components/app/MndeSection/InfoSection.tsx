@@ -32,9 +32,6 @@ const InfoSection = () => {
         <MText type="text-2xl" fontWeight="bold" pt={2}>
           {t("mndePage.info-section.highlighted-text")}
         </MText>
-        <MText type="text-xl" pt={4}>
-          {t("mndePage.info-section.text")}
-        </MText>
         <Flex pt={12} pb="65px" flexDirection="column">
           <MButton variant="big-solid" isDisabled mb="8px">
             {" "}
