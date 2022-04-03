@@ -1,4 +1,4 @@
-import { Flex, Tr, Td, Image, useMediaQuery } from "@chakra-ui/react";
+import { Flex, Tr, Td, Image, useMediaQuery, Skeleton } from "@chakra-ui/react";
 import type { PublicKey } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
 import { useRouter } from "next/router";
@@ -45,6 +45,7 @@ const NFTTableRow: FunctionComponent<NFTTableRowProps> = ({
   const { t } = useTranslation();
   const [isMobile] = useMediaQuery("(max-width: 425px)");
   const [countdownVisible, setCountdownVisible] = useState(true);
+  const [thumbnailLoaded, setThumbnailLoaded] = useState(false);
   const router = useRouter();
   return (
     <Tr height="84px">
@@ -54,7 +55,15 @@ const NFTTableRow: FunctionComponent<NFTTableRowProps> = ({
           flexDirection="column"
           onClick={() => router.push(`mnde/nft?pid=${address.toString()}`)}
         >
-          <Image src={thumbnailURL} width="48px" />
+          <Skeleton width="48px" height="48px" isLoaded={thumbnailLoaded}>
+            <Image
+              src={thumbnailURL}
+              width="48px"
+              onLoad={() => {
+                setThumbnailLoaded(true);
+              }}
+            />
+          </Skeleton>
           <MText
             mt="4px"
             type="text-md"
