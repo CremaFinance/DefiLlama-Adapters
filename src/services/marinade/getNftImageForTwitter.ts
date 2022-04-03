@@ -1,7 +1,7 @@
-const apiUrl = "https://marinade-nft.beta.live/twitter/tweet";
+import { DEFAULT_ENDPOINT } from "utils/web3/endpoints";
 
 export const getNftImageForTwitter = async (index: number, tier: number) => {
-  const twitterRes = await fetch(apiUrl, {
+  const twitterRes = await fetch(DEFAULT_ENDPOINT.nftTwitterShareEnpoint, {
     method: "post",
     mode: "cors",
     headers: {
