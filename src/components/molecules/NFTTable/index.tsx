@@ -17,6 +17,7 @@ import { PublicKey } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
 import { useContext, useState } from "react";
 import { FiExternalLink } from "react-icons/fi";
+import { v4 as uuidv4 } from "uuid";
 
 import { formatNumberLocale } from "../../../utils/format-number-locale";
 import MButton from "../../atoms/Button";
@@ -210,6 +211,15 @@ const NFTTable = () => {
           setIsPendingLockOpen(true);
           return claimMNDE(currentNFTAddress).then(
             (result) => {
+              track({
+                event: "Claim MNDE",
+                category: "Lock MNDE",
+                action: "Claim",
+                label: "Success",
+                currency: "MNDE",
+                sol_amount: Number(currentNFTMndeValue),
+                transaction_id: uuidv4(),
+              });
               return result;
             },
             (error) => {
@@ -245,6 +255,12 @@ const NFTTable = () => {
           setIsPendingLockOpen(true);
           return startUnlocking(currentNFTAddress).then(
             (result) => {
+              track({
+                event: "Unlock MNDE",
+                category: "Lock MNDE",
+                action: "Unlock",
+                label: "Success",
+              });
               return result;
             },
             (error) => {
@@ -283,6 +299,12 @@ const NFTTable = () => {
           setIsPendingLockOpen(true);
           return cancelUnlocking(currentNFTAddress).then(
             (result) => {
+              track({
+                event: "Cancel Unlock MNDE",
+                category: "Lock MNDE",
+                action: "Unlock",
+                label: "Success",
+              });
               return result;
             },
             (error) => {
