@@ -93,10 +93,11 @@ const StartUnlockingMndeModal: FunctionComponent<
                   color={colors?.red?.[500]}
                   display="inline-block"
                   fontWeight="bold"
+                  as="span"
                 >
                   {t("mndePage.unlock-mnde-modal.body.1.text")}
                 </MText>{" "}
-                <MText display="inline-block" fontWeight="bold">
+                <MText display="inline-block" fontWeight="bold" as="span">
                   {t("mndePage.unlock-mnde-modal.body.2.text")?.replace(
                     "{{value}}",
                     mndeAmount
