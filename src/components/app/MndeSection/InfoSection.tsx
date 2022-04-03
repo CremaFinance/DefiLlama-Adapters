@@ -1,6 +1,7 @@
-import { Flex } from "@chakra-ui/react";
+import { Flex, Image } from "@chakra-ui/react";
 
 import MButton from "../../atoms/Button";
+import Link from "../../atoms/Link";
 import MText from "../../atoms/Text";
 import { useTranslation } from "hooks/useTranslation";
 
@@ -31,14 +32,29 @@ const InfoSection = () => {
         <MText type="text-2xl" fontWeight="bold" pt={2}>
           {t("mndePage.info-section.highlighted-text")}
         </MText>
-        <MText type="text-xl" pt={4}>
-          {t("mndePage.info-section.text")}
-        </MText>
-        <Flex pt={12} pb="65px">
-          <MButton variant="big-solid" isDisabled>
+        <Flex pt={12} pb="65px" flexDirection="column">
+          <MButton variant="big-solid" isDisabled mb="8px">
             {" "}
-            {t("mndePage.coming-soon")}
+            4.4.2022
           </MButton>
+          <Link
+            target="_blank"
+            rel="noreferrer noopener"
+            _focus={{ boxShadow: "none" }}
+            href="https://discord.com/invite/6EtUf4Euu6"
+            display="flex"
+            justifyContent="center"
+            fontWeight="bold"
+            font="text-2xl"
+          >
+            Join Discord for more details
+            <Image
+              src="/icons/arrow-right.svg"
+              width="16px"
+              alt="Lock MNDE"
+              ml={2}
+            />
+          </Link>
         </Flex>
       </Flex>
     </Flex>

@@ -681,16 +681,16 @@
       "header": "$MNDE NFTs give you a say on",
       "cards": [
         {
-          "header": "35% Treasury",
-          "text": "The Marinade DAO treasury holds a 35% allocation of MNDE, and receives ongoing fees from staked SOL."
+          "header": "$250M treasury",
+          "text": "The Marinade DAO treasury holds a 35% allocation of MNDE, as well as receiving ongoing fees from staked SOL."
         },
         {
-          "header": "35% mDAO",
-          "text": "The Marinade mDAO holds 35% of MNDE tokens and receives them through ecosystem festivals and liquidity mining."
+          "header": "{{value}} SOL delegation",
+          "text": "The security and decentralization of Solana is positively influenced by the Marinade staking algorithm, which stakes and balances the Marinade pool. You govern that algorithm."
         },
         {
-          "header": "30% Team",
-          "text": "The Marinade team holds 30% of MNDE tokens. This is split between the founding team and new team members and are subject to a vesting period."
+          "header": "Executive team",
+          "text": "The DAO will elect the members to the executive team to lead the next chapter of Marinade and guide the future of Solana."
         }
       ]
     },
