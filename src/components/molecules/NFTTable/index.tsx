@@ -300,7 +300,7 @@ const NFTTable = () => {
           return cancelUnlocking(currentNFTAddress).then(
             (result) => {
               track({
-                event: "Cancel unlock MNDE",
+                event: "Cancel Unlock MNDE",
                 category: "Lock MNDE",
                 action: "Unlock",
                 label: "Success",
