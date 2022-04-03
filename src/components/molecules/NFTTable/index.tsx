@@ -17,6 +17,7 @@ import { PublicKey } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";
 import { useContext, useState } from "react";
 import { FiExternalLink } from "react-icons/fi";
+import { v4 as uuidv4 } from "uuid";
 
 import { formatNumberLocale } from "../../../utils/format-number-locale";
 import MButton from "../../atoms/Button";
@@ -215,7 +216,9 @@ const NFTTable = () => {
                 category: "Lock MNDE",
                 action: "Claim",
                 label: "Success",
-                currency: "MNDE Refund",
+                currency: "MNDE",
+                sol_amount: Number(currentNFTMndeValue),
+                transaction_id: uuidv4(),
               });
               return result;
             },
