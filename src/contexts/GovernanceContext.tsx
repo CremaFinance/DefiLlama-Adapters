@@ -107,7 +107,6 @@ function GovernanceContextProvider(props: {
     const { tx, wrapper: escrowWrapper } = await EscrowWrapper.init({
       nftMint: new Keypair(),
       nftKind: nftKindWrapper,
-      nftOwner: sdk.provider.wallet.publicKey,
       govAmount: new BN(Number(amount) * LAMPORTS_PER_SOL),
       payFrom,
       payFromAuthority: undefined,
@@ -216,12 +215,6 @@ function GovernanceContextProvider(props: {
 
     const tx = await escrowWrapper.exitEscrow({
       nftToken,
-      withdrawTo: await Token.getAssociatedTokenAddress(
-        ASSOCIATED_TOKEN_PROGRAM_ID,
-        TOKEN_PROGRAM_ID,
-        await escrowWrapper.govMint(),
-        sdk.provider.wallet.publicKey
-      ),
     });
     let response = false;
     await tx.confirm().then(async () => {
