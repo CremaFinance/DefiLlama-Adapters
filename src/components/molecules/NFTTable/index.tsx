@@ -197,9 +197,7 @@ const NFTTable = () => {
         fontWeight="700"
         fontSize="18px"
         rightIcon={<Icon as={FiExternalLink} width="16.67px" height="16.2px" />}
-        onClick={() =>
-          window.open("https://vote.marinade.finance/gov/mnde", "_blank")
-        }
+        onClick={() => window.open("https://tribeca.so/gov/mnde", "_blank")}
       >
         {t("appPage.mnde.nft-levels.vote")}
       </MButton>

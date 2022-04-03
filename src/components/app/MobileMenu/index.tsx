@@ -98,9 +98,7 @@ const MobileMenu = () => {
         font="text-2xl"
         _active={{}}
         _hover={activeMenu}
-        onClick={() =>
-          window.open("https://vote.marinade.finance/gov/mnde", "_blank")
-        }
+        onClick={() => window.open("https://tribeca.so/gov/mnde", "_blank")}
         rightIcon={
           <Icon
             as={FiExternalLink}

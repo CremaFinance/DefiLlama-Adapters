@@ -239,7 +239,7 @@ const Footer: FunctionComponent<FooterProps> = ({ isAppPage = false }) => {
             <Link
               as={Link}
               target="_blank"
-              href="https://vote.marinade.finance/gov/mnde"
+              href="https://tribeca.so/gov/mnde"
               _hover={{ textDecoration: "none" }}
               rel="noreferrer noopener"
               _focus={{ boxShadow: "none" }}

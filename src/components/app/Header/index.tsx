@@ -141,9 +141,7 @@ const Header = ({ onValidatorsPage = false }: Props) => {
             _active={{}}
             _focus={{}}
             _hover={activeMenu}
-            onClick={() =>
-              window.open("https://vote.marinade.finance/gov/mnde", "_blank")
-            }
+            onClick={() => window.open("https://tribeca.so/gov/mnde", "_blank")}
             rightIcon={
               <Icon
                 as={FiExternalLink}

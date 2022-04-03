@@ -105,10 +105,7 @@ const CompleteLockMndeModal: FunctionComponent<CompleteLockMndeModalProps> = ({
                 height="40px"
                 width="100%"
                 onClick={() => {
-                  window.open(
-                    "https://vote.marinade.finance/gov/mnde",
-                    "_blank"
-                  );
+                  window.open("https://tribeca.so/gov/mnde", "_blank");
                 }}
               >
                 {t("mndePage.lock-mnde-complete-modal.button")}
