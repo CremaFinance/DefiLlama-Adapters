@@ -1,7 +1,6 @@
-import {
-  getParsedAccountByMint,
-  getParsedNftAccountsByOwner,
-} from "@nfteyez/sol-rayz";
+import { getParsedNftAccountsByOwner } from "@nfteyez/sol-rayz";
+import type { ParsedAccountData } from "@solana/web3.js";
+import { PublicKey } from "@solana/web3.js";
 import type { UseQueryResult } from "react-query";
 import { useQuery } from "react-query";
 
@@ -17,18 +16,26 @@ export const useNftDetails = (mintAddress: string) => {
     async ({ queryKey }: { queryKey: string[] }) => {
       try {
         const [, mint] = queryKey;
-        const acc = await getParsedAccountByMint({
-          mintAddress: mint,
-          connection: sdk.provider.connection,
-        });
-        if (!acc) {
+        const account = await sdk.provider.connection.getTokenLargestAccounts(
+          new PublicKey(mint),
+          "confirmed"
+        );
+
+        const accInfo = await sdk.provider.connection.getParsedAccountInfo(
+          account.value[0].address,
+          "confirmed"
+        );
+
+        if (!accInfo) {
           throw new Error();
         }
+
+        const accountData = accInfo?.value?.data as ParsedAccountData;
         const accounts = await getParsedNftAccountsByOwner({
-          publicAddress: acc.account.data.parsed.info.owner,
+          publicAddress: accountData.parsed.info.owner,
           connection: sdk.provider.connection,
         });
-        return accounts.find((account) => account.mint === mint);
+        return accounts.find((acc) => acc.mint === mint);
       } catch (err) {
         throw new Error();
       }
