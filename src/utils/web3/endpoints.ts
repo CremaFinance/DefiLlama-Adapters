@@ -27,7 +27,7 @@ export const ENDPOINTS = [
     // endpoint: 'https://solana-api.projectserum.com/',
     endpoint: "https://marinade.rpcpool.com/",
     airdropEndpoint: null,
-    nftEndpoint: "https://mnde-nft-api.mainnet.marinade.finance/",
+    nftEndpoint: "https://mnde-nft-api.mainnet-beta.marinade.finance/",
     keys: {
       marinadeProgramId: new PublicKey(
         "MarBmsSgKXdrN1egZf5sqe1TMai9K1rChYNDJgjq7aD"
