@@ -108,11 +108,28 @@ const CompleteLockMndeModal: FunctionComponent<CompleteLockMndeModalProps> = ({
                 px={4}
                 height="40px"
                 width="100%"
-                onClick={() => {
-                  window.open("https://tribeca.so/gov/mnde", "_blank");
+                onClick={async () => {
+                  if (nft?.dataUri) {
+                    onLoadingIntent();
+                    const res = await fetch(nft?.dataUri);
+                    const metadata = await res.json();
+
+                    await shareOnTwitter(
+                      metadata.properties.index,
+                      metadata.properties.tier,
+                      nft.address.toString()
+                    );
+                  }
                 }}
               >
-                {t("mndePage.lock-mnde-complete-modal.button")}
+                {t("mndePage.lock-mnde-complete-modal.links.twitter")}
+                <Image
+                  ml={2}
+                  cursor="pointer"
+                  src="/twitter.svg"
+                  alt="Twitter Logo"
+                  width={5}
+                />
               </MButton>
             </Skeleton>
             <Flex justifyContent="space-between" w="100%">
@@ -132,29 +149,17 @@ const CompleteLockMndeModal: FunctionComponent<CompleteLockMndeModalProps> = ({
                   color={colors.marinadeGreen}
                   rounded="md"
                   flex={1}
-                  onClick={async () => {
-                    if (nft?.dataUri) {
-                      onLoadingIntent();
-                      const res = await fetch(nft?.dataUri);
-                      const metadata = await res.json();
-
-                      await shareOnTwitter(
-                        metadata.properties.index,
-                        metadata.properties.tier,
-                        nft.address.toString()
-                      );
-                    }
+                  onClick={() => {
+                    window.open("https://tribeca.so/gov/mnde", "_blank");
                   }}
                 >
-                  {t("mndePage.lock-mnde-complete-modal.links.twitter")}
-
+                  {t("mndePage.lock-mnde-complete-modal.button")}
                   <Image
+                    src="/icons/external-link-green.svg"
                     ml={2}
-                    color={colors.marinadeGreen}
+                    color="white"
                     cursor="pointer"
-                    src="/icons/twitter.svg"
-                    alt="Twitter Logo"
-                    width={5}
+                    width={4}
                   />
                 </MLink>
               </Skeleton>
