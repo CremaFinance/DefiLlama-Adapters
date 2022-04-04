@@ -17,7 +17,9 @@ import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
 import MLink from "../../atoms/Link";
 import MText from "../../atoms/Text";
+import TwitterDataLoadingModal from "components/app/TwittedDataLoadingModal";
 import useGovernance from "hooks/useGovernanceData";
+import useShareOnTwitter from "hooks/useShareOnTwitter";
 import type { NFTType } from "services/domain/nftType";
 import { downloadPfp } from "services/marinade/downloadPfp";
 import colors from "styles/customTheme/colors";
@@ -38,6 +40,8 @@ const CompleteLockMndeModal: FunctionComponent<CompleteLockMndeModalProps> = ({
   const [nft, setNft] = useState<NFTType | null>(null);
   const [thumbnailLoaded, setThumbnailLoaded] = useState(false);
   const { data: governance, isFetching, isLoading } = useGovernance();
+  const { isLoadingIntent, onLoadingIntent, shareOnTwitter } =
+    useShareOnTwitter();
 
   useEffect(() => {
     if (!isFetching && !isLoading && governance?.nfts.length)
@@ -128,6 +132,19 @@ const CompleteLockMndeModal: FunctionComponent<CompleteLockMndeModalProps> = ({
                   color={colors.marinadeGreen}
                   rounded="md"
                   flex={1}
+                  onClick={async () => {
+                    if (nft?.dataUri) {
+                      onLoadingIntent();
+                      const res = await fetch(nft?.dataUri);
+                      const metadata = await res.json();
+
+                      await shareOnTwitter(
+                        metadata.properties.index,
+                        metadata.properties.tier,
+                        nft.address.toString()
+                      );
+                    }
+                  }}
                 >
                   {t("mndePage.lock-mnde-complete-modal.links.twitter")}
 
@@ -174,6 +191,7 @@ const CompleteLockMndeModal: FunctionComponent<CompleteLockMndeModalProps> = ({
                 </MLink>
               </Skeleton>
             </Flex>
+            <TwitterDataLoadingModal isOpen={isLoadingIntent} />
           </Flex>
         </ModalBody>
       </ModalContent>
