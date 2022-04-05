@@ -28,6 +28,7 @@ import TransactionLink from "components/molecules/TransactionLink";
 import { AccountsContext } from "contexts/AccountsContext";
 import { useChain } from "contexts/ConnectionProvider";
 import { GovernanceContext } from "contexts/GovernanceContext";
+import { useEditions } from "hooks/useEditions";
 import { useTracking } from "hooks/useTracking";
 import { useWallet } from "hooks/useWallet";
 import colors from "styles/customTheme/colors";
@@ -37,6 +38,7 @@ const LockMNDESection = () => {
   const chain = useChain();
   const toast = useToast();
 
+  const { isLoading } = useEditions();
   const { track } = useTracking();
 
   const [isPendingLockOpen, setIsPendingLockOpen] = useState(false);
@@ -133,7 +135,8 @@ const LockMNDESection = () => {
               my={4}
               isDisabled={
                 Number(MNDEToLock) < 1000 ||
-                Number(MNDEToLock) > (MNDEBalance ?? 0) / LAMPORTS_PER_SOL
+                Number(MNDEToLock) > (MNDEBalance ?? 0) / LAMPORTS_PER_SOL ||
+                isLoading
               }
               onClick={() => {
                 setIsPendingLockOpen(true);
