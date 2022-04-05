@@ -45,16 +45,18 @@ const getUsersVotingNftsByWallet = async (
 
     return unfilteredNftAccounts.filter((acc) => {
       const nftCreators = acc.data.creators;
-      const nftCreatorAddresses: string[] = nftCreators.map((c) => c.address);
-      const containsCreators = creators.every((c) =>
-        nftCreatorAddresses.includes(c)
-      );
-      if (containsCreators) {
-        return creators.every(
-          (c) =>
-            nftCreators.find((nftCreator) => nftCreator.address === c)
-              .verified === 1
+      if (nftCreators) {
+        const nftCreatorAddresses: string[] = nftCreators.map((c) => c.address);
+        const containsCreators = creators.every((c) =>
+          nftCreatorAddresses.includes(c)
         );
+        if (containsCreators) {
+          return creators.every(
+            (c) =>
+              nftCreators.find((nftCreator) => nftCreator.address === c)
+                .verified === 1
+          );
+        }
       }
       return false;
     });
