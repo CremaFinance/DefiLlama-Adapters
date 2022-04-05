@@ -34,6 +34,7 @@ export const useNftDetails = (mintAddress: string) => {
         const accounts = await getParsedNftAccountsByOwner({
           publicAddress: accountData.parsed.info.owner,
           connection: sdk.provider.connection,
+          limit: 200000,
         });
         return accounts.find((acc) => acc.mint === mint);
       } catch (err) {
