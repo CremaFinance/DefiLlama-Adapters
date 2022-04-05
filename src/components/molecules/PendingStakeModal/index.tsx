@@ -14,17 +14,24 @@ interface PendingStakeModalProps {
   onClose: () => Promise<void> | void;
   isOpen: boolean;
   isTransactionSigned: boolean;
+  forceClose?: boolean;
 }
 
 const PendingStakeModal = ({
   onClose: onCloseProp,
   isOpen: isOpenProp,
   isTransactionSigned: isTransactionSignedProp,
+  forceClose = false,
 }: PendingStakeModalProps) => {
   const { t } = useTranslation();
 
   return (
-    <Modal isOpen={isOpenProp} onClose={onCloseProp} size="lg" isCentered>
+    <Modal
+      isOpen={isOpenProp && !(isTransactionSignedProp && forceClose)}
+      onClose={onCloseProp}
+      size="lg"
+      isCentered
+    >
       <ModalOverlay />
       <ModalContent
         width="480px"

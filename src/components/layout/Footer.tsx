@@ -24,7 +24,7 @@ const Footer: FunctionComponent<FooterProps> = ({ isAppPage = false }) => {
       bg={colors.blackMate}
       as="footer"
       aria-label="footer-section"
-      px={{ base: 4, md: 10, lg: 160 }}
+      px={{ base: 4, md: "32px", lg: 160 }}
       pt={[12, 8]}
       pb={[24, 8]}
       flexDirection="column"
@@ -112,6 +112,7 @@ const Footer: FunctionComponent<FooterProps> = ({ isAppPage = false }) => {
                   maxWidth={{ base: "360", md: "30vw", lg: "25vw" }}
                   display="inline-block"
                   fontWeight="bold"
+                  as="span"
                 >
                   Anatoly Yakovenko,
                 </MText>{" "}
@@ -217,7 +218,35 @@ const Footer: FunctionComponent<FooterProps> = ({ isAppPage = false }) => {
               {t("indexPage.footer-marinde-dao")}
             </Link>
           </MButton>
-
+          <MButton
+            font="text-xl"
+            fontWeight={500}
+            variant="link"
+            color={colors.white}
+            bg="none"
+            _hover={{ textDecoration: "underline" }}
+            width="fit-content"
+            mb={2}
+            rightIcon={
+              <Icon
+                as={FiExternalLink}
+                width="16px"
+                height="16px"
+                cursor="pointer"
+              />
+            }
+          >
+            <Link
+              as={Link}
+              target="_blank"
+              href="https://tribeca.so/gov/mnde"
+              _hover={{ textDecoration: "none" }}
+              rel="noreferrer noopener"
+              _focus={{ boxShadow: "none" }}
+            >
+              {t("indexPage.footer-tribeca")}
+            </Link>
+          </MButton>
           <MButton
             font="text-xl"
             fontWeight={500}

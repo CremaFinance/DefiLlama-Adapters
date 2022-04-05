@@ -12,12 +12,13 @@ type TrackEvent = {
     | "mSOL Farm"
     | "MSOL-SOL LP Farm"
     | "Retro MNDE CLaim"
+    | "Lock MNDE"
     | "Page Inits";
   action: string;
   label: "Success" | "Error";
   description?: string;
   sol_amount?: number;
-  currency?: "SOL" | "MSOL";
+  currency?: "SOL" | "MSOL" | "MNDE";
   transaction_id?: string;
 };
 export const useTracking = () => {

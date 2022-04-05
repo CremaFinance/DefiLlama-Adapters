@@ -2,7 +2,7 @@ import {
   useAnchorWallet,
   useWallet as useSolanaWallet,
 } from "@solana/wallet-adapter-react";
-import { Transaction } from "@solana/web3.js";
+import type { Transaction } from "@solana/web3.js";
 import { useContext } from "react";
 
 import { AccountsContext } from "../contexts/AccountsContext";

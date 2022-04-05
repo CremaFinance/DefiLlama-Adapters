@@ -52,6 +52,7 @@ const colors = {
   greenVibrant: "#08B898",
   greenVibrant800: "#08B898CC",
   marinadeGreen: "#308D8A",
+  marinadeOrange: "#EB8302",
   green800: "#308D8ACC",
   marinadeLighterGreen: "#DFF4ED",
   marinadeEvenLighterGreen: "#ECFAF5",
@@ -59,7 +60,7 @@ const colors = {
   white: "#FFFFFF",
   white800: "#FFFFFFCC",
   lightGray: "#EDF2F7",
-  marinadeOrange: "#EB8302",
+  aliceBlue: "F7FAFC",
   marinadeOrange400: "#F0700066",
 };
 

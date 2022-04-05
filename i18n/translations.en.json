@@ -126,7 +126,6 @@
         "subtitle": "Put your staked SOL to work in DeFi and explore additional yield."
       }
     ],
-
     "contributor-section-title": "Become a contributor to Marinade",
     "contributor-section-subtitle": "Marinade is a community-driven project built without any VC money or token sales. Join the Marinade DAO and let's build together.",
     "contributor-section-action": "Join the Marinade DAO",
@@ -171,6 +170,7 @@
     "footer-validators": "Validators",
     "footer-msol": "mSOL",
     "footer-marinde-dao": "Marinade DAO",
+    "footer-tribeca": "Tribeca",
     "footer-defi-integration": "DeFi / integrations",
     "footer-learn": "Learn",
     "footer-docs": "Docs",
@@ -225,6 +225,7 @@
     "stake-menu-item": "Stake",
     "defi-menu-item": "DeFi",
     "mnde-menu-item": "MNDE",
+    "vote-menu-item": "Vote",
     "wallet": "Wallet",
     "connect-wallet": "Connect wallet",
     "wallet-missing": "Please click here to install official {{wallet}} extension",
@@ -374,10 +375,26 @@
       "body-mobile": "Use mSOL and explore additional yield while still earning your staking rewards"
     },
     "mnde": {
+      "nft": "NFT",
+      "nft-level-value": "Level ",
+      "errors": {
+        "mint-failed": {
+          "title": "Something went wrong",
+          "description": "Mint failed, please try again."
+        }
+      },
+      "unlock-period": {
+        "text": "Unlock period",
+        "tooltip": "During the unlock period, unlocking NFTs cannot vote. When the unlocking period is over, the NFT can be burned and tokens can be withdrawn from the governance escrow."
+      },
+      "unlock-period-mockup-value": "30 days",
+      "lock-nfts": "If you lock MNDE, your NFTs will be displayed here.",
+      "connect-to-lock-nfts": "Connect your wallet to manage your NFTs",
+      "lock-button": "Lock MNDE",
+      "description1": "The Marinade token - MNDE - represents fractional ownership of Marinade.",
+      "docs-link": "https://docs.marinade.finance/marinade-dao/tokenomics",
       "header": "Participate in Marinade",
       "description": "MNDE is the governance token of Marinade finance.",
-      "docs-link": "https://docs.marinade.finance/marinade-dao/tokenomics",
-      "description1": "The Marinade token - MNDE - represents fractional ownership of Marinade.",
       "lock-card": {
         "title": "Mint NFT",
         "description": "Lock MNDE in NFTs to participate in governance and unlock additional incentives.",
@@ -397,6 +414,85 @@
         "title": "Compensation",
         "description": "Marinade Treasury will compensate active participation in governance.",
         "button": "Coming soon"
+      },
+      "nft-levels": {
+        "level-one": {
+          "amount": {
+            "limited": "Limited edition: {{amountLeft}} left",
+            "regular": "Regular edition"
+          },
+          "title": "1k-5k MNDE"
+        },
+        "level-two": {
+          "amount": {
+            "limited": "Limited edition: {{amountLeft}} left",
+            "regular": "Regular edition"
+          },
+          "title": "5k-25k MNDE"
+        },
+        "level-three": {
+          "amount": {
+            "limited": "Limited edition: {{amountLeft}} left",
+            "regular": "Regular edition"
+          },
+          "title": "25k-100k MNDE"
+        },
+        "level-four": {
+          "amount": {
+            "limited": "Limited edition: {{amountLeft}} left",
+            "regular": "Regular edition"
+          },
+          "title": "100k-250k MNDE"
+        },
+        "level-five": {
+          "amount": {
+            "limited": "Limited edition: {{amountLeft}} left",
+            "regular": "Regular edition"
+          },
+          "title": ">250k MNDE"
+        },
+        "buy-more": "Buy more MNDE to unlock",
+        "lock-period": "(30d)",
+        "cancel-unlock": "Cancel unlock",
+        "delayed-claim": "Claim in ",
+        "claim": "Claim",
+        "unlock": "Unlock",
+        "vote": "Vote",
+        "locked-mnde-header": "Locked MNDE",
+        "nft-header": "NFT",
+        "total-locked": "Total locked:"
+      },
+      "faq-title": "FAQ",
+      "faq-items": [
+        {
+          "question": "When do I receive my NFT?",
+          "response": "You will receive your NFT immediately after it is minted upon locking the MNDE."
+        },
+        {
+          "question": "Is it possible to sell or transfer my NFT while my MNDE is locked?",
+          "response": "Yes, you can transfer your NFT to another wallet or sell it on a third-party marketplace (coming soon). In both cases, the MNDE locked in the NFT will also be transferred with the NFT. If your NFT is in its unlocking period, it becomes non-transferable."
+        },
+        {
+          "question": "What happens to my NFT if I choose to unlock my MNDE?",
+          "response": "Your NFT will begin a 30-day unlocking period. After 30 days, you will be able to burn your NFT and claim the underlying MNDE."
+        },
+        {
+          "question": "Will I be notified of Marinade governance opportunities?",
+          "response": "Proposals will be announced in the Marinade Discord server and viewable on Tribeca."
+        }
+      ],
+      "lock": {
+        "info-section": {
+          "header": "Lock MNDE",
+          "description": "Acquire and stake MNDE to receive an NFT that you can use to vote and earn within the Marinade DAO.",
+          "learn-more":"Learn more",
+          "mobile-description": "Lorem ipsum one line",
+          "steps": {
+            "first": "1. Lock MNDE",
+            "second": "2. Receive NFT",
+            "third": "3. Use NFT to vote"
+          }
+        }
       }
     },
     "stake-inputs-time-to-unstake": "Time to unstake",
@@ -513,7 +609,9 @@
     "remove-liquidity-confirmed": "Remove liquidity confirmed",
     "successfully-removed-liquidity-your-sol": "You've successfully removed liquidity",
     "your-lp-account-is-deactivated": "Your mSOL-SOL LP account is deactivated. Add any SOL liquidity to the LP to re-activate the account and try to remove liquidity again.",
-    "degraded-network-performance": "Solana network is experiencing degraded performance. Transactions may fail to send or to confirm."
+    "degraded-network-performance": "Solana network is experiencing degraded performance. Transactions may fail to send or to confirm.",
+    "governance-is-live": "Governance is live!",
+    "check-it-here": "Check it here"
   },
   "mndePage": {
     "retro-title": "MNDE Retro",
@@ -521,6 +619,8 @@
     "retro-info": "Marinade retroactive claim for early adopters will be distributed in the following phases:",
     "your-deposit": "Your deposit",
     "claim-action": "Claim",
+    "manage-mnde-button": "Manage MNDE",
+    "lock-your-mnde-button": "Lock your MNDE",
     "claim-mnde-confirmed": "Claim MNDE confirmed",
     "succesfully-claimed-mnde": "You've successfully claimed your MNDE",
     "something-went-wrong": "Something went wrong",
@@ -535,6 +635,7 @@
     "modal-claim-success-discord": "mDAO Discord",
     "manage-deposit-action": "Manage deposit",
     "here": "here",
+    "breadcrumbs": { "lock": "Lock MNDE" },
     "msol-stake-modal": {
       "deposit-msol": "Deposit mSOL",
       "withdraw-msol": "Withdraw mSOL",
@@ -549,6 +650,21 @@
       "successfully-withdrew-msol": "You've successfully withdrew mSOL",
       "deposit-first-msol": "Deposit first",
       "get-msol": "Get mSOL"
+    },
+    "twitter-messages": {
+      "limited": {
+        "message-one": "I’ve joined the @marinadefinance DAO to govern the future of Solana and this is my very own NFT Chef!%0A%0AOnly {{left}} left in the Limited Edition. Lock MNDE now to get your very own Chef!",
+        "message-two": "I’ve just minted my very own NFT Chef at @MarinadeFinance!%0A%0AJoin me in the DAO with a chef of your own! There are {{left}} Limited Edition Chefs left! Get yours!"
+      },
+      "regular": {
+        "message-one": "Meet my very own NFT Chef! Get your own unique Chef now by locking $MNDE for governance at @MarinadeFinance.",
+        "message-two": "I’m officially participating in governance in the @MarinadeFinance DAO on Solana with my new NFT Chef! Join me in the kitchen by minting a Chef of your very own!",
+        "message-three": "Meet my new NFT Chef! It’s proof I am a member of the @MarinadeFinance DAO that will guide the future of Solana. Join me in the kitchen with a Chef of your own!"
+      }
+    },
+    "twitter-data-loading-modal": {
+      "header": "Preparing Tweet",
+      "text": "Your tweet is being prepared, please wait until a new tab opens. This usually takes a few seconds."
     },
     "deposit-msol-sol-lp-modal": {
       "deposit": "Deposit mSOL-SOL LP",
@@ -622,6 +738,128 @@
           "ilustration-alt": "Build"
         }
       ]
+    },
+    "lock-mnde-confirm-modal": {
+      "header": "Are you sure you want to lock?",
+      "body": "Placeholder explaining what you get, your voting power. The one above is the NFT.",
+      "button": "Lock MNDE"
+    },
+    "lock-mnde-complete-modal": {
+      "header": "MNDE locked!",
+      "pending-header": "Transaction sent!",
+      "pending-body": "Your transaction is being validated on the blockchain. It usually takes 10-15 seconds for your NFT to be minted.",
+      "body": [
+        {
+          "text": "You now have your very own unique NFT which enables voting power in the Marinade DAO."
+        },
+        {
+          "text": "You may now view your NFT and its traits in your wallet! But remember, sending the NFT to another wallet also means you are sending the locked MNDE."
+        }
+      ],
+      "button": "Go to VOTE",
+      "links": {
+        "twitter": "Share on twitter",
+        "download": "Download PFP"
+      }
+    },
+    "unlock-mnde-modal": {
+      "header": "Are you sure you want to start unlocking your MNDE?",
+      "body": [
+        {
+          "text": "You will initiate a 30-day unlock period and you will not be able to vote during this time. When the unlocking period is complete you will be able to "
+        },
+        {
+          "text": "burn your NFT "
+        },
+        { "text": "and claim your {{value}} MNDE." }
+      ],
+      "button": "Start unlocking"
+    },
+    "mnde-unlock-confirm-modal": {
+      "header": "Unlocking started!",
+      "body": [
+        {
+          "text": "You have begun the unlocking process of "
+        },
+        {
+          "text": "{{value}} MNDE."
+        },
+        {
+          "text": "Please return here once the 30-day unlock period is complete to claim your MNDE and burn your NFT. You may cancel this process at any time."
+        }
+      ],
+      "buttons": {
+        "close": "Close",
+        "cancel": "Cancel unlock"
+      }
+    },
+    "cancel-unlocking-modal": {
+      "header": "Cancel unlocking",
+      "body": [
+        {
+          "text": "Relocking your"
+        },
+        {
+          "text": "{{value}} MNDE"
+        },
+        {
+          "text": "will restore your voting power and reset your unlock period to 30 days."
+        }
+      ],
+      "button": "Cancel unlocking"
+    },
+    "cancel-unlocking-confirm-modal": {
+      "header": "Unlocking canceled",
+      "body": [
+        {
+          "text": "You have successfully canceled unlocking"
+        },
+        {
+          "text": "{{value}} MNDE "
+        },
+        {
+          "text": "and still have your NFT and voting power."
+        }
+      ],
+      "button": "Close"
+    },
+    "claim-mnde-modal": {
+      "header": "Complete MNDE unlocking and burn NFT?",
+      "body": [
+        {
+          "text": "You are about to unlock "
+        },
+        {
+          "text": " {{value}} MNDE and"
+        },
+        { "text": "burn your NFT" },
+        {
+          "text": ". You can also choose to relock your MNDE and keep your NFT."
+        }
+      ],
+      "buttons": {
+        "claim": "Claim MNDE and burn NFT",
+        "relock": "Relock MNDE"
+      }
+    },
+    "claim-mnde-confirm-modal": {
+      "header": "MNDE unlocked and NFT burned!",
+      "body": [
+        {
+          "text": "You have successfully claimed"
+        },
+        {
+          "text": "{{value}} MNDE. "
+        },
+        {
+          "text": "Your NFT has been burned forever!"
+        }
+      ],
+      "button": "Close"
+    },
+    "lock-mnde-transaction": {
+      "title": "Lock MNDE confirmed",
+      "description": "You've successfully locked your MNDE"
     }
   },
   "termsPage": {
@@ -806,6 +1044,27 @@
         ]
       }
     ]
+  },
+  "nftDetailsPage": {
+    "details-section": {
+      "mnde-balance": {
+        "text": "MNDE Balance",
+        "tooltip": "Your NFT contains {{value}} locked MNDE tokens. Sending this NFT to another wallet will also send these tokens. "
+      },
+      "cooldown-period": {
+        "text": "Unlock period",
+        "tooltip": "Upon completion of the 30-day unlocking period, the NFT can be burned to get back the underlying MNDE tokens"
+      },
+      "share-twitter": "Share on twitter",
+      "download": "Download NFT",
+      "buy-yours": "Buy Yours",
+      "level": "Level",
+      "description": "Description",
+      "symbol": "Symbol",
+      "edition": "Edition",
+      "collection-name": "Collection name",
+      "collection-family": "Collection family"
+    }
   },
   "404Page": {
     "page-not-cooked": "Oops! It seems like this page is not cooked.",

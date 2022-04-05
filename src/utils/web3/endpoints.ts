@@ -2,11 +2,14 @@ import { PublicKey } from "@solana/web3.js";
 
 export type ENV = "mainnet-beta" | "testnet" | "devnet" | "localnet";
 
+const nftEndpointDevnet = "https://mnde-nft-api.devnet.marinade.finance/";
+
 export const ENDPOINTS = [
   {
     name: "devnet" as ENV,
     endpoint: "https://api.devnet.solana.com/",
     airdropEndpoint: "https://api.devnet.solana.com/",
+    nftEndpoint: nftEndpointDevnet,
     maxAirdrop: 10,
     keys: {
       marinadeProgramId: new PublicKey(
@@ -24,6 +27,7 @@ export const ENDPOINTS = [
     // endpoint: 'https://solana-api.projectserum.com/',
     endpoint: "https://marinade.rpcpool.com/",
     airdropEndpoint: null,
+    nftEndpoint: "https://mnde-nft-api.mainnet-beta.marinade.finance/",
     keys: {
       marinadeProgramId: new PublicKey(
         "MarBmsSgKXdrN1egZf5sqe1TMai9K1rChYNDJgjq7aD"
@@ -40,6 +44,7 @@ export const ENDPOINTS = [
     endpoint: "https://api.testnet.solana.com",
     airdropEndpoint: "https://api.testnet.solana.com",
     maxAirdrop: 1,
+    nftEndpoint: nftEndpointDevnet,
     keys: {
       marinadeProgramId: new PublicKey(
         "MarBmsSgKXdrN1egZf5sqe1TMai9K1rChYNDJgjq7aD"
@@ -55,6 +60,7 @@ export const ENDPOINTS = [
     name: "localnet" as ENV,
     endpoint: "http://127.0.0.1:8899",
     airdropEndpoint: "http://127.0.0.1:8899",
+    nftEndpoint: nftEndpointDevnet,
     keys: {
       marinadeProgramId: new PublicKey(
         "MarBmsSgKXdrN1egZf5sqe1TMai9K1rChYNDJgjq7aD"

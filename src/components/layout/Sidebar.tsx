@@ -62,7 +62,7 @@ function Sidebar() {
           <DrawerBody>
             {config.map((menu) => {
               return (
-                <>
+                <Flex key={menu.title} flexDirection="column">
                   <MHeading key={menu.title} type="heading-xsm" mb={2}>
                     {menu.title}
                   </MHeading>
@@ -78,6 +78,7 @@ function Sidebar() {
                               ? "underline"
                               : "none"
                           }
+                          key={item.title}
                           {...item.props}
                           display="flex"
                           flexDirection="row"
@@ -90,7 +91,7 @@ function Sidebar() {
                       );
                     })}
                   </Flex>
-                </>
+                </Flex>
               );
             })}
 
