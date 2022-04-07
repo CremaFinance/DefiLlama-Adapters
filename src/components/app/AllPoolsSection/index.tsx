@@ -7,6 +7,7 @@ import { useStats } from "../../../contexts/StatsContext";
 import type { Pool, PoolConfig } from "../../../services/domain/pool";
 import { providerKeys } from "../../../services/pools/index";
 import CallToActionSection from "../CallToActionSection";
+import PoolsCategories from "../PoolsCategories";
 import PoolRow from "components/molecules/PoolRow";
 import { useQuarryProvider } from "contexts/QuaryContext";
 import { usePools } from "hooks/usePools";
@@ -14,6 +15,7 @@ import { usePrices } from "hooks/usePrices";
 import type { Prices } from "services/domain/coinSymbols";
 import { coinSymbols } from "services/domain/coinSymbols";
 import type { Farm } from "services/domain/farm";
+import type { PoolCategories } from "services/domain/poolsCategories";
 
 import type { SortingState } from "./constants";
 import { COLUMNS, COLUMNS_SORTER } from "./constants";
@@ -83,6 +85,8 @@ const AllPoolsSection = () => {
     isInverted: true,
   });
 
+  const [category, setCategory] = useState<PoolCategories>("liquidity");
+
   const {
     farms: { mLP, mSOL },
   } = useQuarryProvider();
@@ -97,31 +101,27 @@ const AllPoolsSection = () => {
     },
   });
 
-  const sortedPools = useMemo(() => {
-    const pools = results.reduce(
-      (acc, result) =>
-        result.data
-          ? acc.concat(
-              Object.entries(result.data).map(([key, pool]) => {
-                return { id: key, pool };
-              })
-            )
-          : acc,
-      [] as { id: string; pool: Pool | PoolConfig }[]
-    );
-    // temp hack to skip sorting for marinade pools
-    const marinadePools = pools.filter(
-      (pool) => pool.pool.provider === "Marinade"
-    );
-
-    const otherPools = pools
-      .filter((pool) => pool.pool.provider !== "Marinade")
-      .sort((a, b) => {
-        const ratio = COLUMNS_SORTER[sorting.column](a.pool, b.pool);
-        return sorting.isInverted ? ratio : -ratio;
-      });
-    return [...marinadePools, ...otherPools];
-  }, [results, sorting]);
+  const sortedPools = useMemo(
+    () =>
+      results
+        .reduce(
+          (acc, result) =>
+            result.data
+              ? acc.concat(
+                  Object.entries(result.data).map(([key, pool]) => {
+                    return { id: key, pool };
+                  })
+                )
+              : acc,
+          [] as { id: string; pool: Pool | PoolConfig }[]
+        )
+        .filter((pool) => pool.pool.category === category)
+        .sort((a, b) => {
+          const ratio = COLUMNS_SORTER[sorting.column](a.pool, b.pool);
+          return sorting.isInverted ? ratio : -ratio;
+        }),
+    [results, sorting, category]
+  );
 
   return (
     <Flex
@@ -129,6 +129,9 @@ const AllPoolsSection = () => {
       marginX={{ base: "16px", lg: "65px", xl: "170px" }}
       alignItems="stretch"
     >
+      <PoolsCategories
+        setCategory={(cat: PoolCategories) => setCategory(cat)}
+      />
       <DesktopDataHeader sorting={sorting} setSorting={setSorting} />
       <MobileDataHeader sorting={sorting} setSorting={setSorting} />
       <Flex

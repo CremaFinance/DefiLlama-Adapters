@@ -3,6 +3,7 @@ import { marketTypes } from "../../domain/marketTypes";
 import type { PoolConfig } from "../../domain/pool";
 import MarinadePoolRowExtension from "components/molecules/MarinadePoolRowExtension";
 import MsolSolLPRowExtension from "components/molecules/MsolSolLPRowExtension";
+import { poolCategories } from "services/domain/poolsCategories";
 
 import type { LiquidityMarinadePoolAddress } from "./liquidityMarinadePoolAddress";
 import { liquidityMarinadePoolAddress } from "./liquidityMarinadePoolAddress";
@@ -36,6 +37,7 @@ export const marinadePools: Record<LiquidityMarinadePoolAddress, PoolConfig> = {
       providerId: liquidityPoolMarinadeIds.MNDE_mSOL_SOL_LP,
       tokenA: coinSymbols.mSOL,
       tokenB: coinSymbols.SOL,
+      category: poolCategories.LIQUIDITY,
       rewards: {
         [coinSymbols.MNDE]: {
           aprDescription: "daily MNDE",
@@ -54,6 +56,7 @@ export const marinadePools: Record<LiquidityMarinadePoolAddress, PoolConfig> = {
       providerId: liquidityPoolMarinadeIds.MSOL_FARM,
       tokenA: coinSymbols.mSOL,
       actions,
+      category: poolCategories.STAKING,
       RowExtensionComponent: MarinadePoolRowExtension,
       componentAction: "mSOLStakeModal",
     },
@@ -68,6 +71,7 @@ export const marinadePools: Record<LiquidityMarinadePoolAddress, PoolConfig> = {
       providerId: liquidityPoolMarinadeIds.MNDE_mSOL_SOL_LP_FARM,
       tokenA: "mSOL-SOL-LP",
       actions,
+      category: poolCategories.LIQUIDITY,
     },
     RowExtensionComponent: MsolSolLPRowExtension,
     componentAction: "mSolSolLPFarmModal",

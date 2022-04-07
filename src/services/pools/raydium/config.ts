@@ -1,6 +1,7 @@
 import { coinSymbols } from "../../domain/coinSymbols";
 import { marketTypes } from "../../domain/marketTypes";
 import type { PoolConfig } from "../../domain/pool";
+import { poolCategories } from "services/domain/poolsCategories";
 
 import type { LiquidityRaydiumPoolAddress } from "./liquidityRaydiumPoolAddress";
 import { liquidityRaydiumPoolAddress } from "./liquidityRaydiumPoolAddress";
@@ -36,6 +37,7 @@ export const raydiumPools: Record<LiquidityRaydiumPoolAddress, PoolConfig> = {
       providerId: liquidityPoolRaydiumIds.RAYDIUM_mSOL_SOL,
       tokenA: coinSymbols.mSOL,
       tokenB: coinSymbols.SOL,
+      category: poolCategories.LIQUIDITY,
       rewards: {
         // [coinSymbols.RAYDIUM]: undefined,
         // [coinSymbols.MNDE]: undefined,
@@ -53,6 +55,7 @@ export const raydiumPools: Record<LiquidityRaydiumPoolAddress, PoolConfig> = {
       providerId: liquidityPoolRaydiumIds.RAYDIUM_mSOL_USDC,
       tokenA: coinSymbols.mSOL,
       tokenB: coinSymbols.USDC,
+      category: poolCategories.LIQUIDITY,
       rewards: {
         [coinSymbols.MNDE]: {
           aprDescription: mndeReward,
@@ -72,6 +75,7 @@ export const raydiumPools: Record<LiquidityRaydiumPoolAddress, PoolConfig> = {
       providerId: liquidityPoolRaydiumIds.RAYDIUM_mSOL_USDT,
       tokenA: coinSymbols.mSOL,
       tokenB: coinSymbols.USDT,
+      category: poolCategories.LIQUIDITY,
       rewards: {
         [coinSymbols.MNDE]: {
           aprDescription: mndeReward,
@@ -89,6 +93,7 @@ export const raydiumPools: Record<LiquidityRaydiumPoolAddress, PoolConfig> = {
       providerId: liquidityPoolRaydiumIds.RAYDIUM_ETH_mSOL,
       tokenA: coinSymbols.ETH,
       tokenB: coinSymbols.mSOL,
+      category: poolCategories.LIQUIDITY,
       rewards: {
         [coinSymbols.MNDE]: {
           aprDescription: mndeReward,
@@ -106,6 +111,7 @@ export const raydiumPools: Record<LiquidityRaydiumPoolAddress, PoolConfig> = {
       providerId: liquidityPoolRaydiumIds.RAYDIUM_BTC_mSOL,
       tokenA: coinSymbols.BTC,
       tokenB: coinSymbols.mSOL,
+      category: poolCategories.LIQUIDITY,
       rewards: {
         [coinSymbols.MNDE]: {
           aprDescription: mndeReward,
@@ -123,6 +129,7 @@ export const raydiumPools: Record<LiquidityRaydiumPoolAddress, PoolConfig> = {
       providerId: liquidityPoolRaydiumIds.RAYDIUM_mSOL_RAY,
       tokenA: coinSymbols.mSOL,
       tokenB: coinSymbols.RAYDIUM,
+      category: poolCategories.LIQUIDITY,
       rewards: {
         // [coinSymbols.RAYDIUM]: undefined,
         // [coinSymbols.MNDE]: undefined,
@@ -140,6 +147,7 @@ export const raydiumPools: Record<LiquidityRaydiumPoolAddress, PoolConfig> = {
       providerId: liquidityPoolRaydiumIds.RAYDIUM_MNDE_mSOL,
       tokenA: coinSymbols.MNDE,
       tokenB: coinSymbols.mSOL,
+      category: poolCategories.LIQUIDITY,
       rewards: {
         // [coinSymbols.RAYDIUM]: undefined,
         // [coinSymbols.MNDE]: undefined,
