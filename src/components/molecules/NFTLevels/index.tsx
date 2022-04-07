@@ -1,6 +1,6 @@
 /* eslint-disable complexity */
 /* eslint-disable sonarjs/cognitive-complexity */
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Text, Skeleton } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { useState, useEffect } from "react";
 
@@ -17,9 +17,15 @@ type NFTLevelsProps = {
     changeInputAmount: boolean,
     kind: string
   ) => void;
+  onEditionsLoaded: (editionLoaded: boolean) => void;
 };
 
-const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
+const NFTLevels = ({
+  balance,
+  input,
+  onLevelClick,
+  onEditionsLoaded,
+}: NFTLevelsProps) => {
   const { t } = useTranslation();
   const placeholder = "{{amountLeft}}";
   const { data: editionInfo, isRefetching } = useEditions();
@@ -32,8 +38,9 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
     if (editionInfo) {
       setLimitedAmountLeft(editionInfo[0].left);
       setLimited(editionInfo[0].editions[0].current);
+      onEditionsLoaded(limitedAmountLeft !== -1);
     }
-  }, [editionInfo, isRefetching]);
+  }, [editionInfo, isRefetching, limitedAmountLeft, onEditionsLoaded]);
 
   useEffect(() => {
     const inputAmount = Number(input);
@@ -118,24 +125,30 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
       flexWrap="wrap"
       alignItems="center"
     >
-      <Text
-        alignSelf="start"
-        opacity={balance < 1000 ? "40%" : "100%"}
+      <Skeleton
+        height="13px"
         mt="16px"
         mb="8px"
-        fontWeight="bold"
-        textAlign={{ base: "right", md: "left" }}
-        fontSize="11.52px"
-        lineHeight="13.83px"
-        color={Limited ? colors.marinadeOrange : "gray.500"}
+        isLoaded={limitedAmountLeft !== -1}
+        alignSelf="start"
       >
-        {limitedAmountLeft !== 0
-          ? t("appPage.mnde.nft-levels.level-one.amount.limited")?.replace(
-              placeholder,
-              limitedAmountLeft
-            )
-          : t("appPage.mnde.nft-levels.level-one.amount.regular")}
-      </Text>
+        <Text
+          alignSelf="start"
+          opacity={balance < 1000 ? "40%" : "100%"}
+          fontWeight="bold"
+          textAlign={{ base: "right", md: "left" }}
+          fontSize="11.52px"
+          lineHeight="13.83px"
+          color={Limited ? colors.marinadeOrange : "gray.500"}
+        >
+          {limitedAmountLeft !== 0
+            ? t("appPage.mnde.nft-levels.level-one.amount.limited")?.replace(
+                placeholder,
+                limitedAmountLeft
+              )
+            : t("appPage.mnde.nft-levels.level-one.amount.regular")}
+        </Text>
+      </Skeleton>
       <Flex
         width="100%"
         flexDirection={{ md: "row", base: "column" }}

@@ -28,7 +28,6 @@ import TransactionLink from "components/molecules/TransactionLink";
 import { AccountsContext } from "contexts/AccountsContext";
 import { useChain } from "contexts/ConnectionProvider";
 import { GovernanceContext } from "contexts/GovernanceContext";
-import { useEditions } from "hooks/useEditions";
 import { useTracking } from "hooks/useTracking";
 import { useWallet } from "hooks/useWallet";
 import colors from "styles/customTheme/colors";
@@ -38,7 +37,6 @@ const LockMNDESection = () => {
   const chain = useChain();
   const toast = useToast();
 
-  const { isLoading } = useEditions();
   const { track } = useTracking();
 
   const [isPendingLockOpen, setIsPendingLockOpen] = useState(false);
@@ -49,6 +47,7 @@ const LockMNDESection = () => {
   const { transactionSigned, transactionSignedAction } =
     useContext(AccountsContext);
   const [txConfirmed, setTxConfirmed] = useState(false);
+  const [editionsLoaded, setEditionsLoaded] = useState(false);
 
   const { MNDEBalance } = useUserBalance();
 
@@ -121,6 +120,7 @@ const LockMNDESection = () => {
               input={MNDEToLock}
               balance={(MNDEBalance ?? 0) / LAMPORTS_PER_SOL}
               onLevelClick={handleLevelSelected}
+              onEditionsLoaded={setEditionsLoaded}
             />
             <MButton
               font="text-xl"
@@ -136,7 +136,7 @@ const LockMNDESection = () => {
               isDisabled={
                 Number(MNDEToLock) < 1000 ||
                 Number(MNDEToLock) > (MNDEBalance ?? 0) / LAMPORTS_PER_SOL ||
-                isLoading
+                !editionsLoaded
               }
               onClick={() => {
                 setIsPendingLockOpen(true);

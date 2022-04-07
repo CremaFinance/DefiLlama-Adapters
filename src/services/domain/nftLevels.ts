@@ -3,13 +3,13 @@ import type { ProcessedEditionsInfo } from "./processedEditionsInfo";
 export const nftLevels: ProcessedEditionsInfo[] = [
   {
     amount: 1000,
-    left: 0,
+    left: -1,
     editions: [
       {
         name: "Limited",
         address: "Lednq4o7qpgBPVpr69ECzUqwZwXPevBdm4iXUxrLeiL",
         limit: 3333,
-        current: false,
+        current: true,
       },
       {
         name: "Regular",
