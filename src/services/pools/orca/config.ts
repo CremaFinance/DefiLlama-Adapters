@@ -32,10 +32,6 @@ export const orcaPools: Record<LiquidityOrcaPoolAddress, PoolConfig> = {
           aprDescription: orcaReward,
           dailyRate: 2817 / 7,
         },
-        [coinSymbols.MNDE]: {
-          aprDescription: mndeReward,
-          dailyRate: 17205.38721 / 7,
-        },
       },
       actions,
     },
@@ -119,7 +115,7 @@ export const orcaPools: Record<LiquidityOrcaPoolAddress, PoolConfig> = {
         },
         [coinSymbols.MNDE]: {
           aprDescription: mndeReward,
-          dailyRate: 94629.62963 / 7,
+          dailyRate: 51616.16162 / 7,
         },
       },
       actions,
