@@ -165,9 +165,17 @@ const PoolsCategories: FunctionComponent<PoolsCategoriesProps> = ({
         direction={{ base: "row", md: "row" }}
         display={{ base: "flex", lg: "none" }}
         mb={4}
+        alignItems="center"
         zIndex={mobileMenuOpen ? 8 : 7}
       >
-        <MText fontWeight="normal">Category:</MText>
+        <Text
+          marginLeft="2px"
+          fontWeight="normal"
+          fontSize="14.4px"
+          lineHeight="140%"
+        >
+          {t("defiPage.pool-categories.mobile-menu-label")}
+        </Text>
         <Menu
           onOpen={() => setMobileMenuOpen(true)}
           onClose={() => setMobileMenuOpen(false)}
