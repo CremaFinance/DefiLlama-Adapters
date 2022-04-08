@@ -18,6 +18,7 @@ export const coinSymbols: { [key: string]: string } = {
   ALDRIN: "RIN",
   MNGO: "MNGO",
   SABER: "SABER",
+  SLND: "SLND",
   SNY: "SNY",
   NEAR: "NEAR",
 } as const;
