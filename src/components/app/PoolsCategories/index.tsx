@@ -8,6 +8,7 @@ import {
   MenuList,
   MenuItemOption,
   useBreakpointValue,
+  Text,
 } from "@chakra-ui/react";
 import type { FunctionComponent } from "react";
 import { useEffect, useState } from "react";
@@ -63,7 +64,9 @@ const PoolsCategories: FunctionComponent<PoolsCategoriesProps> = ({
         alignItems="center"
       >
         {" "}
-        <MHeading>{t("defiPage.pool-categories.heading")}</MHeading>{" "}
+        <MHeading type="heading-xsm">
+          {t("defiPage.pool-categories.heading")}
+        </MHeading>{" "}
         <TooltipWithContent tooltipText={t("appPage.info-epoch-tooltip") || ""}>
           <IconButton
             _focus={{ boxShadow: "none" }}
@@ -112,7 +115,7 @@ const PoolsCategories: FunctionComponent<PoolsCategoriesProps> = ({
               />
             }
           >
-            {item.title}
+            <MText fontWeight="500">{item.title}</MText>
           </Button>
         ))}
       </Flex>
@@ -164,6 +167,7 @@ const PoolsCategories: FunctionComponent<PoolsCategoriesProps> = ({
         mb={4}
         zIndex={mobileMenuOpen ? 8 : 7}
       >
+        <MText fontWeight="normal">Category:</MText>
         <Menu
           onOpen={() => setMobileMenuOpen(true)}
           onClose={() => setMobileMenuOpen(false)}
@@ -178,9 +182,9 @@ const PoolsCategories: FunctionComponent<PoolsCategoriesProps> = ({
             _focus={{ boxShadow: "none" }}
             rightIcon={<BsChevronDown />}
           >
-            <MText>
+            <Text textAlign="left" fontWeight="normal">
               {t(`defiPage.pool-categories.${activeCategory}.button`)}
-            </MText>
+            </Text>
           </MenuButton>
           <MenuList>
             {categoryItems.map((item) => {
@@ -191,6 +195,7 @@ const PoolsCategories: FunctionComponent<PoolsCategoriesProps> = ({
                   bg={item.category === activeCategory ? "gray.100" : "white"}
                   _hover={{}}
                   _active={{}}
+                  _focus={{}}
                   isFocusable={false}
                   isChecked={item.category === activeCategory}
                 >
@@ -208,7 +213,7 @@ const PoolsCategories: FunctionComponent<PoolsCategoriesProps> = ({
         margin="0 auto"
         direction={{ base: "column", md: "row" }}
         display={{ base: "none", lg: "flex" }}
-        mb="56px"
+        mb="24px"
       >
         {showMore && (
           <MText style={{ whiteSpace: "pre-line" }}>
