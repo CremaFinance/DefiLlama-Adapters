@@ -97,26 +97,31 @@ const AllPoolsSection = () => {
     },
   });
 
-  const sortedPools = useMemo(
-    () =>
-      results
-        .reduce(
-          (acc, result) =>
-            result.data
-              ? acc.concat(
-                  Object.entries(result.data).map(([key, pool]) => {
-                    return { id: key, pool };
-                  })
-                )
-              : acc,
-          [] as { id: string; pool: Pool | PoolConfig }[]
-        )
-        .sort((a, b) => {
-          const ratio = COLUMNS_SORTER[sorting.column](a.pool, b.pool);
-          return sorting.isInverted ? ratio : -ratio;
-        }),
-    [results, sorting]
-  );
+  const sortedPools = useMemo(() => {
+    const pools = results.reduce(
+      (acc, result) =>
+        result.data
+          ? acc.concat(
+              Object.entries(result.data).map(([key, pool]) => {
+                return { id: key, pool };
+              })
+            )
+          : acc,
+      [] as { id: string; pool: Pool | PoolConfig }[]
+    );
+    // temp hack to skip sorting for marinade pools
+    const marinadePools = pools.filter(
+      (pool) => pool.pool.provider === "Marinade"
+    );
+
+    const otherPools = pools
+      .filter((pool) => pool.pool.provider !== "Marinade")
+      .sort((a, b) => {
+        const ratio = COLUMNS_SORTER[sorting.column](a.pool, b.pool);
+        return sorting.isInverted ? ratio : -ratio;
+      });
+    return [...marinadePools, ...otherPools];
+  }, [results, sorting]);
 
   return (
     <Flex
