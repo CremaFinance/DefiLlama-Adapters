@@ -75,7 +75,7 @@ export const raydiumPools: Record<LiquidityRaydiumPoolAddress, PoolConfig> = {
       rewards: {
         [coinSymbols.MNDE]: {
           aprDescription: mndeReward,
-          dailyRate: 17205.38721 / 7,
+          dailyRate: 8602.693603 / 7,
         },
       },
       actions,
