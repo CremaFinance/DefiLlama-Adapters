@@ -12,6 +12,7 @@ import {
   Coin98WalletAdapter,
   SlopeWalletAdapter,
   MathWalletAdapter,
+  GlowWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
 import { useTranslation } from "next-export-i18n";
 import type { FC, ReactNode } from "react";
@@ -35,6 +36,7 @@ export const WalletConnectionProvider: FC<{ children: ReactNode }> = ({
       new Coin98WalletAdapter(),
       new SolletWalletAdapter({ network }),
       new SolletExtensionWalletAdapter({ network }),
+      new GlowWalletAdapter(),
     ],
     [network]
   );
