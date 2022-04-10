@@ -93,13 +93,16 @@ const AllPoolsSection = () => {
   const prices = usePrices([coinSymbols.SOL, coinSymbols.MNDE]);
   const stats = useStats();
 
-  const results = usePools({
-    [providerKeys.MNDE]: {
-      tvl: stats.liqPoolBalance,
-      ...mLPRowStats(mLP, prices, stats),
-      ...mSolRowStats(mSOL, prices, stats),
+  const results = usePools(
+    {
+      [providerKeys.MNDE]: {
+        tvl: stats.liqPoolBalance,
+        ...mLPRowStats(mLP, prices, stats),
+        ...mSolRowStats(mSOL, prices, stats),
+      },
     },
-  });
+    category
+  );
 
   const sortedPools = useMemo(
     () =>

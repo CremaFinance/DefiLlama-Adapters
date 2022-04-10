@@ -5,10 +5,14 @@ import { fetchCoinPrice } from "../services/markets/coinPrice";
 import type { ProviderOptions } from "../services/pools";
 import { providers } from "../services/pools";
 import { getProviderTokens } from "../utils/tokens-list";
+import type { PoolCategories } from "services/domain/poolsCategories";
 
 const refetchInterval = 5 * 60 * 1000;
 
-export const usePools = (providerOptions?: ProviderOptions) => {
+export const usePools = (
+  providerOptions?: ProviderOptions,
+  selectedCategory?: PoolCategories
+) => {
   const priceTokens = Object.values(providers).reduce((acc, provider) => {
     return acc.concat(getProviderTokens(provider).map((token) => token));
   }, [] as CoinSymbols[]);
@@ -26,7 +30,6 @@ export const usePools = (providerOptions?: ProviderOptions) => {
     const { data } = result;
     return { ...acc, ...data };
   }, {}) as Prices;
-
   const providerQueries = Object.entries(providers).map(([key, provider]) => {
     const optionsKey =
       providerOptions && providerOptions[key]
@@ -38,7 +41,11 @@ export const usePools = (providerOptions?: ProviderOptions) => {
         const options = providerOptions ? providerOptions[key] : undefined;
         return provider.fetchPools(prices, options);
       },
-      enabled: getProviderTokens(provider).every((t) => prices[t]),
+      enabled:
+        getProviderTokens(provider).every((t) => prices[t]) &&
+        !!Object.values(provider.pools).filter(
+          (pool) => pool.category === selectedCategory
+        ).length,
       placeholderData: provider.pools,
       refetchInterval,
     };
