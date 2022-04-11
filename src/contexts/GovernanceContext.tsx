@@ -126,12 +126,10 @@ function GovernanceContextProvider(props: {
   }
 
   async function addMore(amount: string, nftMint?: PublicKey): Promise<string> {
-    let response = "";
+    let response = "H";
     if (nftMint) {
       const escrow = await EscrowWrapper.address(sdk, nftMint);
-
       const escrowWrapper = new EscrowWrapper(sdk, escrow);
-
       const payFrom = await Token.getAssociatedTokenAddress(
         ASSOCIATED_TOKEN_PROGRAM_ID,
         TOKEN_PROGRAM_ID,

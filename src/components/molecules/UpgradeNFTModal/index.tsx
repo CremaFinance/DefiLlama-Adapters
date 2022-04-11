@@ -187,7 +187,7 @@ const UpgradeNFTModal: FunctionComponent<UpgradeNFTModalProps> = ({
                     width="100%"
                     mx={4}
                     isDisabled={
-                      Number(MNDEToLock) < 0 ||
+                      Number(MNDEToLock) <= 0 ||
                       Number(MNDEToLock) > (MNDEBalance ?? 0) / LAMPORTS_PER_SOL
                     }
                     onClick={() => {
