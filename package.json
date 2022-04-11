@@ -37,7 +37,7 @@
     "@project-serum/anchor": "^0.23.0",
     "@quarryprotocol/quarry-sdk": "^3.0.0",
     "@saberhq/anchor-contrib": "^1.12.56",
-    "@saberhq/solana-contrib": "^1.12.56",
+    "@saberhq/solana-contrib": "^1.12.59",
     "@saberhq/stableswap-sdk": "^1.12.56",
     "@saberhq/token-utils": "^1.12.56",
     "@solana/buffer-layout": "^4.0.0",
