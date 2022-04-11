@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { Flex, Tr, Td, Image, useMediaQuery, Skeleton } from "@chakra-ui/react";
 import type { PublicKey } from "@solana/web3.js";
 import { useTranslation } from "next-export-i18n";

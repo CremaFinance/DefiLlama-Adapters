@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable no-unsafe-optional-chaining */
 import {
   Flex,
@@ -39,17 +38,20 @@ import { useTracking } from "hooks/useTracking";
 import { useWallet } from "hooks/useWallet";
 import type { NFTType } from "services/domain/nftType";
 import colors from "styles/customTheme/colors";
+import { formatNumberLocale } from "utils/format-number-locale";
 
 interface UpgradeNFTModalProps {
   isOpen: boolean;
   onClose: () => void;
-  nftId: string;
+  nftId?: string;
+  nftAddress?: string;
 }
 
 const UpgradeNFTModal: FunctionComponent<UpgradeNFTModalProps> = ({
   isOpen,
   onClose,
   nftId,
+  nftAddress,
 }) => {
   const { t } = useTranslation();
   const [nft, setNft] = useState<NFTType | null>(null);
@@ -58,10 +60,17 @@ const UpgradeNFTModal: FunctionComponent<UpgradeNFTModalProps> = ({
 
   useEffect(() => {
     if (!isFetching && !isLoading && governance?.nfts.length) {
-      const selectedNFT = governance?.nfts.findIndex((x) => x.id === nftId);
-      setNft(governance?.nfts[selectedNFT]);
+      if (nftId) {
+        const selectedNFT = governance?.nfts.findIndex((x) => x.id === nftId);
+        setNft(governance?.nfts[selectedNFT]);
+      } else if (nftAddress) {
+        const selectedNFT = governance?.nfts.findIndex(
+          (x) => x.address.toString() === nftAddress
+        );
+        setNft(governance?.nfts[selectedNFT]);
+      }
     }
-  }, [setNft, isFetching, governance, isLoading, nftId]);
+  }, [setNft, isFetching, governance, isLoading, nftId, nftAddress]);
 
   const { addMore } = useContext(GovernanceContext);
   const chain = useChain();
@@ -178,13 +187,11 @@ const UpgradeNFTModal: FunctionComponent<UpgradeNFTModalProps> = ({
                     width="100%"
                     mx={4}
                     isDisabled={
-                      Number(MNDEToLock) < 1000 ||
+                      Number(MNDEToLock) < 0 ||
                       Number(MNDEToLock) > (MNDEBalance ?? 0) / LAMPORTS_PER_SOL
                     }
                     onClick={() => {
                       setIsPendingLockOpen(true);
-                      console.log(nft?.address.toString());
-                      console.log(MNDEToLock);
                       addMore(MNDEToLock, nft?.address).then(
                         (signature) => {
                           setMNDEToLock("");
@@ -219,7 +226,6 @@ const UpgradeNFTModal: FunctionComponent<UpgradeNFTModalProps> = ({
                           }
                         },
                         (error) => {
-                          console.log(error);
                           transactionSignedAction(false);
                           setIsPendingLockOpen(false);
                           let description = t(
@@ -284,7 +290,9 @@ const UpgradeNFTModal: FunctionComponent<UpgradeNFTModalProps> = ({
                     />
                   </TooltipWithContent>
                 </Flex>
-                <MText type="text-md">{nft?.lockedMNDE}</MText>
+                <MText type="text-md">
+                  {formatNumberLocale(nft?.lockedMNDE)}
+                </MText>
               </Flex>
             </Flex>
             <PendingStakeModal
