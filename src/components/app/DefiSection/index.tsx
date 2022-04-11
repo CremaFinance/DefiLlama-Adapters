@@ -12,6 +12,7 @@ const DefiSection = () => {
       position="relative"
       flexDirection="column"
       alignItems="stretch"
+      zIndex={8}
     >
       <DefiSubtitleSection />
       <AllPoolsSection />

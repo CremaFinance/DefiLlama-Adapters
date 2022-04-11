@@ -1,18 +1,18 @@
 import { Flex } from "@chakra-ui/layout";
 import {
   Button,
-  Image,
   MenuButton,
   Menu,
   IconButton,
   MenuList,
   MenuItemOption,
   useBreakpointValue,
-  Text,
 } from "@chakra-ui/react";
 import type { FunctionComponent } from "react";
 import { useEffect, useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
+import { FiChevronDown, FiChevronUp } from "react-icons/fi";
+import { IoIosCheckmarkCircle } from "react-icons/io";
 import { MdInfoOutline } from "react-icons/md";
 
 import MHeading from "../../atoms/Heading";
@@ -63,7 +63,6 @@ const PoolsCategories: FunctionComponent<PoolsCategoriesProps> = ({
         mb={4}
         alignItems="center"
       >
-        {" "}
         <MHeading type="heading-xsm">
           {t("defiPage.pool-categories.heading")}
         </MHeading>{" "}
@@ -78,7 +77,6 @@ const PoolsCategories: FunctionComponent<PoolsCategoriesProps> = ({
         </TooltipWithContent>
       </Flex>
       <Flex
-        minWidth={{ base: "288px", lg: "900px" }}
         maxWidth={{ base: "320px", lg: "1100px" }}
         width="100%"
         margin="0 auto"
@@ -105,14 +103,7 @@ const PoolsCategories: FunctionComponent<PoolsCategoriesProps> = ({
             }}
             fontWeight="normal"
             rightIcon={
-              <Image
-                display={
-                  activeCategory === item.category ? "inline-block" : "none"
-                }
-                transition="display 0.1s ease"
-                transitionDelay="0.2"
-                src="/icons/checkmark-filled-green.svg"
-              />
+              <IoIosCheckmarkCircle color={colors.marinadeGreen} size={20} />
             }
           >
             <MText fontWeight="500">{item.title}</MText>
@@ -120,7 +111,6 @@ const PoolsCategories: FunctionComponent<PoolsCategoriesProps> = ({
         ))}
       </Flex>
       <Flex
-        minWidth={{ base: "unset", lg: "900px" }}
         maxWidth={{ base: "unset", lg: "1100px" }}
         width="100%"
         margin={marginVariant}
@@ -129,7 +119,6 @@ const PoolsCategories: FunctionComponent<PoolsCategoriesProps> = ({
         <MText>{t(`defiPage.pool-categories.${activeCategory}.text`)}</MText>
       </Flex>
       <Flex
-        minWidth={{ base: "288px", lg: "900px" }}
         maxWidth={{ base: "320px", lg: "1100px" }}
         width="100%"
         margin="0 auto"
@@ -145,21 +134,12 @@ const PoolsCategories: FunctionComponent<PoolsCategoriesProps> = ({
             base: "none",
             lg: activeCategory === poolCategories.STAKING ? "none" : "flex",
           }}
-          rightIcon={
-            <Image
-              src={
-                !showMore
-                  ? "/icons/arrow-down-black.svg"
-                  : "/icons/arrow-up-black.svg"
-              }
-            />
-          }
+          rightIcon={!showMore ? <FiChevronDown /> : <FiChevronUp />}
         >
           {t("defiPage.pool-categories.learn-more")}
         </Button>
       </Flex>
       <Flex
-        minWidth={{ base: "288px", lg: "900px" }}
         maxWidth={{ base: "unset", lg: "1100px" }}
         width="100%"
         direction={{ base: "row", md: "row" }}
@@ -168,14 +148,14 @@ const PoolsCategories: FunctionComponent<PoolsCategoriesProps> = ({
         alignItems="center"
         zIndex={mobileMenuOpen ? 8 : 7}
       >
-        <Text
+        <MText
           marginLeft="2px"
           fontWeight="normal"
           fontSize="14.4px"
           lineHeight="140%"
         >
           {t("defiPage.pool-categories.mobile-menu-label")}
-        </Text>
+        </MText>
         <Menu
           onOpen={() => setMobileMenuOpen(true)}
           onClose={() => setMobileMenuOpen(false)}
@@ -190,9 +170,9 @@ const PoolsCategories: FunctionComponent<PoolsCategoriesProps> = ({
             _focus={{ boxShadow: "none" }}
             rightIcon={<BsChevronDown />}
           >
-            <Text textAlign="left" fontWeight="normal">
+            <MText textAlign="left" fontWeight="normal">
               {t(`defiPage.pool-categories.${activeCategory}.button`)}
-            </Text>
+            </MText>
           </MenuButton>
           <MenuList>
             {categoryItems.map((item) => {
@@ -215,7 +195,6 @@ const PoolsCategories: FunctionComponent<PoolsCategoriesProps> = ({
         </Menu>
       </Flex>
       <Flex
-        minWidth={{ base: "288px", lg: "900px" }}
         maxWidth={{ base: "320px", lg: "1100px" }}
         width="100%"
         margin="0 auto"

@@ -26,7 +26,7 @@ export const synthetifyPools: Record<SynthetifyPoolAddress, PoolConfig> = {
       marketType: marketTypes.Lending,
       providerId: synthetifyPoolIds.SNY_mSOL,
       tokenA: coinSymbols.mSOL,
-      category: poolCategories.STAKING,
+      category: poolCategories.LENDING,
       rewards: {
         [coinSymbols.MNDE]: {
           aprDescription: "MNDE rewards",

@@ -16,6 +16,7 @@ import type { Prices } from "services/domain/coinSymbols";
 import { coinSymbols } from "services/domain/coinSymbols";
 import type { Farm } from "services/domain/farm";
 import type { PoolCategories } from "services/domain/poolsCategories";
+import { capitalizeFirstLetter } from "utils/capitalize-first-letter";
 
 import type { SortingState } from "./constants";
 import { COLUMNS, COLUMNS_SORTER } from "./constants";
@@ -104,33 +105,38 @@ const AllPoolsSection = () => {
     category
   );
 
-  const sortedPools = useMemo(
-    () =>
-      results
-        .reduce(
-          (acc, result) =>
-            result.data
-              ? acc.concat(
-                  Object.entries(result.data).map(([key, pool]) => {
-                    return { id: key, pool };
-                  })
-                )
-              : acc,
-          [] as { id: string; pool: Pool | PoolConfig }[]
-        )
-        .filter((pool) => pool.pool.category === category)
-        .sort((a, b) => {
-          const ratio = COLUMNS_SORTER[sorting.column](a.pool, b.pool);
-          return sorting.isInverted ? ratio : -ratio;
-        }),
-    [results, sorting, category]
-  );
+  const sortedPools = useMemo(() => {
+    const pools = results
+      .reduce(
+        (acc, result) =>
+          result.data
+            ? acc.concat(
+                Object.entries(result.data).map(([key, pool]) => {
+                  return { id: key, pool };
+                })
+              )
+            : acc,
+        [] as { id: string; pool: Pool | PoolConfig }[]
+      )
+      .filter((pool) => pool.pool.category === category);
+    const marinadePools = pools.filter(
+      (pool) => pool.pool.provider === capitalizeFirstLetter(providerKeys.MNDE)
+    );
+    const otherPools = pools
+      .filter((pool) => pool.pool.provider !== "Marinade")
+      .sort((a, b) => {
+        const ratio = COLUMNS_SORTER[sorting.column](a.pool, b.pool);
+        return sorting.isInverted ? ratio : -ratio;
+      });
+    return [...marinadePools, ...otherPools];
+  }, [results, sorting, category]);
 
   return (
     <Flex
       flexDir="column"
       marginX={{ base: "16px", lg: "65px", xl: "170px" }}
       alignItems="stretch"
+      zIndex={8}
     >
       <PoolsCategories
         setCategory={(cat: PoolCategories) => setCategory(cat)}
