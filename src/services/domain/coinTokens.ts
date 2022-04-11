@@ -265,6 +265,23 @@ export const coinTokens: TokenRecord<CoinSymbols> = {
       website: "https://saber.so",
     },
   },
+  [coinSymbols.SLND]: {
+    chainId: 101,
+    address: "SLNDpmoWTVADgEdndyvWzroNL7zSi1dF9PC3xHGtPwp",
+    symbol: "SLND",
+    name: "Solend",
+    decimals: 6,
+    logoURI:
+      "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/SLNDpmoWTVADgEdndyvWzroNL7zSi1dF9PC3xHGtPwp/logo.png",
+    extensions: {
+      coingeckoId: "solend",
+      discord: "https://discord.com/invite/aGXvPNGXDT",
+      github: "https://github.com/solendprotocol",
+      medium: "https://medium.com/solend/about",
+      serumV3Usdc: "HXBi8YBwbh4TXF6PjVw81m8Z3Cc4WBofvauj5SBFdgUs",
+      website: "https://solend.fi",
+    },
+  },
   [coinSymbols.SNY]: {
     chainId: 101,
     address: "4dmKkXNHdgYsXqBHCuMikNQWwVomZURhYvkkX5c4pQ7y",
