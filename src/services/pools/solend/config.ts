@@ -7,7 +7,7 @@ import { lendingSolendPoolAddress } from "./lendingSolendPoolAddress";
 import type { LendingSolendPoolIds } from "./lendingSolendPoolIds";
 import { lendingSolendPoolIds } from "./lendingSolendPoolIds";
 import { lendingSolendPoolTokens } from "./lendingSolendPoolTokens";
-import type { SolendPool } from "./solendPool";
+import type { SolendReserveResponse } from "./solendPool";
 
 const provider = "Solend";
 const actions = [
@@ -23,7 +23,10 @@ const actions = [
   },
 ];
 
-export type SolendPoolsResponse = Record<LendingSolendPoolIds, SolendPool>;
+export type SolendPoolsResponse = Record<
+  LendingSolendPoolIds,
+  SolendReserveResponse
+>;
 
 export const solendPools: Record<LendingSolendPoolAddress, PoolConfig> = {
   [lendingSolendPoolAddress.SOLEND_mSOL]: {
