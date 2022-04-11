@@ -1,6 +1,7 @@
 import { coinSymbols } from "../../domain/coinSymbols";
 import { marketTypes } from "../../domain/marketTypes";
 import type { PoolConfig } from "../../domain/pool";
+import { poolCategories } from "services/domain/poolsCategories";
 
 import type { LendingSolendPoolAddress } from "./lendingSolendPoolAddress";
 import { lendingSolendPoolAddress } from "./lendingSolendPoolAddress";
@@ -36,6 +37,7 @@ export const solendPools: Record<LendingSolendPoolAddress, PoolConfig> = {
       marketType: marketTypes.Lending,
       providerId: lendingSolendPoolIds.SOLEND_mSOL,
       tokenA: coinSymbols.mSOL,
+      category: poolCategories.LENDING,
       rewards: {
         // 0 for now. to be read from solend api later
         [coinSymbols.MNDE]: { aprDescription: "Emission", dailyRate: 0 },
