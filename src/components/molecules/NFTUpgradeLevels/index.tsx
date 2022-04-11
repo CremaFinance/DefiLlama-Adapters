@@ -138,7 +138,7 @@ const NFTUpgradeLevels = ({
           selected={selectedLevel === "level1"}
           disabled
         />
-        <LevelDivider min={1000} max={5000} balance={balance} />
+        <LevelDivider min={1000} max={5000} balance={currentAmount + balance} />
         <NFTLevelsItem
           ilustration={
             limited
@@ -162,7 +162,11 @@ const NFTUpgradeLevels = ({
             secondLevelTitle.includes(currentLevel)
           }
         />
-        <LevelDivider min={5000} max={25000} balance={balance} />
+        <LevelDivider
+          min={5000}
+          max={25000}
+          balance={currentAmount + balance}
+        />
         <NFTLevelsItem
           ilustration={
             limited
@@ -186,7 +190,12 @@ const NFTUpgradeLevels = ({
             thirdLevelTitle.includes(currentLevel)
           }
         />
-        <LevelDivider min={25000} max={100000} balance={balance} last />
+        <LevelDivider
+          min={25000}
+          max={100000}
+          balance={currentAmount + balance}
+          last
+        />
         <NFTLevelsItem
           ilustration={
             limited
@@ -212,7 +221,12 @@ const NFTUpgradeLevels = ({
           imageHeight="56px"
           mb="-9px"
         />
-        <LevelDivider min={100000} max={250000} balance={balance} last />
+        <LevelDivider
+          min={100000}
+          max={250000}
+          balance={currentAmount + balance}
+          last
+        />
         <NFTLevelsItem
           ilustration={
             limited
