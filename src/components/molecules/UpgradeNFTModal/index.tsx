@@ -121,8 +121,8 @@ const UpgradeNFTModal: FunctionComponent<UpgradeNFTModalProps> = ({
             mt={6}
           >
             <Skeleton
-              width={{ base: "300px", md: "382px" }}
-              height={{ base: "300px", md: "382px" }}
+              width={{ base: "268px", md: "382px" }}
+              height={{ base: "268px", md: "382px" }}
               isLoaded={!isFetching && !isLoading && thumbnailLoaded}
             >
               <Image
@@ -131,7 +131,7 @@ const UpgradeNFTModal: FunctionComponent<UpgradeNFTModalProps> = ({
                 onLoad={() => {
                   setThumbnailLoaded(true);
                 }}
-                maxWidth={{ base: "300px", md: "382px" }}
+                maxWidth={{ base: "268px", md: "382px" }}
               />
             </Skeleton>
             <MText
@@ -166,6 +166,8 @@ const UpgradeNFTModal: FunctionComponent<UpgradeNFTModalProps> = ({
                   <Skeleton
                     isLoaded={!isFetching && !isLoading && thumbnailLoaded}
                     mb="8px"
+                    width="100%"
+                    alignSelf="flex-start"
                   >
                     <NFTUpgradeLevels
                       kind={nft?.kind ?? ""}
@@ -177,15 +179,14 @@ const UpgradeNFTModal: FunctionComponent<UpgradeNFTModalProps> = ({
                     />
                   </Skeleton>
                   <MButton
+                    alignSelf="flex-start"
                     font="text-xl"
                     bg={colors.marinadeGreen}
                     _hover={{ bg: colors.green800 }}
                     colorScheme={colors.marinadeGreen}
                     rounded="md"
-                    px={4}
                     height="40px"
                     width="100%"
-                    mx={4}
                     isDisabled={
                       Number(MNDEToLock) <= 0 ||
                       Number(MNDEToLock) > (MNDEBalance ?? 0) / LAMPORTS_PER_SOL
