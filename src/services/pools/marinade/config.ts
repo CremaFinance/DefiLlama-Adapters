@@ -71,7 +71,7 @@ export const marinadePools: Record<LiquidityMarinadePoolAddress, PoolConfig> = {
       providerId: liquidityPoolMarinadeIds.MNDE_mSOL_SOL_LP_FARM,
       tokenA: "mSOL-SOL-LP",
       actions,
-      category: poolCategories.LIQUIDITY,
+      category: poolCategories.STAKING,
     },
     RowExtensionComponent: MsolSolLPRowExtension,
     componentAction: "mSolSolLPFarmModal",
