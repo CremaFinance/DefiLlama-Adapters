@@ -1,6 +1,7 @@
 import { coinSymbols } from "../../domain/coinSymbols";
 import { marketTypes } from "../../domain/marketTypes";
 import type { PoolConfig } from "../../domain/pool";
+import { poolCategories } from "services/domain/poolsCategories";
 
 import type { AtrixPool } from "./atrixPool";
 import type { LiquidityAtrixPoolAddress } from "./liquidityAtrixPoolAddress";
@@ -34,6 +35,7 @@ export const atrixPools: Record<LiquidityAtrixPoolAddress, PoolConfig> = {
       providerId: liquidityPoolAtrixIds.ATRIX_mSOL_USDC,
       tokenA: coinSymbols.mSOL,
       tokenB: coinSymbols.USDC,
+      category: poolCategories.LIQUIDITY,
       rewards: {
         [coinSymbols.MNDE]: {
           aprDescription: "daily MNDE",
@@ -51,6 +53,7 @@ export const atrixPools: Record<LiquidityAtrixPoolAddress, PoolConfig> = {
       providerId: liquidityPoolAtrixIds.ATRIX_mSOL_USDT,
       tokenA: coinSymbols.mSOL,
       tokenB: coinSymbols.USDT,
+      category: poolCategories.LIQUIDITY,
       rewards: {
         [coinSymbols.MNDE]: {
           aprDescription: "daily MNDE",

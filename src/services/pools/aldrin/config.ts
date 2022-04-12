@@ -1,6 +1,7 @@
 import { coinSymbols } from "../../domain/coinSymbols";
 import { marketTypes } from "../../domain/marketTypes";
 import type { PoolConfig } from "../../domain/pool";
+import { poolCategories } from "services/domain/poolsCategories";
 
 import type { LiquidityAldrinPoolAddress } from "./liquidityAldrinPoolAddress";
 import { liquidityAldrinPoolAddress } from "./liquidityAldrinPoolAddress";
@@ -58,6 +59,7 @@ export const aldrinPools: Record<LiquidityAldrinPoolAddress, PoolConfig> = {
       providerId: liquidityPoolAldrinIds.ALDRIN_mSOL_SOL,
       tokenA: coinSymbols.mSOL,
       tokenB: coinSymbols.SOL,
+      category: poolCategories.LIQUIDITY,
       actions: actions.map((action) => ({
         text: action.text,
         url: getActionUrl({
@@ -78,6 +80,7 @@ export const aldrinPools: Record<LiquidityAldrinPoolAddress, PoolConfig> = {
       providerId: liquidityPoolAldrinIds.ALDRIN_mSOL_USDC,
       tokenA: coinSymbols.mSOL,
       tokenB: coinSymbols.USDC,
+      category: poolCategories.LIQUIDITY,
       actions: actions.map((action) => ({
         text: action.text,
         url: getActionUrl({
@@ -98,6 +101,7 @@ export const aldrinPools: Record<LiquidityAldrinPoolAddress, PoolConfig> = {
       providerId: liquidityPoolAldrinIds.ALDRIN_mSOL_USDT,
       tokenA: coinSymbols.mSOL,
       tokenB: coinSymbols.USDT,
+      category: poolCategories.LIQUIDITY,
       actions: actions.map((action) => ({
         text: action.text,
         url: getActionUrl({
@@ -118,6 +122,7 @@ export const aldrinPools: Record<LiquidityAldrinPoolAddress, PoolConfig> = {
       providerId: liquidityPoolAldrinIds.ALDRIN_mSOL_MNGO,
       tokenA: coinSymbols.mSOL,
       tokenB: coinSymbols.MNGO,
+      category: poolCategories.LIQUIDITY,
       actions: actions.map((action) => ({
         text: action.text,
         url: getActionUrl({
@@ -138,6 +143,7 @@ export const aldrinPools: Record<LiquidityAldrinPoolAddress, PoolConfig> = {
       providerId: liquidityPoolAldrinIds.ALDRIN_mSOL_ETH,
       tokenA: coinSymbols.mSOL,
       tokenB: coinSymbols.ETH,
+      category: poolCategories.LIQUIDITY,
       actions: actions.map((action) => ({
         text: action.text,
         url: getActionUrl({
@@ -158,6 +164,7 @@ export const aldrinPools: Record<LiquidityAldrinPoolAddress, PoolConfig> = {
       providerId: liquidityPoolAldrinIds.ALDRIN_mSOL_BTC,
       tokenA: coinSymbols.mSOL,
       tokenB: coinSymbols.BTC,
+      category: poolCategories.LIQUIDITY,
       actions: actions.map((action) => ({
         text: action.text,
         url: getActionUrl({
@@ -178,6 +185,7 @@ export const aldrinPools: Record<LiquidityAldrinPoolAddress, PoolConfig> = {
       providerId: liquidityPoolAldrinIds.ALDRIN_mSOL_NEAR,
       tokenA: coinSymbols.mSOL,
       tokenB: coinSymbols.NEAR,
+      category: poolCategories.LIQUIDITY,
       actions: actions.map((action) => ({
         text: action.text,
         url: getActionUrl({

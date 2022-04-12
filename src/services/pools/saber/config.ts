@@ -2,6 +2,7 @@ import { coinSymbols } from "../../domain/coinSymbols";
 import { marketTypes } from "../../domain/marketTypes";
 import type { PoolConfig } from "../../domain/pool";
 import type { Token } from "../../domain/token";
+import { poolCategories } from "services/domain/poolsCategories";
 
 import type { FarmPoolAddress } from "./PoolAddress";
 import { farmPoolAddress } from "./PoolAddress";
@@ -51,6 +52,7 @@ export const saberPools: Record<FarmPoolAddress, PoolConfig> = {
       providerId: "Lee1XZJfJ9Hm2K1qTyeCz1LXNc1YBZaKZszvNY4KCDw",
       tokenA: coinSymbols.mSOL,
       tokenB: coinSymbols.SOL,
+      category: poolCategories.FARMING,
       rewards: {
         [coinSymbols.SABER]: {
           aprDescription: "SABER",

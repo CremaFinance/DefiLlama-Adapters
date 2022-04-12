@@ -1,6 +1,7 @@
 import { coinSymbols } from "../../domain/coinSymbols";
 import { marketTypes } from "../../domain/marketTypes";
 import type { PoolConfig } from "../../domain/pool";
+import { poolCategories } from "services/domain/poolsCategories";
 
 import type { LiquidityOrcaPoolAddress } from "./liquidityOrcaPoolAddress";
 import { liquidityOrcaPoolAddress } from "./liquidityOrcaPoolAddress";
@@ -27,6 +28,7 @@ export const orcaPools: Record<LiquidityOrcaPoolAddress, PoolConfig> = {
       providerId: liquidityOrcaPoolIds.ORCA_mSOL_SOL,
       tokenA: coinSymbols.mSOL,
       tokenB: coinSymbols.SOL,
+      category: poolCategories.LIQUIDITY,
       rewards: {
         [coinSymbols.ORCA]: {
           aprDescription: orcaReward,
@@ -44,6 +46,7 @@ export const orcaPools: Record<LiquidityOrcaPoolAddress, PoolConfig> = {
       providerId: liquidityOrcaPoolIds.ORCA_BTC_mSOL,
       tokenA: coinSymbols.BTC,
       tokenB: coinSymbols.mSOL,
+      category: poolCategories.LIQUIDITY,
       rewards: {
         [coinSymbols.ORCA]: {
           aprDescription: orcaReward,
@@ -65,6 +68,7 @@ export const orcaPools: Record<LiquidityOrcaPoolAddress, PoolConfig> = {
       providerId: liquidityOrcaPoolIds.ORCA_MNDE_mSOL,
       tokenA: coinSymbols.MNDE,
       tokenB: coinSymbols.mSOL,
+      category: poolCategories.LIQUIDITY,
       rewards: {
         [coinSymbols.ORCA]: {
           aprDescription: orcaReward,
@@ -86,7 +90,7 @@ export const orcaPools: Record<LiquidityOrcaPoolAddress, PoolConfig> = {
       providerId: liquidityOrcaPoolIds.ORCA_mSOL_USDT,
       tokenA: coinSymbols.mSOL,
       tokenB: coinSymbols.USDT,
-
+      category: poolCategories.LIQUIDITY,
       rewards: {
         [coinSymbols.ORCA]: {
           aprDescription: orcaReward,
@@ -108,6 +112,7 @@ export const orcaPools: Record<LiquidityOrcaPoolAddress, PoolConfig> = {
       providerId: liquidityOrcaPoolIds.ORCA_mSOL_USDC,
       tokenA: coinSymbols.mSOL,
       tokenB: coinSymbols.USDC,
+      category: poolCategories.LIQUIDITY,
       rewards: {
         [coinSymbols.ORCA]: {
           aprDescription: orcaReward,
@@ -129,6 +134,7 @@ export const orcaPools: Record<LiquidityOrcaPoolAddress, PoolConfig> = {
       providerId: liquidityOrcaPoolIds.ORCA_ORCA_mSOL,
       tokenA: coinSymbols.ORCA,
       tokenB: coinSymbols.mSOL,
+      category: poolCategories.LIQUIDITY,
       rewards: {
         [coinSymbols.ORCA]: {
           aprDescription: orcaReward,
@@ -146,6 +152,7 @@ export const orcaPools: Record<LiquidityOrcaPoolAddress, PoolConfig> = {
       providerId: liquidityOrcaPoolIds.ORCA_mSOL_whETH,
       tokenA: coinSymbols.mSOL,
       tokenB: coinSymbols.ETH,
+      category: poolCategories.LIQUIDITY,
       rewards: {
         [coinSymbols.ORCA]: {
           aprDescription: orcaReward,

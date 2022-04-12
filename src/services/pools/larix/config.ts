@@ -1,6 +1,7 @@
 import { coinSymbols } from "../../domain/coinSymbols";
 import { marketTypes } from "../../domain/marketTypes";
 import type { PoolConfig } from "../../domain/pool";
+import { poolCategories } from "services/domain/poolsCategories";
 
 import type { LarixPool } from "./larixPool";
 import type { LendingLarixPoolAddress } from "./lendingLarixPoolAddress";
@@ -24,6 +25,7 @@ export const larixPools: Record<LendingLarixPoolAddress, PoolConfig> = {
       marketType: marketTypes.Lending,
       providerId: lendingLarixPoolIds.LARIX_mSOL,
       tokenA: coinSymbols.mSOL,
+      category: poolCategories.LENDING,
       rewards: {
         [coinSymbols.MNDE]: {
           aprDescription: "Emission",
