@@ -463,6 +463,8 @@
         "claim": "Claim",
         "unlock": "Unlock (30d)",
         "lock-more": "Lock more MNDE",
+        "lock-more-with-value": "Add {{value}} MNDE",
+        "current-level": "Current level",
         "vote": "Vote",
         "locked-mnde-header": "Locked MNDE",
         "nft-header": "NFT",

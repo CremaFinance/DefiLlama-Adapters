@@ -27,7 +27,7 @@ type NFTTableRowProps = {
   ) => void;
   onClaimMnde: (mndeAmount: string, address: PublicKey) => void;
   onCancelMnde: (mndeAmount: string, address: PublicKey) => void;
-  onUpgrade: (id: string) => void;
+  onUpgrade: () => void;
 };
 
 const NFTTableRow: FunctionComponent<NFTTableRowProps> = ({
@@ -116,7 +116,7 @@ const NFTTableRow: FunctionComponent<NFTTableRowProps> = ({
                   fontWeight="700"
                   fontSize="14.4px"
                   onClick={() => {
-                    onUpgrade(id);
+                    onUpgrade();
                   }}
                 >
                   {t("appPage.mnde.nft-levels.lock-more")}

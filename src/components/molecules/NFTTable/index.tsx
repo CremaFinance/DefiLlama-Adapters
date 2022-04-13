@@ -153,9 +153,9 @@ const NFTTable = () => {
           <Tbody>
             {governance?.nfts.map((nft) => (
               <NFTTableRow
-                onUpgrade={(id: string) => {
+                onUpgrade={() => {
                   onUpgradeModalOpen();
-                  setSelectedNFT(id);
+                  setSelectedNFT(nft.address.toString());
                 }}
                 key={nft.id}
                 id={nft.id}
@@ -347,7 +347,7 @@ const NFTTable = () => {
       <UpgradeNFTModal
         isOpen={isUpgradeModalOpen}
         onClose={onUpgradeModalClose}
-        nftId={selectedNFT}
+        nftAddress={selectedNFT}
       />
     </Flex>
   );

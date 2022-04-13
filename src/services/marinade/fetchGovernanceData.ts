@@ -77,10 +77,12 @@ export const fetchGovernanceData = async (sdk: EscrowRelockerSDK) => {
     const escrow = await EscrowWrapper.address(sdk, new PublicKey(nft.mint));
     const escrowWrap = new EscrowWrapper(sdk, escrow);
     const metadata = await fetchNftMetadataByAccount(nft);
-
     if (escrowWrap) {
       const escrowData = await escrowWrap.data();
       const amounts = escrowData.amount.toNumber() / LAMPORTS_PER_SOL;
+      if (Number(metadata?.properties.mnde_amount ?? 0) !== amounts) {
+        throw new Error("Off-chain data is not synchronised.");
+      }
       return {
         address: new PublicKey(nft.mint),
         lockedMNDE: amounts,

@@ -43,14 +43,12 @@ import { formatNumberLocale } from "utils/format-number-locale";
 interface UpgradeNFTModalProps {
   isOpen: boolean;
   onClose: () => void;
-  nftId?: string;
   nftAddress?: string;
 }
 
 const UpgradeNFTModal: FunctionComponent<UpgradeNFTModalProps> = ({
   isOpen,
   onClose,
-  nftId,
   nftAddress,
 }) => {
   const { t } = useTranslation();
@@ -59,18 +57,13 @@ const UpgradeNFTModal: FunctionComponent<UpgradeNFTModalProps> = ({
   const { data: governance, isFetching, isLoading } = useGovernance();
 
   useEffect(() => {
-    if (!isFetching && !isLoading && governance?.nfts.length) {
-      if (nftId) {
-        const selectedNFT = governance?.nfts.findIndex((x) => x.id === nftId);
-        setNft(governance?.nfts[selectedNFT]);
-      } else if (nftAddress) {
-        const selectedNFT = governance?.nfts.findIndex(
-          (x) => x.address.toString() === nftAddress
-        );
-        setNft(governance?.nfts[selectedNFT]);
-      }
+    if (!isFetching && !isLoading && governance?.nfts.length && nftAddress) {
+      const selectedNFT = governance?.nfts.findIndex(
+        (x) => x.address.toString() === nftAddress
+      );
+      setNft(governance?.nfts[selectedNFT]);
     }
-  }, [setNft, isFetching, governance, isLoading, nftId, nftAddress]);
+  }, [setNft, isFetching, governance, isLoading, nftAddress]);
 
   const { addMore } = useContext(GovernanceContext);
   const chain = useChain();
@@ -232,9 +225,7 @@ const UpgradeNFTModal: FunctionComponent<UpgradeNFTModalProps> = ({
                           let description = t(
                             "appPage.mnde.errors.mint-failed.description"
                           );
-                          if (error.toString().includes("0xec6")) {
-                            description = t("appPage.capped-tvl-is-full");
-                          } else if (
+                          if (
                             error
                               .toString()
                               .includes("no record of a prior credit") ||
@@ -249,6 +240,7 @@ const UpgradeNFTModal: FunctionComponent<UpgradeNFTModalProps> = ({
                             title: t("appPage.mnde.errors.mint-failed.title"),
                             description,
                             status: "warning",
+                            position: "bottom-left",
                           });
 
                           track({

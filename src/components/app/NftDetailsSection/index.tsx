@@ -47,6 +47,8 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
     onOpen: onUpgradeModalOpen,
   } = useDisclosure();
 
+  const owned = !!governance?.nfts.find((x) => x.address.toString() === id);
+
   const skeleton = (
     <Flex
       p={6}
@@ -91,15 +93,11 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
             src={data?.image || ""}
             maxWidth={{ base: "240px", md: "477px" }}
           />
-          <Flex alignItems="center" justifyContent="space-between">
-            <MHeading
-              fontSize="18px"
-              mt="16px"
-              mr={{ base: "auto", md: "unset" }}
-            >
+          <Flex alignItems="center" justifyContent="space-between" mt="16px">
+            <MHeading fontSize="18px" mr={{ base: "auto", md: "unset" }}>
               {data?.name}
             </MHeading>
-            {isWalletConnected && (
+            {isWalletConnected && owned && (
               <MButton
                 alignSelf="flex-end"
                 textColor={colors.white}

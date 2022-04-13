@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 
 import LevelDivider from "../LevelDivider";
 import NFTLevelsItem from "../NFTLevelsItem";
+import { useTranslation } from "hooks/useTranslation";
 import { numberToShortVersion } from "utils/number-to-short-version";
 
 type NFTUpgradeLevelsProps = {
@@ -28,40 +29,54 @@ const NFTUpgradeLevels = ({
   limited,
   kind,
 }: NFTUpgradeLevelsProps) => {
+  const { t } = useTranslation();
   const [selectedLevel, setSelectedLevel] = useState("none");
 
-  const currentLevel = "Current level";
+  const currentLevel = t("appPage.mnde.nft-levels.current-level") ?? "";
+  const lockMoreWithValue = t("appPage.mnde.nft-levels.lock-more-with-value");
 
   let secondLevelTitle = "";
   if (currentAmount < 25000 && currentAmount >= 5000) {
     secondLevelTitle = currentLevel;
   } else if (currentAmount < 5000) {
-    secondLevelTitle = `Add ${numberToShortVersion(5000 - currentAmount)} MNDE`;
+    secondLevelTitle =
+      lockMoreWithValue?.replace(
+        "{{value}}",
+        numberToShortVersion(5000 - currentAmount)
+      ) ?? "";
   }
 
   let thirdLevelTitle = "";
   if (currentAmount < 100000 && currentAmount >= 25000) {
     thirdLevelTitle = currentLevel;
   } else if (currentAmount < 25000) {
-    thirdLevelTitle = `Add ${numberToShortVersion(25000 - currentAmount)} MNDE`;
+    thirdLevelTitle =
+      lockMoreWithValue?.replace(
+        "{{value}}",
+        numberToShortVersion(25000 - currentAmount)
+      ) ?? "";
   }
 
   let fourthLevelTitle = "";
   if (currentAmount < 250000 && currentAmount >= 100000) {
     fourthLevelTitle = currentLevel;
   } else if (currentAmount < 100000) {
-    fourthLevelTitle = `Add ${numberToShortVersion(
-      100000 - currentAmount
-    )} MNDE`;
+    fourthLevelTitle =
+      lockMoreWithValue?.replace(
+        "{{value}}",
+        numberToShortVersion(100000 - currentAmount)
+      ) ?? "";
   }
 
   let fifthLevelTitle = "";
   if (currentAmount >= 250000) {
     fifthLevelTitle = currentLevel;
   } else if (currentAmount < 250000) {
-    fifthLevelTitle = `Add ${numberToShortVersion(
-      250000 - currentAmount
-    )} MNDE`;
+    fifthLevelTitle =
+      lockMoreWithValue?.replace(
+        "{{value}}",
+        numberToShortVersion(250000 - currentAmount)
+      ) ?? "";
   }
 
   useEffect(() => {
@@ -134,7 +149,7 @@ const NFTUpgradeLevels = ({
               ? "/ilustrations/nft-level1-le.svg"
               : "/ilustrations/nft-level1-re.svg"
           }
-          title={currentAmount < 5000 ? "Current level" : ""}
+          title={currentAmount < 5000 ? currentLevel : ""}
           selected={selectedLevel === "level1"}
           disabled
         />
