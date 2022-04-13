@@ -1,6 +1,6 @@
 /* eslint-disable complexity */
 /* eslint-disable sonarjs/cognitive-complexity */
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Text, Skeleton } from "@chakra-ui/react";
 import { useTranslation } from "next-export-i18n";
 import { useState, useEffect } from "react";
 
@@ -17,9 +17,15 @@ type NFTLevelsProps = {
     changeInputAmount: boolean,
     kind: string
   ) => void;
+  onEditionsLoaded: (editionLoaded: boolean) => void;
 };
 
-const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
+const NFTLevels = ({
+  balance,
+  input,
+  onLevelClick,
+  onEditionsLoaded,
+}: NFTLevelsProps) => {
   const { t } = useTranslation();
   const placeholder = "{{amountLeft}}";
   const { data: editionInfo, isRefetching } = useEditions();
@@ -30,10 +36,11 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
 
   useEffect(() => {
     if (editionInfo) {
-      setLimitedAmountLeft(editionInfo[0].left);
-      setLimited(editionInfo[0].editions[0].current);
+      setLimitedAmountLeft(editionInfo.left);
+      setLimited(editionInfo.editions[0].current);
+      onEditionsLoaded(limitedAmountLeft !== -1);
     }
-  }, [editionInfo, isRefetching]);
+  }, [editionInfo, isRefetching, limitedAmountLeft, onEditionsLoaded]);
 
   useEffect(() => {
     const inputAmount = Number(input);
@@ -47,9 +54,9 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
         onLevelClick(
           "1",
           false,
-          editionInfo[0].editions[0].current
-            ? editionInfo[0].editions[0].address
-            : editionInfo[0].editions[1].address
+          editionInfo.editions[0].current
+            ? editionInfo.editions[0].address
+            : editionInfo.editions[1].address
         );
       }
       if (
@@ -61,9 +68,9 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
         onLevelClick(
           "2",
           false,
-          editionInfo[0].editions[0].current
-            ? editionInfo[0].editions[0].address
-            : editionInfo[0].editions[1].address
+          editionInfo.editions[0].current
+            ? editionInfo.editions[0].address
+            : editionInfo.editions[1].address
         );
       }
       if (
@@ -75,9 +82,9 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
         onLevelClick(
           "3",
           false,
-          editionInfo[0].editions[0].current
-            ? editionInfo[0].editions[0].address
-            : editionInfo[0].editions[1].address
+          editionInfo.editions[0].current
+            ? editionInfo.editions[0].address
+            : editionInfo.editions[1].address
         );
       }
       if (
@@ -89,9 +96,9 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
         onLevelClick(
           "4",
           false,
-          editionInfo[0].editions[0].current
-            ? editionInfo[0].editions[0].address
-            : editionInfo[0].editions[1].address
+          editionInfo.editions[0].current
+            ? editionInfo.editions[0].address
+            : editionInfo.editions[1].address
         );
       }
       if (inputAmount >= 250000 && inputAmount <= balance) {
@@ -99,9 +106,9 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
         onLevelClick(
           "5",
           false,
-          editionInfo[0].editions[0].current
-            ? editionInfo[0].editions[0].address
-            : editionInfo[0].editions[1].address
+          editionInfo.editions[0].current
+            ? editionInfo.editions[0].address
+            : editionInfo.editions[1].address
         );
       }
     }
@@ -118,24 +125,30 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
       flexWrap="wrap"
       alignItems="center"
     >
-      <Text
-        alignSelf="start"
-        opacity={balance < 1000 ? "40%" : "100%"}
+      <Skeleton
+        height="13px"
         mt="16px"
         mb="8px"
-        fontWeight="bold"
-        textAlign={{ base: "right", md: "left" }}
-        fontSize="11.52px"
-        lineHeight="13.83px"
-        color={Limited ? colors.marinadeOrange : "gray.500"}
+        isLoaded={limitedAmountLeft !== -1}
+        alignSelf="start"
       >
-        {limitedAmountLeft !== 0
-          ? t("appPage.mnde.nft-levels.level-one.amount.limited")?.replace(
-              placeholder,
-              limitedAmountLeft
-            )
-          : t("appPage.mnde.nft-levels.level-one.amount.regular")}
-      </Text>
+        <Text
+          alignSelf="start"
+          opacity={balance < 1000 ? "40%" : "100%"}
+          fontWeight="bold"
+          textAlign={{ base: "right", md: "left" }}
+          fontSize="11.52px"
+          lineHeight="13.83px"
+          color={Limited ? colors.marinadeOrange : "gray.500"}
+        >
+          {limitedAmountLeft !== 0
+            ? t("appPage.mnde.nft-levels.level-one.amount.limited")?.replace(
+                placeholder,
+                limitedAmountLeft
+              )
+            : t("appPage.mnde.nft-levels.level-one.amount.regular")}
+        </Text>
+      </Skeleton>
       <Flex
         width="100%"
         flexDirection={{ md: "row", base: "column" }}
@@ -158,9 +171,9 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
               onLevelClick(
                 "1",
                 true,
-                editionInfo[0].editions[0].current
-                  ? editionInfo[0].editions[0].address
-                  : editionInfo[0].editions[1].address
+                editionInfo.editions[0].current
+                  ? editionInfo.editions[0].address
+                  : editionInfo.editions[1].address
               );
           }}
           selected={selectedLevel === "level1"}
@@ -180,9 +193,9 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
               onLevelClick(
                 "2",
                 true,
-                editionInfo[0].editions[0].current
-                  ? editionInfo[0].editions[0].address
-                  : editionInfo[0].editions[1].address
+                editionInfo.editions[0].current
+                  ? editionInfo.editions[0].address
+                  : editionInfo.editions[1].address
               );
           }}
           selected={selectedLevel === "level2"}
@@ -202,9 +215,9 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
               onLevelClick(
                 "3",
                 true,
-                editionInfo[0].editions[0].current
-                  ? editionInfo[0].editions[0].address
-                  : editionInfo[0].editions[1].address
+                editionInfo.editions[0].current
+                  ? editionInfo.editions[0].address
+                  : editionInfo.editions[1].address
               );
           }}
           selected={selectedLevel === "level3"}
@@ -224,9 +237,9 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
               onLevelClick(
                 "4",
                 true,
-                editionInfo[0].editions[0].current
-                  ? editionInfo[0].editions[0].address
-                  : editionInfo[0].editions[1].address
+                editionInfo.editions[0].current
+                  ? editionInfo.editions[0].address
+                  : editionInfo.editions[1].address
               );
           }}
           selected={selectedLevel === "level4"}
@@ -248,9 +261,9 @@ const NFTLevels = ({ balance, input, onLevelClick }: NFTLevelsProps) => {
               onLevelClick(
                 "5",
                 true,
-                editionInfo[0].editions[0].current
-                  ? editionInfo[0].editions[0].address
-                  : editionInfo[0].editions[1].address
+                editionInfo.editions[0].current
+                  ? editionInfo.editions[0].address
+                  : editionInfo.editions[1].address
               );
           }}
           selected={selectedLevel === "level5"}

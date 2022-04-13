@@ -47,6 +47,7 @@ const LockMNDESection = () => {
   const { transactionSigned, transactionSignedAction } =
     useContext(AccountsContext);
   const [txConfirmed, setTxConfirmed] = useState(false);
+  const [editionsLoaded, setEditionsLoaded] = useState(false);
 
   const { MNDEBalance } = useUserBalance();
 
@@ -114,6 +115,7 @@ const LockMNDESection = () => {
               input={MNDEToLock}
               balance={(MNDEBalance ?? 0) / LAMPORTS_PER_SOL}
               onLevelClick={handleLevelSelected}
+              onEditionsLoaded={setEditionsLoaded}
             />
             <MButton
               font="text-xl"
@@ -128,7 +130,8 @@ const LockMNDESection = () => {
               my={4}
               isDisabled={
                 Number(MNDEToLock) < 1000 ||
-                Number(MNDEToLock) > (MNDEBalance ?? 0) / LAMPORTS_PER_SOL
+                Number(MNDEToLock) > (MNDEBalance ?? 0) / LAMPORTS_PER_SOL ||
+                !editionsLoaded
               }
               onClick={() => {
                 setIsPendingLockOpen(true);
