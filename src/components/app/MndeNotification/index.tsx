@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 
 import MText from "../../atoms/Text";
+import { useLocalStorageState } from "hooks/useLocalStorageState";
 import { useTranslation } from "hooks/useTranslation";
 import colors from "styles/customTheme/colors";
 
@@ -14,11 +15,13 @@ export interface MndeNotificationProps {
 const MndeNotification: FunctionComponent<MndeNotificationProps> = ({
   onClick,
 }) => {
+  const [mndeNotificationClosed, setmndeNotificationClosed] =
+    useLocalStorageState("mndeNotificationClosed");
   const { t } = useTranslation();
   const toast = useToast();
   const toastId = "mnde-notification";
   useEffect(() => {
-    if (!toast.isActive(toastId)) {
+    if (!toast.isActive(toastId) && !mndeNotificationClosed) {
       toast({
         id: toastId,
         description: (
@@ -32,6 +35,7 @@ const MndeNotification: FunctionComponent<MndeNotificationProps> = ({
               rightIcon={<AiOutlineArrowRight />}
               _focus={{ boxShadow: "none" }}
               onClick={() => {
+                setmndeNotificationClosed(true);
                 onClick();
                 toast.closeAll();
               }}
@@ -44,11 +48,14 @@ const MndeNotification: FunctionComponent<MndeNotificationProps> = ({
         duration: null,
         isClosable: true,
         variant: "subtle",
+        onCloseComplete: () => {
+          setmndeNotificationClosed(true);
+        },
         containerStyle: { maxWidth: "450px" },
       });
     }
     return () => toast.closeAll();
-  }, [toast, onClick, t]);
+  }, [toast, onClick, t, mndeNotificationClosed, setmndeNotificationClosed]);
   return null;
 };
 
