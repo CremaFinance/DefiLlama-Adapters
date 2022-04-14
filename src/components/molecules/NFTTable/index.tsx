@@ -23,6 +23,7 @@ import { formatNumberLocale } from "../../../utils/format-number-locale";
 import MButton from "../../atoms/Button";
 import MText from "../../atoms/Text";
 import NFTTableRow from "../NFTTableRow";
+import UpgradeNFTModal from "../UpgradeNFTModal";
 import CancelUnlockingModal from "components/molecules/CancelUnlockingModal";
 import ClaimMndeModal from "components/molecules/ClaimMndeModal";
 import StartUnlockingMndeModal from "components/molecules/StartUnlockingMndeModal";
@@ -51,6 +52,7 @@ const NFTTable = () => {
   const { t } = useTranslation();
   const { data: governance, isLoading } = useGovernanceData();
   const [isPendingLockOpen, setIsPendingLockOpen] = useState(false);
+  const [selectedNFT, setSelectedNFT] = useState("");
 
   const {
     isOpen: isCancelMndeOpen,
@@ -66,6 +68,11 @@ const NFTTable = () => {
     isOpen: isClaimMndeOpen,
     onClose: onClaimMndeClose,
     onOpen: onClaimMndeOpen,
+  } = useDisclosure();
+  const {
+    isOpen: isUpgradeModalOpen,
+    onClose: onUpgradeModalClose,
+    onOpen: onUpgradeModalOpen,
   } = useDisclosure();
 
   function onCancelUnlocking(mndeAmount: string, address: PublicKey) {
@@ -146,6 +153,10 @@ const NFTTable = () => {
           <Tbody>
             {governance?.nfts.map((nft) => (
               <NFTTableRow
+                onUpgrade={() => {
+                  onUpgradeModalOpen();
+                  setSelectedNFT(nft.address.toString());
+                }}
                 key={nft.id}
                 id={nft.id}
                 address={nft.address}
@@ -332,6 +343,11 @@ const NFTTable = () => {
         isOpen={isCancelMndeOpen}
         onClose={onCancelMndeClose}
         mndeAmount={currentNFTMndeValue}
+      />
+      <UpgradeNFTModal
+        isOpen={isUpgradeModalOpen}
+        onClose={onUpgradeModalClose}
+        nftAddress={selectedNFT}
       />
     </Flex>
   );

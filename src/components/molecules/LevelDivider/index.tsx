@@ -28,7 +28,7 @@ const LevelDivider = ({
       ml={{ base: "0px", md: "4px" }}
       mr={{ base: "0px", md: "4px" }}
       width={{ base: "100%", sm: "0" }}
-      height={{ base: "auto", sm: last ? "146px" : "127px" }}
+      height={{ base: "auto", sm: last ? "146px" : "136px" }}
       display={
         (balance < max || disableMax) && (balance >= min || disableMin)
           ? "flex"

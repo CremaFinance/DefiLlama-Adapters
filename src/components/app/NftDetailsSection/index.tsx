@@ -1,4 +1,12 @@
-import { Flex, Stack, IconButton, Image, Box, Spinner } from "@chakra-ui/react";
+import {
+  Flex,
+  Stack,
+  IconButton,
+  Image,
+  Box,
+  Spinner,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { useRouter } from "next/dist/client/router";
 import type { FunctionComponent } from "react";
 import { MdInfoOutline } from "react-icons/md";
@@ -7,6 +15,7 @@ import { formatNumberLocale } from "../../../utils/format-number-locale";
 import MButton from "../../atoms/Button";
 import MHeading from "../../atoms/Heading";
 import MText from "../../atoms/Text";
+import UpgradeNFTModal from "../../molecules/UpgradeNFTModal";
 import TwitterDataLoadingModal from "../TwittedDataLoadingModal";
 import TooltipWithContent from "components/molecules/TooltipWithContent";
 import useGovernanceData from "hooks/useGovernanceData";
@@ -32,6 +41,14 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
   const { isLoadingIntent, onLoadingIntent, shareOnTwitter } =
     useShareOnTwitter();
   const unlockPeriod = (data?.properties.unlock_duration ?? 0) / 86_400;
+  const {
+    isOpen: isUpgradeModalOpen,
+    onClose: onUpgradeModalClose,
+    onOpen: onUpgradeModalOpen,
+  } = useDisclosure();
+
+  const owned = governance?.nfts.find((x) => x.address.toString() === id);
+
   const skeleton = (
     <Flex
       p={6}
@@ -76,13 +93,34 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
             src={data?.image || ""}
             maxWidth={{ base: "240px", md: "477px" }}
           />
-          <MHeading
-            fontSize="18px"
-            mt="16px"
-            mr={{ base: "auto", md: "unset" }}
-          >
-            {data?.name}
-          </MHeading>
+          <Flex alignItems="center" justifyContent="space-between" mt="16px">
+            <MHeading fontSize="18px" mr={{ base: "auto", md: "unset" }}>
+              {data?.name}
+            </MHeading>
+            {isWalletConnected && !!owned && !owned.lockEndDate && (
+              <MButton
+                alignSelf="flex-end"
+                textColor={colors.white}
+                rounded="md"
+                px={[4, 4]}
+                height="32px"
+                _hover={{ bg: colors.green800 }}
+                _focus={{ boxShadow: "none" }}
+                colorScheme={colors.marinadeGreen}
+                bg={colors.marinadeGreen}
+                mb="12px"
+                mt="16px"
+                color="white"
+                fontWeight="700"
+                fontSize="14.4px"
+                onClick={() => {
+                  onUpgradeModalOpen();
+                }}
+              >
+                {t("appPage.mnde.nft-levels.lock-more")}
+              </MButton>
+            )}
+          </Flex>
           <Flex
             pt={6}
             alignItems="center"
@@ -366,6 +404,11 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
         </Flex>
       )}
       <TwitterDataLoadingModal isOpen={isLoadingIntent} />
+      <UpgradeNFTModal
+        isOpen={isUpgradeModalOpen}
+        onClose={onUpgradeModalClose}
+        nftAddress={id as string}
+      />
     </Flex>
   );
 };

@@ -27,6 +27,7 @@ type NFTTableRowProps = {
   ) => void;
   onClaimMnde: (mndeAmount: string, address: PublicKey) => void;
   onCancelMnde: (mndeAmount: string, address: PublicKey) => void;
+  onUpgrade: () => void;
 };
 
 const NFTTableRow: FunctionComponent<NFTTableRowProps> = ({
@@ -41,6 +42,7 @@ const NFTTableRow: FunctionComponent<NFTTableRowProps> = ({
   onUnlockMnde,
   onClaimMnde,
   onCancelMnde,
+  onUpgrade,
 }) => {
   const { t } = useTranslation();
   const [isMobile] = useMediaQuery("(max-width: 425px)");
@@ -90,8 +92,8 @@ const NFTTableRow: FunctionComponent<NFTTableRowProps> = ({
             <Flex
               flexDirection="column"
               justifyContent="center"
-              alignItems="center"
-              my="4px"
+              alignItems="end"
+              mb="12px"
               mt="12px"
             >
               {isMobile ? (
@@ -99,6 +101,27 @@ const NFTTableRow: FunctionComponent<NFTTableRowProps> = ({
                   {formatNumberLocale(lockedMNDE)} MNDE
                 </MText>
               ) : undefined}
+              {isUnlockEnabled && (
+                <MButton
+                  textColor={colors.white}
+                  rounded="md"
+                  px={[4, 4]}
+                  height="32px"
+                  _hover={{ bg: colors.green800 }}
+                  _focus={{ boxShadow: "none" }}
+                  colorScheme={colors.marinadeGreen}
+                  bg={colors.marinadeGreen}
+                  mb="12px"
+                  color="white"
+                  fontWeight="700"
+                  fontSize="14.4px"
+                  onClick={() => {
+                    onUpgrade();
+                  }}
+                >
+                  {t("appPage.mnde.nft-levels.lock-more")}
+                </MButton>
+              )}
               <MButton
                 colorScheme="gray"
                 _hover={{ bg: "gray.100" }}
@@ -124,11 +147,6 @@ const NFTTableRow: FunctionComponent<NFTTableRowProps> = ({
                 {isCancelEnabled && t("appPage.mnde.nft-levels.cancel-unlock")}
                 {isUnlockEnabled && t("appPage.mnde.nft-levels.unlock")}
               </MButton>
-              {isUnlockEnabled && (
-                <MText textAlign="center" fontSize="11.52px">
-                  {t("appPage.mnde.nft-levels.lock-period")}
-                </MText>
-              )}
             </Flex>
             {isClaimEnabled && lockEndDate && (
               <MButton
@@ -139,7 +157,6 @@ const NFTTableRow: FunctionComponent<NFTTableRowProps> = ({
                 textColor={colors.black}
                 rounded="md"
                 px={[4, 4]}
-                my="4px"
                 mb="12px"
                 height="32px"
                 bg={colors.white}

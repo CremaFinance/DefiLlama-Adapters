@@ -7,6 +7,7 @@ import { LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
 import axios from "axios";
 import axiosRetry from "axios-retry";
 
+import { nftLevel } from "../domain/nftLevels";
 import type {
   NftAccount,
   NftMetadata,
@@ -76,14 +77,18 @@ export const fetchGovernanceData = async (sdk: EscrowRelockerSDK) => {
     const escrow = await EscrowWrapper.address(sdk, new PublicKey(nft.mint));
     const escrowWrap = new EscrowWrapper(sdk, escrow);
     const metadata = await fetchNftMetadataByAccount(nft);
-
     if (escrowWrap) {
       const escrowData = await escrowWrap.data();
       const amounts = escrowData.amount.toNumber() / LAMPORTS_PER_SOL;
+      if (Number(metadata?.properties.mnde_amount ?? 0) !== amounts) {
+        throw new Error("Off-chain data is not synchronised.");
+      }
       return {
         address: new PublicKey(nft.mint),
         lockedMNDE: amounts,
         id: escrowData.globalIndex.toString(),
+        limited: escrowData.nftKind.toString() === nftLevel.editions[0].address,
+        kind: escrowData.nftKind.toString(),
         dataUri: nft.data.uri,
         thumbnailURL: metadata?.image,
         lockEndDate: (escrowData.state as any).locked

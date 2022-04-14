@@ -7,4 +7,6 @@ export type NFTType = {
   thumbnailURL: string;
   lockEndDate?: Date;
   dataUri: string;
+  limited: boolean;
+  kind: string;
 };

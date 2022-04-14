@@ -7,6 +7,7 @@ import NftDetailsSection from "components/app/NftDetailsSection";
 import Footer from "components/layout/Footer";
 import type { BreadcrumbItem } from "components/molecules/BreadcrumbWithRouter";
 import BreadcrumbWithRouter from "components/molecules/BreadcrumbWithRouter";
+import { GovernanceContextProvider } from "contexts/GovernanceContext";
 import { useNftDetails } from "hooks/useNftDetails";
 import colors from "styles/customTheme/colors";
 
@@ -36,7 +37,9 @@ const NftDetails = () => {
     >
       <Header />
       <BreadcrumbWithRouter breadcrumbItems={breadcrumbItems} />
-      <NftDetailsSection id={pid as string} />
+      <GovernanceContextProvider>
+        <NftDetailsSection id={pid as string} />
+      </GovernanceContextProvider>
       <Spacer />
       <Footer />
       <MobileMenu />

@@ -14,6 +14,7 @@ import {
   GaugeVoterWrapper,
   GaugeVoteWrapper,
 } from "@marinade.finance/escrow-relocker-sdk/gauges";
+import { tokenAccountMint } from "@marinade.finance/escrow-relocker-sdk/utils";
 import { TransactionEnvelope } from "@saberhq/solana-contrib";
 import {
   ASSOCIATED_TOKEN_PROGRAM_ID,
@@ -73,6 +74,9 @@ const GovernanceContext = createContext({
   lockMNDE: async (_amount: string, _kind: string): Promise<string> => {
     return "";
   },
+  addMore: async (_amount: string, _nftToken?: PublicKey): Promise<string> => {
+    return "";
+  },
 });
 
 function GovernanceContextProvider(props: {
@@ -120,6 +124,34 @@ function GovernanceContextProvider(props: {
     });
     return response;
   }
+
+  async function addMore(amount: string, nftMint?: PublicKey): Promise<string> {
+    let response = "H";
+    if (nftMint) {
+      const escrow = await EscrowWrapper.address(sdk, nftMint);
+      const escrowWrapper = new EscrowWrapper(sdk, escrow);
+      const payFrom = await Token.getAssociatedTokenAddress(
+        ASSOCIATED_TOKEN_PROGRAM_ID,
+        TOKEN_PROGRAM_ID,
+        (
+          await (await escrowWrapper.realm()).data()
+        ).govMint,
+        sdk.provider.wallet.publicKey
+      );
+
+      const tx = await escrowWrapper.addMore({
+        amount: new BN(Number(amount) * LAMPORTS_PER_SOL),
+        payFrom,
+      });
+      await tx.confirm().then(async (txId) => {
+        await queryClient.invalidateQueries("nfts").then((res) => {
+          response = txId.signature;
+        });
+      });
+    }
+    return response;
+  }
+
   async function closeGaugeVoter(nftMint: PublicKey, gaugemeister: PublicKey) {
     const escrow = await EscrowWrapper.address(sdk, nftMint);
     const escrowWrapper = new EscrowWrapper(sdk, escrow);
@@ -256,6 +288,7 @@ function GovernanceContextProvider(props: {
         claimMNDE,
         cancelUnlocking,
         lockMNDE,
+        addMore,
       }}
       {...props}
     />

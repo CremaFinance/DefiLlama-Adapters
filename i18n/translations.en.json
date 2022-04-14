@@ -388,10 +388,15 @@
         "text": "Unlock period",
         "tooltip": "During the unlock period, unlocking NFTs cannot vote. When the unlocking period is over, the NFT can be burned and tokens can be withdrawn from the governance escrow."
       },
+      "current-locked-amount": {
+        "text": "Current amount locked",
+        "tooltip": "Your NFT contains {{value}} locked MNDE tokens. Sending this NFT to another wallet will also send these tokens."
+      },
       "unlock-period-mockup-value": "30 days",
       "lock-nfts": "If you lock MNDE, your NFTs will be displayed here.",
       "connect-to-lock-nfts": "Connect your wallet to manage your NFTs",
       "lock-button": "Lock MNDE",
+      "lock-more-button": "Lock more MNDE",
       "description1": "The Marinade token - MNDE - represents fractional ownership of Marinade.",
       "docs-link": "https://docs.marinade.finance/marinade-dao/tokenomics",
       "header": "Participate in Marinade",
@@ -453,11 +458,14 @@
           "title": ">250k MNDE"
         },
         "buy-more": "Buy more MNDE to unlock",
-        "lock-period": "(30d)",
+        "lock-period": "",
         "cancel-unlock": "Cancel unlock",
         "delayed-claim": "Claim in ",
         "claim": "Claim",
-        "unlock": "Unlock",
+        "unlock": "Unlock (30d)",
+        "lock-more": "Lock more MNDE",
+        "lock-more-with-value": "Add {{value}} MNDE",
+        "current-level": "Current level",
         "vote": "Vote",
         "locked-mnde-header": "Locked MNDE",
         "nft-header": "NFT",
@@ -643,6 +651,7 @@
     }
   },
   "mndePage": {
+    "lock-more-title": "Lock more MNDE into this NFT:",
     "retro-title": "MNDE Retro",
     "coming-soon": "Coming soon",
     "retro-info": "Marinade retroactive claim for early adopters will be distributed in the following phases:",
