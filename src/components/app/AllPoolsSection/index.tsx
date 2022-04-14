@@ -7,6 +7,7 @@ import { useStats } from "../../../contexts/StatsContext";
 import type { Pool, PoolConfig } from "../../../services/domain/pool";
 import { providerKeys } from "../../../services/pools/index";
 import CallToActionSection from "../CallToActionSection";
+import PoolsCategories from "../PoolsCategories";
 import PoolRow from "components/molecules/PoolRow";
 import { useQuarryProvider } from "contexts/QuaryContext";
 import { usePools } from "hooks/usePools";
@@ -14,6 +15,8 @@ import { usePrices } from "hooks/usePrices";
 import type { Prices } from "services/domain/coinSymbols";
 import { coinSymbols } from "services/domain/coinSymbols";
 import type { Farm } from "services/domain/farm";
+import type { PoolCategories } from "services/domain/poolsCategories";
+import { capitalizeFirstLetter } from "utils/capitalize-first-letter";
 
 import type { SortingState } from "./constants";
 import { COLUMNS, COLUMNS_SORTER } from "./constants";
@@ -83,37 +86,42 @@ const AllPoolsSection = () => {
     isInverted: true,
   });
 
+  const [category, setCategory] = useState<PoolCategories>("liquidity");
+
   const {
     farms: { mLP, mSOL },
   } = useQuarryProvider();
   const prices = usePrices([coinSymbols.SOL, coinSymbols.MNDE]);
   const stats = useStats();
 
-  const results = usePools({
-    [providerKeys.MNDE]: {
-      tvl: stats.liqPoolBalance,
-      ...mLPRowStats(mLP, prices, stats),
-      ...mSolRowStats(mSOL, prices, stats),
+  const results = usePools(
+    {
+      [providerKeys.MNDE]: {
+        tvl: stats.liqPoolBalance,
+        ...mLPRowStats(mLP, prices, stats),
+        ...mSolRowStats(mSOL, prices, stats),
+      },
     },
-  });
+    category
+  );
 
   const sortedPools = useMemo(() => {
-    const pools = results.reduce(
-      (acc, result) =>
-        result.data
-          ? acc.concat(
-              Object.entries(result.data).map(([key, pool]) => {
-                return { id: key, pool };
-              })
-            )
-          : acc,
-      [] as { id: string; pool: Pool | PoolConfig }[]
-    );
-    // temp hack to skip sorting for marinade pools
+    const pools = results
+      .reduce(
+        (acc, result) =>
+          result.data
+            ? acc.concat(
+                Object.entries(result.data).map(([key, pool]) => {
+                  return { id: key, pool };
+                })
+              )
+            : acc,
+        [] as { id: string; pool: Pool | PoolConfig }[]
+      )
+      .filter((pool) => pool.pool.category === category);
     const marinadePools = pools.filter(
-      (pool) => pool.pool.provider === "Marinade"
+      (pool) => pool.pool.provider === capitalizeFirstLetter(providerKeys.MNDE)
     );
-
     const otherPools = pools
       .filter((pool) => pool.pool.provider !== "Marinade")
       .sort((a, b) => {
@@ -121,14 +129,18 @@ const AllPoolsSection = () => {
         return sorting.isInverted ? ratio : -ratio;
       });
     return [...marinadePools, ...otherPools];
-  }, [results, sorting]);
+  }, [results, sorting, category]);
 
   return (
     <Flex
       flexDir="column"
       marginX={{ base: "16px", lg: "65px", xl: "170px" }}
       alignItems="stretch"
+      zIndex={8}
     >
+      <PoolsCategories
+        setCategory={(cat: PoolCategories) => setCategory(cat)}
+      />
       <DesktopDataHeader sorting={sorting} setSorting={setSorting} />
       <MobileDataHeader sorting={sorting} setSorting={setSorting} />
       <Flex

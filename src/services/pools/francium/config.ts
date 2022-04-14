@@ -3,6 +3,7 @@ import { marketTypes } from "../../domain/marketTypes";
 import type { PoolConfig } from "../../domain/pool";
 import { orcaPools } from "../orca/config";
 import { liquidityOrcaPoolAddress } from "../orca/liquidityOrcaPoolAddress";
+import { poolCategories } from "services/domain/poolsCategories";
 
 import type { FarmPoolAddress, LendingPoolAddress } from "./PoolAddress";
 import { farmPoolAddress, lendingPoolAddress } from "./PoolAddress";
@@ -32,6 +33,7 @@ export const franciumFarmPools: Record<FarmPoolAddress, PoolConfig> = {
       provider,
       marketType: marketTypes.Leveraged,
       actions: farmActions,
+      category: poolCategories.FARMING,
       leverage: {
         ratio: 2,
         leverageTokens: {
@@ -51,6 +53,7 @@ export const franciumFarmPools: Record<FarmPoolAddress, PoolConfig> = {
       provider,
       marketType: marketTypes.Leveraged,
       actions: farmActions,
+      category: poolCategories.FARMING,
       leverage: {
         ratio: 2,
         leverageTokens: {
@@ -70,6 +73,7 @@ export const franciumFarmPools: Record<FarmPoolAddress, PoolConfig> = {
       provider,
       marketType: marketTypes.Leveraged,
       actions: farmActions,
+      category: poolCategories.FARMING,
       leverage: {
         ratio: 2,
         leverageTokens: {
@@ -90,6 +94,7 @@ export const franciumFarmPools: Record<FarmPoolAddress, PoolConfig> = {
       provider,
       marketType: marketTypes.Leveraged,
       actions: farmActions,
+      category: poolCategories.FARMING,
       leverage: {
         ratio: 2,
         leverageTokens: {
@@ -109,6 +114,7 @@ export const franciumFarmPools: Record<FarmPoolAddress, PoolConfig> = {
       provider,
       marketType: marketTypes.Leveraged,
       actions: farmActions,
+      category: poolCategories.FARMING,
       leverage: {
         ratio: 2,
         leverageTokens: {
@@ -128,6 +134,7 @@ export const franciumFarmPools: Record<FarmPoolAddress, PoolConfig> = {
       provider,
       marketType: marketTypes.Leveraged,
       actions: farmActions,
+      category: poolCategories.FARMING,
       leverage: {
         ratio: 2,
         leverageTokens: {
@@ -148,6 +155,7 @@ export const franciumLendingPools: Record<LendingPoolAddress, PoolConfig> = {
       providerId: lendingPoolIds.FRANCIUM_mSOL,
       tokenA: coinSymbols.mSOL,
       actions: lendActions,
+      category: poolCategories.LENDING,
     },
   },
 };

@@ -70,12 +70,14 @@ const ApyAndRewardTooltip: FunctionComponent<ApyAndRewardTooltipProps> = ({
             </Text>
           )}
 
-          <Text fontSize="14.40px" marginBottom="8px">
-            {t("appPage.pool-row.apyPopover.trading")}:
-            <Text as="span" fontWeight="bold">
-              {tradingApy && tradingApy.toFixed(2)}%
+          {tradingApy && (
+            <Text fontSize="14.40px" marginBottom="8px">
+              {t("appPage.pool-row.apyPopover.trading")}:
+              <Text as="span" fontWeight="bold">
+                {tradingApy.toFixed(2)}%
+              </Text>
             </Text>
-          </Text>
+          )}
           {rewardsList.map((reward) => (
             <Text
               key={`${reward.apy}-${reward.aprDescription}`}

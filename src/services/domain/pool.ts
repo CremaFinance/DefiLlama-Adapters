@@ -1,6 +1,7 @@
 import type { CoinSymbols, Prices } from "./coinSymbols";
 import type { LeverageConfig } from "./leverage";
 import type { MarketTypes } from "./marketTypes";
+import type { PoolCategories } from "./poolsCategories";
 import type { Rewards, RewardsConfig } from "./rewards";
 import type { Token } from "./token";
 
@@ -37,6 +38,7 @@ export interface PoolConfig extends Token {
   tokenA: CoinSymbols;
   tokenB?: CoinSymbols;
   leverage?: LeverageConfig;
+  category: PoolCategories;
   RowExtensionComponent?: () => JSX.Element;
   componentAction?: string;
 }

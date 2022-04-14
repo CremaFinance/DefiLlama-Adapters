@@ -26,7 +26,7 @@ const useShareOnTwitter = () => {
     isLoadingIntent: isOpen,
     onLoadingIntent: onOpen,
     shareOnTwitter: async (index: number, tier: number, pid: string) => {
-      const editionInfo = data?.find((x) => x !== undefined);
+      const editionInfo = data;
       const isLimited = !!editionInfo?.left;
       const messages: string[] = isLimited ? limitedMessages : regularMessages;
       const messageIndex = getRandomNumber(0, messages.length - 1);

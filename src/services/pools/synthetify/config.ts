@@ -1,6 +1,7 @@
 import { coinSymbols } from "../../domain/coinSymbols";
 import { marketTypes } from "../../domain/marketTypes";
 import type { PoolConfig } from "../../domain/pool";
+import { poolCategories } from "services/domain/poolsCategories";
 
 import type { SynthetifyPoolAddress } from "./poolAddress";
 import { synthetifyPoolAddress } from "./poolAddress";
@@ -25,6 +26,7 @@ export const synthetifyPools: Record<SynthetifyPoolAddress, PoolConfig> = {
       marketType: marketTypes.Lending,
       providerId: synthetifyPoolIds.SNY_mSOL,
       tokenA: coinSymbols.mSOL,
+      category: poolCategories.LENDING,
       rewards: {
         [coinSymbols.MNDE]: {
           aprDescription: "MNDE rewards",

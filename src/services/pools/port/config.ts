@@ -1,6 +1,7 @@
 import { coinSymbols } from "../../domain/coinSymbols";
 import { marketTypes } from "../../domain/marketTypes";
 import type { PoolConfig } from "../../domain/pool";
+import { poolCategories } from "services/domain/poolsCategories";
 
 import type { LendingPortPoolAddress } from "./lendingPortPoolAddress";
 import { lendingPortPoolAddress } from "./lendingPortPoolAddress";
@@ -33,6 +34,7 @@ export const portPools: Record<LendingPortPoolAddress, PoolConfig> = {
       marketType: marketTypes.Lending,
       providerId: lendingPortPoolIds.PORT_mSOL,
       tokenA: coinSymbols.mSOL,
+      category: poolCategories.LENDING,
       rewards: {
         [coinSymbols.MNDE]: {
           aprDescription: "Emission",
