@@ -47,7 +47,7 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
     onOpen: onUpgradeModalOpen,
   } = useDisclosure();
 
-  const owned = !!governance?.nfts.find((x) => x.address.toString() === id);
+  const owned = governance?.nfts.find((x) => x.address.toString() === id);
 
   const skeleton = (
     <Flex
@@ -97,7 +97,7 @@ const NftDetailsSection: FunctionComponent<NftDetailsSectionProps> = ({
             <MHeading fontSize="18px" mr={{ base: "auto", md: "unset" }}>
               {data?.name}
             </MHeading>
-            {isWalletConnected && owned && (
+            {isWalletConnected && !!owned && !owned.lockEndDate && (
               <MButton
                 alignSelf="flex-end"
                 textColor={colors.white}
