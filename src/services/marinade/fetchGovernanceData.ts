@@ -7,7 +7,7 @@ import { LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
 import axios from "axios";
 import axiosRetry from "axios-retry";
 
-import { nftLevels } from "../domain/nftLevels";
+import { nftLevel } from "../domain/nftLevels";
 import type {
   NftAccount,
   NftMetadata,
@@ -87,8 +87,7 @@ export const fetchGovernanceData = async (sdk: EscrowRelockerSDK) => {
         address: new PublicKey(nft.mint),
         lockedMNDE: amounts,
         id: escrowData.globalIndex.toString(),
-        limited:
-          escrowData.nftKind.toString() === nftLevels[0].editions[0].address,
+        limited: escrowData.nftKind.toString() === nftLevel.editions[0].address,
         kind: escrowData.nftKind.toString(),
         dataUri: nft.data.uri,
         thumbnailURL: metadata?.image,
