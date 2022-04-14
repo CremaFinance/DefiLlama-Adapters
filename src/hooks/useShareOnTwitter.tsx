@@ -30,7 +30,11 @@ const useShareOnTwitter = () => {
       const isLimited = !!editionInfo?.left;
       const messages: string[] = isLimited ? limitedMessages : regularMessages;
       const messageIndex = getRandomNumber(0, messages.length - 1);
-      const twitterData = await getNftImageForTwitter(index, tier);
+      const twitterData = await getNftImageForTwitter(
+        index,
+        tier,
+        isLimited ? 0 : 1
+      );
       onClose();
       window.open(
         `https://twitter.com/intent/tweet?text=${messages[messageIndex].replace(
