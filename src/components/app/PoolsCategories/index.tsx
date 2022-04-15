@@ -7,6 +7,7 @@ import {
   MenuList,
   MenuItemOption,
   useBreakpointValue,
+  Box,
 } from "@chakra-ui/react";
 import type { FunctionComponent } from "react";
 import { useEffect, useState } from "react";
@@ -103,7 +104,13 @@ const PoolsCategories: FunctionComponent<PoolsCategoriesProps> = ({
             }}
             fontWeight="normal"
             rightIcon={
-              <IoIosCheckmarkCircle color={colors.marinadeGreen} size={20} />
+              <Box
+                display={
+                  activeCategory === item.category ? "inline-flex" : "none"
+                }
+              >
+                <IoIosCheckmarkCircle color={colors.marinadeGreen} size={20} />
+              </Box>
             }
           >
             <MText fontWeight="500">{item.title}</MText>
