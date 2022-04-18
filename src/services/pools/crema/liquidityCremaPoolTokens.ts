@@ -2,7 +2,6 @@ import type { Token } from "../../domain/token";
 
 import type { LiquidityCremaPoolAddress } from "./liquidityCremaPoolAddress";
 import { liquidityCremaPoolAddress } from "./liquidityCremaPoolAddress";
-//
 const CremaUri =
   "https://i.ibb.co/nmDgg1q/crema.png";
 
