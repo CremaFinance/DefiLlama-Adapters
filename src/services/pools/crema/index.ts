@@ -1,6 +1,4 @@
-import type { Prices } from "../../domain/coinSymbols";
 import type { Pool } from "../../domain/pool";
-
 import type { CremaPoolsResponse } from "./cremaPool";
 import { cremaPools } from "./config";
 
@@ -44,12 +42,18 @@ export const mapCremaPoolsResponse = (
 ) => {
   const poolsArray = Object.entries(cremaPools).map(([poolkey, incoming]) => {
     const pool = incoming;
-    
-    pool.liq = cremaResults.effectiveLiquity
+    if (pool.providerId) {
+
+
+      if (cremaResults) {
+        pool.liq = cremaResults.effectiveLiquity
     pool.totalLockedValue = cremaResults.
     pool.tradingApy = 0
     pool.apy = cremaResults.apr
     pool.rewards = cremaResults.rewardShare
+      }
+    }
+    
     // if (pool.providerId) {
     //   const result = cremaResults.find(
     //     (cremaResult:any) => cremaResult.providerId === pool.providerId
@@ -64,6 +68,7 @@ export const mapCremaPoolsResponse = (
     //     pool.rewards = rewards;
     //   }
     // }
+    console.log(pool,'pool##')
     return { [poolkey]: pool as Pool };
   });
 

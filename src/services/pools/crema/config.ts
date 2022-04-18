@@ -23,13 +23,13 @@ const actions: RawAction[] = [
   {
     text: "Add Liquidity",
     type: "add_liquidity",
-    url: "https://dex.crema.com/pools",
+    url: "https://app.crema.finance/#/pool",
     isExternal: true,
   },
   {
     text: "Swap",
     type: "swap",
-    url: "https://dex.crema.com/swap",
+    url: "https://app.crema.finance/#/swap",
     isExternal: true,
   },
 ];
