@@ -26,6 +26,11 @@ interface NftMetadata {
     trait_type: string;
     value: string;
   }[];
+  properties: {
+    edition: string;
+    tier: string;
+    mnde_amount: string;
+  };
 }
 
 export type { NftAccount, NftMetadata };
